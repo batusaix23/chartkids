@@ -49,6 +49,7 @@ When ready to generate the chart, include a JSON code block at the end of your r
   "goalType": "money",
   "goalAmount": 20,
   "days": 7,
+  "theme": "money",
   "tasks": [
     {"icon": "🛏️", "name": "Make bed", "category": "home"},
     {"icon": "📚", "name": "Do homework", "category": "school"}
@@ -56,7 +57,11 @@ When ready to generate the chart, include a JSON code block at the end of your r
 }
 \`\`\`
 
-IMPORTANT: goalType must be "money" or "toy". Tasks should be age-appropriate (4-6 years: simple, 7-10: more responsibility). Include 5-10 tasks with emojis.`
+IMPORTANT RULES:
+- goalType: "money" or "toy"
+- theme: Choose based on the prize: "money" (cash), "lego" (toys/lego), "music" (concerts/instruments), "travel" (trips/vacation), "bike" (bicycle/sports), "gaming" (videogames), "pet" (animals), "park" (amusement park), "clothes" (clothing/shoes), "general" (other)
+- Tasks should be age-appropriate (4-6 years: simple, 7-10: more responsibility)
+- Include 5-10 tasks with emojis`
         : `Eres un asistente amigable y creativo que ayuda a padres a crear "charts de actividades" personalizados para sus hijos.
 
 Tu objetivo es recopilar la siguiente información a través de una conversación natural:
@@ -79,6 +84,7 @@ Cuando estés listo para generar el chart, incluye un bloque de código JSON al 
   "goalType": "money",
   "goalAmount": 20,
   "days": 7,
+  "theme": "money",
   "tasks": [
     {"icon": "🛏️", "name": "Tender la cama", "category": "hogar"},
     {"icon": "📚", "name": "Hacer tarea", "category": "escolar"}
@@ -86,7 +92,11 @@ Cuando estés listo para generar el chart, incluye un bloque de código JSON al 
 }
 \`\`\`
 
-IMPORTANTE: goalType debe ser "money" o "toy". Las tareas deben ser apropiadas para la edad (4-6 años: simples, 7-10: más responsabilidad). Incluye 5-10 tareas con emojis.`;
+REGLAS IMPORTANTES:
+- goalType: "money" o "toy"
+- theme: Elige según el premio: "money" (dinero), "lego" (juguetes/lego), "music" (conciertos/instrumentos), "travel" (viajes/vacaciones), "bike" (bicicleta/deportes), "gaming" (videojuegos), "pet" (mascotas), "park" (parque diversiones), "clothes" (ropa/zapatos), "general" (otro)
+- Las tareas deben ser apropiadas para la edad (4-6 años: simples, 7-10: más responsabilidad)
+- Incluye 5-10 tareas con emojis`;
 
       // Preparar mensajes para la IA
       const aiMessages = [
