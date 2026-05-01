@@ -3,8 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#7c3aed">
+<meta name="description" content="Crea charts de actividades personalizados para tus hijos con IA gratis">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
 <title>ChartKids — AI Activity Charts</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
 <style>
 :root {
   --bg: #0f0f1a;
@@ -150,12 +155,14 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
 .prog-bar-fill { height: 100%; border-radius: 50px; background: linear-gradient(90deg, var(--green), var(--accent2)); transition: width 0.5s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 0.7rem; font-weight: 800; color: white; min-width: 32px; }
 .prog-stars { font-size: 0.8rem; color: var(--muted); font-weight: 700; text-align: center; }
 
-.action-row { display: flex; gap: 10px; }
-.btn { flex: 1; padding: 12px; border-radius: 12px; border: none; font-family: 'Nunito', sans-serif; font-size: 0.85rem; font-weight: 800; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px; }
+.action-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn { flex: 1; min-width: 120px; padding: 12px; border-radius: 12px; border: none; font-family: 'Nunito', sans-serif; font-size: 0.85rem; font-weight: 800; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px; }
 .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: white; }
 .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
 .btn-secondary { background: var(--surface2); border: 1px solid var(--border); color: var(--text); }
 .btn-secondary:hover { background: var(--border); }
+.btn-success { background: linear-gradient(135deg, var(--green), #10b981); color: white; }
+.btn-success:hover { opacity: 0.9; transform: translateY(-1px); }
 
 .empty-state { padding: 40px 20px; text-align: center; }
 .empty-icon { font-size: 3rem; margin-bottom: 12px; }
@@ -260,8 +267,10 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
       </div>
 
       <div class="action-row" id="actionRow" style="display:none">
+        <button class="btn btn-success" id="btnSave" onclick="saveChart()">💾 Guardar</button>
+        <button class="btn btn-secondary" id="btnShare" onclick="shareChart()">📤 Compartir</button>
         <button class="btn btn-secondary" id="btnPrint" onclick="window.print()">🖨️ Imprimir</button>
-        <button class="btn btn-primary" id="btnNew" onclick="resetChart()">🔄 Nuevo chart</button>
+        <button class="btn btn-primary" id="btnNew" onclick="resetChart()">🔄 Nuevo</button>
       </div>
     </div>
   </div>
@@ -286,8 +295,12 @@ const T = {
     previewTitle: 'Vista previa del Chart',
     previewSub: 'Se actualiza en tiempo real',
     progressLabel: '🏆 Progreso semanal',
+    btnSave: '💾 Guardar',
+    btnShare: '📤 Compartir',
     btnPrint: '🖨️ Imprimir',
-    btnNew: '🔄 Nuevo chart',
+    btnNew: '🔄 Nuevo',
+    saveSuccess: '✅ Chart guardado en tu dispositivo',
+    shareTitle: 'Mi Chart de Actividades',
     placeholder: 'Escribe aquí...',
     emptyTitle: 'Tu chart aparecerá aquí',
     emptyDesc: 'Habla con la IA para que genere<br>el chart personalizado de tu hijo/a',
@@ -317,8 +330,12 @@ const T = {
     previewTitle: 'Chart Preview',
     previewSub: 'Updates in real time',
     progressLabel: '🏆 Weekly Progress',
+    btnSave: '💾 Save',
+    btnShare: '📤 Share',
     btnPrint: '🖨️ Print',
-    btnNew: '🔄 New chart',
+    btnNew: '🔄 New',
+    saveSuccess: '✅ Chart saved to your device',
+    shareTitle: 'My Activity Chart',
     placeholder: 'Type here...',
     emptyTitle: 'Your chart will appear here',
     emptyDesc: 'Chat with the AI to generate<br>a personalized chart for your child',
@@ -364,6 +381,8 @@ function applyTranslations() {
   document.getElementById('previewTitle').textContent = t('previewTitle');
   document.getElementById('previewSub').textContent = t('previewSub');
   document.getElementById('progressLabel').textContent = t('progressLabel');
+  document.getElementById('btnSave').innerHTML = t('btnSave');
+  document.getElementById('btnShare').innerHTML = t('btnShare');
   document.getElementById('btnPrint').innerHTML = t('btnPrint');
   document.getElementById('btnNew').innerHTML = t('btnNew');
   document.getElementById('chatInput').placeholder = t('placeholder');
@@ -379,7 +398,7 @@ function renderQuickPrompts() {
     const btn = document.createElement('button');
     btn.className = 'qp-btn';
     btn.textContent = p.label;
-    btn.onclick = () => sendQuick(p.text);
+    btn.onclick = () => sendQuick(p.label.replace(/^[^\w\s]+\s*/, ''));
     qp.appendChild(btn);
   });
 }
@@ -614,9 +633,164 @@ function resetChat(isReset = false) {
   addMessage('ai', isReset ? t('resetGreeting') : t('greeting'));
 }
 
+// ─── Save & Share ────────────────────────────────────────
+async function saveChart() {
+  const chartEl = document.getElementById('chartInner');
+  if (!chartEl || !chartData) return;
+
+  // Usar html2canvas si está disponible, sino guardar como HTML
+  if (typeof html2canvas !== 'undefined') {
+    try {
+      const canvas = await html2canvas(chartEl, {
+        backgroundColor: '#FFFBF0',
+        scale: 2
+      });
+      const link = document.createElement('a');
+      link.download = `chart-${chartData.childName || 'kids'}-${Date.now()}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      showToast(t('saveSuccess'));
+    } catch(e) {
+      console.error(e);
+      saveAsHTML();
+    }
+  } else {
+    saveAsHTML();
+  }
+}
+
+function saveAsHTML() {
+  const chartEl = document.getElementById('chartInner');
+  const html = `<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Chart - ${chartData.childName || 'Kids'}</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+body{font-family:'Nunito',sans-serif;background:#FFFBF0;padding:20px;margin:0}
+.chart-main-title{font-family:'Fredoka One',cursive;font-size:1.6rem;color:#FF6B6B;text-shadow:2px 2px 0 #FFD93D;text-align:center;margin-bottom:16px}
+.chart-name-line{text-align:center;color:#888;font-weight:700;margin-bottom:16px}
+.chart-name-line span{color:#7c3aed}
+.chart-meta{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;justify-content:center}
+.meta-pill{padding:6px 14px;border-radius:50px;font-size:0.78rem;font-weight:800}
+.meta-goal{background:#dcfce7;color:#16a34a}
+.meta-star{background:#fef9c3;color:#ca8a04}
+.meta-days{background:#dbeafe;color:#1d4ed8}
+.chart-table{width:100%;border-collapse:collapse;font-size:0.85rem}
+.chart-table th{padding:8px;text-align:center;font-weight:800;color:#888;text-transform:uppercase;border-bottom:2px solid #eee}
+.chart-table td{padding:6px;border-bottom:1px solid #f0f0f0;text-align:center}
+.task-cell{text-align:left!important;font-weight:700}
+.check-box{width:28px;height:28px;border-radius:6px;background:#f8fafc;border:2px solid #e2e8f0;display:inline-block}
+</style></head><body>${chartEl.innerHTML}</body></html>`;
+
+  const blob = new Blob([html], { type: 'text/html' });
+  const link = document.createElement('a');
+  link.download = `chart-${chartData.childName || 'kids'}-${Date.now()}.html`;
+  link.href = URL.createObjectURL(blob);
+  link.click();
+  showToast(t('saveSuccess'));
+}
+
+async function shareChart() {
+  if (!chartData) return;
+
+  const shareData = {
+    title: t('shareTitle'),
+    text: `${chartData.title} - ${chartData.goal}`,
+    url: window.location.href
+  };
+
+  // Intentar Web Share API (móviles)
+  if (navigator.share) {
+    try {
+      await navigator.share(shareData);
+    } catch(e) {
+      if (e.name !== 'AbortError') {
+        copyToClipboard();
+      }
+    }
+  } else {
+    copyToClipboard();
+  }
+}
+
+function copyToClipboard() {
+  const text = `${t('shareTitle')}: ${chartData.title}\n${chartData.goal}\n${window.location.href}`;
+  navigator.clipboard.writeText(text).then(() => {
+    showToast(lang === 'es' ? '📋 Link copiado al portapapeles' : '📋 Link copied to clipboard');
+  });
+}
+
+function showToast(message) {
+  // Remover toast anterior si existe
+  const existing = document.querySelector('.toast');
+  if (existing) existing.remove();
+
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = message;
+  toast.style.cssText = `
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 700;
+    z-index: 1000;
+    animation: fadeUp 0.3s ease;
+  `;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 3000);
+}
+
+// ─── Guardar progreso localmente ─────────────────────────
+function saveProgress() {
+  if (!chartData) return;
+  const data = {
+    chartData,
+    checked: Array.from(checked),
+    timestamp: Date.now()
+  };
+  localStorage.setItem('chartkids_progress', JSON.stringify(data));
+}
+
+function loadProgress() {
+  const saved = localStorage.getItem('chartkids_progress');
+  if (saved) {
+    try {
+      const data = JSON.parse(saved);
+      // Solo cargar si es reciente (menos de 7 días)
+      if (Date.now() - data.timestamp < 7 * 24 * 60 * 60 * 1000) {
+        chartData = data.chartData;
+        checked = new Set(data.checked);
+        buildChart(chartData);
+        // Restaurar checks
+        checked.forEach(key => {
+          const el = document.getElementById(`cb-${key}`);
+          if (el) el.classList.add('done');
+        });
+      }
+    } catch(e) { console.error(e); }
+  }
+}
+
+// Guardar automáticamente cuando se hace check
+const originalToggleCheck = toggleCheck;
+toggleCheck = function(ti, d, total, goalAmount) {
+  originalToggleCheck(ti, d, total, goalAmount);
+  saveProgress();
+};
+
 // ─── Init ────────────────────────────────────────────────
 applyTranslations();
 resetChat();
+loadProgress();
+
+// Registrar Service Worker para funcionar offline
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(err => console.log('SW:', err));
+}
 </script>
 </body>
 </html>

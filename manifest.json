@@ -1,0 +1,16 @@
+{
+  "name": "ChartKids - Activity Charts",
+  "short_name": "ChartKids",
+  "description": "Crea charts de actividades personalizados para tus hijos con IA",
+  "start_url": "/chartkids/",
+  "display": "standalone",
+  "background_color": "#0f0f1a",
+  "theme_color": "#7c3aed",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
