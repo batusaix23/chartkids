@@ -142,27 +142,48 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
 /* Chart */
 .preview-panel { display: flex; flex-direction: column; gap: 16px; }
 .chart-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-.chart-inner { padding: 20px; background: #FFFBF0; color: #2D2D2D; min-height: 300px; }
-.chart-title-area { text-align: center; margin-bottom: 16px; }
-.chart-main-title { font-family: 'Fredoka One', cursive; font-size: 1.6rem; color: #FF6B6B; text-shadow: 2px 2px 0 #FFD93D; }
-.chart-name-line { font-size: 0.9rem; color: #888; font-weight: 700; margin-top: 4px; }
-.chart-name-line span { color: #7c3aed; font-size: 1rem; }
-.chart-meta { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
-.meta-pill { padding: 6px 14px; border-radius: 50px; font-size: 0.78rem; font-weight: 800; display: flex; align-items: center; gap: 5px; }
-.meta-goal { background: #dcfce7; color: #16a34a; }
-.meta-star { background: #fef9c3; color: #ca8a04; }
-.meta-days { background: #dbeafe; color: #1d4ed8; }
-.chart-table-wrap { overflow-x: auto; }
-.chart-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-.chart-table th { padding: 6px 4px; text-align: center; font-weight: 800; font-size: 0.7rem; color: #888; text-transform: uppercase; }
-.chart-table th.task-col { text-align: left; padding-left: 8px; }
-.chart-table td { padding: 4px; border-top: 1px solid #f0f0f0; text-align: center; }
-.chart-table td.task-cell { text-align: left; padding-left: 8px; font-weight: 700; font-size: 0.8rem; color: #333; }
-.task-row-num { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; color: white; font-size: 0.65rem; font-weight: 800; margin-right: 5px; }
-.check-box { width: 32px; height: 32px; border-radius: 8px; background: #f8fafc; border: 2px solid #e2e8f0; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; font-size: 1rem; transition: all 0.15s; user-select: none; }
-.check-box:hover { border-color: #a78bfa; transform: scale(1.05); }
-.check-box.done { background: linear-gradient(135deg, #6BCB77, #4ECDC4); border-color: #6BCB77; box-shadow: 0 2px 6px rgba(107,203,119,0.4); }
+.chart-inner { padding: 24px; background: linear-gradient(160deg, #a8edea 0%, #fed6e3 100%); color: #2D2D2D; min-height: 300px; position: relative; overflow: hidden; }
+.chart-inner::before { content: ''; position: absolute; top: -40px; right: -40px; width: 150px; height: 150px; background: radial-gradient(circle, #FFD93D44, transparent 70%); border-radius: 50%; }
+.chart-page { background: #FFFBF0; border-radius: 20px; padding: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); position: relative; }
+.chart-header { text-align: center; margin-bottom: 16px; }
+.chart-stars-row { font-size: 1.3rem; letter-spacing: 4px; margin-bottom: 6px; animation: twinkle 2s infinite alternate; }
+@keyframes twinkle { from { opacity: 0.7; } to { opacity: 1; } }
+.chart-main-title { font-family: 'Fredoka One', cursive; font-size: 1.5rem; color: #FF6B6B; text-shadow: 2px 2px 0 #FFD93D, 3px 3px 0 rgba(0,0,0,0.06); line-height: 1.2; }
+.chart-subtitle { font-size: 0.85rem; color: #888; font-weight: 600; margin-top: 4px; }
+.chart-name-banner { background: linear-gradient(135deg, #6DD5FA, #4ECDC4); border-radius: 14px; padding: 10px 20px; margin: 12px auto; max-width: 280px; text-align: center; box-shadow: 0 4px 12px rgba(109,213,250,0.3); }
+.chart-name-text { font-family: 'Fredoka One', cursive; font-size: 1.1rem; color: white; }
+.chart-prize-banner { background: linear-gradient(135deg, var(--green), #16a34a); border-radius: 14px; padding: 12px 20px; margin: 0 auto 16px; display: flex; align-items: center; gap: 10px; justify-content: center; flex-wrap: wrap; box-shadow: 0 4px 12px rgba(34,197,94,0.3); }
+.chart-prize-label { font-size: 0.85rem; color: rgba(255,255,255,0.9); font-weight: 700; }
+.chart-prize-amount { font-family: 'Fredoka One', cursive; font-size: 1.4rem; color: #FFD93D; text-shadow: 1px 1px 0 rgba(0,0,0,0.2); }
+.chart-prize-text { font-family: 'Fredoka One', cursive; font-size: 1rem; color: white; }
+.chart-star-value { font-size: 0.75rem; color: rgba(255,255,255,0.85); font-weight: 600; }
+.chart-tasks { margin-bottom: 16px; }
+.chart-days-row { display: grid; grid-template-columns: 28px 1fr 60px repeat(7, 34px); align-items: center; gap: 4px; margin-bottom: 6px; }
+.chart-day-header { font-size: 0.6rem; font-weight: 800; color: #aaa; text-align: center; text-transform: uppercase; }
+.chart-task-row { display: grid; grid-template-columns: 28px 1fr 60px repeat(7, 34px); align-items: center; gap: 4px; margin-bottom: 6px; }
+.chart-task-row.no-money { grid-template-columns: 28px 1fr repeat(7, 34px); }
+.chart-days-row.no-money { grid-template-columns: 28px 1fr repeat(7, 34px); }
+.task-num { font-family: 'Fredoka One', cursive; font-size: 0.8rem; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.task-name-box { background: white; border-radius: 10px; padding: 6px 10px; font-size: 0.75rem; font-weight: 700; color: #333; border: 2px solid #eee; display: flex; align-items: center; gap: 5px; min-height: 36px; }
+.task-pay-box { background: #f0fdf4; border: 2px solid #bbf7d0; border-radius: 8px; text-align: center; padding: 4px; font-family: 'Fredoka One', cursive; font-size: 0.7rem; color: #16a34a; }
+.check-box { width: 34px; height: 36px; border-radius: 8px; background: white; border: 2px solid #e2e8f0; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; font-size: 1rem; transition: all 0.15s; user-select: none; flex-shrink: 0; }
+.check-box:hover { border-color: #a78bfa; transform: scale(1.08); }
+.check-box.done { background: linear-gradient(135deg, #6BCB77, #4ECDC4); border-color: #6BCB77; box-shadow: 0 3px 8px rgba(107,203,119,0.4); }
 .check-box.done::after { content: '\2B50'; }
+.chart-progress { background: white; border-radius: 14px; padding: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.chart-progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 6px; }
+.chart-progress-label { font-family: 'Fredoka One', cursive; font-size: 0.95rem; color: #333; }
+.chart-progress-value { font-family: 'Fredoka One', cursive; font-size: 1.2rem; color: var(--green); }
+.chart-progress-bar { background: #f0f0f0; border-radius: 50px; height: 20px; overflow: hidden; margin-bottom: 8px; }
+.chart-progress-fill { height: 100%; border-radius: 50px; background: linear-gradient(90deg, #22c55e, #4ECDC4, #6DD5FA); transition: width 0.4s; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; font-size: 0.7rem; font-weight: 800; color: white; min-width: 28px; }
+.chart-progress-sub { text-align: center; font-size: 0.75rem; color: #aaa; font-weight: 600; margin-bottom: 6px; }
+.chart-motivation { text-align: center; font-size: 0.8rem; color: #888; font-weight: 600; }
+.chart-motivation.winner { color: var(--green); animation: bounce 0.6s infinite alternate; }
+@keyframes bounce { from { transform: scale(1); } to { transform: scale(1.03); } }
+.chart-footer { text-align: center; font-size: 1.1rem; margin-top: 14px; letter-spacing: 4px; opacity: 0.5; }
+.tc0{background:#FF6B6B}.tc1{background:#C77DFF}.tc2{background:#4ECDC4}.tc3{background:#FF9A3C}
+.tc4{background:#6BCB77}.tc5{background:#FF85A1}.tc6{background:#6DD5FA}.tc7{background:#f97316}
+.tc8{background:#a855f7}.tc9{background:#eab308}
 
 /* Progress */
 .progress-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
@@ -286,7 +307,8 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
       </div>
 
       <div class="action-row" id="actionRow" style="display:none">
-        <button class="btn btn-success" id="btnSave" onclick="saveChart()">💾 Guardar</button>
+        <button class="btn btn-success" id="btnSavePng" onclick="saveChartPNG()">🖼️ PNG</button>
+        <button class="btn btn-success" id="btnSaveHtml" onclick="saveAsHTML()">📄 HTML</button>
         <button class="btn btn-secondary" id="btnShare" onclick="shareChart()">📤 Compartir</button>
         <button class="btn btn-secondary" id="btnPrint" onclick="window.print()">🖨️ Imprimir</button>
         <button class="btn btn-primary" id="btnNew" onclick="resetChart()">🔄 Nuevo</button>
@@ -314,11 +336,13 @@ const T = {
     previewTitle: 'Vista previa del Chart',
     previewSub: 'Se actualiza en tiempo real',
     progressLabel: '🏆 Progreso semanal',
-    btnSave: '💾 Guardar',
+    btnSavePng: '🖼️ PNG',
+    btnSaveHtml: '📄 HTML',
     btnShare: '📤 Compartir',
     btnPrint: '🖨️ Imprimir',
     btnNew: '🔄 Nuevo',
-    saveSuccess: '✅ Chart guardado en tu dispositivo',
+    saveSuccessPng: '✅ Imagen PNG guardada',
+    saveSuccessHtml: '✅ HTML guardado (funciona offline)',
     shareTitle: 'Mi Chart de Actividades',
     placeholder: 'Escribe aquí...',
     emptyTitle: 'Tu chart aparecerá aquí',
@@ -349,11 +373,13 @@ const T = {
     previewTitle: 'Chart Preview',
     previewSub: 'Updates in real time',
     progressLabel: '🏆 Weekly Progress',
-    btnSave: '💾 Save',
+    btnSavePng: '🖼️ PNG',
+    btnSaveHtml: '📄 HTML',
     btnShare: '📤 Share',
     btnPrint: '🖨️ Print',
     btnNew: '🔄 New',
-    saveSuccess: '✅ Chart saved to your device',
+    saveSuccessPng: '✅ PNG image saved',
+    saveSuccessHtml: '✅ HTML saved (works offline)',
     shareTitle: 'My Activity Chart',
     placeholder: 'Type here...',
     emptyTitle: 'Your chart will appear here',
@@ -400,7 +426,8 @@ function applyTranslations() {
   document.getElementById('previewTitle').textContent = t('previewTitle');
   document.getElementById('previewSub').textContent = t('previewSub');
   document.getElementById('progressLabel').textContent = t('progressLabel');
-  document.getElementById('btnSave').innerHTML = t('btnSave');
+  document.getElementById('btnSavePng').innerHTML = t('btnSavePng');
+  document.getElementById('btnSaveHtml').innerHTML = t('btnSaveHtml');
   document.getElementById('btnShare').innerHTML = t('btnShare');
   document.getElementById('btnPrint').innerHTML = t('btnPrint');
   document.getElementById('btnNew').innerHTML = t('btnNew');
@@ -570,6 +597,20 @@ function removeTyping() { const t = document.getElementById('typingIndicator'); 
 // ─── Chart Builder ───────────────────────────────────────
 const TC = ['tc0','tc1','tc2','tc3','tc4','tc5','tc6','tc7','tc8','tc9'];
 
+// Temas visuales
+const THEMES = {
+  money:   { emojis: '💵 🌈 ⭐ 🌈 💵', footer: '🌟 🦁 🚀 🌈 🎉' },
+  lego:    { emojis: '🧱 🎮 ⭐ 🎮 🧱', footer: '🧸 🎯 🏆 🎪 ✨' },
+  music:   { emojis: '🎵 🎸 ⭐ 🎸 🎵', footer: '🎤 🎹 🎶 🎧 🌟' },
+  travel:  { emojis: '✈️ 🏖️ ⭐ 🏖️ ✈️', footer: '🗺️ 🌴 🚀 🌊 🎒' },
+  bike:    { emojis: '🚴 🏆 ⭐ 🏆 🚴', footer: '🚲 ⚽ 🥇 🎾 💪' },
+  gaming:  { emojis: '🎮 👾 ⭐ 👾 🎮', footer: '🕹️ 🏆 💎 🚀 ⚡' },
+  pet:     { emojis: '🐕 🐈 ⭐ 🐈 🐕', footer: '🐾 🦴 🐟 🏠 💕' },
+  park:    { emojis: '🎢 🎡 ⭐ 🎡 🎢', footer: '🎠 🍿 🎪 🎈 🎉' },
+  clothes: { emojis: '👟 👗 ⭐ 👗 👟', footer: '🛍️ 👑 💅 🎀 ✨' },
+  general: { emojis: '🌟 🎯 ⭐ 🎯 🌟', footer: '🏆 🚀 💪 🎉 ✨' }
+};
+
 function buildChart(data) {
   chartData = data;
   checked = new Set();
@@ -580,39 +621,67 @@ function buildChart(data) {
   const isMoneyGoal = data.goalType === 'money' && data.goalAmount > 0;
   const perStar = isMoneyGoal ? (data.goalAmount / total) : 0;
   const dayNames = T[lang].dayNames;
+  const theme = THEMES[data.theme] || THEMES.general;
+  const title = data.title || (lang === 'es' ? '¡Mi Chart de Campeón!' : 'My Champion Chart!');
+  const noMoney = isMoneyGoal ? '' : ' no-money';
 
-  let html = `
-    <div class="chart-title-area">
-      <div class="chart-main-title">🌟 ${escapeHtml(data.title || (lang==='es'?'¡Mi Chart de Campeón!':'My Champion Chart!'))} 🌟</div>
-      ${data.childName ? `<div class="chart-name-line">${lang==='es'?'Para':'For'}: <span>${escapeHtml(data.childName)}</span></div>` : ''}
-    </div>
-    <div class="chart-meta">
-      <div class="meta-pill meta-goal">🎯 ${t('goalLabel', isMoneyGoal, data.goalAmount, data.goal)}</div>
-      ${isMoneyGoal ? `<div class="meta-pill meta-star">⭐ $${perStar.toFixed(2)} ${t('perStar')}</div>` : ''}
-      <div class="meta-pill meta-days">📅 ${t('daysLabel', days)}</div>
-    </div>
-    <div class="chart-table-wrap">
-    <table class="chart-table"><thead><tr>
-      <th></th><th class="task-col">${t('taskCol')}</th>
-      ${isMoneyGoal ? '<th>💰</th>' : ''}
-      ${dayNames.slice(0,days).map(d=>`<th>${d}</th>`).join('')}
-    </tr></thead><tbody>`;
-
+  let tasksHtml = '';
   tasks.forEach((task, ti) => {
-    html += `<tr>
-      <td><span class="task-row-num ${TC[ti%10]}">${ti+1}</span></td>
-      <td class="task-cell">${task.icon || '📌'} ${escapeHtml(task.name)}</td>
-      ${isMoneyGoal ? `<td style="font-size:0.7rem;font-weight:800;color:#16a34a;">$${perStar.toFixed(2)}</td>` : ''}
-      ${Array.from({length:days},(_,d)=>`<td><div class="check-box" id="cb-${ti}-${d}" onclick="toggleCheck(${ti},${d},${total},${isMoneyGoal?data.goalAmount:0})"></div></td>`).join('')}
-    </tr>`;
+    tasksHtml += `
+      <div class="chart-task-row${noMoney}">
+        <div class="task-num ${TC[ti%10]}">${ti+1}</div>
+        <div class="task-name-box"><span>${task.icon || '📌'}</span> ${escapeHtml(task.name)}</div>
+        ${isMoneyGoal ? `<div class="task-pay-box">$${perStar.toFixed(2)}</div>` : ''}
+        ${Array.from({length:days},(_,d)=>`<div class="check-box" id="cb-${ti}-${d}" onclick="toggleCheck(${ti},${d},${total},${isMoneyGoal?data.goalAmount:0})"></div>`).join('')}
+      </div>`;
   });
 
-  html += `</tbody></table></div>`;
+  const html = `
+    <div class="chart-page">
+      <div class="chart-header">
+        <div class="chart-stars-row">${theme.emojis}</div>
+        <div class="chart-main-title">${escapeHtml(title)}</div>
+        <div class="chart-subtitle">${isMoneyGoal ? (lang==='es'?'Completa tus tareas y gana tu dinero 💰':'Complete your tasks and earn money 💰') : (lang==='es'?'Completa tus tareas y gana tu premio 🎁':'Complete your tasks and earn your prize 🎁')}</div>
+      </div>
+
+      ${data.childName ? `<div class="chart-name-banner"><span class="chart-name-text">👦 ${escapeHtml(data.childName)}</span></div>` : ''}
+
+      <div class="chart-prize-banner">
+        <span class="chart-prize-label">🎯 ${lang==='es'?'Meta:':'Goal:'}</span>
+        ${isMoneyGoal
+          ? `<span class="chart-prize-amount">$${data.goalAmount.toFixed(2)}</span><span class="chart-star-value">· ${lang==='es'?'Cada ⭐':'Each ⭐'} <b>$${perStar.toFixed(2)}</b></span>`
+          : `<span class="chart-prize-text">${escapeHtml(data.goal || '')}</span>`}
+      </div>
+
+      <div class="chart-tasks">
+        <div class="chart-days-row${noMoney}">
+          <div></div>
+          <div></div>
+          ${isMoneyGoal ? '<div class="chart-day-header" style="color:#16a34a;">Por⭐</div>' : ''}
+          ${dayNames.slice(0,days).map(d=>`<div class="chart-day-header">${d}</div>`).join('')}
+        </div>
+        ${tasksHtml}
+      </div>
+
+      <div class="chart-progress">
+        <div class="chart-progress-header">
+          <span class="chart-progress-label">${isMoneyGoal ? '💰' : '🏆'} ${lang==='es'?(isMoneyGoal?'Dinero ganado':'Progreso'):(isMoneyGoal?'Money earned':'Progress')}</span>
+          <span class="chart-progress-value" id="progValue">${isMoneyGoal ? '$0.00 / $'+data.goalAmount.toFixed(2) : '0 / '+total+' ⭐'}</span>
+        </div>
+        <div class="chart-progress-bar">
+          <div class="chart-progress-fill" id="progFill" style="width:0%">0%</div>
+        </div>
+        <div class="chart-progress-sub" id="progStars">${lang==='es'?'0 de '+total+' ⭐ completadas':'0 of '+total+' ⭐ completed'}</div>
+        <div class="chart-motivation" id="chartMotivation">${lang==='es'?'¡Tú puedes! Empieza ganando tus primeras estrellas 💪':'You can do it! Start earning your first stars 💪'}</div>
+      </div>
+
+      <div class="chart-footer">${theme.footer}</div>
+    </div>`;
+
   inner.innerHTML = html;
-  document.getElementById('progressCard').style.display = 'block';
+  document.getElementById('progressCard').style.display = 'none';
   document.getElementById('actionRow').style.display = 'flex';
   document.getElementById('quickPrompts').style.display = 'none';
-  updateProgress(total, isMoneyGoal ? data.goalAmount : 0);
 }
 
 function toggleCheck(ti, d, total, goalAmount) {
@@ -629,11 +698,42 @@ function updateProgress(total, goalAmount) {
   const pct = total > 0 ? Math.round((count/total)*100) : 0;
   const isMoneyGoal = goalAmount > 0;
   const earned = isMoneyGoal ? (count*(goalAmount/total)) : 0;
+
   const fill = document.getElementById('progFill');
-  fill.style.width = Math.min(pct,100)+'%';
-  fill.textContent = pct+'%';
-  document.getElementById('progValue').textContent = isMoneyGoal ? `$${earned.toFixed(2)} / $${goalAmount.toFixed(2)}` : `${count} / ${total} ⭐`;
-  document.getElementById('progStars').textContent = t('starsOf', count, total);
+  const value = document.getElementById('progValue');
+  const stars = document.getElementById('progStars');
+  const motivation = document.getElementById('chartMotivation');
+
+  if (fill) {
+    fill.style.width = Math.min(pct,100)+'%';
+    fill.textContent = pct+'%';
+  }
+  if (value) {
+    value.textContent = isMoneyGoal ? `$${earned.toFixed(2)} / $${goalAmount.toFixed(2)}` : `${count} / ${total} ⭐`;
+  }
+  if (stars) {
+    stars.textContent = t('starsOf', count, total);
+  }
+  if (motivation) {
+    const msgs = lang === 'es' ? [
+      '¡Tú puedes! Empieza ganando tus primeras estrellas 💪',
+      '¡Muy bien! ¡Vas por buen camino! 🌱',
+      '¡Increíble! ¡Ya llevas casi la mitad! 🚀',
+      '¡Wooow! ¡Eres un verdadero campeón! 🦁',
+      '¡Casi llegas a tu meta! ¡No te rindas! 🎁✨',
+      '🎉 ¡¡¡LO LOGRASTE!!! ¡¡¡Felicidades!!! 🎉🏆🎉'
+    ] : [
+      'You can do it! Start earning your first stars 💪',
+      'Great job! You are on your way! 🌱',
+      'Amazing! You are almost halfway! 🚀',
+      'Wooow! You are a true champion! 🦁',
+      'Almost there! Do not give up! 🎁✨',
+      '🎉 YOU DID IT!!! Congratulations!!! 🎉🏆🎉'
+    ];
+    const idx = pct === 0 ? 0 : pct < 25 ? 1 : pct < 50 ? 2 : pct < 75 ? 3 : pct < 100 ? 4 : 5;
+    motivation.textContent = msgs[idx];
+    motivation.className = pct >= 100 ? 'chart-motivation winner' : 'chart-motivation';
+  }
 }
 
 function resetChart() {
@@ -653,28 +753,28 @@ function resetChat(isReset = false) {
 }
 
 // ─── Save & Share ────────────────────────────────────────
-async function saveChart() {
+async function saveChartPNG() {
   const chartEl = document.getElementById('chartInner');
   if (!chartEl || !chartData) return;
 
-  // Usar html2canvas si está disponible, sino guardar como HTML
   if (typeof html2canvas !== 'undefined') {
     try {
       const canvas = await html2canvas(chartEl, {
-        backgroundColor: '#FFFBF0',
-        scale: 2
+        backgroundColor: null,
+        scale: 2,
+        useCORS: true
       });
       const link = document.createElement('a');
-      link.download = `chart-${chartData.childName || 'kids'}-${Date.now()}.png`;
+      link.download = `chart-${chartData.childName || 'kids'}.png`;
       link.href = canvas.toDataURL('image/png');
       link.click();
-      showToast(t('saveSuccess'));
+      showToast(t('saveSuccessPng'));
     } catch(e) {
       console.error(e);
-      saveAsHTML();
+      showToast('Error al guardar PNG');
     }
   } else {
-    saveAsHTML();
+    showToast('Cargando... intenta de nuevo');
   }
 }
 
@@ -870,7 +970,7 @@ window.onload = function() {
   link.download = `chart-${childName || 'kids'}.html`;
   link.href = URL.createObjectURL(blob);
   link.click();
-  showToast(t('saveSuccess'));
+  showToast(t('saveSuccessHtml'));
 }
 
 async function shareChart() {
