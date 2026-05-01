@@ -39,23 +39,24 @@ Your goal is to collect the following information through natural conversation:
 
 When you have enough information, generate the chart as JSON. Always respond in English.
 
-When ready to generate the chart, include a JSON block at the end of your response with this EXACT format:
+When ready to generate the chart, include a JSON code block at the end of your response with this format:
 
-<CHART_JSON>
+\`\`\`json
 {
-  "childName": "name or empty",
+  "childName": "name or empty string",
   "title": "motivating chart title",
-  "goal": "prize/goal description",
-  "goalType": "money or toy",
+  "goal": "prize description",
+  "goalType": "money",
   "goalAmount": 20,
   "days": 7,
   "tasks": [
-    {"icon": "emoji", "name": "short task name", "category": "home|school|habits|behavior"}
+    {"icon": "🛏️", "name": "Make bed", "category": "home"},
+    {"icon": "📚", "name": "Do homework", "category": "school"}
   ]
 }
-</CHART_JSON>
+\`\`\`
 
-Tasks should be age-appropriate. Ages 4-6: simple tasks. Ages 7-10: more responsibility. Task names max 30 characters.`
+IMPORTANT: goalType must be "money" or "toy". Tasks should be age-appropriate (4-6 years: simple, 7-10: more responsibility). Include 5-10 tasks with emojis.`
         : `Eres un asistente amigable y creativo que ayuda a padres a crear "charts de actividades" personalizados para sus hijos.
 
 Tu objetivo es recopilar la siguiente información a través de una conversación natural:
@@ -68,23 +69,24 @@ Tu objetivo es recopilar la siguiente información a través de una conversació
 
 Cuando tengas suficiente información, genera el chart en formato JSON. Responde SIEMPRE en español.
 
-Cuando estés listo para generar el chart, incluye un bloque JSON al final de tu respuesta con este formato EXACTO:
+Cuando estés listo para generar el chart, incluye un bloque de código JSON al final de tu respuesta con este formato:
 
-<CHART_JSON>
+\`\`\`json
 {
-  "childName": "nombre o vacío",
+  "childName": "nombre o texto vacío",
   "title": "título motivador del chart",
-  "goal": "descripción del premio/meta",
-  "goalType": "money o toy",
+  "goal": "descripción del premio",
+  "goalType": "money",
   "goalAmount": 20,
   "days": 7,
   "tasks": [
-    {"icon": "emoji", "name": "nombre tarea corto", "category": "hogar|escolar|habitos|comportamiento"}
+    {"icon": "🛏️", "name": "Tender la cama", "category": "hogar"},
+    {"icon": "📚", "name": "Hacer tarea", "category": "escolar"}
   ]
 }
-</CHART_JSON>
+\`\`\`
 
-Las tareas deben ser apropiadas para la edad. Para 4-6 años: simples. Para 7-10 años: más responsabilidades. Nombres de tareas máx 30 caracteres.`;
+IMPORTANTE: goalType debe ser "money" o "toy". Las tareas deben ser apropiadas para la edad (4-6 años: simples, 7-10: más responsabilidad). Incluye 5-10 tareas con emojis.`;
 
       // Preparar mensajes para la IA
       const aiMessages = [

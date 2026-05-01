@@ -300,10 +300,10 @@ const T = {
     goalLabel: (isM, amt, goal) => isM ? `$${amt} meta` : (goal || 'Premio especial'),
     daysLabel: d => `${d} días`,
     quickPrompts: [
-      { label: '💰 Meta de dinero',    text: 'Mi hijo tiene 6 años y quiero un chart para ganar $20' },
-      { label: '🏠 Hogar + escuela',   text: 'Mi hija tiene 8 años y quiero tareas del hogar y escolares' },
-      { label: '👦👧 Dos niños',        text: 'Quiero un chart para 2 niños con metas diferentes' },
-      { label: '🎁 Premio juguete',    text: 'Mi hijo tiene 5 años y quiere una bicicleta nueva' },
+      { label: '💰 Meta de dinero' },
+      { label: '🏠 Hogar + escuela' },
+      { label: '👦👧 Dos niños' },
+      { label: '🎁 Premio juguete' },
     ],
     dayNames: ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'],
   },
@@ -331,10 +331,10 @@ const T = {
     goalLabel: (isM, amt, goal) => isM ? `$${amt} goal` : (goal || 'Special prize'),
     daysLabel: d => `${d} days`,
     quickPrompts: [
-      { label: '💰 Money goal',       text: 'My son is 6 years old and I want a chart to earn $20' },
-      { label: '🏠 Home + school',    text: 'My daughter is 8 and I want home and school tasks' },
-      { label: '👦👧 Two kids',        text: 'I want a chart for 2 kids with different goals' },
-      { label: '🎁 Toy reward',       text: 'My son is 5 years old and wants a new bike' },
+      { label: '💰 Money goal' },
+      { label: '🏠 Home + school' },
+      { label: '👦👧 Two kids' },
+      { label: '🎁 Toy reward' },
     ],
     dayNames: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
   }
@@ -406,8 +406,9 @@ function handleKey(e) {
 }
 
 function sendQuick(text) {
-  document.getElementById('chatInput').value = text;
-  sendMessage();
+  const input = document.getElementById('chatInput');
+  input.value = text;
+  input.focus();
 }
 
 async function sendMessage() {
@@ -440,12 +441,58 @@ async function sendMessage() {
     const rawText = data.response || t('errorMsg');
 
     removeTyping();
-    const jsonMatch = rawText.match(/<CHART_JSON>([\s\S]*?)<\/CHART_JSON>/);
-    const displayText = rawText.replace(/<CHART_JSON>[\s\S]*?<\/CHART_JSON>/, '').trim();
+
+    // Intentar extraer JSON de varias formas
+    let chartJson = null;
+    let displayText = rawText;
+
+    // Formato 1: <CHART_JSON>...</CHART_JSON>
+    let jsonMatch = rawText.match(/<CHART_JSON>([\s\S]*?)<\/CHART_JSON>/i);
+    if (jsonMatch) {
+      try {
+        chartJson = JSON.parse(jsonMatch[1].trim());
+        displayText = rawText.replace(/<CHART_JSON>[\s\S]*?<\/CHART_JSON>/i, '').trim();
+      } catch(e) { console.error('Parse error format 1:', e); }
+    }
+
+    // Formato 2: ```json ... ```
+    if (!chartJson) {
+      jsonMatch = rawText.match(/```json\s*([\s\S]*?)```/i);
+      if (jsonMatch) {
+        try {
+          chartJson = JSON.parse(jsonMatch[1].trim());
+          displayText = rawText.replace(/```json\s*[\s\S]*?```/i, '').trim();
+        } catch(e) { console.error('Parse error format 2:', e); }
+      }
+    }
+
+    // Formato 3: ``` ... ``` (sin especificar json)
+    if (!chartJson) {
+      jsonMatch = rawText.match(/```\s*(\{[\s\S]*?\})\s*```/);
+      if (jsonMatch) {
+        try {
+          chartJson = JSON.parse(jsonMatch[1].trim());
+          displayText = rawText.replace(/```\s*\{[\s\S]*?\}\s*```/, '').trim();
+        } catch(e) { console.error('Parse error format 3:', e); }
+      }
+    }
+
+    // Formato 4: JSON directo {...} al final del mensaje
+    if (!chartJson) {
+      jsonMatch = rawText.match(/(\{"childName"[\s\S]*\})\s*$/);
+      if (jsonMatch) {
+        try {
+          chartJson = JSON.parse(jsonMatch[1].trim());
+          displayText = rawText.replace(/\{"childName"[\s\S]*\}\s*$/, '').trim();
+        } catch(e) { console.error('Parse error format 4:', e); }
+      }
+    }
+
     if (displayText) addMessage('ai', displayText);
     conversationHistory.push({ role: 'assistant', content: rawText });
-    if (jsonMatch) {
-      try { buildChart(JSON.parse(jsonMatch[1].trim())); } catch(e) { console.error(e); }
+
+    if (chartJson && chartJson.tasks) {
+      buildChart(chartJson);
     }
   } catch(err) {
     removeTyping();
