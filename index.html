@@ -33,7 +33,7 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--te
 .app { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 20px 60px; }
 
 /* Nav */
-nav { display: flex; align-items: center; justify-content: space-between; padding: 24px 0 20px; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+nav { display: flex; align-items: center; justify-content: space-between; padding: 24px 0 20px; border-bottom: 1px solid var(--border); margin-bottom: 40px; flex-wrap: wrap; gap: 12px; }
 .logo { font-family: 'Fredoka One', cursive; font-size: 1.7rem; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .logo span { -webkit-text-fill-color: var(--yellow); }
 .nav-right { display: flex; align-items: center; gap: 12px; }
@@ -69,104 +69,6 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
   box-shadow: 0 2px 8px rgba(124,58,237,0.4);
 }
 .lang-btn:not(.active):hover { color: var(--text); }
-
-/* API Key Button & Modal */
-.api-key-btn {
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 50px;
-  padding: 6px 12px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  color: var(--muted);
-}
-.api-key-btn:hover { border-color: var(--accent); color: var(--text); }
-.api-key-btn.active { border-color: var(--green); color: var(--green); }
-
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  z-index: 100;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-.modal-overlay.show { display: flex; }
-.modal-box {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px;
-  max-width: 450px;
-  width: 100%;
-  animation: fadeUp 0.3s ease;
-}
-.modal-title { font-family: 'Fredoka One', cursive; font-size: 1.3rem; margin-bottom: 8px; }
-.modal-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
-.modal-input {
-  width: 100%;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 12px 14px;
-  font-family: 'Nunito', sans-serif;
-  font-size: 0.9rem;
-  color: var(--text);
-  outline: none;
-  margin-bottom: 16px;
-}
-.modal-input:focus { border-color: var(--accent); }
-.modal-btns { display: flex; gap: 10px; }
-.modal-btns .btn { flex: 1; }
-
-/* Provider Selector */
-.provider-selector {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-.provider-btn {
-  flex: 1;
-  background: var(--surface2);
-  border: 2px solid var(--border);
-  border-radius: 12px;
-  padding: 12px 8px;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-}
-.provider-btn:hover { border-color: var(--accent); }
-.provider-btn.active {
-  border-color: var(--accent);
-  background: rgba(124,58,237,0.15);
-}
-.provider-icon { font-size: 1.5rem; }
-.provider-name { font-family: 'Nunito', sans-serif; font-size: 0.8rem; font-weight: 800; color: var(--text); }
-.provider-tag {
-  font-size: 0.65rem;
-  font-weight: 800;
-  padding: 2px 8px;
-  border-radius: 50px;
-  text-transform: uppercase;
-}
-.provider-tag.free { background: rgba(34,197,94,0.2); color: var(--green); }
-.provider-tag.paid { background: rgba(251,191,36,0.2); color: var(--yellow); }
-.provider-info {
-  background: var(--surface2);
-  border-radius: 10px;
-  padding: 12px;
-  margin-bottom: 12px;
-  font-size: 0.8rem;
-  color: var(--muted);
-  line-height: 1.5;
-}
-.provider-info a { color: var(--accent2); }
 
 /* Hero */
 .hero { text-align: center; margin-bottom: 48px; }
@@ -237,7 +139,7 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
 .check-box { width: 32px; height: 32px; border-radius: 8px; background: #f8fafc; border: 2px solid #e2e8f0; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; font-size: 1rem; transition: all 0.15s; user-select: none; }
 .check-box:hover { border-color: #a78bfa; transform: scale(1.05); }
 .check-box.done { background: linear-gradient(135deg, #6BCB77, #4ECDC4); border-color: #6BCB77; box-shadow: 0 2px 6px rgba(107,203,119,0.4); }
-.check-box.done::after { content: '⭐'; }
+.check-box.done::after { content: '\2B50'; }
 
 /* Progress */
 .progress-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
@@ -301,16 +203,15 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
     <div class="logo">Chart<span>Kids</span> ✨</div>
     <div class="nav-right">
       <div class="lang-toggle">
-        <button class="lang-btn active" id="btnES" onclick="setLang('es')" aria-label="Cambiar a Español">🇲🇽 Español</button>
-        <button class="lang-btn" id="btnEN" onclick="setLang('en')" aria-label="Switch to English">🇺🇸 English</button>
+        <button class="lang-btn active" id="btnES" onclick="setLang('es')" aria-label="Cambiar a Español">🇲🇽 ES</button>
+        <button class="lang-btn" id="btnEN" onclick="setLang('en')" aria-label="Switch to English">🇺🇸 EN</button>
       </div>
-      <button class="api-key-btn" id="apiKeyBtn" onclick="toggleApiKeyModal()" aria-label="Configurar API Key">🔑</button>
-      <div class="nav-badge" id="navBadge">✦ Powered by IA</div>
+      <div class="nav-badge" id="navBadge">✨ IA Gratis</div>
     </div>
   </nav>
 
   <div class="hero">
-    <div class="hero-tag" id="heroTag">✦ Gratis · Sin registro</div>
+    <div class="hero-tag" id="heroTag">✦ 100% Gratis · Sin registro</div>
     <h1 id="heroTitle">Crea el chart perfecto<br>para tu <span class="highlight">pequeño héroe</span></h1>
     <p id="heroDesc">Cuéntale a nuestra IA sobre tu hijo y ella diseñará un chart personalizado con tareas, metas y premios en segundos.</p>
   </div>
@@ -366,48 +267,18 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
   </div>
 </div>
 
-<!-- API Key Modal -->
-<div class="modal-overlay" id="apiKeyModal">
-  <div class="modal-box">
-    <div class="modal-title" id="modalTitle">🔑 Configurar IA</div>
-    <p class="modal-desc" id="modalDesc">Selecciona tu proveedor de IA y agrega tu API key gratuita.</p>
-
-    <div class="provider-selector" id="providerSelector">
-      <button class="provider-btn active" data-provider="gemini" onclick="selectProvider('gemini')">
-        <span class="provider-icon">✨</span>
-        <span class="provider-name">Gemini</span>
-        <span class="provider-tag free" id="tagFree1">Gratis</span>
-      </button>
-      <button class="provider-btn" data-provider="groq" onclick="selectProvider('groq')">
-        <span class="provider-icon">⚡</span>
-        <span class="provider-name">Groq</span>
-        <span class="provider-tag free" id="tagFree2">Gratis</span>
-      </button>
-      <button class="provider-btn" data-provider="anthropic" onclick="selectProvider('anthropic')">
-        <span class="provider-icon">🧠</span>
-        <span class="provider-name">Claude</span>
-        <span class="provider-tag paid" id="tagPaid1">Pago</span>
-      </button>
-    </div>
-
-    <div class="provider-info" id="providerInfo"></div>
-
-    <input type="password" class="modal-input" id="apiKeyInput" placeholder="" aria-label="API Key">
-    <div class="modal-btns">
-      <button class="btn btn-secondary" onclick="toggleApiKeyModal()" id="modalCancel">Cancelar</button>
-      <button class="btn btn-primary" onclick="saveApiKey()" id="modalSave">💾 Guardar</button>
-    </div>
-  </div>
-</div>
-
 <script>
+// ─── CONFIG ──────────────────────────────────────────────
+// IMPORTANTE: Cambia esta URL por la de tu Worker de Cloudflare
+const API_URL = 'https://chartkids-api.TU-USUARIO.workers.dev';
+
 // ─── i18n ────────────────────────────────────────────────
 let lang = 'es';
 
 const T = {
   es: {
-    navBadge: '✦ Powered by IA',
-    heroTag: '✦ Gratis · Sin registro',
+    navBadge: '✨ IA Gratis',
+    heroTag: '✦ 100% Gratis · Sin registro',
     heroTitle: 'Crea el chart perfecto<br>para tu <span class="highlight">pequeño héroe</span>',
     heroDesc: 'Cuéntale a nuestra IA sobre tu hijo y ella diseñará un chart personalizado con tareas, metas y premios en segundos.',
     chatPanelTitle: 'Asistente IA',
@@ -423,23 +294,6 @@ const T = {
     greeting: '¡Hola! Soy tu asistente para crear charts de actividades. 👋<br><br>Cuéntame: ¿cuántos años tiene tu hijo/a, qué tipo de tareas quieres incluir y cuál será su premio o meta? Yo diseñaré el chart perfecto. 🌟',
     resetGreeting: '¡Listo para crear un nuevo chart! 🎉<br><br>Cuéntame sobre tu hijo/a: ¿cuántos años tiene, qué tareas necesita y cuál será su premio? 🌟',
     errorMsg: '⚠️ Hubo un error de conexión. Por favor intenta de nuevo.',
-    apiKeyInvalid: '🔑 Tu API key no es válida. Por favor verifica e intenta de nuevo.',
-    modalTitle: '🔑 Configurar IA',
-    modalDesc: 'Selecciona tu proveedor de IA y agrega tu API key.',
-    modalCancel: 'Cancelar',
-    modalSave: '💾 Guardar',
-    providerInfo: {
-      gemini: '✨ <b>Google Gemini</b> — 60 req/min gratis<br>Obtén tu key en <a href="https://aistudio.google.com/apikey" target="_blank">aistudio.google.com/apikey</a>',
-      groq: '⚡ <b>Groq</b> — 30 req/min gratis, muy rápido<br>Obtén tu key en <a href="https://console.groq.com/keys" target="_blank">console.groq.com/keys</a>',
-      anthropic: '🧠 <b>Claude</b> — API de pago, alta calidad<br>Obtén tu key en <a href="https://console.anthropic.com/" target="_blank">console.anthropic.com</a>'
-    },
-    providerPlaceholder: {
-      gemini: 'AIzaSy...',
-      groq: 'gsk_...',
-      anthropic: 'sk-ant-api...'
-    },
-    providerFree: 'Gratis',
-    providerPaid: 'Pago',
     taskCol: 'Tarea',
     starsOf: (a,b) => `${a} de ${b} ⭐ completadas`,
     perStar: 'c/estrella',
@@ -451,40 +305,11 @@ const T = {
       { label: '👦👧 Dos niños',        text: 'Quiero un chart para 2 niños con metas diferentes' },
       { label: '🎁 Premio juguete',    text: 'Mi hijo tiene 5 años y quiere una bicicleta nueva' },
     ],
-    systemPrompt: `Eres un asistente amigable y creativo que ayuda a padres a crear "charts de actividades" personalizados para sus hijos.
-
-Tu objetivo es recopilar la siguiente información a través de una conversación natural:
-1. Nombre del niño/a (opcional)
-2. Edad del niño/a
-3. Tipo de tareas (hogar, escolar, hábitos, comportamiento)
-4. Meta/premio: puede ser un juguete, dinero (con monto específico), o cualquier premio
-5. Número de tareas (entre 5 y 12)
-6. Número de días (5 o 7)
-
-Cuando tengas suficiente información, genera el chart en formato JSON. Responde SIEMPRE en español.
-
-Cuando estés listo para generar el chart, incluye un bloque JSON al final de tu respuesta con este formato EXACTO:
-
-<CHART_JSON>
-{
-  "childName": "nombre o vacío",
-  "title": "título motivador del chart",
-  "goal": "descripción del premio/meta",
-  "goalType": "money o toy",
-  "goalAmount": 20,
-  "days": 7,
-  "tasks": [
-    {"icon": "emoji", "name": "nombre tarea corto", "category": "hogar|escolar|habitos|comportamiento"}
-  ]
-}
-</CHART_JSON>
-
-Las tareas deben ser apropiadas para la edad. Para 4-6 años: simples. Para 7-10 años: más responsabilidades. Nombres de tareas máx 30 caracteres.`,
     dayNames: ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'],
   },
   en: {
-    navBadge: '✦ Powered by AI',
-    heroTag: '✦ Free · No sign-up',
+    navBadge: '✨ Free AI',
+    heroTag: '✦ 100% Free · No sign-up',
     heroTitle: 'Create the perfect chart<br>for your <span class="highlight">little champion</span>',
     heroDesc: 'Tell our AI about your child and it will design a personalized activity chart with tasks, goals and rewards in seconds.',
     chatPanelTitle: 'AI Assistant',
@@ -500,23 +325,6 @@ Las tareas deben ser apropiadas para la edad. Para 4-6 años: simples. Para 7-10
     greeting: "Hi! I'm your assistant for creating activity charts. 👋<br><br>Tell me: how old is your child, what kind of tasks do you want to include, and what will their reward or goal be? I'll design the perfect chart! 🌟",
     resetGreeting: "Ready to create a new chart! 🎉<br><br>Tell me about your child: how old are they, what tasks do they need, and what's their reward? 🌟",
     errorMsg: '⚠️ Connection error. Please try again.',
-    apiKeyInvalid: '🔑 Your API key is invalid. Please check and try again.',
-    modalTitle: '🔑 Configure AI',
-    modalDesc: 'Select your AI provider and add your API key.',
-    modalCancel: 'Cancel',
-    modalSave: '💾 Save',
-    providerInfo: {
-      gemini: '✨ <b>Google Gemini</b> — 60 req/min free<br>Get your key at <a href="https://aistudio.google.com/apikey" target="_blank">aistudio.google.com/apikey</a>',
-      groq: '⚡ <b>Groq</b> — 30 req/min free, very fast<br>Get your key at <a href="https://console.groq.com/keys" target="_blank">console.groq.com/keys</a>',
-      anthropic: '🧠 <b>Claude</b> — Paid API, high quality<br>Get your key at <a href="https://console.anthropic.com/" target="_blank">console.anthropic.com</a>'
-    },
-    providerPlaceholder: {
-      gemini: 'AIzaSy...',
-      groq: 'gsk_...',
-      anthropic: 'sk-ant-api...'
-    },
-    providerFree: 'Free',
-    providerPaid: 'Paid',
     taskCol: 'Task',
     starsOf: (a,b) => `${a} of ${b} ⭐ completed`,
     perStar: 'per ⭐',
@@ -528,35 +336,6 @@ Las tareas deben ser apropiadas para la edad. Para 4-6 años: simples. Para 7-10
       { label: '👦👧 Two kids',        text: 'I want a chart for 2 kids with different goals' },
       { label: '🎁 Toy reward',       text: 'My son is 5 years old and wants a new bike' },
     ],
-    systemPrompt: `You are a friendly and creative assistant that helps parents create personalized activity charts for their children.
-
-Your goal is to collect the following information through natural conversation:
-1. Child's name (optional)
-2. Child's age
-3. Type of tasks (home chores, school, habits, behavior)
-4. Goal/reward: can be a toy, money (with specific amount), or any reward
-5. Number of tasks (between 5 and 12)
-6. Number of days (5 or 7)
-
-When you have enough information, generate the chart as JSON. Always respond in English.
-
-When ready to generate the chart, include a JSON block at the end of your response with this EXACT format:
-
-<CHART_JSON>
-{
-  "childName": "name or empty",
-  "title": "motivating chart title",
-  "goal": "prize/goal description",
-  "goalType": "money or toy",
-  "goalAmount": 20,
-  "days": 7,
-  "tasks": [
-    {"icon": "emoji", "name": "short task name", "category": "home|school|habits|behavior"}
-  ]
-}
-</CHART_JSON>
-
-Tasks should be age-appropriate. Ages 4-6: simple tasks. Ages 7-10: more responsibility. Task names max 30 characters.`,
     dayNames: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
   }
 };
@@ -588,22 +367,8 @@ function applyTranslations() {
   document.getElementById('btnPrint').innerHTML = t('btnPrint');
   document.getElementById('btnNew').innerHTML = t('btnNew');
   document.getElementById('chatInput').placeholder = t('placeholder');
-  // Modal translations
-  document.getElementById('modalTitle').textContent = t('modalTitle');
-  document.getElementById('modalDesc').textContent = t('modalDesc');
-  document.getElementById('modalCancel').textContent = t('modalCancel');
-  document.getElementById('modalSave').innerHTML = t('modalSave');
-  // Provider tags
-  document.getElementById('tagFree1').textContent = t('providerFree');
-  document.getElementById('tagFree2').textContent = t('providerFree');
-  document.getElementById('tagPaid1').textContent = t('providerPaid');
-  // Update provider info if modal is open
-  if (document.getElementById('apiKeyModal').classList.contains('show')) {
-    updateProviderUI();
-  }
   renderQuickPrompts();
   renderEmptyState();
-  updateApiKeyButton();
   if (chartData) buildChart(chartData);
 }
 
@@ -635,7 +400,6 @@ let chartData = null;
 let checked = new Set();
 let conversationHistory = [];
 let isLoading = false;
-let currentProvider = localStorage.getItem('ai_provider') || 'gemini';
 
 function handleKey(e) {
   if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
@@ -651,12 +415,6 @@ async function sendMessage() {
   const text = input.value.trim();
   if (!text || isLoading) return;
 
-  const apiKey = localStorage.getItem('ai_api_key');
-  if (!apiKey) {
-    toggleApiKeyModal();
-    return;
-  }
-
   input.value = '';
   addMessage('user', text);
   conversationHistory.push({ role: 'user', content: text });
@@ -665,15 +423,21 @@ async function sendMessage() {
   document.getElementById('sendBtn').disabled = true;
 
   try {
-    let rawText;
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        messages: conversationHistory,
+        lang: lang
+      })
+    });
 
-    if (currentProvider === 'gemini') {
-      rawText = await callGemini(apiKey, text);
-    } else if (currentProvider === 'groq') {
-      rawText = await callGroq(apiKey);
-    } else {
-      rawText = await callAnthropic(apiKey);
+    if (!response.ok) {
+      throw new Error('API Error');
     }
+
+    const data = await response.json();
+    const rawText = data.response || t('errorMsg');
 
     removeTyping();
     const jsonMatch = rawText.match(/<CHART_JSON>([\s\S]*?)<\/CHART_JSON>/);
@@ -685,122 +449,12 @@ async function sendMessage() {
     }
   } catch(err) {
     removeTyping();
-    if (err.message === 'API_KEY_INVALID') {
-      localStorage.removeItem('ai_api_key');
-      updateApiKeyButton();
-      addMessage('ai', t('apiKeyInvalid'));
-      toggleApiKeyModal();
-    } else {
-      console.error(err);
-      addMessage('ai', t('errorMsg'));
-    }
+    console.error(err);
+    addMessage('ai', t('errorMsg'));
   } finally {
     isLoading = false;
     document.getElementById('sendBtn').disabled = false;
   }
-}
-
-// ─── API Providers ────────────────────────────────────────
-async function callGemini(apiKey, userText) {
-  // Gemini usa un formato diferente para el historial
-  const contents = [];
-
-  // System prompt como primer mensaje del usuario
-  if (conversationHistory.length === 1) {
-    contents.push({
-      role: 'user',
-      parts: [{ text: t('systemPrompt') + '\n\n' + userText }]
-    });
-  } else {
-    // Agregar historial previo
-    for (let i = 0; i < conversationHistory.length - 1; i++) {
-      const msg = conversationHistory[i];
-      if (i === 0) {
-        contents.push({
-          role: 'user',
-          parts: [{ text: t('systemPrompt') + '\n\n' + msg.content }]
-        });
-      } else {
-        contents.push({
-          role: msg.role === 'assistant' ? 'model' : 'user',
-          parts: [{ text: msg.content }]
-        });
-      }
-    }
-    // Agregar el mensaje actual
-    contents.push({
-      role: 'user',
-      parts: [{ text: userText }]
-    });
-  }
-
-  const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ contents })
-  });
-
-  if (!response.ok) {
-    if (response.status === 400 || response.status === 403) throw new Error('API_KEY_INVALID');
-    throw new Error('API Error');
-  }
-
-  const data = await response.json();
-  return data.candidates?.[0]?.content?.parts?.[0]?.text || t('errorMsg');
-}
-
-async function callGroq(apiKey) {
-  const messages = [
-    { role: 'system', content: t('systemPrompt') },
-    ...conversationHistory
-  ];
-
-  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${apiKey}`
-    },
-    body: JSON.stringify({
-      model: 'llama-3.3-70b-versatile',
-      messages,
-      max_tokens: 1000
-    })
-  });
-
-  if (!response.ok) {
-    if (response.status === 401) throw new Error('API_KEY_INVALID');
-    throw new Error('API Error');
-  }
-
-  const data = await response.json();
-  return data.choices?.[0]?.message?.content || t('errorMsg');
-}
-
-async function callAnthropic(apiKey) {
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': apiKey,
-      'anthropic-version': '2023-06-01',
-      'anthropic-dangerous-direct-browser-access': 'true'
-    },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 1000,
-      system: t('systemPrompt'),
-      messages: conversationHistory
-    })
-  });
-
-  if (!response.ok) {
-    if (response.status === 401) throw new Error('API_KEY_INVALID');
-    throw new Error('API Error');
-  }
-
-  const data = await response.json();
-  return data.content?.[0]?.text || t('errorMsg');
 }
 
 function escapeHtml(text) {
@@ -813,7 +467,6 @@ function addMessage(role, text) {
   const wrap = document.getElementById('chatMessages');
   const div = document.createElement('div');
   div.className = `msg msg-${role === 'ai' ? 'ai' : 'user'}`;
-  // AI messages can have safe HTML (from our translations), user messages are escaped
   const safeText = role === 'ai' ? text.replace(/\n/g,'<br>') : escapeHtml(text).replace(/\n/g,'<br>');
   div.innerHTML = `<div class="msg-avatar">${role === 'ai' ? '✨' : '👤'}</div><div class="msg-bubble">${safeText}</div>`;
   wrap.appendChild(div);
@@ -845,8 +498,8 @@ function buildChart(data) {
 
   let html = `
     <div class="chart-title-area">
-      <div class="chart-main-title">🌟 ${data.title || (lang==='es'?'¡Mi Chart de Campeón!':'My Champion Chart!')} 🌟</div>
-      ${data.childName ? `<div class="chart-name-line">${lang==='es'?'Para':'For'}: <span>${data.childName}</span></div>` : ''}
+      <div class="chart-main-title">🌟 ${escapeHtml(data.title || (lang==='es'?'¡Mi Chart de Campeón!':'My Champion Chart!'))} 🌟</div>
+      ${data.childName ? `<div class="chart-name-line">${lang==='es'?'Para':'For'}: <span>${escapeHtml(data.childName)}</span></div>` : ''}
     </div>
     <div class="chart-meta">
       <div class="meta-pill meta-goal">🎯 ${t('goalLabel', isMoneyGoal, data.goalAmount, data.goal)}</div>
@@ -863,7 +516,7 @@ function buildChart(data) {
   tasks.forEach((task, ti) => {
     html += `<tr>
       <td><span class="task-row-num ${TC[ti%10]}">${ti+1}</span></td>
-      <td class="task-cell">${task.icon} ${task.name}</td>
+      <td class="task-cell">${task.icon || '📌'} ${escapeHtml(task.name)}</td>
       ${isMoneyGoal ? `<td style="font-size:0.7rem;font-weight:800;color:#16a34a;">$${perStar.toFixed(2)}</td>` : ''}
       ${Array.from({length:days},(_,d)=>`<td><div class="check-box" id="cb-${ti}-${d}" onclick="toggleCheck(${ti},${d},${total},${isMoneyGoal?data.goalAmount:0})"></div></td>`).join('')}
     </tr>`;
@@ -914,73 +567,8 @@ function resetChat(isReset = false) {
   addMessage('ai', isReset ? t('resetGreeting') : t('greeting'));
 }
 
-// ─── API Key Modal ────────────────────────────────────────
-function toggleApiKeyModal() {
-  const modal = document.getElementById('apiKeyModal');
-  const input = document.getElementById('apiKeyInput');
-  modal.classList.toggle('show');
-  if (modal.classList.contains('show')) {
-    updateProviderUI();
-    input.value = localStorage.getItem('ai_api_key') || '';
-    input.focus();
-  }
-}
-
-function selectProvider(provider) {
-  currentProvider = provider;
-  localStorage.setItem('ai_provider', provider);
-  // Limpiar key anterior si cambia de proveedor
-  const storedProvider = localStorage.getItem('ai_provider_for_key');
-  if (storedProvider && storedProvider !== provider) {
-    document.getElementById('apiKeyInput').value = '';
-  }
-  updateProviderUI();
-}
-
-function updateProviderUI() {
-  // Actualizar botones de proveedor
-  document.querySelectorAll('.provider-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.provider === currentProvider);
-  });
-  // Actualizar info y placeholder
-  const info = document.getElementById('providerInfo');
-  const input = document.getElementById('apiKeyInput');
-  info.innerHTML = t('providerInfo')[currentProvider];
-  input.placeholder = t('providerPlaceholder')[currentProvider];
-}
-
-function saveApiKey() {
-  const input = document.getElementById('apiKeyInput');
-  const key = input.value.trim();
-  if (key) {
-    localStorage.setItem('ai_api_key', key);
-    localStorage.setItem('ai_provider', currentProvider);
-    localStorage.setItem('ai_provider_for_key', currentProvider);
-    updateApiKeyButton();
-    toggleApiKeyModal();
-    // Reiniciar chat al cambiar de proveedor
-    resetChat();
-  }
-}
-
-function updateApiKeyButton() {
-  const btn = document.getElementById('apiKeyBtn');
-  const hasKey = !!localStorage.getItem('ai_api_key');
-  btn.classList.toggle('active', hasKey);
-
-  const providerNames = { gemini: 'Gemini', groq: 'Groq', anthropic: 'Claude' };
-  const providerName = providerNames[currentProvider] || 'IA';
-
-  btn.title = hasKey
-    ? (lang === 'es' ? `${providerName} configurado` : `${providerName} configured`)
-    : (lang === 'es' ? 'Configurar API Key' : 'Configure API Key');
-}
-
 // ─── Init ────────────────────────────────────────────────
-// Cargar proveedor guardado
-currentProvider = localStorage.getItem('ai_provider') || 'gemini';
 applyTranslations();
-updateApiKeyButton();
 resetChat();
 </script>
 </body>
