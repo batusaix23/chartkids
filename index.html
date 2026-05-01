@@ -777,23 +777,11 @@ body { font-family: 'Nunito', sans-serif; background: linear-gradient(135deg, #6
   </div>
 </div>
 
-<script>
+<scr` + `ipt>
 const total = ${total};
 const goalAmount = ${isMoneyGoal ? chartData.goalAmount : 0};
 const lang = '${lang}';
 let checked = new Set();
-
-// Cargar estado guardado
-const saved = localStorage.getItem('chart_${Date.now()}');
-if (saved) {
-  checked = new Set(JSON.parse(saved));
-  checked.forEach(key => {
-    const [t, d] = key.split('-');
-    const el = document.querySelector('[data-task="'+t+'"][data-day="'+d+'"]');
-    if (el) el.classList.add('done');
-  });
-  updateProgress();
-}
 
 function toggle(el) {
   const key = el.dataset.task + '-' + el.dataset.day;
@@ -806,7 +794,6 @@ function toggle(el) {
     el.animate([{transform:'scale(1)'},{transform:'scale(1.3)'},{transform:'scale(1)'}], {duration: 300});
   }
   updateProgress();
-  // Guardar estado
   localStorage.setItem('chart_offline', JSON.stringify([...checked]));
 }
 
@@ -815,7 +802,6 @@ function updateProgress() {
   const pct = Math.round((count / total) * 100);
   const isMoneyGoal = goalAmount > 0;
   const earned = isMoneyGoal ? (count * (goalAmount / total)) : 0;
-
   document.getElementById('progFill').style.width = pct + '%';
   document.getElementById('progFill').textContent = pct + '%';
   document.getElementById('progValue').textContent = isMoneyGoal
@@ -826,7 +812,6 @@ function updateProgress() {
     : count + ' of ' + total + ' ⭐ completed';
 }
 
-// Cargar al inicio
 window.onload = function() {
   const saved = localStorage.getItem('chart_offline');
   if (saved) {
@@ -839,7 +824,7 @@ window.onload = function() {
     updateProgress();
   }
 };
-</script>
+</scr` + `ipt>
 </body>
 </html>`;
 
