@@ -122,6 +122,52 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
 .modal-btns { display: flex; gap: 10px; }
 .modal-btns .btn { flex: 1; }
 
+/* Provider Selector */
+.provider-selector {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.provider-btn {
+  flex: 1;
+  background: var(--surface2);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.provider-btn:hover { border-color: var(--accent); }
+.provider-btn.active {
+  border-color: var(--accent);
+  background: rgba(124,58,237,0.15);
+}
+.provider-icon { font-size: 1.5rem; }
+.provider-name { font-family: 'Nunito', sans-serif; font-size: 0.8rem; font-weight: 800; color: var(--text); }
+.provider-tag {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 50px;
+  text-transform: uppercase;
+}
+.provider-tag.free { background: rgba(34,197,94,0.2); color: var(--green); }
+.provider-tag.paid { background: rgba(251,191,36,0.2); color: var(--yellow); }
+.provider-info {
+  background: var(--surface2);
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.provider-info a { color: var(--accent2); }
+
 /* Hero */
 .hero { text-align: center; margin-bottom: 48px; }
 .hero-tag { display: inline-block; background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.4); border-radius: 50px; padding: 6px 18px; font-size: 0.8rem; font-weight: 800; color: #a78bfa; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 18px; }
@@ -323,13 +369,30 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
 <!-- API Key Modal -->
 <div class="modal-overlay" id="apiKeyModal">
   <div class="modal-box">
-    <div class="modal-title" id="modalTitle">🔑 API Key de Anthropic</div>
-    <p class="modal-desc" id="modalDesc">
-      Para usar la IA, necesitas una API key de Anthropic.
-      Puedes obtenerla en <a href="https://console.anthropic.com/" target="_blank" style="color:var(--accent2)">console.anthropic.com</a>.
-      Tu key se guarda solo en tu navegador.
-    </p>
-    <input type="password" class="modal-input" id="apiKeyInput" placeholder="sk-ant-api..." aria-label="API Key">
+    <div class="modal-title" id="modalTitle">🔑 Configurar IA</div>
+    <p class="modal-desc" id="modalDesc">Selecciona tu proveedor de IA y agrega tu API key gratuita.</p>
+
+    <div class="provider-selector" id="providerSelector">
+      <button class="provider-btn active" data-provider="gemini" onclick="selectProvider('gemini')">
+        <span class="provider-icon">✨</span>
+        <span class="provider-name">Gemini</span>
+        <span class="provider-tag free" id="tagFree1">Gratis</span>
+      </button>
+      <button class="provider-btn" data-provider="groq" onclick="selectProvider('groq')">
+        <span class="provider-icon">⚡</span>
+        <span class="provider-name">Groq</span>
+        <span class="provider-tag free" id="tagFree2">Gratis</span>
+      </button>
+      <button class="provider-btn" data-provider="anthropic" onclick="selectProvider('anthropic')">
+        <span class="provider-icon">🧠</span>
+        <span class="provider-name">Claude</span>
+        <span class="provider-tag paid" id="tagPaid1">Pago</span>
+      </button>
+    </div>
+
+    <div class="provider-info" id="providerInfo"></div>
+
+    <input type="password" class="modal-input" id="apiKeyInput" placeholder="" aria-label="API Key">
     <div class="modal-btns">
       <button class="btn btn-secondary" onclick="toggleApiKeyModal()" id="modalCancel">Cancelar</button>
       <button class="btn btn-primary" onclick="saveApiKey()" id="modalSave">💾 Guardar</button>
@@ -361,10 +424,22 @@ const T = {
     resetGreeting: '¡Listo para crear un nuevo chart! 🎉<br><br>Cuéntame sobre tu hijo/a: ¿cuántos años tiene, qué tareas necesita y cuál será su premio? 🌟',
     errorMsg: '⚠️ Hubo un error de conexión. Por favor intenta de nuevo.',
     apiKeyInvalid: '🔑 Tu API key no es válida. Por favor verifica e intenta de nuevo.',
-    modalTitle: '🔑 API Key de Anthropic',
-    modalDesc: 'Para usar la IA, necesitas una API key de Anthropic. Puedes obtenerla en console.anthropic.com. Tu key se guarda solo en tu navegador.',
+    modalTitle: '🔑 Configurar IA',
+    modalDesc: 'Selecciona tu proveedor de IA y agrega tu API key.',
     modalCancel: 'Cancelar',
     modalSave: '💾 Guardar',
+    providerInfo: {
+      gemini: '✨ <b>Google Gemini</b> — 60 req/min gratis<br>Obtén tu key en <a href="https://aistudio.google.com/apikey" target="_blank">aistudio.google.com/apikey</a>',
+      groq: '⚡ <b>Groq</b> — 30 req/min gratis, muy rápido<br>Obtén tu key en <a href="https://console.groq.com/keys" target="_blank">console.groq.com/keys</a>',
+      anthropic: '🧠 <b>Claude</b> — API de pago, alta calidad<br>Obtén tu key en <a href="https://console.anthropic.com/" target="_blank">console.anthropic.com</a>'
+    },
+    providerPlaceholder: {
+      gemini: 'AIzaSy...',
+      groq: 'gsk_...',
+      anthropic: 'sk-ant-api...'
+    },
+    providerFree: 'Gratis',
+    providerPaid: 'Pago',
     taskCol: 'Tarea',
     starsOf: (a,b) => `${a} de ${b} ⭐ completadas`,
     perStar: 'c/estrella',
@@ -426,10 +501,22 @@ Las tareas deben ser apropiadas para la edad. Para 4-6 años: simples. Para 7-10
     resetGreeting: "Ready to create a new chart! 🎉<br><br>Tell me about your child: how old are they, what tasks do they need, and what's their reward? 🌟",
     errorMsg: '⚠️ Connection error. Please try again.',
     apiKeyInvalid: '🔑 Your API key is invalid. Please check and try again.',
-    modalTitle: '🔑 Anthropic API Key',
-    modalDesc: 'To use the AI, you need an Anthropic API key. Get one at console.anthropic.com. Your key is stored only in your browser.',
+    modalTitle: '🔑 Configure AI',
+    modalDesc: 'Select your AI provider and add your API key.',
     modalCancel: 'Cancel',
     modalSave: '💾 Save',
+    providerInfo: {
+      gemini: '✨ <b>Google Gemini</b> — 60 req/min free<br>Get your key at <a href="https://aistudio.google.com/apikey" target="_blank">aistudio.google.com/apikey</a>',
+      groq: '⚡ <b>Groq</b> — 30 req/min free, very fast<br>Get your key at <a href="https://console.groq.com/keys" target="_blank">console.groq.com/keys</a>',
+      anthropic: '🧠 <b>Claude</b> — Paid API, high quality<br>Get your key at <a href="https://console.anthropic.com/" target="_blank">console.anthropic.com</a>'
+    },
+    providerPlaceholder: {
+      gemini: 'AIzaSy...',
+      groq: 'gsk_...',
+      anthropic: 'sk-ant-api...'
+    },
+    providerFree: 'Free',
+    providerPaid: 'Paid',
     taskCol: 'Task',
     starsOf: (a,b) => `${a} of ${b} ⭐ completed`,
     perStar: 'per ⭐',
@@ -503,9 +590,17 @@ function applyTranslations() {
   document.getElementById('chatInput').placeholder = t('placeholder');
   // Modal translations
   document.getElementById('modalTitle').textContent = t('modalTitle');
-  document.getElementById('modalDesc').innerHTML = t('modalDesc').replace('console.anthropic.com', '<a href="https://console.anthropic.com/" target="_blank" style="color:var(--accent2)">console.anthropic.com</a>');
+  document.getElementById('modalDesc').textContent = t('modalDesc');
   document.getElementById('modalCancel').textContent = t('modalCancel');
   document.getElementById('modalSave').innerHTML = t('modalSave');
+  // Provider tags
+  document.getElementById('tagFree1').textContent = t('providerFree');
+  document.getElementById('tagFree2').textContent = t('providerFree');
+  document.getElementById('tagPaid1').textContent = t('providerPaid');
+  // Update provider info if modal is open
+  if (document.getElementById('apiKeyModal').classList.contains('show')) {
+    updateProviderUI();
+  }
   renderQuickPrompts();
   renderEmptyState();
   updateApiKeyButton();
@@ -540,6 +635,7 @@ let chartData = null;
 let checked = new Set();
 let conversationHistory = [];
 let isLoading = false;
+let currentProvider = localStorage.getItem('ai_provider') || 'gemini';
 
 function handleKey(e) {
   if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
@@ -555,7 +651,7 @@ async function sendMessage() {
   const text = input.value.trim();
   if (!text || isLoading) return;
 
-  const apiKey = localStorage.getItem('anthropic_api_key');
+  const apiKey = localStorage.getItem('ai_api_key');
   if (!apiKey) {
     toggleApiKeyModal();
     return;
@@ -569,32 +665,16 @@ async function sendMessage() {
   document.getElementById('sendBtn').disabled = true;
 
   try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: t('systemPrompt'),
-        messages: conversationHistory
-      })
-    });
+    let rawText;
 
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      if (response.status === 401) {
-        throw new Error('API_KEY_INVALID');
-      }
-      throw new Error(errorData.error?.message || 'API Error');
+    if (currentProvider === 'gemini') {
+      rawText = await callGemini(apiKey, text);
+    } else if (currentProvider === 'groq') {
+      rawText = await callGroq(apiKey);
+    } else {
+      rawText = await callAnthropic(apiKey);
     }
 
-    const data = await response.json();
-    const rawText = data.content?.[0]?.text || t('errorMsg');
     removeTyping();
     const jsonMatch = rawText.match(/<CHART_JSON>([\s\S]*?)<\/CHART_JSON>/);
     const displayText = rawText.replace(/<CHART_JSON>[\s\S]*?<\/CHART_JSON>/, '').trim();
@@ -606,17 +686,121 @@ async function sendMessage() {
   } catch(err) {
     removeTyping();
     if (err.message === 'API_KEY_INVALID') {
-      localStorage.removeItem('anthropic_api_key');
+      localStorage.removeItem('ai_api_key');
       updateApiKeyButton();
       addMessage('ai', t('apiKeyInvalid'));
       toggleApiKeyModal();
     } else {
+      console.error(err);
       addMessage('ai', t('errorMsg'));
     }
   } finally {
     isLoading = false;
     document.getElementById('sendBtn').disabled = false;
   }
+}
+
+// ─── API Providers ────────────────────────────────────────
+async function callGemini(apiKey, userText) {
+  // Gemini usa un formato diferente para el historial
+  const contents = [];
+
+  // System prompt como primer mensaje del usuario
+  if (conversationHistory.length === 1) {
+    contents.push({
+      role: 'user',
+      parts: [{ text: t('systemPrompt') + '\n\n' + userText }]
+    });
+  } else {
+    // Agregar historial previo
+    for (let i = 0; i < conversationHistory.length - 1; i++) {
+      const msg = conversationHistory[i];
+      if (i === 0) {
+        contents.push({
+          role: 'user',
+          parts: [{ text: t('systemPrompt') + '\n\n' + msg.content }]
+        });
+      } else {
+        contents.push({
+          role: msg.role === 'assistant' ? 'model' : 'user',
+          parts: [{ text: msg.content }]
+        });
+      }
+    }
+    // Agregar el mensaje actual
+    contents.push({
+      role: 'user',
+      parts: [{ text: userText }]
+    });
+  }
+
+  const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ contents })
+  });
+
+  if (!response.ok) {
+    if (response.status === 400 || response.status === 403) throw new Error('API_KEY_INVALID');
+    throw new Error('API Error');
+  }
+
+  const data = await response.json();
+  return data.candidates?.[0]?.content?.parts?.[0]?.text || t('errorMsg');
+}
+
+async function callGroq(apiKey) {
+  const messages = [
+    { role: 'system', content: t('systemPrompt') },
+    ...conversationHistory
+  ];
+
+  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiKey}`
+    },
+    body: JSON.stringify({
+      model: 'llama-3.3-70b-versatile',
+      messages,
+      max_tokens: 1000
+    })
+  });
+
+  if (!response.ok) {
+    if (response.status === 401) throw new Error('API_KEY_INVALID');
+    throw new Error('API Error');
+  }
+
+  const data = await response.json();
+  return data.choices?.[0]?.message?.content || t('errorMsg');
+}
+
+async function callAnthropic(apiKey) {
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': apiKey,
+      'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-direct-browser-access': 'true'
+    },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1000,
+      system: t('systemPrompt'),
+      messages: conversationHistory
+    })
+  });
+
+  if (!response.ok) {
+    if (response.status === 401) throw new Error('API_KEY_INVALID');
+    throw new Error('API Error');
+  }
+
+  const data = await response.json();
+  return data.content?.[0]?.text || t('errorMsg');
 }
 
 function escapeHtml(text) {
@@ -736,29 +920,65 @@ function toggleApiKeyModal() {
   const input = document.getElementById('apiKeyInput');
   modal.classList.toggle('show');
   if (modal.classList.contains('show')) {
-    input.value = localStorage.getItem('anthropic_api_key') || '';
+    updateProviderUI();
+    input.value = localStorage.getItem('ai_api_key') || '';
     input.focus();
   }
+}
+
+function selectProvider(provider) {
+  currentProvider = provider;
+  localStorage.setItem('ai_provider', provider);
+  // Limpiar key anterior si cambia de proveedor
+  const storedProvider = localStorage.getItem('ai_provider_for_key');
+  if (storedProvider && storedProvider !== provider) {
+    document.getElementById('apiKeyInput').value = '';
+  }
+  updateProviderUI();
+}
+
+function updateProviderUI() {
+  // Actualizar botones de proveedor
+  document.querySelectorAll('.provider-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.provider === currentProvider);
+  });
+  // Actualizar info y placeholder
+  const info = document.getElementById('providerInfo');
+  const input = document.getElementById('apiKeyInput');
+  info.innerHTML = t('providerInfo')[currentProvider];
+  input.placeholder = t('providerPlaceholder')[currentProvider];
 }
 
 function saveApiKey() {
   const input = document.getElementById('apiKeyInput');
   const key = input.value.trim();
   if (key) {
-    localStorage.setItem('anthropic_api_key', key);
+    localStorage.setItem('ai_api_key', key);
+    localStorage.setItem('ai_provider', currentProvider);
+    localStorage.setItem('ai_provider_for_key', currentProvider);
     updateApiKeyButton();
     toggleApiKeyModal();
+    // Reiniciar chat al cambiar de proveedor
+    resetChat();
   }
 }
 
 function updateApiKeyButton() {
   const btn = document.getElementById('apiKeyBtn');
-  const hasKey = !!localStorage.getItem('anthropic_api_key');
+  const hasKey = !!localStorage.getItem('ai_api_key');
   btn.classList.toggle('active', hasKey);
-  btn.title = hasKey ? (lang === 'es' ? 'API Key configurada' : 'API Key configured') : (lang === 'es' ? 'Configurar API Key' : 'Configure API Key');
+
+  const providerNames = { gemini: 'Gemini', groq: 'Groq', anthropic: 'Claude' };
+  const providerName = providerNames[currentProvider] || 'IA';
+
+  btn.title = hasKey
+    ? (lang === 'es' ? `${providerName} configurado` : `${providerName} configured`)
+    : (lang === 'es' ? 'Configurar API Key' : 'Configure API Key');
 }
 
 // ─── Init ────────────────────────────────────────────────
+// Cargar proveedor guardado
+currentProvider = localStorage.getItem('ai_provider') || 'gemini';
 applyTranslations();
 updateApiKeyButton();
 resetChat();
