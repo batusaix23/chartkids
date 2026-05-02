@@ -611,6 +611,60 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
 .tab-content { display: none; }
 .tab-content.active { display: block; }
 
+/* Stats Styles */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.stat-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  text-align: center;
+}
+.stat-icon { font-size: 1.8rem; margin-bottom: 6px; }
+.stat-value { font-family: 'Fredoka One', cursive; font-size: 1.5rem; color: var(--green); margin-bottom: 2px; }
+.stat-value.money { color: var(--yellow); }
+.stat-label { font-size: 0.75rem; color: var(--muted); font-weight: 700; }
+.stats-chart-title {
+  font-weight: 800;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 120px;
+  gap: 6px;
+  padding: 10px 0;
+  border-bottom: 2px solid var(--border);
+}
+.bar-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  max-width: 50px;
+}
+.bar {
+  width: 100%;
+  background: linear-gradient(180deg, var(--green), var(--accent2));
+  border-radius: 6px 6px 0 0;
+  transition: height 0.3s;
+  min-height: 4px;
+}
+.bar-label { font-size: 0.55rem; color: var(--muted); font-weight: 700; }
+.bar-value { font-size: 0.6rem; font-weight: 800; color: var(--text); }
+.stats-empty { text-align: center; padding: 20px; color: var(--muted); }
+
 @media print {
   body { background: white; }
   .bg-orbs, nav, .hero, .chat-panel-wrap, .progress-card, .action-row, .panel-header, .modal-overlay { display: none !important; }
@@ -733,7 +787,8 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
     </div>
     <div class="modal-tabs">
       <button class="modal-tab active" onclick="switchTab('charts')">📋 <span id="tabCharts">Charts</span></button>
-      <button class="modal-tab" onclick="switchTab('history')">📊 <span id="tabHistory">Historial</span></button>
+      <button class="modal-tab" onclick="switchTab('history')">📅 <span id="tabHistory">Historial</span></button>
+      <button class="modal-tab" onclick="switchTab('stats')">📊 <span id="tabStats">Estadísticas</span></button>
     </div>
     <div class="modal-body">
       <div class="tab-content active" id="tabContentCharts">
@@ -742,6 +797,9 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
       <div class="tab-content" id="tabContentHistory">
         <button class="new-week-btn" onclick="startNewWeek()" id="newWeekBtn">📅 Nueva Semana</button>
         <div class="history-list" id="historyList"></div>
+      </div>
+      <div class="tab-content" id="tabContentStats">
+        <div class="stats-container" id="statsContainer"></div>
       </div>
     </div>
   </div>
@@ -877,6 +935,13 @@ const T = {
     completed: 'Completado',
     stars: 'estrellas',
     earned: 'ganado',
+    tabStats: 'Estadísticas',
+    totalStars: 'Estrellas totales',
+    totalEarned: 'Total ganado',
+    bestWeek: 'Mejor semana',
+    avgProgress: 'Promedio',
+    weeksChart: 'Progreso últimas semanas',
+    noStatsYet: 'Aún no hay estadísticas',
   },
   en: {
     navBadge: '✨ Free AI',
@@ -945,6 +1010,13 @@ const T = {
     completed: 'Completed',
     stars: 'stars',
     earned: 'earned',
+    tabStats: 'Statistics',
+    totalStars: 'Total stars',
+    totalEarned: 'Total earned',
+    bestWeek: 'Best week',
+    avgProgress: 'Average',
+    weeksChart: 'Recent weeks progress',
+    noStatsYet: 'No statistics yet',
   }
 };
 
@@ -1928,14 +2000,116 @@ function switchTab(tab) {
   document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
 
+  const tabs = document.querySelectorAll('.modal-tab');
   if (tab === 'charts') {
-    document.querySelector('.modal-tab:first-child').classList.add('active');
+    tabs[0].classList.add('active');
     document.getElementById('tabContentCharts').classList.add('active');
-  } else {
-    document.querySelector('.modal-tab:last-child').classList.add('active');
+  } else if (tab === 'history') {
+    tabs[1].classList.add('active');
     document.getElementById('tabContentHistory').classList.add('active');
     renderHistoryList();
+  } else if (tab === 'stats') {
+    tabs[2].classList.add('active');
+    document.getElementById('tabContentStats').classList.add('active');
+    renderStats();
   }
+}
+
+function renderStats() {
+  const container = document.getElementById('statsContainer');
+
+  if (!currentChartId) {
+    container.innerHTML = `<div class="stats-empty"><p>${t('noStatsYet')}</p></div>`;
+    return;
+  }
+
+  const history = getChartHistory(currentChartId);
+  const currentCompleted = checked.size;
+  const currentTotal = chartData ? (chartData.tasks?.length || 0) * (chartData.days || 7) : 0;
+
+  // Calculate totals including current week
+  let totalStars = currentCompleted;
+  let totalEarned = 0;
+  let bestWeekPct = currentTotal > 0 ? Math.round((currentCompleted / currentTotal) * 100) : 0;
+  let totalPct = bestWeekPct;
+  let weekCount = 1;
+
+  const isCurrentMoneyGoal = chartData?.goalType === 'money' && chartData?.goalAmount > 0;
+  if (isCurrentMoneyGoal && currentTotal > 0) {
+    totalEarned = currentCompleted * (chartData.goalAmount / currentTotal);
+  }
+
+  history.forEach(week => {
+    totalStars += week.completed;
+    totalEarned += week.earned || 0;
+    if (week.percentage > bestWeekPct) bestWeekPct = week.percentage;
+    totalPct += week.percentage;
+    weekCount++;
+  });
+
+  const avgPct = Math.round(totalPct / weekCount);
+
+  // Build stats HTML
+  let html = `
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">⭐</div>
+        <div class="stat-value">${totalStars}</div>
+        <div class="stat-label">${t('totalStars')}</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">💰</div>
+        <div class="stat-value money">$${totalEarned.toFixed(2)}</div>
+        <div class="stat-label">${t('totalEarned')}</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🏆</div>
+        <div class="stat-value">${bestWeekPct}%</div>
+        <div class="stat-label">${t('bestWeek')}</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📊</div>
+        <div class="stat-value">${avgPct}%</div>
+        <div class="stat-label">${t('avgProgress')}</div>
+      </div>
+    </div>`;
+
+  // Bar chart of last weeks
+  if (history.length > 0 || currentCompleted > 0) {
+    const chartData = [];
+
+    // Add current week
+    chartData.push({
+      label: lang === 'es' ? 'Actual' : 'Current',
+      pct: currentTotal > 0 ? Math.round((currentCompleted / currentTotal) * 100) : 0
+    });
+
+    // Add history (reverse to show oldest first)
+    history.slice(0, 5).reverse().forEach((week, i) => {
+      const weekNum = history.length - i;
+      chartData.unshift({
+        label: `S${weekNum}`,
+        pct: week.percentage
+      });
+    });
+
+    // Keep only last 6
+    const displayData = chartData.slice(-6);
+
+    html += `
+      <div class="stats-chart-title">📈 ${t('weeksChart')}</div>
+      <div class="bar-chart">
+        ${displayData.map(d => `
+          <div class="bar-item">
+            <div class="bar-value">${d.pct}%</div>
+            <div class="bar" style="height:${Math.max(d.pct, 5)}%"></div>
+            <div class="bar-label">${d.label}</div>
+          </div>
+        `).join('')}
+      </div>`;
+  }
+
+  container.innerHTML = html;
 }
 
 function startNewWeek() {
