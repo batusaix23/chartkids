@@ -1212,8 +1212,10 @@ const T = {
       { icon: '🏠', name: '7-10 años Hogar', desc: 'Responsabilidades casa', prompt: 'Crea un chart para un niño de 8 años con responsabilidades del hogar: ordenar su cuarto, ayudar a poner la mesa, sacar la basura, cuidar mascota. Meta: $20 dólares.' },
       { icon: '✏️', name: '7-10 años Escuela', desc: 'Tareas y estudios', prompt: 'Crea un chart para un niño de 9 años enfocado en escuela: hacer tarea sin que le digan, estudiar para exámenes, leer 20 minutos, organizar útiles. Meta: un videojuego.' },
       { icon: '💪', name: 'Hábitos saludables', desc: 'Salud y bienestar', prompt: 'Crea un chart con hábitos saludables: cepillarse los dientes, bañarse solo, comer frutas y verduras, dormir temprano, hacer ejercicio. Meta: ir al parque.' },
-      { icon: '😊', name: 'Comportamiento', desc: 'Actitud positiva', prompt: 'Crea un chart de comportamiento: no pelear con hermanos, decir por favor y gracias, compartir, obedecer a la primera, controlar enojos. Meta: una salida especial.' }
+      { icon: '😊', name: 'Comportamiento', desc: 'Actitud positiva', prompt: 'Crea un chart de comportamiento: no pelear con hermanos, decir por favor y gracias, compartir, obedecer a la primera, controlar enojos. Meta: una salida especial.' },
+      { icon: '📅', name: 'Chart Anual', desc: 'Metas mensuales x12', prompt: 'Crea un chart ANUAL de 12 meses con metas mensuales: ahorrar $10 cada mes, leer un libro al mes, sacar buenas notas, ayudar en casa, hacer ejercicio. Premio del año: un viaje especial. Usa days:12 para 12 meses.' }
     ],
+    monthNames: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
     premiumBtn: 'Premium',
     premiumBtnActive: '✓ Premium',
     premiumTitle: 'ChartKids Premium',
@@ -1330,8 +1332,10 @@ const T = {
       { icon: '🏠', name: '7-10 yrs Home', desc: 'House responsibilities', prompt: 'Create a chart for an 8 year old with home responsibilities: clean room, help set table, take out trash, care for pet. Goal: $20 dollars.' },
       { icon: '✏️', name: '7-10 yrs School', desc: 'Homework and study', prompt: 'Create a chart for a 9 year old focused on school: do homework without being told, study for tests, read 20 minutes, organize supplies. Goal: a video game.' },
       { icon: '💪', name: 'Healthy habits', desc: 'Health and wellness', prompt: 'Create a chart with healthy habits: brush teeth, shower alone, eat fruits and veggies, sleep early, exercise. Goal: go to the park.' },
-      { icon: '😊', name: 'Behavior', desc: 'Positive attitude', prompt: 'Create a behavior chart: no fighting with siblings, say please and thank you, share, obey first time, control anger. Goal: a special outing.' }
+      { icon: '😊', name: 'Behavior', desc: 'Positive attitude', prompt: 'Create a behavior chart: no fighting with siblings, say please and thank you, share, obey first time, control anger. Goal: a special outing.' },
+      { icon: '📅', name: 'Yearly Chart', desc: 'Monthly goals x12', prompt: 'Create a YEARLY chart with 12 months of monthly goals: save $10 each month, read one book per month, get good grades, help at home, exercise regularly. Year goal: a special trip. Use days:12 for 12 months.' }
     ],
+    monthNames: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
     premiumBtn: 'Premium',
     premiumBtnActive: '✓ Premium',
     premiumTitle: 'ChartKids Premium',
@@ -1668,7 +1672,9 @@ function buildChart(data, preserveProgress = false) {
   const total = tasks.length * days;
   const isMoneyGoal = data.goalType === 'money' && data.goalAmount > 0;
   const perStar = isMoneyGoal ? (data.goalAmount / total) : 0;
-  const dayNames = T[lang].dayNames;
+  // Usar meses si es chart anual (days > 7)
+  const isYearlyChart = days > 7;
+  const columnNames = isYearlyChart ? T[lang].monthNames : T[lang].dayNames;
   const theme = THEMES[data.theme] || THEMES.general;
   const title = data.title || (lang === 'es' ? '¡Mi Chart de Campeón!' : 'My Champion Chart!');
   const noMoney = isMoneyGoal ? '' : ' no-money';
@@ -1689,7 +1695,9 @@ function buildChart(data, preserveProgress = false) {
       <div class="chart-header">
         <div class="chart-stars-row">${theme.emojis}</div>
         <div class="chart-main-title">${escapeHtml(title)}</div>
-        <div class="chart-subtitle">${isMoneyGoal ? (lang==='es'?'Completa tus tareas y gana tu dinero 💰':'Complete your tasks and earn money 💰') : (lang==='es'?'Completa tus tareas y gana tu premio 🎁':'Complete your tasks and earn your prize 🎁')}</div>
+        <div class="chart-subtitle">${isYearlyChart
+          ? (lang==='es'?'¡Completa todos los meses y gana tu premio del año! 🏆':'Complete all months and earn your yearly prize! 🏆')
+          : (isMoneyGoal ? (lang==='es'?'Completa tus tareas y gana tu dinero 💰':'Complete your tasks and earn money 💰') : (lang==='es'?'Completa tus tareas y gana tu premio 🎁':'Complete your tasks and earn your prize 🎁'))}</div>
       </div>
 
       ${data.childName ? `<div class="chart-name-banner"><span class="chart-name-text">👦 ${escapeHtml(data.childName)}</span></div>` : ''}
@@ -1706,7 +1714,7 @@ function buildChart(data, preserveProgress = false) {
           <div></div>
           <div></div>
           ${isMoneyGoal ? '<div class="chart-day-header" style="color:#16a34a;">Por⭐</div>' : ''}
-          ${dayNames.slice(0,days).map(d=>`<div class="chart-day-header">${d}</div>`).join('')}
+          ${columnNames.slice(0,days).map(d=>`<div class="chart-day-header">${d}</div>`).join('')}
         </div>
         ${tasksHtml}
       </div>
