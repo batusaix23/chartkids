@@ -9,6 +9,8 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
 <title>ChartKids — AI Activity Charts</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<!-- Google AdSense - Reemplaza ca-pub-3864436143903580 con tu ID de AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3864436143903580" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
 <style>
 :root {
@@ -228,9 +230,283 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
 
+/* AdSense Containers */
+.ad-container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px;
+  margin: 20px 0;
+  text-align: center;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.ad-container.ad-top { margin-top: 0; }
+.ad-container.ad-bottom { margin-bottom: 0; }
+.ad-label {
+  font-size: 0.65rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.5;
+}
+@media print { .ad-container { display: none !important; } }
+
+/* Charts Manager Modal */
+.charts-btn {
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+  border: none;
+  border-radius: 50px;
+  padding: 8px 16px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.charts-btn:hover { transform: scale(1.05); opacity: 0.9; }
+.charts-btn .badge {
+  background: rgba(255,255,255,0.25);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.2s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow: hidden;
+  animation: slideUp 0.3s ease;
+}
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.modal-header {
+  background: var(--surface2);
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.modal-header h3 { font-family: 'Fredoka One', cursive; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; }
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+}
+.modal-close:hover { color: var(--text); }
+.modal-body { padding: 20px; max-height: 60vh; overflow-y: auto; }
+.saved-charts-list { display: flex; flex-direction: column; gap: 12px; }
+.saved-chart-item {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.saved-chart-item:hover { border-color: var(--accent); transform: translateX(4px); }
+.saved-chart-item.active { border-color: var(--green); background: rgba(34,197,94,0.1); }
+.chart-item-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.chart-item-info { flex: 1; min-width: 0; }
+.chart-item-name { font-weight: 800; font-size: 0.95rem; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.chart-item-meta { font-size: 0.75rem; color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap; }
+.chart-item-actions { display: flex; gap: 6px; }
+.chart-item-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.chart-item-btn:hover { background: var(--border); }
+.chart-item-btn.delete:hover { background: #ef4444; border-color: #ef4444; }
+.empty-charts {
+  text-align: center;
+  padding: 30px;
+  color: var(--muted);
+}
+.empty-charts-icon { font-size: 3rem; margin-bottom: 10px; opacity: 0.5; }
+.empty-charts h4 { font-size: 1rem; margin-bottom: 6px; color: var(--text); }
+.empty-charts p { font-size: 0.85rem; }
+
+/* Edit Modal */
+.edit-form { display: flex; flex-direction: column; gap: 16px; }
+.edit-field { display: flex; flex-direction: column; gap: 6px; }
+.edit-field label { font-size: 0.85rem; font-weight: 700; color: var(--muted); }
+.edit-field input, .edit-field select {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.edit-field input:focus, .edit-field select:focus { border-color: var(--accent); }
+.edit-tasks-list { max-height: 200px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+.edit-task-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface2);
+  border-radius: 10px;
+  padding: 8px 12px;
+}
+.edit-task-item input { flex: 1; padding: 8px 10px; }
+.edit-task-item .task-icon { font-size: 1.2rem; cursor: pointer; }
+.edit-task-remove {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 4px;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+.edit-task-remove:hover { opacity: 1; }
+.edit-add-task {
+  background: rgba(34,197,94,0.1);
+  border: 1px dashed rgba(34,197,94,0.4);
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  color: var(--green);
+  font-weight: 700;
+  transition: all 0.2s;
+}
+.edit-add-task:hover { background: rgba(34,197,94,0.2); border-style: solid; }
+.edit-buttons { display: flex; gap: 10px; margin-top: 8px; }
+.edit-buttons .btn { flex: 1; }
+
+/* Celebration Animations */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  animation: confetti-fall 3s ease-out forwards;
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+.star-burst {
+  position: fixed;
+  font-size: 2rem;
+  animation: star-burst 0.6s ease-out forwards;
+  pointer-events: none;
+  z-index: 9998;
+}
+@keyframes star-burst {
+  0% { transform: scale(0) rotate(0deg); opacity: 1; }
+  50% { transform: scale(1.5) rotate(180deg); opacity: 1; }
+  100% { transform: scale(2) rotate(360deg); opacity: 0; }
+}
+.celebration-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeIn 0.3s ease;
+}
+.celebration-content {
+  text-align: center;
+  animation: celebration-bounce 0.5s ease;
+}
+@keyframes celebration-bounce {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+.celebration-emoji { font-size: 5rem; margin-bottom: 20px; animation: wiggle 0.5s ease infinite; }
+@keyframes wiggle { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
+.celebration-title { font-family: 'Fredoka One', cursive; font-size: 2.5rem; color: #FFD93D; margin-bottom: 10px; text-shadow: 2px 2px 0 #FF6B6B; }
+.celebration-sub { font-size: 1.2rem; color: white; margin-bottom: 30px; }
+.celebration-btn {
+  background: linear-gradient(135deg, var(--green), #10b981);
+  border: none;
+  border-radius: 50px;
+  padding: 16px 40px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.2rem;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(34,197,94,0.4);
+  transition: transform 0.2s;
+}
+.celebration-btn:hover { transform: scale(1.05); }
+
 @media print {
   body { background: white; }
-  .bg-orbs, nav, .hero, .chat-panel-wrap, .progress-card, .action-row, .panel-header { display: none !important; }
+  .bg-orbs, nav, .hero, .chat-panel-wrap, .progress-card, .action-row, .panel-header, .modal-overlay { display: none !important; }
   .main-grid { display: block; }
   .chart-card { border: none; }
   .chart-inner { padding: 10px; }
@@ -252,6 +528,7 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
         <button class="lang-btn active" id="btnES" onclick="setLang('es')" aria-label="Cambiar a Español">🇲🇽 ES</button>
         <button class="lang-btn" id="btnEN" onclick="setLang('en')" aria-label="Switch to English">🇺🇸 EN</button>
       </div>
+      <button class="charts-btn" id="chartsBtn" onclick="openChartsModal()">📚 <span id="chartsBtnText">Mis Charts</span> <span class="badge" id="chartsBadge">0</span></button>
       <div class="nav-badge" id="navBadge">✨ IA Gratis</div>
       <button class="install-btn" id="installBtn" style="display:none" onclick="installApp()">📲 Instalar</button>
     </div>
@@ -261,6 +538,17 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
     <div class="hero-tag" id="heroTag">✦ 100% Gratis · Sin registro</div>
     <h1 id="heroTitle">Crea el chart perfecto<br>para tu <span class="highlight">pequeño héroe</span></h1>
     <p id="heroDesc">Cuéntale a nuestra IA sobre tu hijo y ella diseñará un chart personalizado con tareas, metas y premios en segundos.</p>
+  </div>
+
+  <!-- Ad Banner Top -->
+  <div class="ad-container ad-top" id="adTop">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-3864436143903580"
+         data-ad-slot="8040423908"
+         data-ad-format="horizontal"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
   <div class="main-grid">
@@ -309,9 +597,88 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
       <div class="action-row" id="actionRow" style="display:none">
         <button class="btn btn-success" id="btnSavePng" onclick="saveChartPNG()">🖼️ PNG</button>
         <button class="btn btn-success" id="btnSaveHtml" onclick="saveAsHTML()">📄 HTML</button>
+        <button class="btn btn-secondary" id="btnEdit" onclick="openEditModal()">✏️ <span id="btnEditText">Editar</span></button>
         <button class="btn btn-secondary" id="btnShare" onclick="shareChart()">📤 Compartir</button>
         <button class="btn btn-secondary" id="btnPrint" onclick="window.print()">🖨️ Imprimir</button>
         <button class="btn btn-primary" id="btnNew" onclick="resetChart()">🔄 Nuevo</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ad Banner Bottom -->
+  <div class="ad-container ad-bottom" id="adBottom">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-3864436143903580"
+         data-ad-slot="8040423908"
+         data-ad-format="horizontal"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+</div>
+
+<!-- Modal de Charts Guardados -->
+<div class="modal-overlay" id="chartsModal" style="display:none" onclick="closeChartsModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <h3>📚 <span id="modalTitle">Mis Charts Guardados</span></h3>
+      <button class="modal-close" onclick="closeChartsModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="saved-charts-list" id="savedChartsList"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Edición -->
+<div class="modal-overlay" id="editModal" style="display:none" onclick="closeEditModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <h3>✏️ <span id="editModalTitle">Editar Chart</span></h3>
+      <button class="modal-close" onclick="closeEditModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="edit-form" id="editForm">
+        <div class="edit-field">
+          <label id="labelChildName">Nombre del niño/a</label>
+          <input type="text" id="editChildName" placeholder="Ej: María">
+        </div>
+        <div class="edit-field">
+          <label id="labelTitle">Título del chart</label>
+          <input type="text" id="editTitle" placeholder="Ej: ¡Mi Chart de Campeón!">
+        </div>
+        <div class="edit-field">
+          <label id="labelGoal">Meta/Premio</label>
+          <input type="text" id="editGoal" placeholder="Ej: Un juguete nuevo">
+        </div>
+        <div class="edit-field">
+          <label id="labelGoalAmount">Cantidad (si es dinero)</label>
+          <input type="number" id="editGoalAmount" placeholder="0" min="0" step="0.01">
+        </div>
+        <div class="edit-field">
+          <label id="labelTheme">Tema visual</label>
+          <select id="editTheme">
+            <option value="general">🌟 General</option>
+            <option value="money">💵 Dinero</option>
+            <option value="lego">🧱 Lego/Juguetes</option>
+            <option value="music">🎵 Música</option>
+            <option value="travel">✈️ Viajes</option>
+            <option value="bike">🚴 Deportes</option>
+            <option value="gaming">🎮 Videojuegos</option>
+            <option value="pet">🐕 Mascotas</option>
+            <option value="park">🎢 Parque</option>
+            <option value="clothes">👗 Ropa</option>
+          </select>
+        </div>
+        <div class="edit-field">
+          <label id="labelTasks">Tareas</label>
+          <div class="edit-tasks-list" id="editTasksList"></div>
+          <div class="edit-add-task" onclick="addEditTask()">+ <span id="addTaskText">Agregar tarea</span></div>
+        </div>
+        <div class="edit-buttons">
+          <button class="btn btn-secondary" onclick="closeEditModal()"><span id="btnCancel">Cancelar</span></button>
+          <button class="btn btn-primary" onclick="saveChartEdits()">💾 <span id="btnSaveEdit">Guardar</span></button>
+        </div>
       </div>
     </div>
   </div>
@@ -362,6 +729,27 @@ const T = {
       { label: '🎁 Premio juguete' },
     ],
     dayNames: ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'],
+    chartsBtnText: 'Mis Charts',
+    modalTitle: 'Mis Charts Guardados',
+    emptyChartsTitle: 'No tienes charts guardados',
+    emptyChartsDesc: 'Crea un chart con la IA y se guardará automáticamente aquí',
+    chartSaved: '✅ Chart guardado',
+    chartDeleted: '🗑️ Chart eliminado',
+    tasksLabel: 'tareas',
+    starsLabel: 'estrellas',
+    progressRestored: '📂 Progreso anterior restaurado',
+    btnEdit: '✏️ Editar',
+    editModalTitle: 'Editar Chart',
+    labelChildName: 'Nombre del niño/a',
+    labelTitle: 'Título del chart',
+    labelGoal: 'Meta/Premio',
+    labelGoalAmount: 'Cantidad (si es dinero)',
+    labelTheme: 'Tema visual',
+    labelTasks: 'Tareas',
+    addTaskText: 'Agregar tarea',
+    btnCancel: 'Cancelar',
+    btnSaveEdit: 'Guardar',
+    chartUpdated: '✅ Chart actualizado',
   },
   en: {
     navBadge: '✨ Free AI',
@@ -399,6 +787,27 @@ const T = {
       { label: '🎁 Toy reward' },
     ],
     dayNames: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+    chartsBtnText: 'My Charts',
+    modalTitle: 'My Saved Charts',
+    emptyChartsTitle: 'No saved charts yet',
+    emptyChartsDesc: 'Create a chart with the AI and it will be saved here automatically',
+    chartSaved: '✅ Chart saved',
+    chartDeleted: '🗑️ Chart deleted',
+    tasksLabel: 'tasks',
+    starsLabel: 'stars',
+    progressRestored: '📂 Previous progress restored',
+    btnEdit: '✏️ Edit',
+    editModalTitle: 'Edit Chart',
+    labelChildName: "Child's name",
+    labelTitle: 'Chart title',
+    labelGoal: 'Goal/Reward',
+    labelGoalAmount: 'Amount (if money)',
+    labelTheme: 'Visual theme',
+    labelTasks: 'Tasks',
+    addTaskText: 'Add task',
+    btnCancel: 'Cancel',
+    btnSaveEdit: 'Save',
+    chartUpdated: '✅ Chart updated',
   }
 };
 
@@ -432,8 +841,22 @@ function applyTranslations() {
   document.getElementById('btnPrint').innerHTML = t('btnPrint');
   document.getElementById('btnNew').innerHTML = t('btnNew');
   document.getElementById('chatInput').placeholder = t('placeholder');
+  document.getElementById('chartsBtnText').textContent = t('chartsBtnText');
+  document.getElementById('modalTitle').textContent = t('modalTitle');
+  document.getElementById('btnEditText').textContent = t('btnEdit').replace('✏️ ', '');
+  document.getElementById('editModalTitle').textContent = t('editModalTitle');
+  document.getElementById('labelChildName').textContent = t('labelChildName');
+  document.getElementById('labelTitle').textContent = t('labelTitle');
+  document.getElementById('labelGoal').textContent = t('labelGoal');
+  document.getElementById('labelGoalAmount').textContent = t('labelGoalAmount');
+  document.getElementById('labelTheme').textContent = t('labelTheme');
+  document.getElementById('labelTasks').textContent = t('labelTasks');
+  document.getElementById('addTaskText').textContent = t('addTaskText');
+  document.getElementById('btnCancel').textContent = t('btnCancel');
+  document.getElementById('btnSaveEdit').textContent = t('btnSaveEdit');
   renderQuickPrompts();
   renderEmptyState();
+  updateChartsBadge();
   if (chartData) buildChart(chartData);
 }
 
@@ -507,51 +930,79 @@ async function sendMessage() {
 
     removeTyping();
 
-    // Intentar extraer JSON de varias formas
+    // Función para limpiar y parsear JSON de forma robusta
+    function cleanAndParseJson(jsonStr) {
+      try {
+        // Limpiar el string
+        let cleaned = jsonStr
+          .replace(/[\x00-\x1F\x7F]/g, ' ') // Remover caracteres de control
+          .replace(/,\s*}/g, '}')           // Remover comas trailing
+          .replace(/,\s*]/g, ']')           // Remover comas trailing en arrays
+          .replace(/'/g, '"')               // Convertir comillas simples
+          .trim();
+
+        const parsed = JSON.parse(cleaned);
+
+        // Validar estructura mínima
+        if (parsed && Array.isArray(parsed.tasks) && parsed.tasks.length > 0) {
+          // Asegurar valores por defecto
+          return {
+            childName: parsed.childName || '',
+            title: parsed.title || (lang === 'es' ? '¡Mi Chart de Campeón!' : 'My Champion Chart!'),
+            goal: parsed.goal || '',
+            goalType: parsed.goalType || 'toy',
+            goalAmount: parseFloat(parsed.goalAmount) || 0,
+            days: parseInt(parsed.days) || 7,
+            theme: parsed.theme || 'general',
+            tasks: parsed.tasks.map(t => ({
+              icon: t.icon || '📌',
+              name: t.name || t.task || 'Tarea',
+              category: t.category || 'general'
+            }))
+          };
+        }
+        return null;
+      } catch(e) {
+        console.error('JSON parse error:', e);
+        return null;
+      }
+    }
+
+    // Intentar extraer JSON de múltiples formatos
     let chartJson = null;
     let displayText = rawText;
+    const jsonPatterns = [
+      // Formato 1: <CHART_JSON>...</CHART_JSON>
+      { regex: /<CHART_JSON>([\s\S]*?)<\/CHART_JSON>/i, clean: /<CHART_JSON>[\s\S]*?<\/CHART_JSON>/gi },
+      // Formato 2: ```json ... ```
+      { regex: /```json\s*([\s\S]*?)```/i, clean: /```json\s*[\s\S]*?```/gi },
+      // Formato 3: ``` ... ``` (sin especificar json)
+      { regex: /```\s*(\{[\s\S]*?\})\s*```/, clean: /```\s*\{[\s\S]*?\}\s*```/g },
+      // Formato 4: JSON con "tasks" al final
+      { regex: /(\{[^{]*"tasks"\s*:\s*\[[\s\S]*?\]\s*\})\s*$/, clean: /\{[^{]*"tasks"\s*:\s*\[[\s\S]*?\]\s*\}\s*$/g },
+      // Formato 5: JSON con childName
+      { regex: /(\{"childName"[\s\S]*?"tasks"\s*:\s*\[[\s\S]*?\]\s*\})/, clean: /\{"childName"[\s\S]*?"tasks"\s*:\s*\[[\s\S]*?\]\s*\}/g },
+      // Formato 6: Cualquier objeto JSON grande que contenga tasks
+      { regex: /(\{[\s\S]{50,}?"tasks"\s*:\s*\[[\s\S]*?\][\s\S]*?\})/, clean: /\{[\s\S]{50,}?"tasks"\s*:\s*\[[\s\S]*?\][\s\S]*?\}/g }
+    ];
 
-    // Formato 1: <CHART_JSON>...</CHART_JSON>
-    let jsonMatch = rawText.match(/<CHART_JSON>([\s\S]*?)<\/CHART_JSON>/i);
-    if (jsonMatch) {
-      try {
-        chartJson = JSON.parse(jsonMatch[1].trim());
-        displayText = rawText.replace(/<CHART_JSON>[\s\S]*?<\/CHART_JSON>/i, '').trim();
-      } catch(e) { console.error('Parse error format 1:', e); }
-    }
-
-    // Formato 2: ```json ... ```
-    if (!chartJson) {
-      jsonMatch = rawText.match(/```json\s*([\s\S]*?)```/i);
-      if (jsonMatch) {
-        try {
-          chartJson = JSON.parse(jsonMatch[1].trim());
-          displayText = rawText.replace(/```json\s*[\s\S]*?```/i, '').trim();
-        } catch(e) { console.error('Parse error format 2:', e); }
+    for (const pattern of jsonPatterns) {
+      if (chartJson) break;
+      const match = rawText.match(pattern.regex);
+      if (match && match[1]) {
+        chartJson = cleanAndParseJson(match[1]);
+        if (chartJson) {
+          displayText = rawText.replace(pattern.clean, '').trim();
+        }
       }
     }
 
-    // Formato 3: ``` ... ``` (sin especificar json)
-    if (!chartJson) {
-      jsonMatch = rawText.match(/```\s*(\{[\s\S]*?\})\s*```/);
-      if (jsonMatch) {
-        try {
-          chartJson = JSON.parse(jsonMatch[1].trim());
-          displayText = rawText.replace(/```\s*\{[\s\S]*?\}\s*```/, '').trim();
-        } catch(e) { console.error('Parse error format 3:', e); }
-      }
-    }
-
-    // Formato 4: JSON directo {...} al final del mensaje
-    if (!chartJson) {
-      jsonMatch = rawText.match(/(\{"childName"[\s\S]*\})\s*$/);
-      if (jsonMatch) {
-        try {
-          chartJson = JSON.parse(jsonMatch[1].trim());
-          displayText = rawText.replace(/\{"childName"[\s\S]*\}\s*$/, '').trim();
-        } catch(e) { console.error('Parse error format 4:', e); }
-      }
-    }
+    // Limpiar el displayText de caracteres residuales
+    displayText = displayText
+      .replace(/```\s*$/g, '')
+      .replace(/^\s*```/g, '')
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
 
     if (displayText) addMessage('ai', displayText);
     conversationHistory.push({ role: 'assistant', content: rawText });
@@ -611,9 +1062,9 @@ const THEMES = {
   general: { emojis: '🌟 🎯 ⭐ 🎯 🌟', footer: '🏆 🚀 💪 🎉 ✨' }
 };
 
-function buildChart(data) {
+function buildChart(data, preserveProgress = false) {
   chartData = data;
-  checked = new Set();
+  if (!preserveProgress) checked = new Set();
   const inner = document.getElementById('chartInner');
   const days = data.days || 7;
   const tasks = data.tasks || [];
@@ -688,9 +1139,28 @@ function toggleCheck(ti, d, total, goalAmount) {
   const key = `${ti}-${d}`;
   const el = document.getElementById(`cb-${ti}-${d}`);
   if (!el) return;
-  if (checked.has(key)) { checked.delete(key); el.classList.remove('done'); }
-  else { checked.add(key); el.classList.add('done'); el.animate([{transform:'scale(1)'},{transform:'scale(1.3)'},{transform:'scale(1.05)'}],{duration:280}); }
+
+  const wasChecked = checked.has(key);
+
+  if (wasChecked) {
+    checked.delete(key);
+    el.classList.remove('done');
+  } else {
+    checked.add(key);
+    el.classList.add('done');
+    el.animate([{transform:'scale(1)'},{transform:'scale(1.3)'},{transform:'scale(1.05)'}],{duration:280});
+    // Efectos de celebración al marcar
+    playStarSound();
+    showStarBurst(el);
+  }
+
   updateProgress(total, goalAmount);
+
+  // Celebración especial al completar 100%
+  const pct = total > 0 ? Math.round((checked.size/total)*100) : 0;
+  if (pct >= 100 && !wasChecked) {
+    setTimeout(() => showCompletionCelebration(), 300);
+  }
 }
 
 function updateProgress(total, goalAmount) {
@@ -736,8 +1206,117 @@ function updateProgress(total, goalAmount) {
   }
 }
 
+// ─── Celebration Effects ──────────────────────────────────
+let audioContext = null;
+
+function getAudioContext() {
+  if (!audioContext) {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  return audioContext;
+}
+
+function playStarSound() {
+  try {
+    const ctx = getAudioContext();
+    const oscillator = ctx.createOscillator();
+    const gainNode = ctx.createGain();
+
+    oscillator.connect(gainNode);
+    gainNode.connect(ctx.destination);
+
+    oscillator.frequency.setValueAtTime(800, ctx.currentTime);
+    oscillator.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.1);
+
+    gainNode.gain.setValueAtTime(0.3, ctx.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
+
+    oscillator.start(ctx.currentTime);
+    oscillator.stop(ctx.currentTime + 0.2);
+  } catch(e) { /* Audio not supported */ }
+}
+
+function playWinSound() {
+  try {
+    const ctx = getAudioContext();
+    const notes = [523, 659, 784, 1047]; // C5, E5, G5, C6
+
+    notes.forEach((freq, i) => {
+      const oscillator = ctx.createOscillator();
+      const gainNode = ctx.createGain();
+
+      oscillator.connect(gainNode);
+      gainNode.connect(ctx.destination);
+
+      oscillator.frequency.setValueAtTime(freq, ctx.currentTime + i * 0.15);
+      gainNode.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + i * 0.15 + 0.3);
+
+      oscillator.start(ctx.currentTime + i * 0.15);
+      oscillator.stop(ctx.currentTime + i * 0.15 + 0.3);
+    });
+  } catch(e) { /* Audio not supported */ }
+}
+
+function showStarBurst(element) {
+  const rect = element.getBoundingClientRect();
+  const star = document.createElement('div');
+  star.className = 'star-burst';
+  star.textContent = '⭐';
+  star.style.left = (rect.left + rect.width/2 - 16) + 'px';
+  star.style.top = (rect.top + rect.height/2 - 16) + 'px';
+  document.body.appendChild(star);
+  setTimeout(() => star.remove(), 600);
+}
+
+function showConfetti() {
+  const container = document.createElement('div');
+  container.className = 'confetti-container';
+  document.body.appendChild(container);
+
+  const colors = ['#FF6B6B', '#4ECDC4', '#FFD93D', '#6BCB77', '#C77DFF', '#6DD5FA', '#FF85A1'];
+
+  for (let i = 0; i < 50; i++) {
+    const confetti = document.createElement('div');
+    confetti.className = 'confetti';
+    confetti.style.left = Math.random() * 100 + '%';
+    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+    confetti.style.animationDuration = (2 + Math.random() * 2) + 's';
+    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+    container.appendChild(confetti);
+  }
+
+  setTimeout(() => container.remove(), 4000);
+}
+
+function showCompletionCelebration() {
+  playWinSound();
+  showConfetti();
+
+  const overlay = document.createElement('div');
+  overlay.className = 'celebration-overlay';
+  overlay.innerHTML = `
+    <div class="celebration-content">
+      <div class="celebration-emoji">🏆</div>
+      <div class="celebration-title">${lang === 'es' ? '¡¡¡FELICIDADES!!!' : 'CONGRATULATIONS!!!'}</div>
+      <div class="celebration-sub">${lang === 'es' ? '¡Has completado todas tus tareas!' : 'You completed all your tasks!'}</div>
+      <button class="celebration-btn" onclick="this.parentElement.parentElement.remove()">
+        ${lang === 'es' ? '🎉 ¡Genial!' : '🎉 Awesome!'}
+      </button>
+    </div>`;
+  document.body.appendChild(overlay);
+
+  // Auto-close after 5 seconds
+  setTimeout(() => {
+    if (overlay.parentElement) overlay.remove();
+  }, 5000);
+}
+
 function resetChart() {
   chartData = null; checked = new Set();
+  currentChartId = null; // Reset para crear nuevo chart
   renderEmptyState();
   document.getElementById('progressCard').style.display = 'none';
   document.getElementById('actionRow').style.display = 'none';
@@ -1028,35 +1607,280 @@ function showToast(message) {
   setTimeout(() => toast.remove(), 3000);
 }
 
-// ─── Guardar progreso localmente ─────────────────────────
+// ─── Multi-Chart Storage System ─────────────────────────
+let currentChartId = null;
+
+function generateChartId() {
+  return 'chart_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+}
+
+function getAllCharts() {
+  const saved = localStorage.getItem('chartkids_charts');
+  return saved ? JSON.parse(saved) : [];
+}
+
+function saveAllCharts(charts) {
+  localStorage.setItem('chartkids_charts', JSON.stringify(charts));
+  updateChartsBadge();
+}
+
 function saveProgress() {
   if (!chartData) return;
-  const data = {
+
+  const charts = getAllCharts();
+  const chartEntry = {
+    id: currentChartId || generateChartId(),
     chartData,
     checked: Array.from(checked),
-    timestamp: Date.now()
+    timestamp: Date.now(),
+    childName: chartData.childName || '',
+    title: chartData.title || ''
   };
-  localStorage.setItem('chartkids_progress', JSON.stringify(data));
+
+  // Si es un chart nuevo o actualizar existente
+  const existingIndex = charts.findIndex(c => c.id === chartEntry.id);
+  if (existingIndex >= 0) {
+    charts[existingIndex] = chartEntry;
+  } else {
+    currentChartId = chartEntry.id;
+    charts.unshift(chartEntry); // Agregar al inicio
+  }
+
+  // Limitar a 10 charts máximo
+  if (charts.length > 10) charts.pop();
+
+  saveAllCharts(charts);
+}
+
+function loadChartById(chartId) {
+  const charts = getAllCharts();
+  const chart = charts.find(c => c.id === chartId);
+  if (!chart) return false;
+
+  currentChartId = chart.id;
+  chartData = chart.chartData;
+  checked = new Set(chart.checked || []);
+  buildChart(chartData, true);
+
+  // Restaurar checks visuales
+  setTimeout(() => {
+    checked.forEach(key => {
+      const el = document.getElementById(`cb-${key}`);
+      if (el) el.classList.add('done');
+    });
+    // Actualizar barra de progreso
+    const days = chartData.days || 7;
+    const tasks = chartData.tasks || [];
+    const total = tasks.length * days;
+    const isMoneyGoal = chartData.goalType === 'money' && chartData.goalAmount > 0;
+    const goalAmount = isMoneyGoal ? chartData.goalAmount : 0;
+    updateProgress(total, goalAmount);
+  }, 50);
+
+  return true;
+}
+
+function deleteChartById(chartId) {
+  let charts = getAllCharts();
+  charts = charts.filter(c => c.id !== chartId);
+  saveAllCharts(charts);
+
+  // Si eliminamos el chart actual, limpiar
+  if (currentChartId === chartId) {
+    currentChartId = null;
+    chartData = null;
+    checked = new Set();
+    renderEmptyState();
+    document.getElementById('actionRow').style.display = 'none';
+    document.getElementById('quickPrompts').style.display = 'flex';
+  }
+
+  showToast(t('chartDeleted'));
+  renderChartsModal();
 }
 
 function loadProgress() {
-  const saved = localStorage.getItem('chartkids_progress');
-  if (saved) {
-    try {
-      const data = JSON.parse(saved);
-      // Solo cargar si es reciente (menos de 7 días)
-      if (Date.now() - data.timestamp < 7 * 24 * 60 * 60 * 1000) {
-        chartData = data.chartData;
-        checked = new Set(data.checked);
-        buildChart(chartData);
-        // Restaurar checks
-        checked.forEach(key => {
-          const el = document.getElementById(`cb-${key}`);
-          if (el) el.classList.add('done');
-        });
-      }
-    } catch(e) { console.error(e); }
+  const charts = getAllCharts();
+  if (charts.length > 0) {
+    // Cargar el chart más reciente
+    const mostRecent = charts[0];
+    if (Date.now() - mostRecent.timestamp < 30 * 24 * 60 * 60 * 1000) { // 30 días
+      loadChartById(mostRecent.id);
+      setTimeout(() => showToast(t('progressRestored')), 500);
+    }
   }
+  updateChartsBadge();
+}
+
+function updateChartsBadge() {
+  const charts = getAllCharts();
+  document.getElementById('chartsBadge').textContent = charts.length;
+}
+
+// ─── Charts Modal ─────────────────────────────────────────
+function openChartsModal() {
+  document.getElementById('chartsModal').style.display = 'flex';
+  renderChartsModal();
+}
+
+function closeChartsModal(event) {
+  if (event && event.target !== event.currentTarget) return;
+  document.getElementById('chartsModal').style.display = 'none';
+}
+
+function renderChartsModal() {
+  const charts = getAllCharts();
+  const container = document.getElementById('savedChartsList');
+
+  if (charts.length === 0) {
+    container.innerHTML = `
+      <div class="empty-charts">
+        <div class="empty-charts-icon">📚</div>
+        <h4>${t('emptyChartsTitle')}</h4>
+        <p>${t('emptyChartsDesc')}</p>
+      </div>`;
+    return;
+  }
+
+  container.innerHTML = charts.map(chart => {
+    const tasks = chart.chartData?.tasks?.length || 0;
+    const days = chart.chartData?.days || 7;
+    const total = tasks * days;
+    const completed = (chart.checked || []).length;
+    const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
+    const isActive = chart.id === currentChartId;
+    const name = chart.childName || (lang === 'es' ? 'Sin nombre' : 'No name');
+    const date = new Date(chart.timestamp).toLocaleDateString();
+
+    return `
+      <div class="saved-chart-item ${isActive ? 'active' : ''}" onclick="loadAndCloseModal('${chart.id}')">
+        <div class="chart-item-icon">👦</div>
+        <div class="chart-item-info">
+          <div class="chart-item-name">${escapeHtml(name)}</div>
+          <div class="chart-item-meta">
+            <span>📋 ${tasks} ${t('tasksLabel')}</span>
+            <span>⭐ ${completed}/${total}</span>
+            <span>📊 ${pct}%</span>
+            <span>📅 ${date}</span>
+          </div>
+        </div>
+        <div class="chart-item-actions" onclick="event.stopPropagation()">
+          <button class="chart-item-btn delete" onclick="deleteChartById('${chart.id}')" title="${lang === 'es' ? 'Eliminar' : 'Delete'}">🗑️</button>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function loadAndCloseModal(chartId) {
+  loadChartById(chartId);
+  closeChartsModal();
+  showToast(t('progressRestored'));
+}
+
+// ─── Edit Modal Functions ─────────────────────────────────
+const EMOJI_OPTIONS = ['📌','🛏️','🧹','🍽️','📚','✏️','🎒','🦷','🚿','👕','🧸','🎮','📱','🐕','🚶','💪','🧘','🎵','🎨','⏰','💰','🌟','🏆','❤️'];
+
+function openEditModal() {
+  if (!chartData) return;
+
+  // Populate form with current data
+  document.getElementById('editChildName').value = chartData.childName || '';
+  document.getElementById('editTitle').value = chartData.title || '';
+  document.getElementById('editGoal').value = chartData.goal || '';
+  document.getElementById('editGoalAmount').value = chartData.goalAmount || '';
+  document.getElementById('editTheme').value = chartData.theme || 'general';
+
+  renderEditTasks();
+  document.getElementById('editModal').style.display = 'flex';
+}
+
+function closeEditModal(event) {
+  if (event && event.target !== event.currentTarget) return;
+  document.getElementById('editModal').style.display = 'none';
+}
+
+function renderEditTasks() {
+  const container = document.getElementById('editTasksList');
+  const tasks = chartData.tasks || [];
+
+  container.innerHTML = tasks.map((task, i) => `
+    <div class="edit-task-item" data-index="${i}">
+      <span class="task-icon" onclick="cycleEmoji(${i})">${task.icon || '📌'}</span>
+      <input type="text" value="${escapeHtml(task.name)}" onchange="updateTaskName(${i}, this.value)">
+      <button class="edit-task-remove" onclick="removeEditTask(${i})">×</button>
+    </div>
+  `).join('');
+}
+
+function cycleEmoji(index) {
+  const currentEmoji = chartData.tasks[index].icon || '📌';
+  const currentIndex = EMOJI_OPTIONS.indexOf(currentEmoji);
+  const nextIndex = (currentIndex + 1) % EMOJI_OPTIONS.length;
+  chartData.tasks[index].icon = EMOJI_OPTIONS[nextIndex];
+  renderEditTasks();
+}
+
+function updateTaskName(index, newName) {
+  if (chartData.tasks[index]) {
+    chartData.tasks[index].name = newName;
+  }
+}
+
+function removeEditTask(index) {
+  if (chartData.tasks.length <= 1) {
+    showToast(lang === 'es' ? '⚠️ Necesitas al menos 1 tarea' : '⚠️ You need at least 1 task');
+    return;
+  }
+  chartData.tasks.splice(index, 1);
+  renderEditTasks();
+}
+
+function addEditTask() {
+  if (chartData.tasks.length >= 12) {
+    showToast(lang === 'es' ? '⚠️ Máximo 12 tareas' : '⚠️ Maximum 12 tasks');
+    return;
+  }
+  chartData.tasks.push({
+    icon: '📌',
+    name: lang === 'es' ? 'Nueva tarea' : 'New task',
+    category: 'general'
+  });
+  renderEditTasks();
+}
+
+function saveChartEdits() {
+  // Update chartData from form
+  chartData.childName = document.getElementById('editChildName').value.trim();
+  chartData.title = document.getElementById('editTitle').value.trim() || (lang === 'es' ? '¡Mi Chart de Campeón!' : 'My Champion Chart!');
+  chartData.goal = document.getElementById('editGoal').value.trim();
+  chartData.goalAmount = parseFloat(document.getElementById('editGoalAmount').value) || 0;
+  chartData.theme = document.getElementById('editTheme').value;
+
+  // Update goalType based on amount
+  chartData.goalType = chartData.goalAmount > 0 ? 'money' : 'toy';
+
+  // Rebuild chart preserving progress
+  buildChart(chartData, true);
+
+  // Restore checked states
+  setTimeout(() => {
+    checked.forEach(key => {
+      const el = document.getElementById(`cb-${key}`);
+      if (el) el.classList.add('done');
+    });
+    const days = chartData.days || 7;
+    const tasks = chartData.tasks || [];
+    const total = tasks.length * days;
+    const isMoneyGoal = chartData.goalType === 'money' && chartData.goalAmount > 0;
+    const goalAmount = isMoneyGoal ? chartData.goalAmount : 0;
+    updateProgress(total, goalAmount);
+  }, 50);
+
+  // Save to storage
+  saveProgress();
+
+  closeEditModal();
+  showToast(t('chartUpdated'));
 }
 
 // Guardar automáticamente cuando se hace check
@@ -1064,6 +1888,16 @@ const originalToggleCheck = toggleCheck;
 toggleCheck = function(ti, d, total, goalAmount) {
   originalToggleCheck(ti, d, total, goalAmount);
   saveProgress();
+};
+
+// Guardar cuando se crea un nuevo chart
+const originalBuildChart = buildChart;
+buildChart = function(data, preserveProgress = false) {
+  originalBuildChart(data, preserveProgress);
+  if (!preserveProgress) {
+    currentChartId = generateChartId();
+    saveProgress();
+  }
 };
 
 // ─── Init ────────────────────────────────────────────────
