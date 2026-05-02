@@ -665,6 +665,64 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
 .bar-value { font-size: 0.6rem; font-weight: 800; color: var(--text); }
 .stats-empty { text-align: center; padding: 20px; color: var(--muted); }
 
+/* PIN Lock Styles */
+.pin-setting {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.pin-setting-info { flex: 1; }
+.pin-setting-title { font-weight: 800; font-size: 0.9rem; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+.pin-setting-desc { font-size: 0.75rem; color: var(--muted); }
+.pin-toggle {
+  width: 50px;
+  height: 28px;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 50px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+}
+.pin-toggle.active { background: var(--green); border-color: var(--green); }
+.pin-toggle::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: all 0.2s;
+}
+.pin-toggle.active::after { left: 26px; }
+.pin-input-group { display: flex; gap: 10px; justify-content: center; margin: 24px 0; }
+.pin-digit {
+  width: 50px;
+  height: 60px;
+  background: var(--surface2);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.5rem;
+  color: var(--text);
+  text-align: center;
+  outline: none;
+}
+.pin-digit:focus { border-color: var(--accent); }
+.pin-digit.filled { border-color: var(--green); }
+.pin-digit.error { border-color: #ef4444; animation: shake 0.3s; }
+@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+.pin-message { text-align: center; margin-bottom: 20px; font-weight: 700; font-size: 1rem; }
+.pin-message.error { color: #ef4444; }
+
 @media print {
   body { background: white; }
   .bg-orbs, nav, .hero, .chat-panel-wrap, .progress-card, .action-row, .panel-header, .modal-overlay { display: none !important; }
@@ -793,6 +851,13 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
     <div class="modal-body">
       <div class="tab-content active" id="tabContentCharts">
         <div class="saved-charts-list" id="savedChartsList"></div>
+        <div class="pin-setting">
+          <div class="pin-setting-info">
+            <div class="pin-setting-title">🔒 <span id="pinSettingTitle">Control Parental</span></div>
+            <div class="pin-setting-desc" id="pinSettingDesc">Protege editar, eliminar y nueva semana</div>
+          </div>
+          <div class="pin-toggle" id="pinToggle" onclick="toggleParentalPin()"></div>
+        </div>
       </div>
       <div class="tab-content" id="tabContentHistory">
         <button class="new-week-btn" onclick="startNewWeek()" id="newWeekBtn">📅 Nueva Semana</button>
@@ -854,6 +919,29 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
           <button class="btn btn-secondary" onclick="closeEditModal()"><span id="btnCancel">Cancelar</span></button>
           <button class="btn btn-primary" onclick="saveChartEdits()">💾 <span id="btnSaveEdit">Guardar</span></button>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de PIN -->
+<div class="modal-overlay" id="pinModal" style="display:none" onclick="closePinModal(event)">
+  <div class="modal" onclick="event.stopPropagation()" style="max-width:360px">
+    <div class="modal-header">
+      <h3>🔒 <span id="pinModalTitle">PIN</span></h3>
+      <button class="modal-close" onclick="closePinModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="pin-message" id="pinMessage">Ingresa el PIN</div>
+      <div class="pin-input-group">
+        <input type="password" class="pin-digit" maxlength="1" inputmode="numeric" pattern="[0-9]" id="pin1" onkeyup="pinKeyUp(event, 1)">
+        <input type="password" class="pin-digit" maxlength="1" inputmode="numeric" pattern="[0-9]" id="pin2" onkeyup="pinKeyUp(event, 2)">
+        <input type="password" class="pin-digit" maxlength="1" inputmode="numeric" pattern="[0-9]" id="pin3" onkeyup="pinKeyUp(event, 3)">
+        <input type="password" class="pin-digit" maxlength="1" inputmode="numeric" pattern="[0-9]" id="pin4" onkeyup="pinKeyUp(event, 4)">
+      </div>
+      <div class="edit-buttons">
+        <button class="btn btn-secondary" onclick="closePinModal()">Cancelar</button>
+        <button class="btn btn-primary" onclick="submitPin()">✓ OK</button>
       </div>
     </div>
   </div>
@@ -942,6 +1030,16 @@ const T = {
     avgProgress: 'Promedio',
     weeksChart: 'Progreso últimas semanas',
     noStatsYet: 'Aún no hay estadísticas',
+    pinTitle: 'Control Parental',
+    pinDesc: 'Protege las acciones importantes con un PIN',
+    enterPin: 'Ingresa el PIN',
+    setPin: 'Establece un PIN de 4 dígitos',
+    confirmPin: 'Confirma tu PIN',
+    wrongPin: 'PIN incorrecto',
+    pinMismatch: 'Los PINs no coinciden',
+    pinEnabled: '🔒 PIN activado',
+    pinDisabled: '🔓 PIN desactivado',
+    pinRequired: 'Ingresa el PIN para continuar',
   },
   en: {
     navBadge: '✨ Free AI',
@@ -1017,6 +1115,16 @@ const T = {
     avgProgress: 'Average',
     weeksChart: 'Recent weeks progress',
     noStatsYet: 'No statistics yet',
+    pinTitle: 'Parental Control',
+    pinDesc: 'Protect important actions with a PIN',
+    enterPin: 'Enter PIN',
+    setPin: 'Set a 4-digit PIN',
+    confirmPin: 'Confirm your PIN',
+    wrongPin: 'Wrong PIN',
+    pinMismatch: 'PINs do not match',
+    pinEnabled: '🔒 PIN enabled',
+    pinDisabled: '🔓 PIN disabled',
+    pinRequired: 'Enter PIN to continue',
   }
 };
 
@@ -1890,6 +1998,14 @@ function loadChartById(chartId) {
 }
 
 function deleteChartById(chartId) {
+  if (isPinEnabled()) {
+    requirePin(() => _doDeleteChart(chartId));
+    return;
+  }
+  _doDeleteChart(chartId);
+}
+
+function _doDeleteChart(chartId) {
   let charts = getAllCharts();
   charts = charts.filter(c => c.id !== chartId);
   saveAllCharts(charts);
@@ -2112,12 +2228,166 @@ function renderStats() {
   container.innerHTML = html;
 }
 
+// ─── Parental PIN Functions ───────────────────────────────
+let parentalPin = localStorage.getItem('chartkids_pin') || null;
+let pinCallback = null;
+let pinMode = 'verify'; // 'verify', 'set', 'confirm'
+let tempPin = null;
+
+function isPinEnabled() {
+  return parentalPin !== null;
+}
+
+function updatePinToggle() {
+  const toggle = document.getElementById('pinToggle');
+  if (toggle) {
+    toggle.classList.toggle('active', isPinEnabled());
+  }
+}
+
+function toggleParentalPin() {
+  if (isPinEnabled()) {
+    // Verificar PIN antes de desactivar
+    requirePin(() => {
+      parentalPin = null;
+      localStorage.removeItem('chartkids_pin');
+      updatePinToggle();
+      showToast(t('pinDisabled'));
+    });
+  } else {
+    // Establecer nuevo PIN
+    pinMode = 'set';
+    tempPin = null;
+    openPinModal(t('setPin'), () => {});
+  }
+}
+
+function requirePin(callback) {
+  if (!isPinEnabled()) {
+    callback();
+    return;
+  }
+  pinMode = 'verify';
+  pinCallback = callback;
+  openPinModal(t('pinRequired'), callback);
+}
+
+function openPinModal(message) {
+  document.getElementById('pinMessage').textContent = message;
+  document.getElementById('pinMessage').classList.remove('error');
+  document.getElementById('pinModal').style.display = 'flex';
+  clearPinInputs();
+  setTimeout(() => document.getElementById('pin1').focus(), 100);
+}
+
+function closePinModal(event) {
+  if (event && event.target !== event.currentTarget) return;
+  document.getElementById('pinModal').style.display = 'none';
+  pinCallback = null;
+}
+
+function clearPinInputs() {
+  for (let i = 1; i <= 4; i++) {
+    const input = document.getElementById('pin' + i);
+    input.value = '';
+    input.classList.remove('error', 'filled');
+  }
+}
+
+function pinKeyUp(event, index) {
+  const input = document.getElementById('pin' + index);
+  const value = input.value;
+
+  // Solo números
+  input.value = value.replace(/[^0-9]/g, '');
+
+  if (input.value) {
+    input.classList.add('filled');
+    // Mover al siguiente
+    if (index < 4) {
+      document.getElementById('pin' + (index + 1)).focus();
+    } else {
+      // Auto-submit cuando se completan los 4
+      submitPin();
+    }
+  } else {
+    input.classList.remove('filled');
+  }
+
+  // Backspace - mover al anterior
+  if (event.key === 'Backspace' && !value && index > 1) {
+    document.getElementById('pin' + (index - 1)).focus();
+  }
+}
+
+function getEnteredPin() {
+  let pin = '';
+  for (let i = 1; i <= 4; i++) {
+    pin += document.getElementById('pin' + i).value;
+  }
+  return pin;
+}
+
+function submitPin() {
+  const enteredPin = getEnteredPin();
+  if (enteredPin.length !== 4) return;
+
+  if (pinMode === 'verify') {
+    if (enteredPin === parentalPin) {
+      closePinModal();
+      if (pinCallback) pinCallback();
+    } else {
+      showPinError(t('wrongPin'));
+    }
+  } else if (pinMode === 'set') {
+    tempPin = enteredPin;
+    pinMode = 'confirm';
+    clearPinInputs();
+    document.getElementById('pinMessage').textContent = t('confirmPin');
+    document.getElementById('pin1').focus();
+  } else if (pinMode === 'confirm') {
+    if (enteredPin === tempPin) {
+      parentalPin = tempPin;
+      localStorage.setItem('chartkids_pin', parentalPin);
+      closePinModal();
+      updatePinToggle();
+      showToast(t('pinEnabled'));
+    } else {
+      showPinError(t('pinMismatch'));
+      pinMode = 'set';
+      tempPin = null;
+      setTimeout(() => {
+        document.getElementById('pinMessage').textContent = t('setPin');
+        document.getElementById('pinMessage').classList.remove('error');
+      }, 1500);
+    }
+  }
+}
+
+function showPinError(message) {
+  document.getElementById('pinMessage').textContent = message;
+  document.getElementById('pinMessage').classList.add('error');
+  for (let i = 1; i <= 4; i++) {
+    document.getElementById('pin' + i).classList.add('error');
+  }
+  setTimeout(clearPinInputs, 500);
+}
+
 function startNewWeek() {
   if (!chartData || !currentChartId) {
     showToast(lang === 'es' ? '⚠️ No hay chart activo' : '⚠️ No active chart');
     return;
   }
 
+  // Verificar PIN si está habilitado
+  if (isPinEnabled()) {
+    requirePin(() => _doStartNewWeek());
+    return;
+  }
+  _doStartNewWeek();
+}
+
+function _doStartNewWeek() {
   if (!confirm(t('newWeekConfirm'))) return;
 
   // Archive current week
@@ -2211,6 +2481,14 @@ const EMOJI_OPTIONS = ['📌','🛏️','🧹','🍽️','📚','✏️','🎒',
 function openEditModal() {
   if (!chartData) return;
 
+  if (isPinEnabled()) {
+    requirePin(() => _doOpenEditModal());
+    return;
+  }
+  _doOpenEditModal();
+}
+
+function _doOpenEditModal() {
   // Populate form with current data
   document.getElementById('editChildName').value = chartData.childName || '';
   document.getElementById('editTitle').value = chartData.title || '';
@@ -2332,6 +2610,7 @@ buildChart = function(data, preserveProgress = false) {
 applyTranslations();
 resetChat();
 loadProgress();
+updatePinToggle();
 
 // Registrar Service Worker para funcionar offline
 if ('serviceWorker' in navigator) {
