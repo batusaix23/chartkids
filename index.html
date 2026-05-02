@@ -903,11 +903,16 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
             <option value="lego">🧱 Lego/Juguetes</option>
             <option value="music">🎵 Música</option>
             <option value="travel">✈️ Viajes</option>
-            <option value="bike">🚴 Deportes</option>
+            <option value="bike">🚴 Bicicleta</option>
+            <option value="sports">⚽ Deportes</option>
             <option value="gaming">🎮 Videojuegos</option>
             <option value="pet">🐕 Mascotas</option>
             <option value="park">🎢 Parque</option>
             <option value="clothes">👗 Ropa</option>
+            <option value="unicorn">🦄 Unicornio</option>
+            <option value="space">🚀 Espacio</option>
+            <option value="art">🎨 Arte</option>
+            <option value="nature">🌲 Naturaleza</option>
           </select>
         </div>
         <div class="edit-field">
@@ -1365,18 +1370,23 @@ function removeTyping() { const t = document.getElementById('typingIndicator'); 
 // ─── Chart Builder ───────────────────────────────────────
 const TC = ['tc0','tc1','tc2','tc3','tc4','tc5','tc6','tc7','tc8','tc9'];
 
-// Temas visuales
+// Temas visuales con gradientes personalizados
 const THEMES = {
-  money:   { emojis: '💵 🌈 ⭐ 🌈 💵', footer: '🌟 🦁 🚀 🌈 🎉' },
-  lego:    { emojis: '🧱 🎮 ⭐ 🎮 🧱', footer: '🧸 🎯 🏆 🎪 ✨' },
-  music:   { emojis: '🎵 🎸 ⭐ 🎸 🎵', footer: '🎤 🎹 🎶 🎧 🌟' },
-  travel:  { emojis: '✈️ 🏖️ ⭐ 🏖️ ✈️', footer: '🗺️ 🌴 🚀 🌊 🎒' },
-  bike:    { emojis: '🚴 🏆 ⭐ 🏆 🚴', footer: '🚲 ⚽ 🥇 🎾 💪' },
-  gaming:  { emojis: '🎮 👾 ⭐ 👾 🎮', footer: '🕹️ 🏆 💎 🚀 ⚡' },
-  pet:     { emojis: '🐕 🐈 ⭐ 🐈 🐕', footer: '🐾 🦴 🐟 🏠 💕' },
-  park:    { emojis: '🎢 🎡 ⭐ 🎡 🎢', footer: '🎠 🍿 🎪 🎈 🎉' },
-  clothes: { emojis: '👟 👗 ⭐ 👗 👟', footer: '🛍️ 👑 💅 🎀 ✨' },
-  general: { emojis: '🌟 🎯 ⭐ 🎯 🌟', footer: '🏆 🚀 💪 🎉 ✨' }
+  money:   { emojis: '💵 🌈 ⭐ 🌈 💵', footer: '🌟 🦁 🚀 🌈 🎉', bg: 'linear-gradient(160deg, #a8edea 0%, #fed6e3 100%)', color: '#22c55e' },
+  lego:    { emojis: '🧱 🎮 ⭐ 🎮 🧱', footer: '🧸 🎯 🏆 🎪 ✨', bg: 'linear-gradient(160deg, #ff9a9e 0%, #fecfef 100%)', color: '#ef4444' },
+  music:   { emojis: '🎵 🎸 ⭐ 🎸 🎵', footer: '🎤 🎹 🎶 🎧 🌟', bg: 'linear-gradient(160deg, #a18cd1 0%, #fbc2eb 100%)', color: '#8b5cf6' },
+  travel:  { emojis: '✈️ 🏖️ ⭐ 🏖️ ✈️', footer: '🗺️ 🌴 🚀 🌊 🎒', bg: 'linear-gradient(160deg, #89f7fe 0%, #66a6ff 100%)', color: '#0ea5e9' },
+  bike:    { emojis: '🚴 🏆 ⭐ 🏆 🚴', footer: '🚲 ⚽ 🥇 🎾 💪', bg: 'linear-gradient(160deg, #96fbc4 0%, #f9f586 100%)', color: '#22c55e' },
+  gaming:  { emojis: '🎮 👾 ⭐ 👾 🎮', footer: '🕹️ 🏆 💎 🚀 ⚡', bg: 'linear-gradient(160deg, #667eea 0%, #764ba2 100%)', color: '#7c3aed' },
+  pet:     { emojis: '🐕 🐈 ⭐ 🐈 🐕', footer: '🐾 🦴 🐟 🏠 💕', bg: 'linear-gradient(160deg, #fdcbf1 0%, #e6dee9 100%)', color: '#ec4899' },
+  park:    { emojis: '🎢 🎡 ⭐ 🎡 🎢', footer: '🎠 🍿 🎪 🎈 🎉', bg: 'linear-gradient(160deg, #fa709a 0%, #fee140 100%)', color: '#f59e0b' },
+  clothes: { emojis: '👟 👗 ⭐ 👗 👟', footer: '🛍️ 👑 💅 🎀 ✨', bg: 'linear-gradient(160deg, #ffecd2 0%, #fcb69f 100%)', color: '#f97316' },
+  unicorn: { emojis: '🦄 🌈 ⭐ 🌈 🦄', footer: '✨ 💖 🌸 💜 🎀', bg: 'linear-gradient(160deg, #f093fb 0%, #f5576c 100%)', color: '#ec4899' },
+  space:   { emojis: '🚀 🌟 ⭐ 🌟 🚀', footer: '🛸 🌙 💫 🪐 ⭐', bg: 'linear-gradient(160deg, #0c1445 0%, #4a00e0 100%)', color: '#8b5cf6' },
+  sports:  { emojis: '⚽ 🏀 ⭐ 🏀 ⚽', footer: '🏆 🥇 💪 🎯 🔥', bg: 'linear-gradient(160deg, #11998e 0%, #38ef7d 100%)', color: '#10b981' },
+  art:     { emojis: '🎨 🖌️ ⭐ 🖌️ 🎨', footer: '✏️ 🌈 🖼️ ✨ 🎭', bg: 'linear-gradient(160deg, #ff6b6b 0%, #feca57 100%)', color: '#f59e0b' },
+  nature:  { emojis: '🌲 🌻 ⭐ 🌻 🌲', footer: '🦋 🌈 🍀 🌺 🐝', bg: 'linear-gradient(160deg, #56ab2f 0%, #a8e063 100%)', color: '#22c55e' },
+  general: { emojis: '🌟 🎯 ⭐ 🎯 🌟', footer: '🏆 🚀 💪 🎉 ✨', bg: 'linear-gradient(160deg, #a8edea 0%, #fed6e3 100%)', color: '#6366f1' }
 };
 
 function buildChart(data, preserveProgress = false) {
@@ -1447,6 +1457,8 @@ function buildChart(data, preserveProgress = false) {
     </div>`;
 
   inner.innerHTML = html;
+  // Aplicar gradiente del tema
+  inner.style.background = theme.bg || 'linear-gradient(160deg, #a8edea 0%, #fed6e3 100%)';
   document.getElementById('progressCard').style.display = 'none';
   document.getElementById('actionRow').style.display = 'flex';
   document.getElementById('quickPrompts').style.display = 'none';
