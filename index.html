@@ -723,6 +723,40 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
 .pin-message { text-align: center; margin-bottom: 20px; font-weight: 700; font-size: 1rem; }
 .pin-message.error { color: #ef4444; }
 
+/* Templates Styles */
+.templates-section { padding: 0 20px 12px; }
+.templates-title { font-size: 0.75rem; font-weight: 800; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+.templates-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.template-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+.template-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.template-icon { font-size: 1.3rem; margin-bottom: 4px; }
+.template-name { font-size: 0.75rem; font-weight: 700; }
+.templates-toggle {
+  background: rgba(124,58,237,0.1);
+  border: 1px solid rgba(124,58,237,0.3);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #a78bfa;
+  cursor: pointer;
+  margin: 0 20px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: 'Nunito', sans-serif;
+}
+.templates-toggle:hover { background: rgba(124,58,237,0.2); }
+
 @media print {
   body { background: white; }
   .bg-orbs, nav, .hero, .chat-panel-wrap, .progress-card, .action-row, .panel-header, .modal-overlay { display: none !important; }
@@ -781,6 +815,11 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
           </div>
         </div>
         <div class="chat-messages" id="chatMessages"></div>
+        <button class="templates-toggle" id="templatesToggle" onclick="toggleTemplates()">📋 <span id="templatesToggleText">Usar plantilla rápida</span></button>
+        <div class="templates-section" id="templatesSection" style="display:none">
+          <div class="templates-title" id="templatesTitle">Plantillas por edad</div>
+          <div class="templates-grid" id="templatesGrid"></div>
+        </div>
         <div class="quick-prompts" id="quickPrompts"></div>
         <div class="chat-input-area">
           <label for="chatInput" class="sr-only">Mensaje</label>
@@ -1045,6 +1084,16 @@ const T = {
     pinEnabled: '🔒 PIN activado',
     pinDisabled: '🔓 PIN desactivado',
     pinRequired: 'Ingresa el PIN para continuar',
+    templatesToggle: 'Usar plantilla rápida',
+    templatesTitle: 'Plantillas por edad y objetivo',
+    templates: [
+      { icon: '👶', name: '4-6 años Hogar', desc: 'Tareas simples del hogar', prompt: 'Crea un chart para un niño de 5 años con tareas simples del hogar como tender la cama, recoger juguetes, lavarse los dientes. Premio: una estrella especial.' },
+      { icon: '📚', name: '4-6 años Escuela', desc: 'Hábitos escolares', prompt: 'Crea un chart para un niño de 5 años enfocado en hábitos escolares: hacer la tarea, preparar la mochila, leer un cuento. Premio: un sticker.' },
+      { icon: '🏠', name: '7-10 años Hogar', desc: 'Responsabilidades casa', prompt: 'Crea un chart para un niño de 8 años con responsabilidades del hogar: ordenar su cuarto, ayudar a poner la mesa, sacar la basura, cuidar mascota. Meta: $20 dólares.' },
+      { icon: '✏️', name: '7-10 años Escuela', desc: 'Tareas y estudios', prompt: 'Crea un chart para un niño de 9 años enfocado en escuela: hacer tarea sin que le digan, estudiar para exámenes, leer 20 minutos, organizar útiles. Meta: un videojuego.' },
+      { icon: '💪', name: 'Hábitos saludables', desc: 'Salud y bienestar', prompt: 'Crea un chart con hábitos saludables: cepillarse los dientes, bañarse solo, comer frutas y verduras, dormir temprano, hacer ejercicio. Meta: ir al parque.' },
+      { icon: '😊', name: 'Comportamiento', desc: 'Actitud positiva', prompt: 'Crea un chart de comportamiento: no pelear con hermanos, decir por favor y gracias, compartir, obedecer a la primera, controlar enojos. Meta: una salida especial.' }
+    ],
   },
   en: {
     navBadge: '✨ Free AI',
@@ -1130,6 +1179,16 @@ const T = {
     pinEnabled: '🔒 PIN enabled',
     pinDisabled: '🔓 PIN disabled',
     pinRequired: 'Enter PIN to continue',
+    templatesToggle: 'Use quick template',
+    templatesTitle: 'Templates by age and goal',
+    templates: [
+      { icon: '👶', name: '4-6 yrs Home', desc: 'Simple home tasks', prompt: 'Create a chart for a 5 year old with simple home tasks like making bed, picking up toys, brushing teeth. Reward: a special star.' },
+      { icon: '📚', name: '4-6 yrs School', desc: 'School habits', prompt: 'Create a chart for a 5 year old focused on school habits: do homework, prepare backpack, read a story. Reward: a sticker.' },
+      { icon: '🏠', name: '7-10 yrs Home', desc: 'House responsibilities', prompt: 'Create a chart for an 8 year old with home responsibilities: clean room, help set table, take out trash, care for pet. Goal: $20 dollars.' },
+      { icon: '✏️', name: '7-10 yrs School', desc: 'Homework and study', prompt: 'Create a chart for a 9 year old focused on school: do homework without being told, study for tests, read 20 minutes, organize supplies. Goal: a video game.' },
+      { icon: '💪', name: 'Healthy habits', desc: 'Health and wellness', prompt: 'Create a chart with healthy habits: brush teeth, shower alone, eat fruits and veggies, sleep early, exercise. Goal: go to the park.' },
+      { icon: '😊', name: 'Behavior', desc: 'Positive attitude', prompt: 'Create a behavior chart: no fighting with siblings, say please and thank you, share, obey first time, control anger. Goal: a special outing.' }
+    ],
   }
 };
 
@@ -1176,6 +1235,8 @@ function applyTranslations() {
   document.getElementById('addTaskText').textContent = t('addTaskText');
   document.getElementById('btnCancel').textContent = t('btnCancel');
   document.getElementById('btnSaveEdit').textContent = t('btnSaveEdit');
+  document.getElementById('templatesToggleText').textContent = t('templatesToggle');
+  document.getElementById('templatesTitle').textContent = t('templatesTitle');
   renderQuickPrompts();
   renderEmptyState();
   updateChartsBadge();
@@ -1192,6 +1253,41 @@ function renderQuickPrompts() {
     btn.onclick = () => sendQuick(p.label.replace(/^[^\w\s]+\s*/, ''));
     qp.appendChild(btn);
   });
+}
+
+// ─── Templates Functions ──────────────────────────────────
+function toggleTemplates() {
+  const section = document.getElementById('templatesSection');
+  const isVisible = section.style.display !== 'none';
+  section.style.display = isVisible ? 'none' : 'block';
+  if (!isVisible) renderTemplates();
+}
+
+function renderTemplates() {
+  const grid = document.getElementById('templatesGrid');
+  const templates = T[lang].templates;
+
+  grid.innerHTML = templates.map((tpl, i) => `
+    <div class="template-card" onclick="useTemplate(${i})">
+      <div class="template-icon">${tpl.icon}</div>
+      <div class="template-name">${tpl.name}</div>
+    </div>
+  `).join('');
+}
+
+function useTemplate(index) {
+  const templates = T[lang].templates;
+  const tpl = templates[index];
+  if (!tpl) return;
+
+  // Ocultar templates y enviar el prompt
+  document.getElementById('templatesSection').style.display = 'none';
+  document.getElementById('templatesToggle').style.display = 'none';
+
+  // Enviar el prompt como mensaje del usuario
+  const input = document.getElementById('chatInput');
+  input.value = tpl.prompt;
+  sendMessage();
 }
 
 function renderEmptyState() {
