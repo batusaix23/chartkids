@@ -812,6 +812,44 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
 .premium-cta:hover { transform: scale(1.02); }
 .premium-note { text-align: center; font-size: 0.75rem; color: var(--muted); margin-top: 12px; }
 
+/* Seasonal Events Banner */
+.event-banner {
+  background: linear-gradient(135deg, var(--accent), var(--pink));
+  border-radius: 16px;
+  padding: 12px 20px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  animation: pulse-glow 2s infinite alternate;
+}
+@keyframes pulse-glow { from { box-shadow: 0 0 10px rgba(124,58,237,0.3); } to { box-shadow: 0 0 25px rgba(124,58,237,0.5); } }
+.event-banner-icon { font-size: 1.8rem; animation: bounce-icon 1s infinite; }
+@keyframes bounce-icon { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+.event-banner-text { font-weight: 800; font-size: 0.95rem; }
+.event-banner-btn {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  border-radius: 50px;
+  padding: 6px 14px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.event-banner-btn:hover { background: rgba(255,255,255,0.3); }
+/* Event-specific colors */
+.event-valentine { background: linear-gradient(135deg, #ec4899, #f43f5e); }
+.event-stpatrick { background: linear-gradient(135deg, #22c55e, #16a34a); }
+.event-easter { background: linear-gradient(135deg, #a78bfa, #f472b6); }
+.event-halloween { background: linear-gradient(135deg, #f97316, #1a1a2e); }
+.event-christmas { background: linear-gradient(135deg, #dc2626, #16a34a); }
+.event-newyear { background: linear-gradient(135deg, #fbbf24, #7c3aed); }
+.event-fall { background: linear-gradient(135deg, #f97316, #b45309); }
+
 @media print {
   body { background: white; }
   .bg-orbs, nav, .hero, .chat-panel-wrap, .progress-card, .action-row, .panel-header, .modal-overlay { display: none !important; }
@@ -847,6 +885,13 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
     <div class="hero-tag" id="heroTag">✦ 100% Gratis · Sin registro</div>
     <h1 id="heroTitle">Crea el chart perfecto<br>para tu <span class="highlight">pequeño héroe</span></h1>
     <p id="heroDesc">Cuéntale a nuestra IA sobre tu hijo y ella diseñará un chart personalizado con tareas, metas y premios en segundos.</p>
+  </div>
+
+  <!-- Event Banner (hidden by default, shown by JS) -->
+  <div class="event-banner" id="eventBanner" style="display:none">
+    <span class="event-banner-icon" id="eventIcon">🎄</span>
+    <span class="event-banner-text" id="eventText">¡Especial de Navidad!</span>
+    <button class="event-banner-btn" id="eventBtn" onclick="useEventTheme()">Usar tema</button>
   </div>
 
   <!-- Ad Banner Top -->
@@ -1183,6 +1228,15 @@ const T = {
       { icon: '🎨', title: 'Temas exclusivos', desc: 'Acceso a temas premium especiales' },
       { icon: '☁️', title: 'Respaldo en la nube', desc: 'Tus datos seguros (próximamente)' }
     ],
+    events: {
+      valentine: { icon: '💝', text: '¡Especial San Valentín!', theme: 'valentine', btn: 'Usar tema' },
+      stpatrick: { icon: '☘️', text: '¡Feliz San Patricio!', theme: 'stpatrick', btn: 'Usar tema' },
+      easter: { icon: '🐰', text: '¡Felices Pascuas!', theme: 'easter', btn: 'Usar tema' },
+      halloween: { icon: '🎃', text: '¡Especial Halloween!', theme: 'halloween', btn: 'Usar tema' },
+      christmas: { icon: '🎄', text: '¡Feliz Navidad!', theme: 'christmas', btn: 'Usar tema' },
+      newyear: { icon: '🎆', text: '¡Feliz Año Nuevo!', theme: 'newyear', btn: 'Usar tema' },
+      fall: { icon: '🍂', text: '¡Especial de Otoño!', theme: 'fall', btn: 'Usar tema' }
+    },
   },
   en: {
     navBadge: '✨ Free AI',
@@ -1292,6 +1346,15 @@ const T = {
       { icon: '🎨', title: 'Exclusive themes', desc: 'Access to special premium themes' },
       { icon: '☁️', title: 'Cloud backup', desc: 'Your data safe (coming soon)' }
     ],
+    events: {
+      valentine: { icon: '💝', text: "Valentine's Day Special!", theme: 'valentine', btn: 'Use theme' },
+      stpatrick: { icon: '☘️', text: "Happy St. Patrick's Day!", theme: 'stpatrick', btn: 'Use theme' },
+      easter: { icon: '🐰', text: 'Happy Easter!', theme: 'easter', btn: 'Use theme' },
+      halloween: { icon: '🎃', text: 'Halloween Special!', theme: 'halloween', btn: 'Use theme' },
+      christmas: { icon: '🎄', text: 'Merry Christmas!', theme: 'christmas', btn: 'Use theme' },
+      newyear: { icon: '🎆', text: 'Happy New Year!', theme: 'newyear', btn: 'Use theme' },
+      fall: { icon: '🍂', text: 'Fall Special!', theme: 'fall', btn: 'Use theme' }
+    },
   }
 };
 
@@ -1585,7 +1648,15 @@ const THEMES = {
   sports:  { emojis: '⚽ 🏀 ⭐ 🏀 ⚽', footer: '🏆 🥇 💪 🎯 🔥', bg: 'linear-gradient(160deg, #11998e 0%, #38ef7d 100%)', color: '#10b981' },
   art:     { emojis: '🎨 🖌️ ⭐ 🖌️ 🎨', footer: '✏️ 🌈 🖼️ ✨ 🎭', bg: 'linear-gradient(160deg, #ff6b6b 0%, #feca57 100%)', color: '#f59e0b' },
   nature:  { emojis: '🌲 🌻 ⭐ 🌻 🌲', footer: '🦋 🌈 🍀 🌺 🐝', bg: 'linear-gradient(160deg, #56ab2f 0%, #a8e063 100%)', color: '#22c55e' },
-  general: { emojis: '🌟 🎯 ⭐ 🎯 🌟', footer: '🏆 🚀 💪 🎉 ✨', bg: 'linear-gradient(160deg, #a8edea 0%, #fed6e3 100%)', color: '#6366f1' }
+  general: { emojis: '🌟 🎯 ⭐ 🎯 🌟', footer: '🏆 🚀 💪 🎉 ✨', bg: 'linear-gradient(160deg, #a8edea 0%, #fed6e3 100%)', color: '#6366f1' },
+  // Temas de eventos especiales
+  valentine: { emojis: '💝 💕 ⭐ 💕 💝', footer: '❤️ 💖 💘 💗 💓', bg: 'linear-gradient(160deg, #ec4899 0%, #f43f5e 100%)', color: '#ec4899' },
+  stpatrick: { emojis: '☘️ 🌈 ⭐ 🌈 ☘️', footer: '🍀 💚 🌟 🎩 ✨', bg: 'linear-gradient(160deg, #22c55e 0%, #16a34a 100%)', color: '#22c55e' },
+  easter:    { emojis: '🐰 🥚 ⭐ 🥚 🐰', footer: '🐣 🌸 🌷 🦋 ✨', bg: 'linear-gradient(160deg, #a78bfa 0%, #f472b6 100%)', color: '#a78bfa' },
+  halloween: { emojis: '🎃 👻 ⭐ 👻 🎃', footer: '🦇 🕷️ 🍬 🌙 ✨', bg: 'linear-gradient(160deg, #f97316 0%, #1a1a2e 100%)', color: '#f97316' },
+  christmas: { emojis: '🎄 🎅 ⭐ 🎅 🎄', footer: '🎁 ❄️ ☃️ 🔔 ✨', bg: 'linear-gradient(160deg, #dc2626 0%, #16a34a 100%)', color: '#dc2626' },
+  newyear:   { emojis: '🎆 🥳 ⭐ 🥳 🎆', footer: '🎊 🍾 🎉 ✨ 🌟', bg: 'linear-gradient(160deg, #fbbf24 0%, #7c3aed 100%)', color: '#fbbf24' },
+  fall:      { emojis: '🍂 🍁 ⭐ 🍁 🍂', footer: '🎃 🌰 🦃 🌾 ✨', bg: 'linear-gradient(160deg, #f97316 0%, #b45309 100%)', color: '#f97316' }
 };
 
 function buildChart(data, preserveProgress = false) {
@@ -2887,12 +2958,81 @@ function activatePremium() {
   showConfetti();
 }
 
+// ─── Seasonal Events ──────────────────────────────────────
+let currentEvent = null;
+
+function detectSeasonalEvent() {
+  const now = new Date();
+  const month = now.getMonth() + 1; // 1-12
+  const day = now.getDate();
+
+  // San Valentín: 7-14 de febrero
+  if (month === 2 && day >= 7 && day <= 14) return 'valentine';
+  // San Patricio: 14-17 de marzo
+  if (month === 3 && day >= 14 && day <= 17) return 'stpatrick';
+  // Pascua: abril (aproximado)
+  if (month === 4 && day >= 1 && day <= 21) return 'easter';
+  // Halloween: octubre
+  if (month === 10 && day >= 15) return 'halloween';
+  // Navidad: diciembre
+  if (month === 12 && day >= 1 && day <= 25) return 'christmas';
+  // Año Nuevo: 1-7 de enero
+  if (month === 1 && day >= 1 && day <= 7) return 'newyear';
+  // Otoño: septiembre-noviembre (cuando no hay otro evento)
+  if (month >= 9 && month <= 11 && !(month === 10 && day >= 15)) return 'fall';
+
+  return null;
+}
+
+function showEventBanner() {
+  currentEvent = detectSeasonalEvent();
+  if (!currentEvent) return;
+
+  const events = T[lang].events;
+  const event = events[currentEvent];
+  if (!event) return;
+
+  const banner = document.getElementById('eventBanner');
+  const icon = document.getElementById('eventIcon');
+  const text = document.getElementById('eventText');
+  const btn = document.getElementById('eventBtn');
+
+  icon.textContent = event.icon;
+  text.textContent = event.text;
+  btn.textContent = event.btn;
+
+  // Aplicar clase de color
+  banner.className = 'event-banner event-' + currentEvent;
+  banner.style.display = 'flex';
+}
+
+function useEventTheme() {
+  if (!currentEvent) return;
+
+  // Aplicar tema del evento al próximo chart
+  const events = T[lang].events;
+  const event = events[currentEvent];
+
+  // Guardar preferencia de tema
+  localStorage.setItem('chartkids_event_theme', event.theme);
+
+  showToast(lang === 'es' ? '🎉 ¡Tema especial activado!' : '🎉 Special theme activated!');
+
+  // Ocultar banner
+  document.getElementById('eventBanner').style.display = 'none';
+}
+
+function getEventTheme() {
+  return localStorage.getItem('chartkids_event_theme');
+}
+
 // ─── Init ────────────────────────────────────────────────
 applyTranslations();
 resetChat();
 loadProgress();
 updatePinToggle();
 checkPremiumStatus();
+showEventBanner();
 
 // Registrar Service Worker para funcionar offline
 if ('serviceWorker' in navigator) {
