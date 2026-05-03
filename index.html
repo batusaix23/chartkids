@@ -12,6 +12,8 @@
 <!-- Google AdSense - Reemplaza ca-pub-3864436143903580 con tu ID de AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3864436143903580" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+<!-- PayPal SDK - Reemplaza YOUR_PAYPAL_CLIENT_ID con tu Client ID de PayPal -->
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
 <style>
 :root {
   --bg: #0f0f1a;
@@ -811,6 +813,27 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
 }
 .premium-cta:hover { transform: scale(1.02); }
 .premium-note { text-align: center; font-size: 0.75rem; color: var(--muted); margin-top: 12px; }
+.paypal-container { margin: 20px 0; min-height: 45px; }
+.paypal-divider { display: flex; align-items: center; gap: 12px; margin: 16px 0; }
+.paypal-divider::before, .paypal-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.paypal-divider span { color: var(--muted); font-size: 0.8rem; }
+.payment-methods { display: flex; justify-content: center; gap: 8px; margin-top: 8px; }
+.payment-methods img { height: 24px; opacity: 0.8; }
+
+/* Professional Footer */
+.app-footer { margin-top: 60px; padding: 40px 0 20px; border-top: 1px solid var(--border); }
+.footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px; }
+.footer-section h4 { font-size: 0.9rem; color: var(--accent2); margin-bottom: 16px; font-weight: 800; }
+.footer-section p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+.footer-links a:hover { color: var(--accent); }
+.footer-logo { font-family: 'Fredoka One', cursive; font-size: 1.3rem; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px; }
+.footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; padding-top: 20px; border-top: 1px solid var(--border); }
+.footer-bottom p { font-size: 0.8rem; color: var(--muted); }
+.footer-badges { display: flex; gap: 12px; align-items: center; }
+.footer-badge { background: var(--surface); border: 1px solid var(--border); padding: 6px 12px; border-radius: 8px; font-size: 0.75rem; color: var(--muted); display: flex; align-items: center; gap: 6px; }
 
 /* Seasonal Events Banner */
 .event-banner {
@@ -974,6 +997,46 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
          data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
+
+  <!-- Professional Footer -->
+  <footer class="app-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <div class="footer-logo">ChartKids<span>✨</span></div>
+        <p id="footerDesc">Crea charts de actividades personalizados para tus hijos con el poder de la IA.</p>
+      </div>
+      <div class="footer-section">
+        <h4 id="footerLegal">Legal</h4>
+        <ul class="footer-links">
+          <li><a href="terms.html" id="footerTerms">Términos de Servicio</a></li>
+          <li><a href="privacy.html" id="footerPrivacy">Política de Privacidad</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4 id="footerHelp">Ayuda</h4>
+        <ul class="footer-links">
+          <li><a href="support.html" id="footerSupport">Centro de Soporte</a></li>
+          <li><a href="support.html#faq" id="footerFaq">Preguntas Frecuentes</a></li>
+          <li><a href="mailto:support@chartkids.app" id="footerContact">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4 id="footerApp">App</h4>
+        <ul class="footer-links">
+          <li><a href="#" onclick="openPremiumModal(); return false;" id="footerPremium">Premium</a></li>
+          <li><a href="#" onclick="showStatsModal(); return false;" id="footerStats">Estadísticas</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p id="footerCopyright">© 2025 ChartKids. Todos los derechos reservados.</p>
+      <div class="footer-badges">
+        <span class="footer-badge">🔒 <span id="footerSecure">Seguro</span></span>
+        <span class="footer-badge">🌐 <span id="footerPwa">PWA</span></span>
+        <span class="footer-badge">🤖 <span id="footerAi">IA Powered</span></span>
+      </div>
+    </div>
+  </footer>
 </div>
 
 <!-- Modal de Charts Guardados -->
@@ -1105,8 +1168,13 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
         <div class="premium-price-amount" id="premiumPrice">$2.99</div>
         <div class="premium-price-period" id="premiumPeriod">por mes</div>
       </div>
-      <button class="premium-cta" id="premiumCta" onclick="activatePremium()">🚀 Activar Premium</button>
+      <div id="paypal-button-container" class="paypal-container"></div>
+      <div class="paypal-divider"><span id="paypalOr">o</span></div>
+      <button class="premium-cta" id="premiumCta" onclick="activateDemoPremium()">🎁 <span id="premiumCtaText">Prueba Demo Gratis</span></button>
       <p class="premium-note" id="premiumNote">Cancela cuando quieras · Sin compromisos</p>
+      <div class="payment-methods">
+        <span style="font-size: 0.75rem; color: var(--muted);">🔒 <span id="securePayment">Pago seguro con</span></span>
+      </div>
     </div>
   </div>
 </div>
@@ -1221,9 +1289,13 @@ const T = {
     premiumTitle: 'ChartKids Premium',
     premiumPrice: '$2.99',
     premiumPeriod: 'por mes',
-    premiumCta: '🚀 Activar Premium',
+    premiumCta: '🎁 Prueba Demo Gratis',
     premiumNote: 'Cancela cuando quieras · Sin compromisos',
     premiumActivated: '🎉 ¡Premium activado!',
+    paypalOr: 'o',
+    securePayment: 'Pago seguro con PayPal',
+    paypalError: 'Error al procesar el pago. Intenta de nuevo.',
+    paypalSuccess: '🎉 ¡Gracias! Premium activado.',
     premiumFeatures: [
       { icon: '🚫', title: 'Sin anuncios', desc: 'Experiencia limpia sin publicidad' },
       { icon: '📊', title: 'Charts ilimitados', desc: 'Guarda todos los charts que necesites' },
@@ -1239,6 +1311,21 @@ const T = {
       newyear: { icon: '🎆', text: '¡Feliz Año Nuevo!', theme: 'newyear', btn: 'Usar tema' },
       fall: { icon: '🍂', text: '¡Especial de Otoño!', theme: 'fall', btn: 'Usar tema' }
     },
+    footerDesc: 'Crea charts de actividades personalizados para tus hijos con el poder de la IA.',
+    footerLegal: 'Legal',
+    footerTerms: 'Términos de Servicio',
+    footerPrivacy: 'Política de Privacidad',
+    footerHelp: 'Ayuda',
+    footerSupport: 'Centro de Soporte',
+    footerFaq: 'Preguntas Frecuentes',
+    footerContact: 'Contacto',
+    footerApp: 'App',
+    footerPremium: 'Premium',
+    footerStats: 'Estadísticas',
+    footerCopyright: '© 2025 ChartKids. Todos los derechos reservados.',
+    footerSecure: 'Seguro',
+    footerPwa: 'PWA',
+    footerAi: 'IA Powered',
   },
   en: {
     navBadge: '✨ Free AI',
@@ -1341,9 +1428,13 @@ const T = {
     premiumTitle: 'ChartKids Premium',
     premiumPrice: '$2.99',
     premiumPeriod: 'per month',
-    premiumCta: '🚀 Activate Premium',
+    premiumCta: '🎁 Try Free Demo',
     premiumNote: 'Cancel anytime · No commitments',
     premiumActivated: '🎉 Premium activated!',
+    paypalOr: 'or',
+    securePayment: 'Secure payment with PayPal',
+    paypalError: 'Payment error. Please try again.',
+    paypalSuccess: '🎉 Thank you! Premium activated.',
     premiumFeatures: [
       { icon: '🚫', title: 'No ads', desc: 'Clean experience without advertising' },
       { icon: '📊', title: 'Unlimited charts', desc: 'Save all the charts you need' },
@@ -1359,6 +1450,21 @@ const T = {
       newyear: { icon: '🎆', text: 'Happy New Year!', theme: 'newyear', btn: 'Use theme' },
       fall: { icon: '🍂', text: 'Fall Special!', theme: 'fall', btn: 'Use theme' }
     },
+    footerDesc: 'Create personalized activity charts for your kids powered by AI.',
+    footerLegal: 'Legal',
+    footerTerms: 'Terms of Service',
+    footerPrivacy: 'Privacy Policy',
+    footerHelp: 'Help',
+    footerSupport: 'Support Center',
+    footerFaq: 'FAQ',
+    footerContact: 'Contact',
+    footerApp: 'App',
+    footerPremium: 'Premium',
+    footerStats: 'Statistics',
+    footerCopyright: '© 2025 ChartKids. All rights reserved.',
+    footerSecure: 'Secure',
+    footerPwa: 'PWA',
+    footerAi: 'AI Powered',
   }
 };
 
@@ -1411,6 +1517,22 @@ function applyTranslations() {
   renderEmptyState();
   updateChartsBadge();
   if (chartData) buildChart(chartData);
+  // Footer translations
+  document.getElementById('footerDesc').textContent = t('footerDesc');
+  document.getElementById('footerLegal').textContent = t('footerLegal');
+  document.getElementById('footerTerms').textContent = t('footerTerms');
+  document.getElementById('footerPrivacy').textContent = t('footerPrivacy');
+  document.getElementById('footerHelp').textContent = t('footerHelp');
+  document.getElementById('footerSupport').textContent = t('footerSupport');
+  document.getElementById('footerFaq').textContent = t('footerFaq');
+  document.getElementById('footerContact').textContent = t('footerContact');
+  document.getElementById('footerApp').textContent = t('footerApp');
+  document.getElementById('footerPremium').textContent = t('footerPremium');
+  document.getElementById('footerStats').textContent = t('footerStats');
+  document.getElementById('footerCopyright').textContent = t('footerCopyright');
+  document.getElementById('footerSecure').textContent = t('footerSecure');
+  document.getElementById('footerPwa').textContent = t('footerPwa');
+  document.getElementById('footerAi').textContent = t('footerAi');
 }
 
 function renderQuickPrompts() {
@@ -2929,9 +3051,12 @@ function openPremiumModal() {
   document.getElementById('premiumModalTitle').textContent = t('premiumTitle');
   document.getElementById('premiumPrice').textContent = t('premiumPrice');
   document.getElementById('premiumPeriod').textContent = t('premiumPeriod');
-  document.getElementById('premiumCta').innerHTML = t('premiumCta');
+  document.getElementById('premiumCtaText').textContent = t('premiumCta').replace('🎁 ', '');
   document.getElementById('premiumNote').textContent = t('premiumNote');
+  document.getElementById('paypalOr').textContent = t('paypalOr');
+  document.getElementById('securePayment').textContent = t('securePayment');
   document.getElementById('premiumModal').style.display = 'flex';
+  initPayPalButton();
 }
 
 function closePremiumModal(event) {
@@ -2953,16 +3078,60 @@ function renderPremiumFeatures() {
   `).join('');
 }
 
-function activatePremium() {
-  // Por ahora, activar Premium de forma demo
-  // En producción, aquí iría la integración con Stripe, PayPal, etc.
+// PayPal Integration
+let paypalButtonRendered = false;
+
+function initPayPalButton() {
+  if (paypalButtonRendered) return;
+  if (typeof paypal === 'undefined') {
+    console.log('PayPal SDK not loaded yet');
+    return;
+  }
+
+  const container = document.getElementById('paypal-button-container');
+  container.innerHTML = '';
+
+  // IMPORTANTE: Reemplaza 'P-XXXXX' con tu Plan ID de PayPal Subscription
+  // Crea un plan en: https://developer.paypal.com/dashboard/applications/subscriptions
+  paypal.Buttons({
+    style: {
+      shape: 'pill',
+      color: 'gold',
+      layout: 'vertical',
+      label: 'subscribe'
+    },
+    createSubscription: function(data, actions) {
+      return actions.subscription.create({
+        plan_id: 'P-XXXXX' // Reemplaza con tu Plan ID real
+      });
+    },
+    onApprove: function(data, actions) {
+      // Subscription approved
+      localStorage.setItem('chartkids_premium', 'true');
+      localStorage.setItem('chartkids_subscription_id', data.subscriptionID);
+      isPremiumUser = true;
+      updatePremiumUI();
+      closePremiumModal();
+      showToast(t('paypalSuccess'));
+      showConfetti();
+    },
+    onError: function(err) {
+      console.error('PayPal error:', err);
+      showToast(t('paypalError'));
+    }
+  }).render('#paypal-button-container');
+
+  paypalButtonRendered = true;
+}
+
+function activateDemoPremium() {
+  // Demo mode - activar Premium sin pago para pruebas
   localStorage.setItem('chartkids_premium', 'true');
+  localStorage.setItem('chartkids_demo', 'true');
   isPremiumUser = true;
   updatePremiumUI();
   closePremiumModal();
   showToast(t('premiumActivated'));
-
-  // Mostrar confeti de celebración
   showConfetti();
 }
 

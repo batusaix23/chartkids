@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#7c3aed">
+<meta name="description" content="Política de Privacidad de ChartKids">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+<title>Política de Privacidad - ChartKids</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f0f1a;
+  --surface: #1a1a2e;
+  --surface2: #232340;
+  --border: #2e2e50;
+  --accent: #7c3aed;
+  --accent2: #06b6d4;
+  --green: #22c55e;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --radius: 16px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.7; }
+.container { max-width: 800px; margin: 0 auto; padding: 40px 20px 80px; }
+.back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--accent); text-decoration: none; font-weight: 600; margin-bottom: 30px; transition: opacity 0.2s; }
+.back-link:hover { opacity: 0.8; }
+h1 { font-family: 'Fredoka One', cursive; font-size: 2.5rem; margin-bottom: 10px; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.update-date { color: var(--muted); font-size: 0.9rem; margin-bottom: 40px; }
+.section { background: var(--surface); border-radius: var(--radius); padding: 30px; margin-bottom: 24px; border: 1px solid var(--border); }
+.section h2 { font-size: 1.3rem; margin-bottom: 16px; color: var(--accent2); }
+.section p, .section li { color: var(--muted); margin-bottom: 12px; }
+.section ul { padding-left: 20px; }
+.section li { margin-bottom: 8px; }
+.highlight { background: var(--surface2); padding: 16px; border-radius: 12px; border-left: 4px solid var(--green); margin: 16px 0; }
+.highlight p { margin: 0; }
+.data-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+.data-table th, .data-table td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border); }
+.data-table th { color: var(--accent2); font-weight: 700; }
+.data-table td { color: var(--muted); }
+.badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+.badge-local { background: var(--green); color: #000; }
+.badge-none { background: var(--surface2); color: var(--muted); }
+.lang-switch { position: fixed; top: 20px; right: 20px; display: flex; gap: 8px; }
+.lang-btn { background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.2s; }
+.lang-btn:hover, .lang-btn.active { background: var(--accent); border-color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="lang-switch">
+  <button class="lang-btn active" onclick="setLang('es')">ES</button>
+  <button class="lang-btn" onclick="setLang('en')">EN</button>
+</div>
+
+<div class="container">
+  <a href="index.html" class="back-link">← <span id="backText">Volver a ChartKids</span></a>
+
+  <h1 id="pageTitle">Política de Privacidad</h1>
+  <p class="update-date" id="updateDate">Última actualización: Mayo 2025</p>
+
+  <div class="section">
+    <h2 id="t1">1. Resumen</h2>
+    <div class="highlight">
+      <p id="p1">ChartKids está diseñado con la privacidad como prioridad. Tus datos se almacenan localmente en tu dispositivo y no recopilamos información personal identificable.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 id="t2">2. Datos que Recopilamos</h2>
+    <p id="p2">ChartKids recopila y almacena los siguientes datos únicamente en tu dispositivo:</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th id="th1">Tipo de Dato</th>
+          <th id="th2">Almacenamiento</th>
+          <th id="th3">Propósito</th>
+        </tr>
+      </thead>
+      <tbody id="dataTableBody">
+        <tr>
+          <td>Charts creados</td>
+          <td><span class="badge badge-local">Local</span></td>
+          <td>Guardar tus charts</td>
+        </tr>
+        <tr>
+          <td>Progreso de actividades</td>
+          <td><span class="badge badge-local">Local</span></td>
+          <td>Seguimiento</td>
+        </tr>
+        <tr>
+          <td>Preferencias (tema, idioma)</td>
+          <td><span class="badge badge-local">Local</span></td>
+          <td>Personalización</td>
+        </tr>
+        <tr>
+          <td>PIN parental</td>
+          <td><span class="badge badge-local">Local</span></td>
+          <td>Seguridad</td>
+        </tr>
+        <tr>
+          <td>Estado Premium</td>
+          <td><span class="badge badge-local">Local</span></td>
+          <td>Funciones Premium</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2 id="t3">3. Datos que NO Recopilamos</h2>
+    <p id="p3">ChartKids NO recopila:</p>
+    <ul id="list3">
+      <li>Nombres reales de los niños</li>
+      <li>Direcciones de correo electrónico</li>
+      <li>Ubicación geográfica</li>
+      <li>Información de contacto</li>
+      <li>Datos biométricos</li>
+      <li>Información financiera (PayPal procesa los pagos directamente)</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 id="t4">4. Uso de Inteligencia Artificial</h2>
+    <p id="p4a">Cuando creas un chart, enviamos tu descripción a nuestro servicio de IA para generar las actividades. Esta información:</p>
+    <ul id="list4">
+      <li>Se procesa en tiempo real y no se almacena permanentemente</li>
+      <li>No contiene datos personales identificables</li>
+      <li>Se transmite de forma segura (HTTPS)</li>
+    </ul>
+    <div class="highlight">
+      <p id="p4b">Recomendación: No incluyas nombres reales ni información personal en las descripciones de los charts.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 id="t5">5. Cookies y Almacenamiento Local</h2>
+    <p id="p5">ChartKids utiliza localStorage del navegador para guardar tus datos. No utilizamos cookies de rastreo ni compartimos datos con terceros para publicidad.</p>
+  </div>
+
+  <div class="section">
+    <h2 id="t6">6. Google AdSense</h2>
+    <p id="p6">La versión gratuita de ChartKids muestra anuncios de Google AdSense. Google puede usar cookies para personalizar anuncios. Puedes revisar la política de privacidad de Google en: <a href="https://policies.google.com/privacy" target="_blank" style="color: var(--accent);">policies.google.com/privacy</a></p>
+  </div>
+
+  <div class="section">
+    <h2 id="t7">7. PayPal</h2>
+    <p id="p7">Los pagos Premium se procesan a través de PayPal. ChartKids no tiene acceso a tu información financiera. Consulta la política de privacidad de PayPal en: <a href="https://www.paypal.com/privacy" target="_blank" style="color: var(--accent);">paypal.com/privacy</a></p>
+  </div>
+
+  <div class="section">
+    <h2 id="t8">8. Seguridad de los Datos</h2>
+    <p id="p8">Implementamos medidas de seguridad para proteger tus datos:</p>
+    <ul id="list8">
+      <li>Comunicaciones cifradas con HTTPS</li>
+      <li>PIN parental opcional para proteger la aplicación</li>
+      <li>Almacenamiento local en tu dispositivo</li>
+      <li>No hay servidores que almacenen tus charts</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 id="t9">9. Derechos de los Usuarios</h2>
+    <p id="p9">Tienes derecho a:</p>
+    <ul id="list9">
+      <li>Acceder a tus datos (almacenados en tu dispositivo)</li>
+      <li>Eliminar todos tus datos (borrando el localStorage del navegador)</li>
+      <li>Exportar tus charts como imágenes</li>
+      <li>Cancelar tu suscripción Premium en cualquier momento</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 id="t10">10. Privacidad de los Niños</h2>
+    <p id="p10">ChartKids es una herramienta para padres. No recopilamos intencionalmente datos de niños menores de 13 años. Los padres son responsables de supervisar el uso de la aplicación.</p>
+  </div>
+
+  <div class="section">
+    <h2 id="t11">11. Cambios en esta Política</h2>
+    <p id="p11">Podemos actualizar esta política ocasionalmente. Te notificaremos de cambios significativos actualizando la fecha de "última actualización" en esta página.</p>
+  </div>
+
+  <div class="section">
+    <h2 id="t12">12. Contacto</h2>
+    <p id="p12">Si tienes preguntas sobre esta política de privacidad, contáctanos en: <a href="support.html" style="color: var(--accent);">Página de Soporte</a></p>
+  </div>
+</div>
+
+<script>
+const translations = {
+  es: {
+    backText: 'Volver a ChartKids',
+    pageTitle: 'Política de Privacidad',
+    updateDate: 'Última actualización: Mayo 2025',
+    t1: '1. Resumen', p1: 'ChartKids está diseñado con la privacidad como prioridad. Tus datos se almacenan localmente en tu dispositivo y no recopilamos información personal identificable.',
+    t2: '2. Datos que Recopilamos', p2: 'ChartKids recopila y almacena los siguientes datos únicamente en tu dispositivo:',
+    th1: 'Tipo de Dato', th2: 'Almacenamiento', th3: 'Propósito',
+    tableData: [
+      ['Charts creados', 'Local', 'Guardar tus charts'],
+      ['Progreso de actividades', 'Local', 'Seguimiento'],
+      ['Preferencias (tema, idioma)', 'Local', 'Personalización'],
+      ['PIN parental', 'Local', 'Seguridad'],
+      ['Estado Premium', 'Local', 'Funciones Premium']
+    ],
+    t3: '3. Datos que NO Recopilamos', p3: 'ChartKids NO recopila:',
+    list3: ['Nombres reales de los niños', 'Direcciones de correo electrónico', 'Ubicación geográfica', 'Información de contacto', 'Datos biométricos', 'Información financiera (PayPal procesa los pagos directamente)'],
+    t4: '4. Uso de Inteligencia Artificial', p4a: 'Cuando creas un chart, enviamos tu descripción a nuestro servicio de IA para generar las actividades. Esta información:',
+    list4: ['Se procesa en tiempo real y no se almacena permanentemente', 'No contiene datos personales identificables', 'Se transmite de forma segura (HTTPS)'],
+    p4b: 'Recomendación: No incluyas nombres reales ni información personal en las descripciones de los charts.',
+    t5: '5. Cookies y Almacenamiento Local', p5: 'ChartKids utiliza localStorage del navegador para guardar tus datos. No utilizamos cookies de rastreo ni compartimos datos con terceros para publicidad.',
+    t6: '6. Google AdSense', p6: 'La versión gratuita de ChartKids muestra anuncios de Google AdSense. Google puede usar cookies para personalizar anuncios.',
+    t7: '7. PayPal', p7: 'Los pagos Premium se procesan a través de PayPal. ChartKids no tiene acceso a tu información financiera.',
+    t8: '8. Seguridad de los Datos', p8: 'Implementamos medidas de seguridad para proteger tus datos:',
+    list8: ['Comunicaciones cifradas con HTTPS', 'PIN parental opcional para proteger la aplicación', 'Almacenamiento local en tu dispositivo', 'No hay servidores que almacenen tus charts'],
+    t9: '9. Derechos de los Usuarios', p9: 'Tienes derecho a:',
+    list9: ['Acceder a tus datos (almacenados en tu dispositivo)', 'Eliminar todos tus datos (borrando el localStorage del navegador)', 'Exportar tus charts como imágenes', 'Cancelar tu suscripción Premium en cualquier momento'],
+    t10: '10. Privacidad de los Niños', p10: 'ChartKids es una herramienta para padres. No recopilamos intencionalmente datos de niños menores de 13 años. Los padres son responsables de supervisar el uso de la aplicación.',
+    t11: '11. Cambios en esta Política', p11: 'Podemos actualizar esta política ocasionalmente. Te notificaremos de cambios significativos actualizando la fecha de "última actualización" en esta página.',
+    t12: '12. Contacto', p12: 'Si tienes preguntas sobre esta política de privacidad, contáctanos en:',
+    supportLink: 'Página de Soporte'
+  },
+  en: {
+    backText: 'Back to ChartKids',
+    pageTitle: 'Privacy Policy',
+    updateDate: 'Last updated: May 2025',
+    t1: '1. Summary', p1: 'ChartKids is designed with privacy as a priority. Your data is stored locally on your device and we do not collect personally identifiable information.',
+    t2: '2. Data We Collect', p2: 'ChartKids collects and stores the following data only on your device:',
+    th1: 'Data Type', th2: 'Storage', th3: 'Purpose',
+    tableData: [
+      ['Created charts', 'Local', 'Save your charts'],
+      ['Activity progress', 'Local', 'Tracking'],
+      ['Preferences (theme, language)', 'Local', 'Personalization'],
+      ['Parental PIN', 'Local', 'Security'],
+      ['Premium status', 'Local', 'Premium features']
+    ],
+    t3: '3. Data We Do NOT Collect', p3: 'ChartKids does NOT collect:',
+    list3: ['Children\'s real names', 'Email addresses', 'Geographic location', 'Contact information', 'Biometric data', 'Financial information (PayPal processes payments directly)'],
+    t4: '4. Use of Artificial Intelligence', p4a: 'When you create a chart, we send your description to our AI service to generate activities. This information:',
+    list4: ['Is processed in real-time and not stored permanently', 'Does not contain personally identifiable data', 'Is transmitted securely (HTTPS)'],
+    p4b: 'Recommendation: Do not include real names or personal information in chart descriptions.',
+    t5: '5. Cookies and Local Storage', p5: 'ChartKids uses browser localStorage to save your data. We do not use tracking cookies or share data with third parties for advertising.',
+    t6: '6. Google AdSense', p6: 'The free version of ChartKids displays Google AdSense ads. Google may use cookies to personalize ads.',
+    t7: '7. PayPal', p7: 'Premium payments are processed through PayPal. ChartKids does not have access to your financial information.',
+    t8: '8. Data Security', p8: 'We implement security measures to protect your data:',
+    list8: ['Encrypted communications with HTTPS', 'Optional parental PIN to protect the app', 'Local storage on your device', 'No servers storing your charts'],
+    t9: '9. User Rights', p9: 'You have the right to:',
+    list9: ['Access your data (stored on your device)', 'Delete all your data (by clearing browser localStorage)', 'Export your charts as images', 'Cancel your Premium subscription at any time'],
+    t10: '10. Children\'s Privacy', p10: 'ChartKids is a tool for parents. We do not intentionally collect data from children under 13. Parents are responsible for supervising app usage.',
+    t11: '11. Changes to this Policy', p11: 'We may update this policy occasionally. We will notify you of significant changes by updating the "last updated" date on this page.',
+    t12: '12. Contact', p12: 'If you have questions about this privacy policy, contact us at:',
+    supportLink: 'Support Page'
+  }
+};
+
+let currentLang = localStorage.getItem('chartkids_lang') || 'es';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('chartkids_lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+
+  const t = translations[lang];
+  document.getElementById('backText').textContent = t.backText;
+  document.getElementById('pageTitle').textContent = t.pageTitle;
+  document.getElementById('updateDate').textContent = t.updateDate;
+  document.getElementById('th1').textContent = t.th1;
+  document.getElementById('th2').textContent = t.th2;
+  document.getElementById('th3').textContent = t.th3;
+
+  // Update table
+  const tbody = document.getElementById('dataTableBody');
+  tbody.innerHTML = t.tableData.map(row => `
+    <tr>
+      <td>${row[0]}</td>
+      <td><span class="badge badge-local">${row[1]}</span></td>
+      <td>${row[2]}</td>
+    </tr>
+  `).join('');
+
+  // Update sections
+  for (let i = 1; i <= 12; i++) {
+    document.getElementById('t' + i).textContent = t['t' + i];
+  }
+  ['p1','p2','p3','p4a','p4b','p5','p6','p7','p8','p9','p10','p11'].forEach(id => {
+    if (document.getElementById(id)) document.getElementById(id).textContent = t[id];
+  });
+  document.getElementById('p12').innerHTML = t.p12 + ' <a href="support.html" style="color: var(--accent);">' + t.supportLink + '</a>';
+
+  ['list3','list4','list8','list9'].forEach(id => {
+    if (document.getElementById(id)) {
+      document.getElementById(id).innerHTML = t[id].map(item => `<li>${item}</li>`).join('');
+    }
+  });
+}
+
+setLang(currentLang);
+</script>
+</body>
+</html>

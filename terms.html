@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#7c3aed">
+<meta name="description" content="Términos de Servicio de ChartKids">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+<title>Términos de Servicio - ChartKids</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f0f1a;
+  --surface: #1a1a2e;
+  --surface2: #232340;
+  --border: #2e2e50;
+  --accent: #7c3aed;
+  --accent2: #06b6d4;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --radius: 16px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.7; }
+.container { max-width: 800px; margin: 0 auto; padding: 40px 20px 80px; }
+.back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--accent); text-decoration: none; font-weight: 600; margin-bottom: 30px; transition: opacity 0.2s; }
+.back-link:hover { opacity: 0.8; }
+h1 { font-family: 'Fredoka One', cursive; font-size: 2.5rem; margin-bottom: 10px; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.update-date { color: var(--muted); font-size: 0.9rem; margin-bottom: 40px; }
+.section { background: var(--surface); border-radius: var(--radius); padding: 30px; margin-bottom: 24px; border: 1px solid var(--border); }
+.section h2 { font-size: 1.3rem; margin-bottom: 16px; color: var(--accent2); }
+.section p, .section li { color: var(--muted); margin-bottom: 12px; }
+.section ul { padding-left: 20px; }
+.section li { margin-bottom: 8px; }
+.highlight { background: var(--surface2); padding: 16px; border-radius: 12px; border-left: 4px solid var(--accent); margin: 16px 0; }
+.highlight p { margin: 0; }
+.lang-switch { position: fixed; top: 20px; right: 20px; display: flex; gap: 8px; }
+.lang-btn { background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.2s; }
+.lang-btn:hover, .lang-btn.active { background: var(--accent); border-color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="lang-switch">
+  <button class="lang-btn active" onclick="setLang('es')">ES</button>
+  <button class="lang-btn" onclick="setLang('en')">EN</button>
+</div>
+
+<div class="container">
+  <a href="index.html" class="back-link">← <span id="backText">Volver a ChartKids</span></a>
+
+  <h1 id="pageTitle">Términos de Servicio</h1>
+  <p class="update-date" id="updateDate">Última actualización: Mayo 2025</p>
+
+  <div class="section">
+    <h2 id="t1">1. Aceptación de los Términos</h2>
+    <p id="p1">Al acceder y utilizar ChartKids ("el Servicio"), aceptas estar sujeto a estos Términos de Servicio. Si no estás de acuerdo con alguna parte de estos términos, no podrás acceder al Servicio.</p>
+  </div>
+
+  <div class="section">
+    <h2 id="t2">2. Descripción del Servicio</h2>
+    <p id="p2">ChartKids es una aplicación web que utiliza inteligencia artificial para ayudar a los padres a crear charts de actividades personalizados para sus hijos. El servicio incluye:</p>
+    <ul id="list2">
+      <li>Generación de charts de actividades con IA</li>
+      <li>Seguimiento del progreso de los niños</li>
+      <li>Temas y personalización visual</li>
+      <li>Funciones Premium opcionales</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 id="t3">3. Cuentas y Responsabilidades</h2>
+    <p id="p3">Los datos de ChartKids se almacenan localmente en tu dispositivo. Eres responsable de:</p>
+    <ul id="list3">
+      <li>Mantener la seguridad de tu dispositivo</li>
+      <li>El uso apropiado de la aplicación con tus hijos</li>
+      <li>Supervisar el contenido generado por la IA</li>
+      <li>No usar el servicio para fines ilegales o no autorizados</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 id="t4">4. Suscripción Premium</h2>
+    <p id="p4a">ChartKids ofrece una suscripción Premium con funciones adicionales. Al suscribirte:</p>
+    <ul id="list4">
+      <li>Aceptas el precio indicado en el momento de la compra</li>
+      <li>La suscripción se renueva automáticamente hasta que la canceles</li>
+      <li>Puedes cancelar en cualquier momento a través de PayPal</li>
+      <li>No se ofrecen reembolsos por períodos parciales</li>
+    </ul>
+    <div class="highlight">
+      <p id="p4b">Los pagos se procesan de forma segura a través de PayPal. ChartKids no almacena información de pago.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 id="t5">5. Contenido Generado por IA</h2>
+    <p id="p5">El contenido generado por la inteligencia artificial es solo una sugerencia. Los padres deben revisar y aprobar todo el contenido antes de usarlo con sus hijos. ChartKids no se hace responsable de la idoneidad del contenido generado para cada niño individual.</p>
+  </div>
+
+  <div class="section">
+    <h2 id="t6">6. Propiedad Intelectual</h2>
+    <p id="p6">Todo el contenido, diseño y código de ChartKids está protegido por derechos de autor. Los charts que creas son tuyos, pero la plataforma y sus elementos visuales pertenecen a ChartKids.</p>
+  </div>
+
+  <div class="section">
+    <h2 id="t7">7. Limitación de Responsabilidad</h2>
+    <p id="p7">ChartKids se proporciona "tal cual" sin garantías de ningún tipo. No somos responsables por daños indirectos, incidentales o consecuentes que surjan del uso del servicio.</p>
+  </div>
+
+  <div class="section">
+    <h2 id="t8">8. Modificaciones</h2>
+    <p id="p8">Nos reservamos el derecho de modificar estos términos en cualquier momento. Los cambios entrarán en vigor inmediatamente después de su publicación. El uso continuado del servicio constituye la aceptación de los nuevos términos.</p>
+  </div>
+
+  <div class="section">
+    <h2 id="t9">9. Contacto</h2>
+    <p id="p9">Para preguntas sobre estos Términos de Servicio, contáctanos en: <a href="support.html" style="color: var(--accent);">Página de Soporte</a></p>
+  </div>
+</div>
+
+<script>
+const translations = {
+  es: {
+    backText: 'Volver a ChartKids',
+    pageTitle: 'Términos de Servicio',
+    updateDate: 'Última actualización: Mayo 2025',
+    t1: '1. Aceptación de los Términos',
+    p1: 'Al acceder y utilizar ChartKids ("el Servicio"), aceptas estar sujeto a estos Términos de Servicio. Si no estás de acuerdo con alguna parte de estos términos, no podrás acceder al Servicio.',
+    t2: '2. Descripción del Servicio',
+    p2: 'ChartKids es una aplicación web que utiliza inteligencia artificial para ayudar a los padres a crear charts de actividades personalizados para sus hijos. El servicio incluye:',
+    list2: ['Generación de charts de actividades con IA', 'Seguimiento del progreso de los niños', 'Temas y personalización visual', 'Funciones Premium opcionales'],
+    t3: '3. Cuentas y Responsabilidades',
+    p3: 'Los datos de ChartKids se almacenan localmente en tu dispositivo. Eres responsable de:',
+    list3: ['Mantener la seguridad de tu dispositivo', 'El uso apropiado de la aplicación con tus hijos', 'Supervisar el contenido generado por la IA', 'No usar el servicio para fines ilegales o no autorizados'],
+    t4: '4. Suscripción Premium',
+    p4a: 'ChartKids ofrece una suscripción Premium con funciones adicionales. Al suscribirte:',
+    list4: ['Aceptas el precio indicado en el momento de la compra', 'La suscripción se renueva automáticamente hasta que la canceles', 'Puedes cancelar en cualquier momento a través de PayPal', 'No se ofrecen reembolsos por períodos parciales'],
+    p4b: 'Los pagos se procesan de forma segura a través de PayPal. ChartKids no almacena información de pago.',
+    t5: '5. Contenido Generado por IA',
+    p5: 'El contenido generado por la inteligencia artificial es solo una sugerencia. Los padres deben revisar y aprobar todo el contenido antes de usarlo con sus hijos. ChartKids no se hace responsable de la idoneidad del contenido generado para cada niño individual.',
+    t6: '6. Propiedad Intelectual',
+    p6: 'Todo el contenido, diseño y código de ChartKids está protegido por derechos de autor. Los charts que creas son tuyos, pero la plataforma y sus elementos visuales pertenecen a ChartKids.',
+    t7: '7. Limitación de Responsabilidad',
+    p7: 'ChartKids se proporciona "tal cual" sin garantías de ningún tipo. No somos responsables por daños indirectos, incidentales o consecuentes que surjan del uso del servicio.',
+    t8: '8. Modificaciones',
+    p8: 'Nos reservamos el derecho de modificar estos términos en cualquier momento. Los cambios entrarán en vigor inmediatamente después de su publicación. El uso continuado del servicio constituye la aceptación de los nuevos términos.',
+    t9: '9. Contacto',
+    p9: 'Para preguntas sobre estos Términos de Servicio, contáctanos en:'
+  },
+  en: {
+    backText: 'Back to ChartKids',
+    pageTitle: 'Terms of Service',
+    updateDate: 'Last updated: May 2025',
+    t1: '1. Acceptance of Terms',
+    p1: 'By accessing and using ChartKids ("the Service"), you agree to be bound by these Terms of Service. If you disagree with any part of these terms, you may not access the Service.',
+    t2: '2. Description of Service',
+    p2: 'ChartKids is a web application that uses artificial intelligence to help parents create personalized activity charts for their children. The service includes:',
+    list2: ['AI-powered activity chart generation', 'Children\'s progress tracking', 'Themes and visual customization', 'Optional Premium features'],
+    t3: '3. Accounts and Responsibilities',
+    p3: 'ChartKids data is stored locally on your device. You are responsible for:',
+    list3: ['Maintaining the security of your device', 'Appropriate use of the application with your children', 'Supervising AI-generated content', 'Not using the service for illegal or unauthorized purposes'],
+    t4: '4. Premium Subscription',
+    p4a: 'ChartKids offers a Premium subscription with additional features. By subscribing:',
+    list4: ['You accept the price shown at the time of purchase', 'The subscription renews automatically until you cancel', 'You can cancel anytime through PayPal', 'No refunds are offered for partial periods'],
+    p4b: 'Payments are processed securely through PayPal. ChartKids does not store payment information.',
+    t5: '5. AI-Generated Content',
+    p5: 'Content generated by artificial intelligence is only a suggestion. Parents should review and approve all content before using it with their children. ChartKids is not responsible for the suitability of generated content for each individual child.',
+    t6: '6. Intellectual Property',
+    p6: 'All content, design, and code of ChartKids is protected by copyright. The charts you create are yours, but the platform and its visual elements belong to ChartKids.',
+    t7: '7. Limitation of Liability',
+    p7: 'ChartKids is provided "as is" without warranties of any kind. We are not responsible for indirect, incidental, or consequential damages arising from the use of the service.',
+    t8: '8. Modifications',
+    p8: 'We reserve the right to modify these terms at any time. Changes will take effect immediately upon posting. Continued use of the service constitutes acceptance of the new terms.',
+    t9: '9. Contact',
+    p9: 'For questions about these Terms of Service, contact us at:'
+  }
+};
+
+let currentLang = localStorage.getItem('chartkids_lang') || 'es';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('chartkids_lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+
+  const t = translations[lang];
+  document.getElementById('backText').textContent = t.backText;
+  document.getElementById('pageTitle').textContent = t.pageTitle;
+  document.getElementById('updateDate').textContent = t.updateDate;
+
+  ['t1','t2','t3','t4','t5','t6','t7','t8','t9'].forEach(id => {
+    document.getElementById(id).textContent = t[id];
+  });
+  ['p1','p2','p3','p4a','p4b','p5','p6','p7','p8'].forEach(id => {
+    document.getElementById(id).textContent = t[id];
+  });
+  document.getElementById('p9').innerHTML = t.p9 + ' <a href="support.html" style="color: var(--accent);">' + (lang === 'es' ? 'Página de Soporte' : 'Support Page') + '</a>';
+
+  ['list2','list3','list4'].forEach(id => {
+    document.getElementById(id).innerHTML = t[id].map(item => `<li>${item}</li>`).join('');
+  });
+}
+
+// Initialize
+setLang(currentLang);
+</script>
+</body>
+</html>

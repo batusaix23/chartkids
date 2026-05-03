@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#7c3aed">
+<meta name="description" content="Soporte y Contacto de ChartKids">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+<title>Soporte - ChartKids</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f0f1a;
+  --surface: #1a1a2e;
+  --surface2: #232340;
+  --border: #2e2e50;
+  --accent: #7c3aed;
+  --accent2: #06b6d4;
+  --green: #22c55e;
+  --yellow: #fbbf24;
+  --pink: #f472b6;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --radius: 16px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.7; }
+.container { max-width: 900px; margin: 0 auto; padding: 40px 20px 80px; }
+.back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--accent); text-decoration: none; font-weight: 600; margin-bottom: 30px; transition: opacity 0.2s; }
+.back-link:hover { opacity: 0.8; }
+h1 { font-family: 'Fredoka One', cursive; font-size: 2.5rem; margin-bottom: 10px; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.subtitle { color: var(--muted); font-size: 1.1rem; margin-bottom: 40px; }
+.section { background: var(--surface); border-radius: var(--radius); padding: 30px; margin-bottom: 24px; border: 1px solid var(--border); }
+.section h2 { font-size: 1.3rem; margin-bottom: 16px; color: var(--accent2); display: flex; align-items: center; gap: 10px; }
+.section p { color: var(--muted); margin-bottom: 12px; }
+
+/* FAQ Accordion */
+.faq-item { border-bottom: 1px solid var(--border); padding: 16px 0; }
+.faq-item:last-child { border-bottom: none; }
+.faq-question { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 700; color: var(--text); transition: color 0.2s; }
+.faq-question:hover { color: var(--accent); }
+.faq-question::after { content: '+'; font-size: 1.5rem; color: var(--accent); transition: transform 0.3s; }
+.faq-item.active .faq-question::after { transform: rotate(45deg); }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; color: var(--muted); }
+.faq-item.active .faq-answer { max-height: 200px; padding-top: 12px; }
+
+/* Contact Cards */
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+.contact-card { background: var(--surface2); border-radius: 12px; padding: 24px; text-align: center; border: 1px solid var(--border); transition: all 0.3s; }
+.contact-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.contact-icon { font-size: 2.5rem; margin-bottom: 12px; }
+.contact-card h3 { font-size: 1rem; margin-bottom: 8px; }
+.contact-card p { font-size: 0.85rem; color: var(--muted); margin-bottom: 12px; }
+.contact-card a { display: inline-block; background: var(--accent); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; }
+.contact-card a:hover { background: var(--accent2); }
+
+/* Quick Actions */
+.quick-actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 20px; }
+.quick-action { background: var(--surface2); border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px; cursor: pointer; border: 1px solid var(--border); transition: all 0.2s; }
+.quick-action:hover { border-color: var(--accent); background: var(--surface); }
+.quick-action-icon { font-size: 1.8rem; }
+.quick-action-text h4 { font-size: 0.95rem; margin-bottom: 4px; }
+.quick-action-text p { font-size: 0.8rem; color: var(--muted); }
+
+/* Status Badge */
+.status-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--surface2); padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; margin-bottom: 20px; }
+.status-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+.lang-switch { position: fixed; top: 20px; right: 20px; display: flex; gap: 8px; z-index: 100; }
+.lang-btn { background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.2s; }
+.lang-btn:hover, .lang-btn.active { background: var(--accent); border-color: var(--accent); }
+
+/* Form */
+.contact-form { margin-top: 20px; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
+.form-group input, .form-group textarea, .form-group select { width: 100%; padding: 14px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-family: inherit; font-size: 1rem; transition: border-color 0.2s; }
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--accent); }
+.form-group textarea { min-height: 120px; resize: vertical; }
+.submit-btn { background: linear-gradient(135deg, var(--accent), var(--pink)); border: none; color: white; padding: 16px 32px; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; width: 100%; transition: transform 0.2s; }
+.submit-btn:hover { transform: scale(1.02); }
+.form-note { text-align: center; font-size: 0.8rem; color: var(--muted); margin-top: 12px; }
+</style>
+</head>
+<body>
+<div class="lang-switch">
+  <button class="lang-btn active" onclick="setLang('es')">ES</button>
+  <button class="lang-btn" onclick="setLang('en')">EN</button>
+</div>
+
+<div class="container">
+  <a href="index.html" class="back-link">← <span id="backText">Volver a ChartKids</span></a>
+
+  <h1 id="pageTitle">Centro de Soporte</h1>
+  <p class="subtitle" id="subtitle">Estamos aquí para ayudarte</p>
+
+  <div class="status-badge">
+    <span class="status-dot"></span>
+    <span id="statusText">Todos los sistemas operativos</span>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="section">
+    <h2 id="quickTitle">Acciones Rápidas</h2>
+    <div class="quick-actions">
+      <div class="quick-action" onclick="clearCache()">
+        <div class="quick-action-icon">🔄</div>
+        <div class="quick-action-text">
+          <h4 id="qa1Title">Limpiar caché</h4>
+          <p id="qa1Desc">Soluciona problemas de carga</p>
+        </div>
+      </div>
+      <div class="quick-action" onclick="resetApp()">
+        <div class="quick-action-icon">🗑️</div>
+        <div class="quick-action-text">
+          <h4 id="qa2Title">Reiniciar app</h4>
+          <p id="qa2Desc">Borrar todos los datos locales</p>
+        </div>
+      </div>
+      <div class="quick-action" onclick="exportData()">
+        <div class="quick-action-icon">📤</div>
+        <div class="quick-action-text">
+          <h4 id="qa3Title">Exportar datos</h4>
+          <p id="qa3Desc">Descarga tus charts</p>
+        </div>
+      </div>
+      <div class="quick-action" onclick="checkPremium()">
+        <div class="quick-action-icon">👑</div>
+        <div class="quick-action-text">
+          <h4 id="qa4Title">Estado Premium</h4>
+          <p id="qa4Desc">Verificar suscripción</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section">
+    <h2 id="faqTitle">Preguntas Frecuentes</h2>
+    <div id="faqContainer">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">¿Cómo creo un chart?</div>
+        <div class="faq-answer">Ve a la sección "Crear Chart", describe las actividades que quieres para tu hijo, y la IA generará un chart personalizado automáticamente.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">¿Dónde se guardan mis datos?</div>
+        <div class="faq-answer">Todos tus datos se guardan localmente en tu dispositivo usando localStorage del navegador. No enviamos tus charts a ningún servidor.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">¿Cómo cancelo Premium?</div>
+        <div class="faq-answer">Puedes cancelar tu suscripción en cualquier momento desde tu cuenta de PayPal. Ve a Configuración > Pagos > Pagos automáticos.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">¿La app funciona sin internet?</div>
+        <div class="faq-answer">Sí, ChartKids funciona offline para ver y marcar tus charts guardados. Solo necesitas internet para generar nuevos charts con IA.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">¿Cómo protejo la app con PIN?</div>
+        <div class="faq-answer">En la aplicación principal, toca el botón de PIN (🔒) en la barra de navegación para configurar un PIN de 4 dígitos.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Options -->
+  <div class="section">
+    <h2 id="contactTitle">Contacto</h2>
+    <p id="contactDesc">¿No encontraste lo que buscabas? Contáctanos directamente.</p>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon">📧</div>
+        <h3 id="emailTitle">Email</h3>
+        <p id="emailDesc">Respuesta en 24-48 horas</p>
+        <a href="mailto:support@chartkids.app" id="emailBtn">Enviar email</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">💬</div>
+        <h3 id="socialTitle">Redes Sociales</h3>
+        <p id="socialDesc">Síguenos para novedades</p>
+        <a href="#" id="socialBtn">@ChartKidsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Form -->
+  <div class="section">
+    <h2 id="formTitle">Enviar Mensaje</h2>
+    <form class="contact-form" onsubmit="submitForm(event)">
+      <div class="form-group">
+        <label for="contactType" id="typeLabel">Tipo de consulta</label>
+        <select id="contactType">
+          <option value="general" id="optGeneral">Consulta general</option>
+          <option value="bug" id="optBug">Reportar problema</option>
+          <option value="feature" id="optFeature">Sugerir función</option>
+          <option value="billing" id="optBilling">Facturación/Premium</option>
+          <option value="other" id="optOther">Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="contactEmail" id="emailLabel">Tu email</label>
+        <input type="email" id="contactEmail" placeholder="tu@email.com" required>
+      </div>
+      <div class="form-group">
+        <label for="contactMessage" id="messageLabel">Mensaje</label>
+        <textarea id="contactMessage" placeholder="Describe tu consulta..." required></textarea>
+      </div>
+      <button type="submit" class="submit-btn" id="submitBtn">Enviar mensaje</button>
+      <p class="form-note" id="formNote">Responderemos a tu email lo antes posible</p>
+    </form>
+  </div>
+
+  <!-- Legal Links -->
+  <div class="section" style="text-align: center;">
+    <h2 id="legalTitle">Información Legal</h2>
+    <p style="margin-bottom: 20px;">
+      <a href="terms.html" style="color: var(--accent); margin: 0 15px;" id="termsLink">Términos de Servicio</a>
+      <a href="privacy.html" style="color: var(--accent); margin: 0 15px;" id="privacyLink">Política de Privacidad</a>
+    </p>
+    <p style="color: var(--muted); font-size: 0.85rem;" id="copyright">© 2025 ChartKids. Todos los derechos reservados.</p>
+  </div>
+</div>
+
+<script>
+const translations = {
+  es: {
+    backText: 'Volver a ChartKids',
+    pageTitle: 'Centro de Soporte',
+    subtitle: 'Estamos aquí para ayudarte',
+    statusText: 'Todos los sistemas operativos',
+    quickTitle: 'Acciones Rápidas',
+    qa1Title: 'Limpiar caché', qa1Desc: 'Soluciona problemas de carga',
+    qa2Title: 'Reiniciar app', qa2Desc: 'Borrar todos los datos locales',
+    qa3Title: 'Exportar datos', qa3Desc: 'Descarga tus charts',
+    qa4Title: 'Estado Premium', qa4Desc: 'Verificar suscripción',
+    faqTitle: 'Preguntas Frecuentes',
+    faqs: [
+      { q: '¿Cómo creo un chart?', a: 'Ve a la sección "Crear Chart", describe las actividades que quieres para tu hijo, y la IA generará un chart personalizado automáticamente.' },
+      { q: '¿Dónde se guardan mis datos?', a: 'Todos tus datos se guardan localmente en tu dispositivo usando localStorage del navegador. No enviamos tus charts a ningún servidor.' },
+      { q: '¿Cómo cancelo Premium?', a: 'Puedes cancelar tu suscripción en cualquier momento desde tu cuenta de PayPal. Ve a Configuración > Pagos > Pagos automáticos.' },
+      { q: '¿La app funciona sin internet?', a: 'Sí, ChartKids funciona offline para ver y marcar tus charts guardados. Solo necesitas internet para generar nuevos charts con IA.' },
+      { q: '¿Cómo protejo la app con PIN?', a: 'En la aplicación principal, toca el botón de PIN (🔒) en la barra de navegación para configurar un PIN de 4 dígitos.' }
+    ],
+    contactTitle: 'Contacto',
+    contactDesc: '¿No encontraste lo que buscabas? Contáctanos directamente.',
+    emailTitle: 'Email', emailDesc: 'Respuesta en 24-48 horas', emailBtn: 'Enviar email',
+    socialTitle: 'Redes Sociales', socialDesc: 'Síguenos para novedades', socialBtn: '@ChartKidsApp',
+    formTitle: 'Enviar Mensaje',
+    typeLabel: 'Tipo de consulta',
+    optGeneral: 'Consulta general', optBug: 'Reportar problema', optFeature: 'Sugerir función', optBilling: 'Facturación/Premium', optOther: 'Otro',
+    emailLabel: 'Tu email', messageLabel: 'Mensaje',
+    submitBtn: 'Enviar mensaje',
+    formNote: 'Responderemos a tu email lo antes posible',
+    legalTitle: 'Información Legal',
+    termsLink: 'Términos de Servicio', privacyLink: 'Política de Privacidad',
+    copyright: '© 2025 ChartKids. Todos los derechos reservados.',
+    cacheCleared: '✓ Caché limpiado', resetConfirm: '¿Seguro que quieres borrar todos los datos?', resetDone: '✓ Datos borrados',
+    exportDone: '✓ Datos exportados', premiumActive: '✓ Premium activo', premiumInactive: 'Premium no activo',
+    messageSent: '✓ Mensaje enviado. ¡Gracias!'
+  },
+  en: {
+    backText: 'Back to ChartKids',
+    pageTitle: 'Support Center',
+    subtitle: "We're here to help",
+    statusText: 'All systems operational',
+    quickTitle: 'Quick Actions',
+    qa1Title: 'Clear cache', qa1Desc: 'Fix loading issues',
+    qa2Title: 'Reset app', qa2Desc: 'Delete all local data',
+    qa3Title: 'Export data', qa3Desc: 'Download your charts',
+    qa4Title: 'Premium status', qa4Desc: 'Check subscription',
+    faqTitle: 'Frequently Asked Questions',
+    faqs: [
+      { q: 'How do I create a chart?', a: 'Go to "Create Chart", describe the activities you want for your child, and the AI will automatically generate a personalized chart.' },
+      { q: 'Where is my data stored?', a: "All your data is stored locally on your device using browser localStorage. We don't send your charts to any server." },
+      { q: 'How do I cancel Premium?', a: 'You can cancel your subscription anytime from your PayPal account. Go to Settings > Payments > Automatic payments.' },
+      { q: 'Does the app work offline?', a: 'Yes, ChartKids works offline to view and mark your saved charts. You only need internet to generate new charts with AI.' },
+      { q: 'How do I protect the app with PIN?', a: 'In the main app, tap the PIN button (🔒) in the navigation bar to set up a 4-digit PIN.' }
+    ],
+    contactTitle: 'Contact',
+    contactDesc: "Didn't find what you were looking for? Contact us directly.",
+    emailTitle: 'Email', emailDesc: 'Response in 24-48 hours', emailBtn: 'Send email',
+    socialTitle: 'Social Media', socialDesc: 'Follow us for updates', socialBtn: '@ChartKidsApp',
+    formTitle: 'Send Message',
+    typeLabel: 'Query type',
+    optGeneral: 'General inquiry', optBug: 'Report bug', optFeature: 'Suggest feature', optBilling: 'Billing/Premium', optOther: 'Other',
+    emailLabel: 'Your email', messageLabel: 'Message',
+    submitBtn: 'Send message',
+    formNote: "We'll respond to your email as soon as possible",
+    legalTitle: 'Legal Information',
+    termsLink: 'Terms of Service', privacyLink: 'Privacy Policy',
+    copyright: '© 2025 ChartKids. All rights reserved.',
+    cacheCleared: '✓ Cache cleared', resetConfirm: 'Are you sure you want to delete all data?', resetDone: '✓ Data deleted',
+    exportDone: '✓ Data exported', premiumActive: '✓ Premium active', premiumInactive: 'Premium not active',
+    messageSent: '✓ Message sent. Thank you!'
+  }
+};
+
+let currentLang = localStorage.getItem('chartkids_lang') || 'es';
+let t = translations[currentLang];
+
+function setLang(lang) {
+  currentLang = lang;
+  t = translations[lang];
+  localStorage.setItem('chartkids_lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+
+  // Update text content
+  const ids = ['backText','pageTitle','subtitle','statusText','quickTitle',
+    'qa1Title','qa1Desc','qa2Title','qa2Desc','qa3Title','qa3Desc','qa4Title','qa4Desc',
+    'faqTitle','contactTitle','contactDesc','emailTitle','emailDesc','emailBtn',
+    'socialTitle','socialDesc','socialBtn','formTitle','typeLabel',
+    'optGeneral','optBug','optFeature','optBilling','optOther',
+    'emailLabel','messageLabel','submitBtn','formNote','legalTitle',
+    'termsLink','privacyLink','copyright'];
+
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = t[id];
+  });
+
+  // Update FAQs
+  const faqContainer = document.getElementById('faqContainer');
+  faqContainer.innerHTML = t.faqs.map(faq => `
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">${faq.q}</div>
+      <div class="faq-answer">${faq.a}</div>
+    </div>
+  `).join('');
+}
+
+function toggleFaq(el) {
+  el.parentElement.classList.toggle('active');
+}
+
+function showToast(msg) {
+  const toast = document.createElement('div');
+  toast.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#22c55e;color:#000;padding:12px 24px;border-radius:10px;font-weight:700;z-index:9999;animation:fadeIn 0.3s';
+  toast.textContent = msg;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 3000);
+}
+
+function clearCache() {
+  if ('caches' in window) {
+    caches.keys().then(names => names.forEach(name => caches.delete(name)));
+  }
+  showToast(t.cacheCleared);
+}
+
+function resetApp() {
+  if (confirm(t.resetConfirm)) {
+    localStorage.clear();
+    showToast(t.resetDone);
+    setTimeout(() => location.reload(), 1000);
+  }
+}
+
+function exportData() {
+  const data = {};
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key.startsWith('chartkids')) {
+      data[key] = localStorage.getItem(key);
+    }
+  }
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'chartkids-backup.json';
+  a.click();
+  showToast(t.exportDone);
+}
+
+function checkPremium() {
+  const isPremium = localStorage.getItem('chartkids_premium') === 'true';
+  showToast(isPremium ? t.premiumActive : t.premiumInactive);
+}
+
+function submitForm(e) {
+  e.preventDefault();
+  const type = document.getElementById('contactType').value;
+  const email = document.getElementById('contactEmail').value;
+  const message = document.getElementById('contactMessage').value;
+
+  // Create mailto link
+  const subject = encodeURIComponent(`ChartKids Support: ${type}`);
+  const body = encodeURIComponent(`Email: ${email}\n\nMessage:\n${message}`);
+  window.location.href = `mailto:support@chartkids.app?subject=${subject}&body=${body}`;
+
+  showToast(t.messageSent);
+  e.target.reset();
+}
+
+// Initialize
+setLang(currentLang);
+</script>
+</body>
+</html>
