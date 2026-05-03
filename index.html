@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1185,7 +1185,21 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
 const API_URL = 'https://chartkids-api.jrau2303.workers.dev';
 
 // ─── i18n ────────────────────────────────────────────────
-let lang = 'es';
+// Default to English, but detect user's browser language
+function detectUserLanguage() {
+  // Check if user has a saved preference
+  const saved = localStorage.getItem('chartkids_lang');
+  if (saved) return saved;
+
+  // Detect browser language
+  const browserLang = navigator.language || navigator.userLanguage || 'en';
+  // If Spanish (es, es-ES, es-MX, es-AR, etc.), use Spanish
+  if (browserLang.startsWith('es')) return 'es';
+  // Default to English
+  return 'en';
+}
+
+let lang = detectUserLanguage();
 
 const T = {
   es: {
@@ -1476,6 +1490,10 @@ function t(key, ...args) {
 // ─── Language Switch ──────────────────────────────────────
 function setLang(l) {
   lang = l;
+  // Save preference to localStorage
+  localStorage.setItem('chartkids_lang', l);
+  // Update HTML lang attribute
+  document.documentElement.lang = l;
   document.getElementById('btnES').classList.toggle('active', l === 'es');
   document.getElementById('btnEN').classList.toggle('active', l === 'en');
   applyTranslations();
@@ -3204,6 +3222,10 @@ function getEventTheme() {
 }
 
 // ─── Init ────────────────────────────────────────────────
+// Set initial language UI state
+document.documentElement.lang = lang;
+document.getElementById('btnES').classList.toggle('active', lang === 'es');
+document.getElementById('btnEN').classList.toggle('active', lang === 'en');
 applyTranslations();
 resetChat();
 loadProgress();

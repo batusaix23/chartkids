@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -176,11 +176,19 @@ const translations = {
   }
 };
 
-let currentLang = localStorage.getItem('chartkids_lang') || 'es';
+// Detect user language (same logic as main app)
+function detectUserLanguage() {
+  const saved = localStorage.getItem('chartkids_lang');
+  if (saved) return saved;
+  const browserLang = navigator.language || navigator.userLanguage || 'en';
+  return browserLang.startsWith('es') ? 'es' : 'en';
+}
+let currentLang = detectUserLanguage();
 
 function setLang(lang) {
   currentLang = lang;
   localStorage.setItem('chartkids_lang', lang);
+  document.documentElement.lang = lang;
   document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
   document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
 
