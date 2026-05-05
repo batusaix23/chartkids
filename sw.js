@@ -1,11 +1,12 @@
 // Service Worker para ChartKids - Permite funcionar offline
-const CACHE_NAME = 'chartkids-v31';
+const CACHE_NAME = 'chartkids-v32';
 const urlsToCache = [
   '/chartkids/',
   '/chartkids/index.html',
   '/chartkids/terms.html',
   '/chartkids/privacy.html',
   '/chartkids/support.html',
+  '/chartkids/admin.html',
   'https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap',
   'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js'
 ];
