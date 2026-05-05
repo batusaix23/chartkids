@@ -3260,8 +3260,7 @@ function initPayPalButton() {
   const container = document.getElementById('paypal-button-container');
   container.innerHTML = '';
 
-  // IMPORTANTE: Reemplaza 'P-XXXXX' con tu Plan ID de PayPal Subscription
-  // Crea un plan en: https://developer.paypal.com/dashboard/applications/subscriptions
+  // Plan ID de PayPal Subscription
   paypal.Buttons({
     style: {
       shape: 'pill',
@@ -3271,7 +3270,7 @@ function initPayPalButton() {
     },
     createSubscription: function(data, actions) {
       return actions.subscription.create({
-        plan_id: 'P-XXXXX' // Reemplaza con tu Plan ID real
+        plan_id: 'P-FZ9MSHLYCWXE6'
       });
     },
     onApprove: function(data, actions) {
