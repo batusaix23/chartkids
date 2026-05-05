@@ -165,6 +165,65 @@ button::-moz-focus-inner { border: 0; }
 *:focus { outline: none; }
 *:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
+/* Install Banner */
+.install-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  z-index: 9999;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+  animation: slideUp 0.4s ease;
+  flex-wrap: wrap;
+}
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+.install-banner-icon { font-size: 1.5rem; }
+.install-banner-text { font-weight: 700; font-size: 0.95rem; }
+.install-banner-text span { display: block; font-size: 0.8rem; font-weight: 600; opacity: 0.9; }
+.install-banner-btn {
+  background: white;
+  color: var(--accent);
+  border: none;
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.install-banner-btn:hover { transform: scale(1.05); }
+.install-banner-close {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.install-banner-close:hover { background: rgba(255,255,255,0.3); }
+@media (max-width: 500px) {
+  .install-banner { padding: 12px 40px 12px 16px; gap: 10px; }
+  .install-banner-text { font-size: 0.85rem; flex: 1; }
+  .install-banner-text span { font-size: 0.75rem; }
+  .install-banner-btn { padding: 8px 16px; font-size: 0.8rem; }
+}
+
 .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
 .panel-header { background: var(--surface2); padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
 .panel-header .icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
@@ -1230,6 +1289,17 @@ button::-moz-focus-inner { border: 0; }
       </div>
     </div>
   </div>
+</div>
+
+<!-- Install Banner (shown automatically) -->
+<div class="install-banner" id="installBanner" style="display:none">
+  <span class="install-banner-icon">📲</span>
+  <div class="install-banner-text">
+    <span id="installBannerTitle">¡Instala ChartKids!</span>
+    <span id="installBannerDesc">Úsalo sin internet y accede más rápido</span>
+  </div>
+  <button class="install-banner-btn" id="installBannerBtn" onclick="installFromBanner()">Instalar</button>
+  <button class="install-banner-close" onclick="dismissInstallBanner()" aria-label="Cerrar">&times;</button>
 </div>
 
 <script>
@@ -3360,15 +3430,21 @@ window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
   document.getElementById('installBtn').style.display = 'block';
+  // Also show the banner if not dismissed
+  setTimeout(showInstallBanner, 2000);
 });
 
 function installApp() {
+  // Hide banner if visible
+  document.getElementById('installBanner').style.display = 'none';
+
   // Chrome/Edge with native prompt
   if (deferredPrompt) {
     deferredPrompt.prompt();
     deferredPrompt.userChoice.then((choiceResult) => {
       if (choiceResult.outcome === 'accepted') {
         document.getElementById('installBtn').style.display = 'none';
+        localStorage.setItem('chartkids_installed', 'true');
         showToast(lang === 'es' ? '✅ App instalada!' : '✅ App installed!');
       }
       deferredPrompt = null;
@@ -3435,11 +3511,80 @@ function showInstallInstructions() {
 // Hide button if already installed
 window.addEventListener('appinstalled', () => {
   document.getElementById('installBtn').style.display = 'none';
+  document.getElementById('installBanner').style.display = 'none';
+  localStorage.setItem('chartkids_installed', 'true');
   deferredPrompt = null;
 });
 
+// ─── Install Banner Functions ─────────────────────────────
+function showInstallBanner() {
+  // Don't show if already dismissed, installed, or in standalone mode
+  if (localStorage.getItem('chartkids_banner_dismissed')) return;
+  if (localStorage.getItem('chartkids_installed')) return;
+  if (browserType === 'installed') return;
+
+  const banner = document.getElementById('installBanner');
+  const isES = lang === 'es';
+
+  // Update banner text
+  document.getElementById('installBannerTitle').textContent = isES
+    ? '¡Instala ChartKids!'
+    : 'Install ChartKids!';
+  document.getElementById('installBannerDesc').textContent = isES
+    ? 'Úsalo sin internet y accede más rápido'
+    : 'Use offline and access faster';
+  document.getElementById('installBannerBtn').textContent = isES
+    ? 'Instalar'
+    : 'Install';
+
+  banner.style.display = 'flex';
+}
+
+function installFromBanner() {
+  // Hide banner
+  document.getElementById('installBanner').style.display = 'none';
+
+  // Use native prompt if available
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        document.getElementById('installBtn').style.display = 'none';
+        localStorage.setItem('chartkids_installed', 'true');
+        showToast(lang === 'es' ? '✅ App instalada!' : '✅ App installed!');
+      }
+      deferredPrompt = null;
+    });
+  } else {
+    // Show manual instructions
+    showInstallInstructions();
+  }
+}
+
+function dismissInstallBanner() {
+  document.getElementById('installBanner').style.display = 'none';
+  // Remember dismissal for 7 days
+  localStorage.setItem('chartkids_banner_dismissed', Date.now().toString());
+}
+
+// Check if banner dismissal has expired (7 days)
+function checkBannerDismissal() {
+  const dismissed = localStorage.getItem('chartkids_banner_dismissed');
+  if (dismissed) {
+    const daysSince = (Date.now() - parseInt(dismissed)) / (1000 * 60 * 60 * 24);
+    if (daysSince > 7) {
+      localStorage.removeItem('chartkids_banner_dismissed');
+    }
+  }
+}
+
 // Initialize on load
-setTimeout(initInstallButton, 1000);
+setTimeout(() => {
+  initInstallButton();
+  checkBannerDismissal();
+  // Show banner after 2 seconds
+  setTimeout(showInstallBanner, 2000);
+}, 1000);
 </script>
 </body>
 </html>
