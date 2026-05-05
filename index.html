@@ -1604,6 +1604,11 @@ function applyTranslations() {
   document.getElementById('footerSecure').textContent = t('footerSecure');
   document.getElementById('footerPwa').textContent = t('footerPwa');
   document.getElementById('footerAi').textContent = t('footerAi');
+  // Update install button text
+  const installBtn = document.getElementById('installBtn');
+  if (installBtn && installBtn.style.display !== 'none') {
+    installBtn.innerHTML = `📲 ${lang === 'es' ? 'Instalar' : 'Install'}`;
+  }
 }
 
 function renderQuickPrompts() {
@@ -3316,32 +3321,125 @@ if ('serviceWorker' in navigator) {
 
 // ─── PWA Install Prompt ──────────────────────────────────
 let deferredPrompt;
+let browserType = 'unknown';
+
+// Detect browser and platform
+function detectBrowser() {
+  const ua = navigator.userAgent;
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+
+  if (isStandalone) return 'installed';
+  if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) return 'ios';
+  if (/Firefox/.test(ua)) return 'firefox';
+  if (/Edg/.test(ua)) return 'edge';
+  if (/Chrome/.test(ua)) return 'chrome';
+  if (/Safari/.test(ua)) return 'safari';
+  return 'other';
+}
+
+// Initialize install button based on browser
+function initInstallButton() {
+  browserType = detectBrowser();
+  const btn = document.getElementById('installBtn');
+
+  // Already installed as PWA
+  if (browserType === 'installed') {
+    btn.style.display = 'none';
+    return;
+  }
+
+  // Show install button for all browsers (except when installed)
+  btn.style.display = 'block';
+
+  // Update button text
+  const text = lang === 'es' ? 'Instalar' : 'Install';
+  btn.innerHTML = `📲 ${text}`;
+}
 
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
-  // Mostrar botón de instalar
   document.getElementById('installBtn').style.display = 'block';
 });
 
 function installApp() {
-  if (!deferredPrompt) return;
+  // Chrome/Edge with native prompt
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        document.getElementById('installBtn').style.display = 'none';
+        showToast(lang === 'es' ? '✅ App instalada!' : '✅ App installed!');
+      }
+      deferredPrompt = null;
+    });
+    return;
+  }
 
-  deferredPrompt.prompt();
-  deferredPrompt.userChoice.then((choiceResult) => {
-    if (choiceResult.outcome === 'accepted') {
-      document.getElementById('installBtn').style.display = 'none';
-      showToast(lang === 'es' ? '✅ App instalada!' : '✅ App installed!');
-    }
-    deferredPrompt = null;
-  });
+  // Show manual install instructions for other browsers
+  showInstallInstructions();
 }
 
-// Ocultar botón si ya está instalada
+function showInstallInstructions() {
+  const isES = lang === 'es';
+  let title, steps;
+
+  if (browserType === 'ios') {
+    title = isES ? 'Instalar en iPhone/iPad' : 'Install on iPhone/iPad';
+    steps = isES
+      ? ['1. Toca el botón <b>Compartir</b> (📤) en Safari', '2. Desplázate y toca <b>"Añadir a pantalla de inicio"</b>', '3. Toca <b>"Añadir"</b> en la esquina superior derecha']
+      : ['1. Tap the <b>Share</b> button (📤) in Safari', '2. Scroll and tap <b>"Add to Home Screen"</b>', '3. Tap <b>"Add"</b> in the top right corner'];
+  } else if (browserType === 'firefox') {
+    title = isES ? 'Instalar en Firefox' : 'Install on Firefox';
+    steps = isES
+      ? ['1. Toca el menú <b>⋮</b> (tres puntos)', '2. Selecciona <b>"Instalar"</b> o <b>"Añadir a pantalla de inicio"</b>', '3. Confirma la instalación']
+      : ['1. Tap the <b>⋮</b> menu (three dots)', '2. Select <b>"Install"</b> or <b>"Add to Home Screen"</b>', '3. Confirm the installation'];
+  } else if (browserType === 'safari') {
+    title = isES ? 'Instalar en Safari' : 'Install on Safari';
+    steps = isES
+      ? ['1. Toca el botón <b>Compartir</b> (📤)', '2. Selecciona <b>"Añadir a pantalla de inicio"</b>', '3. Toca <b>"Añadir"</b>']
+      : ['1. Tap the <b>Share</b> button (📤)', '2. Select <b>"Add to Home Screen"</b>', '3. Tap <b>"Add"</b>'];
+  } else {
+    title = isES ? 'Instalar App' : 'Install App';
+    steps = isES
+      ? ['1. Abre el menú del navegador', '2. Busca <b>"Instalar app"</b> o <b>"Añadir a inicio"</b>', '3. Confirma la instalación']
+      : ['1. Open the browser menu', '2. Look for <b>"Install app"</b> or <b>"Add to home"</b>', '3. Confirm the installation'];
+  }
+
+  // Create modal
+  const modal = document.createElement('div');
+  modal.className = 'modal-overlay';
+  modal.style.display = 'flex';
+  modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+
+  modal.innerHTML = `
+    <div class="modal" onclick="event.stopPropagation()" style="max-width:400px">
+      <div class="modal-header">
+        <h3>📲 ${title}</h3>
+        <button class="modal-close" onclick="this.closest('.modal-overlay').remove()">&times;</button>
+      </div>
+      <div class="modal-body" style="text-align:left">
+        <div style="display:flex;flex-direction:column;gap:16px;padding:10px 0">
+          ${steps.map(s => `<div style="font-size:0.95rem;line-height:1.5">${s}</div>`).join('')}
+        </div>
+        <p style="text-align:center;margin-top:20px;color:var(--muted);font-size:0.85rem">
+          ${isES ? '¡La app funcionará sin conexión!' : 'The app will work offline!'}
+        </p>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+}
+
+// Hide button if already installed
 window.addEventListener('appinstalled', () => {
   document.getElementById('installBtn').style.display = 'none';
   deferredPrompt = null;
 });
+
+// Initialize on load
+setTimeout(initInstallButton, 1000);
 </script>
 </body>
 </html>
