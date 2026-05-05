@@ -13,7 +13,7 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3864436143903580" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
 <!-- PayPal SDK -->
-<script src="https://www.paypal.com/sdk/js?client-id=Aa0khjubdaZqeyeVfDubi3n1povc_yU8kS5Ell6VEqMLYToNo45EijWzRsri32iJoVPWDtX4AWqDZYdB&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=Aa0khjubdaZqeyeVfDubi3n1povc_yU8kS5Ell6VEqMLYToNo45EijWzRsri32iJoVPWDtX4AWqDZYdB&vault=true&intent=subscription&currency=USD" data-sdk-integration-source="button-factory" onerror="console.error('PayPal SDK failed to load')"></script>
 <style>
 :root {
   --bg: #0f0f1a;
@@ -3249,47 +3249,67 @@ function renderPremiumFeatures() {
 
 // PayPal Integration
 let paypalButtonRendered = false;
+let paypalRetries = 0;
 
 function initPayPalButton() {
   if (paypalButtonRendered) return;
+
+  const container = document.getElementById('paypal-button-container');
+
+  // Check if PayPal SDK is loaded
   if (typeof paypal === 'undefined') {
-    console.log('PayPal SDK not loaded yet');
+    paypalRetries++;
+    if (paypalRetries < 5) {
+      // Retry after 1 second
+      container.innerHTML = `<p style="color:var(--muted);font-size:0.85rem;text-align:center">${lang === 'es' ? 'Cargando PayPal...' : 'Loading PayPal...'}</p>`;
+      setTimeout(initPayPalButton, 1000);
+    } else {
+      // Show error after 5 retries
+      container.innerHTML = `<p style="color:#ef4444;font-size:0.85rem;text-align:center">${lang === 'es' ? 'PayPal no disponible. Usa el modo demo.' : 'PayPal unavailable. Use demo mode.'}</p>`;
+    }
     return;
   }
 
-  const container = document.getElementById('paypal-button-container');
   container.innerHTML = '';
 
-  // Plan ID de PayPal Subscription
-  paypal.Buttons({
-    style: {
-      shape: 'pill',
-      color: 'gold',
-      layout: 'vertical',
-      label: 'subscribe'
-    },
-    createSubscription: function(data, actions) {
-      return actions.subscription.create({
-        plan_id: 'P-FZ9MSHLYCWXE6'
-      });
-    },
-    onApprove: function(data, actions) {
-      // Subscription approved
-      localStorage.setItem('chartkids_premium', 'true');
-      localStorage.setItem('chartkids_subscription_id', data.subscriptionID);
-      isPremiumUser = true;
-      updatePremiumUI();
-      closePremiumModal();
-      showToast(t('paypalSuccess'));
-      showConfetti();
-    },
-    onError: function(err) {
-      console.error('PayPal error:', err);
-      showToast(t('paypalError'));
-    }
-  }).render('#paypal-button-container');
+  try {
+    // Plan ID de PayPal Subscription
+    paypal.Buttons({
+      style: {
+        shape: 'pill',
+        color: 'gold',
+        layout: 'vertical',
+        label: 'subscribe'
+      },
+      createSubscription: function(data, actions) {
+        return actions.subscription.create({
+          plan_id: 'P-FZ9MSHLYCWXE6'
+        });
+      },
+      onApprove: function(data, actions) {
+        // Subscription approved
+        localStorage.setItem('chartkids_premium', 'true');
+        localStorage.setItem('chartkids_subscription_id', data.subscriptionID);
+        isPremiumUser = true;
+        updatePremiumUI();
+        closePremiumModal();
+        showToast(t('paypalSuccess'));
+        showConfetti();
+      },
+      onError: function(err) {
+        console.error('PayPal error:', err);
+        showToast(t('paypalError'));
+      }
+    }).render('#paypal-button-container').catch(function(err) {
+      console.error('PayPal render error:', err);
+      container.innerHTML = `<p style="color:#ef4444;font-size:0.85rem;text-align:center">${lang === 'es' ? 'Error al cargar PayPal' : 'Error loading PayPal'}</p>`;
+    });
 
-  paypalButtonRendered = true;
+    paypalButtonRendered = true;
+  } catch (err) {
+    console.error('PayPal init error:', err);
+    container.innerHTML = `<p style="color:#ef4444;font-size:0.85rem;text-align:center">${lang === 'es' ? 'Error de PayPal' : 'PayPal error'}</p>`;
+  }
 }
 
 function activateDemoPremium() {
