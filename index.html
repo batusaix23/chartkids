@@ -141,7 +141,7 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
   .event-banner { padding: 10px 14px; margin-bottom: 16px; flex-wrap: wrap; gap: 8px; }
   .event-text { font-size: 0.85rem; }
   .event-btn { padding: 6px 12px; font-size: 0.75rem; }
-  .ad-container { margin: 16px 0; }
+  .ad-container { display: none; }
   .templates-toggle { padding: 12px 16px; font-size: 0.85rem; }
 }
 
@@ -290,30 +290,25 @@ button::-moz-focus-inner { border: 0; }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
 
-/* AdSense Containers */
+/* AdSense Containers - Hidden until ad loads */
 .ad-container {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: transparent;
+  border: none;
   border-radius: var(--radius);
-  padding: 10px;
-  margin: 20px 0;
+  padding: 0;
+  margin: 0;
   text-align: center;
-  min-height: 90px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-height: 0;
   overflow: hidden;
 }
-.ad-container.ad-top { margin-top: 0; }
-.ad-container.ad-bottom { margin-bottom: 0; }
-.ad-label {
-  font-size: 0.65rem;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  opacity: 0.5;
-}
+.ad-container.ad-top { margin-bottom: 20px; }
+.ad-container.ad-bottom { margin-top: 20px; }
+.ad-container:empty { display: none; }
+.ad-container ins.adsbygoogle { background: transparent; }
+.ad-container ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }
 @media print { .ad-container { display: none !important; } }
+/* Hide ads on very small screens */
+@media (max-width: 400px) { .ad-container { display: none; } }
 
 /* Charts Manager Modal */
 .charts-btn {
