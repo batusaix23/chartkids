@@ -1,16 +1,58 @@
 {
-  "name": "ChartKids - Activity Charts",
+  "name": "ChartKids - AI Activity Charts for Kids",
   "short_name": "ChartKids",
-  "description": "Crea charts de actividades personalizados para tus hijos con IA",
-  "start_url": "/chartkids/",
+  "description": "Create personalized activity and reward charts for your children with AI. Track chores, homework, and behavior. Free and works offline!",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#0f0f1a",
   "theme_color": "#7c3aed",
+  "lang": "en",
+  "categories": ["education", "kids", "lifestyle", "productivity"],
   "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
     {
       "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>",
       "sizes": "any",
       "type": "image/svg+xml"
     }
-  ]
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot-1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "label": "ChartKids AI Assistant"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Create New Chart",
+      "short_name": "New Chart",
+      "description": "Start creating a new activity chart",
+      "url": "/?action=new",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "My Charts",
+      "short_name": "Charts",
+      "description": "View your saved charts",
+      "url": "/?action=charts",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
 }

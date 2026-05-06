@@ -1,0 +1,17 @@
+# ChartKids Robots.txt
+# https://www.chartkids.com
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.chartkids.com/sitemap.xml
+
+# Disallow admin and private pages
+Disallow: /admin.html
+
+# Allow search engines to crawl everything else
+Allow: /index.html
+Allow: /terms.html
+Allow: /privacy.html
+Allow: /support.html
