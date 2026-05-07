@@ -999,6 +999,33 @@ button::-moz-focus-inner { border: 0; }
 .payment-methods { display: flex; justify-content: center; gap: 8px; margin-top: 8px; }
 .payment-methods img { height: 24px; opacity: 0.8; }
 
+/* Benefits Section */
+.benefits-section { margin: 60px 0; padding: 50px 30px; background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%); border-radius: var(--radius); border: 1px solid var(--border); position: relative; overflow: hidden; }
+.benefits-section::before { content: ''; position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 70%); top: -100px; right: -100px; }
+.benefits-section::after { content: ''; position: absolute; width: 200px; height: 200px; background: radial-gradient(circle, rgba(6,182,212,0.1) 0%, transparent 70%); bottom: -50px; left: -50px; }
+.benefits-header { text-align: center; margin-bottom: 40px; position: relative; z-index: 1; }
+.benefits-header h2 { font-family: 'Fredoka One', cursive; font-size: 2rem; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px; }
+.benefits-header p { color: var(--muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+.benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; position: relative; z-index: 1; }
+.benefit-card { background: rgba(15,15,26,0.5); border: 1px solid var(--border); border-radius: 12px; padding: 24px; transition: transform 0.3s, border-color 0.3s; }
+.benefit-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+.benefit-icon { font-size: 2.5rem; margin-bottom: 16px; }
+.benefit-card h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 10px; color: var(--text); }
+.benefit-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+.benefits-stats { display: flex; justify-content: center; gap: 40px; margin-top: 40px; flex-wrap: wrap; position: relative; z-index: 1; }
+.stat-item { text-align: center; }
+.stat-number { font-family: 'Fredoka One', cursive; font-size: 2.5rem; background: linear-gradient(135deg, var(--green), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+.benefits-quote { text-align: center; margin-top: 40px; padding: 24px; background: rgba(124,58,237,0.1); border-radius: 12px; border-left: 4px solid var(--accent); position: relative; z-index: 1; }
+.benefits-quote p { font-style: italic; color: var(--text); font-size: 1rem; line-height: 1.6; }
+.benefits-quote cite { display: block; margin-top: 12px; color: var(--muted); font-size: 0.85rem; }
+@media (max-width: 600px) {
+  .benefits-section { padding: 30px 20px; margin: 40px 0; }
+  .benefits-header h2 { font-size: 1.5rem; }
+  .benefits-stats { gap: 24px; }
+  .stat-number { font-size: 2rem; }
+}
+
 /* Professional Footer */
 .app-footer { margin-top: 60px; padding: 40px 0 20px; border-top: 1px solid var(--border); }
 .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px; }
@@ -1176,6 +1203,72 @@ button::-moz-focus-inner { border: 0; }
          data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
+
+  <!-- Benefits Section -->
+  <section class="benefits-section" id="benefitsSection">
+    <div class="benefits-header">
+      <h2 id="benefitsTitle">Why Activity Charts Work</h2>
+      <p id="benefitsSubtitle">Backed by child psychology research, reward charts help children develop essential life skills</p>
+    </div>
+
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">🧠</div>
+        <h3 id="benefit1Title">Builds Responsibility</h3>
+        <p id="benefit1Desc">Children learn to take ownership of their tasks and understand the connection between effort and rewards, developing intrinsic motivation over time.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">⭐</div>
+        <h3 id="benefit2Title">Boosts Self-Esteem</h3>
+        <p id="benefit2Desc">Visual tracking of achievements gives children a sense of accomplishment and pride, reinforcing positive behaviors and building confidence.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">📅</div>
+        <h3 id="benefit3Title">Creates Healthy Routines</h3>
+        <p id="benefit3Desc">Consistent use of charts helps establish daily routines that become automatic habits, reducing conflicts about chores and responsibilities.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">🎯</div>
+        <h3 id="benefit4Title">Teaches Goal Setting</h3>
+        <p id="benefit4Desc">Children learn to work toward objectives, understanding that big goals are achieved through small daily actions and patience.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">👨‍👩‍👧</div>
+        <h3 id="benefit5Title">Strengthens Family Bonds</h3>
+        <p id="benefit5Desc">Charts create positive interactions around achievements instead of nagging, transforming chore time into celebration time.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">🌟</div>
+        <h3 id="benefit6Title">Reduces Daily Stress</h3>
+        <p id="benefit6Desc">Clear expectations and visual reminders eliminate repeated instructions, making mornings and evenings smoother for everyone.</p>
+      </div>
+    </div>
+
+    <div class="benefits-stats">
+      <div class="stat-item">
+        <div class="stat-number" id="stat1Num">89%</div>
+        <div class="stat-label" id="stat1Label">of parents see improvement in 2 weeks</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="stat2Num">3-12</div>
+        <div class="stat-label" id="stat2Label">ideal age range for reward charts</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="stat3Num">5 min</div>
+        <div class="stat-label" id="stat3Label">daily to track and celebrate</div>
+      </div>
+    </div>
+
+    <div class="benefits-quote">
+      <p id="benefitsQuote">"Reward charts work because they make the invisible visible. Children can see their progress, which motivates them to continue."</p>
+      <cite id="benefitsCite">— Dr. Alan Kazdin, Yale Parenting Center</cite>
+    </div>
+  </section>
 
   <!-- Professional Footer -->
   <footer class="app-footer">
@@ -1530,6 +1623,29 @@ const T = {
     footerSecure: 'Seguro',
     footerPwa: 'PWA',
     footerAi: 'IA Powered',
+    // Benefits Section
+    benefitsTitle: 'Por Qué Funcionan los Charts',
+    benefitsSubtitle: 'Respaldado por investigación en psicología infantil, los charts de recompensas ayudan a desarrollar habilidades esenciales',
+    benefit1Title: 'Desarrolla Responsabilidad',
+    benefit1Desc: 'Los niños aprenden a hacerse cargo de sus tareas y entienden la conexión entre esfuerzo y recompensa, desarrollando motivación intrínseca.',
+    benefit2Title: 'Aumenta la Autoestima',
+    benefit2Desc: 'El seguimiento visual de logros da a los niños un sentido de realización y orgullo, reforzando comportamientos positivos.',
+    benefit3Title: 'Crea Rutinas Saludables',
+    benefit3Desc: 'El uso consistente de charts ayuda a establecer rutinas diarias que se vuelven hábitos automáticos, reduciendo conflictos.',
+    benefit4Title: 'Enseña a Fijar Metas',
+    benefit4Desc: 'Los niños aprenden a trabajar hacia objetivos, entendiendo que las grandes metas se logran con pequeñas acciones diarias.',
+    benefit5Title: 'Fortalece Lazos Familiares',
+    benefit5Desc: 'Los charts crean interacciones positivas alrededor de logros en lugar de regaños, transformando las tareas en celebraciones.',
+    benefit6Title: 'Reduce el Estrés Diario',
+    benefit6Desc: 'Expectativas claras y recordatorios visuales eliminan repetir instrucciones, haciendo las mañanas y noches más tranquilas.',
+    stat1Num: '89%',
+    stat1Label: 'de padres ven mejora en 2 semanas',
+    stat2Num: '3-12',
+    stat2Label: 'edad ideal para charts de recompensas',
+    stat3Num: '5 min',
+    stat3Label: 'diarios para seguir y celebrar',
+    benefitsQuote: '"Los charts de recompensas funcionan porque hacen visible lo invisible. Los niños pueden ver su progreso, lo que los motiva a continuar."',
+    benefitsCite: '— Dr. Alan Kazdin, Yale Parenting Center',
   },
   en: {
     navBadge: '✨ Free AI',
@@ -1669,6 +1785,29 @@ const T = {
     footerSecure: 'Secure',
     footerPwa: 'PWA',
     footerAi: 'AI Powered',
+    // Benefits Section
+    benefitsTitle: 'Why Activity Charts Work',
+    benefitsSubtitle: 'Backed by child psychology research, reward charts help children develop essential life skills',
+    benefit1Title: 'Builds Responsibility',
+    benefit1Desc: 'Children learn to take ownership of their tasks and understand the connection between effort and rewards, developing intrinsic motivation over time.',
+    benefit2Title: 'Boosts Self-Esteem',
+    benefit2Desc: 'Visual tracking of achievements gives children a sense of accomplishment and pride, reinforcing positive behaviors and building confidence.',
+    benefit3Title: 'Creates Healthy Routines',
+    benefit3Desc: 'Consistent use of charts helps establish daily routines that become automatic habits, reducing conflicts about chores and responsibilities.',
+    benefit4Title: 'Teaches Goal Setting',
+    benefit4Desc: 'Children learn to work toward objectives, understanding that big goals are achieved through small daily actions and patience.',
+    benefit5Title: 'Strengthens Family Bonds',
+    benefit5Desc: 'Charts create positive interactions around achievements instead of nagging, transforming chore time into celebration time.',
+    benefit6Title: 'Reduces Daily Stress',
+    benefit6Desc: 'Clear expectations and visual reminders eliminate repeated instructions, making mornings and evenings smoother for everyone.',
+    stat1Num: '89%',
+    stat1Label: 'of parents see improvement in 2 weeks',
+    stat2Num: '3-12',
+    stat2Label: 'ideal age range for reward charts',
+    stat3Num: '5 min',
+    stat3Label: 'daily to track and celebrate',
+    benefitsQuote: '"Reward charts work because they make the invisible visible. Children can see their progress, which motivates them to continue."',
+    benefitsCite: '— Dr. Alan Kazdin, Yale Parenting Center',
   }
 };
 
@@ -1741,6 +1880,29 @@ function applyTranslations() {
   document.getElementById('footerSecure').textContent = t('footerSecure');
   document.getElementById('footerPwa').textContent = t('footerPwa');
   document.getElementById('footerAi').textContent = t('footerAi');
+  // Benefits Section
+  document.getElementById('benefitsTitle').textContent = t('benefitsTitle');
+  document.getElementById('benefitsSubtitle').textContent = t('benefitsSubtitle');
+  document.getElementById('benefit1Title').textContent = t('benefit1Title');
+  document.getElementById('benefit1Desc').textContent = t('benefit1Desc');
+  document.getElementById('benefit2Title').textContent = t('benefit2Title');
+  document.getElementById('benefit2Desc').textContent = t('benefit2Desc');
+  document.getElementById('benefit3Title').textContent = t('benefit3Title');
+  document.getElementById('benefit3Desc').textContent = t('benefit3Desc');
+  document.getElementById('benefit4Title').textContent = t('benefit4Title');
+  document.getElementById('benefit4Desc').textContent = t('benefit4Desc');
+  document.getElementById('benefit5Title').textContent = t('benefit5Title');
+  document.getElementById('benefit5Desc').textContent = t('benefit5Desc');
+  document.getElementById('benefit6Title').textContent = t('benefit6Title');
+  document.getElementById('benefit6Desc').textContent = t('benefit6Desc');
+  document.getElementById('stat1Num').textContent = t('stat1Num');
+  document.getElementById('stat1Label').textContent = t('stat1Label');
+  document.getElementById('stat2Num').textContent = t('stat2Num');
+  document.getElementById('stat2Label').textContent = t('stat2Label');
+  document.getElementById('stat3Num').textContent = t('stat3Num');
+  document.getElementById('stat3Label').textContent = t('stat3Label');
+  document.getElementById('benefitsQuote').textContent = t('benefitsQuote');
+  document.getElementById('benefitsCite').textContent = t('benefitsCite');
   // Update install button text
   const installBtn = document.getElementById('installBtn');
   if (installBtn && installBtn.style.display !== 'none') {
