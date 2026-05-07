@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generate ChartKids Images</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Nunito', sans-serif;
+  background: #1a1a2e;
+  color: white;
+  padding: 40px;
+  min-height: 100vh;
+}
+h1 { text-align: center; margin-bottom: 40px; font-family: 'Fredoka One', cursive; }
+.container { max-width: 1300px; margin: 0 auto; }
+.image-section { margin-bottom: 60px; text-align: center; }
+.image-section h2 { margin-bottom: 10px; }
+.image-section p { color: #94a3b8; margin-bottom: 20px; }
+.download-btn {
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.download-btn:hover { opacity: 0.9; }
+.image-wrapper { display: inline-block; border: 2px solid #2e2e50; border-radius: 12px; overflow: hidden; }
+
+/* OG Image 1200x630 */
+.og-image {
+  width: 1200px;
+  height: 630px;
+  background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #232340 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.og-image::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(124,58,237,0.3) 0%, transparent 70%);
+  top: -200px;
+  left: -100px;
+}
+.og-image::after {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(6,182,212,0.2) 0%, transparent 70%);
+  bottom: -150px;
+  right: -50px;
+}
+.og-content {
+  text-align: center;
+  z-index: 1;
+  padding: 40px;
+}
+.og-logo {
+  font-family: 'Fredoka One', cursive;
+  font-size: 5rem;
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+.og-logo span { -webkit-text-fill-color: #fbbf24; }
+.og-tagline {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 30px;
+  color: #f1f5f9;
+}
+.og-features {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.og-feature {
+  background: rgba(124,58,237,0.15);
+  border: 1px solid rgba(124,58,237,0.3);
+  padding: 16px 28px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.og-emoji { font-size: 8rem; margin-bottom: 20px; }
+
+/* Icon 512x512 */
+.icon-512 {
+  width: 512px;
+  height: 512px;
+  background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 100px;
+}
+.icon-512 .emoji { font-size: 180px; margin-bottom: 20px; }
+.icon-512 .text {
+  font-family: 'Fredoka One', cursive;
+  font-size: 72px;
+  color: white;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+/* Icon 192x192 */
+.icon-192 {
+  width: 192px;
+  height: 192px;
+  background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 40px;
+}
+.icon-192 .emoji { font-size: 80px; }
+
+.scale-note {
+  color: #fbbf24;
+  font-size: 0.85rem;
+  margin-top: 10px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>ChartKids Image Generator</h1>
+
+  <!-- OG Image -->
+  <div class="image-section">
+    <h2>Open Graph Image (og-image.png)</h2>
+    <p>1200 x 630 px - Para compartir en redes sociales</p>
+    <div class="image-wrapper">
+      <div class="og-image" id="ogImage">
+        <div class="og-content">
+          <div class="og-emoji">✨📊🏆</div>
+          <div class="og-logo">ChartKids<span>✨</span></div>
+          <div class="og-tagline">AI Activity Charts for Kids</div>
+          <div class="og-features">
+            <div class="og-feature">🤖 Powered by AI</div>
+            <div class="og-feature">📱 Works Offline</div>
+            <div class="og-feature">🆓 100% Free</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <button class="download-btn" onclick="downloadImage('ogImage', 'og-image.png')">📥 Download og-image.png</button>
+  </div>
+
+  <!-- Icon 512 -->
+  <div class="image-section">
+    <h2>App Icon (icon-512.png)</h2>
+    <p>512 x 512 px - Icono principal de la PWA</p>
+    <div class="image-wrapper">
+      <div class="icon-512" id="icon512">
+        <div class="emoji">✨</div>
+        <div class="text">CK</div>
+      </div>
+    </div>
+    <br>
+    <button class="download-btn" onclick="downloadImage('icon512', 'icon-512.png')">📥 Download icon-512.png</button>
+  </div>
+
+  <!-- Icon 192 -->
+  <div class="image-section">
+    <h2>Small Icon (icon-192.png)</h2>
+    <p>192 x 192 px - Icono pequeño</p>
+    <div class="image-wrapper">
+      <div class="icon-192" id="icon192">
+        <div class="emoji">✨</div>
+      </div>
+    </div>
+    <br>
+    <button class="download-btn" onclick="downloadImage('icon192', 'icon-192.png')">📥 Download icon-192.png</button>
+  </div>
+
+</div>
+
+<script>
+async function downloadImage(elementId, filename) {
+  const element = document.getElementById(elementId);
+  const btn = event.target;
+  btn.textContent = 'Generating...';
+  btn.disabled = true;
+
+  try {
+    const canvas = await html2canvas(element, {
+      scale: 1,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: null
+    });
+
+    const link = document.createElement('a');
+    link.download = filename;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+
+    btn.textContent = '✅ Downloaded!';
+    setTimeout(() => {
+      btn.textContent = '📥 Download ' + filename;
+      btn.disabled = false;
+    }, 2000);
+  } catch (err) {
+    console.error(err);
+    btn.textContent = '❌ Error - Try again';
+    btn.disabled = false;
+  }
+}
+</script>
+
+</body>
+</html>
