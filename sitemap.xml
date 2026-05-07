@@ -36,4 +36,12 @@
     <priority>0.6</priority>
   </url>
 
+  <!-- Blog -->
+  <url>
+    <loc>https://www.chartkids.com/blog.html</loc>
+    <lastmod>2025-05-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>

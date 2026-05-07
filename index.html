@@ -1026,6 +1026,147 @@ button::-moz-focus-inner { border: 0; }
   .stat-number { font-size: 2rem; }
 }
 
+/* How It Works Section */
+.how-it-works { margin: 60px 0; text-align: center; }
+.section-header { margin-bottom: 40px; }
+.section-header h2 { font-family: 'Fredoka One', cursive; font-size: 2rem; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px; }
+.section-header p { color: var(--muted); font-size: 1.1rem; }
+.steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; }
+.step-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 30px 20px; position: relative; }
+.step-number { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--accent), var(--accent2)); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; }
+.step-icon { font-size: 3rem; margin: 15px 0; }
+.step-card h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 8px; }
+.step-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+.step-arrow { display: none; color: var(--accent); font-size: 2rem; align-self: center; }
+@media (min-width: 900px) {
+  .steps-grid { grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; }
+  .step-arrow { display: block; }
+}
+
+/* Examples Gallery */
+.examples-gallery { margin: 60px 0; }
+.examples-scroll { display: flex; gap: 20px; overflow-x: auto; padding: 20px 0; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+.examples-scroll::-webkit-scrollbar { height: 8px; }
+.examples-scroll::-webkit-scrollbar-track { background: var(--surface); border-radius: 4px; }
+.examples-scroll::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+.example-card { flex: 0 0 300px; scroll-snap-align: start; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: transform 0.3s, border-color 0.3s; }
+.example-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+.example-preview { background: linear-gradient(135deg, #1a1a2e, #232340); padding: 20px; min-height: 200px; display: flex; align-items: center; justify-content: center; }
+.example-mini-chart { width: 100%; }
+.example-info { padding: 16px; }
+.example-info h4 { font-size: 1rem; margin-bottom: 4px; }
+.example-info p { font-size: 0.8rem; color: var(--muted); }
+.example-tags { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+.example-tag { background: rgba(124,58,237,0.2); color: var(--accent); padding: 3px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; }
+
+/* Testimonials */
+.testimonials { margin: 60px 0; }
+.testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+.testimonial-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; position: relative; }
+.testimonial-card::before { content: '"'; position: absolute; top: 10px; left: 20px; font-size: 4rem; color: var(--accent); opacity: 0.2; font-family: serif; line-height: 1; }
+.testimonial-text { font-size: 0.95rem; line-height: 1.7; color: var(--text); margin-bottom: 20px; position: relative; z-index: 1; }
+.testimonial-author { display: flex; align-items: center; gap: 12px; }
+.testimonial-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+.testimonial-info h5 { font-size: 0.95rem; font-weight: 700; }
+.testimonial-info p { font-size: 0.8rem; color: var(--muted); }
+.testimonial-stars { color: var(--yellow); font-size: 0.9rem; margin-top: 2px; }
+
+/* FAQ Section */
+.faq-section { margin: 60px 0; }
+.faq-grid { max-width: 800px; margin: 0 auto; }
+.faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+.faq-question { width: 100%; padding: 20px 24px; background: none; border: none; color: var(--text); font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 700; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; }
+.faq-question:hover { background: rgba(124,58,237,0.1); }
+.faq-icon { font-size: 1.2rem; transition: transform 0.3s; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+.faq-answer-inner { padding: 0 24px 20px; color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
+
+/* Trust Badges */
+.trust-section { margin: 40px 0; padding: 30px; background: var(--surface); border-radius: 16px; border: 1px solid var(--border); }
+.trust-badges { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+.trust-badge { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+.trust-badge-icon { font-size: 2.5rem; }
+.trust-badge h4 { font-size: 0.9rem; font-weight: 800; }
+.trust-badge p { font-size: 0.75rem; color: var(--muted); max-width: 150px; }
+
+/* Newsletter */
+.newsletter-section { margin: 60px 0; padding: 40px 30px; background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(6,182,212,0.1)); border-radius: 16px; border: 1px solid var(--border); text-align: center; }
+.newsletter-section h2 { font-family: 'Fredoka One', cursive; font-size: 1.8rem; margin-bottom: 12px; }
+.newsletter-section > p { color: var(--muted); margin-bottom: 24px; }
+.newsletter-form { display: flex; gap: 12px; max-width: 450px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
+.newsletter-input { flex: 1; min-width: 200px; padding: 14px 20px; border: 1px solid var(--border); border-radius: 50px; background: var(--bg); color: var(--text); font-family: 'Nunito', sans-serif; font-size: 1rem; }
+.newsletter-input:focus { outline: none; border-color: var(--accent); }
+.newsletter-btn { background: linear-gradient(135deg, var(--accent), var(--accent2)); border: none; padding: 14px 28px; border-radius: 50px; color: white; font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 800; cursor: pointer; transition: transform 0.2s, opacity 0.2s; }
+.newsletter-btn:hover { transform: scale(1.02); opacity: 0.9; }
+.newsletter-privacy { font-size: 0.75rem; color: var(--muted); margin-top: 12px; }
+
+/* Comparison Table */
+.comparison-section { margin: 60px 0; }
+.comparison-table { max-width: 700px; margin: 0 auto; background: var(--surface); border-radius: 16px; border: 1px solid var(--border); overflow: hidden; }
+.comparison-header { display: grid; grid-template-columns: 2fr 1fr 1fr; background: linear-gradient(135deg, var(--accent), var(--accent2)); }
+.comparison-header > div { padding: 16px; font-weight: 800; text-align: center; }
+.comparison-header > div:first-child { text-align: left; }
+.comparison-row { display: grid; grid-template-columns: 2fr 1fr 1fr; border-bottom: 1px solid var(--border); }
+.comparison-row:last-child { border-bottom: none; }
+.comparison-row > div { padding: 14px 16px; display: flex; align-items: center; }
+.comparison-row > div:first-child { font-size: 0.9rem; }
+.comparison-row > div:not(:first-child) { justify-content: center; font-size: 1.2rem; }
+.comparison-row:nth-child(even) { background: rgba(0,0,0,0.2); }
+.comparison-cta { text-align: center; padding: 20px; background: rgba(124,58,237,0.1); }
+.comparison-cta .btn { background: linear-gradient(135deg, var(--accent), var(--accent2)); border: none; padding: 12px 30px; border-radius: 50px; color: white; font-weight: 800; cursor: pointer; }
+
+/* Install Guide */
+.install-guide { margin: 60px 0; }
+.install-tabs { display: flex; justify-content: center; gap: 12px; margin-bottom: 30px; }
+.install-tab { padding: 12px 24px; border-radius: 50px; background: var(--surface); border: 1px solid var(--border); color: var(--text); font-weight: 700; cursor: pointer; transition: all 0.2s; }
+.install-tab.active { background: linear-gradient(135deg, var(--accent), var(--accent2)); border-color: transparent; }
+.install-content { display: none; }
+.install-content.active { display: block; }
+.install-steps { max-width: 500px; margin: 0 auto; }
+.install-step { display: flex; gap: 16px; margin-bottom: 24px; align-items: flex-start; }
+.install-step-num { width: 36px; height: 36px; background: linear-gradient(135deg, var(--accent), var(--accent2)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0; }
+.install-step-text h4 { font-size: 1rem; margin-bottom: 4px; }
+.install-step-text p { font-size: 0.85rem; color: var(--muted); }
+
+/* Referral Program */
+.referral-section { margin: 60px 0; padding: 40px 30px; background: linear-gradient(135deg, var(--surface), var(--surface2)); border-radius: 16px; border: 1px solid var(--border); text-align: center; position: relative; overflow: hidden; }
+.referral-section::before { content: '🎁'; position: absolute; top: 20px; right: 30px; font-size: 4rem; opacity: 0.1; }
+.referral-section h2 { font-family: 'Fredoka One', cursive; font-size: 1.8rem; margin-bottom: 12px; }
+.referral-section > p { color: var(--muted); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto; }
+.referral-rewards { display: flex; justify-content: center; gap: 30px; margin-bottom: 24px; flex-wrap: wrap; }
+.referral-reward { background: rgba(124,58,237,0.1); padding: 16px 24px; border-radius: 12px; }
+.referral-reward-num { font-family: 'Fredoka One', cursive; font-size: 2rem; color: var(--accent); }
+.referral-reward-text { font-size: 0.85rem; color: var(--muted); }
+.referral-link-box { display: flex; gap: 12px; max-width: 400px; margin: 0 auto; }
+.referral-link { flex: 1; padding: 12px 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 0.85rem; }
+.referral-copy-btn { background: var(--accent); border: none; padding: 12px 20px; border-radius: 8px; color: white; font-weight: 700; cursor: pointer; }
+
+/* Social Links */
+.social-links { display: flex; gap: 12px; margin-top: 16px; }
+.social-link { width: 40px; height: 40px; background: var(--surface2); border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; text-decoration: none; transition: all 0.2s; }
+.social-link:hover { background: var(--accent); border-color: var(--accent); transform: scale(1.1); }
+
+/* Demo Video */
+.demo-section { margin: 40px 0; text-align: center; }
+.demo-video-wrapper { max-width: 700px; margin: 0 auto; border-radius: 16px; overflow: hidden; border: 2px solid var(--border); background: var(--surface); }
+.demo-placeholder { padding: 60px 30px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.demo-placeholder-icon { font-size: 4rem; }
+.demo-placeholder h3 { font-size: 1.2rem; }
+.demo-placeholder p { color: var(--muted); font-size: 0.9rem; }
+.demo-gif { width: 100%; display: block; }
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .section-header h2 { font-size: 1.5rem; }
+  .trust-badges { gap: 24px; }
+  .comparison-header, .comparison-row { grid-template-columns: 1.5fr 1fr 1fr; }
+  .comparison-row > div { padding: 10px 8px; font-size: 0.8rem; }
+  .newsletter-form { flex-direction: column; }
+  .newsletter-input, .newsletter-btn { width: 100%; }
+  .referral-link-box { flex-direction: column; }
+}
+
 /* Professional Footer */
 .app-footer { margin-top: 60px; padding: 40px 0 20px; border-top: 1px solid var(--border); }
 .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px; }
@@ -1270,12 +1411,481 @@ button::-moz-focus-inner { border: 0; }
     </div>
   </section>
 
+  <!-- How It Works Section -->
+  <section class="how-it-works" id="howItWorks">
+    <div class="section-header">
+      <h2 id="howItWorksTitle">How It Works</h2>
+      <p id="howItWorksSubtitle">Create your personalized chart in just 4 simple steps</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <div class="step-icon">💬</div>
+        <h3 id="step1Title">Describe Your Child</h3>
+        <p id="step1Desc">Tell the AI your child's age, what tasks they need, and their favorite reward</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <div class="step-icon">🤖</div>
+        <h3 id="step2Title">AI Creates Chart</h3>
+        <p id="step2Desc">Our AI designs a personalized chart with age-appropriate tasks and motivating rewards</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <div class="step-icon">🖨️</div>
+        <h3 id="step3Title">Print or Save</h3>
+        <p id="step3Desc">Download as PNG, save as HTML, or print directly to hang on the fridge</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step-card">
+        <div class="step-number">4</div>
+        <div class="step-icon">🎉</div>
+        <h3 id="step4Title">Track & Celebrate</h3>
+        <p id="step4Desc">Check off completed tasks daily and celebrate when they reach their goal!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Badges -->
+  <section class="trust-section" id="trustSection">
+    <div class="trust-badges">
+      <div class="trust-badge">
+        <div class="trust-badge-icon">🔒</div>
+        <h4 id="trust1Title">100% Private</h4>
+        <p id="trust1Desc">All data stays on your device. We never collect personal info.</p>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-badge-icon">👶</div>
+        <h4 id="trust2Title">Kid Safe</h4>
+        <p id="trust2Desc">No ads shown to children. Parental controls included.</p>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-badge-icon">✅</div>
+        <h4 id="trust3Title">COPPA Compliant</h4>
+        <p id="trust3Desc">Following all child privacy protection guidelines.</p>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-badge-icon">📱</div>
+        <h4 id="trust4Title">Works Offline</h4>
+        <p id="trust4Desc">Use the app anywhere, no internet required after install.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Examples Gallery -->
+  <section class="examples-gallery" id="examplesSection">
+    <div class="section-header">
+      <h2 id="examplesTitle">Chart Examples</h2>
+      <p id="examplesSubtitle">Get inspired by these popular chart styles created by parents</p>
+    </div>
+    <div class="examples-scroll" id="examplesScroll">
+      <div class="example-card">
+        <div class="example-preview">
+          <div class="example-mini-chart">
+            <div style="background:linear-gradient(135deg,#7c3aed,#06b6d4);padding:15px;border-radius:12px;text-align:center;">
+              <div style="font-size:2rem;margin-bottom:8px;">🦸‍♂️</div>
+              <div style="font-weight:800;font-size:0.9rem;">Super Hero Tasks</div>
+              <div style="display:flex;gap:4px;justify-content:center;margin-top:10px;">
+                <span style="background:rgba(255,255,255,0.2);padding:4px 8px;border-radius:4px;font-size:0.7rem;">🛏️ Bed</span>
+                <span style="background:rgba(255,255,255,0.2);padding:4px 8px;border-radius:4px;font-size:0.7rem;">🦷 Brush</span>
+                <span style="background:rgba(255,255,255,0.2);padding:4px 8px;border-radius:4px;font-size:0.7rem;">📚 Read</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="example-info">
+          <h4 id="example1Title">Morning Superhero</h4>
+          <p id="example1Desc">Perfect for kids 4-7 years</p>
+          <div class="example-tags">
+            <span class="example-tag" id="example1Tag1">Morning routine</span>
+            <span class="example-tag" id="example1Tag2">Fun theme</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <div class="example-preview">
+          <div class="example-mini-chart">
+            <div style="background:linear-gradient(135deg,#22c55e,#06b6d4);padding:15px;border-radius:12px;text-align:center;">
+              <div style="font-size:2rem;margin-bottom:8px;">💰</div>
+              <div style="font-weight:800;font-size:0.9rem;">Savings Goal: $25</div>
+              <div style="background:rgba(255,255,255,0.2);border-radius:8px;height:12px;margin-top:10px;">
+                <div style="background:white;width:60%;height:100%;border-radius:8px;"></div>
+              </div>
+              <div style="font-size:0.7rem;margin-top:6px;">$15 / $25 earned</div>
+            </div>
+          </div>
+        </div>
+        <div class="example-info">
+          <h4 id="example2Title">Money Savings Goal</h4>
+          <p id="example2Desc">Great for teaching financial skills</p>
+          <div class="example-tags">
+            <span class="example-tag" id="example2Tag1">Money reward</span>
+            <span class="example-tag" id="example2Tag2">Ages 8+</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <div class="example-preview">
+          <div class="example-mini-chart">
+            <div style="background:linear-gradient(135deg,#f472b6,#fbbf24);padding:15px;border-radius:12px;text-align:center;">
+              <div style="font-size:2rem;margin-bottom:8px;">🦄</div>
+              <div style="font-weight:800;font-size:0.9rem;">Princess Tasks</div>
+              <div style="display:flex;gap:4px;justify-content:center;margin-top:10px;flex-wrap:wrap;">
+                <span style="background:rgba(255,255,255,0.3);padding:4px 8px;border-radius:4px;font-size:0.7rem;">⭐⭐⭐</span>
+                <span style="background:rgba(255,255,255,0.3);padding:4px 8px;border-radius:4px;font-size:0.7rem;">🎀 Prize!</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="example-info">
+          <h4 id="example3Title">Princess Rewards</h4>
+          <p id="example3Desc">Magical theme for little ones</p>
+          <div class="example-tags">
+            <span class="example-tag" id="example3Tag1">Toy reward</span>
+            <span class="example-tag" id="example3Tag2">Ages 3-6</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <div class="example-preview">
+          <div class="example-mini-chart">
+            <div style="background:linear-gradient(135deg,#3b82f6,#8b5cf6);padding:15px;border-radius:12px;text-align:center;">
+              <div style="font-size:2rem;margin-bottom:8px;">📚</div>
+              <div style="font-weight:800;font-size:0.9rem;">Homework Hero</div>
+              <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:3px;margin-top:10px;">
+                <span style="background:rgba(255,255,255,0.3);padding:6px;border-radius:4px;font-size:0.6rem;">Mon</span>
+                <span style="background:rgba(34,197,94,0.5);padding:6px;border-radius:4px;font-size:0.6rem;">✓</span>
+                <span style="background:rgba(34,197,94,0.5);padding:6px;border-radius:4px;font-size:0.6rem;">✓</span>
+                <span style="background:rgba(255,255,255,0.3);padding:6px;border-radius:4px;font-size:0.6rem;">Thu</span>
+                <span style="background:rgba(255,255,255,0.3);padding:6px;border-radius:4px;font-size:0.6rem;">Fri</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="example-info">
+          <h4 id="example4Title">Homework Tracker</h4>
+          <p id="example4Desc">Focus on academic success</p>
+          <div class="example-tags">
+            <span class="example-tag" id="example4Tag1">School</span>
+            <span class="example-tag" id="example4Tag2">Ages 6-12</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-card">
+        <div class="example-preview">
+          <div class="example-mini-chart">
+            <div style="background:linear-gradient(135deg,#f97316,#eab308);padding:15px;border-radius:12px;text-align:center;">
+              <div style="font-size:2rem;margin-bottom:8px;">👧👦</div>
+              <div style="font-weight:800;font-size:0.9rem;">Sibling Challenge</div>
+              <div style="display:flex;justify-content:space-around;margin-top:10px;">
+                <div style="text-align:center;"><div style="font-size:1.2rem;">Emma</div><div style="font-size:0.7rem;">12 ⭐</div></div>
+                <div style="font-size:1.5rem;">VS</div>
+                <div style="text-align:center;"><div style="font-size:1.2rem;">Liam</div><div style="font-size:0.7rem;">10 ⭐</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="example-info">
+          <h4 id="example5Title">Sibling Competition</h4>
+          <p id="example5Desc">Fun for families with 2+ kids</p>
+          <div class="example-tags">
+            <span class="example-tag" id="example5Tag1">Multiple kids</span>
+            <span class="example-tag" id="example5Tag2">Team goals</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials" id="testimonialsSection">
+    <div class="section-header">
+      <h2 id="testimonialsTitle">What Parents Say</h2>
+      <p id="testimonialsSubtitle">Real feedback from families using ChartKids</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-text" id="testimonial1Text">My 5-year-old now makes his bed every morning without being asked! The visual progress really motivates him. We've tried other apps but this one clicked instantly.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">👩</div>
+          <div class="testimonial-info">
+            <h5 id="testimonial1Name">Sarah M.</h5>
+            <p id="testimonial1Role">Mom of 2 boys</p>
+            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text" id="testimonial2Text">I love that it works offline and I don't need to create an account. The AI understood exactly what I needed and created a perfect homework chart for my daughter.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">👨</div>
+          <div class="testimonial-info">
+            <h5 id="testimonial2Name">Michael T.</h5>
+            <p id="testimonial2Role">Dad, teacher</p>
+            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text" id="testimonial3Text">Finally, a reward chart that's actually free! No hidden fees, no subscriptions needed for basic use. My kids love checking off their stars each day.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">👩</div>
+          <div class="testimonial-info">
+            <h5 id="testimonial3Name">Jennifer L.</h5>
+            <p id="testimonial3Role">Mom of 3</p>
+            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Table -->
+  <section class="comparison-section" id="comparisonSection">
+    <div class="section-header">
+      <h2 id="comparisonTitle">Free vs Premium</h2>
+      <p id="comparisonSubtitle">Choose the plan that works for your family</p>
+    </div>
+    <div class="comparison-table">
+      <div class="comparison-header">
+        <div id="compFeature">Feature</div>
+        <div id="compFree">Free</div>
+        <div id="compPremium">Premium</div>
+      </div>
+      <div class="comparison-row">
+        <div id="compRow1">AI Chart Creation</div>
+        <div>✅</div>
+        <div>✅</div>
+      </div>
+      <div class="comparison-row">
+        <div id="compRow2">Save & Print Charts</div>
+        <div>✅</div>
+        <div>✅</div>
+      </div>
+      <div class="comparison-row">
+        <div id="compRow3">Works Offline</div>
+        <div>✅</div>
+        <div>✅</div>
+      </div>
+      <div class="comparison-row">
+        <div id="compRow4">Basic Themes</div>
+        <div>✅</div>
+        <div>✅</div>
+      </div>
+      <div class="comparison-row">
+        <div id="compRow5">No Ads</div>
+        <div>❌</div>
+        <div>✅</div>
+      </div>
+      <div class="comparison-row">
+        <div id="compRow6">Unlimited Saved Charts</div>
+        <div>❌</div>
+        <div>✅</div>
+      </div>
+      <div class="comparison-row">
+        <div id="compRow7">Exclusive Premium Themes</div>
+        <div>❌</div>
+        <div>✅</div>
+      </div>
+      <div class="comparison-row">
+        <div id="compRow8">Priority Support</div>
+        <div>❌</div>
+        <div>✅</div>
+      </div>
+      <div class="comparison-cta">
+        <button class="btn" onclick="openPremiumModal()" id="compCta">Upgrade to Premium - $2.99/month</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section" id="faqSection">
+    <div class="section-header">
+      <h2 id="faqTitle">Frequently Asked Questions</h2>
+      <p id="faqSubtitle">Quick answers to common questions</p>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span id="faq1Q">Is ChartKids really free?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner" id="faq1A">Yes! ChartKids is 100% free to use. You can create unlimited charts, save them, and print them without paying anything. We offer a Premium plan for extra features like no ads and exclusive themes, but it's completely optional.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span id="faq2Q">Do I need to create an account?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner" id="faq2A">No account needed! Just open the app and start creating charts. Your data is stored locally on your device for privacy. This also means the app works offline once installed.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span id="faq3Q">What ages are reward charts effective for?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner" id="faq3A">Reward charts work best for children ages 3-12. Younger children (3-5) respond well to simple charts with stickers and small rewards. Older children (6-12) can handle more complex charts with multiple tasks and longer-term goals.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span id="faq4Q">Can I use ChartKids on my phone?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner" id="faq4A">ChartKids is a Progressive Web App (PWA), which means you can install it on any device - iPhone, Android, tablet, or computer. Just tap "Install" or add it to your home screen for the best experience.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span id="faq5Q">Is my child's data safe?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner" id="faq5A">Absolutely! All data stays on your device - we don't collect or store any personal information about you or your children. The app is COPPA compliant and designed with child safety as a priority.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Install Guide -->
+  <section class="install-guide" id="installGuide">
+    <div class="section-header">
+      <h2 id="installGuideTitle">Install ChartKids</h2>
+      <p id="installGuideSubtitle">Add to your home screen for the best experience</p>
+    </div>
+    <div class="install-tabs">
+      <button class="install-tab active" onclick="switchInstallTab('ios')" id="installTabIos">📱 iPhone/iPad</button>
+      <button class="install-tab" onclick="switchInstallTab('android')" id="installTabAndroid">🤖 Android</button>
+      <button class="install-tab" onclick="switchInstallTab('desktop')" id="installTabDesktop">💻 Desktop</button>
+    </div>
+    <div class="install-content active" id="installIos">
+      <div class="install-steps">
+        <div class="install-step">
+          <div class="install-step-num">1</div>
+          <div class="install-step-text">
+            <h4 id="iosStep1Title">Tap the Share button</h4>
+            <p id="iosStep1Desc">Find the share icon (square with arrow) at the bottom of Safari</p>
+          </div>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">2</div>
+          <div class="install-step-text">
+            <h4 id="iosStep2Title">Scroll and tap "Add to Home Screen"</h4>
+            <p id="iosStep2Desc">You may need to scroll down to find this option</p>
+          </div>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">3</div>
+          <div class="install-step-text">
+            <h4 id="iosStep3Title">Tap "Add"</h4>
+            <p id="iosStep3Desc">ChartKids will appear on your home screen like a regular app!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="install-content" id="installAndroid">
+      <div class="install-steps">
+        <div class="install-step">
+          <div class="install-step-num">1</div>
+          <div class="install-step-text">
+            <h4 id="androidStep1Title">Tap the menu (⋮)</h4>
+            <p id="androidStep1Desc">Find the three dots in Chrome's top right corner</p>
+          </div>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">2</div>
+          <div class="install-step-text">
+            <h4 id="androidStep2Title">Tap "Install app" or "Add to Home screen"</h4>
+            <p id="androidStep2Desc">Chrome may show a banner at the bottom too</p>
+          </div>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">3</div>
+          <div class="install-step-text">
+            <h4 id="androidStep3Title">Tap "Install"</h4>
+            <p id="androidStep3Desc">The app will install and appear in your app drawer!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="install-content" id="installDesktop">
+      <div class="install-steps">
+        <div class="install-step">
+          <div class="install-step-num">1</div>
+          <div class="install-step-text">
+            <h4 id="desktopStep1Title">Look for the install icon</h4>
+            <p id="desktopStep1Desc">In Chrome/Edge, find the install icon (⊕) in the address bar</p>
+          </div>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">2</div>
+          <div class="install-step-text">
+            <h4 id="desktopStep2Title">Click "Install"</h4>
+            <p id="desktopStep2Desc">Confirm the installation when prompted</p>
+          </div>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">3</div>
+          <div class="install-step-text">
+            <h4 id="desktopStep3Title">Launch from desktop</h4>
+            <p id="desktopStep3Desc">ChartKids will open in its own window like a native app!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter-section" id="newsletterSection">
+    <h2 id="newsletterTitle">Get Parenting Tips & Updates</h2>
+    <p id="newsletterSubtitle">Join our newsletter for expert advice on positive parenting and new ChartKids features</p>
+    <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+      <input type="email" class="newsletter-input" id="newsletterEmail" placeholder="your@email.com" required>
+      <button type="submit" class="newsletter-btn" id="newsletterBtn">Subscribe</button>
+    </form>
+    <p class="newsletter-privacy" id="newsletterPrivacy">We respect your privacy. Unsubscribe anytime.</p>
+  </section>
+
+  <!-- Referral Program -->
+  <section class="referral-section" id="referralSection">
+    <h2 id="referralTitle">Invite Friends, Earn Rewards</h2>
+    <p id="referralSubtitle">Share ChartKids with other parents and both of you get Premium benefits!</p>
+    <div class="referral-rewards">
+      <div class="referral-reward">
+        <div class="referral-reward-num" id="referral1Num">3</div>
+        <div class="referral-reward-text" id="referral1Text">friends = 1 month free Premium</div>
+      </div>
+      <div class="referral-reward">
+        <div class="referral-reward-num" id="referral2Num">10</div>
+        <div class="referral-reward-text" id="referral2Text">friends = 1 year free Premium</div>
+      </div>
+    </div>
+    <div class="referral-link-box">
+      <input type="text" class="referral-link" id="referralLink" value="https://www.chartkids.com/?ref=USER123" readonly>
+      <button class="referral-copy-btn" onclick="copyReferralLink()" id="referralCopyBtn">Copy</button>
+    </div>
+  </section>
+
   <!-- Professional Footer -->
   <footer class="app-footer">
     <div class="footer-content">
       <div class="footer-section">
         <div class="footer-logo">ChartKids<span>✨</span></div>
         <p id="footerDesc">Crea charts de actividades personalizados para tus hijos con el poder de la IA.</p>
+        <div class="social-links">
+          <a href="https://facebook.com/chartkids" target="_blank" rel="noopener" class="social-link" title="Facebook">📘</a>
+          <a href="https://instagram.com/chartkids" target="_blank" rel="noopener" class="social-link" title="Instagram">📸</a>
+          <a href="https://pinterest.com/chartkids" target="_blank" rel="noopener" class="social-link" title="Pinterest">📌</a>
+          <a href="https://twitter.com/chartkids" target="_blank" rel="noopener" class="social-link" title="Twitter">🐦</a>
+        </div>
       </div>
       <div class="footer-section">
         <h4 id="footerLegal">Legal</h4>
@@ -1297,6 +1907,7 @@ button::-moz-focus-inner { border: 0; }
         <ul class="footer-links">
           <li><a href="#" onclick="openPremiumModal(); return false;" id="footerPremium">Premium</a></li>
           <li><a href="#" onclick="showStatsModal(); return false;" id="footerStats">Estadísticas</a></li>
+          <li><a href="blog.html" id="footerBlog">Blog</a></li>
         </ul>
       </div>
     </div>
@@ -1646,6 +2257,127 @@ const T = {
     stat3Label: 'diarios para seguir y celebrar',
     benefitsQuote: '"Los charts de recompensas funcionan porque hacen visible lo invisible. Los niños pueden ver su progreso, lo que los motiva a continuar."',
     benefitsCite: '— Dr. Alan Kazdin, Yale Parenting Center',
+    // How It Works
+    howItWorksTitle: 'Cómo Funciona',
+    howItWorksSubtitle: 'Crea tu chart personalizado en solo 4 simples pasos',
+    step1Title: 'Describe a tu Hijo',
+    step1Desc: 'Cuéntale a la IA la edad de tu hijo, qué tareas necesita y su recompensa favorita',
+    step2Title: 'La IA Crea el Chart',
+    step2Desc: 'Nuestra IA diseña un chart personalizado con tareas apropiadas para su edad',
+    step3Title: 'Imprime o Guarda',
+    step3Desc: 'Descarga como PNG, guarda como HTML o imprime directamente para poner en el refrigerador',
+    step4Title: 'Sigue y Celebra',
+    step4Desc: '¡Marca las tareas completadas cada día y celebra cuando alcance su meta!',
+    // Trust Badges
+    trust1Title: '100% Privado',
+    trust1Desc: 'Todos los datos se quedan en tu dispositivo. Nunca recolectamos información personal.',
+    trust2Title: 'Seguro para Niños',
+    trust2Desc: 'Sin anuncios mostrados a niños. Incluye controles parentales.',
+    trust3Title: 'Cumple COPPA',
+    trust3Desc: 'Siguiendo todas las guías de protección de privacidad infantil.',
+    trust4Title: 'Funciona Offline',
+    trust4Desc: 'Usa la app en cualquier lugar, sin internet después de instalar.',
+    // Examples
+    examplesTitle: 'Ejemplos de Charts',
+    examplesSubtitle: 'Inspírate con estos estilos populares creados por padres',
+    example1Title: 'Superhéroe Mañanero',
+    example1Desc: 'Perfecto para niños de 4-7 años',
+    example1Tag1: 'Rutina matutina',
+    example1Tag2: 'Tema divertido',
+    example2Title: 'Meta de Ahorro',
+    example2Desc: 'Genial para enseñar finanzas',
+    example2Tag1: 'Recompensa dinero',
+    example2Tag2: 'Edad 8+',
+    example3Title: 'Recompensas Princesa',
+    example3Desc: 'Tema mágico para los pequeños',
+    example3Tag1: 'Recompensa juguete',
+    example3Tag2: 'Edad 3-6',
+    example4Title: 'Rastreador de Tareas',
+    example4Desc: 'Enfocado en éxito académico',
+    example4Tag1: 'Escuela',
+    example4Tag2: 'Edad 6-12',
+    example5Title: 'Competencia de Hermanos',
+    example5Desc: 'Divertido para familias con 2+ hijos',
+    example5Tag1: 'Múltiples niños',
+    example5Tag2: 'Metas en equipo',
+    // Testimonials
+    testimonialsTitle: 'Lo Que Dicen los Padres',
+    testimonialsSubtitle: 'Opiniones reales de familias usando ChartKids',
+    testimonial1Text: '¡Mi hijo de 5 años ahora tiende su cama cada mañana sin que se lo pida! El progreso visual realmente lo motiva. Probamos otras apps pero esta conectó al instante.',
+    testimonial1Name: 'Sara M.',
+    testimonial1Role: 'Mamá de 2 niños',
+    testimonial2Text: 'Me encanta que funciona offline y no necesito crear cuenta. La IA entendió exactamente lo que necesitaba y creó un chart perfecto de tareas para mi hija.',
+    testimonial2Name: 'Miguel T.',
+    testimonial2Role: 'Papá, maestro',
+    testimonial3Text: '¡Por fin, un chart de recompensas realmente gratis! Sin costos ocultos, sin suscripciones para uso básico. A mis hijos les encanta marcar sus estrellas cada día.',
+    testimonial3Name: 'Jennifer L.',
+    testimonial3Role: 'Mamá de 3',
+    // Comparison
+    comparisonTitle: 'Gratis vs Premium',
+    comparisonSubtitle: 'Elige el plan que funcione para tu familia',
+    compFeature: 'Característica',
+    compFree: 'Gratis',
+    compPremium: 'Premium',
+    compRow1: 'Creación de Charts con IA',
+    compRow2: 'Guardar e Imprimir Charts',
+    compRow3: 'Funciona Offline',
+    compRow4: 'Temas Básicos',
+    compRow5: 'Sin Anuncios',
+    compRow6: 'Charts Guardados Ilimitados',
+    compRow7: 'Temas Premium Exclusivos',
+    compRow8: 'Soporte Prioritario',
+    compCta: 'Actualizar a Premium - $2.99/mes',
+    // FAQ
+    faqTitle: 'Preguntas Frecuentes',
+    faqSubtitle: 'Respuestas rápidas a preguntas comunes',
+    faq1Q: '¿ChartKids es realmente gratis?',
+    faq1A: '¡Sí! ChartKids es 100% gratis. Puedes crear charts ilimitados, guardarlos e imprimirlos sin pagar nada. Ofrecemos un plan Premium para funciones extra como sin anuncios y temas exclusivos, pero es completamente opcional.',
+    faq2Q: '¿Necesito crear una cuenta?',
+    faq2A: '¡No necesitas cuenta! Solo abre la app y empieza a crear charts. Tus datos se guardan localmente en tu dispositivo por privacidad. Esto también significa que la app funciona offline una vez instalada.',
+    faq3Q: '¿Para qué edades funcionan los charts de recompensas?',
+    faq3A: 'Los charts funcionan mejor para niños de 3-12 años. Los más pequeños (3-5) responden bien a charts simples con stickers y pequeñas recompensas. Los mayores (6-12) pueden manejar charts más complejos con múltiples tareas y metas a largo plazo.',
+    faq4Q: '¿Puedo usar ChartKids en mi teléfono?',
+    faq4A: 'ChartKids es una Progressive Web App (PWA), lo que significa que puedes instalarla en cualquier dispositivo - iPhone, Android, tablet u computadora. Solo toca "Instalar" o añádela a tu pantalla de inicio para la mejor experiencia.',
+    faq5Q: '¿Los datos de mi hijo están seguros?',
+    faq5A: '¡Absolutamente! Todos los datos se quedan en tu dispositivo - no recolectamos ni almacenamos información personal tuya o de tus hijos. La app cumple con COPPA y está diseñada con la seguridad infantil como prioridad.',
+    // Install Guide
+    installGuideTitle: 'Instalar ChartKids',
+    installGuideSubtitle: 'Añade a tu pantalla de inicio para la mejor experiencia',
+    installTabIos: '📱 iPhone/iPad',
+    installTabAndroid: '🤖 Android',
+    installTabDesktop: '💻 Escritorio',
+    iosStep1Title: 'Toca el botón Compartir',
+    iosStep1Desc: 'Encuentra el icono de compartir (cuadrado con flecha) en la parte inferior de Safari',
+    iosStep2Title: 'Desplaza y toca "Añadir a Inicio"',
+    iosStep2Desc: 'Puede que necesites desplazarte para encontrar esta opción',
+    iosStep3Title: 'Toca "Añadir"',
+    iosStep3Desc: '¡ChartKids aparecerá en tu pantalla de inicio como una app normal!',
+    androidStep1Title: 'Toca el menú (⋮)',
+    androidStep1Desc: 'Encuentra los tres puntos en la esquina superior derecha de Chrome',
+    androidStep2Title: 'Toca "Instalar app" o "Añadir a pantalla"',
+    androidStep2Desc: 'Chrome también puede mostrar un banner en la parte inferior',
+    androidStep3Title: 'Toca "Instalar"',
+    androidStep3Desc: '¡La app se instalará y aparecerá en tu cajón de apps!',
+    desktopStep1Title: 'Busca el icono de instalar',
+    desktopStep1Desc: 'En Chrome/Edge, encuentra el icono de instalar (⊕) en la barra de direcciones',
+    desktopStep2Title: 'Haz clic en "Instalar"',
+    desktopStep2Desc: 'Confirma la instalación cuando se te pida',
+    desktopStep3Title: 'Abre desde el escritorio',
+    desktopStep3Desc: '¡ChartKids se abrirá en su propia ventana como una app nativa!',
+    // Newsletter
+    newsletterTitle: 'Recibe Tips de Crianza y Novedades',
+    newsletterSubtitle: 'Únete a nuestro boletín para consejos de expertos y nuevas funciones de ChartKids',
+    newsletterBtn: 'Suscribirse',
+    newsletterPrivacy: 'Respetamos tu privacidad. Cancela cuando quieras.',
+    // Referral
+    referralTitle: 'Invita Amigos, Gana Premios',
+    referralSubtitle: '¡Comparte ChartKids con otros padres y ambos obtienen beneficios Premium!',
+    referral1Num: '3',
+    referral1Text: 'amigos = 1 mes Premium gratis',
+    referral2Num: '10',
+    referral2Text: 'amigos = 1 año Premium gratis',
+    referralCopyBtn: 'Copiar',
+    footerBlog: 'Blog',
   },
   en: {
     navBadge: '✨ Free AI',
@@ -1808,6 +2540,127 @@ const T = {
     stat3Label: 'daily to track and celebrate',
     benefitsQuote: '"Reward charts work because they make the invisible visible. Children can see their progress, which motivates them to continue."',
     benefitsCite: '— Dr. Alan Kazdin, Yale Parenting Center',
+    // How It Works
+    howItWorksTitle: 'How It Works',
+    howItWorksSubtitle: 'Create your personalized chart in just 4 simple steps',
+    step1Title: 'Describe Your Child',
+    step1Desc: 'Tell the AI your child\'s age, what tasks they need, and their favorite reward',
+    step2Title: 'AI Creates Chart',
+    step2Desc: 'Our AI designs a personalized chart with age-appropriate tasks and motivating rewards',
+    step3Title: 'Print or Save',
+    step3Desc: 'Download as PNG, save as HTML, or print directly to hang on the fridge',
+    step4Title: 'Track & Celebrate',
+    step4Desc: 'Check off completed tasks daily and celebrate when they reach their goal!',
+    // Trust Badges
+    trust1Title: '100% Private',
+    trust1Desc: 'All data stays on your device. We never collect personal info.',
+    trust2Title: 'Kid Safe',
+    trust2Desc: 'No ads shown to children. Parental controls included.',
+    trust3Title: 'COPPA Compliant',
+    trust3Desc: 'Following all child privacy protection guidelines.',
+    trust4Title: 'Works Offline',
+    trust4Desc: 'Use the app anywhere, no internet required after install.',
+    // Examples
+    examplesTitle: 'Chart Examples',
+    examplesSubtitle: 'Get inspired by these popular chart styles created by parents',
+    example1Title: 'Morning Superhero',
+    example1Desc: 'Perfect for kids 4-7 years',
+    example1Tag1: 'Morning routine',
+    example1Tag2: 'Fun theme',
+    example2Title: 'Money Savings Goal',
+    example2Desc: 'Great for teaching financial skills',
+    example2Tag1: 'Money reward',
+    example2Tag2: 'Ages 8+',
+    example3Title: 'Princess Rewards',
+    example3Desc: 'Magical theme for little ones',
+    example3Tag1: 'Toy reward',
+    example3Tag2: 'Ages 3-6',
+    example4Title: 'Homework Tracker',
+    example4Desc: 'Focus on academic success',
+    example4Tag1: 'School',
+    example4Tag2: 'Ages 6-12',
+    example5Title: 'Sibling Competition',
+    example5Desc: 'Fun for families with 2+ kids',
+    example5Tag1: 'Multiple kids',
+    example5Tag2: 'Team goals',
+    // Testimonials
+    testimonialsTitle: 'What Parents Say',
+    testimonialsSubtitle: 'Real feedback from families using ChartKids',
+    testimonial1Text: 'My 5-year-old now makes his bed every morning without being asked! The visual progress really motivates him. We\'ve tried other apps but this one clicked instantly.',
+    testimonial1Name: 'Sarah M.',
+    testimonial1Role: 'Mom of 2 boys',
+    testimonial2Text: 'I love that it works offline and I don\'t need to create an account. The AI understood exactly what I needed and created a perfect homework chart for my daughter.',
+    testimonial2Name: 'Michael T.',
+    testimonial2Role: 'Dad, teacher',
+    testimonial3Text: 'Finally, a reward chart that\'s actually free! No hidden fees, no subscriptions needed for basic use. My kids love checking off their stars each day.',
+    testimonial3Name: 'Jennifer L.',
+    testimonial3Role: 'Mom of 3',
+    // Comparison
+    comparisonTitle: 'Free vs Premium',
+    comparisonSubtitle: 'Choose the plan that works for your family',
+    compFeature: 'Feature',
+    compFree: 'Free',
+    compPremium: 'Premium',
+    compRow1: 'AI Chart Creation',
+    compRow2: 'Save & Print Charts',
+    compRow3: 'Works Offline',
+    compRow4: 'Basic Themes',
+    compRow5: 'No Ads',
+    compRow6: 'Unlimited Saved Charts',
+    compRow7: 'Exclusive Premium Themes',
+    compRow8: 'Priority Support',
+    compCta: 'Upgrade to Premium - $2.99/month',
+    // FAQ
+    faqTitle: 'Frequently Asked Questions',
+    faqSubtitle: 'Quick answers to common questions',
+    faq1Q: 'Is ChartKids really free?',
+    faq1A: 'Yes! ChartKids is 100% free to use. You can create unlimited charts, save them, and print them without paying anything. We offer a Premium plan for extra features like no ads and exclusive themes, but it\'s completely optional.',
+    faq2Q: 'Do I need to create an account?',
+    faq2A: 'No account needed! Just open the app and start creating charts. Your data is stored locally on your device for privacy. This also means the app works offline once installed.',
+    faq3Q: 'What ages are reward charts effective for?',
+    faq3A: 'Reward charts work best for children ages 3-12. Younger children (3-5) respond well to simple charts with stickers and small rewards. Older children (6-12) can handle more complex charts with multiple tasks and longer-term goals.',
+    faq4Q: 'Can I use ChartKids on my phone?',
+    faq4A: 'ChartKids is a Progressive Web App (PWA), which means you can install it on any device - iPhone, Android, tablet, or computer. Just tap "Install" or add it to your home screen for the best experience.',
+    faq5Q: 'Is my child\'s data safe?',
+    faq5A: 'Absolutely! All data stays on your device - we don\'t collect or store any personal information about you or your children. The app is COPPA compliant and designed with child safety as a priority.',
+    // Install Guide
+    installGuideTitle: 'Install ChartKids',
+    installGuideSubtitle: 'Add to your home screen for the best experience',
+    installTabIos: '📱 iPhone/iPad',
+    installTabAndroid: '🤖 Android',
+    installTabDesktop: '💻 Desktop',
+    iosStep1Title: 'Tap the Share button',
+    iosStep1Desc: 'Find the share icon (square with arrow) at the bottom of Safari',
+    iosStep2Title: 'Scroll and tap "Add to Home Screen"',
+    iosStep2Desc: 'You may need to scroll down to find this option',
+    iosStep3Title: 'Tap "Add"',
+    iosStep3Desc: 'ChartKids will appear on your home screen like a regular app!',
+    androidStep1Title: 'Tap the menu (⋮)',
+    androidStep1Desc: 'Find the three dots in Chrome\'s top right corner',
+    androidStep2Title: 'Tap "Install app" or "Add to Home screen"',
+    androidStep2Desc: 'Chrome may show a banner at the bottom too',
+    androidStep3Title: 'Tap "Install"',
+    androidStep3Desc: 'The app will install and appear in your app drawer!',
+    desktopStep1Title: 'Look for the install icon',
+    desktopStep1Desc: 'In Chrome/Edge, find the install icon (⊕) in the address bar',
+    desktopStep2Title: 'Click "Install"',
+    desktopStep2Desc: 'Confirm the installation when prompted',
+    desktopStep3Title: 'Launch from desktop',
+    desktopStep3Desc: 'ChartKids will open in its own window like a native app!',
+    // Newsletter
+    newsletterTitle: 'Get Parenting Tips & Updates',
+    newsletterSubtitle: 'Join our newsletter for expert advice on positive parenting and new ChartKids features',
+    newsletterBtn: 'Subscribe',
+    newsletterPrivacy: 'We respect your privacy. Unsubscribe anytime.',
+    // Referral
+    referralTitle: 'Invite Friends, Earn Rewards',
+    referralSubtitle: 'Share ChartKids with other parents and both of you get Premium benefits!',
+    referral1Num: '3',
+    referral1Text: 'friends = 1 month free Premium',
+    referral2Num: '10',
+    referral2Text: 'friends = 1 year free Premium',
+    referralCopyBtn: 'Copy',
+    footerBlog: 'Blog',
   }
 };
 
@@ -1903,6 +2756,127 @@ function applyTranslations() {
   document.getElementById('stat3Label').textContent = t('stat3Label');
   document.getElementById('benefitsQuote').textContent = t('benefitsQuote');
   document.getElementById('benefitsCite').textContent = t('benefitsCite');
+  // How It Works
+  document.getElementById('howItWorksTitle').textContent = t('howItWorksTitle');
+  document.getElementById('howItWorksSubtitle').textContent = t('howItWorksSubtitle');
+  document.getElementById('step1Title').textContent = t('step1Title');
+  document.getElementById('step1Desc').textContent = t('step1Desc');
+  document.getElementById('step2Title').textContent = t('step2Title');
+  document.getElementById('step2Desc').textContent = t('step2Desc');
+  document.getElementById('step3Title').textContent = t('step3Title');
+  document.getElementById('step3Desc').textContent = t('step3Desc');
+  document.getElementById('step4Title').textContent = t('step4Title');
+  document.getElementById('step4Desc').textContent = t('step4Desc');
+  // Trust Badges
+  document.getElementById('trust1Title').textContent = t('trust1Title');
+  document.getElementById('trust1Desc').textContent = t('trust1Desc');
+  document.getElementById('trust2Title').textContent = t('trust2Title');
+  document.getElementById('trust2Desc').textContent = t('trust2Desc');
+  document.getElementById('trust3Title').textContent = t('trust3Title');
+  document.getElementById('trust3Desc').textContent = t('trust3Desc');
+  document.getElementById('trust4Title').textContent = t('trust4Title');
+  document.getElementById('trust4Desc').textContent = t('trust4Desc');
+  // Examples
+  document.getElementById('examplesTitle').textContent = t('examplesTitle');
+  document.getElementById('examplesSubtitle').textContent = t('examplesSubtitle');
+  document.getElementById('example1Title').textContent = t('example1Title');
+  document.getElementById('example1Desc').textContent = t('example1Desc');
+  document.getElementById('example1Tag1').textContent = t('example1Tag1');
+  document.getElementById('example1Tag2').textContent = t('example1Tag2');
+  document.getElementById('example2Title').textContent = t('example2Title');
+  document.getElementById('example2Desc').textContent = t('example2Desc');
+  document.getElementById('example2Tag1').textContent = t('example2Tag1');
+  document.getElementById('example2Tag2').textContent = t('example2Tag2');
+  document.getElementById('example3Title').textContent = t('example3Title');
+  document.getElementById('example3Desc').textContent = t('example3Desc');
+  document.getElementById('example3Tag1').textContent = t('example3Tag1');
+  document.getElementById('example3Tag2').textContent = t('example3Tag2');
+  document.getElementById('example4Title').textContent = t('example4Title');
+  document.getElementById('example4Desc').textContent = t('example4Desc');
+  document.getElementById('example4Tag1').textContent = t('example4Tag1');
+  document.getElementById('example4Tag2').textContent = t('example4Tag2');
+  document.getElementById('example5Title').textContent = t('example5Title');
+  document.getElementById('example5Desc').textContent = t('example5Desc');
+  document.getElementById('example5Tag1').textContent = t('example5Tag1');
+  document.getElementById('example5Tag2').textContent = t('example5Tag2');
+  // Testimonials
+  document.getElementById('testimonialsTitle').textContent = t('testimonialsTitle');
+  document.getElementById('testimonialsSubtitle').textContent = t('testimonialsSubtitle');
+  document.getElementById('testimonial1Text').textContent = t('testimonial1Text');
+  document.getElementById('testimonial1Name').textContent = t('testimonial1Name');
+  document.getElementById('testimonial1Role').textContent = t('testimonial1Role');
+  document.getElementById('testimonial2Text').textContent = t('testimonial2Text');
+  document.getElementById('testimonial2Name').textContent = t('testimonial2Name');
+  document.getElementById('testimonial2Role').textContent = t('testimonial2Role');
+  document.getElementById('testimonial3Text').textContent = t('testimonial3Text');
+  document.getElementById('testimonial3Name').textContent = t('testimonial3Name');
+  document.getElementById('testimonial3Role').textContent = t('testimonial3Role');
+  // Comparison
+  document.getElementById('comparisonTitle').textContent = t('comparisonTitle');
+  document.getElementById('comparisonSubtitle').textContent = t('comparisonSubtitle');
+  document.getElementById('compFeature').textContent = t('compFeature');
+  document.getElementById('compFree').textContent = t('compFree');
+  document.getElementById('compPremium').textContent = t('compPremium');
+  document.getElementById('compRow1').textContent = t('compRow1');
+  document.getElementById('compRow2').textContent = t('compRow2');
+  document.getElementById('compRow3').textContent = t('compRow3');
+  document.getElementById('compRow4').textContent = t('compRow4');
+  document.getElementById('compRow5').textContent = t('compRow5');
+  document.getElementById('compRow6').textContent = t('compRow6');
+  document.getElementById('compRow7').textContent = t('compRow7');
+  document.getElementById('compRow8').textContent = t('compRow8');
+  document.getElementById('compCta').textContent = t('compCta');
+  // FAQ
+  document.getElementById('faqTitle').textContent = t('faqTitle');
+  document.getElementById('faqSubtitle').textContent = t('faqSubtitle');
+  document.getElementById('faq1Q').textContent = t('faq1Q');
+  document.getElementById('faq1A').textContent = t('faq1A');
+  document.getElementById('faq2Q').textContent = t('faq2Q');
+  document.getElementById('faq2A').textContent = t('faq2A');
+  document.getElementById('faq3Q').textContent = t('faq3Q');
+  document.getElementById('faq3A').textContent = t('faq3A');
+  document.getElementById('faq4Q').textContent = t('faq4Q');
+  document.getElementById('faq4A').textContent = t('faq4A');
+  document.getElementById('faq5Q').textContent = t('faq5Q');
+  document.getElementById('faq5A').textContent = t('faq5A');
+  // Install Guide
+  document.getElementById('installGuideTitle').textContent = t('installGuideTitle');
+  document.getElementById('installGuideSubtitle').textContent = t('installGuideSubtitle');
+  document.getElementById('installTabIos').textContent = t('installTabIos');
+  document.getElementById('installTabAndroid').textContent = t('installTabAndroid');
+  document.getElementById('installTabDesktop').textContent = t('installTabDesktop');
+  document.getElementById('iosStep1Title').textContent = t('iosStep1Title');
+  document.getElementById('iosStep1Desc').textContent = t('iosStep1Desc');
+  document.getElementById('iosStep2Title').textContent = t('iosStep2Title');
+  document.getElementById('iosStep2Desc').textContent = t('iosStep2Desc');
+  document.getElementById('iosStep3Title').textContent = t('iosStep3Title');
+  document.getElementById('iosStep3Desc').textContent = t('iosStep3Desc');
+  document.getElementById('androidStep1Title').textContent = t('androidStep1Title');
+  document.getElementById('androidStep1Desc').textContent = t('androidStep1Desc');
+  document.getElementById('androidStep2Title').textContent = t('androidStep2Title');
+  document.getElementById('androidStep2Desc').textContent = t('androidStep2Desc');
+  document.getElementById('androidStep3Title').textContent = t('androidStep3Title');
+  document.getElementById('androidStep3Desc').textContent = t('androidStep3Desc');
+  document.getElementById('desktopStep1Title').textContent = t('desktopStep1Title');
+  document.getElementById('desktopStep1Desc').textContent = t('desktopStep1Desc');
+  document.getElementById('desktopStep2Title').textContent = t('desktopStep2Title');
+  document.getElementById('desktopStep2Desc').textContent = t('desktopStep2Desc');
+  document.getElementById('desktopStep3Title').textContent = t('desktopStep3Title');
+  document.getElementById('desktopStep3Desc').textContent = t('desktopStep3Desc');
+  // Newsletter
+  document.getElementById('newsletterTitle').textContent = t('newsletterTitle');
+  document.getElementById('newsletterSubtitle').textContent = t('newsletterSubtitle');
+  document.getElementById('newsletterBtn').textContent = t('newsletterBtn');
+  document.getElementById('newsletterPrivacy').textContent = t('newsletterPrivacy');
+  // Referral
+  document.getElementById('referralTitle').textContent = t('referralTitle');
+  document.getElementById('referralSubtitle').textContent = t('referralSubtitle');
+  document.getElementById('referral1Num').textContent = t('referral1Num');
+  document.getElementById('referral1Text').textContent = t('referral1Text');
+  document.getElementById('referral2Num').textContent = t('referral2Num');
+  document.getElementById('referral2Text').textContent = t('referral2Text');
+  document.getElementById('referralCopyBtn').textContent = t('referralCopyBtn');
+  document.getElementById('footerBlog').textContent = t('footerBlog');
   // Update install button text
   const installBtn = document.getElementById('installBtn');
   if (installBtn && installBtn.style.display !== 'none') {
@@ -3631,6 +4605,94 @@ loadProgress();
 updatePinToggle();
 checkPremiumStatus();
 showEventBanner();
+generateReferralCode();
+
+// ─── FAQ Toggle ──────────────────────────────────
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const answer = item.querySelector('.faq-answer');
+  const isOpen = item.classList.contains('open');
+
+  // Close all other FAQs
+  document.querySelectorAll('.faq-item.open').forEach(openItem => {
+    openItem.classList.remove('open');
+    openItem.querySelector('.faq-answer').style.maxHeight = '0';
+  });
+
+  if (!isOpen) {
+    item.classList.add('open');
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+  }
+}
+
+// ─── Install Guide Tabs ──────────────────────────────────
+function switchInstallTab(platform) {
+  document.querySelectorAll('.install-tab').forEach(tab => tab.classList.remove('active'));
+  document.querySelectorAll('.install-content').forEach(content => content.classList.remove('active'));
+
+  if (platform === 'ios') {
+    document.getElementById('installTabIos').classList.add('active');
+    document.getElementById('installIos').classList.add('active');
+  } else if (platform === 'android') {
+    document.getElementById('installTabAndroid').classList.add('active');
+    document.getElementById('installAndroid').classList.add('active');
+  } else {
+    document.getElementById('installTabDesktop').classList.add('active');
+    document.getElementById('installDesktop').classList.add('active');
+  }
+}
+
+// ─── Newsletter Subscription ──────────────────────────────────
+function subscribeNewsletter(e) {
+  e.preventDefault();
+  const email = document.getElementById('newsletterEmail').value;
+  const btn = document.getElementById('newsletterBtn');
+
+  // Store locally (in production, send to backend)
+  const subscribers = JSON.parse(localStorage.getItem('ck_newsletter') || '[]');
+  if (!subscribers.includes(email)) {
+    subscribers.push(email);
+    localStorage.setItem('ck_newsletter', JSON.stringify(subscribers));
+  }
+
+  btn.textContent = lang === 'es' ? '¡Suscrito!' : 'Subscribed!';
+  btn.style.background = 'var(--green)';
+  document.getElementById('newsletterEmail').value = '';
+
+  setTimeout(() => {
+    btn.textContent = lang === 'es' ? 'Suscribirse' : 'Subscribe';
+    btn.style.background = '';
+  }, 3000);
+}
+
+// ─── Referral Program ──────────────────────────────────
+function generateReferralCode() {
+  let code = localStorage.getItem('ck_referral_code');
+  if (!code) {
+    code = 'CK' + Math.random().toString(36).substring(2, 8).toUpperCase();
+    localStorage.setItem('ck_referral_code', code);
+  }
+  document.getElementById('referralLink').value = 'https://www.chartkids.com/?ref=' + code;
+}
+
+function copyReferralLink() {
+  const link = document.getElementById('referralLink');
+  link.select();
+  document.execCommand('copy');
+
+  const btn = document.getElementById('referralCopyBtn');
+  btn.textContent = lang === 'es' ? '¡Copiado!' : 'Copied!';
+  setTimeout(() => {
+    btn.textContent = lang === 'es' ? 'Copiar' : 'Copy';
+  }, 2000);
+}
+
+// Check for referral on load
+const urlParams = new URLSearchParams(window.location.search);
+const referrer = urlParams.get('ref');
+if (referrer && !localStorage.getItem('ck_referred_by')) {
+  localStorage.setItem('ck_referred_by', referrer);
+}
 
 // Registrar Service Worker para funcionar offline
 if ('serviceWorker' in navigator) {
