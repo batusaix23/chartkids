@@ -1847,8 +1847,8 @@ button::-moz-focus-inner { border: 0; }
   <section class="newsletter-section" id="newsletterSection">
     <h2 id="newsletterTitle">Get Parenting Tips & Updates</h2>
     <p id="newsletterSubtitle">Join our newsletter for expert advice on positive parenting and new ChartKids features</p>
-    <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
-      <input type="email" class="newsletter-input" id="newsletterEmail" placeholder="your@email.com" required>
+    <form class="newsletter-form" action="https://chartkids.us18.list-manage.com/subscribe/post?u=b1b295cab07a92ab40923a87e&id=577fbbbb4c&f_id=00e4ace6f0" method="post" target="_blank" onsubmit="showNewsletterSuccess()">
+      <input type="email" class="newsletter-input" name="EMAIL" id="newsletterEmail" placeholder="your@email.com" required>
       <button type="submit" class="newsletter-btn" id="newsletterBtn">Subscribe</button>
     </form>
     <p class="newsletter-privacy" id="newsletterPrivacy">We respect your privacy. Unsubscribe anytime.</p>
@@ -1899,7 +1899,7 @@ button::-moz-focus-inner { border: 0; }
         <ul class="footer-links">
           <li><a href="support.html" id="footerSupport">Centro de Soporte</a></li>
           <li><a href="support.html#faq" id="footerFaq">Preguntas Frecuentes</a></li>
-          <li><a href="mailto:support@chartkids.app" id="footerContact">Contacto</a></li>
+          <li><a href="mailto:contact@chartkids.com" id="footerContact">Contacto</a></li>
         </ul>
       </div>
       <div class="footer-section">
@@ -4642,26 +4642,16 @@ function switchInstallTab(platform) {
   }
 }
 
-// ─── Newsletter Subscription ──────────────────────────────────
-function subscribeNewsletter(e) {
-  e.preventDefault();
-  const email = document.getElementById('newsletterEmail').value;
+// ─── Newsletter Subscription (Mailchimp) ──────────────────────────────────
+function showNewsletterSuccess() {
   const btn = document.getElementById('newsletterBtn');
-
-  // Store locally (in production, send to backend)
-  const subscribers = JSON.parse(localStorage.getItem('ck_newsletter') || '[]');
-  if (!subscribers.includes(email)) {
-    subscribers.push(email);
-    localStorage.setItem('ck_newsletter', JSON.stringify(subscribers));
-  }
-
   btn.textContent = lang === 'es' ? '¡Suscrito!' : 'Subscribed!';
   btn.style.background = 'var(--green)';
-  document.getElementById('newsletterEmail').value = '';
 
   setTimeout(() => {
     btn.textContent = lang === 'es' ? 'Suscribirse' : 'Subscribe';
     btn.style.background = '';
+    document.getElementById('newsletterEmail').value = '';
   }, 3000);
 }
 

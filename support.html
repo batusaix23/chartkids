@@ -176,7 +176,7 @@ h1 { font-family: 'Fredoka One', cursive; font-size: 2.5rem; margin-bottom: 10px
         <div class="contact-icon">📧</div>
         <h3 id="emailTitle">Email</h3>
         <p id="emailDesc">Respuesta en 24-48 horas</p>
-        <a href="mailto:support@chartkids.app" id="emailBtn">Enviar email</a>
+        <a href="mailto:contact@chartkids.com" id="emailBtn">Enviar email</a>
       </div>
       <div class="contact-card">
         <div class="contact-icon">💬</div>
@@ -399,7 +399,7 @@ function submitForm(e) {
   // Create mailto link
   const subject = encodeURIComponent(`ChartKids Support: ${type}`);
   const body = encodeURIComponent(`Email: ${email}\n\nMessage:\n${message}`);
-  window.location.href = `mailto:support@chartkids.app?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:contact@chartkids.com?subject=${subject}&body=${body}`;
 
   showToast(t.messageSent);
   e.target.reset();
