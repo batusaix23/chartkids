@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChartKids Instagram Posts Generator</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Nunito', sans-serif;
+  background: #0f0f1a;
+  color: white;
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Fredoka One', cursive;
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.instructions {
+  text-align: center;
+  color: #94a3b8;
+  margin-bottom: 40px;
+}
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.post-container {
+  text-align: center;
+}
+.post-container h3 {
+  margin-bottom: 10px;
+  color: #06b6d4;
+}
+.post-wrapper {
+  display: inline-block;
+  border: 2px solid #2e2e50;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.download-btn {
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  margin-top: 15px;
+  font-family: 'Nunito', sans-serif;
+}
+.download-btn:hover { opacity: 0.9; }
+.download-all {
+  display: block;
+  margin: 0 auto 40px;
+  background: linear-gradient(135deg, #22c55e, #06b6d4);
+  border: none;
+  color: white;
+  padding: 16px 40px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+}
+
+/* Instagram Post Base - 1080x1080 scaled to 400x400 for preview */
+.ig-post {
+  width: 1080px;
+  height: 1080px;
+  transform: scale(0.37);
+  transform-origin: top left;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px;
+}
+.post-wrapper {
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
+}
+
+/* Post 1: Welcome */
+.post-1 {
+  background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #232340 100%);
+}
+.post-1::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(124,58,237,0.4) 0%, transparent 70%);
+  top: -200px;
+  left: -200px;
+}
+.post-1::after {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(6,182,212,0.3) 0%, transparent 70%);
+  bottom: -150px;
+  right: -150px;
+}
+.post-1 .content { position: relative; z-index: 1; }
+.post-1 .emoji-big { font-size: 150px; margin-bottom: 30px; }
+.post-1 .logo {
+  font-family: 'Fredoka One', cursive;
+  font-size: 120px;
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+.post-1 .logo span { -webkit-text-fill-color: #fbbf24; }
+.post-1 .tagline { font-size: 48px; font-weight: 800; color: #f1f5f9; }
+.post-1 .subtitle { font-size: 36px; color: #94a3b8; margin-top: 20px; }
+
+/* Post 2: 5 Benefits */
+.post-2 {
+  background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
+  padding: 50px;
+  align-items: flex-start;
+  text-align: left;
+}
+.post-2 .title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 72px;
+  margin-bottom: 40px;
+  text-align: center;
+  width: 100%;
+}
+.post-2 .benefit {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 30px;
+  font-size: 42px;
+  font-weight: 700;
+}
+.post-2 .benefit-num {
+  background: rgba(255,255,255,0.2);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+/* Post 3: Screenshot */
+.post-3 {
+  background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+  padding: 50px;
+}
+.post-3 .badge {
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  padding: 15px 40px;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+.post-3 .chart-preview {
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  border-radius: 30px;
+  padding: 40px;
+  width: 800px;
+  margin-bottom: 40px;
+}
+.post-3 .chart-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 52px;
+  margin-bottom: 30px;
+}
+.post-3 .chart-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255,255,255,0.15);
+  padding: 20px 30px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  font-size: 36px;
+  font-weight: 700;
+}
+.post-3 .stars { letter-spacing: 5px; }
+.post-3 .cta { font-size: 42px; font-weight: 800; color: #06b6d4; }
+
+/* Post 4: Best Age */
+.post-4 {
+  background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+  padding: 50px;
+}
+.post-4 .title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 64px;
+  margin-bottom: 50px;
+}
+.post-4 .age-group {
+  background: rgba(255,255,255,0.15);
+  border-radius: 25px;
+  padding: 30px 40px;
+  margin-bottom: 25px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.post-4 .age-badge {
+  background: white;
+  color: #0891b2;
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-weight: 900;
+  font-size: 36px;
+  flex-shrink: 0;
+}
+.post-4 .age-text {
+  font-size: 34px;
+  font-weight: 600;
+  text-align: left;
+}
+
+/* Post 5: How To */
+.post-5 {
+  background: linear-gradient(135deg, #1a1a2e 0%, #232340 100%);
+  padding: 50px;
+}
+.post-5 .title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 68px;
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 50px;
+}
+.post-5 .step {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 35px;
+  text-align: left;
+}
+.post-5 .step-num {
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+.post-5 .step-text {
+  font-size: 44px;
+  font-weight: 700;
+}
+.post-5 .step-icon {
+  font-size: 60px;
+  margin-left: auto;
+}
+
+/* Post 6: Testimonial */
+.post-6 {
+  background: linear-gradient(135deg, #f472b6 0%, #ec4899 100%);
+  padding: 60px;
+}
+.post-6 .quote-mark {
+  font-size: 200px;
+  opacity: 0.2;
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  font-family: serif;
+}
+.post-6 .quote {
+  font-size: 46px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 1;
+}
+.post-6 .author {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.post-6 .avatar {
+  width: 100px;
+  height: 100px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+}
+.post-6 .author-info { text-align: left; }
+.post-6 .author-name { font-size: 38px; font-weight: 800; }
+.post-6 .author-role { font-size: 30px; opacity: 0.9; }
+.post-6 .stars-rating { font-size: 40px; margin-top: 5px; }
+
+/* Post 7: Morning Routine */
+.post-7 {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  color: #1a1a2e;
+  padding: 45px;
+}
+.post-7 .title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 64px;
+  margin-bottom: 35px;
+}
+.post-7 .task-list {
+  background: rgba(255,255,255,0.9);
+  border-radius: 25px;
+  padding: 35px;
+  width: 100%;
+}
+.post-7 .task {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 0;
+  border-bottom: 2px solid rgba(0,0,0,0.1);
+  font-size: 38px;
+  font-weight: 700;
+}
+.post-7 .task:last-child { border-bottom: none; }
+.post-7 .checkbox {
+  width: 45px;
+  height: 45px;
+  border: 4px solid #7c3aed;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+.post-7 .task.checked .checkbox {
+  background: #7c3aed;
+  position: relative;
+}
+.post-7 .task.checked .checkbox::after {
+  content: '✓';
+  color: white;
+  font-size: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Post 8: Themed Charts */
+.post-8 {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  padding: 50px;
+}
+.post-8 .title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 68px;
+  margin-bottom: 40px;
+}
+.post-8 .themes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  width: 100%;
+}
+.post-8 .theme-card {
+  background: rgba(255,255,255,0.15);
+  border-radius: 25px;
+  padding: 35px 20px;
+  text-align: center;
+}
+.post-8 .theme-icon { font-size: 80px; margin-bottom: 15px; }
+.post-8 .theme-name { font-size: 30px; font-weight: 800; }
+
+/* Post 9: Free CTA */
+.post-9 {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  padding: 50px;
+}
+.post-9 .big-text {
+  font-family: 'Fredoka One', cursive;
+  font-size: 100px;
+  margin-bottom: 20px;
+}
+.post-9 .subtitle {
+  font-size: 48px;
+  font-weight: 800;
+  margin-bottom: 50px;
+}
+.post-9 .features {
+  width: 100%;
+}
+.post-9 .feature {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  background: rgba(255,255,255,0.15);
+  padding: 25px 35px;
+  border-radius: 20px;
+}
+.post-9 .check {
+  font-size: 50px;
+}
+.post-9 .url {
+  margin-top: 40px;
+  font-size: 44px;
+  font-weight: 900;
+  background: white;
+  color: #16a34a;
+  padding: 25px 50px;
+  border-radius: 50px;
+}
+</style>
+</head>
+<body>
+
+<h1>ChartKids Instagram Posts</h1>
+<p class="instructions">Click each button to download the image. Save them as post-1.png, post-2.png, etc.</p>
+
+<button class="download-all" onclick="downloadAll()">Download All Images</button>
+
+<div class="posts-grid">
+
+  <!-- POST 1: Welcome -->
+  <div class="post-container">
+    <h3>Post 1: Welcome / Logo</h3>
+    <div class="post-wrapper">
+      <div class="ig-post post-1" id="post1">
+        <div class="content">
+          <div class="emoji-big">✨</div>
+          <div class="logo">ChartKids<span>✨</span></div>
+          <div class="tagline">AI Activity Charts for Kids</div>
+          <div class="subtitle">100% Free • Works Offline</div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <button class="download-btn" onclick="downloadPost('post1', 'post-1-welcome.png')">Download post-1.png</button>
+  </div>
+
+  <!-- POST 2: 5 Benefits -->
+  <div class="post-container">
+    <h3>Post 2: 5 Benefits</h3>
+    <div class="post-wrapper">
+      <div class="ig-post post-2" id="post2">
+        <div class="title">5 Benefits of Reward Charts</div>
+        <div class="benefit"><div class="benefit-num">1</div> Builds Responsibility</div>
+        <div class="benefit"><div class="benefit-num">2</div> Boosts Self-Esteem</div>
+        <div class="benefit"><div class="benefit-num">3</div> Creates Healthy Routines</div>
+        <div class="benefit"><div class="benefit-num">4</div> Teaches Goal-Setting</div>
+        <div class="benefit"><div class="benefit-num">5</div> Reduces Daily Stress</div>
+      </div>
+    </div>
+    <br>
+    <button class="download-btn" onclick="downloadPost('post2', 'post-2-benefits.png')">Download post-2.png</button>
+  </div>
+
+  <!-- POST 3: Chart Example -->
+  <div class="post-container">
+    <h3>Post 3: Chart Example</h3>
+    <div class="post-wrapper">
+      <div class="ig-post post-3" id="post3">
+        <div class="badge">Created in 30 seconds!</div>
+        <div class="chart-preview">
+          <div class="chart-title">Emma's Tasks</div>
+          <div class="chart-row"><span>Make bed</span><span class="stars">⭐⭐⭐⭐⭐</span></div>
+          <div class="chart-row"><span>Brush teeth</span><span class="stars">⭐⭐⭐⭐⭐</span></div>
+          <div class="chart-row"><span>Do homework</span><span class="stars">⭐⭐⭐☆☆</span></div>
+          <div class="chart-row"><span>Clean room</span><span class="stars">⭐⭐⭐⭐☆</span></div>
+        </div>
+        <div class="cta">Try it FREE! Link in bio</div>
+      </div>
+    </div>
+    <br>
+    <button class="download-btn" onclick="downloadPost('post3', 'post-3-example.png')">Download post-3.png</button>
+  </div>
+
+  <!-- POST 4: Best Age -->
+  <div class="post-container">
+    <h3>Post 4: Best Age</h3>
+    <div class="post-wrapper">
+      <div class="ig-post post-4" id="post4">
+        <div class="title">Best Age for Reward Charts</div>
+        <div class="age-group">
+          <div class="age-badge">3-5</div>
+          <div class="age-text">Simple charts with stickers & small rewards</div>
+        </div>
+        <div class="age-group">
+          <div class="age-badge">6-8</div>
+          <div class="age-text">More tasks, weekly goals, chores + homework</div>
+        </div>
+        <div class="age-group">
+          <div class="age-badge">9-12</div>
+          <div class="age-text">Money rewards & longer-term goals</div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <button class="download-btn" onclick="downloadPost('post4', 'post-4-bestage.png')">Download post-4.png</button>
+  </div>
+
+  <!-- POST 5: How To -->
+  <div class="post-container">
+    <h3>Post 5: How To Create</h3>
+    <div class="post-wrapper">
+      <div class="ig-post post-5" id="post5">
+        <div class="title">How to Create Your Chart</div>
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">Describe your child</div>
+          <div class="step-icon">💬</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">AI creates chart</div>
+          <div class="step-icon">🤖</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">Customize & save</div>
+          <div class="step-icon">🎨</div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-text">Print & celebrate!</div>
+          <div class="step-icon">🎉</div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <button class="download-btn" onclick="downloadPost('post5', 'post-5-howto.png')">Download post-5.png</button>
+  </div>
+
+  <!-- POST 6: Testimonial -->
+  <div class="post-container">
+    <h3>Post 6: Testimonial</h3>
+    <div class="post-wrapper">
+      <div class="ig-post post-6" id="post6">
+        <div class="quote-mark">"</div>
+        <div class="quote">My 5-year-old now makes his bed EVERY morning without being asked!</div>
+        <div class="author">
+          <div class="avatar">👩</div>
+          <div class="author-info">
+            <div class="author-name">Sarah M.</div>
+            <div class="author-role">Mom of 2 boys</div>
+            <div class="stars-rating">⭐⭐⭐⭐⭐</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <button class="download-btn" onclick="downloadPost('post6', 'post-6-testimonial.png')">Download post-6.png</button>
+  </div>
+
+  <!-- POST 7: Morning Routine -->
+  <div class="post-container">
+    <h3>Post 7: Morning Routine</h3>
+    <div class="post-wrapper">
+      <div class="ig-post post-7" id="post7">
+        <div class="title">Morning Routine Chart</div>
+        <div class="task-list">
+          <div class="task checked"><div class="checkbox"></div>Wake up on time ⏰</div>
+          <div class="task checked"><div class="checkbox"></div>Make bed 🛏️</div>
+          <div class="task checked"><div class="checkbox"></div>Brush teeth 🦷</div>
+          <div class="task"><div class="checkbox"></div>Get dressed 👕</div>
+          <div class="task"><div class="checkbox"></div>Eat breakfast 🥣</div>
+          <div class="task"><div class="checkbox"></div>Pack backpack 🎒</div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <button class="download-btn" onclick="downloadPost('post7', 'post-7-morning.png')">Download post-7.png</button>
+  </div>
+
+  <!-- POST 8: Themed Charts -->
+  <div class="post-container">
+    <h3>Post 8: Themed Charts</h3>
+    <div class="post-wrapper">
+      <div class="ig-post post-8" id="post8">
+        <div class="title">Fun Themed Charts!</div>
+        <div class="themes-grid">
+          <div class="theme-card">
+            <div class="theme-icon">🦸</div>
+            <div class="theme-name">Superhero</div>
+          </div>
+          <div class="theme-card">
+            <div class="theme-icon">👸</div>
+            <div class="theme-name">Princess</div>
+          </div>
+          <div class="theme-card">
+            <div class="theme-icon">🚀</div>
+            <div class="theme-name">Space</div>
+          </div>
+          <div class="theme-card">
+            <div class="theme-icon">🌈</div>
+            <div class="theme-name">Rainbow</div>
+          </div>
+          <div class="theme-card">
+            <div class="theme-icon">🎃</div>
+            <div class="theme-name">Halloween</div>
+          </div>
+          <div class="theme-card">
+            <div class="theme-icon">🎄</div>
+            <div class="theme-name">Christmas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <button class="download-btn" onclick="downloadPost('post8', 'post-8-themes.png')">Download post-8.png</button>
+  </div>
+
+  <!-- POST 9: Free CTA -->
+  <div class="post-container">
+    <h3>Post 9: Free CTA</h3>
+    <div class="post-wrapper">
+      <div class="ig-post post-9" id="post9">
+        <div class="big-text">100% FREE</div>
+        <div class="subtitle">No Sign-Up Required!</div>
+        <div class="features">
+          <div class="feature"><span class="check">✓</span> No credit card needed</div>
+          <div class="feature"><span class="check">✓</span> Works offline</div>
+          <div class="feature"><span class="check">✓</span> Unlimited charts</div>
+        </div>
+        <div class="url">chartkids.com</div>
+      </div>
+    </div>
+    <br>
+    <button class="download-btn" onclick="downloadPost('post9', 'post-9-free.png')">Download post-9.png</button>
+  </div>
+
+</div>
+
+<script>
+async function downloadPost(elementId, filename) {
+  const element = document.getElementById(elementId);
+  const btn = event.target;
+  const originalText = btn.textContent;
+  btn.textContent = 'Generating...';
+  btn.disabled = true;
+
+  // Reset transform for accurate capture
+  const originalTransform = element.style.transform;
+  element.style.transform = 'none';
+
+  try {
+    const canvas = await html2canvas(element, {
+      scale: 1,
+      width: 1080,
+      height: 1080,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: null
+    });
+
+    const link = document.createElement('a');
+    link.download = filename;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+
+    btn.textContent = 'Downloaded!';
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.disabled = false;
+    }, 2000);
+  } catch (err) {
+    console.error(err);
+    btn.textContent = 'Error - Try again';
+    btn.disabled = false;
+  }
+
+  // Restore transform
+  element.style.transform = originalTransform;
+}
+
+async function downloadAll() {
+  const posts = ['post1', 'post2', 'post3', 'post4', 'post5', 'post6', 'post7', 'post8', 'post9'];
+  const names = [
+    'post-1-welcome.png',
+    'post-2-benefits.png',
+    'post-3-example.png',
+    'post-4-bestage.png',
+    'post-5-howto.png',
+    'post-6-testimonial.png',
+    'post-7-morning.png',
+    'post-8-themes.png',
+    'post-9-free.png'
+  ];
+
+  const btn = event.target;
+  btn.textContent = 'Downloading... 0/9';
+  btn.disabled = true;
+
+  for (let i = 0; i < posts.length; i++) {
+    const element = document.getElementById(posts[i]);
+    const originalTransform = element.style.transform;
+    element.style.transform = 'none';
+
+    try {
+      const canvas = await html2canvas(element, {
+        scale: 1,
+        width: 1080,
+        height: 1080,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: null
+      });
+
+      const link = document.createElement('a');
+      link.download = names[i];
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+
+      btn.textContent = `Downloading... ${i + 1}/9`;
+      await new Promise(r => setTimeout(r, 500)); // Small delay between downloads
+    } catch (err) {
+      console.error(err);
+    }
+
+    element.style.transform = originalTransform;
+  }
+
+  btn.textContent = 'All Downloaded!';
+  setTimeout(() => {
+    btn.textContent = 'Download All Images';
+    btn.disabled = false;
+  }, 3000);
+}
+</script>
+
+</body>
+</html>
