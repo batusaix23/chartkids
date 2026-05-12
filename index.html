@@ -1847,10 +1847,11 @@ button::-moz-focus-inner { border: 0; }
   <section class="newsletter-section" id="newsletterSection">
     <h2 id="newsletterTitle">Get Parenting Tips & Updates</h2>
     <p id="newsletterSubtitle">Join our newsletter for expert advice on positive parenting and new ChartKids features</p>
-    <form class="newsletter-form" action="https://chartkids.us18.list-manage.com/subscribe/post?u=b1b295cab07a92ab40923a87e&id=577fbbbb4c&f_id=00e4ace6f0" method="post" target="_blank" onsubmit="showNewsletterSuccess()">
+    <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
       <input type="email" class="newsletter-input" name="EMAIL" id="newsletterEmail" placeholder="your@email.com" required>
       <button type="submit" class="newsletter-btn" id="newsletterBtn">Subscribe</button>
     </form>
+    <p class="newsletter-message" id="newsletterMessage" style="display:none; margin-top: 15px; padding: 12px 20px; border-radius: 8px; font-weight: 700;"></p>
     <p class="newsletter-privacy" id="newsletterPrivacy">We respect your privacy. Unsubscribe anytime.</p>
   </section>
 
@@ -4642,17 +4643,81 @@ function switchInstallTab(platform) {
   }
 }
 
-// ─── Newsletter Subscription (Mailchimp) ──────────────────────────────────
-function showNewsletterSuccess() {
-  const btn = document.getElementById('newsletterBtn');
-  btn.textContent = lang === 'es' ? '¡Suscrito!' : 'Subscribed!';
-  btn.style.background = 'var(--green)';
+// ─── Newsletter Subscription (Mailchimp AJAX) ──────────────────────────────────
+function subscribeNewsletter(e) {
+  e.preventDefault();
 
-  setTimeout(() => {
+  const email = document.getElementById('newsletterEmail').value;
+  const btn = document.getElementById('newsletterBtn');
+  const msg = document.getElementById('newsletterMessage');
+
+  if (!email) return;
+
+  // Show loading state
+  btn.disabled = true;
+  btn.textContent = lang === 'es' ? 'Enviando...' : 'Sending...';
+  msg.style.display = 'none';
+
+  // Mailchimp JSONP URL (post-json instead of post)
+  const url = 'https://chartkids.us18.list-manage.com/subscribe/post-json?u=b1b295cab07a92ab40923a87e&id=577fbbbb4c&f_id=00e4ace6f0&EMAIL=' + encodeURIComponent(email) + '&c=mailchimpCallback';
+
+  // Create script tag for JSONP
+  const script = document.createElement('script');
+  script.src = url;
+  document.body.appendChild(script);
+
+  // Cleanup script after load
+  script.onload = () => script.remove();
+  script.onerror = () => {
+    script.remove();
+    showNewsletterMessage('error', lang === 'es' ? 'Error de conexión. Intenta de nuevo.' : 'Connection error. Please try again.');
+    btn.disabled = false;
     btn.textContent = lang === 'es' ? 'Suscribirse' : 'Subscribe';
-    btn.style.background = '';
-    document.getElementById('newsletterEmail').value = '';
-  }, 3000);
+  };
+}
+
+// Mailchimp callback function
+function mailchimpCallback(response) {
+  const btn = document.getElementById('newsletterBtn');
+  const emailInput = document.getElementById('newsletterEmail');
+
+  btn.disabled = false;
+
+  if (response.result === 'success') {
+    showNewsletterMessage('success', lang === 'es' ? '🎉 ¡Gracias! Revisa tu email para confirmar.' : '🎉 Thanks! Check your email to confirm.');
+    emailInput.value = '';
+    btn.textContent = lang === 'es' ? '¡Suscrito!' : 'Subscribed!';
+    btn.style.background = 'var(--green)';
+    setTimeout(() => {
+      btn.textContent = lang === 'es' ? 'Suscribirse' : 'Subscribe';
+      btn.style.background = '';
+    }, 4000);
+  } else {
+    // Handle errors (already subscribed, invalid email, etc.)
+    let errorMsg = response.msg || '';
+    if (errorMsg.includes('already subscribed')) {
+      errorMsg = lang === 'es' ? 'Este email ya está suscrito.' : 'This email is already subscribed.';
+    } else if (errorMsg.includes('invalid')) {
+      errorMsg = lang === 'es' ? 'Por favor ingresa un email válido.' : 'Please enter a valid email.';
+    } else {
+      errorMsg = lang === 'es' ? 'Error al suscribir. Intenta de nuevo.' : 'Subscription error. Please try again.';
+    }
+    showNewsletterMessage('error', errorMsg);
+    btn.textContent = lang === 'es' ? 'Suscribirse' : 'Subscribe';
+  }
+}
+
+function showNewsletterMessage(type, text) {
+  const msg = document.getElementById('newsletterMessage');
+  msg.textContent = text;
+  msg.style.display = 'block';
+  if (type === 'success') {
+    msg.style.background = 'rgba(34, 197, 94, 0.2)';
+    msg.style.color = '#22c55e';
+  } else {
+    msg.style.background = 'rgba(239, 68, 68, 0.2)';
+    msg.style.color = '#ef4444';
+  }
 }
 
 // ─── Referral Program ──────────────────────────────────
