@@ -368,6 +368,23 @@ button::-moz-focus-inner { border: 0; }
 .chart-motivation { text-align: center; font-size: 0.8rem; color: #888; font-weight: 600; }
 .chart-motivation.winner { color: var(--green); animation: bounce 0.6s infinite alternate; }
 @keyframes bounce { from { transform: scale(1); } to { transform: scale(1.03); } }
+/* Reward Image */
+.reward-image-container { display: flex; align-items: center; gap: 12px; margin-top: 10px; padding: 10px; background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(6,182,212,0.1)); border-radius: 12px; }
+.reward-image { width: 60px; height: 60px; border-radius: 10px; object-fit: cover; border: 3px solid var(--green); box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+.reward-image-text { flex: 1; font-size: 0.85rem; font-weight: 700; color: #333; }
+.reward-image-label { font-size: 0.7rem; color: #888; display: block; margin-bottom: 2px; }
+/* Reward Image Upload */
+.reward-upload-area { border: 2px dashed var(--border); border-radius: 12px; padding: 16px; text-align: center; cursor: pointer; transition: all 0.2s; margin-top: 8px; }
+.reward-upload-area:hover { border-color: var(--accent); background: rgba(124,58,237,0.05); }
+.reward-upload-area.has-image { border-style: solid; border-color: var(--green); background: rgba(34,197,94,0.05); }
+.reward-upload-icon { font-size: 2rem; margin-bottom: 8px; }
+.reward-upload-text { font-size: 0.85rem; color: var(--muted); }
+.reward-preview { display: flex; align-items: center; gap: 12px; }
+.reward-preview img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; }
+.reward-preview-info { flex: 1; text-align: left; }
+.reward-preview-name { font-size: 0.85rem; font-weight: 700; color: var(--text); }
+.reward-preview-change { font-size: 0.75rem; color: var(--accent); }
+.reward-remove-btn { background: rgba(239,68,68,0.2); color: #ef4444; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.75rem; cursor: pointer; }
 .chart-footer { text-align: center; font-size: 1.1rem; margin-top: 14px; letter-spacing: 4px; opacity: 0.5; }
 .tc0{background:#FF6B6B}.tc1{background:#C77DFF}.tc2{background:#4ECDC4}.tc3{background:#FF9A3C}
 .tc4{background:#6BCB77}.tc5{background:#FF85A1}.tc6{background:#6DD5FA}.tc7{background:#f97316}
@@ -1979,6 +1996,16 @@ button::-moz-focus-inner { border: 0; }
           <input type="text" id="editGoal" placeholder="Ej: Un juguete nuevo">
         </div>
         <div class="edit-field">
+          <label id="labelRewardImage">Imagen del premio (opcional)</label>
+          <div class="reward-upload-area" id="rewardUploadArea" onclick="document.getElementById('rewardImageInput').click()">
+            <div id="rewardUploadContent">
+              <div class="reward-upload-icon">📷</div>
+              <div class="reward-upload-text" id="rewardUploadText">Clic para subir imagen</div>
+            </div>
+          </div>
+          <input type="file" id="rewardImageInput" accept="image/*" style="display:none" onchange="handleRewardImageUpload(event)">
+        </div>
+        <div class="edit-field">
           <label id="labelGoalAmount">Cantidad (si es dinero)</label>
           <input type="number" id="editGoalAmount" placeholder="0" min="0" step="0.01">
         </div>
@@ -2147,6 +2174,10 @@ const T = {
     labelChildName: 'Nombre del niño/a',
     labelTitle: 'Título del chart',
     labelGoal: 'Meta/Premio',
+    labelRewardImage: 'Imagen del premio (opcional)',
+    rewardUploadText: 'Clic para subir imagen',
+    rewardChangeText: 'Clic para cambiar',
+    rewardImageLabel: '¡Mi premio!',
     labelGoalAmount: 'Cantidad (si es dinero)',
     labelTheme: 'Tema visual',
     labelTasks: 'Tareas',
@@ -2430,6 +2461,10 @@ const T = {
     labelChildName: "Child's name",
     labelTitle: 'Chart title',
     labelGoal: 'Goal/Reward',
+    labelRewardImage: 'Reward image (optional)',
+    rewardUploadText: 'Click to upload image',
+    rewardChangeText: 'Click to change',
+    rewardImageLabel: 'My reward!',
     labelGoalAmount: 'Amount (if money)',
     labelTheme: 'Visual theme',
     labelTasks: 'Tasks',
@@ -2706,6 +2741,8 @@ function applyTranslations() {
   document.getElementById('labelChildName').textContent = t('labelChildName');
   document.getElementById('labelTitle').textContent = t('labelTitle');
   document.getElementById('labelGoal').textContent = t('labelGoal');
+  document.getElementById('labelRewardImage').textContent = t('labelRewardImage');
+  document.getElementById('rewardUploadText').textContent = t('rewardUploadText');
   document.getElementById('labelGoalAmount').textContent = t('labelGoalAmount');
   document.getElementById('labelTheme').textContent = t('labelTheme');
   document.getElementById('labelTasks').textContent = t('labelTasks');
@@ -3552,6 +3589,10 @@ body { font-family: 'Baloo 2', cursive; background: ${th.bg}; min-height: 100vh;
 .motivation { text-align: center; font-size: 0.95rem; color: #888; font-weight: 600; }
 .motivation.winner { color: var(--theme-color); font-size: 1.1rem; animation: bounce 0.6s infinite alternate; }
 @keyframes bounce { from { transform: scale(1); } to { transform: scale(1.05); } }
+.reward-image-container { display: flex; align-items: center; gap: 12px; margin: 12px 0; padding: 12px; background: linear-gradient(135deg, rgba(124,58,237,0.08), rgba(6,182,212,0.08)); border-radius: 12px; }
+.reward-image { width: 60px; height: 60px; border-radius: 10px; object-fit: cover; border: 3px solid var(--theme-color); box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+.reward-image-text { flex: 1; font-size: 0.9rem; font-weight: 700; color: #333; }
+.reward-image-label { font-size: 0.7rem; color: #888; display: block; margin-bottom: 2px; }
 .btn-print { display: block; margin: 24px auto 0; background: linear-gradient(135deg, #FF6B6B, #FF85A1); color: white; border: none; border-radius: 50px; padding: 14px 36px; font-family: 'Fredoka One', cursive; font-size: 1.1rem; cursor: pointer; box-shadow: 0 6px 20px rgba(255,107,107,0.35); transition: transform 0.2s; position: relative; z-index: 1; }
 .btn-print:hover { transform: translateY(-2px); }
 .footer-emoji { text-align: center; font-size: 1.4rem; margin-top: 20px; letter-spacing: 6px; opacity: 0.6; position: relative; z-index: 1; }
@@ -3602,6 +3643,15 @@ body { font-family: 'Baloo 2', cursive; background: ${th.bg}; min-height: 100vh;
       <div class="progress-bar-fill" id="progFill" style="width:0%">0%</div>
     </div>
     <div class="progress-sub" id="progSub">${lang === 'es' ? '0 de ' + total + ' ⭐ completadas' : '0 of ' + total + ' ⭐ completed'}</div>
+    ${chartData.rewardImage ? `
+    <div class="reward-image-container">
+      <img src="${chartData.rewardImage}" alt="Reward" class="reward-image">
+      <div class="reward-image-text">
+        <span class="reward-image-label">${lang === 'es' ? '¡Mi premio!' : 'My reward!'}</span>
+        ${goal || (lang === 'es' ? 'Premio especial' : 'Special prize')}
+      </div>
+    </div>
+    ` : ''}
     <div class="motivation" id="motivation">${motivationMsgs[0]}</div>
   </div>
 
@@ -4273,6 +4323,8 @@ function openEditModal() {
   _doOpenEditModal();
 }
 
+let currentRewardImage = null;
+
 function _doOpenEditModal() {
   // Populate form with current data
   document.getElementById('editChildName').value = chartData.childName || '';
@@ -4281,8 +4333,62 @@ function _doOpenEditModal() {
   document.getElementById('editGoalAmount').value = chartData.goalAmount || '';
   document.getElementById('editTheme').value = chartData.theme || 'general';
 
+  // Load existing reward image if any
+  currentRewardImage = chartData.rewardImage || null;
+  updateRewardImagePreview();
+
   renderEditTasks();
   document.getElementById('editModal').style.display = 'flex';
+}
+
+function handleRewardImageUpload(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  // Check file size (max 500KB for localStorage)
+  if (file.size > 500000) {
+    showToast(lang === 'es' ? '⚠️ Imagen muy grande. Máximo 500KB' : '⚠️ Image too large. Max 500KB');
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    currentRewardImage = e.target.result;
+    updateRewardImagePreview();
+  };
+  reader.readAsDataURL(file);
+}
+
+function updateRewardImagePreview() {
+  const uploadArea = document.getElementById('rewardUploadArea');
+  const uploadContent = document.getElementById('rewardUploadContent');
+
+  if (currentRewardImage) {
+    uploadArea.classList.add('has-image');
+    uploadContent.innerHTML = `
+      <div class="reward-preview">
+        <img src="${currentRewardImage}" alt="Reward">
+        <div class="reward-preview-info">
+          <div class="reward-preview-name">${lang === 'es' ? 'Imagen cargada' : 'Image loaded'}</div>
+          <div class="reward-preview-change">${t('rewardChangeText')}</div>
+        </div>
+        <button type="button" class="reward-remove-btn" onclick="removeRewardImage(event)">✕</button>
+      </div>
+    `;
+  } else {
+    uploadArea.classList.remove('has-image');
+    uploadContent.innerHTML = `
+      <div class="reward-upload-icon">📷</div>
+      <div class="reward-upload-text">${t('rewardUploadText')}</div>
+    `;
+  }
+}
+
+function removeRewardImage(event) {
+  event.stopPropagation();
+  currentRewardImage = null;
+  document.getElementById('rewardImageInput').value = '';
+  updateRewardImagePreview();
 }
 
 function closeEditModal(event) {
@@ -4346,6 +4452,7 @@ function saveChartEdits() {
   chartData.goal = document.getElementById('editGoal').value.trim();
   chartData.goalAmount = parseFloat(document.getElementById('editGoalAmount').value) || 0;
   chartData.theme = document.getElementById('editTheme').value;
+  chartData.rewardImage = currentRewardImage;
 
   // Update goalType based on amount
   chartData.goalType = chartData.goalAmount > 0 ? 'money' : 'toy';
