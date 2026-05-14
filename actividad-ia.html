@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Actividad Personalizada con IA — ChartKids</title>
+<meta name="description" content="Genera una actividad creativa personalizada para tus hijos según su edad, categoría y tiempo disponible. Powered by IA.">
+<link rel="canonical" href="https://www.chartkids.com/actividad-ia.html">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3864436143903858" crossorigin="anonymous"></script>
+<style>
+:root {
+  --bg:#0f0f1a; --surface:#1a1a2e; --surface2:#232340; --border:#2e2e50;
+  --accent:#7c3aed; --accent2:#06b6d4; --green:#22c55e; --yellow:#fbbf24;
+  --pink:#ec4899; --orange:#f97316; --text:#f1f5f9; --muted:#94a3b8; --radius:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+.container{max-width:860px;margin:0 auto;padding:0 20px;}
+
+/* Header */
+header{padding:24px 0;border-bottom:1px solid var(--border);margin-bottom:40px;}
+.header-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.logo{font-family:'Fredoka One',cursive;font-size:1.5rem;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;}
+.logo span{-webkit-text-fill-color:var(--yellow);}
+.back-btn{background:var(--surface);border:1px solid var(--border);padding:10px 20px;border-radius:50px;color:var(--text);text-decoration:none;font-weight:700;transition:all .2s;}
+.back-btn:hover{background:var(--accent);border-color:var(--accent);}
+
+/* Hero */
+.hero{text-align:center;padding:36px 0 44px;}
+.hero-icon{font-size:3.5rem;margin-bottom:16px;}
+.hero h1{font-family:'Fredoka One',cursive;font-size:2.4rem;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p{color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto;line-height:1.7;}
+
+/* Form Card */
+.form-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:36px;margin-bottom:32px;}
+.form-card h2{font-family:'Fredoka One',cursive;font-size:1.3rem;margin-bottom:24px;}
+
+.field-group{margin-bottom:28px;}
+.field-label{font-size:0.82rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;display:block;}
+
+/* Option chips */
+.option-chips{display:flex;gap:8px;flex-wrap:wrap;}
+.chip{background:var(--surface2);border:2px solid var(--border);padding:10px 18px;border-radius:50px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all .18s;font-family:'Nunito',sans-serif;color:var(--text);}
+.chip:hover{border-color:var(--accent);color:var(--accent);}
+.chip.selected.age    {background:rgba(251,191,36,.15);border-color:var(--yellow);color:var(--yellow);}
+.chip.selected.cat    {background:rgba(124,58,237,.15);border-color:var(--accent);color:var(--accent);}
+.chip.selected.tiempo {background:rgba(6,182,212,.15);border-color:var(--accent2);color:var(--accent2);}
+
+/* Cat chips with emoji */
+.cat-chip{display:flex;align-items:center;gap:8px;}
+
+/* Generate button */
+.btn-generate{width:100%;padding:16px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;font-family:'Fredoka One',cursive;font-size:1.2rem;cursor:pointer;transition:opacity .2s;margin-top:8px;}
+.btn-generate:hover{opacity:.88;}
+.btn-generate:disabled{opacity:.45;cursor:not-allowed;}
+
+/* Loading */
+.loading{text-align:center;padding:48px 20px;display:none;}
+.loading-dots{display:flex;justify-content:center;gap:8px;margin-bottom:16px;}
+.dot{width:12px;height:12px;border-radius:50%;background:var(--accent);animation:bounce .8s infinite;}
+.dot:nth-child(2){background:var(--pink);animation-delay:.15s;}
+.dot:nth-child(3){background:var(--accent2);animation-delay:.3s;}
+@keyframes bounce{0%,80%,100%{transform:scale(0.7);opacity:.5}40%{transform:scale(1);opacity:1}}
+.loading p{color:var(--muted);font-size:.95rem;}
+
+/* Result Card */
+.result-card{background:var(--surface);border:2px solid var(--accent);border-radius:var(--radius);overflow:hidden;margin-bottom:32px;display:none;}
+.result-hero{padding:10px 0 0;display:flex;align-items:center;justify-content:center;font-size:5rem;min-height:140px;}
+.result-body{padding:28px 32px;}
+.result-tag{display:inline-block;background:rgba(124,58,237,.15);color:var(--accent);padding:4px 14px;border-radius:20px;font-size:.75rem;font-weight:800;margin-bottom:12px;}
+.result-body h2{font-family:'Fredoka One',cursive;font-size:1.8rem;margin-bottom:10px;}
+.result-desc{color:var(--muted);line-height:1.7;margin-bottom:20px;font-size:.95rem;}
+
+.result-info{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px;}
+.r-info{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:8px 14px;font-size:.8rem;}
+.r-info span{display:block;font-size:.65rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px;}
+
+.result-section{margin-bottom:20px;}
+.result-section h3{font-size:.82rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;}
+
+.mats-grid{display:flex;flex-wrap:wrap;gap:8px;}
+.mat-pill{background:var(--surface2);border:1px solid var(--border);padding:5px 12px;border-radius:16px;font-size:.8rem;}
+
+.steps-ol{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.steps-ol li{display:flex;gap:12px;align-items:flex-start;background:var(--surface2);border-radius:12px;padding:12px 14px;}
+.s-num{min-width:26px;height:26px;border-radius:50%;background:var(--accent);color:white;font-size:.75rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.s-text{font-size:.88rem;line-height:1.6;}
+
+.benefits{display:flex;flex-wrap:wrap;gap:8px;}
+.benefit{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.25);padding:5px 14px;border-radius:50px;font-size:.78rem;font-weight:700;}
+
+.tip-box{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);border-radius:12px;padding:14px 18px;font-size:.88rem;color:var(--yellow);margin-bottom:24px;}
+.tip-box strong{font-weight:800;}
+
+/* Result actions */
+.result-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.btn-action{flex:1;min-width:140px;padding:12px 20px;border-radius:50px;font-weight:800;font-size:.88rem;cursor:pointer;border:none;font-family:'Nunito',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .2s;}
+.btn-action:hover{opacity:.85;}
+.btn-regenerar{background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;}
+.btn-guardar  {background:var(--surface2);border:1px solid var(--border);color:var(--text);}
+.btn-compartir{background:linear-gradient(135deg,var(--pink),var(--orange));color:white;}
+
+/* Error */
+.error-box{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:12px;padding:16px 20px;color:#f87171;font-size:.9rem;margin-bottom:20px;display:none;}
+
+/* Examples */
+.examples{margin-bottom:48px;}
+.examples h2{font-family:'Fredoka One',cursive;font-size:1.3rem;margin-bottom:16px;color:var(--muted);}
+.ex-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;}
+.ex-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;cursor:pointer;transition:all .2s;}
+.ex-card:hover{border-color:var(--accent);transform:translateY(-2px);}
+.ex-card .ex-emoji{font-size:2rem;margin-bottom:8px;}
+.ex-card .ex-title{font-weight:800;font-size:.9rem;margin-bottom:4px;}
+.ex-card .ex-tags{font-size:.72rem;color:var(--muted);}
+
+/* Newsletter */
+.newsletter{background:linear-gradient(135deg,rgba(124,58,237,.08),rgba(6,182,212,.06));border:1px solid var(--border);border-radius:var(--radius);padding:40px;text-align:center;margin-bottom:60px;}
+.newsletter h3{font-family:'Fredoka One',cursive;font-size:1.3rem;margin-bottom:10px;}
+.newsletter p{color:var(--muted);margin-bottom:20px;font-size:.92rem;}
+.nl-form{display:flex;gap:10px;max-width:400px;margin:0 auto;}
+.nl-form input{flex:1;padding:12px 18px;border:1px solid var(--border);border-radius:50px;background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;}
+.nl-form button{background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;padding:12px 22px;border-radius:50px;color:white;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;}
+
+footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;}
+footer p{color:var(--muted);font-size:.85rem;}
+footer a{color:var(--accent);text-decoration:none;}
+
+@media(max-width:600px){
+  .hero h1{font-size:1.8rem;}
+  .result-body{padding:20px;}
+  .result-actions{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">ChartKids<span>✨</span></a>
+    <a href="actividades.html" class="back-btn">← Actividades</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-icon">🤖</div>
+  <h1>Actividad con IA</h1>
+  <p>Cuéntanos la edad de tus hijos, la categoría y el tiempo disponible — la IA genera una actividad personalizada al instante.</p>
+</div>
+
+<!-- Form -->
+<div class="form-card">
+  <h2>¿Cómo es tu hijo?</h2>
+
+  <div class="field-group">
+    <span class="field-label">👶 Edad del niño</span>
+    <div class="option-chips" id="chips-age">
+      <button class="chip age" data-val="2-4" onclick="select('age',this)">2 – 4 años</button>
+      <button class="chip age" data-val="5-7" onclick="select('age',this)">5 – 7 años</button>
+      <button class="chip age" data-val="8-12" onclick="select('age',this)">8 – 12 años</button>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <span class="field-label">🎨 Categoría</span>
+    <div class="option-chips" id="chips-cat">
+      <button class="chip cat cat-chip" data-val="dibujos"      onclick="select('cat',this)">🎨 Dibujos</button>
+      <button class="chip cat cat-chip" data-val="manualidades" onclick="select('cat',this)">✂️ Manualidades</button>
+      <button class="chip cat cat-chip" data-val="experimentos" onclick="select('cat',this)">🔬 Experimentos</button>
+      <button class="chip cat cat-chip" data-val="cocina"       onclick="select('cat',this)">🍳 Cocina</button>
+      <button class="chip cat cat-chip" data-val="sorpresa"     onclick="select('cat',this)">🎲 Sorpréndeme</button>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <span class="field-label">⏱ Tiempo disponible</span>
+    <div class="option-chips" id="chips-tiempo">
+      <button class="chip tiempo" data-val="15" onclick="select('tiempo',this)">15 min</button>
+      <button class="chip tiempo" data-val="30" onclick="select('tiempo',this)">30 min</button>
+      <button class="chip tiempo" data-val="45" onclick="select('tiempo',this)">45 min</button>
+      <button class="chip tiempo" data-val="60" onclick="select('tiempo',this)">1 hora</button>
+    </div>
+  </div>
+
+  <div class="error-box" id="error-box"></div>
+
+  <button class="btn-generate" id="btn-gen" onclick="generate()">✨ Generar actividad</button>
+</div>
+
+<!-- Loading -->
+<div class="loading" id="loading">
+  <div class="loading-dots">
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  </div>
+  <p>La IA está creando una actividad especial para tus hijos…</p>
+</div>
+
+<!-- Result -->
+<div class="result-card" id="result-card">
+  <div class="result-hero" id="r-emoji"></div>
+  <div class="result-body">
+    <span class="result-tag">✨ Actividad generada por IA</span>
+    <h2 id="r-title"></h2>
+    <p class="result-desc" id="r-desc"></p>
+
+    <div class="result-info">
+      <div class="r-info"><span>Edad</span><strong id="r-age"></strong></div>
+      <div class="r-info"><span>Tiempo</span><strong id="r-time"></strong></div>
+      <div class="r-info"><span>Dificultad</span><strong id="r-diff"></strong></div>
+    </div>
+
+    <div class="result-section">
+      <h3>🛒 Materiales</h3>
+      <div class="mats-grid" id="r-mats"></div>
+    </div>
+
+    <div class="result-section">
+      <h3>📋 Pasos</h3>
+      <ol class="steps-ol" id="r-steps"></ol>
+    </div>
+
+    <div class="result-section">
+      <h3>🌟 ¿Qué desarrolla?</h3>
+      <div class="benefits" id="r-benefits"></div>
+    </div>
+
+    <div class="tip-box" id="r-tip"></div>
+
+    <div class="result-actions">
+      <button class="btn-action btn-regenerar" onclick="generate()">🔄 Generar otra</button>
+      <button class="btn-action btn-guardar"   onclick="printActivity()">🖨️ Imprimir</button>
+      <button class="btn-action btn-compartir" onclick="shareWA()">📲 WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<!-- Examples -->
+<div class="examples">
+  <h2>Ejemplos de lo que puedes generar</h2>
+  <div class="ex-grid">
+    <div class="ex-card" onclick="quickGen('2-4','dibujos','15')">
+      <div class="ex-emoji">🖍️</div>
+      <div class="ex-title">Dibujo libre para bebés</div>
+      <div class="ex-tags">2-4 años · Dibujos · 15 min</div>
+    </div>
+    <div class="ex-card" onclick="quickGen('5-7','experimentos','30')">
+      <div class="ex-emoji">🔬</div>
+      <div class="ex-title">Experimento sorpresa</div>
+      <div class="ex-tags">5-7 años · Experimentos · 30 min</div>
+    </div>
+    <div class="ex-card" onclick="quickGen('8-12','manualidades','45')">
+      <div class="ex-emoji">✂️</div>
+      <div class="ex-title">Manualidad avanzada</div>
+      <div class="ex-tags">8-12 años · Manualidades · 45 min</div>
+    </div>
+    <div class="ex-card" onclick="quickGen('5-7','cocina','30')">
+      <div class="ex-emoji">🍳</div>
+      <div class="ex-title">Cocina divertida</div>
+      <div class="ex-tags">5-7 años · Cocina · 30 min</div>
+    </div>
+  </div>
+</div>
+
+<!-- Newsletter -->
+<div class="newsletter">
+  <h3>Recibe actividades cada semana</h3>
+  <p>Ideas nuevas cada lunes directo en tu correo, listas para hacer en familia</p>
+  <form class="nl-form" onsubmit="return false">
+    <input type="email" placeholder="tu@correo.com">
+    <button type="submit">Suscribirme</button>
+  </form>
+</div>
+
+<footer>
+  <p>© 2025 ChartKids. <a href="index.html">App</a> · <a href="actividades.html">Actividades</a> · <a href="descargables.html">Descargables</a> · <a href="privacy.html">Privacidad</a></p>
+</footer>
+
+</div>
+
+<script>
+const WORKER_URL = 'https://chartkids.batusaix23.workers.dev';
+
+const state = { age: null, cat: null, tiempo: null };
+let lastActivity = null;
+
+function select(type, btn) {
+  document.querySelectorAll('.chip.' + type).forEach(c => c.classList.remove('selected'));
+  btn.classList.add('selected');
+  state[type === 'cat' ? 'cat' : type] = btn.dataset.val;
+}
+
+async function generate() {
+  const { age, cat, tiempo } = state;
+
+  if (!age || !cat || !tiempo) {
+    showError('Por favor selecciona la edad, categoría y tiempo disponible.');
+    return;
+  }
+
+  hideError();
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('result-card').style.display = 'none';
+  document.getElementById('btn-gen').disabled = true;
+
+  try {
+    const res = await fetch(WORKER_URL + '/actividad', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ age, categoria: cat, tiempo })
+    });
+
+    const data = await res.json();
+    if (!res.ok || data.error) throw new Error(data.error || 'Error del servidor');
+
+    lastActivity = data.activity;
+    renderResult(data.activity);
+
+  } catch (err) {
+    showError('No se pudo generar la actividad. Intenta de nuevo en unos segundos.');
+    console.error(err);
+  } finally {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('btn-gen').disabled = false;
+  }
+}
+
+function renderResult(a) {
+  document.getElementById('r-emoji').textContent   = a.emoji || '🎨';
+  document.getElementById('r-title').textContent   = a.title;
+  document.getElementById('r-desc').textContent    = a.description;
+  document.getElementById('r-age').textContent     = a.age;
+  document.getElementById('r-time').textContent    = a.time;
+  document.getElementById('r-diff').textContent    = a.difficulty;
+
+  document.getElementById('r-mats').innerHTML =
+    (a.materials || []).map(m => `<span class="mat-pill">📦 ${m}</span>`).join('');
+
+  document.getElementById('r-steps').innerHTML =
+    (a.steps || []).map((s,i) =>
+      `<li><span class="s-num">${i+1}</span><span class="s-text">${s}</span></li>`
+    ).join('');
+
+  document.getElementById('r-benefits').innerHTML =
+    (a.benefits || []).map(b => `<span class="benefit">✅ ${b}</span>`).join('');
+
+  document.getElementById('r-tip').innerHTML =
+    `<strong>💡 Consejo:</strong> ${a.tip || ''}`;
+
+  const card = document.getElementById('result-card');
+  card.style.display = 'block';
+  card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function quickGen(age, cat, tiempo) {
+  // Select chips visually
+  ['age','cat','tiempo'].forEach(type => {
+    const val = type === 'age' ? age : type === 'cat' ? cat : tiempo;
+    const chip = document.querySelector(`.chip.${type}[data-val="${val}"]`);
+    if (chip) { select(type, chip); }
+  });
+  generate();
+}
+
+function showError(msg) {
+  const box = document.getElementById('error-box');
+  box.textContent = msg;
+  box.style.display = 'block';
+}
+function hideError() {
+  document.getElementById('error-box').style.display = 'none';
+}
+
+function printActivity() {
+  if (!lastActivity) return;
+  const a = lastActivity;
+  const w = window.open('', '_blank');
+  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8">
+    <title>${a.title} — ChartKids</title>
+    <style>
+      body{font-family:Arial,sans-serif;max-width:600px;margin:40px auto;color:#111;padding:20px;}
+      h1{font-size:1.6rem;margin-bottom:6px;} .sub{color:#666;font-size:.9rem;margin-bottom:20px;}
+      h2{font-size:1rem;margin:18px 0 8px;color:#444;border-bottom:1px solid #eee;padding-bottom:4px;}
+      .mat{display:inline-block;background:#f3f4f6;padding:3px 10px;border-radius:12px;margin:3px;font-size:.85rem;}
+      .step{display:flex;gap:10px;margin:8px 0;font-size:.9rem;line-height:1.5;}
+      .sn{min-width:24px;height:24px;border-radius:50%;background:#7c3aed;color:white;font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+      .benefit{display:inline-block;background:#dcfce7;color:#166534;padding:3px 10px;border-radius:12px;margin:3px;font-size:.82rem;}
+      .tip{background:#fef9c3;border-left:4px solid #ca8a04;padding:10px 14px;margin-top:16px;font-size:.88rem;}
+      .footer{margin-top:30px;text-align:center;color:#aaa;font-size:.75rem;}
+    </style></head><body>
+    <div style="font-size:3rem;text-align:center;margin-bottom:8px">${a.emoji}</div>
+    <h1 style="text-align:center">${a.title}</h1>
+    <div class="sub" style="text-align:center">${a.age} · ${a.time} · ${a.difficulty}</div>
+    <p style="color:#555;line-height:1.6;margin-bottom:16px">${a.description}</p>
+    <h2>Materiales</h2>
+    ${(a.materials||[]).map(m=>`<span class="mat">${m}</span>`).join('')}
+    <h2>Paso a paso</h2>
+    ${(a.steps||[]).map((s,i)=>`<div class="step"><div class="sn">${i+1}</div><div>${s}</div></div>`).join('')}
+    <h2>Beneficios</h2>
+    ${(a.benefits||[]).map(b=>`<span class="benefit">${b}</span>`).join('')}
+    <div class="tip"><strong>💡 Consejo:</strong> ${a.tip||''}</div>
+    <div class="footer">Generado con ChartKids.com · Actividades creativas para niños</div>
+    </body></html>`);
+  w.document.close();
+  setTimeout(() => w.print(), 400);
+}
+
+function shareWA() {
+  if (!lastActivity) return;
+  const a = lastActivity;
+  const text = encodeURIComponent(`${a.emoji} *${a.title}*\n\n${a.description}\n\n⏱ ${a.time} · 👶 ${a.age}\n\n🌐 Generado en ChartKids.com`);
+  window.open(`https://wa.me/?text=${text}`, '_blank');
+}
+</script>
+</body>
+</html>

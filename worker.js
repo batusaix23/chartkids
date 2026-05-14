@@ -75,6 +75,11 @@ export default {
         return await getAnalytics(env);
       }
 
+      // ─── ACTIVIDAD IA ENDPOINT ──────────────────────────────
+      if (path === '/actividad' && request.method === 'POST') {
+        return await generateActividad(request, env);
+      }
+
       // ─── CHAT ENDPOINT (POST only) ──────────────────────────
       if (request.method !== 'POST') {
         return jsonResponse({ error: 'Method not allowed' }, 405);
@@ -113,6 +118,52 @@ export default {
     }
   },
 };
+
+// ─── ACTIVIDAD IA ───────────────────────────────────────────
+async function generateActividad(request, env) {
+  const { age, categoria, tiempo } = await request.json();
+
+  const catMap = {
+    dibujos: 'arte y dibujo', manualidades: 'manualidades con materiales reciclados o simples',
+    experimentos: 'experimentos científicos caseros', cocina: 'cocina divertida y segura',
+    sorpresa: 'cualquier categoría creativa'
+  };
+  const catLabel = catMap[categoria] || 'actividad creativa';
+
+  const prompt = `Eres un experto en actividades educativas para niños. Genera UNA actividad creativa original para niños de ${age} años. Categoría: ${catLabel}. Tiempo disponible: ${tiempo} minutos.
+
+Responde ÚNICAMENTE con JSON válido, sin texto adicional, en este formato exacto:
+{
+  "emoji": "un emoji que represente la actividad",
+  "title": "nombre corto y atractivo",
+  "description": "descripción de 2 oraciones máximo, entusiasta",
+  "age": "${age} años",
+  "time": "${tiempo} min",
+  "difficulty": "Fácil o Medio",
+  "materials": ["material1", "material2", "material3", "material4"],
+  "steps": ["paso 1 completo", "paso 2 completo", "paso 3 completo", "paso 4 completo"],
+  "benefits": ["beneficio1", "beneficio2", "beneficio3"],
+  "tip": "un consejo práctico para los padres"
+}`;
+
+  const response = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
+    messages: [
+      { role: 'system', content: 'Eres un experto en actividades creativas para niños. Respondes solo con JSON válido.' },
+      { role: 'user', content: prompt }
+    ],
+    max_tokens: 800,
+    temperature: 0.85,
+  });
+
+  try {
+    const text = response.response.trim();
+    const jsonMatch = text.match(/\{[\s\S]*\}/);
+    const activity = JSON.parse(jsonMatch ? jsonMatch[0] : text);
+    return jsonResponse({ activity });
+  } catch {
+    return jsonResponse({ error: 'Error generando actividad. Intenta de nuevo.' }, 500);
+  }
+}
 
 // ─── HELPERS ────────────────────────────────────────────────
 

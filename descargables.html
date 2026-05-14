@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Descargables Gratis — ChartKids</title>
+<meta name="description" content="Descarga gratis fichas de actividades, calendarios imprimibles y dibujos para colorear para niños. Todo listo para imprimir.">
+<link rel="canonical" href="https://www.chartkids.com/descargables.html">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3864436143903858" crossorigin="anonymous"></script>
+
+<!-- Print styles for activity sheets -->
+<style id="print-styles">
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; color: black; }
+  .print-sheet { display: block !important; }
+}
+</style>
+
+<style>
+:root {
+  --bg:#0f0f1a; --surface:#1a1a2e; --surface2:#232340; --border:#2e2e50;
+  --accent:#7c3aed; --accent2:#06b6d4; --green:#22c55e; --yellow:#fbbf24;
+  --pink:#ec4899; --orange:#f97316; --text:#f1f5f9; --muted:#94a3b8; --radius:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+.container{max-width:960px;margin:0 auto;padding:0 20px;}
+
+/* Header */
+header{padding:24px 0;border-bottom:1px solid var(--border);margin-bottom:40px;}
+.header-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.logo{font-family:'Fredoka One',cursive;font-size:1.5rem;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;}
+.logo span{-webkit-text-fill-color:var(--yellow);}
+.back-btn{background:var(--surface);border:1px solid var(--border);padding:10px 20px;border-radius:50px;color:var(--text);text-decoration:none;font-weight:700;transition:all .2s;}
+.back-btn:hover{background:var(--accent);border-color:var(--accent);}
+
+/* Hero */
+.hero{text-align:center;padding:36px 0 48px;}
+.hero-badge{display:inline-block;background:linear-gradient(135deg,var(--green),var(--accent2));padding:6px 18px;border-radius:50px;font-size:.8rem;font-weight:800;margin-bottom:16px;}
+.hero h1{font-family:'Fredoka One',cursive;font-size:2.6rem;margin-bottom:14px;background:linear-gradient(135deg,var(--green),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p{color:var(--muted);font-size:1rem;max-width:560px;margin:0 auto;line-height:1.7;}
+
+/* Category filter */
+.cat-filter{display:flex;justify-content:center;gap:10px;margin-bottom:36px;flex-wrap:wrap;}
+.filter-btn{background:var(--surface);border:2px solid var(--border);padding:9px 20px;border-radius:50px;color:var(--muted);font-weight:700;font-size:.88rem;cursor:pointer;transition:all .2s;font-family:'Nunito',sans-serif;}
+.filter-btn:hover{border-color:var(--green);color:var(--green);}
+.filter-btn.active{background:rgba(34,197,94,.15);border-color:var(--green);color:var(--green);}
+
+/* Section */
+.section-title{font-family:'Fredoka One',cursive;font-size:1.3rem;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.dl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;margin-bottom:48px;}
+
+/* Download card */
+.dl-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform .3s,border-color .3s;}
+.dl-card:hover{transform:translateY(-4px);border-color:var(--green);}
+.dl-thumb{height:140px;display:flex;align-items:center;justify-content:center;font-size:4.5rem;position:relative;}
+.dl-thumb.fichas  {background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(6,182,212,.15));}
+.dl-thumb.calendar{background:linear-gradient(135deg,rgba(249,115,22,.25),rgba(251,191,36,.15));}
+.dl-thumb.colorear{background:linear-gradient(135deg,rgba(236,72,153,.25),rgba(249,115,22,.15));}
+.dl-thumb.ia      {background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(6,182,212,.15));}
+.free-badge{position:absolute;top:10px;right:10px;background:var(--green);color:white;padding:3px 10px;border-radius:20px;font-size:.68rem;font-weight:800;}
+.dl-body{padding:16px 18px 20px;}
+.dl-tag{display:inline-block;padding:3px 11px;border-radius:20px;font-size:.7rem;font-weight:800;margin-bottom:10px;}
+.dl-tag.fichas  {background:rgba(124,58,237,.15);color:var(--accent);}
+.dl-tag.calendar{background:rgba(249,115,22,.15);color:var(--orange);}
+.dl-tag.colorear{background:rgba(236,72,153,.15);color:var(--pink);}
+.dl-tag.ia      {background:rgba(6,182,212,.15);color:var(--accent2);}
+.dl-body h3{font-size:1rem;margin-bottom:6px;line-height:1.4;}
+.dl-body p{font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:14px;}
+.dl-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.dl-info{font-size:.72rem;color:var(--muted);}
+.btn-dl{width:100%;padding:10px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--green),var(--accent2));color:white;font-weight:800;font-size:.88rem;cursor:pointer;font-family:'Nunito',sans-serif;transition:opacity .2s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.btn-dl:hover{opacity:.85;}
+.btn-dl.secondary{background:var(--surface2);border:1px solid var(--border);color:var(--text);}
+
+/* How to print banner */
+.how-to-print{background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(6,182,212,.06));border:1px solid rgba(34,197,94,.25);border-radius:var(--radius);padding:24px 28px;margin-bottom:48px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+.htp-icon{font-size:2.5rem;flex-shrink:0;}
+.htp-text h3{font-family:'Fredoka One',cursive;font-size:1.1rem;margin-bottom:6px;}
+.htp-text p{color:var(--muted);font-size:.88rem;line-height:1.6;}
+.htp-steps{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;}
+.htp-step{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--muted);}
+.htp-num{width:22px;height:22px;border-radius:50%;background:var(--green);color:white;font-size:.7rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+/* Request section */
+.request-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px;text-align:center;margin-bottom:48px;}
+.request-section h3{font-family:'Fredoka One',cursive;font-size:1.2rem;margin-bottom:8px;}
+.request-section p{color:var(--muted);font-size:.9rem;margin-bottom:20px;}
+.request-form{display:flex;gap:10px;max-width:500px;margin:0 auto;flex-wrap:wrap;}
+.request-form input{flex:1;min-width:200px;padding:12px 18px;border:1px solid var(--border);border-radius:50px;background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;}
+.request-form button{background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;padding:12px 22px;border-radius:50px;color:white;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;}
+
+/* Newsletter */
+.newsletter{background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(6,182,212,.06));border:1px solid var(--border);border-radius:var(--radius);padding:40px;text-align:center;margin-bottom:60px;}
+.newsletter h3{font-family:'Fredoka One',cursive;font-size:1.4rem;margin-bottom:10px;}
+.newsletter p{color:var(--muted);margin-bottom:20px;font-size:.95rem;}
+.nl-form{display:flex;gap:10px;max-width:400px;margin:0 auto;}
+.nl-form input{flex:1;padding:12px 18px;border:1px solid var(--border);border-radius:50px;background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;}
+.nl-form button{background:linear-gradient(135deg,var(--green),var(--accent2));border:none;padding:12px 22px;border-radius:50px;color:white;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;}
+
+footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;}
+footer p{color:var(--muted);font-size:.85rem;}
+footer a{color:var(--accent);text-decoration:none;}
+
+@media(max-width:640px){
+  .hero h1{font-size:1.9rem;}
+  .how-to-print{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">ChartKids<span>✨</span></a>
+    <a href="actividades.html" class="back-btn">← Actividades</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-badge">100% Gratis</div>
+  <h1>Descargables Gratis</h1>
+  <p>Fichas de actividades, calendarios y dibujos para colorear listos para imprimir. Descarga, imprime y ¡a crear!</p>
+</div>
+
+<!-- Filter -->
+<div class="cat-filter">
+  <button class="filter-btn active" onclick="filterCat('all',this)">Todo</button>
+  <button class="filter-btn" onclick="filterCat('fichas',this)">📋 Fichas</button>
+  <button class="filter-btn" onclick="filterCat('calendar',this)">📅 Calendarios</button>
+  <button class="filter-btn" onclick="filterCat('colorear',this)">🖍️ Colorear</button>
+</div>
+
+<!-- How to print -->
+<div class="how-to-print">
+  <div class="htp-icon">🖨️</div>
+  <div class="htp-text">
+    <h3>¿Cómo descargar como PDF?</h3>
+    <p>No necesitas instalar nada. Haz clic en "Imprimir ficha", se abrirá una vista de impresión:</p>
+    <div class="htp-steps">
+      <div class="htp-step"><div class="htp-num">1</div>Haz clic en "Imprimir ficha"</div>
+      <div class="htp-step"><div class="htp-num">2</div>En destino elige "Guardar como PDF"</div>
+      <div class="htp-step"><div class="htp-num">3</div>¡Listo! Imprime cuando quieras</div>
+    </div>
+  </div>
+</div>
+
+<!-- Fichas de actividades -->
+<div class="section-title" id="sec-fichas">📋 Fichas de Actividades</div>
+<div class="dl-grid">
+
+  <div class="dl-card" data-cat="fichas">
+    <div class="dl-thumb fichas"><span>🧪</span><span class="free-badge">GRATIS</span></div>
+    <div class="dl-body">
+      <span class="dl-tag fichas">Ficha</span>
+      <h3>Slime Casero Básico</h3>
+      <p>Ficha con materiales, pasos e instrucciones para hacer slime en casa.</p>
+      <div class="dl-meta"><span class="dl-info">✂️ Manualidades · 5-10 años</span></div>
+      <button class="btn-dl" onclick="printFicha('slime')">🖨️ Imprimir ficha</button>
+    </div>
+  </div>
+
+  <div class="dl-card" data-cat="fichas">
+    <div class="dl-thumb fichas"><span>🌋</span><span class="free-badge">GRATIS</span></div>
+    <div class="dl-body">
+      <span class="dl-tag fichas">Ficha</span>
+      <h3>Volcán Casero</h3>
+      <p>Ficha del experimento del volcán con vinagre y bicarbonato.</p>
+      <div class="dl-meta"><span class="dl-info">🔬 Experimentos · 4-10 años</span></div>
+      <button class="btn-dl" onclick="printFicha('volcan')">🖨️ Imprimir ficha</button>
+    </div>
+  </div>
+
+  <div class="dl-card" data-cat="fichas">
+    <div class="dl-thumb fichas"><span>✈️</span><span class="free-badge">GRATIS</span></div>
+    <div class="dl-body">
+      <span class="dl-tag fichas">Ficha</span>
+      <h3>Aviones de Papel</h3>
+      <p>Instrucciones de doblez + plantilla para decorar tu avión.</p>
+      <div class="dl-meta"><span class="dl-info">✂️ Manualidades · 5-12 años</span></div>
+      <button class="btn-dl" onclick="printFicha('avion')">🖨️ Imprimir ficha</button>
+    </div>
+  </div>
+
+  <div class="dl-card" data-cat="fichas">
+    <div class="dl-thumb fichas"><span>🌱</span><span class="free-badge">GRATIS</span></div>
+    <div class="dl-body">
+      <span class="dl-tag fichas">Ficha</span>
+      <h3>Mini Huerto Casero</h3>
+      <p>Ficha de seguimiento para el huerto con espacio para anotar el crecimiento.</p>
+      <div class="dl-meta"><span class="dl-info">🔬 Experimentos · 4-10 años</span></div>
+      <button class="btn-dl" onclick="printFicha('huerto')">🖨️ Imprimir ficha</button>
+    </div>
+  </div>
+
+  <div class="dl-card" data-cat="fichas">
+    <div class="dl-thumb fichas"><span>🏗️</span><span class="free-badge">GRATIS</span></div>
+    <div class="dl-body">
+      <span class="dl-tag fichas">Ficha</span>
+      <h3>Torre de Malvaviscos</h3>
+      <p>Ficha con las reglas del reto + tabla para anotar las alturas de cada torre.</p>
+      <div class="dl-meta"><span class="dl-info">🔬 Experimentos · 5-12 años</span></div>
+      <button class="btn-dl" onclick="printFicha('torre')">🖨️ Imprimir ficha</button>
+    </div>
+  </div>
+
+  <div class="dl-card" data-cat="fichas">
+    <div class="dl-thumb fichas"><span>🍕</span><span class="free-badge">GRATIS</span></div>
+    <div class="dl-body">
+      <span class="dl-tag fichas">Ficha</span>
+      <h3>Mini Pizzas en Casa</h3>
+      <p>Ficha de receta + lista de ingredientes para que los niños escojan sus toppings.</p>
+      <div class="dl-meta"><span class="dl-info">🍳 Cocina · 5-12 años</span></div>
+      <button class="btn-dl" onclick="printFicha('pizza')">🖨️ Imprimir ficha</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Calendarios -->
+<div class="section-title" id="sec-calendar">📅 Calendarios de Actividades</div>
+<div class="dl-grid">
+
+  <div class="dl-card" data-cat="calendar">
+    <div class="dl-thumb calendar"><span>📅</span><span class="free-badge">GRATIS</span></div>
+    <div class="dl-body">
+      <span class="dl-tag calendar">Calendario</span>
+      <h3>Calendario Mayo 2025</h3>
+      <p>Calendario mensual con las actividades asignadas por semana para imprimir y pegar en la nevera.</p>
+      <div class="dl-meta"><span class="dl-info">Mayo 2025 · Todas las edades</span></div>
+      <button class="btn-dl" onclick="printCalendario('mayo2025')">🖨️ Imprimir calendario</button>
+    </div>
+  </div>
+
+  <div class="dl-card" data-cat="calendar">
+    <div class="dl-thumb calendar"><span>🗓️</span><span class="free-badge">GRATIS</span></div>
+    <div class="dl-body">
+      <span class="dl-tag calendar">Calendario</span>
+      <h3>Planificador Semanal</h3>
+      <p>Hoja en blanco para planificar las actividades de la semana en familia.</p>
+      <div class="dl-meta"><span class="dl-info">Reutilizable · Todas las edades</span></div>
+      <button class="btn-dl" onclick="printCalendario('semanal')">🖨️ Imprimir planificador</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Dibujos para colorear -->
+<div class="section-title" id="sec-colorear">🖍️ Dibujos para Colorear</div>
+<div class="dl-grid">
+
+  <div class="dl-card" data-cat="colorear">
+    <div class="dl-thumb colorear"><span>🦁</span><span class="free-badge">GRATIS</span></div>
+    <div class="dl-body">
+      <span class="dl-tag colorear">Colorear</span>
+      <h3>Animales de la Selva</h3>
+      <p>León, jirafa y elefante dibujados con líneas gruesas, perfectos para niños pequeños.</p>
+      <div class="dl-meta"><span class="dl-info">3-6 años · 3 dibujos</span></div>
+      <button class="btn-dl" onclick="printColorear('selva')">🖨️ Imprimir dibujos</button>
+    </div>
+  </div>
+
+  <div class="dl-card" data-cat="colorear">
+    <div class="dl-thumb colorear"><span>🚀</span><span class="free-badge">GRATIS</span></div>
+    <div class="dl-body">
+      <span class="dl-tag colorear">Colorear</span>
+      <h3>El Espacio</h3>
+      <p>Cohetes, planetas y astronautas para colorear con más detalle.</p>
+      <div class="dl-meta"><span class="dl-info">6-12 años · 3 dibujos</span></div>
+      <button class="btn-dl" onclick="printColorear('espacio')">🖨️ Imprimir dibujos</button>
+    </div>
+  </div>
+
+  <div class="dl-card" data-cat="colorear">
+    <div class="dl-thumb colorear"><span>🌈</span><span class="free-badge">GRATIS</span></div>
+    <div class="dl-body">
+      <span class="dl-tag colorear">Colorear</span>
+      <h3>Naturaleza y Flores</h3>
+      <p>Flores, mariposas y árboles con diseño sencillo para cualquier edad.</p>
+      <div class="dl-meta"><span class="dl-info">3-8 años · 4 dibujos</span></div>
+      <button class="btn-dl" onclick="printColorear('naturaleza')">🖨️ Imprimir dibujos</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Solicitar descargable -->
+<div class="request-section">
+  <h3>¿No encuentras lo que buscas?</h3>
+  <p>Dinos qué actividad o dibujo quieres y lo añadimos a la biblioteca</p>
+  <form class="request-form" onsubmit="return false">
+    <input type="text" placeholder="Ej: dibujos de dinosaurios, ficha de origami…">
+    <button type="submit">Solicitar</button>
+  </form>
+</div>
+
+<!-- Newsletter -->
+<div class="newsletter">
+  <h3>Nuevos descargables cada semana</h3>
+  <p>Recibe en tu correo cuando añadamos fichas, calendarios y dibujos nuevos</p>
+  <form class="nl-form" onsubmit="return false">
+    <input type="email" placeholder="tu@correo.com">
+    <button type="submit">Suscribirme</button>
+  </form>
+</div>
+
+<footer>
+  <p>© 2025 ChartKids. <a href="index.html">App</a> · <a href="actividades.html">Actividades</a> · <a href="actividad-ia.html">Actividad con IA</a> · <a href="privacy.html">Privacidad</a></p>
+</footer>
+
+</div>
+
+<script>
+/* ── Category filter ── */
+function filterCat(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.dl-card').forEach(card => {
+    card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'block' : 'none';
+  });
+}
+
+/* ── Activity data for print sheets ── */
+const FICHAS = {
+  slime: {
+    emoji:'🧪', title:'Slime Casero Básico', cat:'✂️ Manualidades', age:'5-10 años', time:'20 min',
+    materials:['1 taza de pegamento blanco','1 cucharada de bicarbonato','Colorante (el color que quieras)','1 cucharada de solución para lentes de contacto'],
+    steps:['Coloca el pegamento en un recipiente grande.','Agrega el bicarbonato y mezcla bien.','Añade el colorante de tu color favorito.','Agrega la solución para lentes de contacto lentamente.','Mezcla hasta que el slime se despegue del recipiente.'],
+    benefits:['Motricidad fina','Estimulación sensorial','Creatividad'],
+    tip:'Si el slime queda muy pegajoso, agrega un poco más de solución para lentes.'
+  },
+  volcan: {
+    emoji:'🌋', title:'Volcán Casero', cat:'🔬 Experimentos', age:'4-10 años', time:'15 min',
+    materials:['Vinagre blanco','Bicarbonato de sodio','Botella pequeña','Colorante rojo','Bandeja grande'],
+    steps:['Coloca la botella en el centro de la bandeja.','Vierte bicarbonato dentro de la botella.','Agrega el colorante rojo.','Vierte el vinagre lentamente.','Observa la erupción. ¡Repite las veces que quieras!'],
+    benefits:['Reacciones químicas','Observación científica','Diversión educativa'],
+    tip:'Coloca una toalla debajo de la bandeja para facilitar la limpieza.'
+  },
+  avion: {
+    emoji:'✈️', title:'Aviones de Papel', cat:'✂️ Manualidades', age:'5-12 años', time:'20 min',
+    materials:['Hojas de papel (tamaño carta)','Marcadores de colores'],
+    steps:['Dobla el papel por la mitad a lo largo.','Dobla las esquinas superiores hacia el centro formando un triángulo.','Dobla las alas hacia abajo siguiendo la línea central.','Decora tu avión con los marcadores.','Organiza una competencia de vuelo: ¿quién llega más lejos?'],
+    benefits:['Coordinación fina','Creatividad','Física básica (aerodinámica)'],
+    tip:'Dobla con cuidado y precisión — los bordes bien marcados hacen volar mejor al avión.'
+  },
+  huerto: {
+    emoji:'🌱', title:'Mini Huerto Casero', cat:'🔬 Experimentos', age:'4-10 años', time:'30 min + seguimiento',
+    materials:['Vasos de plástico o yogurt','Tierra para macetas','Semillas (frijol, lenteja o chía)','Agua'],
+    steps:['Llena los vasos con tierra hasta ¾.','Haz un hueco pequeño con el dedo y coloca la semilla.','Cubre con un poco de tierra.','Riega con una cucharada de agua.','Observa y riega cada día. Anota cuándo aparece el primer brote.'],
+    benefits:['Responsabilidad diaria','Aprendizaje sobre naturaleza','Paciencia'],
+    tip:'Pon los vasos cerca de una ventana con luz solar. Las lentejas brotan en 3-4 días.'
+  },
+  torre: {
+    emoji:'🏗️', title:'Torre de Malvaviscos', cat:'🔬 Experimentos', age:'5-12 años', time:'20 min',
+    materials:['Malvaviscos (1 bolsa)','Palillos de dientes (1 caja)'],
+    steps:['Conecta los malvaviscos con los palillos formando cuadrados.','Apila las estructuras para ir subiendo la torre.','Construye la torre más alta y estable posible.','Mide la altura con una regla.','¡Compara alturas con todos los participantes!'],
+    benefits:['Resolución de problemas','Ingeniería básica','Trabajo en equipo'],
+    tip:'Las bases más anchas hacen torres más estables. ¡Experimenta con las formas!'
+  },
+  pizza: {
+    emoji:'🍕', title:'Mini Pizzas en Casa', cat:'🍳 Cocina', age:'5-12 años', time:'45 min',
+    materials:['Masa de pizza (comprada o casera)','Salsa de tomate','Queso mozzarella rallado','Toppings a elección: jamón, aceitunas, pimientos, etc.'],
+    steps:['Precalienta el horno a 200°C.','Divide la masa en porciones pequeñas (una por niño).','Estira cada porción con las manos.','Cada niño decora su pizza como quiera.','Hornea 12-15 minutos hasta que el queso burbujee.'],
+    benefits:['Creatividad culinaria','Nutrición','Trabajo en equipo'],
+    tip:'Deja que cada niño nombre su pizza. ¡Hace que se la coman con más orgullo!'
+  }
+};
+
+function printFicha(key) {
+  const f = FICHAS[key];
+  if (!f) return;
+  const w = window.open('', '_blank');
+  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8">
+<title>${f.title} — ChartKids</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:Arial,sans-serif;padding:30px;color:#111;max-width:680px;margin:0 auto;}
+  .header{display:flex;align-items:center;gap:16px;border-bottom:3px solid #7c3aed;padding-bottom:16px;margin-bottom:20px;}
+  .logo-text{font-size:.85rem;color:#7c3aed;font-weight:700;}
+  .emoji{font-size:3.5rem;}
+  .title{font-size:1.6rem;font-weight:800;margin-bottom:4px;}
+  .meta{font-size:.82rem;color:#666;}
+  h2{font-size:1rem;font-weight:800;margin:18px 0 10px;color:#333;text-transform:uppercase;letter-spacing:.05em;}
+  .materials{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px;}
+  .mat{background:#f3e8ff;color:#6b21a8;padding:5px 12px;border-radius:20px;font-size:.85rem;font-weight:600;}
+  .step{display:flex;gap:12px;margin:8px 0;align-items:flex-start;}
+  .snum{min-width:28px;height:28px;border-radius:50%;background:#7c3aed;color:white;font-size:.8rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .stext{font-size:.9rem;line-height:1.55;padding-top:4px;}
+  .benefit{display:inline-block;background:#dcfce7;color:#166534;padding:4px 12px;border-radius:20px;font-size:.82rem;font-weight:600;margin:3px;}
+  .tip{background:#fef9c3;border-left:4px solid #ca8a04;padding:12px 16px;margin-top:16px;font-size:.88rem;border-radius:0 8px 8px 0;}
+  .notes{border:1px dashed #ccc;border-radius:8px;padding:16px;margin-top:20px;}
+  .notes-lines{display:flex;flex-direction:column;gap:18px;margin-top:10px;}
+  .notes-line{border-bottom:1px solid #e5e7eb;padding-bottom:0;}
+  .footer{margin-top:28px;text-align:center;font-size:.72rem;color:#aaa;border-top:1px solid #eee;padding-top:12px;}
+</style></head><body>
+<div class="header">
+  <div class="emoji">${f.emoji}</div>
+  <div>
+    <div class="logo-text">ChartKids.com · Actividades Creativas</div>
+    <div class="title">${f.title}</div>
+    <div class="meta">${f.cat} &nbsp;·&nbsp; ${f.age} &nbsp;·&nbsp; ⏱ ${f.time}</div>
+  </div>
+</div>
+
+<h2>🛒 Materiales</h2>
+<div class="materials">${f.materials.map(m=>`<span class="mat">📦 ${m}</span>`).join('')}</div>
+
+<h2>📋 Paso a paso</h2>
+${f.steps.map((s,i)=>`<div class="step"><div class="snum">${i+1}</div><div class="stext">${s}</div></div>`).join('')}
+
+<h2>🌟 ¿Qué desarrolla?</h2>
+${f.benefits.map(b=>`<span class="benefit">✅ ${b}</span>`).join('')}
+
+<div class="tip"><strong>💡 Consejo:</strong> ${f.tip}</div>
+
+<div class="notes">
+  <strong style="font-size:.88rem;">📝 Notas de la actividad</strong>
+  <div class="notes-lines">
+    <div class="notes-line"></div>
+    <div class="notes-line"></div>
+    <div class="notes-line"></div>
+  </div>
+</div>
+
+<div class="footer">chartkids.com · Descargable gratuito · Más actividades en chartkids.com/actividades.html</div>
+</body></html>`);
+  w.document.close();
+  setTimeout(() => w.print(), 400);
+}
+
+function printCalendario(type) {
+  const w = window.open('', '_blank');
+  if (type === 'mayo2025') {
+    w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8">
+<title>Calendario Mayo 2025 — ChartKids</title>
+<style>
+  body{font-family:Arial,sans-serif;padding:24px;color:#111;}
+  h1{font-size:1.4rem;text-align:center;margin-bottom:4px;color:#7c3aed;}
+  .sub{text-align:center;font-size:.82rem;color:#666;margin-bottom:20px;}
+  .grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
+  .head{text-align:center;font-size:.72rem;font-weight:700;color:#888;padding:4px;}
+  .day{border:1px solid #e5e7eb;border-radius:6px;min-height:70px;padding:6px;font-size:.75rem;}
+  .day-num{font-weight:700;margin-bottom:4px;color:#333;}
+  .event{font-size:.65rem;padding:2px 5px;border-radius:4px;margin-top:2px;font-weight:600;}
+  .manualidades{background:#fed7aa;color:#9a3412;}
+  .experimentos{background:#bae6fd;color:#075985;}
+  .dibujos{background:#fbcfe8;color:#9d174d;}
+  .cocina{background:#bbf7d0;color:#166534;}
+  .empty{border:none;background:transparent;}
+  .footer{margin-top:20px;text-align:center;font-size:.7rem;color:#aaa;}
+</style></head><body>
+<h1>📅 Mayo 2025 — Actividades ChartKids</h1>
+<div class="sub">Una actividad nueva cada semana · chartkids.com/actividades.html</div>
+<div class="grid">
+  <div class="head">Lun</div><div class="head">Mar</div><div class="head">Mié</div><div class="head">Jue</div><div class="head">Vie</div><div class="head">Sáb</div><div class="head">Dom</div>
+  <div class="day empty"></div><div class="day empty"></div><div class="day empty"></div>
+  <div class="day"><div class="day-num">1</div><div class="event manualidades">✂️ Slime</div></div>
+  <div class="day"><div class="day-num">2</div></div><div class="day"><div class="day-num">3</div></div><div class="day"><div class="day-num">4</div></div>
+  <div class="day"><div class="day-num">5</div></div><div class="day"><div class="day-num">6</div></div><div class="day"><div class="day-num">7</div></div>
+  <div class="day"><div class="day-num">8</div><div class="event experimentos">🌋 Volcán</div></div>
+  <div class="day"><div class="day-num">9</div></div><div class="day"><div class="day-num">10</div></div><div class="day"><div class="day-num">11</div></div>
+  <div class="day"><div class="day-num">12</div></div><div class="day"><div class="day-num">13</div></div><div class="day"><div class="day-num">14</div></div>
+  <div class="day"><div class="day-num">15</div><div class="event dibujos">🖍️ Dibujos</div></div>
+  <div class="day"><div class="day-num">16</div></div><div class="day"><div class="day-num">17</div></div><div class="day"><div class="day-num">18</div></div>
+  <div class="day"><div class="day-num">19</div></div><div class="day"><div class="day-num">20</div></div><div class="day"><div class="day-num">21</div></div>
+  <div class="day"><div class="day-num">22</div><div class="event cocina">🌈 Gelatina</div></div>
+  <div class="day"><div class="day-num">23</div></div><div class="day"><div class="day-num">24</div></div><div class="day"><div class="day-num">25</div></div>
+  <div class="day"><div class="day-num">26</div></div><div class="day"><div class="day-num">27</div></div><div class="day"><div class="day-num">28</div></div>
+  <div class="day"><div class="day-num">29</div><div class="event manualidades">✈️ Aviones</div></div>
+  <div class="day"><div class="day-num">30</div></div><div class="day"><div class="day-num">31</div></div>
+  <div class="day empty"></div>
+</div>
+<div class="footer">chartkids.com · Descargable gratuito</div>
+</body></html>`);
+  } else {
+    w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8">
+<title>Planificador Semanal — ChartKids</title>
+<style>
+  body{font-family:Arial,sans-serif;padding:28px;color:#111;}
+  h1{font-size:1.3rem;text-align:center;color:#7c3aed;margin-bottom:4px;}
+  .sub{text-align:center;font-size:.8rem;color:#666;margin-bottom:24px;}
+  .week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
+  .day-col{border:1px solid #e5e7eb;border-radius:8px;padding:10px 8px;min-height:200px;}
+  .day-name{font-weight:700;font-size:.8rem;text-align:center;margin-bottom:8px;color:#7c3aed;border-bottom:1px solid #e5e7eb;padding-bottom:6px;}
+  .lines{display:flex;flex-direction:column;gap:20px;margin-top:8px;}
+  .line{border-bottom:1px solid #f0f0f0;}
+  .footer{margin-top:20px;text-align:center;font-size:.7rem;color:#aaa;}
+</style></head><body>
+<h1>📋 Planificador Semanal de Actividades</h1>
+<div class="sub">Semana del ___/___/___ al ___/___/___ · chartkids.com</div>
+<div class="week-grid">
+  ${['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'].map(d=>`
+  <div class="day-col">
+    <div class="day-name">${d}</div>
+    <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+  </div>`).join('')}
+</div>
+<div class="footer">chartkids.com · Descargable gratuito · Imprime cada semana</div>
+</body></html>`);
+  }
+  w.document.close();
+  setTimeout(() => w.print(), 400);
+}
+
+function printColorear(theme) {
+  const themes = {
+    selva: { title:'Animales de la Selva', items:[
+      {emoji:'🦁', name:'León', path:'M50,20 C35,20 25,30 25,45 C25,55 30,63 38,67 L35,80 L50,72 L65,80 L62,67 C70,63 75,55 75,45 C75,30 65,20 50,20 Z M40,40 C42,40 44,42 44,44 C44,46 42,48 40,48 C38,48 36,46 36,44 C36,42 38,40 40,40 Z M60,40 C62,40 64,42 64,44 C64,46 62,48 60,48 C58,48 56,46 56,44 C56,42 58,40 60,40 Z M50,58 C44,58 40,55 38,52 L62,52 C60,55 56,58 50,58 Z'},
+      {emoji:'🦒', name:'Jirafa', path:'M45,10 L45,35 C40,38 35,45 35,55 L35,85 L45,85 L45,60 L55,60 L55,85 L65,85 L65,55 C65,45 60,38 55,35 L55,10 Z M42,15 C42,12 48,12 48,15 M52,15 C52,12 58,12 58,15'},
+      {emoji:'🐘', name:'Elefante', path:'M20,50 C20,35 30,25 45,25 C55,25 63,30 67,38 L72,35 C75,33 78,35 78,38 L78,48 C78,51 75,53 72,51 L67,48 C63,56 55,61 45,61 L30,61 L30,75 L40,75 L40,80 L20,80 L20,75 L25,75 L25,61 C22,58 20,54 20,50 Z M40,35 C42,35 44,37 44,39 C44,41 42,43 40,43 C38,43 36,41 36,39 C36,37 38,35 40,35 Z'}
+    ]},
+    espacio: { title:'El Espacio', items:[
+      {emoji:'🚀', name:'Cohete', path:'M50,10 L40,40 L35,40 L35,55 L40,55 L40,70 L45,75 L50,70 L55,75 L60,70 L60,55 L65,55 L65,40 L60,40 Z M45,45 L55,45 L55,55 L45,55 Z M42,70 L38,80 L50,75 Z M58,70 L62,80 L50,75 Z'},
+      {emoji:'🪐', name:'Planeta', path:'M50,25 C36,25 25,36 25,50 C25,64 36,75 50,75 C64,75 75,64 75,50 C75,36 64,25 50,25 Z M20,50 C20,50 35,42 50,42 C65,42 80,50 80,50 C80,50 65,58 50,58 C35,58 20,50 20,50 Z'},
+      {emoji:'⭐', name:'Estrella', path:'M50,10 L55,35 L80,35 L60,52 L67,77 L50,62 L33,77 L40,52 L20,35 L45,35 Z'}
+    ]},
+    naturaleza: { title:'Naturaleza y Flores', items:[
+      {emoji:'🌸', name:'Flor', path:'M50,50 C50,50 50,50 50,50 M50,20 C44,20 40,30 45,38 C36,34 26,38 28,46 C24,54 33,60 41,57 C36,65 39,76 47,77 C55,78 60,68 57,60 C65,64 74,60 74,52 C74,44 65,40 57,43 C63,35 60,24 53,22 C51,21 50,20 50,20 Z M50,42 C55,42 58,46 58,50 C58,54 55,58 50,58 C45,58 42,54 42,50 C42,46 45,42 50,42 Z'},
+      {emoji:'🦋', name:'Mariposa', path:'M50,40 L50,70 M50,40 C40,30 20,28 20,42 C20,54 38,55 50,48 M50,40 C60,30 80,28 80,42 C80,54 62,55 50,48 M50,60 C40,50 20,52 22,62 C24,72 42,70 50,65 M50,60 C60,50 80,52 78,62 C76,72 58,70 50,65'},
+      {emoji:'🌳', name:'Árbol', path:'M50,15 C35,15 22,28 22,42 C22,52 28,60 37,64 L33,85 L67,85 L63,64 C72,60 78,52 78,42 C78,28 65,15 50,15 Z'},
+      {emoji:'🌻', name:'Girasol', path:'M50,30 L50,80 M35,35 L50,50 M65,35 L50,50 M30,50 L50,50 M70,50 L50,50 M35,65 L50,50 M65,65 L50,50 M50,30 C55,30 60,35 60,40 C60,50 55,55 50,55 C45,55 40,50 40,40 C40,35 45,30 50,30 Z'}
+    ]}
+  };
+
+  const theme_data = themes[theme];
+  if (!theme_data) return;
+  const w = window.open('', '_blank');
+  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8">
+<title>${theme_data.title} para Colorear — ChartKids</title>
+<style>
+  body{font-family:Arial,sans-serif;padding:20px;color:#111;}
+  h1{text-align:center;font-size:1.3rem;color:#7c3aed;margin-bottom:4px;}
+  .sub{text-align:center;font-size:.78rem;color:#888;margin-bottom:20px;}
+  .page{display:grid;grid-template-columns:repeat(${theme_data.items.length === 4 ? 2 : theme_data.items.length},1fr);gap:16px;}
+  .item{text-align:center;border:1px dashed #ddd;border-radius:12px;padding:16px;}
+  .item-name{font-size:.85rem;font-weight:700;margin-top:10px;color:#555;}
+  svg{width:100%;max-width:160px;height:160px;}
+  .footer{margin-top:20px;text-align:center;font-size:.68rem;color:#aaa;}
+</style></head><body>
+<h1>${theme_data.items[0].emoji} ${theme_data.title}</h1>
+<div class="sub">Colorea con crayones o marcadores · chartkids.com</div>
+<div class="page">
+${theme_data.items.map(item=>`
+<div class="item">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <path d="${item.path}" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <div class="item-name">${item.name}</div>
+</div>`).join('')}
+</div>
+<div class="footer">chartkids.com · Descargable gratuito · Más actividades en chartkids.com/actividades.html</div>
+</body></html>`);
+  w.document.close();
+  setTimeout(() => w.print(), 400);
+}
+</script>
+</body>
+</html>
