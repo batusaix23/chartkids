@@ -191,6 +191,12 @@ footer a { color: var(--accent); text-decoration: none; }
 /* Hidden by age filter */
 .age-hidden { display: none !important; }
 
+/* ── Language toggle ── */
+.header-actions { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.lang-toggle { display:flex; background:var(--surface2); border:1px solid var(--border); border-radius:50px; overflow:hidden; }
+.lang-btn { padding:7px 14px; font-size:.78rem; font-weight:800; cursor:pointer; background:none; border:none; color:var(--muted); font-family:'Nunito',sans-serif; transition:all .2s; }
+.lang-btn.active { background:var(--accent); color:white; }
+
 /* ── Actividad de la Semana Banner ── */
 .semana-banner {
   display: flex; align-items: center; gap: 20px;
@@ -222,46 +228,52 @@ footer a { color: var(--accent); text-decoration: none; }
 <header>
   <div class="header-inner">
     <a href="index.html" class="logo">ChartKids<span>✨</span></a>
-    <a href="index.html" class="back-btn">← Volver a la App</a>
+    <div class="header-actions">
+      <a href="index.html" class="back-btn">← <span data-en="Back to App" data-es="Volver a la App">Volver a la App</span></a>
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('es')">ES</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
   </div>
 </header>
 
 <div class="hero">
-  <div class="hero-badge">Actividad nueva cada semana</div>
-  <h1>Actividades Creativas</h1>
-  <p>Dibujos, manualidades, experimentos y cocina divertida para despertar la curiosidad de tus hijos con materiales que ya tienes en casa.</p>
+  <div class="hero-badge" data-en="New activity every week" data-es="Actividad nueva cada semana">Actividad nueva cada semana</div>
+  <h1 data-en="Creative Activities" data-es="Actividades Creativas">Actividades Creativas</h1>
+  <p data-en="Drawing, crafts, science and fun cooking to spark your children's curiosity with materials you already have at home." data-es="Dibujos, manualidades, experimentos y cocina divertida para despertar la curiosidad de tus hijos con materiales que ya tienes en casa.">Dibujos, manualidades, experimentos y cocina divertida para despertar la curiosidad de tus hijos con materiales que ya tienes en casa.</p>
 </div>
 
 <!-- Actividad de la Semana Banner -->
 <a href="actividad-semana.html" class="semana-banner" id="semana-banner">
   <div class="semana-left">
-    <span class="semana-badge"><span class="semana-dot"></span> Esta semana</span>
+    <span class="semana-badge"><span class="semana-dot"></span> <span data-en="This week" data-es="Esta semana">Esta semana</span></span>
     <div class="semana-emoji" id="banner-emoji"></div>
   </div>
   <div class="semana-body">
-    <p class="semana-label">Actividad de la Semana</p>
+    <p class="semana-label" data-en="Activity of the Week" data-es="Actividad de la Semana">Actividad de la Semana</p>
     <h3 class="semana-title" id="banner-title">Cargando…</h3>
     <p class="semana-meta" id="banner-meta"></p>
   </div>
-  <div class="semana-cta">Ver actividad →</div>
+  <div class="semana-cta" data-en="See activity →" data-es="Ver actividad →">Ver actividad →</div>
 </a>
 
 <!-- Category Tabs -->
 <div class="tabs">
-  <button class="tab-btn active todas"        onclick="setTab('todas')">       ✨ Todas        </button>
-  <button class="tab-btn dibujos"             onclick="setTab('dibujos')">     🎨 Dibujos      </button>
-  <button class="tab-btn manualidades"        onclick="setTab('manualidades')"> ✂️ Manualidades </button>
-  <button class="tab-btn experimentos"        onclick="setTab('experimentos')"> 🔬 Experimentos </button>
-  <button class="tab-btn cocina"              onclick="setTab('cocina')">       🍳 Cocina        </button>
+  <button class="tab-btn active todas"   onclick="setTab('todas')"        data-en="✨ All"       data-es="✨ Todas">✨ Todas</button>
+  <button class="tab-btn dibujos"        onclick="setTab('dibujos')"      data-en="🎨 Drawing"   data-es="🎨 Dibujos">🎨 Dibujos</button>
+  <button class="tab-btn manualidades"   onclick="setTab('manualidades')" data-en="✂️ Crafts"    data-es="✂️ Manualidades">✂️ Manualidades</button>
+  <button class="tab-btn experimentos"   onclick="setTab('experimentos')" data-en="🔬 Science"   data-es="🔬 Experimentos">🔬 Experimentos</button>
+  <button class="tab-btn cocina"         onclick="setTab('cocina')"       data-en="🍳 Cooking"   data-es="🍳 Cocina">🍳 Cocina</button>
 </div>
 
 <!-- Age Filter Bar -->
 <div class="age-bar">
-  <span class="age-label">Edad:</span>
-  <button class="age-btn active" data-age="all"  onclick="setAge('all')">Todas las edades</button>
-  <button class="age-btn"        data-age="2-4"  onclick="setAge('2-4')">2 – 4 años</button>
-  <button class="age-btn"        data-age="5-7"  onclick="setAge('5-7')">5 – 7 años</button>
-  <button class="age-btn"        data-age="8-12" onclick="setAge('8-12')">8 – 12 años</button>
+  <span class="age-label" data-en="Age:" data-es="Edad:">Edad:</span>
+  <button class="age-btn active" data-age="all"  onclick="setAge('all')"  data-en="All ages"   data-es="Todas las edades">Todas las edades</button>
+  <button class="age-btn"        data-age="2-4"  onclick="setAge('2-4')"  data-en="2 – 4 yrs"  data-es="2 – 4 años">2 – 4 años</button>
+  <button class="age-btn"        data-age="5-7"  onclick="setAge('5-7')"  data-en="5 – 7 yrs"  data-es="5 – 7 años">5 – 7 años</button>
+  <button class="age-btn"        data-age="8-12" onclick="setAge('8-12')" data-en="8 – 12 yrs" data-es="8 – 12 años">8 – 12 años</button>
 </div>
 
 <!-- ══════════════════════════════════════
@@ -798,8 +810,8 @@ footer a { color: var(--accent); text-decoration: none; }
      CALENDARIO
 ══════════════════════════════════════ -->
 <div class="calendar-section">
-  <h2>Calendario de Actividades</h2>
-  <p class="cal-subtitle">Una actividad nueva cada semana para toda la familia</p>
+  <h2 data-en="Activity Calendar" data-es="Calendario de Actividades">Calendario de Actividades</h2>
+  <p class="cal-subtitle" data-en="A new activity every week for the whole family" data-es="Una actividad nueva cada semana para toda la familia">Una actividad nueva cada semana para toda la familia</p>
   <div class="cal-month-header">
     <button class="cal-arrow">&#8249;</button>
     <span class="cal-month-name">Mayo 2025</span>
@@ -851,16 +863,16 @@ footer a { color: var(--accent); text-decoration: none; }
 
 <!-- Newsletter -->
 <div class="newsletter">
-  <h3>Recibe actividades cada semana</h3>
-  <p>Únete a miles de familias que reciben ideas nuevas cada lunes en su correo</p>
+  <h3 data-en="Receive activities every week" data-es="Recibe actividades cada semana">Recibe actividades cada semana</h3>
+  <p data-en="Join thousands of families that receive new ideas every Monday in their inbox." data-es="Únete a miles de familias que reciben ideas nuevas cada lunes en su correo.">Únete a miles de familias que reciben ideas nuevas cada lunes en su correo.</p>
   <form class="nl-form" onsubmit="return false">
     <input type="email" placeholder="tu@correo.com">
-    <button type="submit">Suscribirme</button>
+    <button type="submit" data-en="Subscribe" data-es="Suscribirme">Suscribirme</button>
   </form>
 </div>
 
 <footer>
-  <p>© 2025 ChartKids. <a href="index.html">Volver a la App</a> · <a href="blog.html">Blog</a> · <a href="privacy.html">Privacidad</a></p>
+  <p>© 2025 ChartKids. <a href="index.html" data-en="Back to App" data-es="Volver a la App">Volver a la App</a> · <a href="blog.html">Blog</a> · <a href="privacy.html" data-en="Privacy" data-es="Privacidad">Privacidad</a></p>
 </footer>
 
 </div><!-- /container -->
@@ -868,6 +880,17 @@ footer a { color: var(--accent); text-decoration: none; }
 <script>
 let currentTab = 'todas';
 let currentAge = 'all';
+let currentLang = new URLSearchParams(location.search).get('lang') || 'es';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
+  document.querySelectorAll('[data-en][data-es]').forEach(el => {
+    el.textContent = el.dataset[lang] || el.textContent;
+  });
+  document.documentElement.lang = lang;
+}
+setLang(currentLang);
 
 function setTab(tab) {
   currentTab = tab;
@@ -927,7 +950,9 @@ function toggleSteps(btn) {
   const list = btn.nextElementSibling;
   const open = list.style.display === 'block';
   list.style.display = open ? 'none' : 'block';
-  btn.textContent = open ? '▶ Ver pasos' : '▼ Ocultar pasos';
+  btn.textContent = open
+    ? (currentLang === 'en' ? '▶ Show steps' : '▶ Ver pasos')
+    : (currentLang === 'en' ? '▼ Hide steps' : '▼ Ocultar pasos');
 }
 </script>
 </body>

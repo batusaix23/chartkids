@@ -104,6 +104,12 @@ header { padding:24px 0; border-bottom:1px solid var(--border); margin-bottom:40
 .nav-card.next { text-align:right; }
 .nav-card.disabled { opacity:.4; pointer-events:none; }
 
+/* Language toggle */
+.header-actions { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.lang-toggle { display:flex; background:var(--surface2); border:1px solid var(--border); border-radius:50px; overflow:hidden; }
+.lang-btn { padding:7px 14px; font-size:.78rem; font-weight:800; cursor:pointer; background:none; border:none; color:var(--muted); font-family:'Nunito',sans-serif; transition:all .2s; }
+.lang-btn.active { background:var(--accent); color:white; }
+
 /* Newsletter */
 .newsletter { background:linear-gradient(135deg,rgba(236,72,153,.08),rgba(249,115,22,.06)); border:1px solid var(--border); border-radius:var(--radius); padding:40px; text-align:center; margin-bottom:60px; }
 .newsletter h3 { font-family:'Fredoka One',cursive; font-size:1.4rem; margin-bottom:10px; }
@@ -133,7 +139,13 @@ footer a { color:var(--accent); text-decoration:none; }
 <header>
   <div class="header-inner">
     <a href="index.html" class="logo">ChartKids<span>✨</span></a>
-    <a href="actividades.html" class="back-btn">← Actividades</a>
+    <div class="header-actions">
+      <a href="actividades.html" class="back-btn">← <span data-en="Activities" data-es="Actividades">Actividades</span></a>
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('es')">ES</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -149,10 +161,10 @@ footer a { color:var(--accent); text-decoration:none; }
     <h1 id="act-title">Cargando actividad…</h1>
     <p class="activity-desc" id="act-desc"></p>
     <div class="info-row">
-      <div class="info-box"><span class="ib-label">Edad</span><span class="ib-val" id="act-age"></span></div>
-      <div class="info-box"><span class="ib-label">Duración</span><span class="ib-val" id="act-time"></span></div>
-      <div class="info-box"><span class="ib-label">Materiales</span><span class="ib-val" id="act-mats-count"></span></div>
-      <div class="info-box"><span class="ib-label">Dificultad</span><span class="ib-val" id="act-diff"></span></div>
+      <div class="info-box"><span class="ib-label" data-en="Age" data-es="Edad">Edad</span><span class="ib-val" id="act-age"></span></div>
+      <div class="info-box"><span class="ib-label" data-en="Duration" data-es="Duración">Duración</span><span class="ib-val" id="act-time"></span></div>
+      <div class="info-box"><span class="ib-label" data-en="Materials" data-es="Materiales">Materiales</span><span class="ib-val" id="act-mats-count"></span></div>
+      <div class="info-box"><span class="ib-label" data-en="Difficulty" data-es="Dificultad">Dificultad</span><span class="ib-val" id="act-diff"></span></div>
     </div>
   </div>
   <div class="emoji-banner" id="act-emoji-banner"></div>
@@ -160,26 +172,26 @@ footer a { color:var(--accent); text-decoration:none; }
 
 <!-- Materials -->
 <div class="section-block">
-  <h2>🛒 Materiales necesarios</h2>
+  <h2><span data-en="🛒 Materials needed" data-es="🛒 Materiales necesarios">🛒 Materiales necesarios</span></h2>
   <div class="materials-grid" id="materials-grid"></div>
 </div>
 
 <!-- Steps -->
 <div class="section-block">
-  <h2>📋 Paso a paso</h2>
+  <h2><span data-en="📋 Step by step" data-es="📋 Paso a paso">📋 Paso a paso</span></h2>
   <ol class="steps-list" id="steps-list"></ol>
 </div>
 
 <!-- Benefits -->
 <div class="section-block">
-  <h2>🌟 ¿Qué desarrolla?</h2>
+  <h2><span data-en="🌟 What does it develop?" data-es="🌟 ¿Qué desarrolla?">🌟 ¿Qué desarrolla?</span></h2>
   <div class="benefits-wrap" id="benefits-wrap"></div>
 </div>
 
 <!-- Share -->
 <div class="share-section">
-  <h3>Comparte con otras familias</h3>
-  <p>¿Le gustó a tus hijos? ¡Comparte esta actividad!</p>
+  <h3 data-en="Share with other families" data-es="Comparte con otras familias">Comparte con otras familias</h3>
+  <p data-en="Did your kids love it? Share this activity!" data-es="¿Le gustó a tus hijos? ¡Comparte esta actividad!">¿Le gustó a tus hijos? ¡Comparte esta actividad!</p>
   <div class="share-btns">
     <a id="btn-wa" href="#" target="_blank" class="share-btn share-wa">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.531 5.845L.057 23.571a.75.75 0 00.921.921l5.726-1.474A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.66-.505-5.187-1.388l-.372-.22-3.854.992.992-3.854-.22-.372A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
@@ -193,7 +205,7 @@ footer a { color:var(--accent); text-decoration:none; }
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.26 5.632L18.243 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
       X / Twitter
     </a>
-    <button onclick="copyLink()" class="share-btn share-copy">🔗 Copiar enlace</button>
+    <button onclick="copyLink()" class="share-btn share-copy" data-en="🔗 Copy link" data-es="🔗 Copiar enlace">🔗 Copiar enlace</button>
   </div>
   <div id="copy-feedback"></div>
 </div>
@@ -201,12 +213,12 @@ footer a { color:var(--accent); text-decoration:none; }
 <!-- Week navigation -->
 <div class="week-nav">
   <a id="nav-prev" href="#" class="nav-card prev disabled">
-    <div class="nav-dir">← Semana anterior</div>
+    <div class="nav-dir" data-en="← Previous week" data-es="← Semana anterior">← Semana anterior</div>
     <div class="nav-emoji" id="prev-emoji"></div>
     <div class="nav-title" id="prev-title"></div>
   </a>
   <a id="nav-next" href="#" class="nav-card next disabled">
-    <div class="nav-dir">Próxima semana →</div>
+    <div class="nav-dir" data-en="Next week →" data-es="Próxima semana →">Próxima semana →</div>
     <div class="nav-emoji" id="next-emoji"></div>
     <div class="nav-title" id="next-title"></div>
   </a>
@@ -214,21 +226,34 @@ footer a { color:var(--accent); text-decoration:none; }
 
 <!-- Newsletter -->
 <div class="newsletter">
-  <h3>Recibe la actividad del lunes</h3>
-  <p>Cada semana una idea nueva directo en tu correo, lista para hacer en familia</p>
+  <h3 data-en="Get Monday's activity" data-es="Recibe la actividad del lunes">Recibe la actividad del lunes</h3>
+  <p data-en="A new idea every week directly in your inbox, ready to do as a family." data-es="Cada semana una idea nueva directo en tu correo, lista para hacer en familia.">Cada semana una idea nueva directo en tu correo, lista para hacer en familia.</p>
   <form class="nl-form" onsubmit="return false">
     <input type="email" placeholder="tu@correo.com">
-    <button type="submit">Suscribirme</button>
+    <button type="submit" data-en="Subscribe" data-es="Suscribirme">Suscribirme</button>
   </form>
 </div>
 
 <footer>
-  <p>© 2025 ChartKids. <a href="index.html">App</a> · <a href="actividades.html">Actividades</a> · <a href="blog.html">Blog</a> · <a href="privacy.html">Privacidad</a></p>
+  <p>© 2025 ChartKids. <a href="index.html">App</a> · <a href="actividades.html" data-en="Activities" data-es="Actividades">Actividades</a> · <a href="blog.html">Blog</a> · <a href="privacy.html" data-en="Privacy" data-es="Privacidad">Privacidad</a></p>
 </footer>
 
 </div>
 
 <script>
+/* ── Language ── */
+let currentLang = new URLSearchParams(location.search).get('lang') || 'es';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
+  document.querySelectorAll('[data-en][data-es]').forEach(el => {
+    el.textContent = el.dataset[lang] || el.textContent;
+  });
+  document.documentElement.lang = lang;
+  render();
+}
+
 /* ── Activity data ── */
 const ACTIVITIES = [
   {
@@ -334,8 +359,9 @@ function render() {
   /* week label */
   const startD = new Date(act.start);
   const endD   = new Date(startD); endD.setDate(endD.getDate()+6);
-  const fmt = d => d.toLocaleDateString('es',{day:'numeric',month:'short'});
-  document.getElementById('lbl-week').textContent  = act.week;
+  const locale = currentLang === 'en' ? 'en' : 'es';
+  const fmt = d => d.toLocaleDateString(locale,{day:'numeric',month:'short'});
+  document.getElementById('lbl-week').textContent  = (currentLang === 'en' ? 'Week ' : 'Semana ') + act.week;
   document.getElementById('lbl-dates').textContent = `${fmt(startD)} – ${fmt(endD)}`;
 
   /* hero */
@@ -377,7 +403,10 @@ function render() {
 
   /* share buttons */
   const url  = encodeURIComponent('https://www.chartkids.com/actividad-semana.html');
-  const text = encodeURIComponent(`${act.emoji} ${act.title} — ¡Mira esta actividad para niños!`);
+  const shareMsg = currentLang === 'en'
+    ? `${act.emoji} ${act.title} — Check out this activity for kids!`
+    : `${act.emoji} ${act.title} — ¡Mira esta actividad para niños!`;
+  const text = encodeURIComponent(shareMsg);
   document.getElementById('btn-wa').href = `https://wa.me/?text=${text}%20${url}`;
   document.getElementById('btn-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
   document.getElementById('btn-x').href  = `https://x.com/intent/tweet?text=${text}&url=${url}`;
@@ -400,11 +429,12 @@ function render() {
 function copyLink() {
   navigator.clipboard.writeText('https://www.chartkids.com/actividad-semana.html').then(() => {
     const fb = document.getElementById('copy-feedback');
-    fb.textContent = '¡Enlace copiado!';
+    fb.textContent = currentLang === 'en' ? 'Link copied!' : '¡Enlace copiado!';
     setTimeout(() => fb.textContent = '', 2500);
   });
 }
 
+setLang(currentLang);
 render();
 </script>
 </body>
