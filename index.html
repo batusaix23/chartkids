@@ -114,6 +114,8 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
 .logo span { -webkit-text-fill-color: var(--yellow); }
 .nav-right { display: flex; align-items: center; gap: 12px; }
 .nav-badge { background: linear-gradient(135deg, var(--accent), var(--pink)); border-radius: 50px; padding: 6px 16px; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.5px; }
+.activities-nav-btn { background: linear-gradient(135deg, var(--pink), var(--orange)); border-radius: 50px; padding: 8px 16px; font-family: 'Nunito', sans-serif; font-size: 0.8rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: all 0.2s; white-space: nowrap; }
+.activities-nav-btn:hover { transform: scale(1.05); opacity: 0.9; }
 .install-btn {
   background: linear-gradient(135deg, var(--green), #10b981);
   border: none;
@@ -1262,6 +1264,7 @@ button::-moz-focus-inner { border: 0; }
   <nav>
     <div class="logo">Chart<span>Kids</span> ✨</div>
     <div class="nav-right">
+      <a href="actividades.html" class="activities-nav-btn"><span id="activitiesNavBtn">🎨 Actividades</span></a>
       <div class="lang-toggle">
         <button class="lang-btn active" id="btnES" onclick="setLang('es')" aria-label="Cambiar a Español">🇲🇽 ES</button>
         <button class="lang-btn" id="btnEN" onclick="setLang('en')" aria-label="Switch to English">🇺🇸 EN</button>
@@ -1275,8 +1278,8 @@ button::-moz-focus-inner { border: 0; }
 
   <div class="hero">
     <div class="hero-tag" id="heroTag">✦ 100% Gratis · Sin registro</div>
-    <h1 id="heroTitle">Crea el chart perfecto<br>para tu <span class="highlight">pequeño héroe</span></h1>
-    <p id="heroDesc">Cuéntale a nuestra IA sobre tu hijo y ella diseñará un chart personalizado con tareas, metas y premios en segundos.</p>
+    <h1 id="heroTitle">Crea el chart perfecto<br>para tu <span class="highlight">peque</span></h1>
+    <p id="heroDesc">Cuéntale a nuestra IA sobre tu hijo o hija y ella diseñará un chart personalizado con tareas, metas y premios en segundos.</p>
   </div>
 
   <!-- Event Banner (hidden by default, shown by JS) -->
@@ -1902,7 +1905,7 @@ button::-moz-focus-inner { border: 0; }
     <div class="footer-content">
       <div class="footer-section">
         <div class="footer-logo">ChartKids<span>✨</span></div>
-        <p id="footerDesc">Crea charts de actividades personalizados para tus hijos con el poder de la IA.</p>
+        <p id="footerDesc">Crea charts de actividades personalizados para tus hijos e hijas con el poder de la IA.</p>
         <div class="social-links">
           <a href="https://facebook.com/chartkids" target="_blank" rel="noopener" class="social-link" title="Facebook">📘</a>
           <a href="https://instagram.com/chartkids" target="_blank" rel="noopener" class="social-link" title="Instagram">📸</a>
@@ -1931,6 +1934,15 @@ button::-moz-focus-inner { border: 0; }
           <li><a href="#" onclick="openPremiumModal(); return false;" id="footerPremium">Premium</a></li>
           <li><a href="#" onclick="showStatsModal(); return false;" id="footerStats">Estadísticas</a></li>
           <li><a href="blog.html" id="footerBlog">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4 id="footerActivities">Actividades</h4>
+        <ul class="footer-links">
+          <li><a href="actividades.html" id="footerActCreativas">Actividades Creativas</a></li>
+          <li><a href="actividad-semana.html" id="footerActSemana">Actividad de la Semana</a></li>
+          <li><a href="actividad-ia.html" id="footerActIA">Actividad con IA</a></li>
+          <li><a href="descargables.html" id="footerDescargables">Descargables Gratis</a></li>
         </ul>
       </div>
     </div>
@@ -2132,8 +2144,8 @@ const T = {
   es: {
     navBadge: '✨ IA Gratis',
     heroTag: '✦ 100% Gratis · Sin registro',
-    heroTitle: 'Crea el chart perfecto<br>para tu <span class="highlight">pequeño héroe</span>',
-    heroDesc: 'Cuéntale a nuestra IA sobre tu hijo y ella diseñará un chart personalizado con tareas, metas y premios en segundos.',
+    heroTitle: 'Crea el chart perfecto<br>para tu <span class="highlight">peque</span>',
+    heroDesc: 'Cuéntale a nuestra IA sobre tu hijo o hija y ella diseñará un chart personalizado con tareas, metas y premios en segundos.',
     chatPanelTitle: 'Asistente IA',
     chatPanelSub: 'Cuéntame sobre tu hijo/a',
     previewTitle: 'Vista previa del Chart',
@@ -2256,7 +2268,7 @@ const T = {
       newyear: { icon: '🎆', text: '¡Feliz Año Nuevo!', theme: 'newyear', btn: 'Usar tema' },
       fall: { icon: '🍂', text: '¡Especial de Otoño!', theme: 'fall', btn: 'Usar tema' }
     },
-    footerDesc: 'Crea charts de actividades personalizados para tus hijos con el poder de la IA.',
+    footerDesc: 'Crea charts de actividades personalizados para tus hijos e hijas con el poder de la IA.',
     footerLegal: 'Legal',
     footerTerms: 'Términos de Servicio',
     footerPrivacy: 'Política de Privacidad',
@@ -2267,6 +2279,12 @@ const T = {
     footerApp: 'App',
     footerPremium: 'Premium',
     footerStats: 'Estadísticas',
+    activitiesNavBtn: '🎨 Actividades',
+    footerActivities: 'Actividades',
+    footerActCreativas: 'Actividades Creativas',
+    footerActSemana: 'Actividad de la Semana',
+    footerActIA: 'Actividad con IA',
+    footerDescargables: 'Descargables Gratis',
     footerCopyright: '© 2025 ChartKids. Todos los derechos reservados.',
     footerSecure: 'Seguro',
     footerPwa: 'PWA',
@@ -2554,6 +2572,12 @@ const T = {
     footerApp: 'App',
     footerPremium: 'Premium',
     footerStats: 'Statistics',
+    activitiesNavBtn: '🎨 Activities',
+    footerActivities: 'Activities',
+    footerActCreativas: 'Creative Activities',
+    footerActSemana: 'Activity of the Week',
+    footerActIA: 'AI Activity',
+    footerDescargables: 'Free Downloads',
     footerCopyright: '© 2025 ChartKids. All rights reserved.',
     footerSecure: 'Secure',
     footerPwa: 'PWA',
@@ -2920,6 +2944,12 @@ function applyTranslations() {
   document.getElementById('referral2Text').textContent = t('referral2Text');
   document.getElementById('referralCopyBtn').textContent = t('referralCopyBtn');
   document.getElementById('footerBlog').textContent = t('footerBlog');
+  document.getElementById('activitiesNavBtn').textContent = t('activitiesNavBtn');
+  document.getElementById('footerActivities').textContent = t('footerActivities');
+  document.getElementById('footerActCreativas').textContent = t('footerActCreativas');
+  document.getElementById('footerActSemana').textContent = t('footerActSemana');
+  document.getElementById('footerActIA').textContent = t('footerActIA');
+  document.getElementById('footerDescargables').textContent = t('footerDescargables');
   // Update install button text
   const installBtn = document.getElementById('installBtn');
   if (installBtn && installBtn.style.display !== 'none') {
