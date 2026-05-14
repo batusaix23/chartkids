@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title id="page-title">Actividad de la Semana — ChartKids</title>
+<meta id="meta-desc" name="description" content="Descubre la actividad creativa de esta semana para tus hijos. Instrucciones paso a paso, materiales sencillos y mucha diversión.">
+<link rel="canonical" href="https://www.chartkids.com/actividad-semana.html">
+
+<!-- Open Graph (se actualiza vía JS) -->
+<meta id="og-title"  property="og:title"       content="Actividad de la Semana — ChartKids">
+<meta id="og-desc"   property="og:description"  content="Actividad creativa semanal para niños con instrucciones paso a paso.">
+<meta property="og:url"   content="https://www.chartkids.com/actividad-semana.html">
+<meta property="og:type"  content="article">
+<meta property="og:site_name" content="ChartKids">
+<meta id="tw-title"  name="twitter:title"       content="Actividad de la Semana — ChartKids">
+<meta id="tw-desc"   name="twitter:description" content="Actividad creativa semanal para niños con instrucciones paso a paso.">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- HowTo Schema — inyectado por JS -->
+<script id="howto-schema" type="application/ld+json">{}</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3864436143903858" crossorigin="anonymous"></script>
+
+<style>
+:root {
+  --bg: #0f0f1a; --surface: #1a1a2e; --surface2: #232340; --border: #2e2e50;
+  --accent: #7c3aed; --accent2: #06b6d4; --green: #22c55e; --yellow: #fbbf24;
+  --pink: #ec4899; --orange: #f97316; --text: #f1f5f9; --muted: #94a3b8; --radius: 16px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Nunito',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+.container { max-width:860px; margin:0 auto; padding:0 20px; }
+
+/* Header */
+header { padding:24px 0; border-bottom:1px solid var(--border); margin-bottom:40px; }
+.header-inner { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+.logo { font-family:'Fredoka One',cursive; font-size:1.5rem; background:linear-gradient(135deg,var(--accent),var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-decoration:none; }
+.logo span { -webkit-text-fill-color:var(--yellow); }
+.back-btn { background:var(--surface); border:1px solid var(--border); padding:10px 20px; border-radius:50px; color:var(--text); text-decoration:none; font-weight:700; transition:all 0.2s; }
+.back-btn:hover { background:var(--accent); border-color:var(--accent); }
+
+/* Week label */
+.week-label { text-align:center; margin-bottom:24px; }
+.week-chip { display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg,var(--pink),var(--orange)); padding:8px 20px; border-radius:50px; font-size:0.85rem; font-weight:800; }
+.week-chip .dot { width:8px; height:8px; background:white; border-radius:50%; animation:pulse 1.5s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+
+/* Hero Activity Card */
+.activity-hero { background:linear-gradient(135deg,var(--surface),var(--surface2)); border:1px solid var(--border); border-radius:24px; overflow:hidden; margin-bottom:36px; }
+.activity-hero-top { padding:36px 40px 28px; }
+.cat-tag { display:inline-block; padding:4px 14px; border-radius:20px; font-size:0.75rem; font-weight:800; margin-bottom:16px; }
+.activity-hero h1 { font-family:'Fredoka One',cursive; font-size:2.4rem; line-height:1.2; margin-bottom:14px; }
+.activity-desc { color:var(--muted); font-size:1rem; line-height:1.75; max-width:580px; margin-bottom:24px; }
+
+/* Info chips row */
+.info-row { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:24px; }
+.info-box { background:var(--surface2); border:1px solid var(--border); border-radius:12px; padding:10px 16px; display:flex; flex-direction:column; gap:2px; }
+.info-box .ib-label { font-size:0.68rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; }
+.info-box .ib-val   { font-size:0.95rem; font-weight:800; }
+
+/* Emoji banner */
+.emoji-banner { height:200px; display:flex; align-items:center; justify-content:center; font-size:7rem; }
+
+/* Materials */
+.section-block { margin-bottom:32px; }
+.section-block h2 { font-family:'Fredoka One',cursive; font-size:1.3rem; margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+.materials-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:10px; }
+.material-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:14px 16px; display:flex; align-items:center; gap:10px; font-size:0.88rem; font-weight:700; }
+.mat-icon { width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+
+/* Steps */
+.steps-list { list-style:none; display:flex; flex-direction:column; gap:12px; }
+.step-item { display:flex; gap:16px; align-items:flex-start; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:16px 18px; }
+.step-num { min-width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.9rem; font-weight:800; color:white; flex-shrink:0; }
+.step-text { font-size:0.95rem; line-height:1.65; padding-top:6px; }
+
+/* Benefits */
+.benefits-wrap { display:flex; flex-wrap:wrap; gap:10px; }
+.benefit-pill { background:rgba(34,197,94,0.12); color:var(--green); border:1px solid rgba(34,197,94,0.3); padding:8px 16px; border-radius:50px; font-size:0.82rem; font-weight:800; display:flex; align-items:center; gap:6px; }
+
+/* Social Share */
+.share-section { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:28px 32px; margin-bottom:36px; text-align:center; }
+.share-section h3 { font-family:'Fredoka One',cursive; font-size:1.2rem; margin-bottom:6px; }
+.share-section p { color:var(--muted); font-size:0.88rem; margin-bottom:20px; }
+.share-btns { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
+.share-btn { display:flex; align-items:center; gap:8px; padding:10px 22px; border-radius:50px; font-weight:800; font-size:0.88rem; text-decoration:none; border:none; cursor:pointer; font-family:'Nunito',sans-serif; transition:opacity .2s; }
+.share-btn:hover { opacity:.85; }
+.share-wa   { background:#25d366; color:white; }
+.share-fb   { background:#1877f2; color:white; }
+.share-x    { background:#000; color:white; }
+.share-copy { background:var(--surface2); border:1px solid var(--border); color:var(--text); }
+#copy-feedback { font-size:0.75rem; color:var(--green); margin-top:8px; min-height:18px; }
+
+/* Week nav */
+.week-nav { display:flex; gap:12px; margin-bottom:48px; }
+.nav-card { flex:1; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; text-decoration:none; color:var(--text); transition:border-color .2s; }
+.nav-card:hover { border-color:var(--accent); }
+.nav-card .nav-dir { font-size:0.72rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; margin-bottom:6px; }
+.nav-card .nav-title { font-weight:800; font-size:0.95rem; }
+.nav-card .nav-emoji { font-size:1.4rem; }
+.nav-card.next { text-align:right; }
+.nav-card.disabled { opacity:.4; pointer-events:none; }
+
+/* Newsletter */
+.newsletter { background:linear-gradient(135deg,rgba(236,72,153,.08),rgba(249,115,22,.06)); border:1px solid var(--border); border-radius:var(--radius); padding:40px; text-align:center; margin-bottom:60px; }
+.newsletter h3 { font-family:'Fredoka One',cursive; font-size:1.4rem; margin-bottom:10px; }
+.newsletter p  { color:var(--muted); margin-bottom:20px; font-size:.95rem; }
+.nl-form { display:flex; gap:10px; max-width:400px; margin:0 auto; }
+.nl-form input  { flex:1; padding:12px 18px; border:1px solid var(--border); border-radius:50px; background:var(--bg); color:var(--text); font-family:'Nunito',sans-serif; }
+.nl-form button { background:linear-gradient(135deg,var(--pink),var(--orange)); border:none; padding:12px 22px; border-radius:50px; color:white; font-weight:800; cursor:pointer; font-family:'Nunito',sans-serif; }
+
+/* Footer */
+footer { border-top:1px solid var(--border); padding:28px 0; text-align:center; }
+footer p { color:var(--muted); font-size:.85rem; }
+footer a { color:var(--accent); text-decoration:none; }
+
+@media(max-width:640px){
+  .activity-hero-top { padding:24px; }
+  .activity-hero h1  { font-size:1.8rem; }
+  .emoji-banner      { height:140px; font-size:5rem; }
+  .week-nav          { flex-direction:column; }
+  .share-btns        { gap:8px; }
+  .share-btn         { padding:9px 16px; font-size:.82rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">ChartKids<span>✨</span></a>
+    <a href="actividades.html" class="back-btn">← Actividades</a>
+  </div>
+</header>
+
+<!-- Week label -->
+<div class="week-label">
+  <span class="week-chip"><span class="dot"></span> Semana <span id="lbl-week"></span> · <span id="lbl-dates"></span></span>
+</div>
+
+<!-- Hero activity -->
+<div class="activity-hero" id="activity-hero">
+  <div class="activity-hero-top">
+    <span class="cat-tag" id="cat-tag"></span>
+    <h1 id="act-title">Cargando actividad…</h1>
+    <p class="activity-desc" id="act-desc"></p>
+    <div class="info-row">
+      <div class="info-box"><span class="ib-label">Edad</span><span class="ib-val" id="act-age"></span></div>
+      <div class="info-box"><span class="ib-label">Duración</span><span class="ib-val" id="act-time"></span></div>
+      <div class="info-box"><span class="ib-label">Materiales</span><span class="ib-val" id="act-mats-count"></span></div>
+      <div class="info-box"><span class="ib-label">Dificultad</span><span class="ib-val" id="act-diff"></span></div>
+    </div>
+  </div>
+  <div class="emoji-banner" id="act-emoji-banner"></div>
+</div>
+
+<!-- Materials -->
+<div class="section-block">
+  <h2>🛒 Materiales necesarios</h2>
+  <div class="materials-grid" id="materials-grid"></div>
+</div>
+
+<!-- Steps -->
+<div class="section-block">
+  <h2>📋 Paso a paso</h2>
+  <ol class="steps-list" id="steps-list"></ol>
+</div>
+
+<!-- Benefits -->
+<div class="section-block">
+  <h2>🌟 ¿Qué desarrolla?</h2>
+  <div class="benefits-wrap" id="benefits-wrap"></div>
+</div>
+
+<!-- Share -->
+<div class="share-section">
+  <h3>Comparte con otras familias</h3>
+  <p>¿Le gustó a tus hijos? ¡Comparte esta actividad!</p>
+  <div class="share-btns">
+    <a id="btn-wa" href="#" target="_blank" class="share-btn share-wa">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.531 5.845L.057 23.571a.75.75 0 00.921.921l5.726-1.474A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.66-.505-5.187-1.388l-.372-.22-3.854.992.992-3.854-.22-.372A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      WhatsApp
+    </a>
+    <a id="btn-fb" href="#" target="_blank" class="share-btn share-fb">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      Facebook
+    </a>
+    <a id="btn-x" href="#" target="_blank" class="share-btn share-x">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.26 5.632L18.243 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      X / Twitter
+    </a>
+    <button onclick="copyLink()" class="share-btn share-copy">🔗 Copiar enlace</button>
+  </div>
+  <div id="copy-feedback"></div>
+</div>
+
+<!-- Week navigation -->
+<div class="week-nav">
+  <a id="nav-prev" href="#" class="nav-card prev disabled">
+    <div class="nav-dir">← Semana anterior</div>
+    <div class="nav-emoji" id="prev-emoji"></div>
+    <div class="nav-title" id="prev-title"></div>
+  </a>
+  <a id="nav-next" href="#" class="nav-card next disabled">
+    <div class="nav-dir">Próxima semana →</div>
+    <div class="nav-emoji" id="next-emoji"></div>
+    <div class="nav-title" id="next-title"></div>
+  </a>
+</div>
+
+<!-- Newsletter -->
+<div class="newsletter">
+  <h3>Recibe la actividad del lunes</h3>
+  <p>Cada semana una idea nueva directo en tu correo, lista para hacer en familia</p>
+  <form class="nl-form" onsubmit="return false">
+    <input type="email" placeholder="tu@correo.com">
+    <button type="submit">Suscribirme</button>
+  </form>
+</div>
+
+<footer>
+  <p>© 2025 ChartKids. <a href="index.html">App</a> · <a href="actividades.html">Actividades</a> · <a href="blog.html">Blog</a> · <a href="privacy.html">Privacidad</a></p>
+</footer>
+
+</div>
+
+<script>
+/* ── Activity data ── */
+const ACTIVITIES = [
+  {
+    week:1, start:'2025-05-01', emoji:'🧪',
+    title:'Slime Casero Básico', category:'manualidades', catLabel:'✂️ Manualidades',
+    catColor:'rgba(249,115,22,0.15)', catText:'#f97316',
+    heroBg:'linear-gradient(135deg,rgba(249,115,22,0.25),rgba(251,191,36,0.15))',
+    stepColor:'#f97316', age:'5-10 años', time:'20 min', diff:'Fácil',
+    desc:'Experimenta con texturas y reacciones mientras creas tu propio slime colorido con ingredientes de cocina.',
+    materials:['Pegamento blanco (1 taza)','Bicarbonato (1 cda)','Colorante','Sol. lentes de contacto (1 cda)'],
+    matEmojis:['🫙','🧂','🎨','💧'],
+    steps:['Coloca el pegamento en un recipiente grande.','Agrega el bicarbonato y mezcla bien.','Añade el colorante de tu color favorito.','Agrega la solución para lentes de contacto lentamente.','Mezcla hasta que el slime se despegue del recipiente.'],
+    benefits:['Motricidad fina','Estimulación sensorial','Creatividad']
+  },
+  {
+    week:2, start:'2025-05-08', emoji:'🌋',
+    title:'Volcán Casero', category:'experimentos', catLabel:'🔬 Experimentos',
+    catColor:'rgba(6,182,212,0.15)', catText:'#06b6d4',
+    heroBg:'linear-gradient(135deg,rgba(6,182,212,0.25),rgba(124,58,237,0.15))',
+    stepColor:'#06b6d4', age:'4-10 años', time:'15 min', diff:'Fácil',
+    desc:'Una reacción química espectacular con ingredientes de cocina. Observa cómo el vinagre y el bicarbonato crean una erupción de "lava".',
+    materials:['Vinagre blanco','Bicarbonato de sodio','Botella pequeña','Colorante rojo','Bandeja'],
+    matEmojis:['🍶','🧂','🍾','🔴','🫙'],
+    steps:['Coloca la botella en el centro de la bandeja.','Vierte bicarbonato dentro de la botella.','Agrega el colorante rojo.','Vierte el vinagre poco a poco.','Observa la erupción y repite las veces que quieras.'],
+    benefits:['Reacciones químicas','Observación científica','Diversión educativa']
+  },
+  {
+    week:3, start:'2025-05-15', emoji:'🖍️',
+    title:'Dibujos para Colorear', category:'dibujos', catLabel:'🎨 Dibujos',
+    catColor:'rgba(236,72,153,0.15)', catText:'#ec4899',
+    heroBg:'linear-gradient(135deg,rgba(236,72,153,0.25),rgba(249,115,22,0.15))',
+    stepColor:'#ec4899', age:'3-8 años', time:'30 min', diff:'Fácil',
+    desc:'Imprime dibujos gratuitos y deja que tus hijos los llenen de color. Ideal para trabajar la concentración y la expresión artística.',
+    materials:['Hojas impresas','Crayones','Marcadores de colores'],
+    matEmojis:['📄','🖍️','🖊️'],
+    steps:['Descarga e imprime los dibujos gratuitos de tu elección.','Prepara los crayones y marcadores.','Deja que los niños elijan sus colores favoritos.','Colorea sin límites, ¡no hay reglas!'],
+    benefits:['Concentración','Coordinación mano-ojo','Expresión artística']
+  },
+  {
+    week:4, start:'2025-05-22', emoji:'🌈',
+    title:'Gelatina Arcoíris', category:'cocina', catLabel:'🍳 Cocina',
+    catColor:'rgba(34,197,94,0.15)', catText:'#22c55e',
+    heroBg:'linear-gradient(135deg,rgba(34,197,94,0.25),rgba(6,182,212,0.15))',
+    stepColor:'#22c55e', age:'4-9 años', time:'45 min', diff:'Fácil',
+    desc:'Prepara una gelatina con capas de colores del arcoíris. Los niños aprenden sobre secuencias y paciencia mientras crean un postre precioso.',
+    materials:['Gelatinas de 3-4 colores','Vasos transparentes','Agua caliente'],
+    matEmojis:['🍮','🥃','💧'],
+    steps:['Prepara cada color de gelatina en recipientes separados.','Vierte la primera capa en los vasos y refrigera 30 minutos.','Agrega la segunda capa fría. Refrigera otros 30 minutos.','Repite hasta terminar todos los colores.','Sirve frío y ¡disfruta el arcoíris!'],
+    benefits:['Paciencia','Comprensión de secuencias','Cocina básica']
+  },
+  {
+    week:5, start:'2025-05-29', emoji:'✈️',
+    title:'Aviones de Papel', category:'manualidades', catLabel:'✂️ Manualidades',
+    catColor:'rgba(249,115,22,0.15)', catText:'#f97316',
+    heroBg:'linear-gradient(135deg,rgba(249,115,22,0.25),rgba(251,191,36,0.15))',
+    stepColor:'#f97316', age:'5-12 años', time:'20 min', diff:'Fácil',
+    desc:'Dobla, decora y lanza aviones de papel. Una actividad perfecta para aprender sobre aerodinámica de forma divertida con una competencia en familia.',
+    materials:['Hojas de papel','Marcadores de colores'],
+    matEmojis:['📄','🖊️'],
+    steps:['Dobla el papel por la mitad a lo largo.','Dobla las esquinas superiores hacia el centro.','Dobla las alas hacia abajo siguiendo la línea central.','Decora tu avión con los marcadores.','Organiza una competencia de vuelo: ¿quién llega más lejos?'],
+    benefits:['Coordinación fina','Creatividad','Física básica (aerodinámica)']
+  }
+];
+
+/* ── Get current week's activity ── */
+function getCurrentIndex() {
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  let idx = 0;
+  for (let i = 0; i < ACTIVITIES.length; i++) {
+    if (today >= new Date(ACTIVITIES[i].start)) idx = i;
+    else break;
+  }
+  return idx;
+}
+
+/* ── Render ── */
+function render() {
+  const idx  = getCurrentIndex();
+  const act  = ACTIVITIES[idx];
+  const prev = idx > 0 ? ACTIVITIES[idx-1] : null;
+  const next = idx < ACTIVITIES.length-1 ? ACTIVITIES[idx+1] : null;
+
+  /* meta */
+  const shareText = `${act.emoji} ${act.title} — Actividad de la Semana en ChartKids`;
+  document.getElementById('page-title').textContent  = `${act.title} — Actividad de la Semana | ChartKids`;
+  document.getElementById('meta-desc').content        = act.desc;
+  document.getElementById('og-title').content         = shareText;
+  document.getElementById('og-desc').content          = act.desc;
+  document.getElementById('tw-title').content         = shareText;
+  document.getElementById('tw-desc').content          = act.desc;
+
+  /* HowTo schema */
+  document.getElementById('howto-schema').textContent = JSON.stringify({
+    "@context":"https://schema.org","@type":"HowTo",
+    "name": act.title,
+    "description": act.desc,
+    "totalTime": `PT${parseInt(act.time)}M`,
+    "supply": act.materials.map(m => ({"@type":"HowToSupply","name":m})),
+    "step": act.steps.map((s,i) => ({"@type":"HowToStep","position":i+1,"text":s}))
+  });
+
+  /* week label */
+  const startD = new Date(act.start);
+  const endD   = new Date(startD); endD.setDate(endD.getDate()+6);
+  const fmt = d => d.toLocaleDateString('es',{day:'numeric',month:'short'});
+  document.getElementById('lbl-week').textContent  = act.week;
+  document.getElementById('lbl-dates').textContent = `${fmt(startD)} – ${fmt(endD)}`;
+
+  /* hero */
+  document.getElementById('activity-hero').style.borderColor = act.catText;
+  document.getElementById('cat-tag').textContent   = act.catLabel;
+  document.getElementById('cat-tag').style.background = act.catColor;
+  document.getElementById('cat-tag').style.color      = act.catText;
+  document.getElementById('act-title').textContent    = act.title;
+  document.getElementById('act-desc').textContent     = act.desc;
+  document.getElementById('act-age').textContent      = act.age;
+  document.getElementById('act-time').textContent     = act.time;
+  document.getElementById('act-mats-count').textContent = act.materials.length + ' items';
+  document.getElementById('act-diff').textContent     = act.diff;
+  const banner = document.getElementById('act-emoji-banner');
+  banner.textContent = act.emoji;
+  banner.style.background = act.heroBg;
+
+  /* materials */
+  const mGrid = document.getElementById('materials-grid');
+  mGrid.innerHTML = act.materials.map((m,i) =>
+    `<div class="material-card">
+       <div class="mat-icon" style="background:${act.catColor}">${act.matEmojis[i]||'📦'}</div>
+       ${m}
+     </div>`
+  ).join('');
+
+  /* steps */
+  const sList = document.getElementById('steps-list');
+  sList.innerHTML = act.steps.map((s,i) =>
+    `<li class="step-item">
+       <span class="step-num" style="background:${act.stepColor}">${i+1}</span>
+       <span class="step-text">${s}</span>
+     </li>`
+  ).join('');
+
+  /* benefits */
+  const bWrap = document.getElementById('benefits-wrap');
+  bWrap.innerHTML = act.benefits.map(b => `<span class="benefit-pill">✅ ${b}</span>`).join('');
+
+  /* share buttons */
+  const url  = encodeURIComponent('https://www.chartkids.com/actividad-semana.html');
+  const text = encodeURIComponent(`${act.emoji} ${act.title} — ¡Mira esta actividad para niños!`);
+  document.getElementById('btn-wa').href = `https://wa.me/?text=${text}%20${url}`;
+  document.getElementById('btn-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+  document.getElementById('btn-x').href  = `https://x.com/intent/tweet?text=${text}&url=${url}`;
+
+  /* week nav */
+  if (prev) {
+    const pNav = document.getElementById('nav-prev');
+    pNav.classList.remove('disabled');
+    document.getElementById('prev-emoji').textContent = prev.emoji;
+    document.getElementById('prev-title').textContent = prev.title;
+  }
+  if (next) {
+    const nNav = document.getElementById('nav-next');
+    nNav.classList.remove('disabled');
+    document.getElementById('next-emoji').textContent = next.emoji;
+    document.getElementById('next-title').textContent = next.title;
+  }
+}
+
+function copyLink() {
+  navigator.clipboard.writeText('https://www.chartkids.com/actividad-semana.html').then(() => {
+    const fb = document.getElementById('copy-feedback');
+    fb.textContent = '¡Enlace copiado!';
+    setTimeout(() => fb.textContent = '', 2500);
+  });
+}
+
+render();
+</script>
+</body>
+</html>

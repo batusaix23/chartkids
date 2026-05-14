@@ -190,6 +190,30 @@ footer a { color: var(--accent); text-decoration: none; }
 
 /* Hidden by age filter */
 .age-hidden { display: none !important; }
+
+/* ── Actividad de la Semana Banner ── */
+.semana-banner {
+  display: flex; align-items: center; gap: 20px;
+  background: linear-gradient(135deg, rgba(236,72,153,0.12), rgba(249,115,22,0.08));
+  border: 1px solid rgba(236,72,153,0.4); border-radius: var(--radius);
+  padding: 18px 24px; margin-bottom: 24px; text-decoration: none; color: var(--text);
+  transition: border-color 0.2s, transform 0.2s;
+}
+.semana-banner:hover { border-color: var(--pink); transform: translateY(-2px); }
+.semana-left { display: flex; flex-direction: column; align-items: center; gap: 6px; flex-shrink: 0; }
+.semana-badge { display: flex; align-items: center; gap: 6px; background: rgba(236,72,153,0.15); color: var(--pink); padding: 3px 12px; border-radius: 20px; font-size: 0.72rem; font-weight: 800; white-space: nowrap; }
+.semana-dot   { width: 7px; height: 7px; background: var(--pink); border-radius: 50%; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.5)} }
+.semana-emoji { font-size: 2.4rem; line-height: 1; }
+.semana-body  { flex: 1; }
+.semana-label { font-size: 0.72rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
+.semana-title { font-family: 'Fredoka One', cursive; font-size: 1.25rem; line-height: 1.2; margin-bottom: 4px; }
+.semana-meta  { font-size: 0.78rem; color: var(--muted); }
+.semana-cta   { background: linear-gradient(135deg, var(--pink), var(--orange)); padding: 10px 20px; border-radius: 50px; font-size: 0.82rem; font-weight: 800; white-space: nowrap; flex-shrink: 0; }
+@media(max-width:600px){
+  .semana-banner { flex-wrap: wrap; }
+  .semana-cta    { width: 100%; text-align: center; padding: 10px; }
+}
 </style>
 </head>
 <body>
@@ -207,6 +231,20 @@ footer a { color: var(--accent); text-decoration: none; }
   <h1>Actividades Creativas</h1>
   <p>Dibujos, manualidades, experimentos y cocina divertida para despertar la curiosidad de tus hijos con materiales que ya tienes en casa.</p>
 </div>
+
+<!-- Actividad de la Semana Banner -->
+<a href="actividad-semana.html" class="semana-banner" id="semana-banner">
+  <div class="semana-left">
+    <span class="semana-badge"><span class="semana-dot"></span> Esta semana</span>
+    <div class="semana-emoji" id="banner-emoji"></div>
+  </div>
+  <div class="semana-body">
+    <p class="semana-label">Actividad de la Semana</p>
+    <h3 class="semana-title" id="banner-title">Cargando…</h3>
+    <p class="semana-meta" id="banner-meta"></p>
+  </div>
+  <div class="semana-cta">Ver actividad →</div>
+</a>
 
 <!-- Category Tabs -->
 <div class="tabs">
@@ -867,6 +905,23 @@ function applyAgeFilter() {
     msg.style.display = visibleCards.length === 0 ? 'block' : 'none';
   });
 }
+
+/* ── Banner: auto-detect current week's activity ── */
+(function() {
+  const ACTS = [
+    { start:'2025-05-01', emoji:'🧪', title:'Slime Casero Básico',    meta:'✂️ Manualidades · 20 min · 5-10 años' },
+    { start:'2025-05-08', emoji:'🌋', title:'Volcán Casero',           meta:'🔬 Experimentos · 15 min · 4-10 años' },
+    { start:'2025-05-15', emoji:'🖍️', title:'Dibujos para Colorear',  meta:'🎨 Dibujos · 30 min · 3-8 años'       },
+    { start:'2025-05-22', emoji:'🌈', title:'Gelatina Arcoíris',       meta:'🍳 Cocina · 45 min · 4-9 años'        },
+    { start:'2025-05-29', emoji:'✈️', title:'Aviones de Papel',        meta:'✂️ Manualidades · 20 min · 5-12 años' }
+  ];
+  const today = new Date(); today.setHours(0,0,0,0);
+  let act = ACTS[0];
+  for (const a of ACTS) { if (today >= new Date(a.start)) act = a; else break; }
+  document.getElementById('banner-emoji').textContent = act.emoji;
+  document.getElementById('banner-title').textContent = act.title;
+  document.getElementById('banner-meta').textContent  = act.meta;
+})();
 
 function toggleSteps(btn) {
   const list = btn.nextElementSibling;
