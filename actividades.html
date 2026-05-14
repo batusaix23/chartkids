@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Actividades Creativas — ChartKids</title>
-<meta name="description" content="Ideas semanales de dibujos, manualidades y experimentos para niños. Instrucciones sencillas y materiales fáciles de conseguir.">
+<meta name="description" content="Ideas semanales de dibujos, manualidades, experimentos y cocina divertida para niños. Instrucciones sencillas con materiales que ya tienes en casa.">
 <link rel="canonical" href="https://www.chartkids.com/actividades.html">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
 <style>
@@ -41,73 +41,85 @@ header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom:
 .hero h1 { font-family: 'Fredoka One', cursive; font-size: 2.8rem; margin-bottom: 14px; background: linear-gradient(135deg, var(--pink), var(--orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .hero p { color: var(--muted); font-size: 1.05rem; max-width: 580px; margin: 0 auto; line-height: 1.7; }
 
-/* Tabs */
-.tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
-.tab-btn { display: flex; align-items: center; gap: 7px; background: var(--surface); border: 2px solid var(--border); padding: 10px 22px; border-radius: 50px; color: var(--muted); font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.2s; font-family: 'Nunito', sans-serif; }
+/* ── Category Tabs ── */
+.tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+.tab-btn { display: flex; align-items: center; gap: 7px; background: var(--surface); border: 2px solid var(--border); padding: 10px 20px; border-radius: 50px; color: var(--muted); font-weight: 700; font-size: 0.88rem; cursor: pointer; transition: all 0.2s; font-family: 'Nunito', sans-serif; }
 .tab-btn:hover { border-color: var(--accent); color: var(--text); }
-.tab-btn.active { color: var(--text); }
-.tab-btn.active.todas       { background: rgba(124,58,237,0.15); border-color: var(--accent); color: var(--accent); }
-.tab-btn.active.dibujos     { background: rgba(236,72,153,0.15); border-color: var(--pink); color: var(--pink); }
-.tab-btn.active.manualidades{ background: rgba(249,115,22,0.15); border-color: var(--orange); color: var(--orange); }
-.tab-btn.active.experimentos{ background: rgba(6,182,212,0.15); border-color: var(--accent2); color: var(--accent2); }
+.tab-btn.active.todas        { background: rgba(124,58,237,0.15); border-color: var(--accent);  color: var(--accent); }
+.tab-btn.active.dibujos      { background: rgba(236,72,153,0.15); border-color: var(--pink);    color: var(--pink); }
+.tab-btn.active.manualidades { background: rgba(249,115,22,0.15); border-color: var(--orange);  color: var(--orange); }
+.tab-btn.active.experimentos { background: rgba(6,182,212,0.15);  border-color: var(--accent2); color: var(--accent2); }
+.tab-btn.active.cocina       { background: rgba(34,197,94,0.15);  border-color: var(--green);   color: var(--green); }
+
+/* ── Age Filter Bar ── */
+.age-bar { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 36px; flex-wrap: wrap; }
+.age-label { font-size: 0.78rem; font-weight: 700; color: var(--muted); margin-right: 4px; }
+.age-btn { background: var(--surface2); border: 1px solid var(--border); padding: 6px 16px; border-radius: 50px; font-size: 0.78rem; font-weight: 700; color: var(--muted); cursor: pointer; transition: all 0.2s; font-family: 'Nunito', sans-serif; }
+.age-btn:hover { border-color: var(--yellow); color: var(--yellow); }
+.age-btn.active { background: rgba(251,191,36,0.15); border-color: var(--yellow); color: var(--yellow); }
 
 /* Section header */
 .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
 .section-title { font-family: 'Fredoka One', cursive; font-size: 1.4rem; }
 .week-badge { background: var(--surface2); border: 1px solid var(--border); padding: 6px 16px; border-radius: 50px; font-size: 0.78rem; color: var(--muted); font-weight: 700; }
 
-/* Featured card */
+/* ── Featured Card ── */
 .featured-card { background: linear-gradient(135deg, var(--surface), var(--surface2)); border: 1px solid var(--border); border-radius: var(--radius); display: grid; grid-template-columns: 1fr 200px; overflow: hidden; margin-bottom: 32px; transition: border-color 0.3s; }
 .featured-card.pink:hover   { border-color: var(--pink); }
 .featured-card.orange:hover { border-color: var(--orange); }
 .featured-card.cyan:hover   { border-color: var(--accent2); }
-.featured-card.purple:hover { border-color: var(--accent); }
+.featured-card.green:hover  { border-color: var(--green); }
 .featured-content { padding: 28px 32px; }
 .featured-thumb { display: flex; align-items: center; justify-content: center; font-size: 5.5rem; }
 .featured-thumb.pink   { background: linear-gradient(135deg, rgba(236,72,153,0.25), rgba(249,115,22,0.15)); }
 .featured-thumb.orange { background: linear-gradient(135deg, rgba(249,115,22,0.25), rgba(251,191,36,0.15)); }
 .featured-thumb.cyan   { background: linear-gradient(135deg, rgba(6,182,212,0.25), rgba(124,58,237,0.15)); }
-.featured-thumb.purple { background: linear-gradient(135deg, rgba(124,58,237,0.25), rgba(6,182,212,0.15)); }
+.featured-thumb.green  { background: linear-gradient(135deg, rgba(34,197,94,0.25), rgba(6,182,212,0.15)); }
 
-/* Cards grid */
-.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 18px; margin-bottom: 48px; }
+/* ── Cards Grid ── */
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(265px, 1fr)); gap: 18px; margin-bottom: 48px; }
 .activity-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: transform 0.3s, border-color 0.3s; }
 .activity-card:hover { transform: translateY(-4px); }
-.activity-card.dibujos:hover     { border-color: var(--pink); }
-.activity-card.manualidades:hover{ border-color: var(--orange); }
-.activity-card.experimentos:hover{ border-color: var(--accent2); }
+.activity-card.dibujos:hover      { border-color: var(--pink); }
+.activity-card.manualidades:hover { border-color: var(--orange); }
+.activity-card.experimentos:hover { border-color: var(--accent2); }
+.activity-card.cocina:hover       { border-color: var(--green); }
 
+/* Thumbnail */
 .card-thumb { height: 140px; display: flex; align-items: center; justify-content: center; font-size: 4.5rem; position: relative; }
 .card-thumb.dibujos      { background: linear-gradient(135deg, rgba(236,72,153,0.25), rgba(249,115,22,0.15)); }
 .card-thumb.manualidades { background: linear-gradient(135deg, rgba(249,115,22,0.25), rgba(251,191,36,0.15)); }
 .card-thumb.experimentos { background: linear-gradient(135deg, rgba(6,182,212,0.25), rgba(124,58,237,0.15)); }
+.card-thumb.cocina       { background: linear-gradient(135deg, rgba(34,197,94,0.25), rgba(6,182,212,0.15)); }
 .card-level { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.55); padding: 3px 10px; border-radius: 20px; font-size: 0.68rem; font-weight: 700; }
-.week-num { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.55); padding: 3px 10px; border-radius: 20px; font-size: 0.68rem; font-weight: 700; color: var(--yellow); }
+.week-num   { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.55); padding: 3px 10px; border-radius: 20px; font-size: 0.68rem; font-weight: 700; color: var(--yellow); }
 
 /* Tags */
 .tag { display: inline-block; padding: 3px 11px; border-radius: 20px; font-size: 0.7rem; font-weight: 800; margin-bottom: 10px; }
-.tag.dibujos     { background: rgba(236,72,153,0.15); color: var(--pink); }
-.tag.manualidades{ background: rgba(249,115,22,0.15); color: var(--orange); }
-.tag.experimentos{ background: rgba(6,182,212,0.15); color: var(--accent2); }
-.tag.featured-badge { background: linear-gradient(135deg, var(--pink), var(--orange)); color: white; margin-right: 6px; }
+.tag.dibujos      { background: rgba(236,72,153,0.15); color: var(--pink); }
+.tag.manualidades { background: rgba(249,115,22,0.15); color: var(--orange); }
+.tag.experimentos { background: rgba(6,182,212,0.15);  color: var(--accent2); }
+.tag.cocina       { background: rgba(34,197,94,0.15);  color: var(--green); }
+.tag.featured-badge        { background: linear-gradient(135deg, var(--pink), var(--orange)); color: white; margin-right: 6px; }
 .tag.featured-badge.orange { background: linear-gradient(135deg, var(--orange), var(--yellow)); }
 .tag.featured-badge.cyan   { background: linear-gradient(135deg, var(--accent2), var(--accent)); }
-.tag.featured-badge.purple { background: linear-gradient(135deg, var(--accent), var(--accent2)); }
+.tag.featured-badge.green  { background: linear-gradient(135deg, var(--green), var(--accent2)); }
 
 /* Card body */
 .card-body { padding: 16px 18px 18px; }
 .card-body h3 { font-size: 1rem; margin-bottom: 8px; line-height: 1.4; }
 .featured-content h2 { font-family: 'Fredoka One', cursive; font-size: 1.5rem; margin-bottom: 10px; line-height: 1.3; }
+.featured-desc { color: var(--muted); font-size: 0.92rem; margin-bottom: 14px; line-height: 1.6; }
 
 /* Materials */
-.materials { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.materials { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
 .mat-pill { background: var(--surface2); border: 1px solid var(--border); padding: 3px 10px; border-radius: 16px; font-size: 0.72rem; color: var(--muted); }
 
 /* Benefits */
 .benefits { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
 .benefit-chip { background: rgba(34,197,94,0.12); color: var(--green); border: 1px solid rgba(34,197,94,0.25); padding: 3px 10px; border-radius: 16px; font-size: 0.7rem; font-weight: 700; }
 
-/* Steps toggle */
+/* Steps */
 .steps-toggle { display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.82rem; font-weight: 800; color: var(--accent); margin-bottom: 8px; user-select: none; }
 .steps-toggle:hover { color: var(--accent2); }
 .steps-list { list-style: none; margin-bottom: 14px; display: none; }
@@ -117,19 +129,21 @@ header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom:
 
 /* Card meta */
 .card-meta { display: flex; align-items: center; justify-content: space-between; }
-.card-info { display: flex; gap: 10px; }
-.info-chip { font-size: 0.72rem; color: var(--muted); }
-.card-cta { font-size: 0.82rem; font-weight: 800; text-decoration: none; color: var(--accent); }
-.card-cta:hover { text-decoration: underline; }
+.card-info  { display: flex; gap: 10px; }
+.info-chip  { font-size: 0.72rem; color: var(--muted); }
 
-/* Primary button */
-.btn-primary { display: inline-block; border: none; padding: 10px 22px; border-radius: 50px; color: white; font-weight: 800; font-size: 0.88rem; cursor: pointer; text-decoration: none; font-family: 'Nunito', sans-serif; }
+/* Buttons */
+.btn-primary { display: inline-block; border: none; padding: 10px 22px; border-radius: 50px; color: white; font-weight: 800; font-size: 0.88rem; cursor: pointer; font-family: 'Nunito', sans-serif; }
 .btn-pink   { background: linear-gradient(135deg, var(--pink), var(--orange)); }
 .btn-orange { background: linear-gradient(135deg, var(--orange), var(--yellow)); }
 .btn-cyan   { background: linear-gradient(135deg, var(--accent2), var(--accent)); }
-.btn-purple { background: linear-gradient(135deg, var(--accent), var(--accent2)); }
+.btn-green  { background: linear-gradient(135deg, var(--green), var(--accent2)); }
 
-/* Calendar */
+/* No results message */
+.no-results { text-align: center; padding: 40px 20px; color: var(--muted); display: none; }
+.no-results p { font-size: 1.1rem; }
+
+/* ── Calendar ── */
 .calendar-section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; margin-bottom: 48px; }
 .calendar-section h2 { font-family: 'Fredoka One', cursive; font-size: 1.4rem; margin-bottom: 4px; }
 .cal-subtitle { color: var(--muted); font-size: 0.88rem; margin-bottom: 24px; }
@@ -138,23 +152,24 @@ header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom:
 .cal-arrow { background: var(--surface2); border: 1px solid var(--border); width: 34px; height: 34px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text); transition: background 0.2s; font-size: 1rem; }
 .cal-arrow:hover { background: var(--accent); border-color: var(--accent); }
 .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
-.cal-head { text-align: center; font-size: 0.72rem; font-weight: 800; color: var(--muted); padding: 5px 0; }
-.cal-day { min-height: 62px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 6px 7px; display: flex; flex-direction: column; gap: 3px; }
+.cal-head  { text-align: center; font-size: 0.72rem; font-weight: 800; color: var(--muted); padding: 5px 0; }
+.cal-day   { min-height: 62px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 6px 7px; display: flex; flex-direction: column; gap: 3px; }
 .cal-day.empty { background: transparent; border-color: transparent; }
 .cal-day.today { border-color: var(--accent); }
 .cal-day-num { font-size: 0.78rem; font-weight: 800; color: var(--muted); }
 .cal-day.today .cal-day-num { color: var(--accent); }
-.cal-ev { font-size: 0.62rem; font-weight: 700; padding: 2px 5px; border-radius: 5px; line-height: 1.3; }
+.cal-ev { font-size: 0.6rem; font-weight: 700; padding: 2px 5px; border-radius: 5px; line-height: 1.3; }
 .cal-ev.dibujos      { background: rgba(236,72,153,0.2); color: var(--pink); }
 .cal-ev.manualidades { background: rgba(249,115,22,0.2); color: var(--orange); }
-.cal-ev.experimentos { background: rgba(6,182,212,0.2); color: var(--accent2); }
+.cal-ev.experimentos { background: rgba(6,182,212,0.2);  color: var(--accent2); }
+.cal-ev.cocina       { background: rgba(34,197,94,0.2);  color: var(--green); }
 
-/* Newsletter */
+/* ── Newsletter ── */
 .newsletter { background: linear-gradient(135deg, rgba(236,72,153,0.08), rgba(249,115,22,0.06)); border: 1px solid var(--border); border-radius: var(--radius); padding: 40px; text-align: center; margin-bottom: 60px; }
 .newsletter h3 { font-family: 'Fredoka One', cursive; font-size: 1.4rem; margin-bottom: 10px; }
-.newsletter p { color: var(--muted); margin-bottom: 20px; font-size: 0.95rem; }
+.newsletter p  { color: var(--muted); margin-bottom: 20px; font-size: 0.95rem; }
 .nl-form { display: flex; gap: 10px; max-width: 400px; margin: 0 auto; }
-.nl-form input { flex: 1; padding: 12px 18px; border: 1px solid var(--border); border-radius: 50px; background: var(--bg); color: var(--text); font-family: 'Nunito', sans-serif; }
+.nl-form input  { flex: 1; padding: 12px 18px; border: 1px solid var(--border); border-radius: 50px; background: var(--bg); color: var(--text); font-family: 'Nunito', sans-serif; }
 .nl-form button { background: linear-gradient(135deg, var(--pink), var(--orange)); border: none; padding: 12px 22px; border-radius: 50px; color: white; font-weight: 800; cursor: pointer; font-family: 'Nunito', sans-serif; }
 
 /* Footer */
@@ -167,11 +182,14 @@ footer a { color: var(--accent); text-decoration: none; }
   .hero h1 { font-size: 2rem; }
   .featured-card { grid-template-columns: 1fr; }
   .featured-thumb { height: 140px; font-size: 4rem; }
-  .cal-day { min-height: 44px; padding: 4px 4px; }
-  .cal-ev { display: none; }
-  .tabs { gap: 7px; }
-  .tab-btn { padding: 8px 14px; font-size: 0.82rem; }
+  .cal-day { min-height: 44px; padding: 4px; }
+  .cal-ev  { display: none; }
+  .tabs    { gap: 6px; }
+  .tab-btn { padding: 8px 13px; font-size: 0.82rem; }
 }
+
+/* Hidden by age filter */
+.age-hidden { display: none !important; }
 </style>
 </head>
 <body>
@@ -187,70 +205,71 @@ footer a { color: var(--accent); text-decoration: none; }
 <div class="hero">
   <div class="hero-badge">Actividad nueva cada semana</div>
   <h1>Actividades Creativas</h1>
-  <p>Dibujos, manualidades y experimentos para despertar la curiosidad de tus hijos con materiales que ya tienes en casa.</p>
+  <p>Dibujos, manualidades, experimentos y cocina divertida para despertar la curiosidad de tus hijos con materiales que ya tienes en casa.</p>
 </div>
 
-<!-- Tabs -->
+<!-- Category Tabs -->
 <div class="tabs">
-  <button class="tab-btn active todas"        onclick="setTab('todas')">       ✨ Todas       </button>
-  <button class="tab-btn dibujos"             onclick="setTab('dibujos')">     🎨 Dibujos     </button>
-  <button class="tab-btn manualidades"        onclick="setTab('manualidades')"> ✂️ Manualidades</button>
-  <button class="tab-btn experimentos"        onclick="setTab('experimentos')"> 🔬 Experimentos</button>
+  <button class="tab-btn active todas"        onclick="setTab('todas')">       ✨ Todas        </button>
+  <button class="tab-btn dibujos"             onclick="setTab('dibujos')">     🎨 Dibujos      </button>
+  <button class="tab-btn manualidades"        onclick="setTab('manualidades')"> ✂️ Manualidades </button>
+  <button class="tab-btn experimentos"        onclick="setTab('experimentos')"> 🔬 Experimentos </button>
+  <button class="tab-btn cocina"              onclick="setTab('cocina')">       🍳 Cocina        </button>
 </div>
 
-<!-- ════════════ PANEL: TODAS ════════════ -->
+<!-- Age Filter Bar -->
+<div class="age-bar">
+  <span class="age-label">Edad:</span>
+  <button class="age-btn active" data-age="all"  onclick="setAge('all')">Todas las edades</button>
+  <button class="age-btn"        data-age="2-4"  onclick="setAge('2-4')">2 – 4 años</button>
+  <button class="age-btn"        data-age="5-7"  onclick="setAge('5-7')">5 – 7 años</button>
+  <button class="age-btn"        data-age="8-12" onclick="setAge('8-12')">8 – 12 años</button>
+</div>
+
+<!-- ══════════════════════════════════════
+     PANEL: TODAS
+══════════════════════════════════════ -->
 <div id="panel-todas">
   <div class="section-header">
     <h2 class="section-title">Todas las actividades</h2>
-    <span class="week-badge">Mayo · Junio 2025</span>
+    <span class="week-badge">Semanas 1 – 13</span>
   </div>
 
-  <!-- Featured: Slime (Semana 1) -->
-  <div class="featured-card orange">
+  <!-- Featured: Slime -->
+  <div class="featured-card orange" data-min="5" data-max="10">
     <div class="featured-content">
       <span class="tag featured-badge orange">⭐ Semana 1 · Destacada</span>
       <h2>Slime Casero Básico</h2>
-      <p style="color:var(--muted);font-size:0.92rem;margin-bottom:14px;line-height:1.6">Experimenta con texturas y reacciones mientras creas tu propio slime colorido con ingredientes de cocina.</p>
+      <p class="featured-desc">Experimenta con texturas y reacciones mientras creas tu propio slime colorido con ingredientes de cocina.</p>
       <div class="materials">
-        <span class="mat-pill">1 taza de pegamento blanco</span>
-        <span class="mat-pill">1 cda bicarbonato</span>
-        <span class="mat-pill">Colorante</span>
-        <span class="mat-pill">1 cda solución lentes contacto</span>
+        <span class="mat-pill">1 taza pegamento blanco</span><span class="mat-pill">1 cda bicarbonato</span>
+        <span class="mat-pill">Colorante</span><span class="mat-pill">1 cda sol. lentes contacto</span>
       </div>
       <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
       <ol class="steps-list">
         <li><span class="step-num">1</span>Coloca el pegamento en un recipiente.</li>
-        <li><span class="step-num">2</span>Agrega el bicarbonato y mezcla bien.</li>
-        <li><span class="step-num">3</span>Añade el colorante de tu color favorito.</li>
-        <li><span class="step-num">4</span>Agrega la solución para lentes lentamente.</li>
+        <li><span class="step-num">2</span>Agrega bicarbonato y mezcla.</li>
+        <li><span class="step-num">3</span>Añade el colorante.</li>
+        <li><span class="step-num">4</span>Agrega lentamente la solución para lentes.</li>
         <li><span class="step-num">5</span>Mezcla hasta que el slime se despegue del recipiente.</li>
       </ol>
       <div class="benefits" style="margin-bottom:18px">
-        <span class="benefit-chip">Motricidad fina</span>
-        <span class="benefit-chip">Estimulación sensorial</span>
-        <span class="benefit-chip">Creatividad</span>
+        <span class="benefit-chip">Motricidad fina</span><span class="benefit-chip">Estimulación sensorial</span><span class="benefit-chip">Creatividad</span>
       </div>
       <span class="btn-primary btn-orange">Ver actividad completa</span>
     </div>
     <div class="featured-thumb orange">🧪</div>
   </div>
 
-  <!-- Grid: todas -->
   <div class="cards-grid">
 
-    <!-- Semana 2: Volcán -->
-    <article class="activity-card experimentos">
-      <div class="card-thumb experimentos">
-        <span>🌋</span>
-        <span class="week-num">Sem. 2</span>
-        <span class="card-level">Fácil · 4-10 años</span>
-      </div>
+    <!-- Sem 2: Volcán -->
+    <article class="activity-card experimentos" data-min="4" data-max="10">
+      <div class="card-thumb experimentos"><span>🌋</span><span class="week-num">Sem. 2</span><span class="card-level">Fácil · 4-10 años</span></div>
       <div class="card-body">
         <span class="tag experimentos">Experimentos</span>
         <h3>Volcán Casero</h3>
-        <div class="materials">
-          <span class="mat-pill">Vinagre</span><span class="mat-pill">Bicarbonato</span><span class="mat-pill">Botella pequeña</span><span class="mat-pill">Colorante rojo</span>
-        </div>
+        <div class="materials"><span class="mat-pill">Vinagre</span><span class="mat-pill">Bicarbonato</span><span class="mat-pill">Botella</span><span class="mat-pill">Colorante rojo</span></div>
         <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
         <ol class="steps-list">
           <li><span class="step-num">1</span>Coloca bicarbonato dentro de la botella.</li>
@@ -258,249 +277,12 @@ footer a { color: var(--accent); text-decoration: none; }
           <li><span class="step-num">3</span>Vierte el vinagre y observa la erupción.</li>
         </ol>
         <div class="benefits"><span class="benefit-chip">Reacciones químicas</span><span class="benefit-chip">Diversión educativa</span></div>
-        <div class="card-meta">
-          <div class="card-info"><span class="info-chip">⏱ 15 min</span><span class="info-chip">📦 5 materiales</span></div>
-        </div>
+        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 15 min</span><span class="info-chip">📦 5 mat.</span></div></div>
       </div>
     </article>
 
-    <!-- Semana 3: Dibujos para Colorear -->
-    <article class="activity-card dibujos">
-      <div class="card-thumb dibujos">
-        <span>🖍️</span>
-        <span class="week-num">Sem. 3</span>
-        <span class="card-level">Fácil · 3-8 años</span>
-      </div>
-      <div class="card-body">
-        <span class="tag dibujos">Dibujos</span>
-        <h3>Dibujos para Colorear</h3>
-        <div class="materials">
-          <span class="mat-pill">Hojas impresas</span><span class="mat-pill">Crayones</span><span class="mat-pill">Marcadores</span>
-        </div>
-        <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
-        <ol class="steps-list">
-          <li><span class="step-num">1</span>Descarga e imprime los dibujos gratuitos.</li>
-          <li><span class="step-num">2</span>Elige tus colores favoritos.</li>
-          <li><span class="step-num">3</span>Colorea con crayones o marcadores.</li>
-        </ol>
-        <div class="benefits"><span class="benefit-chip">Concentración</span><span class="benefit-chip">Coordinación</span><span class="benefit-chip">Expresión artística</span></div>
-        <div class="card-meta">
-          <div class="card-info"><span class="info-chip">⏱ 30 min</span><span class="info-chip">📦 3 materiales</span></div>
-        </div>
-      </div>
-    </article>
-
-    <!-- Semana 4: Gelatina Arcoíris -->
-    <article class="activity-card manualidades">
-      <div class="card-thumb manualidades">
-        <span>🌈</span>
-        <span class="week-num">Sem. 4</span>
-        <span class="card-level">Fácil · 4-9 años</span>
-      </div>
-      <div class="card-body">
-        <span class="tag manualidades">Manualidades</span>
-        <h3>Gelatina Arcoíris</h3>
-        <div class="materials">
-          <span class="mat-pill">Gelatinas de colores</span><span class="mat-pill">Vasos transparentes</span><span class="mat-pill">Agua caliente</span>
-        </div>
-        <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
-        <ol class="steps-list">
-          <li><span class="step-num">1</span>Prepara cada color de gelatina por separado.</li>
-          <li><span class="step-num">2</span>Vierte la primera capa y refrigera 30 min.</li>
-          <li><span class="step-num">3</span>Agrega la siguiente capa. Repite hasta terminar.</li>
-        </ol>
-        <div class="benefits"><span class="benefit-chip">Paciencia</span><span class="benefit-chip">Secuencia</span><span class="benefit-chip">Cocina básica</span></div>
-        <div class="card-meta">
-          <div class="card-info"><span class="info-chip">⏱ 45 min</span><span class="info-chip">📦 3 materiales</span></div>
-        </div>
-      </div>
-    </article>
-
-    <!-- Semana 5: Aviones de Papel -->
-    <article class="activity-card manualidades">
-      <div class="card-thumb manualidades">
-        <span>✈️</span>
-        <span class="week-num">Sem. 5</span>
-        <span class="card-level">Fácil · 5-12 años</span>
-      </div>
-      <div class="card-body">
-        <span class="tag manualidades">Manualidades</span>
-        <h3>Aviones de Papel</h3>
-        <div class="materials">
-          <span class="mat-pill">Papel</span><span class="mat-pill">Marcadores</span>
-        </div>
-        <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
-        <ol class="steps-list">
-          <li><span class="step-num">1</span>Dobla el papel siguiendo las instrucciones.</li>
-          <li><span class="step-num">2</span>Decora tu avión con marcadores.</li>
-          <li><span class="step-num">3</span>Organiza una competencia de vuelo en familia.</li>
-        </ol>
-        <div class="benefits"><span class="benefit-chip">Coordinación</span><span class="benefit-chip">Creatividad</span><span class="benefit-chip">Física básica</span></div>
-        <div class="card-meta">
-          <div class="card-info"><span class="info-chip">⏱ 20 min</span><span class="info-chip">📦 2 materiales</span></div>
-        </div>
-      </div>
-    </article>
-
-    <!-- Semana 6: Mini Huerto -->
-    <article class="activity-card experimentos">
-      <div class="card-thumb experimentos">
-        <span>🌱</span>
-        <span class="week-num">Sem. 6</span>
-        <span class="card-level">Fácil · 4-10 años</span>
-      </div>
-      <div class="card-body">
-        <span class="tag experimentos">Experimentos</span>
-        <h3>Mini Huerto Casero</h3>
-        <div class="materials">
-          <span class="mat-pill">Vasos</span><span class="mat-pill">Tierra</span><span class="mat-pill">Semillas</span><span class="mat-pill">Agua</span>
-        </div>
-        <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
-        <ol class="steps-list">
-          <li><span class="step-num">1</span>Llena los vasos con tierra.</li>
-          <li><span class="step-num">2</span>Planta las semillas a 1 cm de profundidad.</li>
-          <li><span class="step-num">3</span>Riega con poca agua cada día y observa el crecimiento.</li>
-        </ol>
-        <div class="benefits"><span class="benefit-chip">Responsabilidad</span><span class="benefit-chip">Aprendizaje natural</span></div>
-        <div class="card-meta">
-          <div class="card-info"><span class="info-chip">⏱ 30 min</span><span class="info-chip">📦 4 materiales</span></div>
-        </div>
-      </div>
-    </article>
-
-    <!-- Semana 7: Pintura con Dedos -->
-    <article class="activity-card dibujos">
-      <div class="card-thumb dibujos">
-        <span>🎨</span>
-        <span class="week-num">Sem. 7</span>
-        <span class="card-level">Fácil · 2-7 años</span>
-      </div>
-      <div class="card-body">
-        <span class="tag dibujos">Dibujos</span>
-        <h3>Pintura con Dedos</h3>
-        <div class="materials">
-          <span class="mat-pill">Pintura lavable</span><span class="mat-pill">Papel grande</span>
-        </div>
-        <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
-        <ol class="steps-list">
-          <li><span class="step-num">1</span>Coloca la pintura en platos pequeños.</li>
-          <li><span class="step-num">2</span>Pinta usando los dedos libremente.</li>
-          <li><span class="step-num">3</span>Crea figuras, animales o paisajes imaginarios.</li>
-        </ol>
-        <div class="benefits"><span class="benefit-chip">Creatividad</span><span class="benefit-chip">Sensibilidad táctil</span></div>
-        <div class="card-meta">
-          <div class="card-info"><span class="info-chip">⏱ 30 min</span><span class="info-chip">📦 2 materiales</span></div>
-        </div>
-      </div>
-    </article>
-
-    <!-- Semana 8: Torre de Malvaviscos -->
-    <article class="activity-card experimentos">
-      <div class="card-thumb experimentos">
-        <span>🏗️</span>
-        <span class="week-num">Sem. 8</span>
-        <span class="card-level">Medio · 5-12 años</span>
-      </div>
-      <div class="card-body">
-        <span class="tag experimentos">Experimentos</span>
-        <h3>Torre de Malvaviscos</h3>
-        <div class="materials">
-          <span class="mat-pill">Malvaviscos</span><span class="mat-pill">Palillos</span>
-        </div>
-        <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
-        <ol class="steps-list">
-          <li><span class="step-num">1</span>Conecta los malvaviscos con palillos.</li>
-          <li><span class="step-num">2</span>Construye la torre más alta posible.</li>
-          <li><span class="step-num">3</span>Mide las alturas y anota al ganador.</li>
-        </ol>
-        <div class="benefits"><span class="benefit-chip">Resolución de problemas</span><span class="benefit-chip">Ingeniería básica</span></div>
-        <div class="card-meta">
-          <div class="card-info"><span class="info-chip">⏱ 20 min</span><span class="info-chip">📦 2 materiales</span></div>
-        </div>
-      </div>
-    </article>
-
-    <!-- Semana 9: Botella Sensorial -->
-    <article class="activity-card manualidades">
-      <div class="card-thumb manualidades">
-        <span>✨</span>
-        <span class="week-num">Sem. 9</span>
-        <span class="card-level">Fácil · 3-8 años</span>
-      </div>
-      <div class="card-body">
-        <span class="tag manualidades">Manualidades</span>
-        <h3>Botella Sensorial</h3>
-        <div class="materials">
-          <span class="mat-pill">Botella plástica</span><span class="mat-pill">Agua</span><span class="mat-pill">Escarcha</span><span class="mat-pill">Cuentas pequeñas</span>
-        </div>
-        <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
-        <ol class="steps-list">
-          <li><span class="step-num">1</span>Llena la botella con agua hasta ¾.</li>
-          <li><span class="step-num">2</span>Agrega escarcha y cuentas coloridas.</li>
-          <li><span class="step-num">3</span>Sella bien la tapa y agita para ver el efecto.</li>
-        </ol>
-        <div class="benefits"><span class="benefit-chip">Relajación</span><span class="benefit-chip">Atención visual</span></div>
-        <div class="card-meta">
-          <div class="card-info"><span class="info-chip">⏱ 15 min</span><span class="info-chip">📦 4 materiales</span></div>
-        </div>
-      </div>
-    </article>
-
-    <!-- Semana 10: Masa Casera -->
-    <article class="activity-card manualidades">
-      <div class="card-thumb manualidades">
-        <span>🧶</span>
-        <span class="week-num">Sem. 10</span>
-        <span class="card-level">Fácil · 3-7 años</span>
-      </div>
-      <div class="card-body">
-        <span class="tag manualidades">Manualidades</span>
-        <h3>Masa Casera</h3>
-        <div class="materials">
-          <span class="mat-pill">Harina</span><span class="mat-pill">Sal</span><span class="mat-pill">Agua</span><span class="mat-pill">Colorante</span>
-        </div>
-        <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
-        <ol class="steps-list">
-          <li><span class="step-num">1</span>Mezcla 2 tazas de harina con 1 taza de sal.</li>
-          <li><span class="step-num">2</span>Agrega agua poco a poco hasta formar masa.</li>
-          <li><span class="step-num">3</span>Añade colorante y amasa hasta integrar.</li>
-          <li><span class="step-num">4</span>Crea figuras libremente.</li>
-        </ol>
-        <div class="benefits"><span class="benefit-chip">Motricidad</span><span class="benefit-chip">Creatividad</span></div>
-        <div class="card-meta">
-          <div class="card-info"><span class="info-chip">⏱ 25 min</span><span class="info-chip">📦 4 materiales</span></div>
-        </div>
-      </div>
-    </article>
-
-  </div>
-</div><!-- /panel-todas -->
-
-<!-- ════════════ PANEL: DIBUJOS ════════════ -->
-<div id="panel-dibujos" style="display:none">
-  <div class="section-header">
-    <h2 class="section-title">🎨 Dibujos</h2>
-    <span class="week-badge">Semanas 3 y 7</span>
-  </div>
-  <div class="featured-card pink">
-    <div class="featured-content">
-      <span class="tag featured-badge">⭐ Semana 7 · Destacada</span>
-      <h2>Pintura con Dedos</h2>
-      <p style="color:var(--muted);font-size:0.92rem;margin-bottom:14px;line-height:1.6">Arte libre con las manos: la forma más natural y divertida de que los niños pequeños expresen su creatividad sin reglas.</p>
-      <div class="materials"><span class="mat-pill">Pintura lavable</span><span class="mat-pill">Papel grande</span></div>
-      <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
-      <ol class="steps-list">
-        <li><span class="step-num">1</span>Coloca la pintura en platos pequeños.</li>
-        <li><span class="step-num">2</span>Pinta usando los dedos libremente.</li>
-        <li><span class="step-num">3</span>Crea figuras, animales o paisajes imaginarios.</li>
-      </ol>
-      <div class="benefits" style="margin-bottom:18px"><span class="benefit-chip">Creatividad</span><span class="benefit-chip">Sensibilidad táctil</span></div>
-      <span class="btn-primary btn-pink">Ver actividad completa</span>
-    </div>
-    <div class="featured-thumb pink">🎨</div>
-  </div>
-  <div class="cards-grid">
-    <article class="activity-card dibujos">
+    <!-- Sem 3: Dibujos para Colorear -->
+    <article class="activity-card dibujos" data-min="3" data-max="8">
       <div class="card-thumb dibujos"><span>🖍️</span><span class="week-num">Sem. 3</span><span class="card-level">Fácil · 3-8 años</span></div>
       <div class="card-body">
         <span class="tag dibujos">Dibujos</span>
@@ -513,31 +295,264 @@ footer a { color: var(--accent); text-decoration: none; }
           <li><span class="step-num">3</span>Colorea con crayones o marcadores.</li>
         </ol>
         <div class="benefits"><span class="benefit-chip">Concentración</span><span class="benefit-chip">Coordinación</span><span class="benefit-chip">Expresión artística</span></div>
-        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 30 min</span><span class="info-chip">📦 3 materiales</span></div></div>
+        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 30 min</span><span class="info-chip">📦 3 mat.</span></div></div>
+      </div>
+    </article>
+
+    <!-- Sem 4: Gelatina Arcoíris (ahora en Cocina) -->
+    <article class="activity-card cocina" data-min="4" data-max="9">
+      <div class="card-thumb cocina"><span>🌈</span><span class="week-num">Sem. 4</span><span class="card-level">Fácil · 4-9 años</span></div>
+      <div class="card-body">
+        <span class="tag cocina">Cocina</span>
+        <h3>Gelatina Arcoíris</h3>
+        <div class="materials"><span class="mat-pill">Gelatinas de colores</span><span class="mat-pill">Vasos transparentes</span><span class="mat-pill">Agua caliente</span></div>
+        <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Prepara cada color de gelatina por separado.</li>
+          <li><span class="step-num">2</span>Vierte la primera capa y refrigera 30 min.</li>
+          <li><span class="step-num">3</span>Agrega la siguiente capa. Repite hasta terminar.</li>
+        </ol>
+        <div class="benefits"><span class="benefit-chip">Paciencia</span><span class="benefit-chip">Secuencia</span><span class="benefit-chip">Cocina básica</span></div>
+        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 45 min</span><span class="info-chip">📦 3 mat.</span></div></div>
+      </div>
+    </article>
+
+    <!-- Sem 5: Aviones -->
+    <article class="activity-card manualidades" data-min="5" data-max="12">
+      <div class="card-thumb manualidades"><span>✈️</span><span class="week-num">Sem. 5</span><span class="card-level">Fácil · 5-12 años</span></div>
+      <div class="card-body">
+        <span class="tag manualidades">Manualidades</span>
+        <h3>Aviones de Papel</h3>
+        <div class="materials"><span class="mat-pill">Papel</span><span class="mat-pill">Marcadores</span></div>
+        <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Dobla el papel siguiendo las instrucciones.</li>
+          <li><span class="step-num">2</span>Decora con marcadores.</li>
+          <li><span class="step-num">3</span>Organiza una competencia de vuelo en familia.</li>
+        </ol>
+        <div class="benefits"><span class="benefit-chip">Coordinación</span><span class="benefit-chip">Creatividad</span><span class="benefit-chip">Física básica</span></div>
+        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 20 min</span><span class="info-chip">📦 2 mat.</span></div></div>
+      </div>
+    </article>
+
+    <!-- Sem 6: Mini Huerto -->
+    <article class="activity-card experimentos" data-min="4" data-max="10">
+      <div class="card-thumb experimentos"><span>🌱</span><span class="week-num">Sem. 6</span><span class="card-level">Fácil · 4-10 años</span></div>
+      <div class="card-body">
+        <span class="tag experimentos">Experimentos</span>
+        <h3>Mini Huerto Casero</h3>
+        <div class="materials"><span class="mat-pill">Vasos</span><span class="mat-pill">Tierra</span><span class="mat-pill">Semillas</span><span class="mat-pill">Agua</span></div>
+        <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Llena los vasos con tierra.</li>
+          <li><span class="step-num">2</span>Planta las semillas a 1 cm de profundidad.</li>
+          <li><span class="step-num">3</span>Riega con poca agua cada día y observa el crecimiento.</li>
+        </ol>
+        <div class="benefits"><span class="benefit-chip">Responsabilidad</span><span class="benefit-chip">Aprendizaje natural</span></div>
+        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 30 min</span><span class="info-chip">📦 4 mat.</span></div></div>
+      </div>
+    </article>
+
+    <!-- Sem 7: Pintura con Dedos -->
+    <article class="activity-card dibujos" data-min="2" data-max="7">
+      <div class="card-thumb dibujos"><span>🎨</span><span class="week-num">Sem. 7</span><span class="card-level">Fácil · 2-7 años</span></div>
+      <div class="card-body">
+        <span class="tag dibujos">Dibujos</span>
+        <h3>Pintura con Dedos</h3>
+        <div class="materials"><span class="mat-pill">Pintura lavable</span><span class="mat-pill">Papel grande</span></div>
+        <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Coloca la pintura en platos pequeños.</li>
+          <li><span class="step-num">2</span>Pinta usando los dedos libremente.</li>
+          <li><span class="step-num">3</span>Crea figuras, animales o paisajes.</li>
+        </ol>
+        <div class="benefits"><span class="benefit-chip">Creatividad</span><span class="benefit-chip">Sensibilidad táctil</span></div>
+        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 30 min</span><span class="info-chip">📦 2 mat.</span></div></div>
+      </div>
+    </article>
+
+    <!-- Sem 8: Torre de Malvaviscos -->
+    <article class="activity-card experimentos" data-min="5" data-max="12">
+      <div class="card-thumb experimentos"><span>🏗️</span><span class="week-num">Sem. 8</span><span class="card-level">Medio · 5-12 años</span></div>
+      <div class="card-body">
+        <span class="tag experimentos">Experimentos</span>
+        <h3>Torre de Malvaviscos</h3>
+        <div class="materials"><span class="mat-pill">Malvaviscos</span><span class="mat-pill">Palillos</span></div>
+        <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Conecta malvaviscos con palillos.</li>
+          <li><span class="step-num">2</span>Construye la torre más alta posible.</li>
+          <li><span class="step-num">3</span>Mide y compara alturas en familia.</li>
+        </ol>
+        <div class="benefits"><span class="benefit-chip">Resolución de problemas</span><span class="benefit-chip">Ingeniería básica</span></div>
+        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 20 min</span><span class="info-chip">📦 2 mat.</span></div></div>
+      </div>
+    </article>
+
+    <!-- Sem 9: Botella Sensorial -->
+    <article class="activity-card manualidades" data-min="3" data-max="8">
+      <div class="card-thumb manualidades"><span>✨</span><span class="week-num">Sem. 9</span><span class="card-level">Fácil · 3-8 años</span></div>
+      <div class="card-body">
+        <span class="tag manualidades">Manualidades</span>
+        <h3>Botella Sensorial</h3>
+        <div class="materials"><span class="mat-pill">Botella plástica</span><span class="mat-pill">Agua</span><span class="mat-pill">Escarcha</span><span class="mat-pill">Cuentas</span></div>
+        <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Llena la botella con agua hasta ¾.</li>
+          <li><span class="step-num">2</span>Agrega escarcha y cuentas coloridas.</li>
+          <li><span class="step-num">3</span>Sella la tapa y agita para ver el efecto.</li>
+        </ol>
+        <div class="benefits"><span class="benefit-chip">Relajación</span><span class="benefit-chip">Atención visual</span></div>
+        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 15 min</span><span class="info-chip">📦 4 mat.</span></div></div>
+      </div>
+    </article>
+
+    <!-- Sem 10: Masa Casera -->
+    <article class="activity-card manualidades" data-min="3" data-max="7">
+      <div class="card-thumb manualidades"><span>🧶</span><span class="week-num">Sem. 10</span><span class="card-level">Fácil · 3-7 años</span></div>
+      <div class="card-body">
+        <span class="tag manualidades">Manualidades</span>
+        <h3>Masa Casera</h3>
+        <div class="materials"><span class="mat-pill">Harina</span><span class="mat-pill">Sal</span><span class="mat-pill">Agua</span><span class="mat-pill">Colorante</span></div>
+        <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Mezcla 2 tazas de harina con 1 taza de sal.</li>
+          <li><span class="step-num">2</span>Agrega agua poco a poco hasta formar masa.</li>
+          <li><span class="step-num">3</span>Añade colorante y amasa hasta integrar.</li>
+          <li><span class="step-num">4</span>Crea figuras libremente.</li>
+        </ol>
+        <div class="benefits"><span class="benefit-chip">Motricidad</span><span class="benefit-chip">Creatividad</span></div>
+        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 25 min</span><span class="info-chip">📦 4 mat.</span></div></div>
+      </div>
+    </article>
+
+    <!-- Sem 11: Pizza Miniatura -->
+    <article class="activity-card cocina" data-min="5" data-max="12">
+      <div class="card-thumb cocina"><span>🍕</span><span class="week-num">Sem. 11</span><span class="card-level">Fácil · 5-12 años</span></div>
+      <div class="card-body">
+        <span class="tag cocina">Cocina</span>
+        <h3>Mini Pizzas en Casa</h3>
+        <div class="materials"><span class="mat-pill">Masa de pizza</span><span class="mat-pill">Salsa de tomate</span><span class="mat-pill">Queso</span><span class="mat-pill">Toppings a elección</span></div>
+        <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Estira la masa en porciones pequeñas.</li>
+          <li><span class="step-num">2</span>Cada niño decora su pizza con sus ingredientes.</li>
+          <li><span class="step-num">3</span>Hornea a 200°C por 15 minutos.</li>
+        </ol>
+        <div class="benefits"><span class="benefit-chip">Creatividad</span><span class="benefit-chip">Nutrición</span><span class="benefit-chip">Trabajo en equipo</span></div>
+        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 45 min</span><span class="info-chip">📦 4 mat.</span></div></div>
+      </div>
+    </article>
+
+    <!-- Sem 12: Paletas de Frutas -->
+    <article class="activity-card cocina" data-min="4" data-max="10">
+      <div class="card-thumb cocina"><span>🍓</span><span class="week-num">Sem. 12</span><span class="card-level">Fácil · 4-10 años</span></div>
+      <div class="card-body">
+        <span class="tag cocina">Cocina</span>
+        <h3>Paletas de Frutas</h3>
+        <div class="materials"><span class="mat-pill">Frutas variadas</span><span class="mat-pill">Jugo natural</span><span class="mat-pill">Moldes para paleta</span><span class="mat-pill">Palillos</span></div>
+        <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Pica las frutas en trozos pequeños.</li>
+          <li><span class="step-num">2</span>Colócalas en los moldes alternando colores.</li>
+          <li><span class="step-num">3</span>Rellena con jugo y congela 4 horas.</li>
+        </ol>
+        <div class="benefits"><span class="benefit-chip">Nutrición</span><span class="benefit-chip">Paciencia</span><span class="benefit-chip">Cocina básica</span></div>
+        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 30 min</span><span class="info-chip">📦 4 mat.</span></div></div>
+      </div>
+    </article>
+
+    <!-- Sem 13: Limonada de Colores -->
+    <article class="activity-card cocina" data-min="4" data-max="10">
+      <div class="card-thumb cocina"><span>🍋</span><span class="week-num">Sem. 13</span><span class="card-level">Fácil · 4-10 años</span></div>
+      <div class="card-body">
+        <span class="tag cocina">Cocina</span>
+        <h3>Limonada de Colores</h3>
+        <div class="materials"><span class="mat-pill">Limones</span><span class="mat-pill">Azúcar</span><span class="mat-pill">Agua</span><span class="mat-pill">Frutas de colores</span></div>
+        <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Exprime los limones y mezcla con agua y azúcar.</li>
+          <li><span class="step-num">2</span>Licúa frutas de diferentes colores por separado.</li>
+          <li><span class="step-num">3</span>Sirve capas de colores en vasos transparentes.</li>
+        </ol>
+        <div class="benefits"><span class="benefit-chip">Cocina básica</span><span class="benefit-chip">Ciencias</span><span class="benefit-chip">Creatividad</span></div>
+        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 20 min</span><span class="info-chip">📦 4 mat.</span></div></div>
+      </div>
+    </article>
+
+  </div>
+  <div class="no-results" id="no-results-todas"><p>😔 No hay actividades para este rango de edad en esta categoría.</p></div>
+</div><!-- /panel-todas -->
+
+
+<!-- ══════════════════════════════════════
+     PANEL: DIBUJOS
+══════════════════════════════════════ -->
+<div id="panel-dibujos" style="display:none">
+  <div class="section-header">
+    <h2 class="section-title">🎨 Dibujos</h2>
+    <span class="week-badge">Semanas 7 y 3</span>
+  </div>
+  <div class="featured-card pink" data-min="2" data-max="7">
+    <div class="featured-content">
+      <span class="tag featured-badge">⭐ Semana 7 · Destacada</span>
+      <h2>Pintura con Dedos</h2>
+      <p class="featured-desc">Arte libre con las manos: la forma más natural de que los niños expresen su creatividad sin reglas.</p>
+      <div class="materials"><span class="mat-pill">Pintura lavable</span><span class="mat-pill">Papel grande</span></div>
+      <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
+      <ol class="steps-list">
+        <li><span class="step-num">1</span>Coloca la pintura en platos pequeños.</li>
+        <li><span class="step-num">2</span>Pinta usando los dedos libremente.</li>
+        <li><span class="step-num">3</span>Crea figuras, animales o paisajes.</li>
+      </ol>
+      <div class="benefits" style="margin-bottom:18px"><span class="benefit-chip">Creatividad</span><span class="benefit-chip">Sensibilidad táctil</span></div>
+      <span class="btn-primary btn-pink">Ver actividad completa</span>
+    </div>
+    <div class="featured-thumb pink">🎨</div>
+  </div>
+  <div class="cards-grid">
+    <article class="activity-card dibujos" data-min="3" data-max="8">
+      <div class="card-thumb dibujos"><span>🖍️</span><span class="week-num">Sem. 3</span><span class="card-level">Fácil · 3-8 años</span></div>
+      <div class="card-body">
+        <span class="tag dibujos">Dibujos</span>
+        <h3>Dibujos para Colorear</h3>
+        <div class="materials"><span class="mat-pill">Hojas impresas</span><span class="mat-pill">Crayones</span><span class="mat-pill">Marcadores</span></div>
+        <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Descarga e imprime los dibujos gratuitos.</li>
+          <li><span class="step-num">2</span>Elige tus colores favoritos.</li>
+          <li><span class="step-num">3</span>Colorea con crayones o marcadores.</li>
+        </ol>
+        <div class="benefits"><span class="benefit-chip">Concentración</span><span class="benefit-chip">Coordinación</span><span class="benefit-chip">Expresión artística</span></div>
+        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 30 min</span><span class="info-chip">📦 3 mat.</span></div></div>
       </div>
     </article>
   </div>
+  <div class="no-results" id="no-results-dibujos"><p>😔 No hay actividades de dibujos para este rango de edad.</p></div>
 </div>
 
-<!-- ════════════ PANEL: MANUALIDADES ════════════ -->
+
+<!-- ══════════════════════════════════════
+     PANEL: MANUALIDADES
+══════════════════════════════════════ -->
 <div id="panel-manualidades" style="display:none">
   <div class="section-header">
     <h2 class="section-title">✂️ Manualidades</h2>
-    <span class="week-badge">Semanas 1, 4, 5, 9, 10</span>
+    <span class="week-badge">Semanas 1, 5, 9, 10</span>
   </div>
-  <div class="featured-card orange">
+  <div class="featured-card orange" data-min="5" data-max="10">
     <div class="featured-content">
       <span class="tag featured-badge orange">⭐ Semana 1 · Destacada</span>
       <h2>Slime Casero Básico</h2>
-      <p style="color:var(--muted);font-size:0.92rem;margin-bottom:14px;line-height:1.6">Experimenta con texturas y reacciones mientras creas tu propio slime colorido con ingredientes de cocina.</p>
+      <p class="featured-desc">Experimenta con texturas y reacciones mientras creas tu propio slime colorido.</p>
       <div class="materials"><span class="mat-pill">1 taza pegamento blanco</span><span class="mat-pill">1 cda bicarbonato</span><span class="mat-pill">Colorante</span><span class="mat-pill">1 cda sol. lentes contacto</span></div>
       <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
       <ol class="steps-list">
         <li><span class="step-num">1</span>Coloca el pegamento en un recipiente.</li>
         <li><span class="step-num">2</span>Agrega bicarbonato y mezcla.</li>
-        <li><span class="step-num">3</span>Añade colorante.</li>
+        <li><span class="step-num">3</span>Añade el colorante.</li>
         <li><span class="step-num">4</span>Agrega lentamente la solución para lentes.</li>
-        <li><span class="step-num">5</span>Mezcla hasta formar el slime.</li>
+        <li><span class="step-num">5</span>Mezcla hasta que el slime se despegue.</li>
       </ol>
       <div class="benefits" style="margin-bottom:18px"><span class="benefit-chip">Motricidad fina</span><span class="benefit-chip">Estimulación sensorial</span><span class="benefit-chip">Creatividad</span></div>
       <span class="btn-primary btn-orange">Ver actividad completa</span>
@@ -545,23 +560,7 @@ footer a { color: var(--accent); text-decoration: none; }
     <div class="featured-thumb orange">🧪</div>
   </div>
   <div class="cards-grid">
-    <article class="activity-card manualidades">
-      <div class="card-thumb manualidades"><span>🌈</span><span class="week-num">Sem. 4</span><span class="card-level">Fácil · 4-9 años</span></div>
-      <div class="card-body">
-        <span class="tag manualidades">Manualidades</span>
-        <h3>Gelatina Arcoíris</h3>
-        <div class="materials"><span class="mat-pill">Gelatinas de colores</span><span class="mat-pill">Vasos transparentes</span><span class="mat-pill">Agua caliente</span></div>
-        <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
-        <ol class="steps-list">
-          <li><span class="step-num">1</span>Prepara cada color por separado.</li>
-          <li><span class="step-num">2</span>Vierte capas una por una, refrigerando entre cada una.</li>
-          <li><span class="step-num">3</span>Deja enfriar completamente antes de servir.</li>
-        </ol>
-        <div class="benefits"><span class="benefit-chip">Paciencia</span><span class="benefit-chip">Secuencia</span><span class="benefit-chip">Cocina básica</span></div>
-        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 45 min</span><span class="info-chip">📦 3 materiales</span></div></div>
-      </div>
-    </article>
-    <article class="activity-card manualidades">
+    <article class="activity-card manualidades" data-min="5" data-max="12">
       <div class="card-thumb manualidades"><span>✈️</span><span class="week-num">Sem. 5</span><span class="card-level">Fácil · 5-12 años</span></div>
       <div class="card-body">
         <span class="tag manualidades">Manualidades</span>
@@ -574,10 +573,10 @@ footer a { color: var(--accent); text-decoration: none; }
           <li><span class="step-num">3</span>Competencia de vuelo en familia.</li>
         </ol>
         <div class="benefits"><span class="benefit-chip">Coordinación</span><span class="benefit-chip">Creatividad</span><span class="benefit-chip">Física básica</span></div>
-        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 20 min</span><span class="info-chip">📦 2 materiales</span></div></div>
+        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 20 min</span><span class="info-chip">📦 2 mat.</span></div></div>
       </div>
     </article>
-    <article class="activity-card manualidades">
+    <article class="activity-card manualidades" data-min="3" data-max="8">
       <div class="card-thumb manualidades"><span>✨</span><span class="week-num">Sem. 9</span><span class="card-level">Fácil · 3-8 años</span></div>
       <div class="card-body">
         <span class="tag manualidades">Manualidades</span>
@@ -586,14 +585,14 @@ footer a { color: var(--accent); text-decoration: none; }
         <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
         <ol class="steps-list">
           <li><span class="step-num">1</span>Llena la botella con agua hasta ¾.</li>
-          <li><span class="step-num">2</span>Agrega escarcha y cuentas.</li>
-          <li><span class="step-num">3</span>Sella y agita para ver el efecto.</li>
+          <li><span class="step-num">2</span>Agrega escarcha y cuentas coloridas.</li>
+          <li><span class="step-num">3</span>Sella la tapa y agita para ver el efecto.</li>
         </ol>
         <div class="benefits"><span class="benefit-chip">Relajación</span><span class="benefit-chip">Atención visual</span></div>
-        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 15 min</span><span class="info-chip">📦 4 materiales</span></div></div>
+        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 15 min</span><span class="info-chip">📦 4 mat.</span></div></div>
       </div>
     </article>
-    <article class="activity-card manualidades">
+    <article class="activity-card manualidades" data-min="3" data-max="7">
       <div class="card-thumb manualidades"><span>🧶</span><span class="week-num">Sem. 10</span><span class="card-level">Fácil · 3-7 años</span></div>
       <div class="card-body">
         <span class="tag manualidades">Manualidades</span>
@@ -602,28 +601,32 @@ footer a { color: var(--accent); text-decoration: none; }
         <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
         <ol class="steps-list">
           <li><span class="step-num">1</span>Mezcla 2 tazas de harina con 1 taza de sal.</li>
-          <li><span class="step-num">2</span>Agrega agua poco a poco.</li>
+          <li><span class="step-num">2</span>Agrega agua poco a poco hasta formar masa.</li>
           <li><span class="step-num">3</span>Añade colorante y amasa.</li>
           <li><span class="step-num">4</span>Crea figuras libremente.</li>
         </ol>
         <div class="benefits"><span class="benefit-chip">Motricidad</span><span class="benefit-chip">Creatividad</span></div>
-        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 25 min</span><span class="info-chip">📦 4 materiales</span></div></div>
+        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 25 min</span><span class="info-chip">📦 4 mat.</span></div></div>
       </div>
     </article>
   </div>
+  <div class="no-results" id="no-results-manualidades"><p>😔 No hay manualidades para este rango de edad.</p></div>
 </div>
 
-<!-- ════════════ PANEL: EXPERIMENTOS ════════════ -->
+
+<!-- ══════════════════════════════════════
+     PANEL: EXPERIMENTOS
+══════════════════════════════════════ -->
 <div id="panel-experimentos" style="display:none">
   <div class="section-header">
     <h2 class="section-title">🔬 Experimentos</h2>
     <span class="week-badge">Semanas 2, 6 y 8</span>
   </div>
-  <div class="featured-card cyan">
+  <div class="featured-card cyan" data-min="4" data-max="10">
     <div class="featured-content">
       <span class="tag featured-badge cyan">⭐ Semana 2 · Destacada</span>
       <h2>Volcán Casero</h2>
-      <p style="color:var(--muted);font-size:0.92rem;margin-bottom:14px;line-height:1.6">Una reacción química espectacular con ingredientes de cocina. El experimento favorito de todos los niños.</p>
+      <p class="featured-desc">Una reacción química espectacular con ingredientes de cocina. El experimento favorito de todos los niños.</p>
       <div class="materials"><span class="mat-pill">Vinagre</span><span class="mat-pill">Bicarbonato</span><span class="mat-pill">Botella pequeña</span><span class="mat-pill">Colorante rojo</span><span class="mat-pill">Bandeja</span></div>
       <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
       <ol class="steps-list">
@@ -637,7 +640,7 @@ footer a { color: var(--accent); text-decoration: none; }
     <div class="featured-thumb cyan">🌋</div>
   </div>
   <div class="cards-grid">
-    <article class="activity-card experimentos">
+    <article class="activity-card experimentos" data-min="4" data-max="10">
       <div class="card-thumb experimentos"><span>🌱</span><span class="week-num">Sem. 6</span><span class="card-level">Fácil · 4-10 años</span></div>
       <div class="card-body">
         <span class="tag experimentos">Experimentos</span>
@@ -647,13 +650,13 @@ footer a { color: var(--accent); text-decoration: none; }
         <ol class="steps-list">
           <li><span class="step-num">1</span>Llena los vasos con tierra.</li>
           <li><span class="step-num">2</span>Planta las semillas a 1 cm de profundidad.</li>
-          <li><span class="step-num">3</span>Riega con poca agua cada día y observa.</li>
+          <li><span class="step-num">3</span>Riega con poca agua cada día y observa el crecimiento.</li>
         </ol>
         <div class="benefits"><span class="benefit-chip">Responsabilidad</span><span class="benefit-chip">Aprendizaje natural</span></div>
-        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 30 min</span><span class="info-chip">📦 4 materiales</span></div></div>
+        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 30 min</span><span class="info-chip">📦 4 mat.</span></div></div>
       </div>
     </article>
-    <article class="activity-card experimentos">
+    <article class="activity-card experimentos" data-min="5" data-max="12">
       <div class="card-thumb experimentos"><span>🏗️</span><span class="week-num">Sem. 8</span><span class="card-level">Medio · 5-12 años</span></div>
       <div class="card-body">
         <span class="tag experimentos">Experimentos</span>
@@ -666,13 +669,96 @@ footer a { color: var(--accent); text-decoration: none; }
           <li><span class="step-num">3</span>Mide y compara alturas en familia.</li>
         </ol>
         <div class="benefits"><span class="benefit-chip">Resolución de problemas</span><span class="benefit-chip">Ingeniería básica</span></div>
-        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 20 min</span><span class="info-chip">📦 2 materiales</span></div></div>
+        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 20 min</span><span class="info-chip">📦 2 mat.</span></div></div>
       </div>
     </article>
   </div>
+  <div class="no-results" id="no-results-experimentos"><p>😔 No hay experimentos para este rango de edad.</p></div>
 </div>
 
-<!-- ════════════ CALENDARIO ════════════ -->
+
+<!-- ══════════════════════════════════════
+     PANEL: COCINA
+══════════════════════════════════════ -->
+<div id="panel-cocina" style="display:none">
+  <div class="section-header">
+    <h2 class="section-title">🍳 Cocina Divertida</h2>
+    <span class="week-badge">Semanas 4, 11, 12, 13</span>
+  </div>
+  <div class="featured-card green" data-min="5" data-max="12">
+    <div class="featured-content">
+      <span class="tag featured-badge green">⭐ Semana 11 · Destacada</span>
+      <h2>Mini Pizzas en Casa</h2>
+      <p class="featured-desc">Cada niño arma su propia pizza con los ingredientes que más le gustan. Creatividad y cocina en una sola actividad.</p>
+      <div class="materials"><span class="mat-pill">Masa de pizza</span><span class="mat-pill">Salsa de tomate</span><span class="mat-pill">Queso</span><span class="mat-pill">Toppings a elección</span></div>
+      <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
+      <ol class="steps-list">
+        <li><span class="step-num">1</span>Estira la masa en porciones pequeñas.</li>
+        <li><span class="step-num">2</span>Cada niño decora su pizza con sus ingredientes favoritos.</li>
+        <li><span class="step-num">3</span>Hornea a 200°C por 15 minutos.</li>
+      </ol>
+      <div class="benefits" style="margin-bottom:18px"><span class="benefit-chip">Creatividad</span><span class="benefit-chip">Nutrición</span><span class="benefit-chip">Trabajo en equipo</span></div>
+      <span class="btn-primary btn-green">Ver actividad completa</span>
+    </div>
+    <div class="featured-thumb green">🍕</div>
+  </div>
+  <div class="cards-grid">
+    <article class="activity-card cocina" data-min="4" data-max="9">
+      <div class="card-thumb cocina"><span>🌈</span><span class="week-num">Sem. 4</span><span class="card-level">Fácil · 4-9 años</span></div>
+      <div class="card-body">
+        <span class="tag cocina">Cocina</span>
+        <h3>Gelatina Arcoíris</h3>
+        <div class="materials"><span class="mat-pill">Gelatinas de colores</span><span class="mat-pill">Vasos transparentes</span><span class="mat-pill">Agua caliente</span></div>
+        <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Prepara cada color de gelatina por separado.</li>
+          <li><span class="step-num">2</span>Vierte la primera capa y refrigera 30 min.</li>
+          <li><span class="step-num">3</span>Agrega la siguiente capa. Repite hasta terminar.</li>
+        </ol>
+        <div class="benefits"><span class="benefit-chip">Paciencia</span><span class="benefit-chip">Secuencia</span><span class="benefit-chip">Cocina básica</span></div>
+        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 45 min</span><span class="info-chip">📦 3 mat.</span></div></div>
+      </div>
+    </article>
+    <article class="activity-card cocina" data-min="4" data-max="10">
+      <div class="card-thumb cocina"><span>🍓</span><span class="week-num">Sem. 12</span><span class="card-level">Fácil · 4-10 años</span></div>
+      <div class="card-body">
+        <span class="tag cocina">Cocina</span>
+        <h3>Paletas de Frutas</h3>
+        <div class="materials"><span class="mat-pill">Frutas variadas</span><span class="mat-pill">Jugo natural</span><span class="mat-pill">Moldes</span><span class="mat-pill">Palillos</span></div>
+        <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Pica las frutas en trozos pequeños.</li>
+          <li><span class="step-num">2</span>Colócalas en los moldes alternando colores.</li>
+          <li><span class="step-num">3</span>Rellena con jugo y congela 4 horas.</li>
+        </ol>
+        <div class="benefits"><span class="benefit-chip">Nutrición</span><span class="benefit-chip">Paciencia</span><span class="benefit-chip">Cocina básica</span></div>
+        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 30 min</span><span class="info-chip">📦 4 mat.</span></div></div>
+      </div>
+    </article>
+    <article class="activity-card cocina" data-min="4" data-max="10">
+      <div class="card-thumb cocina"><span>🍋</span><span class="week-num">Sem. 13</span><span class="card-level">Fácil · 4-10 años</span></div>
+      <div class="card-body">
+        <span class="tag cocina">Cocina</span>
+        <h3>Limonada de Colores</h3>
+        <div class="materials"><span class="mat-pill">Limones</span><span class="mat-pill">Azúcar</span><span class="mat-pill">Agua</span><span class="mat-pill">Frutas de colores</span></div>
+        <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Exprime los limones y mezcla con agua y azúcar.</li>
+          <li><span class="step-num">2</span>Licúa frutas de diferentes colores por separado.</li>
+          <li><span class="step-num">3</span>Sirve capas de colores en vasos transparentes.</li>
+        </ol>
+        <div class="benefits"><span class="benefit-chip">Cocina básica</span><span class="benefit-chip">Ciencias</span><span class="benefit-chip">Creatividad</span></div>
+        <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 20 min</span><span class="info-chip">📦 4 mat.</span></div></div>
+      </div>
+    </article>
+  </div>
+  <div class="no-results" id="no-results-cocina"><p>😔 No hay actividades de cocina para este rango de edad.</p></div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     CALENDARIO
+══════════════════════════════════════ -->
 <div class="calendar-section">
   <h2>Calendario de Actividades</h2>
   <p class="cal-subtitle">Una actividad nueva cada semana para toda la familia</p>
@@ -685,14 +771,12 @@ footer a { color: var(--accent); text-decoration: none; }
     <div class="cal-head">Lun</div><div class="cal-head">Mar</div><div class="cal-head">Mié</div>
     <div class="cal-head">Jue</div><div class="cal-head">Vie</div><div class="cal-head">Sáb</div><div class="cal-head">Dom</div>
 
-    <!-- Sem 1: empieza jueves 1 -->
     <div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div>
     <div class="cal-day"><span class="cal-day-num">1</span><span class="cal-ev manualidades">✂️ Slime</span></div>
     <div class="cal-day"><span class="cal-day-num">2</span></div>
     <div class="cal-day"><span class="cal-day-num">3</span></div>
     <div class="cal-day"><span class="cal-day-num">4</span></div>
 
-    <!-- Sem 2 -->
     <div class="cal-day"><span class="cal-day-num">5</span></div>
     <div class="cal-day"><span class="cal-day-num">6</span></div>
     <div class="cal-day"><span class="cal-day-num">7</span></div>
@@ -701,7 +785,6 @@ footer a { color: var(--accent); text-decoration: none; }
     <div class="cal-day"><span class="cal-day-num">10</span></div>
     <div class="cal-day"><span class="cal-day-num">11</span></div>
 
-    <!-- Sem 3 -->
     <div class="cal-day"><span class="cal-day-num">12</span></div>
     <div class="cal-day"><span class="cal-day-num">13</span></div>
     <div class="cal-day today"><span class="cal-day-num">14</span></div>
@@ -710,16 +793,14 @@ footer a { color: var(--accent); text-decoration: none; }
     <div class="cal-day"><span class="cal-day-num">17</span></div>
     <div class="cal-day"><span class="cal-day-num">18</span></div>
 
-    <!-- Sem 4 -->
     <div class="cal-day"><span class="cal-day-num">19</span></div>
     <div class="cal-day"><span class="cal-day-num">20</span></div>
     <div class="cal-day"><span class="cal-day-num">21</span></div>
-    <div class="cal-day"><span class="cal-day-num">22</span><span class="cal-ev manualidades">🌈 Gelatina</span></div>
+    <div class="cal-day"><span class="cal-day-num">22</span><span class="cal-ev cocina">🌈 Gelatina</span></div>
     <div class="cal-day"><span class="cal-day-num">23</span></div>
     <div class="cal-day"><span class="cal-day-num">24</span></div>
     <div class="cal-day"><span class="cal-day-num">25</span></div>
 
-    <!-- Sem 5 -->
     <div class="cal-day"><span class="cal-day-num">26</span></div>
     <div class="cal-day"><span class="cal-day-num">27</span></div>
     <div class="cal-day"><span class="cal-day-num">28</span></div>
@@ -747,10 +828,43 @@ footer a { color: var(--accent); text-decoration: none; }
 </div><!-- /container -->
 
 <script>
+let currentTab = 'todas';
+let currentAge = 'all';
+
 function setTab(tab) {
-  ['todas','dibujos','manualidades','experimentos'].forEach(t => {
+  currentTab = tab;
+  ['todas','dibujos','manualidades','experimentos','cocina'].forEach(t => {
     document.getElementById('panel-' + t).style.display = t === tab ? 'block' : 'none';
     document.querySelector('.tab-btn.' + t).classList.toggle('active', t === tab);
+  });
+  applyAgeFilter();
+}
+
+function setAge(group) {
+  currentAge = group;
+  document.querySelectorAll('.age-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.age === group);
+  });
+  applyAgeFilter();
+}
+
+function applyAgeFilter() {
+  const [minF, maxF] = currentAge === 'all' ? [0, 99] : currentAge.split('-').map(Number);
+
+  document.querySelectorAll('[data-min]').forEach(el => {
+    const match = currentAge === 'all' ||
+      (parseInt(el.dataset.max) >= minF && parseInt(el.dataset.min) <= maxF);
+    el.classList.toggle('age-hidden', !match);
+  });
+
+  // Show "no results" message if all cards in active panel are hidden
+  ['todas','dibujos','manualidades','experimentos','cocina'].forEach(t => {
+    const panel = document.getElementById('panel-' + t);
+    if (!panel || panel.style.display === 'none') return;
+    const msg = document.getElementById('no-results-' + t);
+    if (!msg) return;
+    const visibleCards = panel.querySelectorAll('[data-min]:not(.age-hidden)');
+    msg.style.display = visibleCards.length === 0 ? 'block' : 'none';
   });
 }
 
