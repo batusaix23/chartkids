@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChartKids Premium — Actividades Creativas</title>
+<meta name="description" content="Desbloquea actividades exclusivas, kits imprimibles, certificados y badges premium para toda la familia.">
+<link rel="canonical" href="https://www.chartkids.com/premium.html">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<script src="https://www.paypal.com/sdk/js?client-id=Aa0khjubdaZqeyeVfDubi3n1povc_yU8kS5Ell6VEqMLYToNo45EijWzRsri32iJoVPWDtX4AWqDZYdB&vault=true&intent=subscription&currency=USD" data-sdk-integration-source="button-factory"></script>
+<style>
+:root {
+  --bg: #0f0f1a;
+  --surface: #1a1a2e;
+  --surface2: #232340;
+  --border: #2e2e50;
+  --accent: #7c3aed;
+  --accent2: #06b6d4;
+  --green: #22c55e;
+  --yellow: #fbbf24;
+  --pink: #ec4899;
+  --orange: #f97316;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --radius: 16px;
+  --gold: #f59e0b;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+.container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+
+header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom: 48px; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.logo { font-family: 'Fredoka One', cursive; font-size: 1.5rem; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+.logo span { -webkit-text-fill-color: var(--yellow); }
+.back-btn { background: var(--surface); border: 1px solid var(--border); padding: 10px 20px; border-radius: 50px; color: var(--text); text-decoration: none; font-weight: 700; transition: all .2s; }
+.back-btn:hover { background: var(--accent); border-color: var(--accent); }
+
+/* Hero */
+.hero { text-align: center; padding: 0 0 52px; }
+.hero-badge { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, var(--gold), var(--orange)); padding: 6px 18px; border-radius: 50px; font-size: 0.82rem; font-weight: 800; color: #000; margin-bottom: 20px; }
+.hero h1 { font-family: 'Fredoka One', cursive; font-size: 3rem; margin-bottom: 14px; background: linear-gradient(135deg, var(--gold), var(--orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p { color: var(--muted); font-size: 1.05rem; max-width: 540px; margin: 0 auto 28px; line-height: 1.7; }
+
+/* Already premium state */
+.already-premium { display: none; text-align: center; background: linear-gradient(135deg, rgba(34,197,94,.1), rgba(6,182,212,.06)); border: 1px solid rgba(34,197,94,.3); border-radius: var(--radius); padding: 32px; margin-bottom: 40px; }
+.already-premium h2 { font-family: 'Fredoka One', cursive; font-size: 1.8rem; color: var(--green); margin-bottom: 10px; }
+.already-premium p { color: var(--muted); margin-bottom: 20px; }
+.go-btn { display: inline-block; background: linear-gradient(135deg, var(--green), var(--accent2)); padding: 12px 28px; border-radius: 50px; color: white; font-weight: 800; text-decoration: none; font-size: 0.95rem; }
+
+/* Features grid */
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-bottom: 48px; }
+.feature-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; transition: border-color .2s; }
+.feature-card:hover { border-color: var(--gold); }
+.feature-emoji { font-size: 2.2rem; margin-bottom: 12px; }
+.feature-title { font-weight: 800; font-size: 1rem; margin-bottom: 6px; }
+.feature-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+/* Compare table */
+.compare { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 48px; }
+.compare-header { display: grid; grid-template-columns: 1fr 120px 120px; background: var(--surface2); padding: 14px 20px; font-size: .78rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.compare-header .col-premium { color: var(--gold); }
+.compare-row { display: grid; grid-template-columns: 1fr 120px 120px; padding: 14px 20px; border-top: 1px solid var(--border); font-size: .88rem; align-items: center; }
+.compare-row:hover { background: var(--surface2); }
+.col-center { text-align: center; font-size: 1rem; }
+
+/* Pricing card */
+.pricing-wrap { display: flex; justify-content: center; margin-bottom: 60px; }
+.pricing-card { background: linear-gradient(135deg, var(--surface), var(--surface2)); border: 2px solid var(--gold); border-radius: 24px; padding: 36px 40px; text-align: center; max-width: 380px; width: 100%; }
+.pricing-crown { font-size: 2.5rem; margin-bottom: 12px; }
+.pricing-name { font-family: 'Fredoka One', cursive; font-size: 1.5rem; color: var(--gold); margin-bottom: 6px; }
+.pricing-price { font-family: 'Fredoka One', cursive; font-size: 3.2rem; color: var(--yellow); line-height: 1; margin-bottom: 4px; }
+.pricing-period { font-size: 0.85rem; color: var(--muted); margin-bottom: 24px; }
+.pricing-list { list-style: none; text-align: left; margin-bottom: 28px; display: flex; flex-direction: column; gap: 10px; }
+.pricing-list li { display: flex; align-items: center; gap: 10px; font-size: .9rem; }
+.pricing-list li::before { content: '✓'; color: var(--green); font-weight: 900; flex-shrink: 0; }
+#paypal-btn-container { margin-bottom: 14px; min-height: 50px; }
+.pricing-note { font-size: .75rem; color: var(--muted); }
+
+/* Success state */
+.success-state { display: none; text-align: center; padding: 20px 0; }
+.success-state h3 { font-family: 'Fredoka One', cursive; font-size: 1.6rem; color: var(--green); margin-bottom: 8px; }
+.success-state p { color: var(--muted); margin-bottom: 20px; }
+
+/* FAQ */
+.faq { margin-bottom: 60px; }
+.faq h2 { font-family: 'Fredoka One', cursive; font-size: 1.4rem; margin-bottom: 20px; }
+.faq-item { border-top: 1px solid var(--border); padding: 16px 0; }
+.faq-item:last-child { border-bottom: 1px solid var(--border); }
+.faq-q { font-weight: 800; margin-bottom: 6px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+.faq-q:hover { color: var(--gold); }
+.faq-a { font-size: .88rem; color: var(--muted); line-height: 1.6; display: none; padding-top: 6px; }
+
+footer { border-top: 1px solid var(--border); padding: 28px 0; text-align: center; margin-top: 20px; }
+footer p { color: var(--muted); font-size: .85rem; }
+footer a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 600px) {
+  .hero h1 { font-size: 2.2rem; }
+  .pricing-card { padding: 28px 20px; }
+  .compare-header, .compare-row { grid-template-columns: 1fr 80px 80px; padding: 12px 14px; font-size: .8rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">ChartKids<span>✨</span></a>
+    <a href="actividades.html" class="back-btn">← Actividades</a>
+  </div>
+</header>
+
+<!-- Already premium banner (shown via JS) -->
+<div class="already-premium" id="already-premium">
+  <h2>👑 ¡Ya eres Premium!</h2>
+  <p>Tienes acceso completo a todas las actividades exclusivas, kits y certificados.</p>
+  <a href="actividades.html" class="go-btn">Ver actividades →</a>
+</div>
+
+<!-- Hero -->
+<div class="hero" id="hero-section">
+  <div class="hero-badge">👑 ChartKids Premium</div>
+  <h1>Más actividades, más diversión</h1>
+  <p>Desbloquea actividades exclusivas, kits imprimibles, certificados de logro y badges premium para toda la familia.</p>
+</div>
+
+<!-- Features -->
+<div class="features-grid">
+  <div class="feature-card">
+    <div class="feature-emoji">🎯</div>
+    <div class="feature-title">Actividades Exclusivas</div>
+    <div class="feature-desc">Accede a actividades premium adicionales — nuevas semanas con contenido avanzado y proyectos especiales.</div>
+  </div>
+  <div class="feature-card">
+    <div class="feature-emoji">🖨️</div>
+    <div class="feature-title">Kits Imprimibles PDF</div>
+    <div class="feature-desc">Descarga packs completos: plantillas de proyectos, guías de materiales y calendarios de actividades mensuales.</div>
+  </div>
+  <div class="feature-card">
+    <div class="feature-emoji">🎓</div>
+    <div class="feature-title">Certificados de Logro</div>
+    <div class="feature-desc">Al completar cada categoría, genera un certificado imprimible personalizado con el nombre de tu hijo o hija.</div>
+  </div>
+  <div class="feature-card">
+    <div class="feature-emoji">🏅</div>
+    <div class="feature-title">Badges Exclusivos</div>
+    <div class="feature-desc">Desbloquea insignias premium en tu perfil de recompensas que solo están disponibles para suscriptores.</div>
+  </div>
+</div>
+
+<!-- Comparison table -->
+<div class="compare">
+  <div class="compare-header">
+    <span>Característica</span>
+    <span class="col-center">Free</span>
+    <span class="col-center col-premium">👑 Premium</span>
+  </div>
+  <div class="compare-row"><span>Actividades básicas (sem. 1-22)</span><span class="col-center">✅</span><span class="col-center">✅</span></div>
+  <div class="compare-row"><span>Sistema de XP y badges básicos</span><span class="col-center">✅</span><span class="col-center">✅</span></div>
+  <div class="compare-row"><span>Descargables gratuitos</span><span class="col-center">✅</span><span class="col-center">✅</span></div>
+  <div class="compare-row"><span>Actividades exclusivas (sem. 23+)</span><span class="col-center">🔒</span><span class="col-center" style="color:var(--gold)">✅</span></div>
+  <div class="compare-row"><span>Kits imprimibles PDF completos</span><span class="col-center">🔒</span><span class="col-center" style="color:var(--gold)">✅</span></div>
+  <div class="compare-row"><span>Certificados de logro</span><span class="col-center">🔒</span><span class="col-center" style="color:var(--gold)">✅</span></div>
+  <div class="compare-row"><span>Badges premium exclusivos</span><span class="col-center">🔒</span><span class="col-center" style="color:var(--gold)">✅</span></div>
+  <div class="compare-row"><span>Nuevas actividades cada mes</span><span class="col-center">🔒</span><span class="col-center" style="color:var(--gold)">✅</span></div>
+</div>
+
+<!-- Pricing -->
+<div class="pricing-wrap">
+  <div class="pricing-card">
+    <div class="pricing-crown">👑</div>
+    <div class="pricing-name">Premium</div>
+    <div class="pricing-price">$2.99</div>
+    <div class="pricing-period">por mes · cancela cuando quieras</div>
+    <ul class="pricing-list">
+      <li>Actividades exclusivas sem. 23+</li>
+      <li>Kits imprimibles PDF completos</li>
+      <li>Certificados de logro imprimibles</li>
+      <li>3 badges premium exclusivos</li>
+      <li>Nuevas actividades cada mes</li>
+    </ul>
+    <div id="paypal-btn-container"></div>
+    <div class="success-state" id="success-state">
+      <h3>🎉 ¡Premium activado!</h3>
+      <p>Ya tienes acceso a todo el contenido exclusivo.</p>
+      <a href="actividades.html" class="go-btn">Ver actividades →</a>
+    </div>
+    <p class="pricing-note" id="pricing-note">Pago seguro con PayPal · Cancela en cualquier momento</p>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq">
+  <h2>Preguntas frecuentes</h2>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>¿Puedo cancelar en cualquier momento?</span><span>+</span></div>
+    <div class="faq-a">Sí, puedes cancelar tu suscripción en cualquier momento desde tu cuenta de PayPal. Sin penalizaciones ni compromisos.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>¿El acceso es inmediato?</span><span>+</span></div>
+    <div class="faq-a">Sí, el contenido premium se desbloquea automáticamente en cuanto se confirma el pago de PayPal.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>¿Los certificados son personalizables?</span><span>+</span></div>
+    <div class="faq-a">Sí, al generar un certificado puedes ingresar el nombre del niño o niña para personalizarlo antes de imprimir.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>¿Cuántas actividades exclusivas hay?</span><span>+</span></div>
+    <div class="faq-a">Actualmente hay 3 actividades exclusivas (semanas 23-25) y añadimos nuevas cada mes con la suscripción activa.</div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 ChartKids. <a href="actividades.html">← Actividades</a> · <a href="index.html">App</a> · <a href="terms.html">Términos</a> · <a href="privacy.html">Privacidad</a></p>
+</footer>
+
+</div><!-- /container -->
+
+<script>
+const isPremium = localStorage.getItem('chartkids_premium') === 'true';
+
+if (isPremium) {
+  document.getElementById('already-premium').style.display = 'block';
+  document.getElementById('hero-section').style.display = 'none';
+  document.getElementById('paypal-btn-container').style.display = 'none';
+  document.getElementById('pricing-note').style.display = 'none';
+} else {
+  initPayPal();
+}
+
+function initPayPal() {
+  if (typeof paypal === 'undefined') { setTimeout(initPayPal, 800); return; }
+  paypal.Buttons({
+    style: { shape:'pill', color:'gold', layout:'vertical', label:'subscribe' },
+    createSubscription(data, actions) {
+      return actions.subscription.create({ plan_id: 'P-FZ9MSHLYCWXE6' });
+    },
+    onApprove(data) {
+      localStorage.setItem('chartkids_premium', 'true');
+      localStorage.setItem('chartkids_premium_sub', data.subscriptionID || '');
+      document.getElementById('paypal-btn-container').style.display = 'none';
+      document.getElementById('pricing-note').style.display = 'none';
+      document.getElementById('success-state').style.display = 'block';
+    },
+    onError(err) { console.error('PayPal error:', err); }
+  }).render('#paypal-btn-container');
+}
+
+function toggleFaq(el) {
+  const answer = el.nextElementSibling;
+  const icon = el.querySelector('span:last-child');
+  const open = answer.style.display === 'block';
+  answer.style.display = open ? 'none' : 'block';
+  icon.textContent = open ? '+' : '−';
+}
+</script>
+</body>
+</html>

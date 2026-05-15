@@ -71,6 +71,26 @@ header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom:
 .badge-unlocked-tag { display: inline-block; background: rgba(34,197,94,.15); color: var(--green); border: 1px solid rgba(34,197,94,.3); padding: 2px 10px; border-radius: 20px; font-size: 0.68rem; font-weight: 800; margin-top: 8px; }
 .badge-locked-tag { display: inline-block; background: rgba(148,163,184,.1); color: var(--muted); border: 1px solid var(--border); padding: 2px 10px; border-radius: 20px; font-size: 0.68rem; font-weight: 800; margin-top: 8px; }
 
+/* Premium badges */
+.premium-section { margin-bottom: 48px; }
+.premium-section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.premium-section-title { font-family: 'Fredoka One', cursive; font-size: 1.4rem; }
+.premium-tag { background: rgba(245,158,11,.15); color: var(--yellow); border: 1px solid rgba(245,158,11,.3); padding: 3px 12px; border-radius: 20px; font-size: .72rem; font-weight: 800; }
+.premium-gate { background: var(--surface); border: 1px solid rgba(245,158,11,.3); border-radius: var(--radius); padding: 28px; text-align: center; }
+.premium-gate p { color: var(--muted); margin-bottom: 16px; font-size: .9rem; }
+.upgrade-btn { display: inline-block; background: linear-gradient(135deg, var(--yellow), var(--orange)); color: #000; padding: 12px 28px; border-radius: 50px; font-weight: 800; text-decoration: none; font-size: .9rem; }
+
+/* Certificates */
+.cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; margin-bottom: 48px; }
+.cert-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; text-align: center; }
+.cert-card.earned { border-color: rgba(34,197,94,.4); background: linear-gradient(135deg, rgba(34,197,94,.06), rgba(6,182,212,.04)); }
+.cert-card.locked-cert { opacity: .45; }
+.cert-emoji { font-size: 2.2rem; margin-bottom: 8px; }
+.cert-name { font-weight: 800; font-size: .9rem; margin-bottom: 4px; }
+.cert-status { font-size: .72rem; color: var(--muted); margin-bottom: 12px; }
+.cert-btn { display: inline-block; background: linear-gradient(135deg, var(--green), var(--accent2)); color: white; padding: 7px 16px; border-radius: 20px; font-size: .75rem; font-weight: 800; text-decoration: none; cursor: pointer; border: none; font-family: 'Nunito', sans-serif; }
+.cert-locked-btn { display: inline-block; background: var(--surface2); color: var(--muted); padding: 7px 16px; border-radius: 20px; font-size: .75rem; font-weight: 800; border: 1px solid var(--border); text-decoration: none; }
+
 /* Reset */
 .reset-section { text-align: center; margin-bottom: 60px; }
 .reset-btn { background: none; border: 1px solid var(--border); padding: 10px 24px; border-radius: 50px; color: var(--muted); font-size: 0.82rem; font-weight: 700; cursor: pointer; font-family: 'Nunito', sans-serif; transition: all .2s; }
@@ -145,6 +165,19 @@ footer a { color: var(--accent); text-decoration: none; }
 <h2 class="section-title">🏅 Badges</h2>
 <div class="badges-grid" id="badges-grid"></div>
 
+<!-- Premium Badges -->
+<div class="premium-section">
+  <div class="premium-section-header">
+    <h2 class="premium-section-title">👑 Badges Premium</h2>
+    <span class="premium-tag">Solo Premium</span>
+  </div>
+  <div id="premium-badges-section"></div>
+</div>
+
+<!-- Certificates -->
+<h2 class="section-title">🎓 Certificados de Logro</h2>
+<div class="cert-grid" id="cert-grid"></div>
+
 <!-- Reset -->
 <div class="reset-section">
   <button class="reset-btn" onclick="resetProgress()">Reiniciar progreso</button>
@@ -185,6 +218,22 @@ function getLevel(xp) {
   return LEVELS.find(l => xp >= l.min && xp <= l.max) || LEVELS[LEVELS.length - 1];
 }
 
+const PREMIUM_BADGES = [
+  { id:'explorer', emoji:'🗺️', name:'Explorador Premium', desc:'Completa las 3 actividades exclusivas' },
+  { id:'printer',  emoji:'🖨️', name:'Kit Master',         desc:'Descarga 3 kits imprimibles premium' },
+  { id:'grad',     emoji:'🎓', name:'Graduado/a',          desc:'Obtén 4 certificados de categoría' },
+];
+
+const CATEGORIES = [
+  { id:'dibujos',      emoji:'🎨', name:'Dibujos',           needed:2 },
+  { id:'manualidades', emoji:'✂️', name:'Manualidades',      needed:4 },
+  { id:'experimentos', emoji:'🔬', name:'Experimentos',      needed:3 },
+  { id:'cocina',       emoji:'🍳', name:'Cocina',            needed:4 },
+  { id:'juegos',       emoji:'🎲', name:'Juegos',            needed:3 },
+  { id:'recicladas',   emoji:'♻️', name:'Recicladas',        needed:3 },
+  { id:'montessori',   emoji:'🌿', name:'Montessori',        needed:3 },
+];
+
 function render() {
   const d = getData();
   const level = getLevel(d.xp);
@@ -210,6 +259,48 @@ function render() {
       <div class="badge-name">${b.name}</div>
       <div class="badge-desc">${b.desc}</div>
       <span class="${unlocked ? 'badge-unlocked-tag' : 'badge-locked-tag'}">${unlocked ? '✓ Desbloqueado' : '🔒 Bloqueado'}</span>
+    </div>`;
+  }).join('');
+}
+
+  // Premium badges
+  const isPremium = localStorage.getItem('chartkids_premium') === 'true';
+  const premiumSec = document.getElementById('premium-badges-section');
+  if (!isPremium) {
+    premiumSec.innerHTML = `<div class="premium-gate"><p>Suscríbete a Premium para desbloquear badges exclusivos y certificados imprimibles.</p><a href="premium.html" class="upgrade-btn">Ver planes Premium →</a></div>`;
+  } else {
+    const pbadges = PREMIUM_BADGES.map(b => {
+      const unlocked = (d.badges||[]).includes(b.id);
+      return `<div class="badge-card ${unlocked ? 'unlocked' : 'locked'}">
+        <div class="badge-emoji">${b.emoji}</div>
+        <div class="badge-name">${b.name}</div>
+        <div class="badge-desc">${b.desc}</div>
+        <span class="${unlocked ? 'badge-unlocked-tag' : 'badge-locked-tag'}">${unlocked ? '✓ Desbloqueado' : '🔒 Bloqueado'}</span>
+      </div>`;
+    }).join('');
+    premiumSec.innerHTML = `<div class="badges-grid">${pbadges}</div>`;
+  }
+
+  // Certificates
+  const certGrid = document.getElementById('cert-grid');
+  certGrid.innerHTML = CATEGORIES.map(cat => {
+    const done = d.cats[cat.id] || 0;
+    const earned = done >= cat.needed;
+    if (!isPremium) {
+      return `<div class="cert-card locked-cert">
+        <div class="cert-emoji">${cat.emoji}</div>
+        <div class="cert-name">Certificado de ${cat.name}</div>
+        <div class="cert-status">🔒 Solo Premium</div>
+        <a href="premium.html" class="cert-locked-btn">Desbloquear</a>
+      </div>`;
+    }
+    return `<div class="cert-card ${earned ? 'earned' : ''}">
+      <div class="cert-emoji">${cat.emoji}</div>
+      <div class="cert-name">Certificado de ${cat.name}</div>
+      <div class="cert-status">${earned ? '¡Completada!' : `${done}/${cat.needed} actividades`}</div>
+      ${earned
+        ? `<a href="certificado.html?cat=${cat.id}&emoji=${encodeURIComponent(cat.emoji)}&name=${encodeURIComponent(cat.name)}" class="cert-btn" target="_blank">🖨️ Imprimir</a>`
+        : `<span class="cert-locked-btn">Completa ${cat.needed - done} más</span>`}
     </div>`;
   }).join('');
 }

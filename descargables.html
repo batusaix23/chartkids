@@ -276,6 +276,34 @@ footer a{color:var(--accent);text-decoration:none;}
 </div>
 
 <!-- Request -->
+<!-- Kits Premium -->
+<div class="section-title" id="sec-premium">👑 <span>Kits Premium</span></div>
+<div class="dl-grid" id="premium-dl-grid">
+
+  <div class="dl-card" data-cat="premium" id="premium-kit-1" style="position:relative;overflow:hidden">
+    <div class="dl-thumb" style="background:linear-gradient(135deg,rgba(245,158,11,.25),rgba(249,115,22,.15))"><span>📦</span><span class="free-badge" style="background:linear-gradient(135deg,#f59e0b,#f97316);color:#000">PREMIUM</span></div>
+    <div class="dl-body">
+      <span class="dl-tag" style="background:rgba(245,158,11,.15);color:#f59e0b">Kit Completo</span>
+      <h3>Kit Manualidades Recicladas</h3>
+      <p>Pack de 8 plantillas imprimibles para los 3 proyectos de reciclaje: robot, maceta y portalápices. Con guía de materiales incluida.</p>
+      <div class="dl-meta"><span class="dl-info">5-12 años · 8 plantillas · PDF</span></div>
+      <button class="btn-dl" id="kit1-btn" onclick="downloadPremiumKit('recicladas')">🖨️ Descargar Kit</button>
+    </div>
+  </div>
+
+  <div class="dl-card" data-cat="premium" id="premium-kit-2" style="position:relative;overflow:hidden">
+    <div class="dl-thumb" style="background:linear-gradient(135deg,rgba(245,158,11,.25),rgba(249,115,22,.15))"><span>🌿</span><span class="free-badge" style="background:linear-gradient(135deg,#f59e0b,#f97316);color:#000">PREMIUM</span></div>
+    <div class="dl-body">
+      <span class="dl-tag" style="background:rgba(245,158,11,.15);color:#f59e0b">Kit Completo</span>
+      <h3>Kit Actividades Montessori</h3>
+      <p>Guías imprimibles para las 3 actividades Montessori: tarjetas de clasificación, fichas de trazos y bitácora de progreso.</p>
+      <div class="dl-meta"><span class="dl-info">2-6 años · 6 fichas · PDF</span></div>
+      <button class="btn-dl" id="kit2-btn" onclick="downloadPremiumKit('montessori')">🖨️ Descargar Kit</button>
+    </div>
+  </div>
+
+</div>
+
 <div class="request-section">
   <h3 data-en="Can't find what you're looking for?" data-es="¿No encuentras lo que buscas?">¿No encuentras lo que buscas?</h3>
   <p data-en="Tell us what activity or drawing you want and we'll add it to the library." data-es="Dinos qué actividad o dibujo quieres y lo añadimos a la biblioteca.">Dinos qué actividad o dibujo quieres y lo añadimos a la biblioteca.</p>
@@ -665,6 +693,31 @@ function printCalendario(type) {
   }
   w.document.close();
   setTimeout(() => w.print(), 400);
+}
+
+/* ── Premium kits ── */
+(function() {
+  const isPremium = localStorage.getItem('chartkids_premium') === 'true';
+  if (!isPremium) {
+    ['premium-kit-1', 'premium-kit-2'].forEach(id => {
+      const card = document.getElementById(id);
+      if (!card) return;
+      card.style.filter = 'blur(2px)';
+      card.style.pointerEvents = 'none';
+      const overlay = document.createElement('a');
+      overlay.href = 'premium.html';
+      overlay.style.cssText = 'position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(15,15,26,.65);gap:8px;text-decoration:none;pointer-events:all;z-index:2;';
+      overlay.innerHTML = '<span style="font-size:2rem">🔒</span><span style="font-weight:800;font-size:.88rem;color:#f59e0b">Solo Premium</span><span style="font-size:.72rem;color:#94a3b8">Desbloquear →</span>';
+      card.appendChild(overlay);
+    });
+  }
+})();
+
+function downloadPremiumKit(kit) {
+  if (localStorage.getItem('chartkids_premium') !== 'true') {
+    window.location.href = 'premium.html'; return;
+  }
+  alert('Kit "' + kit + '" listo para imprimir. (Integración de PDF próximamente)');
 }
 </script>
 </body>

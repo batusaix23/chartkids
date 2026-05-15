@@ -56,6 +56,7 @@ header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom:
 .tab-btn.active.juegos      { background: rgba(99,102,241,0.15); border-color: var(--indigo); color: var(--indigo); }
 .tab-btn.active.recicladas  { background: rgba(245,158,11,0.15); border-color: var(--amber);  color: var(--amber); }
 .tab-btn.active.montessori  { background: rgba(132,204,22,0.15); border-color: var(--lime);   color: var(--lime); }
+.tab-btn.active.premium     { background: rgba(245,158,11,0.15); border-color: var(--yellow); color: var(--yellow); }
 
 /* ── Age Filter Bar ── */
 .age-bar { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 36px; flex-wrap: wrap; }
@@ -169,6 +170,22 @@ header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom:
 /* No results message */
 .no-results { text-align: center; padding: 40px 20px; color: var(--muted); display: none; }
 .no-results p { font-size: 1.1rem; }
+
+/* ── Premium ── */
+.premium-banner { display: flex; align-items: center; gap: 16px; background: linear-gradient(135deg, rgba(245,158,11,.1), rgba(249,115,22,.07)); border: 1px solid rgba(245,158,11,.4); border-radius: var(--radius); padding: 16px 22px; margin-bottom: 28px; text-decoration: none; color: var(--text); transition: border-color .2s, transform .2s; flex-wrap: wrap; }
+.premium-banner:hover { border-color: var(--yellow); transform: translateY(-2px); }
+.premium-banner-emoji { font-size: 2rem; flex-shrink: 0; }
+.premium-banner-body { flex: 1; }
+.premium-banner-title { font-family: 'Fredoka One', cursive; font-size: 1.1rem; color: var(--yellow); }
+.premium-banner-desc { font-size: .82rem; color: var(--muted); }
+.premium-banner-cta { background: linear-gradient(135deg, var(--yellow), var(--orange)); color: #000; padding: 9px 20px; border-radius: 50px; font-size: .82rem; font-weight: 800; white-space: nowrap; flex-shrink: 0; }
+
+.activity-card.premium-locked { position: relative; overflow: hidden; }
+.activity-card.premium-locked .card-thumb, .activity-card.premium-locked .card-body { filter: blur(3px); pointer-events: none; user-select: none; }
+.premium-lock-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(15,15,26,.65); gap: 10px; text-decoration: none; }
+.premium-lock-icon { font-size: 2rem; }
+.premium-lock-label { font-weight: 800; font-size: .88rem; color: var(--yellow); }
+.premium-lock-sub { font-size: .72rem; color: var(--muted); }
 
 /* ── Calendar ── */
 .calendar-section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; margin-bottom: 48px; }
@@ -305,6 +322,16 @@ footer a { color: var(--accent); text-decoration: none; }
   <div class="semana-cta" data-en="See activity →" data-es="Ver actividad →">Ver actividad →</div>
 </a>
 
+<!-- Premium Banner -->
+<a href="premium.html" class="premium-banner" id="premium-banner">
+  <div class="premium-banner-emoji">👑</div>
+  <div class="premium-banner-body">
+    <div class="premium-banner-title">ChartKids Premium</div>
+    <div class="premium-banner-desc">Actividades exclusivas, kits imprimibles, certificados y badges especiales.</div>
+  </div>
+  <div class="premium-banner-cta">Ver Premium →</div>
+</a>
+
 <!-- Category Tabs -->
 <div class="tabs">
   <button class="tab-btn active todas"   onclick="setTab('todas')"        data-en="✨ All"       data-es="✨ Todas">✨ Todas</button>
@@ -315,6 +342,7 @@ footer a { color: var(--accent); text-decoration: none; }
   <button class="tab-btn juegos"         onclick="setTab('juegos')"       data-en="🎲 Games"        data-es="🎲 Juegos">🎲 Juegos</button>
   <button class="tab-btn recicladas"     onclick="setTab('recicladas')"   data-en="♻️ Recycled"    data-es="♻️ Recicladas">♻️ Recicladas</button>
   <button class="tab-btn montessori"     onclick="setTab('montessori')"   data-en="🌿 Montessori"   data-es="🌿 Montessori">🌿 Montessori</button>
+  <button class="tab-btn premium"        onclick="setTab('premium')"      data-en="👑 Premium"       data-es="👑 Premium">👑 Premium</button>
 </div>
 
 <!-- Age Filter Bar -->
@@ -635,6 +663,24 @@ footer a { color: var(--accent); text-decoration: none; }
     </article>
 
   </div>
+    <!-- Premium locked cards preview -->
+    <article class="activity-card premium-locked">
+      <div class="card-thumb" style="background:linear-gradient(135deg,rgba(245,158,11,.25),rgba(249,115,22,.15))"><span>🌊</span><span class="week-num">Sem. 23</span><span class="card-level">👑 Premium</span></div>
+      <div class="card-body"><span class="tag" style="background:rgba(245,158,11,.15);color:var(--yellow)">Premium</span><h3>Experimento del Arco Iris</h3><div class="materials"><span class="mat-pill">Agua</span><span class="mat-pill">Espejo</span><span class="mat-pill">Linterna</span></div></div>
+      <a href="premium.html" class="premium-lock-overlay"><div class="premium-lock-icon">🔒</div><div class="premium-lock-label">Contenido Premium</div><div class="premium-lock-sub">Desbloquear →</div></a>
+    </article>
+    <article class="activity-card premium-locked">
+      <div class="card-thumb" style="background:linear-gradient(135deg,rgba(245,158,11,.25),rgba(249,115,22,.15))"><span>🎭</span><span class="week-num">Sem. 24</span><span class="card-level">👑 Premium</span></div>
+      <div class="card-body"><span class="tag" style="background:rgba(245,158,11,.15);color:var(--yellow)">Premium</span><h3>Teatro de Sombras</h3><div class="materials"><span class="mat-pill">Cartón</span><span class="mat-pill">Linterna</span><span class="mat-pill">Sábana</span></div></div>
+      <a href="premium.html" class="premium-lock-overlay"><div class="premium-lock-icon">🔒</div><div class="premium-lock-label">Contenido Premium</div><div class="premium-lock-sub">Desbloquear →</div></a>
+    </article>
+    <article class="activity-card premium-locked">
+      <div class="card-thumb" style="background:linear-gradient(135deg,rgba(245,158,11,.25),rgba(249,115,22,.15))"><span>🔭</span><span class="week-num">Sem. 25</span><span class="card-level">👑 Premium</span></div>
+      <div class="card-body"><span class="tag" style="background:rgba(245,158,11,.15);color:var(--yellow)">Premium</span><h3>Telescopio Casero</h3><div class="materials"><span class="mat-pill">Tubos de cartón</span><span class="mat-pill">Lentes</span></div></div>
+      <a href="premium.html" class="premium-lock-overlay"><div class="premium-lock-icon">🔒</div><div class="premium-lock-label">Contenido Premium</div><div class="premium-lock-sub">Desbloquear →</div></a>
+    </article>
+
+  </div>
   <div class="no-results" id="no-results-todas"><p>😔 No hay actividades para este rango de edad en esta categoría.</p></div>
 </div><!-- /panel-todas -->
 
@@ -907,6 +953,80 @@ footer a { color: var(--accent); text-decoration: none; }
     </article>
   </div>
   <div class="no-results" id="no-results-cocina"><p>😔 No hay actividades de cocina para este rango de edad.</p></div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PANEL: PREMIUM
+══════════════════════════════════════ -->
+<div id="panel-premium" style="display:none">
+  <div class="section-header">
+    <h2 class="section-title">👑 Actividades Premium</h2>
+    <span class="week-badge">Semanas 23, 24 y 25</span>
+  </div>
+
+  <!-- Free user paywall -->
+  <div id="premium-paywall" style="text-align:center;padding:48px 20px;display:none">
+    <div style="font-size:3rem;margin-bottom:16px">👑</div>
+    <h2 style="font-family:'Fredoka One',cursive;font-size:1.8rem;color:var(--yellow);margin-bottom:10px">Contenido Premium</h2>
+    <p style="color:var(--muted);max-width:420px;margin:0 auto 28px;line-height:1.6">Desbloquea estas actividades exclusivas y mucho más por solo $2.99/mes.</p>
+    <a href="premium.html" style="display:inline-block;background:linear-gradient(135deg,var(--yellow),var(--orange));color:#000;padding:14px 32px;border-radius:50px;font-weight:800;font-size:1rem;text-decoration:none">Ver planes Premium →</a>
+  </div>
+
+  <!-- Premium content (shown when subscribed) -->
+  <div id="premium-content" style="display:none">
+    <div class="featured-card amber" data-min="5" data-max="12" data-sem="23" data-cat="experimentos">
+      <div class="featured-content">
+        <span class="tag featured-badge amber">⭐ Semana 23 · Exclusiva</span>
+        <h2>Experimento del Arco Iris</h2>
+        <p class="featured-desc">Crea un arco iris real en casa usando agua, un espejo y luz solar. Un experimento de óptica que asombra a toda la familia.</p>
+        <div class="materials"><span class="mat-pill">Recipiente con agua</span><span class="mat-pill">Espejo pequeño</span><span class="mat-pill">Linterna o sol</span><span class="mat-pill">Papel blanco</span></div>
+        <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Llena el recipiente con agua y coloca el espejo inclinado.</li>
+          <li><span class="step-num">2</span>Apunta la linterna al espejo bajo el agua.</li>
+          <li><span class="step-num">3</span>Sostén el papel blanco frente al reflejo y observa el arco iris.</li>
+        </ol>
+        <div class="benefits" style="margin-bottom:18px"><span class="benefit-chip">Óptica</span><span class="benefit-chip">Curiosidad científica</span><span class="benefit-chip">Asombro</span></div>
+        <span class="btn-primary btn-amber">Ver actividad completa</span>
+      </div>
+      <div class="featured-thumb amber">🌊</div>
+    </div>
+    <div class="cards-grid">
+      <article class="activity-card experimentos" data-min="5" data-max="12">
+        <div class="card-thumb experimentos"><span>🎭</span><span class="week-num">Sem. 24</span><span class="card-level">Medio · 5-12 años</span></div>
+        <div class="card-body">
+          <span class="tag experimentos">Experimentos</span>
+          <h3>Teatro de Sombras</h3>
+          <div class="materials"><span class="mat-pill">Cartón negro</span><span class="mat-pill">Linterna</span><span class="mat-pill">Sábana blanca</span><span class="mat-pill">Palitos</span></div>
+          <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Recorta siluetas de personajes en cartón negro.</li>
+            <li><span class="step-num">2</span>Pega cada silueta a un palito.</li>
+            <li><span class="step-num">3</span>Apaga las luces, usa la linterna detrás de la sábana y ¡actúa!</li>
+          </ol>
+          <div class="benefits"><span class="benefit-chip">Expresión artística</span><span class="benefit-chip">Narrativa</span><span class="benefit-chip">Trabajo en equipo</span></div>
+          <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 50 min</span><span class="info-chip">📦 4 mat.</span></div></div>
+        </div>
+      </article>
+      <article class="activity-card experimentos" data-min="7" data-max="12">
+        <div class="card-thumb experimentos"><span>🔭</span><span class="week-num">Sem. 25</span><span class="card-level">Avanzado · 7-12 años</span></div>
+        <div class="card-body">
+          <span class="tag experimentos">Experimentos</span>
+          <h3>Telescopio Casero</h3>
+          <div class="materials"><span class="mat-pill">2 tubos de cartón</span><span class="mat-pill">2 lupas</span><span class="mat-pill">Cinta adhesiva</span></div>
+          <div class="steps-toggle" onclick="toggleSteps(this)">▶ Ver pasos</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Encaja un tubo dentro del otro para que deslice.</li>
+            <li><span class="step-num">2</span>Pega una lupa en cada extremo.</li>
+            <li><span class="step-num">3</span>Ajusta la distancia entre tubos para enfocar objetos lejanos.</li>
+          </ol>
+          <div class="benefits"><span class="benefit-chip">Óptica</span><span class="benefit-chip">Física</span><span class="benefit-chip">Ingenio</span></div>
+          <div class="card-meta"><div class="card-info"><span class="info-chip">⏱ 35 min</span><span class="info-chip">📦 3 mat.</span></div></div>
+        </div>
+      </article>
+    </div>
+  </div>
 </div>
 
 
@@ -1187,7 +1307,7 @@ setLang(currentLang);
 
 function setTab(tab) {
   currentTab = tab;
-  ['todas','dibujos','manualidades','experimentos','cocina','juegos','recicladas','montessori'].forEach(t => {
+  ['todas','dibujos','manualidades','experimentos','cocina','juegos','recicladas','montessori','premium'].forEach(t => {
     document.getElementById('panel-' + t).style.display = t === tab ? 'block' : 'none';
     document.querySelector('.tab-btn.' + t).classList.toggle('active', t === tab);
   });
@@ -1212,7 +1332,7 @@ function applyAgeFilter() {
   });
 
   // Show "no results" message if all cards in active panel are hidden
-  ['todas','dibujos','manualidades','experimentos','cocina','juegos','recicladas','montessori'].forEach(t => {
+  ['todas','dibujos','manualidades','experimentos','cocina','juegos','recicladas','montessori','premium'].forEach(t => {
     const panel = document.getElementById('panel-' + t);
     if (!panel || panel.style.display === 'none') return;
     const msg = document.getElementById('no-results-' + t);
@@ -1340,6 +1460,34 @@ const RW = {
 };
 
 RW.init();
+
+/* ── Premium state ── */
+(function() {
+  const isPremium = localStorage.getItem('chartkids_premium') === 'true';
+  if (isPremium) {
+    // Hide banner, show premium content unlocked
+    const banner = document.getElementById('premium-banner');
+    if (banner) { banner.style.display = 'none'; }
+    const paywall = document.getElementById('premium-paywall');
+    const content = document.getElementById('premium-content');
+    if (paywall) paywall.style.display = 'none';
+    if (content) content.style.display = 'block';
+    // Unlock premium-locked cards in "Todas"
+    document.querySelectorAll('.activity-card.premium-locked').forEach(card => {
+      card.classList.remove('premium-locked');
+      card.querySelector('.premium-lock-overlay')?.remove();
+      const thumb = card.querySelector('.card-thumb');
+      const body = card.querySelector('.card-body');
+      if (thumb) thumb.style.filter = '';
+      if (body) body.style.filter = '';
+    });
+  } else {
+    const paywall = document.getElementById('premium-paywall');
+    const content = document.getElementById('premium-content');
+    if (paywall) paywall.style.display = 'block';
+    if (content) content.style.display = 'none';
+  }
+})();
 
 function toggleSteps(btn) {
   const list = btn.nextElementSibling;
