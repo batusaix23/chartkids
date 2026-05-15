@@ -218,6 +218,25 @@ footer a { color: var(--accent); text-decoration: none; }
 /* Hidden by age filter */
 .age-hidden { display: none !important; }
 
+/* ── Rewards ── */
+.xp-widget { display:flex; align-items:center; gap:6px; background:var(--surface2); border:1px solid var(--border); border-radius:50px; padding:7px 14px; font-size:.78rem; font-weight:800; color:var(--yellow); text-decoration:none; transition:all .2s; }
+.xp-widget:hover { border-color:var(--yellow); }
+.xp-icon { font-size:.9rem; }
+
+.complete-btn { background:var(--surface2); border:1px solid var(--border); padding:5px 12px; border-radius:20px; font-size:.72rem; font-weight:800; color:var(--muted); cursor:pointer; font-family:'Nunito',sans-serif; transition:all .2s; white-space:nowrap; }
+.complete-btn:hover { border-color:var(--green); color:var(--green); }
+.complete-btn.done { background:rgba(34,197,94,.12); border-color:var(--green); color:var(--green); cursor:default; }
+.activity-card.completed { border-color:rgba(34,197,94,.45) !important; }
+.activity-card.completed .card-thumb::after { content:'✓'; position:absolute; bottom:10px; left:10px; background:var(--green); color:white; font-size:.65rem; font-weight:900; padding:2px 8px; border-radius:20px; }
+
+.complete-feat-btn { display:inline-block; border:none; padding:10px 22px; border-radius:50px; background:var(--surface2); border:1px solid var(--border); color:var(--muted); font-weight:800; font-size:.88rem; cursor:pointer; font-family:'Nunito',sans-serif; transition:all .2s; margin-left:8px; }
+.complete-feat-btn:hover { border-color:var(--green); color:var(--green); }
+.complete-feat-btn.done { background:rgba(34,197,94,.12); border-color:var(--green); color:var(--green); cursor:default; }
+
+@keyframes toastIn  { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+@keyframes toastOut { from { opacity:1; } to { opacity:0; } }
+.xp-toast { position:fixed; bottom:28px; left:50%; transform:translateX(-50%); background:var(--surface); border:1px solid var(--green); border-radius:50px; padding:10px 22px; font-size:.88rem; font-weight:800; color:var(--green); z-index:9999; animation:toastIn .3s ease; pointer-events:none; }
+
 /* ── Language toggle ── */
 .header-actions { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
 .lang-toggle { display:flex; background:var(--surface2); border:1px solid var(--border); border-radius:50px; overflow:hidden; }
@@ -257,6 +276,7 @@ footer a { color: var(--accent); text-decoration: none; }
     <a href="index.html" class="logo">ChartKids<span>✨</span></a>
     <div class="header-actions">
       <a href="index.html" class="back-btn">← <span data-en="Back to App" data-es="Volver a la App">Volver a la App</span></a>
+      <a href="recompensas.html" class="xp-widget" id="xp-widget"><span class="xp-icon">⭐</span><span id="xp-display">0 XP</span></a>
       <div class="lang-toggle">
         <button class="lang-btn active" onclick="setLang('es')">ES</button>
         <button class="lang-btn" onclick="setLang('en')">EN</button>
@@ -316,7 +336,7 @@ footer a { color: var(--accent); text-decoration: none; }
   </div>
 
   <!-- Featured: Slime -->
-  <div class="featured-card orange" data-min="5" data-max="10">
+  <div class="featured-card orange" data-min="5" data-max="10" data-sem="1" data-cat="manualidades">
     <div class="featured-content">
       <span class="tag featured-badge orange">⭐ Semana 1 · Destacada</span>
       <h2>Slime Casero Básico</h2>
@@ -627,7 +647,7 @@ footer a { color: var(--accent); text-decoration: none; }
     <h2 class="section-title">🎨 Dibujos</h2>
     <span class="week-badge">Semanas 7 y 3</span>
   </div>
-  <div class="featured-card pink" data-min="2" data-max="7">
+  <div class="featured-card pink" data-min="2" data-max="7" data-sem="7" data-cat="dibujos">
     <div class="featured-content">
       <span class="tag featured-badge">⭐ Semana 7 · Destacada</span>
       <h2>Pintura con Dedos</h2>
@@ -674,7 +694,7 @@ footer a { color: var(--accent); text-decoration: none; }
     <h2 class="section-title">✂️ Manualidades</h2>
     <span class="week-badge">Semanas 1, 5, 9, 10</span>
   </div>
-  <div class="featured-card orange" data-min="5" data-max="10">
+  <div class="featured-card orange" data-min="5" data-max="10" data-sem="1" data-cat="manualidades">
     <div class="featured-content">
       <span class="tag featured-badge orange">⭐ Semana 1 · Destacada</span>
       <h2>Slime Casero Básico</h2>
@@ -756,7 +776,7 @@ footer a { color: var(--accent); text-decoration: none; }
     <h2 class="section-title">🔬 Experimentos</h2>
     <span class="week-badge">Semanas 2, 6 y 8</span>
   </div>
-  <div class="featured-card cyan" data-min="4" data-max="10">
+  <div class="featured-card cyan" data-min="4" data-max="10" data-sem="2" data-cat="experimentos">
     <div class="featured-content">
       <span class="tag featured-badge cyan">⭐ Semana 2 · Destacada</span>
       <h2>Volcán Casero</h2>
@@ -819,7 +839,7 @@ footer a { color: var(--accent); text-decoration: none; }
     <h2 class="section-title">🍳 Cocina Divertida</h2>
     <span class="week-badge">Semanas 4, 11, 12, 13</span>
   </div>
-  <div class="featured-card green" data-min="5" data-max="12">
+  <div class="featured-card green" data-min="5" data-max="12" data-sem="11" data-cat="cocina">
     <div class="featured-content">
       <span class="tag featured-badge green">⭐ Semana 11 · Destacada</span>
       <h2>Mini Pizzas en Casa</h2>
@@ -898,7 +918,7 @@ footer a { color: var(--accent); text-decoration: none; }
     <h2 class="section-title">🎲 Juegos Educativos</h2>
     <span class="week-badge">Semanas 14, 15 y 16</span>
   </div>
-  <div class="featured-card indigo" data-min="3" data-max="8">
+  <div class="featured-card indigo" data-min="3" data-max="8" data-sem="14" data-cat="juegos">
     <div class="featured-content">
       <span class="tag featured-badge indigo">⭐ Semana 14 · Destacada</span>
       <h2>Memoria de Animales</h2>
@@ -961,7 +981,7 @@ footer a { color: var(--accent); text-decoration: none; }
     <h2 class="section-title">♻️ Manualidades Recicladas</h2>
     <span class="week-badge">Semanas 17, 18 y 19</span>
   </div>
-  <div class="featured-card amber" data-min="5" data-max="10">
+  <div class="featured-card amber" data-min="5" data-max="10" data-sem="17" data-cat="recicladas">
     <div class="featured-content">
       <span class="tag featured-badge amber">⭐ Semana 17 · Destacada</span>
       <h2>Robot de Cartón</h2>
@@ -1024,7 +1044,7 @@ footer a { color: var(--accent); text-decoration: none; }
     <h2 class="section-title">🌿 Actividades Montessori</h2>
     <span class="week-badge">Semanas 20, 21 y 22</span>
   </div>
-  <div class="featured-card lime" data-min="2" data-max="6">
+  <div class="featured-card lime" data-min="2" data-max="6" data-sem="20" data-cat="montessori">
     <div class="featured-content">
       <span class="tag featured-badge lime">⭐ Semana 20 · Destacada</span>
       <h2>Bandeja de Escritura en Arena</h2>
@@ -1145,7 +1165,7 @@ footer a { color: var(--accent); text-decoration: none; }
 </div>
 
 <footer>
-  <p>© 2025 ChartKids. <a href="index.html" data-en="Back to App" data-es="Volver a la App">Volver a la App</a> · <a href="blog.html">Blog</a> · <a href="privacy.html" data-en="Privacy" data-es="Privacidad">Privacidad</a></p>
+  <p>© 2025 ChartKids. <a href="index.html" data-en="Back to App" data-es="Volver a la App">Volver a la App</a> · <a href="recompensas.html">⭐ Mis Recompensas</a> · <a href="blog.html">Blog</a> · <a href="privacy.html" data-en="Privacy" data-es="Privacidad">Privacidad</a></p>
 </footer>
 
 </div><!-- /container -->
@@ -1218,6 +1238,108 @@ function applyAgeFilter() {
   document.getElementById('banner-title').textContent = act.title;
   document.getElementById('banner-meta').textContent  = act.meta;
 })();
+
+/* ══════════════════════════════════════
+   REWARDS ENGINE
+══════════════════════════════════════ */
+const BADGES = [
+  { id:'first',      emoji:'🌟', name:'Primera Estrella',  desc:'Completa tu 1ª actividad',         check: d => d.completed.length >= 1 },
+  { id:'artist',     emoji:'🎨', name:'Artista',           desc:'Completa 3 dibujos',                check: d => (d.cats.dibujos||0) >= 3 },
+  { id:'crafter',    emoji:'✂️', name:'Manitas',           desc:'Completa 3 manualidades',           check: d => (d.cats.manualidades||0) >= 3 },
+  { id:'scientist',  emoji:'🔬', name:'Científico/a',      desc:'Completa 3 experimentos',           check: d => (d.cats.experimentos||0) >= 3 },
+  { id:'chef',       emoji:'🍳', name:'Chef',              desc:'Completa 3 recetas de cocina',      check: d => (d.cats.cocina||0) >= 3 },
+  { id:'gamer',      emoji:'🎲', name:'Estratega',         desc:'Completa 3 juegos educativos',      check: d => (d.cats.juegos||0) >= 3 },
+  { id:'eco',        emoji:'♻️', name:'Eco Héroe',         desc:'Completa 3 manualidades recicladas',check: d => (d.cats.recicladas||0) >= 3 },
+  { id:'montessori', emoji:'🌿', name:'Montessoriano/a',   desc:'Completa 3 actividades Montessori', check: d => (d.cats.montessori||0) >= 3 },
+  { id:'super',      emoji:'⭐', name:'Superestrella',     desc:'Completa 10 actividades',           check: d => d.completed.length >= 10 },
+  { id:'legend',     emoji:'🏆', name:'Leyenda ChartKids', desc:'Completa las 22 actividades',       check: d => d.completed.length >= 22 },
+];
+
+const LEVELS = [
+  { min:0,   max:49,  name:'Explorador/a' },
+  { min:50,  max:149, name:'Creador/a' },
+  { min:150, max:299, name:'Inventor/a' },
+  { min:300, max:Infinity, name:'Maestro/a' },
+];
+
+const RW = {
+  data: JSON.parse(localStorage.getItem('ck_rewards') || '{"completed":[],"xp":0,"badges":[],"cats":{}}'),
+
+  save() { localStorage.setItem('ck_rewards', JSON.stringify(this.data)); },
+
+  isCompleted(id) { return this.data.completed.includes(id); },
+
+  complete(semId, cat) {
+    if (this.isCompleted(semId)) return;
+    this.data.completed.push(semId);
+    this.data.xp += 10;
+    this.data.cats[cat] = (this.data.cats[cat] || 0) + 1;
+    const newBadges = BADGES.filter(b => !this.data.badges.includes(b.id) && b.check(this.data));
+    newBadges.forEach(b => this.data.badges.push(b.id));
+    this.save();
+    this.refreshAll(semId);
+    this.showToast('+10 XP', newBadges);
+  },
+
+  refreshAll(semId) {
+    document.querySelectorAll(`[data-sem="${semId}"] .complete-btn, [data-id="sem-${semId}"] .complete-btn`).forEach(btn => {
+      btn.textContent = '✓ Completada'; btn.classList.add('done'); btn.onclick = null;
+    });
+    document.querySelectorAll(`[data-sem="${semId}"], [data-id="sem-${semId}"]`).forEach(el => el.classList.add('completed'));
+    document.querySelectorAll('#xp-display').forEach(el => el.textContent = this.data.xp + ' XP');
+  },
+
+  showToast(msg, newBadges) {
+    const text = newBadges.length
+      ? msg + ' · ' + newBadges.map(b => b.emoji + ' ' + b.name).join(' · ')
+      : msg;
+    const t = document.createElement('div');
+    t.className = 'xp-toast'; t.textContent = text;
+    document.body.appendChild(t);
+    setTimeout(() => { t.style.animation = 'toastOut .4s ease forwards'; setTimeout(() => t.remove(), 400); }, 2200);
+  },
+
+  init() {
+    document.getElementById('xp-display').textContent = this.data.xp + ' XP';
+
+    // Inject complete buttons into activity cards
+    document.querySelectorAll('.activity-card').forEach(card => {
+      const weekEl = card.querySelector('.week-num');
+      if (!weekEl) return;
+      const sem = weekEl.textContent.replace('Sem.', '').trim();
+      const semId = 'sem-' + sem;
+      const cat = ['dibujos','manualidades','experimentos','cocina','juegos','recicladas','montessori']
+                    .find(c => card.classList.contains(c)) || 'otras';
+      card.dataset.id = semId;
+      if (this.isCompleted(semId)) card.classList.add('completed');
+
+      const meta = card.querySelector('.card-meta');
+      if (!meta) return;
+      const btn = document.createElement('button');
+      btn.className = 'complete-btn' + (this.isCompleted(semId) ? ' done' : '');
+      btn.textContent = this.isCompleted(semId) ? '✓ Completada' : '+ Completar';
+      if (!this.isCompleted(semId)) btn.onclick = () => this.complete(semId, cat);
+      meta.appendChild(btn);
+    });
+
+    // Inject complete buttons into featured cards
+    document.querySelectorAll('.featured-card[data-sem]').forEach(card => {
+      const semId = 'sem-' + card.dataset.sem;
+      const cat = card.dataset.cat || 'otras';
+      if (this.isCompleted(semId)) card.classList.add('completed');
+
+      const btnPrimary = card.querySelector('.btn-primary');
+      if (!btnPrimary) return;
+      const btn = document.createElement('button');
+      btn.className = 'complete-feat-btn' + (this.isCompleted(semId) ? ' done' : '');
+      btn.textContent = this.isCompleted(semId) ? '✓ Completada' : '+ Completar';
+      if (!this.isCompleted(semId)) btn.onclick = () => this.complete(semId, cat);
+      btnPrimary.after(btn);
+    });
+  }
+};
+
+RW.init();
 
 function toggleSteps(btn) {
   const list = btn.nextElementSibling;

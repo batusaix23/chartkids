@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mis Recompensas — ChartKids</title>
+<meta name="description" content="Tus badges, XP y progreso en las actividades creativas de ChartKids.">
+<link rel="canonical" href="https://www.chartkids.com/recompensas.html">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f0f1a;
+  --surface: #1a1a2e;
+  --surface2: #232340;
+  --border: #2e2e50;
+  --accent: #7c3aed;
+  --accent2: #06b6d4;
+  --green: #22c55e;
+  --yellow: #fbbf24;
+  --pink: #ec4899;
+  --orange: #f97316;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --radius: 16px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+.container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+
+header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.logo { font-family: 'Fredoka One', cursive; font-size: 1.5rem; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+.logo span { -webkit-text-fill-color: var(--yellow); }
+.back-btn { background: var(--surface); border: 1px solid var(--border); padding: 10px 20px; border-radius: 50px; color: var(--text); text-decoration: none; font-weight: 700; transition: all 0.2s; }
+.back-btn:hover { background: var(--accent); border-color: var(--accent); }
+
+/* Hero */
+.hero { text-align: center; padding: 32px 0 40px; }
+.hero-badge { display: inline-block; background: linear-gradient(135deg, var(--yellow), var(--orange)); padding: 6px 18px; border-radius: 50px; font-size: 0.8rem; font-weight: 800; margin-bottom: 16px; color: #000; }
+.hero h1 { font-family: 'Fredoka One', cursive; font-size: 2.4rem; margin-bottom: 10px; background: linear-gradient(135deg, var(--yellow), var(--orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p { color: var(--muted); font-size: 1rem; max-width: 500px; margin: 0 auto; }
+
+/* XP Card */
+.xp-card { background: linear-gradient(135deg, var(--surface), var(--surface2)); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 32px; margin-bottom: 32px; }
+.xp-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
+.xp-amount { font-family: 'Fredoka One', cursive; font-size: 2.2rem; color: var(--yellow); }
+.xp-label { font-size: 0.78rem; color: var(--muted); font-weight: 700; }
+.level-badge { background: linear-gradient(135deg, var(--accent), var(--accent2)); padding: 8px 20px; border-radius: 50px; font-weight: 800; font-size: 0.9rem; }
+.xp-bar-wrap { background: var(--surface2); border-radius: 50px; height: 10px; overflow: hidden; margin-bottom: 8px; }
+.xp-bar-fill { height: 100%; background: linear-gradient(90deg, var(--yellow), var(--orange)); border-radius: 50px; transition: width .6s ease; }
+.xp-bar-labels { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--muted); font-weight: 700; }
+
+/* Stats row */
+.stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px; margin-bottom: 40px; }
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; text-align: center; }
+.stat-num { font-family: 'Fredoka One', cursive; font-size: 2rem; margin-bottom: 4px; }
+.stat-num.yellow { color: var(--yellow); }
+.stat-num.green  { color: var(--green); }
+.stat-num.pink   { color: var(--pink); }
+.stat-label { font-size: 0.75rem; color: var(--muted); font-weight: 700; }
+
+/* Badges section */
+.section-title { font-family: 'Fredoka One', cursive; font-size: 1.4rem; margin-bottom: 20px; }
+.badges-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; margin-bottom: 48px; }
+.badge-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; text-align: center; transition: all .2s; }
+.badge-card.unlocked { border-color: var(--yellow); background: linear-gradient(135deg, rgba(251,191,36,.08), rgba(249,115,22,.05)); }
+.badge-card.locked { opacity: 0.45; filter: grayscale(0.6); }
+.badge-emoji { font-size: 2.8rem; margin-bottom: 10px; }
+.badge-name { font-weight: 800; font-size: 0.95rem; margin-bottom: 4px; }
+.badge-desc { font-size: 0.75rem; color: var(--muted); line-height: 1.4; }
+.badge-unlocked-tag { display: inline-block; background: rgba(34,197,94,.15); color: var(--green); border: 1px solid rgba(34,197,94,.3); padding: 2px 10px; border-radius: 20px; font-size: 0.68rem; font-weight: 800; margin-top: 8px; }
+.badge-locked-tag { display: inline-block; background: rgba(148,163,184,.1); color: var(--muted); border: 1px solid var(--border); padding: 2px 10px; border-radius: 20px; font-size: 0.68rem; font-weight: 800; margin-top: 8px; }
+
+/* Reset */
+.reset-section { text-align: center; margin-bottom: 60px; }
+.reset-btn { background: none; border: 1px solid var(--border); padding: 10px 24px; border-radius: 50px; color: var(--muted); font-size: 0.82rem; font-weight: 700; cursor: pointer; font-family: 'Nunito', sans-serif; transition: all .2s; }
+.reset-btn:hover { border-color: var(--pink); color: var(--pink); }
+
+footer { border-top: 1px solid var(--border); padding: 28px 0; text-align: center; }
+footer p { color: var(--muted); font-size: 0.85rem; }
+footer a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 600px) {
+  .hero h1 { font-size: 1.8rem; }
+  .xp-card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">ChartKids<span>✨</span></a>
+    <a href="actividades.html" class="back-btn">← Actividades</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-badge">⭐ Mis Recompensas</div>
+  <h1>Tu Progreso</h1>
+  <p>Completa actividades para ganar XP, desbloquear badges y subir de nivel.</p>
+</div>
+
+<!-- XP & Level Card -->
+<div class="xp-card">
+  <div class="xp-top">
+    <div>
+      <div class="xp-label">PUNTOS DE EXPERIENCIA</div>
+      <div class="xp-amount" id="xp-amount">0 XP</div>
+    </div>
+    <div class="level-badge" id="level-badge">Nivel 1 · Explorador/a</div>
+  </div>
+  <div class="xp-bar-wrap">
+    <div class="xp-bar-fill" id="xp-bar" style="width:0%"></div>
+  </div>
+  <div class="xp-bar-labels">
+    <span id="bar-label-min">0 XP</span>
+    <span id="bar-label-next">Siguiente nivel: 50 XP</span>
+    <span id="bar-label-max">50 XP</span>
+  </div>
+</div>
+
+<!-- Stats -->
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="stat-num yellow" id="stat-xp">0</div>
+    <div class="stat-label">XP TOTAL</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num green" id="stat-completed">0</div>
+    <div class="stat-label">ACTIVIDADES</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num pink" id="stat-badges">0</div>
+    <div class="stat-label">BADGES</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num yellow" id="stat-pct">0%</div>
+    <div class="stat-label">COMPLETADO</div>
+  </div>
+</div>
+
+<!-- Badges -->
+<h2 class="section-title">🏅 Badges</h2>
+<div class="badges-grid" id="badges-grid"></div>
+
+<!-- Reset -->
+<div class="reset-section">
+  <button class="reset-btn" onclick="resetProgress()">Reiniciar progreso</button>
+</div>
+
+<footer>
+  <p>© 2025 ChartKids. <a href="actividades.html">← Actividades</a> · <a href="index.html">App</a></p>
+</footer>
+
+</div><!-- /container -->
+
+<script>
+const BADGES = [
+  { id:'first',      emoji:'🌟', name:'Primera Estrella',  desc:'Completa tu 1ª actividad',          check: d => d.completed.length >= 1 },
+  { id:'artist',     emoji:'🎨', name:'Artista',           desc:'Completa 3 dibujos',                 check: d => (d.cats.dibujos||0) >= 3 },
+  { id:'crafter',    emoji:'✂️', name:'Manitas',           desc:'Completa 3 manualidades',            check: d => (d.cats.manualidades||0) >= 3 },
+  { id:'scientist',  emoji:'🔬', name:'Científico/a',      desc:'Completa 3 experimentos',            check: d => (d.cats.experimentos||0) >= 3 },
+  { id:'chef',       emoji:'🍳', name:'Chef',              desc:'Completa 3 recetas de cocina',       check: d => (d.cats.cocina||0) >= 3 },
+  { id:'gamer',      emoji:'🎲', name:'Estratega',         desc:'Completa 3 juegos educativos',       check: d => (d.cats.juegos||0) >= 3 },
+  { id:'eco',        emoji:'♻️', name:'Eco Héroe',         desc:'Completa 3 manualidades recicladas', check: d => (d.cats.recicladas||0) >= 3 },
+  { id:'montessori', emoji:'🌿', name:'Montessoriano/a',   desc:'Completa 3 actividades Montessori',  check: d => (d.cats.montessori||0) >= 3 },
+  { id:'super',      emoji:'⭐', name:'Superestrella',     desc:'Completa 10 actividades',            check: d => d.completed.length >= 10 },
+  { id:'legend',     emoji:'🏆', name:'Leyenda ChartKids', desc:'Completa las 22 actividades',        check: d => d.completed.length >= 22 },
+];
+
+const LEVELS = [
+  { min:0,   max:49,  name:'Explorador/a',  next:50  },
+  { min:50,  max:149, name:'Creador/a',      next:150 },
+  { min:150, max:299, name:'Inventor/a',     next:300 },
+  { min:300, max:Infinity, name:'Maestro/a', next:null },
+];
+
+function getData() {
+  return JSON.parse(localStorage.getItem('ck_rewards') || '{"completed":[],"xp":0,"badges":[],"cats":{}}');
+}
+
+function getLevel(xp) {
+  return LEVELS.find(l => xp >= l.min && xp <= l.max) || LEVELS[LEVELS.length - 1];
+}
+
+function render() {
+  const d = getData();
+  const level = getLevel(d.xp);
+  const pct = level.next ? Math.min(100, Math.round(((d.xp - level.min) / (level.next - level.min)) * 100)) : 100;
+
+  document.getElementById('xp-amount').textContent = d.xp + ' XP';
+  document.getElementById('level-badge').textContent = 'Nivel ' + (LEVELS.indexOf(level)+1) + ' · ' + level.name;
+  document.getElementById('xp-bar').style.width = pct + '%';
+  document.getElementById('bar-label-min').textContent = level.min + ' XP';
+  document.getElementById('bar-label-max').textContent = (level.next || level.min) + ' XP';
+  document.getElementById('bar-label-next').textContent = level.next ? 'Siguiente nivel: ' + level.next + ' XP' : '¡Nivel máximo!';
+
+  document.getElementById('stat-xp').textContent = d.xp;
+  document.getElementById('stat-completed').textContent = d.completed.length + '/22';
+  document.getElementById('stat-badges').textContent = d.badges.length + '/10';
+  document.getElementById('stat-pct').textContent = Math.round(d.completed.length / 22 * 100) + '%';
+
+  const grid = document.getElementById('badges-grid');
+  grid.innerHTML = BADGES.map(b => {
+    const unlocked = d.badges.includes(b.id);
+    return `<div class="badge-card ${unlocked ? 'unlocked' : 'locked'}">
+      <div class="badge-emoji">${b.emoji}</div>
+      <div class="badge-name">${b.name}</div>
+      <div class="badge-desc">${b.desc}</div>
+      <span class="${unlocked ? 'badge-unlocked-tag' : 'badge-locked-tag'}">${unlocked ? '✓ Desbloqueado' : '🔒 Bloqueado'}</span>
+    </div>`;
+  }).join('');
+}
+
+function resetProgress() {
+  if (!confirm('¿Reiniciar todo el progreso? Se borrarán los XP, badges y actividades completadas.')) return;
+  localStorage.removeItem('ck_rewards');
+  render();
+}
+
+render();
+</script>
+</body>
+</html>
