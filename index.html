@@ -1251,6 +1251,59 @@ button::-moz-focus-inner { border: 0; }
   .chart-card { border: none; }
   .chart-inner { padding: 10px; }
 }
+
+/* Activities Strip */
+.activities-strip { display: flex; gap: 8px; overflow-x: auto; padding: 0 2px 20px; margin-bottom: 0; scrollbar-width: none; -ms-overflow-style: none; }
+.activities-strip::-webkit-scrollbar { display: none; }
+.astrip-btn { flex: 0 0 auto; display: flex; align-items: center; gap: 6px; padding: 8px 18px; border-radius: 50px; font-family: 'Nunito', sans-serif; font-size: 0.82rem; font-weight: 800; color: var(--text); text-decoration: none; border: 1px solid var(--border); background: var(--surface); transition: all 0.2s; white-space: nowrap; }
+.astrip-btn:hover { border-color: var(--accent); background: var(--surface2); transform: translateY(-2px); }
+.astrip-btn.astrip-premium { background: linear-gradient(135deg, rgba(124,58,237,.2), rgba(251,191,36,.12)); border-color: rgba(251,191,36,.5); color: var(--yellow); }
+.astrip-btn.astrip-premium:hover { background: linear-gradient(135deg, rgba(124,58,237,.3), rgba(251,191,36,.22)); }
+
+/* Activities Showcase */
+.activities-showcase { margin: 60px 0; }
+.showcase-header { text-align: center; margin-bottom: 40px; }
+.showcase-header h2 { font-family: 'Fredoka One', cursive; font-size: 2rem; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; }
+.showcase-header p { color: var(--muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+.showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.showcase-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; transition: transform 0.3s, border-color 0.3s; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+.showcase-card::before { content: ''; position: absolute; inset: 0; border-radius: 16px; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+.showcase-card:hover { transform: translateY(-5px); }
+.showcase-card:hover::before { opacity: 1; }
+.showcase-card.sc-creativas::before { background: linear-gradient(135deg, rgba(236,72,153,.1), rgba(249,115,22,.06)); }
+.showcase-card.sc-creativas:hover { border-color: #ec4899; }
+.showcase-card.sc-semana::before { background: linear-gradient(135deg, rgba(34,197,94,.1), rgba(6,182,212,.06)); }
+.showcase-card.sc-semana:hover { border-color: var(--green); }
+.showcase-card.sc-ia::before { background: linear-gradient(135deg, rgba(124,58,237,.12), rgba(6,182,212,.07)); }
+.showcase-card.sc-ia:hover { border-color: var(--accent); }
+.showcase-card.sc-descargables::before { background: linear-gradient(135deg, rgba(99,102,241,.1), rgba(124,58,237,.06)); }
+.showcase-card.sc-descargables:hover { border-color: #6366f1; }
+.showcase-card.sc-recompensas::before { background: linear-gradient(135deg, rgba(251,191,36,.1), rgba(249,115,22,.06)); }
+.showcase-card.sc-recompensas:hover { border-color: var(--yellow); }
+.showcase-card.sc-premium::before { background: linear-gradient(135deg, rgba(124,58,237,.18), rgba(251,191,36,.12)); }
+.showcase-card.sc-premium:hover { border-color: var(--yellow); }
+.sc-icon { font-size: 2.8rem; margin-bottom: 14px; }
+.sc-badge { display: inline-block; padding: 3px 12px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 12px; }
+.sc-badge.free { background: rgba(34,197,94,.15); color: var(--green); }
+.sc-badge.badge-weekly { background: rgba(6,182,212,.15); color: var(--accent2); }
+.sc-badge.badge-new { background: rgba(124,58,237,.18); color: var(--accent); }
+.sc-badge.badge-xp { background: rgba(251,191,36,.15); color: var(--yellow); }
+.sc-badge.badge-premium { background: linear-gradient(135deg, rgba(124,58,237,.2), rgba(251,191,36,.15)); color: var(--yellow); }
+.showcase-card h3 { font-family: 'Fredoka One', cursive; font-size: 1.3rem; color: var(--text); margin-bottom: 10px; position: relative; z-index: 1; }
+.showcase-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; margin-bottom: 20px; position: relative; z-index: 1; flex: 1; }
+.sc-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; position: relative; z-index: 1; }
+.sc-tag { background: var(--surface2); border: 1px solid var(--border); border-radius: 50px; padding: 3px 11px; font-size: 0.72rem; font-weight: 700; color: var(--muted); }
+.sc-link { display: inline-flex; align-items: center; gap: 6px; padding: 10px 22px; border-radius: 50px; font-weight: 800; font-size: 0.85rem; font-family: 'Nunito', sans-serif; text-decoration: none; transition: all 0.2s; position: relative; z-index: 1; align-self: flex-start; }
+.sc-link.cta-primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: white; }
+.sc-link.cta-green { background: linear-gradient(135deg, var(--green), #10b981); color: white; }
+.sc-link.cta-yellow { background: linear-gradient(135deg, #f59e0b, var(--yellow)); color: #1a1a2e; }
+.sc-link.cta-pink { background: linear-gradient(135deg, #ec4899, #f97316); color: white; }
+.sc-link:hover { transform: scale(1.05); opacity: .9; }
+@media (max-width: 600px) {
+  .showcase-grid { grid-template-columns: 1fr; }
+  .activities-showcase { margin: 40px 0; }
+  .showcase-header h2 { font-size: 1.6rem; }
+}
 </style>
 </head>
 <body>
@@ -1275,6 +1328,16 @@ button::-moz-focus-inner { border: 0; }
       <button class="install-btn" id="installBtn" style="display:none" onclick="installApp()">📲 Instalar</button>
     </div>
   </nav>
+
+  <!-- Activities Strip -->
+  <div class="activities-strip">
+    <a href="actividades.html" class="astrip-btn" id="astrip1">🎨 Creativas</a>
+    <a href="actividad-semana.html" class="astrip-btn" id="astrip2">📅 Actividad Semanal</a>
+    <a href="actividad-ia.html" class="astrip-btn" id="astrip3">🤖 Con IA</a>
+    <a href="descargables.html" class="astrip-btn" id="astrip4">📥 Descargables</a>
+    <a href="recompensas.html" class="astrip-btn" id="astrip5">⭐ Recompensas</a>
+    <a href="premium.html" class="astrip-btn astrip-premium" id="astrip6">👑 Premium</a>
+  </div>
 
   <div class="hero">
     <div class="hero-tag" id="heroTag">✦ 100% Gratis · Sin registro</div>
@@ -1369,6 +1432,90 @@ button::-moz-focus-inner { border: 0; }
          data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
+
+  <!-- Activities Showcase Section -->
+  <section class="activities-showcase" id="activitiesShowcase">
+    <div class="showcase-header">
+      <h2 id="showcaseTitle">Explora Todas las Actividades</h2>
+      <p id="showcaseSubtitle">Elige el tipo de actividad que más le guste a tu peque</p>
+    </div>
+    <div class="showcase-grid">
+
+      <div class="showcase-card sc-creativas">
+        <div class="sc-icon">🎨</div>
+        <span class="sc-badge free" id="scBadge1">Gratis</span>
+        <h3 id="scTitle1">Actividades Creativas</h3>
+        <p id="scDesc1">22 semanas de actividades organizadas por categoría: dibujos, manualidades, experimentos, cocina, juegos y más. Con filtros por edad.</p>
+        <div class="sc-tags">
+          <span class="sc-tag">🖍️ Dibujos</span>
+          <span class="sc-tag">✂️ Manualidades</span>
+          <span class="sc-tag">🔬 Experimentos</span>
+        </div>
+        <a href="actividades.html" class="sc-link cta-pink" id="scCta1">Ver actividades →</a>
+      </div>
+
+      <div class="showcase-card sc-semana">
+        <div class="sc-icon">📅</div>
+        <span class="sc-badge badge-weekly" id="scBadge2">Semanal</span>
+        <h3 id="scTitle2">Actividad de la Semana</h3>
+        <p id="scDesc2">Cada semana una actividad especial seleccionada para tu peque. Renovada cada lunes con sorpresas y desafíos nuevos.</p>
+        <div class="sc-tags">
+          <span class="sc-tag">🔄 Se renueva</span>
+          <span class="sc-tag">⭐ Destacada</span>
+        </div>
+        <a href="actividad-semana.html" class="sc-link cta-green" id="scCta2">Ver esta semana →</a>
+      </div>
+
+      <div class="showcase-card sc-ia">
+        <div class="sc-icon">🤖</div>
+        <span class="sc-badge badge-new" id="scBadge3">Nuevo</span>
+        <h3 id="scTitle3">Actividad con IA</h3>
+        <p id="scDesc3">Describe a tu peque y nuestra IA generará una actividad creativa personalizada en segundos. ¡Única cada vez!</p>
+        <div class="sc-tags">
+          <span class="sc-tag">✨ Personalizada</span>
+          <span class="sc-tag">⚡ Al instante</span>
+        </div>
+        <a href="actividad-ia.html" class="sc-link cta-primary" id="scCta3">Generar actividad →</a>
+      </div>
+
+      <div class="showcase-card sc-descargables">
+        <div class="sc-icon">📥</div>
+        <span class="sc-badge free" id="scBadge4">Gratis</span>
+        <h3 id="scTitle4">Descargables</h3>
+        <p id="scDesc4">Páginas para colorear, fichas de actividades y láminas temáticas para imprimir. Nuevos diseños cada semana.</p>
+        <div class="sc-tags">
+          <span class="sc-tag">🖨️ Imprimible</span>
+          <span class="sc-tag">🎨 PDF</span>
+        </div>
+        <a href="descargables.html" class="sc-link cta-primary" id="scCta4">Ver descargables →</a>
+      </div>
+
+      <div class="showcase-card sc-recompensas">
+        <div class="sc-icon">⭐</div>
+        <span class="sc-badge badge-xp" id="scBadge5">XP</span>
+        <h3 id="scTitle5">Mis Recompensas</h3>
+        <p id="scDesc5">Gana XP completando actividades, desbloquea insignias y sube de nivel. Lleva el progreso de tu peque de forma divertida.</p>
+        <div class="sc-tags">
+          <span class="sc-tag">🏅 10 Insignias</span>
+          <span class="sc-tag">📊 Progreso</span>
+        </div>
+        <a href="recompensas.html" class="sc-link cta-yellow" id="scCta5">Ver progreso →</a>
+      </div>
+
+      <div class="showcase-card sc-premium">
+        <div class="sc-icon">👑</div>
+        <span class="sc-badge badge-premium" id="scBadge6">Premium</span>
+        <h3 id="scTitle6">ChartKids Premium</h3>
+        <p id="scDesc6">Desbloquea las semanas 23+, kits PDF descargables, certificados de logro imprimibles e insignias exclusivas por solo $2.99/mes.</p>
+        <div class="sc-tags">
+          <span class="sc-tag">🔒 Sem 23-25+</span>
+          <span class="sc-tag">🎓 Certificados</span>
+        </div>
+        <a href="premium.html" class="sc-link cta-yellow" id="scCta6">Ver Premium →</a>
+      </div>
+
+    </div>
+  </section>
 
   <!-- Benefits Section -->
   <section class="benefits-section" id="benefitsSection">
@@ -2291,6 +2438,15 @@ const T = {
     footerDescargables: 'Descargables Gratis',
     footerRecompensas: '⭐ Mis Recompensas',
     footerActPremium: '👑 Premium',
+    astrip1: '🎨 Creativas', astrip2: '📅 Actividad Semanal', astrip3: '🤖 Con IA', astrip4: '📥 Descargables', astrip5: '⭐ Recompensas', astrip6: '👑 Premium',
+    showcaseTitle: 'Explora Todas las Actividades',
+    showcaseSubtitle: 'Elige el tipo de actividad que más le guste a tu peque',
+    scBadge1: 'Gratis', scTitle1: 'Actividades Creativas', scDesc1: '22 semanas de actividades organizadas por categoría: dibujos, manualidades, experimentos, cocina, juegos y más. Con filtros por edad.', scCta1: 'Ver actividades →',
+    scBadge2: 'Semanal', scTitle2: 'Actividad de la Semana', scDesc2: 'Cada semana una actividad especial seleccionada para tu peque. Renovada cada lunes con sorpresas y desafíos nuevos.', scCta2: 'Ver esta semana →',
+    scBadge3: 'Nuevo', scTitle3: 'Actividad con IA', scDesc3: 'Describe a tu peque y nuestra IA generará una actividad creativa personalizada en segundos. ¡Única cada vez!', scCta3: 'Generar actividad →',
+    scBadge4: 'Gratis', scTitle4: 'Descargables', scDesc4: 'Páginas para colorear, fichas de actividades y láminas temáticas para imprimir. Nuevos diseños cada semana.', scCta4: 'Ver descargables →',
+    scBadge5: 'XP', scTitle5: 'Mis Recompensas', scDesc5: 'Gana XP completando actividades, desbloquea insignias y sube de nivel. Lleva el progreso de tu peque de forma divertida.', scCta5: 'Ver progreso →',
+    scBadge6: 'Premium', scTitle6: 'ChartKids Premium', scDesc6: 'Desbloquea las semanas 23+, kits PDF, certificados imprimibles e insignias exclusivas por solo $2.99/mes.', scCta6: 'Ver Premium →',
     footerCopyright: '© 2025 ChartKids. Todos los derechos reservados.',
     footerSecure: 'Seguro',
     footerPwa: 'PWA',
@@ -2588,6 +2744,15 @@ const T = {
     footerDescargables: 'Free Downloads',
     footerRecompensas: '⭐ My Rewards',
     footerActPremium: '👑 Premium',
+    astrip1: '🎨 Creative', astrip2: '📅 Weekly Activity', astrip3: '🤖 AI Activity', astrip4: '📥 Downloads', astrip5: '⭐ Rewards', astrip6: '👑 Premium',
+    showcaseTitle: 'Explore All Activities',
+    showcaseSubtitle: 'Choose the type of activity your little one will enjoy most',
+    scBadge1: 'Free', scTitle1: 'Creative Activities', scDesc1: '22 weeks of activities by category: drawings, crafts, experiments, cooking, games and more. With age filters.', scCta1: 'Browse activities →',
+    scBadge2: 'Weekly', scTitle2: 'Activity of the Week', scDesc2: 'A special activity selected each week for your little one. Renewed every Monday with surprises and new challenges.', scCta2: 'See this week →',
+    scBadge3: 'New', scTitle3: 'AI Activity', scDesc3: 'Describe your child and our AI will generate a personalized creative activity in seconds. Unique every time!', scCta3: 'Generate activity →',
+    scBadge4: 'Free', scTitle4: 'Downloads', scDesc4: 'Coloring pages, activity sheets and themed printables. New designs every week.', scCta4: 'Browse downloads →',
+    scBadge5: 'XP', scTitle5: 'My Rewards', scDesc5: 'Earn XP completing activities, unlock badges and level up. Track your child\'s progress in a fun way.', scCta5: 'View progress →',
+    scBadge6: 'Premium', scTitle6: 'ChartKids Premium', scDesc6: 'Unlock weeks 23+, downloadable PDF kits, printable certificates and exclusive badges for only $2.99/mo.', scCta6: 'View Premium →',
     footerCopyright: '© 2025 ChartKids. All rights reserved.',
     footerSecure: 'Secure',
     footerPwa: 'PWA',
@@ -2962,6 +3127,20 @@ function applyTranslations() {
   document.getElementById('footerDescargables').textContent = t('footerDescargables');
   document.getElementById('footerRecompensas').textContent = t('footerRecompensas');
   document.getElementById('footerActPremium').textContent = t('footerActPremium');
+  document.getElementById('astrip1').textContent = t('astrip1');
+  document.getElementById('astrip2').textContent = t('astrip2');
+  document.getElementById('astrip3').textContent = t('astrip3');
+  document.getElementById('astrip4').textContent = t('astrip4');
+  document.getElementById('astrip5').textContent = t('astrip5');
+  document.getElementById('astrip6').textContent = t('astrip6');
+  document.getElementById('showcaseTitle').textContent = t('showcaseTitle');
+  document.getElementById('showcaseSubtitle').textContent = t('showcaseSubtitle');
+  document.getElementById('scBadge1').textContent = t('scBadge1'); document.getElementById('scTitle1').textContent = t('scTitle1'); document.getElementById('scDesc1').textContent = t('scDesc1'); document.getElementById('scCta1').textContent = t('scCta1');
+  document.getElementById('scBadge2').textContent = t('scBadge2'); document.getElementById('scTitle2').textContent = t('scTitle2'); document.getElementById('scDesc2').textContent = t('scDesc2'); document.getElementById('scCta2').textContent = t('scCta2');
+  document.getElementById('scBadge3').textContent = t('scBadge3'); document.getElementById('scTitle3').textContent = t('scTitle3'); document.getElementById('scDesc3').textContent = t('scDesc3'); document.getElementById('scCta3').textContent = t('scCta3');
+  document.getElementById('scBadge4').textContent = t('scBadge4'); document.getElementById('scTitle4').textContent = t('scTitle4'); document.getElementById('scDesc4').textContent = t('scDesc4'); document.getElementById('scCta4').textContent = t('scCta4');
+  document.getElementById('scBadge5').textContent = t('scBadge5'); document.getElementById('scTitle5').textContent = t('scTitle5'); document.getElementById('scDesc5').textContent = t('scDesc5'); document.getElementById('scCta5').textContent = t('scCta5');
+  document.getElementById('scBadge6').textContent = t('scBadge6'); document.getElementById('scTitle6').textContent = t('scTitle6'); document.getElementById('scDesc6').textContent = t('scDesc6'); document.getElementById('scCta6').textContent = t('scCta6');
   // Update install button text
   const installBtn = document.getElementById('installBtn');
   if (installBtn && installBtn.style.display !== 'none') {
