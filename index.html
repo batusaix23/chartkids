@@ -1943,6 +1943,8 @@ button::-moz-focus-inner { border: 0; }
           <li><a href="actividad-semana.html" id="footerActSemana">Actividad de la Semana</a></li>
           <li><a href="actividad-ia.html" id="footerActIA">Actividad con IA</a></li>
           <li><a href="descargables.html" id="footerDescargables">Descargables Gratis</a></li>
+          <li><a href="recompensas.html" id="footerRecompensas">⭐ Mis Recompensas</a></li>
+          <li><a href="premium.html" id="footerActPremium">👑 Premium</a></li>
         </ul>
       </div>
     </div>
@@ -2257,7 +2259,9 @@ const T = {
       { icon: '🚫', title: 'Sin anuncios', desc: 'Experiencia limpia sin publicidad' },
       { icon: '📊', title: 'Charts ilimitados', desc: 'Guarda todos los charts que necesites' },
       { icon: '🎨', title: 'Temas exclusivos', desc: 'Acceso a temas premium especiales' },
-      { icon: '☁️', title: 'Respaldo en la nube', desc: 'Tus datos seguros (próximamente)' }
+      { icon: '☁️', title: 'Respaldo en la nube', desc: 'Tus datos seguros (próximamente)' },
+      { icon: '🎯', title: 'Actividades exclusivas', desc: 'Semanas 23+ con proyectos especiales' },
+      { icon: '🎓', title: 'Certificados de logro', desc: 'Imprime certificados personalizados' }
     ],
     events: {
       valentine: { icon: '💝', text: '¡Especial San Valentín!', theme: 'valentine', btn: 'Usar tema' },
@@ -2285,6 +2289,8 @@ const T = {
     footerActSemana: 'Actividad de la Semana',
     footerActIA: 'Actividad con IA',
     footerDescargables: 'Descargables Gratis',
+    footerRecompensas: '⭐ Mis Recompensas',
+    footerActPremium: '👑 Premium',
     footerCopyright: '© 2025 ChartKids. Todos los derechos reservados.',
     footerSecure: 'Seguro',
     footerPwa: 'PWA',
@@ -2550,7 +2556,9 @@ const T = {
       { icon: '🚫', title: 'No ads', desc: 'Clean experience without advertising' },
       { icon: '📊', title: 'Unlimited charts', desc: 'Save all the charts you need' },
       { icon: '🎨', title: 'Exclusive themes', desc: 'Access to special premium themes' },
-      { icon: '☁️', title: 'Cloud backup', desc: 'Your data safe (coming soon)' }
+      { icon: '☁️', title: 'Cloud backup', desc: 'Your data safe (coming soon)' },
+      { icon: '🎯', title: 'Exclusive activities', desc: 'Weeks 23+ with special projects' },
+      { icon: '🎓', title: 'Achievement certificates', desc: 'Print personalized certificates' }
     ],
     events: {
       valentine: { icon: '💝', text: "Valentine's Day Special!", theme: 'valentine', btn: 'Use theme' },
@@ -2578,6 +2586,8 @@ const T = {
     footerActSemana: 'Activity of the Week',
     footerActIA: 'AI Activity',
     footerDescargables: 'Free Downloads',
+    footerRecompensas: '⭐ My Rewards',
+    footerActPremium: '👑 Premium',
     footerCopyright: '© 2025 ChartKids. All rights reserved.',
     footerSecure: 'Secure',
     footerPwa: 'PWA',
@@ -2950,6 +2960,8 @@ function applyTranslations() {
   document.getElementById('footerActSemana').textContent = t('footerActSemana');
   document.getElementById('footerActIA').textContent = t('footerActIA');
   document.getElementById('footerDescargables').textContent = t('footerDescargables');
+  document.getElementById('footerRecompensas').textContent = t('footerRecompensas');
+  document.getElementById('footerActPremium').textContent = t('footerActPremium');
   // Update install button text
   const installBtn = document.getElementById('installBtn');
   if (installBtn && installBtn.style.display !== 'none') {
