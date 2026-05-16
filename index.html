@@ -1315,6 +1315,62 @@ button::-moz-focus-inner { border: 0; }
 .sc-link.cta-yellow { background: linear-gradient(135deg, #f59e0b, var(--yellow)); color: #1a1a2e; }
 .sc-link.cta-pink { background: linear-gradient(135deg, #ec4899, #f97316); color: white; }
 .sc-link:hover { transform: scale(1.05); opacity: .9; }
+
+/* ── Hero enhancements ──────────────────────────────── */
+.hero-stats { display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 22px; flex-wrap: wrap; }
+.hero-stat { display: flex; align-items: center; gap: 7px; font-size: 0.86rem; font-weight: 700; color: var(--muted); }
+.hero-stat-num { font-family: 'Fredoka One', cursive; font-size: 1.15rem; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero-stat-sep { color: var(--border); user-select: none; font-size: 1.1rem; }
+.hero-cta-wrap { margin-top: 30px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.hero-cta { display: inline-flex; align-items: center; gap: 8px; padding: 14px 34px; background: linear-gradient(135deg, var(--accent), var(--accent2)); border: none; border-radius: 50px; font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 800; color: white; cursor: pointer; transition: all 0.25s; box-shadow: 0 8px 28px rgba(124,58,237,0.35); text-decoration: none; }
+.hero-cta:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(124,58,237,0.45); }
+.hero-cta-sec { display: inline-flex; align-items: center; gap: 7px; padding: 13px 26px; background: transparent; border: 1.5px solid var(--border); border-radius: 50px; font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--muted); cursor: pointer; transition: all 0.2s; text-decoration: none; }
+.hero-cta-sec:hover { border-color: var(--accent); color: var(--text); }
+
+/* ── Strip fade at right edge ───────────────────────── */
+.activities-strip { -webkit-mask-image: linear-gradient(to right, black 0%, black 86%, transparent 100%); mask-image: linear-gradient(to right, black 0%, black 86%, transparent 100%); }
+
+/* ── Section header accent bar ──────────────────────── */
+.section-header h2::before, .benefits-header h2::before, .showcase-header h2::before {
+  content: ''; display: block; width: 36px; height: 3px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border-radius: 2px; margin: 0 auto 14px;
+}
+
+/* ── Benefits cards enhanced ────────────────────────── */
+.benefit-icon { font-size: 1.85rem; width: 60px; height: 60px; border-radius: 18px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+.benefit-card:nth-child(1) .benefit-icon { background: rgba(124,58,237,.15); }
+.benefit-card:nth-child(2) .benefit-icon { background: rgba(251,191,36,.15); }
+.benefit-card:nth-child(3) .benefit-icon { background: rgba(34,197,94,.15); }
+.benefit-card:nth-child(4) .benefit-icon { background: rgba(6,182,212,.15); }
+.benefit-card:nth-child(5) .benefit-icon { background: rgba(236,72,153,.15); }
+.benefit-card:nth-child(6) .benefit-icon { background: rgba(249,115,22,.15); }
+.benefit-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,.18); }
+
+/* ── Steps enhanced ─────────────────────────────────── */
+.step-number { width: 38px; height: 38px; font-size: 1rem; top: -19px; }
+.step-card { transition: transform 0.3s, box-shadow 0.3s; }
+.step-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,.2); }
+.step-icon { font-size: 2.8rem; margin: 20px 0 14px; }
+.step-arrow { font-size: 1.8rem; opacity: 0.5; }
+
+/* ── Testimonials enhanced ──────────────────────────── */
+.testimonial-card { border-top: 3px solid transparent; transition: transform 0.3s, box-shadow 0.3s; }
+.testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.18); }
+.testimonials-grid .testimonial-card:nth-child(1) { border-top-color: var(--accent); }
+.testimonials-grid .testimonial-card:nth-child(2) { border-top-color: var(--accent2); }
+.testimonials-grid .testimonial-card:nth-child(3) { border-top-color: var(--green); }
+.testimonial-avatar { font-size: 1.8rem; }
+.testimonial-stars { font-size: 1rem; letter-spacing: 2px; margin-top: 5px; }
+
+/* ── Mobile additions ───────────────────────────────── */
+@media (max-width: 600px) {
+  .hero-stats { gap: 14px; margin-top: 18px; }
+  .hero-stat-sep { display: none; }
+  .hero-cta { padding: 12px 26px; font-size: 0.9rem; }
+  .hero-cta-sec { display: none; }
+  .activities-strip { -webkit-mask-image: linear-gradient(to right, black 76%, transparent 100%); mask-image: linear-gradient(to right, black 76%, transparent 100%); }
+}
 </style>
 </head>
 <body>
@@ -1354,6 +1410,17 @@ button::-moz-focus-inner { border: 0; }
     <div class="hero-tag" id="heroTag">✦ 100% Gratis · Sin registro</div>
     <h1 id="heroTitle">Crea el chart perfecto<br>para tu <span class="highlight">peque</span></h1>
     <p id="heroDesc">Cuéntale a nuestra IA sobre tu hijo o hija y ella diseñará un chart personalizado con tareas, metas y premios en segundos.</p>
+    <div class="hero-stats">
+      <span class="hero-stat"><span class="hero-stat-num">10k+</span> <span id="heroStat1">familias</span></span>
+      <span class="hero-stat-sep">·</span>
+      <span class="hero-stat"><span class="hero-stat-num">22</span> <span id="heroStat2">actividades gratis</span></span>
+      <span class="hero-stat-sep">·</span>
+      <span class="hero-stat"><span class="hero-stat-num">⚡</span> <span id="heroStat3">IA en segundos</span></span>
+    </div>
+    <div class="hero-cta-wrap">
+      <button class="hero-cta" id="heroCta" onclick="document.getElementById('chatInput').scrollIntoView({behavior:'smooth'});setTimeout(()=>document.getElementById('chatInput').focus(),300)">✨ Crear mi chart</button>
+      <a href="actividades.html" class="hero-cta-sec" id="heroCtaSec">Ver actividades →</a>
+    </div>
   </div>
 
   <!-- Event Banner (hidden by default, shown by JS) -->
@@ -2306,6 +2373,8 @@ const T = {
     heroTag: '✦ 100% Gratis · Sin registro',
     heroTitle: 'Crea el chart perfecto<br>para tu <span class="highlight">peque</span>',
     heroDesc: 'Cuéntale a nuestra IA sobre tu hijo o hija y ella diseñará un chart personalizado con tareas, metas y premios en segundos.',
+    heroStat1: 'familias', heroStat2: 'actividades gratis', heroStat3: 'IA en segundos',
+    heroCta: '✨ Crear mi chart', heroCtaSec: 'Ver actividades →',
     chatPanelTitle: 'Asistente IA',
     chatPanelSub: 'Cuéntame sobre tu hijo/a',
     previewTitle: 'Vista previa del Chart',
@@ -2612,6 +2681,8 @@ const T = {
     heroTag: '✦ 100% Free · No sign-up',
     heroTitle: 'Create the perfect chart<br>for your <span class="highlight">little champion</span>',
     heroDesc: 'Tell our AI about your child and it will design a personalized activity chart with tasks, goals and rewards in seconds.',
+    heroStat1: 'families', heroStat2: 'free activities', heroStat3: 'AI in seconds',
+    heroCta: '✨ Create my chart', heroCtaSec: 'Browse activities →',
     chatPanelTitle: 'AI Assistant',
     chatPanelSub: "Tell me about your child",
     previewTitle: 'Chart Preview',
@@ -2938,6 +3009,11 @@ function applyTranslations() {
   document.getElementById('heroTag').textContent = t('heroTag');
   document.getElementById('heroTitle').innerHTML = t('heroTitle');
   document.getElementById('heroDesc').textContent = t('heroDesc');
+  document.getElementById('heroStat1').textContent = t('heroStat1');
+  document.getElementById('heroStat2').textContent = t('heroStat2');
+  document.getElementById('heroStat3').textContent = t('heroStat3');
+  document.getElementById('heroCta').textContent = t('heroCta');
+  document.getElementById('heroCtaSec').textContent = t('heroCtaSec');
   document.getElementById('chatPanelTitle').textContent = t('chatPanelTitle');
   document.getElementById('chatPanelSub').textContent = t('chatPanelSub');
   document.getElementById('previewTitle').textContent = t('previewTitle');
