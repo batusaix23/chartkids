@@ -368,7 +368,7 @@ footer a { color: var(--accent); text-decoration: none; }
   <button class="tab-btn recicladas"     onclick="setTab('recicladas')"   data-en="♻️ Recycled"    data-es="♻️ Recicladas">♻️ Recicladas</button>
   <button class="tab-btn montessori"     onclick="setTab('montessori')"   data-en="🌿 Montessori"   data-es="🌿 Montessori">🌿 Montessori</button>
   <button class="tab-btn premium"        onclick="setTab('premium')"      data-en="👑 Premium"       data-es="👑 Premium">👑 Premium</button>
-  <button class="tab-btn anual" onclick="setTab('anual')" data-en="📅 Full Year" data-es="📅 Año Completo">📅 Año Completo</button>
+  <button class="tab-btn anual" onclick="document.getElementById('panel-anual').scrollIntoView({behavior:'smooth'})" data-en="📅 Year ↓" data-es="📅 Año ↓">📅 Año ↓</button>
 </div>
 
 <!-- Age Filter Bar -->
@@ -1244,11 +1244,13 @@ footer a { color: var(--accent); text-decoration: none; }
   <div class="no-results" id="no-results-montessori"><p>😔 No hay actividades Montessori para este rango de edad.</p></div>
 </div><!-- /panel-montessori -->
 
-<div id="panel-anual" style="display:none">
+<div id="panel-anual" style="margin-top:48px">
+  <div class="section-header" style="margin-bottom:20px">
+    <h2 class="section-title">📅 Actividades del Año</h2>
+  </div>
   <div class="yr-panel-box">
     <div class="yr-panel-header">
-      <h2>📅 Actividades del Año Completo</h2>
-      <p>52 semanas de actividades. Las futuras se desbloquean automáticamente cuando llega su semana.</p>
+      <p style="color:var(--muted);font-size:.88rem">52 semanas de actividades. Las futuras se desbloquean automáticamente cuando llega su semana.</p>
     </div>
     <div class="yr-legend">
       <span class="yr-leg-item"><span class="yr-leg-dot" style="background:var(--green)"></span> Disponible</span>
@@ -1295,14 +1297,14 @@ function setLang(lang) {
   document.documentElement.lang = lang;
 }
 setLang(currentLang);
+renderYearCalendar();
 
 function setTab(tab) {
   currentTab = tab;
-  ['todas','dibujos','manualidades','experimentos','cocina','juegos','recicladas','montessori','premium','anual'].forEach(t => {
+  ['todas','dibujos','manualidades','experimentos','cocina','juegos','recicladas','montessori','premium'].forEach(t => {
     document.getElementById('panel-' + t).style.display = t === tab ? 'block' : 'none';
     document.querySelector('.tab-btn.' + t).classList.toggle('active', t === tab);
   });
-  if (tab === 'anual') renderYearCalendar();
   applyAgeFilter();
 }
 
@@ -1324,7 +1326,7 @@ function applyAgeFilter() {
   });
 
   // Show "no results" message if all cards in active panel are hidden
-  ['todas','dibujos','manualidades','experimentos','cocina','juegos','recicladas','montessori','premium','anual'].forEach(t => {
+  ['todas','dibujos','manualidades','experimentos','cocina','juegos','recicladas','montessori','premium'].forEach(t => {
     const panel = document.getElementById('panel-' + t);
     if (!panel || panel.style.display === 'none') return;
     const msg = document.getElementById('no-results-' + t);
