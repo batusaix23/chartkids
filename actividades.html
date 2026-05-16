@@ -1297,7 +1297,6 @@ function setLang(lang) {
   document.documentElement.lang = lang;
 }
 setLang(currentLang);
-renderYearCalendar();
 
 function setTab(tab) {
   currentTab = tab;
@@ -1594,6 +1593,8 @@ function calNav(dir) {
   if (month > 11) { month = 0; year++; }
   renderYearCalendar(year, month);
 }
+
+renderYearCalendar();
 </script>
 </body>
 </html>
