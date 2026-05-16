@@ -216,17 +216,19 @@ header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom:
 .yr-legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
 .yr-leg-item { display: flex; align-items: center; gap: 6px; font-size: .72rem; color: var(--muted); font-weight: 700; }
 .yr-leg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-.yr-nav { display: flex; align-items: center; justify-content: space-between; background: var(--surface2); border: 1px solid var(--border); border-radius: 50px; padding: 6px 8px; margin-bottom: 20px; }
-.yr-nav-btn { background: var(--surface); border: 1px solid var(--border); border-radius: 50px; padding: 8px 22px; color: var(--text); font-weight: 800; font-size: .85rem; cursor: pointer; font-family: 'Nunito', sans-serif; transition: all .2s; white-space: nowrap; }
+.yr-panel-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; margin-bottom: 48px; }
+.yr-nav { display: flex; align-items: center; justify-content: space-between; background: var(--bg); border: 1px solid var(--border); border-radius: 50px; padding: 6px 8px; margin-bottom: 20px; }
+.yr-nav-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 50px; padding: 8px 22px; color: var(--text); font-weight: 800; font-size: .85rem; cursor: pointer; font-family: 'Nunito', sans-serif; transition: all .2s; white-space: nowrap; }
 .yr-nav-btn:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); color: white; }
 .yr-nav-btn:disabled { opacity: .3; cursor: default; }
 .yr-month-title { font-family: 'Fredoka One', cursive; font-size: 1.3rem; color: var(--text); text-align: center; flex: 1; padding: 0 12px; }
-.yr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px,1fr)); gap: 16px; }
+.yr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px,1fr)); gap: 14px; }
 .yr-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 14px; padding: 18px 16px; position: relative; transition: all .2s; }
 .yr-card.available { cursor: pointer; }
 .yr-card.available:hover { transform: translateY(-3px); border-color: var(--accent); }
-.yr-card.future { opacity: .52; }
-.yr-card.current-week { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(124,58,237,.25); opacity: 1; }
+.yr-card.future { opacity: .78; }
+.yr-card.future .yr-title { color: var(--muted); }
+.yr-card.current-week { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(124,58,237,.25); }
 .yr-week-num { font-size: .66rem; font-weight: 800; color: var(--muted); margin-bottom: 3px; text-transform: uppercase; letter-spacing: .04em; }
 .yr-date { font-size: .65rem; color: var(--muted); margin-bottom: 10px; }
 .yr-emoji { font-size: 2rem; margin-bottom: 8px; }
@@ -242,11 +244,13 @@ header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom:
 .yr-lock { position: absolute; top: 10px; right: 10px; font-size: .9rem; }
 .yr-premium { font-size: .6rem; color: var(--yellow); font-weight: 800; margin-top: 4px; }
 @media (max-width: 600px) {
+  .yr-panel-box { padding: 16px; }
   .yr-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .yr-card { padding: 14px 12px; }
-  .yr-emoji { font-size: 1.7rem; }
-  .yr-nav-btn { padding: 8px 14px; font-size: .78rem; }
-  .yr-month-title { font-size: 1.05rem; }
+  .yr-card { padding: 13px 11px; }
+  .yr-emoji { font-size: 1.6rem; }
+  .yr-title { font-size: .78rem; }
+  .yr-nav-btn { padding: 7px 13px; font-size: .76rem; }
+  .yr-month-title { font-size: 1rem; }
 }
 
 /* ── Newsletter ── */
@@ -1261,21 +1265,23 @@ footer a { color: var(--accent); text-decoration: none; }
 </div><!-- /panel-montessori -->
 
 <div id="panel-anual" style="display:none">
-  <div class="yr-panel-header">
-    <h2>📅 Actividades del Año Completo</h2>
-    <p>52 semanas de actividades. Las futuras se desbloquean automáticamente cuando llega su semana.</p>
+  <div class="yr-panel-box">
+    <div class="yr-panel-header">
+      <h2>📅 Actividades del Año Completo</h2>
+      <p>52 semanas de actividades. Las futuras se desbloquean automáticamente cuando llega su semana.</p>
+    </div>
+    <div class="yr-legend">
+      <span class="yr-leg-item"><span class="yr-leg-dot" style="background:var(--green)"></span> Disponible</span>
+      <span class="yr-leg-item"><span class="yr-leg-dot" style="background:var(--accent);box-shadow:0 0 0 3px rgba(124,58,237,.25)"></span> Semana actual</span>
+      <span class="yr-leg-item"><span class="yr-leg-dot" style="background:var(--border)"></span> Próximamente 🔒</span>
+    </div>
+    <div class="yr-nav">
+      <button class="yr-nav-btn" id="yr-prev" onclick="calNav(-1)">&#8249; Anterior</button>
+      <span class="yr-month-title" id="yr-month-title"></span>
+      <button class="yr-nav-btn" id="yr-next" onclick="calNav(1)">Siguiente &#8250;</button>
+    </div>
+    <div class="yr-grid" id="yr-grid"></div>
   </div>
-  <div class="yr-legend">
-    <span class="yr-leg-item"><span class="yr-leg-dot" style="background:var(--green)"></span> Disponible</span>
-    <span class="yr-leg-item"><span class="yr-leg-dot" style="background:var(--accent);box-shadow:0 0 0 3px rgba(124,58,237,.25)"></span> Semana actual</span>
-    <span class="yr-leg-item"><span class="yr-leg-dot" style="background:var(--border)"></span> Próximamente</span>
-  </div>
-  <div class="yr-nav">
-    <button class="yr-nav-btn" id="yr-prev" onclick="calNav(-1)">&#8249; Anterior</button>
-    <span class="yr-month-title" id="yr-month-title"></span>
-    <button class="yr-nav-btn" id="yr-next" onclick="calNav(1)">Siguiente &#8250;</button>
-  </div>
-  <div class="yr-grid" id="yr-grid"></div>
 </div>
 
 <!-- ══════════════════════════════════════
