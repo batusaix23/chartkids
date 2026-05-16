@@ -208,6 +208,36 @@ header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom:
 .cal-ev.experimentos { background: rgba(6,182,212,0.2);  color: var(--accent2); }
 .cal-ev.cocina       { background: rgba(34,197,94,0.2);  color: var(--green); }
 
+/* ── Year Calendar Panel ── */
+.tab-btn.active.anual { background: rgba(6,182,212,.15); border-color: var(--accent2); color: var(--accent2); }
+.yr-panel-header { margin-bottom: 24px; }
+.yr-panel-header h2 { font-family: 'Fredoka One', cursive; font-size: 1.4rem; margin-bottom: 6px; }
+.yr-panel-header p { color: var(--muted); font-size: .88rem; }
+.yr-legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.yr-leg-item { display: flex; align-items: center; gap: 6px; font-size: .72rem; color: var(--muted); font-weight: 700; }
+.yr-leg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.yr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(158px,1fr)); gap: 12px; }
+.yr-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 14px; padding: 14px 12px; position: relative; transition: all .2s; }
+.yr-card.available { cursor: pointer; }
+.yr-card.available:hover { transform: translateY(-3px); border-color: var(--accent); }
+.yr-card.future { opacity: .52; }
+.yr-card.current-week { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(124,58,237,.25); opacity: 1; }
+.yr-week-num { font-size: .66rem; font-weight: 800; color: var(--muted); margin-bottom: 3px; text-transform: uppercase; letter-spacing: .04em; }
+.yr-date { font-size: .63rem; color: var(--muted); margin-bottom: 8px; }
+.yr-emoji { font-size: 1.7rem; margin-bottom: 6px; }
+.yr-title { font-size: .78rem; font-weight: 800; line-height: 1.3; margin-bottom: 8px; }
+.yr-cat { display: inline-block; font-size: .62rem; font-weight: 800; padding: 2px 8px; border-radius: 20px; }
+.yr-cat.dibujos { background: rgba(236,72,153,.15); color: var(--pink); }
+.yr-cat.manualidades { background: rgba(249,115,22,.15); color: var(--orange); }
+.yr-cat.experimentos { background: rgba(6,182,212,.15); color: var(--accent2); }
+.yr-cat.cocina { background: rgba(34,197,94,.15); color: var(--green); }
+.yr-cat.juegos { background: rgba(99,102,241,.15); color: var(--indigo); }
+.yr-cat.recicladas { background: rgba(245,158,11,.15); color: var(--amber); }
+.yr-cat.montessori { background: rgba(132,204,22,.15); color: var(--lime); }
+.yr-lock { position: absolute; top: 8px; right: 8px; font-size: .85rem; }
+.yr-premium { font-size: .6rem; color: var(--yellow); font-weight: 800; margin-top: 4px; }
+@media (max-width: 600px) { .yr-grid { grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap: 8px; } }
+
 /* ── Newsletter ── */
 .newsletter { background: linear-gradient(135deg, rgba(236,72,153,0.08), rgba(249,115,22,0.06)); border: 1px solid var(--border); border-radius: var(--radius); padding: 40px; text-align: center; margin-bottom: 60px; }
 .newsletter h3 { font-family: 'Fredoka One', cursive; font-size: 1.4rem; margin-bottom: 10px; }
@@ -343,6 +373,7 @@ footer a { color: var(--accent); text-decoration: none; }
   <button class="tab-btn recicladas"     onclick="setTab('recicladas')"   data-en="♻️ Recycled"    data-es="♻️ Recicladas">♻️ Recicladas</button>
   <button class="tab-btn montessori"     onclick="setTab('montessori')"   data-en="🌿 Montessori"   data-es="🌿 Montessori">🌿 Montessori</button>
   <button class="tab-btn premium"        onclick="setTab('premium')"      data-en="👑 Premium"       data-es="👑 Premium">👑 Premium</button>
+  <button class="tab-btn anual" onclick="setTab('anual')" data-en="📅 Full Year" data-es="📅 Año Completo">📅 Año Completo</button>
 </div>
 
 <!-- Age Filter Bar -->
@@ -1216,8 +1247,20 @@ footer a { color: var(--accent); text-decoration: none; }
     </article>
   </div>
   <div class="no-results" id="no-results-montessori"><p>😔 No hay actividades Montessori para este rango de edad.</p></div>
-</div>
+</div><!-- /panel-montessori -->
 
+<div id="panel-anual" style="display:none">
+  <div class="yr-panel-header">
+    <h2>📅 Actividades del Año Completo</h2>
+    <p>52 semanas de actividades. Las futuras se desbloquean automáticamente cuando llega su semana.</p>
+  </div>
+  <div class="yr-legend">
+    <span class="yr-leg-item"><span class="yr-leg-dot" style="background:var(--green)"></span> Disponible</span>
+    <span class="yr-leg-item"><span class="yr-leg-dot" style="background:var(--accent);box-shadow:0 0 0 3px rgba(124,58,237,.25)"></span> Semana actual</span>
+    <span class="yr-leg-item"><span class="yr-leg-dot" style="background:var(--border)"></span> Próximamente</span>
+  </div>
+  <div class="yr-grid" id="yr-grid"></div>
+</div>
 
 <!-- ══════════════════════════════════════
      CALENDARIO
@@ -1307,10 +1350,11 @@ setLang(currentLang);
 
 function setTab(tab) {
   currentTab = tab;
-  ['todas','dibujos','manualidades','experimentos','cocina','juegos','recicladas','montessori','premium'].forEach(t => {
+  ['todas','dibujos','manualidades','experimentos','cocina','juegos','recicladas','montessori','premium','anual'].forEach(t => {
     document.getElementById('panel-' + t).style.display = t === tab ? 'block' : 'none';
     document.querySelector('.tab-btn.' + t).classList.toggle('active', t === tab);
   });
+  if (tab === 'anual') renderYearCalendar();
   applyAgeFilter();
 }
 
@@ -1332,7 +1376,7 @@ function applyAgeFilter() {
   });
 
   // Show "no results" message if all cards in active panel are hidden
-  ['todas','dibujos','manualidades','experimentos','cocina','juegos','recicladas','montessori','premium'].forEach(t => {
+  ['todas','dibujos','manualidades','experimentos','cocina','juegos','recicladas','montessori','premium','anual'].forEach(t => {
     const panel = document.getElementById('panel-' + t);
     if (!panel || panel.style.display === 'none') return;
     const msg = document.getElementById('no-results-' + t);
@@ -1496,6 +1540,86 @@ function toggleSteps(btn) {
   btn.textContent = open
     ? (currentLang === 'en' ? '▶ Show steps' : '▶ Ver pasos')
     : (currentLang === 'en' ? '▼ Hide steps' : '▼ Ocultar pasos');
+}
+
+/* ── Year Calendar ── */
+const FUTURE_ACTS = [
+  {n:26,emoji:'🌸',title:'Flores de Origami',cat:'manualidades'},
+  {n:27,emoji:'🎭',title:'Teatro de Sombras',cat:'juegos'},
+  {n:28,emoji:'🌊',title:'Densidades de Líquidos',cat:'experimentos'},
+  {n:29,emoji:'🖌️',title:'Pintura con Hielo',cat:'dibujos'},
+  {n:30,emoji:'🍪',title:'Galletas con Formas',cat:'cocina'},
+  {n:31,emoji:'🦋',title:'Mariposas de Papel',cat:'manualidades'},
+  {n:32,emoji:'🔭',title:'Telescopio Casero',cat:'experimentos'},
+  {n:33,emoji:'🎨',title:'Tie-Dye con Telas',cat:'manualidades'},
+  {n:34,emoji:'🌮',title:'Tacos de Fiesta',cat:'cocina'},
+  {n:35,emoji:'🎵',title:'Instrumentos con Botellas',cat:'recicladas'},
+  {n:36,emoji:'🖼️',title:'Retrato Familiar',cat:'dibujos'},
+  {n:37,emoji:'🌱',title:'Terrario en Tarro',cat:'experimentos'},
+  {n:38,emoji:'🎃',title:'Decoraciones de Otoño',cat:'manualidades'},
+  {n:39,emoji:'🍎',title:'Compota de Manzana',cat:'cocina'},
+  {n:40,emoji:'♟️',title:'Ajedrez con Tapas',cat:'juegos'},
+  {n:41,emoji:'🦁',title:'Máscaras de Animales',cat:'dibujos'},
+  {n:42,emoji:'📦',title:'Casita de Cartón',cat:'recicladas'},
+  {n:43,emoji:'🕯️',title:'Velas Decorativas',cat:'manualidades'},
+  {n:44,emoji:'🍲',title:'Sopa de Letras Comestible',cat:'cocina'},
+  {n:45,emoji:'🧩',title:'Rompecabezas Casero',cat:'juegos'},
+  {n:46,emoji:'❄️',title:'Copos de Nieve de Papel',cat:'manualidades'},
+  {n:47,emoji:'🌍',title:'Mapa del Mundo Pintado',cat:'dibujos'},
+  {n:48,emoji:'🌿',title:'Jabón Natural de Hierbas',cat:'montessori'},
+  {n:49,emoji:'🎁',title:'Envoltura Creativa de Regalos',cat:'manualidades'},
+  {n:50,emoji:'🍫',title:'Bombones de Chocolate',cat:'cocina'},
+  {n:51,emoji:'🎄',title:'Adornos Navideños con Reciclaje',cat:'recicladas'},
+  {n:52,emoji:'🎆',title:'Tarjeta de Año Nuevo',cat:'dibujos'},
+];
+
+function renderYearCalendar() {
+  const grid = document.getElementById('yr-grid');
+  if (!grid || grid.children.length > 0) return;
+  const today = new Date(); today.setHours(0,0,0,0);
+  const W1 = new Date('2026-01-05');
+  const CAT_LABELS = {dibujos:'Dibujos',manualidades:'Manualidades',experimentos:'Experimentos',
+    cocina:'Cocina',juegos:'Juegos',recicladas:'Recicladas',montessori:'Montessori'};
+  const MONTHS = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+
+  // Extract existing weeks from DOM
+  const domWeeks = {};
+  document.querySelectorAll('.activity-card, .featured-card[data-sem]').forEach(card => {
+    let n = null;
+    const semEl = card.querySelector('.week-num');
+    if (semEl) n = parseInt(semEl.textContent.replace('Sem.','').trim());
+    if (card.dataset.sem) n = parseInt(card.dataset.sem);
+    if (!n) return;
+    const titleEl = card.querySelector('h3, h2');
+    const thumbEl = card.querySelector('.card-thumb span:first-child, .featured-thumb');
+    const emoji = thumbEl ? thumbEl.textContent.trim().charAt(0) : '🎨';
+    const cat = ['dibujos','manualidades','experimentos','cocina','juegos','recicladas','montessori'].find(c => card.classList.contains(c)) || 'dibujos';
+    if (titleEl && !domWeeks[n]) domWeeks[n] = { emoji, title: titleEl.textContent.trim(), cat };
+  });
+
+  let html = '';
+  for (let n = 1; n <= 52; n++) {
+    const start = new Date(W1); start.setDate(start.getDate() + (n-1)*7);
+    const end   = new Date(start); end.setDate(end.getDate() + 6);
+    const isAvailable = today >= start;
+    const isCurrent   = today >= start && today <= end;
+    const isPremium   = n >= 23 && n <= 25;
+    const data = domWeeks[n] || FUTURE_ACTS.find(w => w.n === n) || {emoji:'🎨', title:'Actividad Semana '+n, cat:'dibujos'};
+    const dateStr = `${start.getDate()} ${MONTHS[start.getMonth()]} – ${end.getDate()} ${MONTHS[end.getMonth()]}`;
+    const cls = `yr-card${isAvailable ? ' available' : ' future'}${isCurrent ? ' current-week' : ''}`;
+    const clickAttr = isAvailable ? `onclick="setTab('todas')" title="Ir a la actividad"` : '';
+    html += `<div class="${cls}" ${clickAttr}>`;
+    if (isCurrent) html += `<span class="yr-lock" style="color:var(--yellow)">⭐</span>`;
+    else if (!isAvailable) html += `<span class="yr-lock">🔒</span>`;
+    html += `<div class="yr-week-num">Sem. ${n}</div>`;
+    html += `<div class="yr-date">${dateStr}</div>`;
+    html += `<div class="yr-emoji">${data.emoji}</div>`;
+    html += `<div class="yr-title">${data.title}</div>`;
+    html += `<span class="yr-cat ${data.cat}">${CAT_LABELS[data.cat]||data.cat}</span>`;
+    if (isPremium) html += `<div class="yr-premium">👑 Premium</div>`;
+    html += `</div>`;
+  }
+  grid.innerHTML = html;
 }
 </script>
 </body>

@@ -42,6 +42,7 @@ header{padding:24px 0;border-bottom:1px solid var(--border);margin-bottom:40px;}
 .chip.selected.age    {background:rgba(251,191,36,.15);border-color:var(--yellow);color:var(--yellow);}
 .chip.selected.cat    {background:rgba(124,58,237,.15);border-color:var(--accent);color:var(--accent);}
 .chip.selected.tiempo {background:rgba(6,182,212,.15);border-color:var(--accent2);color:var(--accent2);}
+.chip.selected.gender {background:rgba(236,72,153,.15);border-color:var(--pink);color:var(--pink);}
 
 .btn-generate{width:100%;padding:16px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;font-family:'Fredoka One',cursive;font-size:1.2rem;cursor:pointer;transition:opacity .2s;margin-top:8px;}
 .btn-generate:hover{opacity:.88;}
@@ -144,6 +145,15 @@ footer a{color:var(--accent);text-decoration:none;}
       <button class="chip age" data-val="2-4" onclick="selectChip('age',this)">2 – 4</button>
       <button class="chip age" data-val="5-7" onclick="selectChip('age',this)">5 – 7</button>
       <button class="chip age" data-val="8-12" onclick="selectChip('age',this)">8 – 12</button>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <span class="field-label" data-en="👦👧 Child is" data-es="👦👧 Es un/a">👦👧 Es un/a</span>
+    <div class="option-chips">
+      <button class="chip gender" data-val="boy"  data-en="👦 Boy"      data-es="👦 Niño"       onclick="selectChip('gender',this)">👦 Niño</button>
+      <button class="chip gender" data-val="girl" data-en="👧 Girl"     data-es="👧 Niña"       onclick="selectChip('gender',this)">👧 Niña</button>
+      <button class="chip gender" data-val="any"  data-en="👤 Either"   data-es="👤 Cualquiera" onclick="selectChip('gender',this)">👤 Cualquiera</button>
     </div>
   </div>
 
@@ -251,7 +261,7 @@ footer a{color:var(--accent);text-decoration:none;}
 </div>
 <script>
 const WORKER_URL = 'https://chartkids-api.jrau2303.workers.dev';
-const state = { age: null, cat: null, tiempo: null };
+const state = { age: null, cat: null, tiempo: null, gender: null };
 let lastActivity = null;
 let currentLang = 'en';
 
@@ -295,9 +305,12 @@ async function generate() {
     surprise:'any creative category (surprise me!)'
   };
 
+  const genderEs = state.gender === 'boy' ? 'niño' : state.gender === 'girl' ? 'niña' : 'niño o niña';
+  const genderEn = state.gender === 'boy' ? 'boy' : state.gender === 'girl' ? 'girl' : 'child (any gender)';
+
   const prompt = currentLang === 'es'
-    ? `Genera UNA actividad creativa original para niños de ${age} años. Categoría: ${catMap[cat]}. Tiempo: ${tiempo} minutos. Responde SOLO con JSON válido:\n{"emoji":"...","title":"...","description":"2 oraciones máximo","age":"${age} años","time":"${tiempo} min","difficulty":"Fácil o Medio","materials":["mat1","mat2","mat3"],"steps":["paso1","paso2","paso3","paso4"],"benefits":["ben1","ben2","ben3"],"tip":"consejo para padres"}`
-    : `Generate ONE original creative activity for children aged ${age}. Category: ${catMap[cat]}. Time: ${tiempo} minutes. Reply ONLY with valid JSON:\n{"emoji":"...","title":"...","description":"max 2 sentences","age":"${age} years","time":"${tiempo} min","difficulty":"Easy or Medium","materials":["mat1","mat2","mat3"],"steps":["step1","step2","step3","step4"],"benefits":["skill1","skill2","skill3"],"tip":"tip for parents"}`;
+    ? `Genera UNA actividad creativa original para un ${genderEs} de ${age} años. Categoría: ${catMap[cat]}. Tiempo: ${tiempo} minutos. La actividad debe ser apropiada y personalizada para un ${genderEs}. Responde SOLO con JSON válido:\n{"emoji":"...","title":"...","description":"2 oraciones máximo","age":"${age} años","time":"${tiempo} min","difficulty":"Fácil o Medio","materials":["mat1","mat2","mat3"],"steps":["paso1","paso2","paso3","paso4"],"benefits":["ben1","ben2","ben3"],"tip":"consejo para padres"}`
+    : `Generate ONE original creative activity for a ${genderEn} aged ${age}. Category: ${catMap[cat]}. Time: ${tiempo} minutes. The activity should be appropriate and personalized for a ${genderEn}. Reply ONLY with valid JSON:\n{"emoji":"...","title":"...","description":"max 2 sentences","age":"${age} years","time":"${tiempo} min","difficulty":"Easy or Medium","materials":["mat1","mat2","mat3"],"steps":["step1","step2","step3","step4"],"benefits":["skill1","skill2","skill3"],"tip":"tip for parents"}`;
 
   try {
     const res = await fetch(WORKER_URL, {
