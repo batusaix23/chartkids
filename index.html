@@ -109,7 +109,7 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--te
 .app { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 20px 60px; }
 
 /* Nav */
-nav { display: flex; align-items: center; justify-content: space-between; padding: 24px 0 20px; border-bottom: 1px solid var(--border); margin-bottom: 40px; flex-wrap: wrap; gap: 12px; }
+nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 0 16px; border-bottom: 1px solid var(--border); margin-bottom: 16px; flex-wrap: wrap; gap: 10px; }
 .logo { font-family: 'Fredoka One', cursive; font-size: 1.7rem; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .logo span { -webkit-text-fill-color: var(--yellow); }
 .nav-right { display: flex; align-items: center; gap: 12px; }
@@ -176,27 +176,38 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
 .main-grid { display: grid; grid-template-columns: 400px 1fr; gap: 24px; align-items: start; }
 @media (max-width: 820px) { .main-grid { grid-template-columns: 1fr; } }
 
-/* Mobile Navigation & Responsive Fixes */
+/* Tablet ≤900px */
+@media (max-width: 900px) {
+  .nav-badge { display: none; }
+  .showcase-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Mobile Navigation & Responsive Fixes ≤600px */
 @media (max-width: 600px) {
-  nav { padding: 16px 0 14px; gap: 10px; }
+  nav { padding: 14px 0 12px; gap: 8px; margin-bottom: 10px; }
   .logo { font-size: 1.4rem; }
-  .nav-right { gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
-  .nav-badge { padding: 4px 10px; font-size: 0.7rem; display: none; }
+  .nav-right { gap: 6px; flex-wrap: nowrap; justify-content: flex-end; align-items: center; }
+  .nav-badge { display: none; }
+  /* Show only icons in nav buttons — hide text labels */
+  .nav-btn-label { display: none; }
+  .lang-label { display: none; }
+  .activities-nav-btn { padding: 7px 11px; }
   .lang-toggle { padding: 2px; }
-  .lang-btn { padding: 4px 10px; font-size: 0.7rem; }
-  .lang-btn span { display: none; }
+  .lang-btn { padding: 5px 9px; font-size: 0.82rem; }
   .install-btn { padding: 6px 12px; font-size: 0.75rem; }
-  .install-btn::before { content: ''; }
-  .premium-btn { padding: 6px 10px !important; font-size: 0.75rem !important; min-width: auto !important; }
-  .premium-btn span { display: none; }
-  .pin-toggle { padding: 6px 10px !important; font-size: 0.9rem !important; min-width: auto !important; }
-  .charts-btn { padding: 6px 10px !important; font-size: 0.75rem !important; }
-  .charts-btn span { display: none; }
-  .hero { margin-bottom: 30px; }
-  .hero-tag { padding: 5px 14px; font-size: 0.7rem; margin-bottom: 14px; }
-  .hero h1 { font-size: 1.8rem; }
+  .premium-btn { padding: 7px 11px !important; font-size: 0.85rem !important; min-width: auto !important; }
+  .charts-btn { padding: 7px 11px !important; font-size: 0.85rem !important; }
+  .hero { margin-bottom: 24px; }
+  .hero-tag { padding: 5px 14px; font-size: 0.72rem; margin-bottom: 12px; }
+  .hero h1 { font-size: 1.75rem; }
   .hero p { font-size: 0.9rem; }
-  .app { padding: 0 12px 40px; }
+  .app { padding: 0 14px 40px; }
+  .activities-strip { padding: 10px 2px 14px; margin-bottom: 20px; gap: 6px; }
+  .astrip-btn { padding: 7px 13px; font-size: 0.78rem; }
+  .showcase-grid { grid-template-columns: 1fr; }
+  .showcase-card { padding: 22px 18px; }
+  .activities-showcase { margin: 32px 0; }
+  .showcase-header h2 { font-size: 1.5rem; }
   .panel { border-radius: 12px; }
   .panel-header { padding: 12px 14px; }
   .chat-messages { height: 320px; padding: 14px; }
@@ -212,12 +223,17 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
   .event-btn { padding: 6px 12px; font-size: 0.75rem; }
   .ad-container { display: none; }
   .templates-toggle { padding: 12px 16px; font-size: 0.85rem; }
+  .benefits-section { margin: 32px 0; }
 }
 
+/* Small phones ≤400px */
 @media (max-width: 400px) {
   .logo { font-size: 1.2rem; }
-  .nav-right { width: 100%; justify-content: space-between; }
+  .nav-right { gap: 4px; }
+  .lang-toggle { display: none; }
   .hero h1 { font-size: 1.5rem; }
+  .app { padding: 0 10px 32px; }
+  .astrip-btn { padding: 6px 10px; font-size: 0.74rem; }
   .preview-actions button { min-width: 60px; padding: 6px 8px; font-size: 0.7rem; }
   .preview-actions button span { display: none; }
 }
@@ -1253,7 +1269,7 @@ button::-moz-focus-inner { border: 0; }
 }
 
 /* Activities Strip */
-.activities-strip { display: flex; gap: 8px; overflow-x: auto; padding: 0 2px 20px; margin-bottom: 0; scrollbar-width: none; -ms-overflow-style: none; }
+.activities-strip { display: flex; gap: 8px; overflow-x: auto; padding: 14px 2px 18px; margin-bottom: 28px; scrollbar-width: none; -ms-overflow-style: none; }
 .activities-strip::-webkit-scrollbar { display: none; }
 .astrip-btn { flex: 0 0 auto; display: flex; align-items: center; gap: 6px; padding: 8px 18px; border-radius: 50px; font-family: 'Nunito', sans-serif; font-size: 0.82rem; font-weight: 800; color: var(--text); text-decoration: none; border: 1px solid var(--border); background: var(--surface); transition: all 0.2s; white-space: nowrap; }
 .astrip-btn:hover { border-color: var(--accent); background: var(--surface2); transform: translateY(-2px); }
@@ -1299,11 +1315,6 @@ button::-moz-focus-inner { border: 0; }
 .sc-link.cta-yellow { background: linear-gradient(135deg, #f59e0b, var(--yellow)); color: #1a1a2e; }
 .sc-link.cta-pink { background: linear-gradient(135deg, #ec4899, #f97316); color: white; }
 .sc-link:hover { transform: scale(1.05); opacity: .9; }
-@media (max-width: 600px) {
-  .showcase-grid { grid-template-columns: 1fr; }
-  .activities-showcase { margin: 40px 0; }
-  .showcase-header h2 { font-size: 1.6rem; }
-}
 </style>
 </head>
 <body>
@@ -1317,14 +1328,14 @@ button::-moz-focus-inner { border: 0; }
   <nav>
     <div class="logo">Chart<span>Kids</span> ✨</div>
     <div class="nav-right">
-      <a href="actividades.html" class="activities-nav-btn"><span id="activitiesNavBtn">🎨 Actividades</span></a>
-      <button class="charts-btn" id="chartsBtn" onclick="openChartsModal()">📚 <span id="chartsBtnText">Mis Charts</span> <span class="badge" id="chartsBadge">0</span></button>
-      <button class="premium-btn" id="premiumBtn" onclick="openPremiumModal()">👑 <span id="premiumBtnText">Premium</span></button>
+      <a href="actividades.html" class="activities-nav-btn">🎨 <span id="activitiesNavBtn" class="nav-btn-label">Actividades</span></a>
+      <button class="charts-btn" id="chartsBtn" onclick="openChartsModal()">📚 <span id="chartsBtnText" class="nav-btn-label">Mis Charts</span> <span class="badge" id="chartsBadge">0</span></button>
+      <button class="premium-btn" id="premiumBtn" onclick="openPremiumModal()">👑 <span id="premiumBtnText" class="nav-btn-label">Premium</span></button>
       <div class="nav-badge" id="navBadge">✨ IA Gratis</div>
       <button class="install-btn" id="installBtn" style="display:none" onclick="installApp()">📲 Instalar</button>
       <div class="lang-toggle">
-        <button class="lang-btn active" id="btnES" onclick="setLang('es')" aria-label="Cambiar a Español">🇲🇽 ES</button>
-        <button class="lang-btn" id="btnEN" onclick="setLang('en')" aria-label="Switch to English">🇺🇸 EN</button>
+        <button class="lang-btn active" id="btnES" onclick="setLang('es')" aria-label="Cambiar a Español">🇲🇽 <span class="lang-label">ES</span></button>
+        <button class="lang-btn" id="btnEN" onclick="setLang('en')" aria-label="Switch to English">🇺🇸 <span class="lang-label">EN</span></button>
       </div>
     </div>
   </nav>
@@ -2430,7 +2441,7 @@ const T = {
     footerApp: 'App',
     footerPremium: 'Premium',
     footerStats: 'Estadísticas',
-    activitiesNavBtn: '🎨 Actividades',
+    activitiesNavBtn: 'Actividades',
     footerActivities: 'Actividades',
     footerActCreativas: 'Actividades Creativas',
     footerActSemana: 'Actividad de la Semana',
@@ -2736,7 +2747,7 @@ const T = {
     footerApp: 'App',
     footerPremium: 'Premium',
     footerStats: 'Statistics',
-    activitiesNavBtn: '🎨 Activities',
+    activitiesNavBtn: 'Activities',
     footerActivities: 'Activities',
     footerActCreativas: 'Creative Activities',
     footerActSemana: 'Activity of the Week',
