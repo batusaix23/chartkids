@@ -1743,6 +1743,78 @@ nav {
   margin-bottom: 14px;
 }
 
+/* ═══ Modo Familia Múltiple ══════════════════════════════════ */
+.family-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 0 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  animation: fadeIn .3s ease;
+}
+.family-bar::-webkit-scrollbar { display: none; }
+.family-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform .15s;
+}
+.family-avatar:hover { transform: translateY(-2px); }
+.family-avatar-circle {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.05rem;
+  color: #fff;
+  border: 2.5px solid transparent;
+  transition: all .2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,.3);
+}
+.family-avatar.active .family-avatar-circle {
+  border-color: #fff;
+  box-shadow: 0 0 0 3px var(--accent), 0 2px 8px rgba(0,0,0,.3);
+  transform: scale(1.12);
+}
+.family-avatar-name {
+  font-size: .63rem;
+  font-weight: 800;
+  color: rgba(255,255,255,.5);
+  max-width: 50px;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  letter-spacing: .02em;
+}
+.family-avatar.active .family-avatar-name { color: rgba(255,255,255,.9); }
+.family-add-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.06);
+  border: 2px dashed rgba(255,255,255,.22);
+  color: rgba(255,255,255,.4);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s;
+  flex-shrink: 0;
+  line-height: 1;
+  padding: 0;
+}
+.family-add-btn:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.5); color: #fff; transform: scale(1.08); }
+
 /* ═══ Modo Niño ══════════════════════════════════════════════ */
 .kid-mode-btn {
   display: none;
@@ -2135,10 +2207,14 @@ nav {
     <a href="actividades.html" class="astrip-btn" id="astrip1">🎨 Creativas</a>
     <a href="actividad-semana.html" class="astrip-btn" id="astrip2">📅 Actividad Semanal</a>
     <a href="actividad-ia.html" class="astrip-btn" id="astrip3">🤖 Con IA</a>
+    <a href="colorear-ia.html" class="astrip-btn" id="astrip4b">🎨 Colorear con IA</a>
     <a href="descargables.html" class="astrip-btn" id="astrip4">📥 Descargables</a>
     <a href="recompensas.html" class="astrip-btn" id="astrip5">⭐ Recompensas</a>
     <a href="premium.html" class="astrip-btn astrip-premium" id="astrip6">👑 Premium</a>
   </div>
+
+  <!-- Family Bar -->
+  <div class="family-bar" id="familyBar" style="display:none"></div>
 
   <div class="hero">
     <div class="hero-tag" id="heroTag">✦ 100% Gratis · Sin registro</div>
@@ -4388,6 +4464,7 @@ function buildChart(data, preserveProgress = false) {
   document.getElementById('quickPrompts').style.display = 'none';
   document.getElementById('kidModeBtn').style.display = 'flex';
   updateStreakDisplay();
+  renderFamilyBar();
 }
 
 function toggleCheck(ti, d, total, goalAmount) {
@@ -4581,6 +4658,7 @@ function resetChart() {
   document.getElementById('streakBar').style.display = 'none';
   document.getElementById('quickPrompts').style.display = 'flex';
   document.getElementById('kidModeBtn').style.display = 'none';
+  renderFamilyBar();
   resetChat(true);
 }
 
@@ -4997,6 +5075,45 @@ function loadProgress() {
 function updateChartsBadge() {
   const charts = getAllCharts();
   document.getElementById('chartsBadge').textContent = charts.length;
+  renderFamilyBar();
+}
+
+// ─── Modo Familia Múltiple ─────────────────────────────────
+const FAMILY_COLORS = ['#7c3aed','#0891b2','#059669','#d97706','#db2777','#dc2626','#0e7490','#9333ea'];
+
+function avatarColorFromName(name) {
+  let h = 0;
+  for (let i = 0; i < name.length; i++) h = name.charCodeAt(i) + ((h << 5) - h);
+  return FAMILY_COLORS[Math.abs(h) % FAMILY_COLORS.length];
+}
+
+function renderFamilyBar() {
+  const charts = getAllCharts();
+  const bar = document.getElementById('familyBar');
+  if (!bar) return;
+  if (charts.length < 2) { bar.style.display = 'none'; return; }
+  bar.style.display = 'flex';
+  const addTitle = lang === 'es' ? 'Agregar niño/a' : 'Add child';
+  bar.innerHTML = charts.map(chart => {
+    const rawName = (chart.chartData.childName || chart.chartData.title || '?').trim();
+    const firstName = rawName.split(/\s+/)[0];
+    const initials = rawName.split(/\s+/).map(w => w[0] || '').join('').substring(0, 2).toUpperCase() || '?';
+    const color = avatarColorFromName(rawName);
+    const isActive = chart.id === currentChartId;
+    return `<div class="family-avatar${isActive ? ' active' : ''}" onclick="familySwitchChart('${escapeHtml(chart.id)}')">
+      <div class="family-avatar-circle" style="background:${color}">${escapeHtml(initials)}</div>
+      <div class="family-avatar-name">${escapeHtml(firstName)}</div>
+    </div>`;
+  }).join('') + `<button class="family-add-btn" title="${escapeHtml(addTitle)}" onclick="document.getElementById('chatInput').scrollIntoView({behavior:'smooth'});setTimeout(()=>document.getElementById('chatInput').focus(),300)">+</button>`;
+}
+
+function familySwitchChart(chartId) {
+  if (chartId === currentChartId) return;
+  loadChartById(chartId);
+  setTimeout(() => {
+    const el = document.getElementById('chartInner');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, 120);
 }
 
 // ─── Charts Modal ─────────────────────────────────────────
