@@ -1556,6 +1556,252 @@ nav {
 @media (max-width: 400px) {
   nav { margin: 0 -10px; padding-left: 10px; padding-right: 10px; }
 }
+
+/* ═══ Modo Niño ══════════════════════════════════════════════ */
+.kid-mode-btn {
+  display: none;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #f472b6, #fbbf24);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: .82rem;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(244,114,182,.4);
+  transition: transform .15s, box-shadow .15s;
+  white-space: nowrap;
+}
+.kid-mode-btn:hover { transform: scale(1.05); box-shadow: 0 5px 18px rgba(244,114,182,.55); }
+
+#kidOverlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  background: linear-gradient(145deg, #1a0533 0%, #0d1f4f 50%, #0a2e1a 100%);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+#kidOverlay.active { display: block; }
+
+.kid-overlay-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 20px 16px 60px;
+}
+
+/* Header */
+.kid-header {
+  text-align: center;
+  padding: 16px 0 24px;
+}
+.kid-greeting {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(1.8rem, 6vw, 2.8rem);
+  color: #fff;
+  text-shadow: 0 3px 16px rgba(251,191,36,.5);
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.kid-goal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,.12);
+  border: 1.5px solid rgba(255,255,255,.25);
+  border-radius: 50px;
+  padding: 8px 20px;
+  font-weight: 800;
+  font-size: .9rem;
+  color: #fde68a;
+  margin-bottom: 20px;
+}
+
+/* Progress bar */
+.kid-progress-wrap {
+  background: rgba(255,255,255,.1);
+  border-radius: 20px;
+  padding: 16px 20px 18px;
+  margin-bottom: 24px;
+  border: 1.5px solid rgba(255,255,255,.15);
+}
+.kid-stars-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.kid-stars-count {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.6rem;
+  color: #fbbf24;
+}
+.kid-pct {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.3rem;
+  color: #86efac;
+}
+.kid-bar-bg {
+  height: 22px;
+  background: rgba(255,255,255,.15);
+  border-radius: 50px;
+  overflow: hidden;
+}
+.kid-bar-fill {
+  height: 100%;
+  border-radius: 50px;
+  background: linear-gradient(90deg, #fbbf24, #f472b6, #a78bfa);
+  transition: width .5s cubic-bezier(.34,1.56,.64,1);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  font-size: .72rem;
+  font-weight: 900;
+  color: white;
+  min-width: 26px;
+}
+.kid-motivation {
+  text-align: center;
+  font-size: .88rem;
+  font-weight: 800;
+  color: rgba(255,255,255,.8);
+  margin-top: 10px;
+}
+
+/* Day header */
+.kid-days-header {
+  display: grid;
+  grid-template-columns: 1fr repeat(7, 40px);
+  gap: 4px;
+  padding: 0 4px;
+  margin-bottom: 8px;
+}
+.kid-day-label {
+  text-align: center;
+  font-size: .6rem;
+  font-weight: 900;
+  color: rgba(255,255,255,.5);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+/* Task cards */
+.kid-tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.kid-task-row {
+  display: grid;
+  grid-template-columns: 1fr repeat(7, 40px);
+  gap: 4px;
+  align-items: center;
+}
+.kid-task-name {
+  background: rgba(255,255,255,.1);
+  border: 1.5px solid rgba(255,255,255,.15);
+  border-radius: 14px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: .9rem;
+  color: white;
+  min-height: 52px;
+}
+.kid-task-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.kid-day-btn {
+  width: 40px;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.08);
+  border: 2px solid rgba(255,255,255,.15);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  transition: transform .15s, background .15s, border-color .15s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.kid-day-btn:active { transform: scale(.88); }
+.kid-day-btn.done {
+  background: linear-gradient(135deg, #22c55e, #06b6d4);
+  border-color: #22c55e;
+  box-shadow: 0 4px 14px rgba(34,197,94,.45);
+}
+.kid-day-btn.done::after { content: '⭐'; font-size: 1.2rem; }
+
+/* Exit / lock */
+.kid-exit-wrap {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9995;
+}
+.kid-exit-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.08);
+  border: 1.5px solid rgba(255,255,255,.18);
+  color: rgba(255,255,255,.4);
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .2s, color .2s, transform .15s;
+}
+.kid-exit-btn:active { transform: scale(.9); }
+.kid-exit-btn.tapped1 { color: rgba(255,255,255,.65); background: rgba(255,255,255,.12); }
+.kid-exit-btn.tapped2 { color: #fbbf24; background: rgba(251,191,36,.18); border-color: #fbbf24; }
+.kid-exit-hint {
+  position: fixed;
+  bottom: 78px;
+  right: 14px;
+  font-size: .7rem;
+  font-weight: 800;
+  color: rgba(255,255,255,.35);
+  text-align: right;
+  pointer-events: none;
+}
+
+/* Celebration burst */
+@keyframes kidStar {
+  0%   { transform: scale(0) rotate(0deg); opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: scale(1) translateY(-60px) rotate(40deg); opacity: 0; }
+}
+.kid-star-burst {
+  position: fixed;
+  font-size: 1.6rem;
+  pointer-events: none;
+  z-index: 9999;
+  animation: kidStar .7s ease-out forwards;
+}
+
+@media (max-width: 520px) {
+  .kid-days-header { grid-template-columns: 1fr repeat(7, 36px); gap: 3px; }
+  .kid-task-row { grid-template-columns: 1fr repeat(7, 36px); gap: 3px; }
+  .kid-day-btn { width: 36px; height: 48px; font-size: 1.1rem; border-radius: 10px; }
+  .kid-task-name { font-size: .82rem; padding: 8px 10px; min-height: 48px; }
+}
+@media (max-width: 380px) {
+  .kid-days-header { grid-template-columns: 1fr repeat(7, 30px); gap: 2px; }
+  .kid-task-row { grid-template-columns: 1fr repeat(7, 30px); gap: 2px; }
+  .kid-day-btn { width: 30px; height: 44px; font-size: .95rem; border-radius: 8px; }
+  .kid-task-name { font-size: .78rem; gap: 6px; padding: 7px 8px; }
+  .kid-task-icon { font-size: 1.1rem; }
+}
 </style>
 </head>
 <body>
@@ -1570,6 +1816,7 @@ nav {
     <div class="logo">Chart<span>Kids</span> ✨</div>
     <div class="nav-right">
       <a href="actividades.html" class="activities-nav-btn">🎨 <span id="activitiesNavBtn" class="nav-btn-label">Actividades</span></a>
+      <button class="kid-mode-btn" id="kidModeBtn" onclick="enterKidMode()">🧒 <span class="nav-btn-label">Modo Niño</span></button>
       <button class="charts-btn" id="chartsBtn" onclick="openChartsModal()">📚 <span id="chartsBtnText" class="nav-btn-label">Mis Charts</span> <span class="badge" id="chartsBadge">0</span></button>
       <button class="premium-btn" id="premiumBtn" onclick="openPremiumModal()">👑 <span id="premiumBtnText" class="nav-btn-label">Premium</span></button>
       <div class="nav-badge" id="navBadge">✨ IA Gratis</div>
@@ -2520,6 +2767,8 @@ nav {
 </div>
 
 <!-- Install Banner (shown automatically) -->
+<div id="kidOverlay"></div>
+
 <div class="install-banner" id="installBanner" style="display:none">
   <span class="install-banner-icon">📲</span>
   <div class="install-banner-text">
@@ -3779,6 +4028,7 @@ function buildChart(data, preserveProgress = false) {
   document.getElementById('progressCard').style.display = 'none';
   document.getElementById('actionRow').style.display = 'flex';
   document.getElementById('quickPrompts').style.display = 'none';
+  document.getElementById('kidModeBtn').style.display = 'flex';
 }
 
 function toggleCheck(ti, d, total, goalAmount) {
@@ -3962,11 +4212,12 @@ function showCompletionCelebration() {
 
 function resetChart() {
   chartData = null; checked = new Set();
-  currentChartId = null; // Reset para crear nuevo chart
+  currentChartId = null;
   renderEmptyState();
   document.getElementById('progressCard').style.display = 'none';
   document.getElementById('actionRow').style.display = 'none';
   document.getElementById('quickPrompts').style.display = 'flex';
+  document.getElementById('kidModeBtn').style.display = 'none';
   resetChat(true);
 }
 
@@ -4360,6 +4611,7 @@ function _doDeleteChart(chartId) {
     renderEmptyState();
     document.getElementById('actionRow').style.display = 'none';
     document.getElementById('quickPrompts').style.display = 'flex';
+    document.getElementById('kidModeBtn').style.display = 'none';
   }
 
   showToast(t('chartDeleted'));
@@ -5564,6 +5816,192 @@ setTimeout(() => {
   // Show banner after 2 seconds
   setTimeout(showInstallBanner, 2000);
 }, 1000);
+
+// ─── Modo Niño ────────────────────────────────────────────
+const KID_DAY_ABBR_ES = ['L','M','X','J','V','S','D'];
+const KID_DAY_ABBR_EN = ['M','T','W','T','F','S','S'];
+let kidExitTaps = 0;
+let kidExitTimer = null;
+
+function enterKidMode() {
+  if (!chartData) return;
+  const overlay = document.getElementById('kidOverlay');
+  overlay.classList.add('active');
+  renderKidOverlay();
+  document.body.style.overflow = 'hidden';
+  kidExitTaps = 0;
+  const btn = document.getElementById('kidExitBtn');
+  if (btn) { btn.className = 'kid-exit-btn'; }
+}
+
+function exitKidMode() {
+  document.getElementById('kidOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+  kidExitTaps = 0;
+}
+
+function kidExitTap() {
+  kidExitTaps++;
+  const btn = document.getElementById('kidExitBtn');
+  if (kidExitTimer) clearTimeout(kidExitTimer);
+
+  if (kidExitTaps === 1) {
+    btn.className = 'kid-exit-btn tapped1';
+    document.getElementById('kidExitHint').textContent = lang === 'es' ? '2 toques más para salir' : '2 more taps to exit';
+  } else if (kidExitTaps === 2) {
+    btn.className = 'kid-exit-btn tapped2';
+    document.getElementById('kidExitHint').textContent = lang === 'es' ? '1 toque más...' : '1 more tap...';
+  } else if (kidExitTaps >= 3) {
+    exitKidMode();
+    return;
+  }
+
+  kidExitTimer = setTimeout(() => {
+    kidExitTaps = 0;
+    if (btn) btn.className = 'kid-exit-btn';
+    document.getElementById('kidExitHint').textContent = '';
+  }, 2500);
+}
+
+function renderKidOverlay() {
+  if (!chartData) return;
+  const tasks  = chartData.tasks  || [];
+  const days   = chartData.days   || 7;
+  const total  = tasks.length * days;
+  const count  = checked.size;
+  const pct    = total > 0 ? Math.round((count / total) * 100) : 0;
+  const name   = chartData.childName || '';
+  const goal   = chartData.goal || '';
+  const dayAbbr = lang === 'es' ? KID_DAY_ABBR_ES : KID_DAY_ABBR_EN;
+  const isMoneyGoal = chartData.goalType === 'money' && chartData.goalAmount > 0;
+
+  const greeting = name
+    ? (lang === 'es' ? `¡Hola, ${name}! 👋` : `Hi, ${name}! 👋`)
+    : (lang === 'es' ? '¡Hola, campeón! 👋' : 'Hi, champion! 👋');
+
+  const motivMsgs = lang === 'es'
+    ? ['¡Empieza a ganar tus estrellas! 💪','¡Vas muy bien! 🌱','¡Increíble, ya llevas la mitad! 🚀','¡Eres un campeón! 🦁','¡Casi terminas! ¡Tú puedes! 🎁','🎉 ¡¡LO LOGRASTE!! ¡Felicidades!! 🏆🎉']
+    : ['Start earning your stars! 💪','You are doing great! 🌱','Amazing, already halfway! 🚀','You are a champion! 🦁','Almost done! Keep going! 🎁','🎉 YOU DID IT!! Congratulations!! 🏆🎉'];
+  const motiv = motivMsgs[pct === 0 ? 0 : pct < 25 ? 1 : pct < 50 ? 2 : pct < 75 ? 3 : pct < 100 ? 4 : 5];
+
+  const starsLabel = isMoneyGoal
+    ? `$${(count * (chartData.goalAmount / total)).toFixed(2)}`
+    : `${count} ⭐`;
+
+  const dayHeadersHtml = dayAbbr.slice(0, days).map(d => `<div class="kid-day-label">${d}</div>`).join('');
+
+  const tasksHtml = tasks.map((task, ti) => {
+    const dayBtns = Array.from({length: days}, (_, d) => {
+      const isDone = checked.has(`${ti}-${d}`);
+      return `<button class="kid-day-btn${isDone ? ' done' : ''}" id="kd-${ti}-${d}" onclick="kidTap(${ti},${d},${total},${isMoneyGoal ? chartData.goalAmount : 0})" aria-label="${task.name} day ${d+1}"></button>`;
+    }).join('');
+    return `
+      <div class="kid-task-row">
+        <div class="kid-task-name"><span class="kid-task-icon">${task.icon || '📌'}</span>${task.name}</div>
+        ${dayBtns}
+      </div>`;
+  }).join('');
+
+  document.getElementById('kidOverlay').innerHTML = `
+    <div class="kid-overlay-inner">
+      <div class="kid-header">
+        <div class="kid-greeting">${greeting}</div>
+        ${goal ? `<div class="kid-goal-badge">🎯 ${escapeHtml(goal)}</div>` : ''}
+      </div>
+      <div class="kid-progress-wrap">
+        <div class="kid-stars-row">
+          <div class="kid-stars-count">${starsLabel}</div>
+          <div class="kid-pct">${pct}%</div>
+        </div>
+        <div class="kid-bar-bg">
+          <div class="kid-bar-fill" id="kidBarFill" style="width:${pct}%">${pct > 12 ? pct+'%' : ''}</div>
+        </div>
+        <div class="kid-motivation" id="kidMotiv">${motiv}</div>
+      </div>
+      <div class="kid-days-header">
+        <div></div>
+        ${dayHeadersHtml}
+      </div>
+      <div class="kid-tasks">${tasksHtml}</div>
+    </div>
+    <div class="kid-exit-wrap">
+      <div class="kid-exit-hint" id="kidExitHint"></div>
+      <button class="kid-exit-btn" id="kidExitBtn" onclick="kidExitTap()" title="${lang === 'es' ? 'Salir (toca 3 veces)' : 'Exit (tap 3 times)'}">🔒</button>
+    </div>`;
+}
+
+function kidTap(ti, d, total, goalAmount) {
+  // Mirror the real checkbox
+  const realCb = document.getElementById(`cb-${ti}-${d}`);
+  if (realCb) {
+    toggleCheck(ti, d, total, goalAmount);
+  } else {
+    // Fallback: manually sync
+    const key = `${ti}-${d}`;
+    if (checked.has(key)) { checked.delete(key); }
+    else { checked.add(key); }
+  }
+
+  // Update kid button state
+  const kidBtn = document.getElementById(`kd-${ti}-${d}`);
+  if (kidBtn) {
+    const isDone = checked.has(`${ti}-${d}`);
+    if (isDone) {
+      kidBtn.classList.add('done');
+      spawnKidStarBurst(kidBtn);
+      playStarSound();
+    } else {
+      kidBtn.classList.remove('done');
+    }
+  }
+
+  // Update kid progress
+  updateKidProgress(total, goalAmount);
+}
+
+function updateKidProgress(total, goalAmount) {
+  const count = checked.size;
+  const pct   = total > 0 ? Math.round((count / total) * 100) : 0;
+  const isMoneyGoal = goalAmount > 0;
+
+  const fill = document.getElementById('kidBarFill');
+  const motiv = document.getElementById('kidMotiv');
+  if (fill) {
+    fill.style.width = Math.min(pct, 100) + '%';
+    fill.textContent = pct > 12 ? pct + '%' : '';
+  }
+
+  const starsEl = document.querySelector('.kid-stars-count');
+  const pctEl   = document.querySelector('.kid-pct');
+  if (starsEl) starsEl.textContent = isMoneyGoal
+    ? `$${(count * (goalAmount / total)).toFixed(2)}`
+    : `${count} ⭐`;
+  if (pctEl) pctEl.textContent = pct + '%';
+
+  const msgs = lang === 'es'
+    ? ['¡Empieza a ganar tus estrellas! 💪','¡Vas muy bien! 🌱','¡Increíble, ya llevas la mitad! 🚀','¡Eres un campeón! 🦁','¡Casi terminas! ¡Tú puedes! 🎁','🎉 ¡¡LO LOGRASTE!! ¡Felicidades!! 🏆🎉']
+    : ['Start earning your stars! 💪','You are doing great! 🌱','Amazing, already halfway! 🚀','You are a champion! 🦁','Almost done! Keep going! 🎁','🎉 YOU DID IT!! Congratulations!! 🏆🎉'];
+  if (motiv) motiv.textContent = msgs[pct === 0 ? 0 : pct < 25 ? 1 : pct < 50 ? 2 : pct < 75 ? 3 : pct < 100 ? 4 : 5];
+
+  if (pct >= 100) {
+    setTimeout(() => showCompletionCelebration(), 350);
+  }
+}
+
+function spawnKidStarBurst(el) {
+  const rect = el.getBoundingClientRect();
+  const cx = rect.left + rect.width / 2;
+  const cy = rect.top + rect.height / 2;
+  ['⭐','🌟','✨'].forEach((em, i) => {
+    const s = document.createElement('span');
+    s.className = 'kid-star-burst';
+    s.textContent = em;
+    s.style.left = (cx - 14 + (i - 1) * 22) + 'px';
+    s.style.top  = cy + 'px';
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 750);
+  });
+}
 </script>
 </body>
 </html>
