@@ -1802,6 +1802,122 @@ nav {
   .kid-task-name { font-size: .78rem; gap: 6px; padding: 7px 8px; }
   .kid-task-icon { font-size: 1.1rem; }
 }
+
+/* ═══ Rueda de Premios ═══════════════════════════════════════ */
+#wheelModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.88);
+  z-index: 10001;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+#wheelModal.active { display: flex; }
+
+.wheel-inner {
+  background: linear-gradient(145deg, #1a0533, #0d1f4f);
+  border-radius: 24px;
+  padding: 28px 24px 22px;
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+  border: 1.5px solid rgba(255,255,255,.15);
+  box-shadow: 0 0 60px rgba(124,58,237,.45);
+  animation: celebration-bounce .4s ease;
+}
+.wheel-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.8rem;
+  color: #fbbf24;
+  margin-bottom: 2px;
+}
+.wheel-sub {
+  font-size: .82rem;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 18px;
+}
+.wheel-wrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+.wheel-ptr {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.8rem;
+  pointer-events: none;
+  z-index: 2;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.6));
+}
+#wheelCanvas {
+  border-radius: 50%;
+  display: block;
+  box-shadow: 0 0 32px rgba(124,58,237,.55), 0 0 0 3px rgba(255,255,255,.1);
+}
+.wheel-prize-reveal {
+  display: none;
+  background: linear-gradient(135deg, rgba(251,191,36,.15), rgba(244,114,182,.12));
+  border: 1.5px solid rgba(251,191,36,.45);
+  border-radius: 16px;
+  padding: 14px 18px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.25rem;
+  color: #fde68a;
+  margin-bottom: 14px;
+  animation: celebration-bounce .4s ease;
+}
+.wheel-prize-reveal.show { display: block; }
+.wheel-spin-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  border: none;
+  border-radius: 50px;
+  padding: 14px 0;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.15rem;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 6px 22px rgba(124,58,237,.45);
+  transition: transform .15s, opacity .2s;
+  margin-bottom: 10px;
+}
+.wheel-spin-btn:active { transform: scale(.97); }
+.wheel-spin-btn:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+.wheel-close-btn {
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 50px;
+  padding: 10px 0;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: .85rem;
+  color: rgba(255,255,255,.5);
+  cursor: pointer;
+  transition: color .2s, border-color .2s;
+}
+.wheel-close-btn:hover { color: rgba(255,255,255,.8); border-color: rgba(255,255,255,.35); }
+
+/* celebration gets wheel button */
+.celebration-wheel-btn {
+  background: linear-gradient(135deg, #f59e0b, #f472b6);
+  border: none;
+  border-radius: 50px;
+  padding: 14px 36px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.1rem;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(245,158,11,.4);
+  transition: transform .2s;
+  display: block;
+  margin: 0 auto 12px;
+}
+.celebration-wheel-btn:hover { transform: scale(1.05); }
 </style>
 </head>
 <body>
@@ -2768,6 +2884,20 @@ nav {
 
 <!-- Install Banner (shown automatically) -->
 <div id="kidOverlay"></div>
+
+<div id="wheelModal">
+  <div class="wheel-inner">
+    <div class="wheel-title">🎡 <span id="wheelTitle">Rueda de Premios</span></div>
+    <div class="wheel-sub" id="wheelSub">¡Gira para ganar tu premio!</div>
+    <div class="wheel-wrap">
+      <div class="wheel-ptr">▼</div>
+      <canvas id="wheelCanvas" width="280" height="280"></canvas>
+    </div>
+    <div class="wheel-prize-reveal" id="wheelPrizeReveal"></div>
+    <button class="wheel-spin-btn" id="wheelSpinBtn" onclick="spinWheel()">🎡 ¡Girar!</button>
+    <button class="wheel-close-btn" onclick="closeWheelModal()" id="wheelCloseBtn">Cerrar</button>
+  </div>
+</div>
 
 <div class="install-banner" id="installBanner" style="display:none">
   <span class="install-banner-icon">📲</span>
@@ -4197,17 +4327,17 @@ function showCompletionCelebration() {
     <div class="celebration-content">
       <div class="celebration-emoji">🏆</div>
       <div class="celebration-title">${lang === 'es' ? '¡¡¡FELICIDADES!!!' : 'CONGRATULATIONS!!!'}</div>
-      <div class="celebration-sub">${lang === 'es' ? '¡Has completado todas tus tareas!' : 'You completed all your tasks!'}</div>
-      <button class="celebration-btn" onclick="this.parentElement.parentElement.remove()">
+      <div class="celebration-sub">${lang === 'es' ? '¡Completaste todas tus tareas!' : 'You completed all your tasks!'}</div>
+      <button class="celebration-wheel-btn" onclick="this.closest('.celebration-overlay').remove(); openWheelModal()">
+        🎡 ${lang === 'es' ? '¡Girar la rueda de premios!' : 'Spin the prize wheel!'}
+      </button>
+      <button class="celebration-btn" onclick="this.closest('.celebration-overlay').remove()">
         ${lang === 'es' ? '🎉 ¡Genial!' : '🎉 Awesome!'}
       </button>
     </div>`;
   document.body.appendChild(overlay);
 
-  // Auto-close after 5 seconds
-  setTimeout(() => {
-    if (overlay.parentElement) overlay.remove();
-  }, 5000);
+  setTimeout(() => { if (overlay.parentElement) overlay.remove(); }, 8000);
 }
 
 function resetChart() {
@@ -5816,6 +5946,165 @@ setTimeout(() => {
   // Show banner after 2 seconds
   setTimeout(showInstallBanner, 2000);
 }, 1000);
+
+// ─── Rueda de Premios ─────────────────────────────────────
+const WHEEL_PRIZES_ES = [
+  '🍦 Helado especial',
+  '🎬 Película a elegir',
+  '🎮 1h extra de juego',
+  '🍕 Pizza para cenar',
+  '🛍️ Premio sorpresa',
+  '🏖️ Salida al parque',
+  '🍿 Noche de palomitas',
+  '⭐ ¡Súper campeón!',
+];
+const WHEEL_PRIZES_EN = [
+  '🍦 Special ice cream',
+  '🎬 Pick a movie',
+  '🎮 1h extra gaming',
+  '🍕 Pizza night',
+  '🛍️ Surprise prize',
+  '🏖️ Trip to the park',
+  '🍿 Popcorn movie night',
+  '⭐ Super champion!',
+];
+const WHEEL_COLORS = ['#7c3aed','#0891b2','#059669','#d97706','#db2777','#dc2626','#7c3aed','#0284c7'];
+
+let wheelAngle = 0;
+let wheelSpinning = false;
+let wheelRAF = null;
+
+function openWheelModal() {
+  const modal = document.getElementById('wheelModal');
+  modal.classList.add('active');
+  wheelAngle = 0;
+  wheelSpinning = false;
+  document.getElementById('wheelPrizeReveal').classList.remove('show');
+  const spinBtn = document.getElementById('wheelSpinBtn');
+  spinBtn.disabled = false;
+  spinBtn.textContent = lang === 'es' ? '🎡 ¡Girar!' : '🎡 Spin!';
+  document.getElementById('wheelTitle').textContent = lang === 'es' ? 'Rueda de Premios' : 'Prize Wheel';
+  document.getElementById('wheelSub').textContent = lang === 'es' ? '¡Gira para ganar tu premio!' : 'Spin to win your prize!';
+  document.getElementById('wheelCloseBtn').textContent = lang === 'es' ? 'Cerrar' : 'Close';
+  drawWheel(0);
+}
+
+function closeWheelModal() {
+  document.getElementById('wheelModal').classList.remove('active');
+  if (wheelRAF) { cancelAnimationFrame(wheelRAF); wheelRAF = null; }
+}
+
+function drawWheel(rotation) {
+  const canvas = document.getElementById('wheelCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const prizes = lang === 'es' ? WHEEL_PRIZES_ES : WHEEL_PRIZES_EN;
+  const n = prizes.length;
+  const arc = (2 * Math.PI) / n;
+  const cx = canvas.width / 2;
+  const cy = canvas.height / 2;
+  const r = cx - 4;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Draw segments
+  prizes.forEach((prize, i) => {
+    const startA = rotation + i * arc - Math.PI / 2;
+    const endA   = startA + arc;
+
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, r, startA, endA);
+    ctx.closePath();
+    ctx.fillStyle = WHEEL_COLORS[i % WHEEL_COLORS.length];
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,.18)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // Text
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(startA + arc / 2);
+    ctx.textAlign = 'right';
+    ctx.fillStyle = 'white';
+    ctx.shadowColor = 'rgba(0,0,0,.55)';
+    ctx.shadowBlur = 3;
+    const parts = prize.split(' ');
+    const emoji = parts[0];
+    const label = parts.slice(1).join(' ');
+    const shortLabel = label.length > 14 ? label.slice(0, 13) + '…' : label;
+    ctx.font = '600 11px Nunito, sans-serif';
+    ctx.fillText(shortLabel, r - 8, 5);
+    const labelW = ctx.measureText(shortLabel).width;
+    ctx.font = '14px serif';
+    ctx.fillText(emoji, r - 8 - labelW - 5, 6);
+    ctx.restore();
+  });
+
+  // Center cap
+  ctx.beginPath();
+  ctx.arc(cx, cy, 24, 0, 2 * Math.PI);
+  ctx.fillStyle = '#0f0f1a';
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(255,255,255,.25)';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  ctx.font = '18px serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('⭐', cx, cy);
+}
+
+function spinWheel() {
+  if (wheelSpinning) return;
+  wheelSpinning = true;
+  document.getElementById('wheelSpinBtn').disabled = true;
+  document.getElementById('wheelPrizeReveal').classList.remove('show');
+
+  const prizes = lang === 'es' ? WHEEL_PRIZES_ES : WHEEL_PRIZES_EN;
+  const n = prizes.length;
+  const arc = (2 * Math.PI) / n;
+
+  const targetIndex = Math.floor(Math.random() * n);
+  const spins = 5 + Math.floor(Math.random() * 4);
+  const jitter = (Math.random() * arc * 0.5 - arc * 0.25);
+  // targetAngle: after this rotation, pointer (top, drawn at -π/2) lands on targetIndex's center
+  // Formula: wheelAngle_final = spins*2π - (targetIndex+0.5)*arc + jitter
+  // We need positive wheelAngle so add enough multiples of 2π
+  const rawTarget = -(targetIndex + 0.5) * arc + jitter;
+  const totalRotation = spins * 2 * Math.PI + ((rawTarget % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+  const startAngle = wheelAngle;
+  const endAngle = startAngle + totalRotation;
+  const startTime = performance.now();
+  const duration = 4200 + Math.random() * 900;
+
+  function easeOut(t) { return 1 - Math.pow(1 - t, 4); }
+
+  function frame(now) {
+    const t = Math.min((now - startTime) / duration, 1);
+    wheelAngle = startAngle + totalRotation * easeOut(t);
+    drawWheel(wheelAngle);
+
+    if (t < 1) {
+      wheelRAF = requestAnimationFrame(frame);
+    } else {
+      wheelSpinning = false;
+      wheelAngle = endAngle;
+      // Show prize
+      const reveal = document.getElementById('wheelPrizeReveal');
+      reveal.textContent = `🎉 ${prizes[targetIndex]}`;
+      reveal.classList.add('show');
+      const spinBtn = document.getElementById('wheelSpinBtn');
+      spinBtn.disabled = false;
+      spinBtn.textContent = lang === 'es' ? '🔄 Girar otra vez' : '🔄 Spin again';
+      playWinSound();
+      showConfetti();
+    }
+  }
+
+  wheelRAF = requestAnimationFrame(frame);
+}
 
 // ─── Modo Niño ────────────────────────────────────────────
 const KID_DAY_ABBR_ES = ['L','M','X','J','V','S','D'];
