@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dibujos para Colorear con IA — ChartKids</title>
-<meta name="description" content="Genera dibujos personalizados para colorear con inteligencia artificial. Describe lo que quieres y nuestra IA crea una página para colorear al instante.">
+<meta name="description" content="Describe el dibujo que quieres y nuestra IA elige el mejor dibujo para colorear.">
 <link rel="canonical" href="https://www.chartkids.com/colorear-ia.html">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3864436143903858" crossorigin="anonymous"></script>
@@ -13,7 +13,6 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
 .container{max-width:900px;margin:0 auto;padding:0 20px;}
-
 header{padding:22px 0;border-bottom:1px solid var(--border);margin-bottom:36px;}
 .header-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
 .logo{font-family:'Fredoka One',cursive;font-size:1.5rem;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;}
@@ -24,82 +23,57 @@ header{padding:22px 0;border-bottom:1px solid var(--border);margin-bottom:36px;}
 .lang-toggle{display:flex;background:var(--surface2);border-radius:50px;padding:3px;gap:2px;}
 .lang-btn{padding:5px 14px;border-radius:50px;border:none;background:transparent;color:var(--muted);font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .2s;}
 .lang-btn.active{background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;}
-
-.hero{text-align:center;padding:28px 0 36px;}
-.hero-icon{font-size:3rem;margin-bottom:14px;}
-.hero h1{font-family:'Fredoka One',cursive;font-size:2.2rem;margin-bottom:10px;background:linear-gradient(135deg,var(--pink),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.hero p{color:var(--muted);font-size:.95rem;max-width:540px;margin:0 auto;line-height:1.7;}
-
-.form-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px 32px;margin-bottom:24px;}
-.field-label{font-size:.8rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:9px;display:block;}
+.hero{text-align:center;padding:24px 0 32px;}
+.hero-icon{font-size:2.8rem;margin-bottom:12px;}
+.hero h1{font-family:'Fredoka One',cursive;font-size:2.1rem;margin-bottom:10px;background:linear-gradient(135deg,var(--pink),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p{color:var(--muted);font-size:.94rem;max-width:520px;margin:0 auto;line-height:1.7;}
+.form-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px 28px;margin-bottom:22px;}
+.field-label{font-size:.79rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:9px;display:block;}
 .desc-input{width:100%;background:var(--surface2);border:2px solid var(--border);border-radius:14px;padding:14px 18px;font-family:'Nunito',sans-serif;font-size:1rem;color:var(--text);resize:none;outline:none;transition:border-color .2s;line-height:1.55;}
 .desc-input:focus{border-color:var(--accent);}
 .desc-input::placeholder{color:var(--muted);}
-
-.options-row{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
-.option-group{flex:1;min-width:160px;}
-.option-chips{display:flex;gap:7px;flex-wrap:wrap;}
-.chip{background:var(--surface2);border:1.5px solid var(--border);padding:7px 14px;border-radius:50px;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .18s;font-family:'Nunito',sans-serif;color:var(--text);}
-.chip:hover{border-color:var(--accent);}
-.chip.sel{background:rgba(124,58,237,.15);border-color:var(--accent);color:var(--accent);}
-.chip.sel.age{background:rgba(251,191,36,.15);border-color:var(--yellow);color:var(--yellow);}
-
-.ideas-section{margin-top:20px;}
 .ideas-grid{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px;}
-.idea-chip{background:var(--surface2);border:1.5px solid var(--border);padding:7px 14px;border-radius:50px;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .18s;font-family:'Nunito',sans-serif;color:var(--text);display:flex;align-items:center;gap:5px;}
+.idea-chip{background:var(--surface2);border:1.5px solid var(--border);padding:7px 14px;border-radius:50px;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .18s;font-family:'Nunito',sans-serif;color:var(--text);}
 .idea-chip:hover{border-color:var(--pink);color:var(--pink);background:rgba(236,72,153,.08);}
-
-.btn-generate{width:100%;padding:15px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--pink),var(--accent));color:white;font-family:'Fredoka One',cursive;font-size:1.15rem;cursor:pointer;transition:opacity .2s;margin-top:22px;letter-spacing:.02em;}
+.btn-generate{width:100%;padding:15px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--pink),var(--accent));color:white;font-family:'Fredoka One',cursive;font-size:1.15rem;cursor:pointer;transition:opacity .2s;margin-top:20px;}
 .btn-generate:hover{opacity:.88;}
 .btn-generate:disabled{opacity:.38;cursor:not-allowed;}
-
+/* Gallery */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-bottom:32px;}
+.gallery-card{background:var(--surface);border:2px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:all .2s;}
+.gallery-card:hover,.gallery-card.selected{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 8px 24px rgba(124,58,237,.25);}
+.gallery-card.selected{border-width:2.5px;}
+.gallery-thumb{background:white;display:flex;align-items:center;justify-content:center;height:160px;padding:10px;}
+.gallery-thumb svg{width:100%;height:100%;display:block;}
+.gallery-label{padding:10px 12px;font-size:.85rem;font-weight:800;text-align:center;border-top:1px solid var(--border);}
 /* Loading */
-.loading{text-align:center;padding:52px 20px;display:none;}
-.loading-dots{display:flex;justify-content:center;gap:8px;margin-bottom:16px;}
-.dot{width:12px;height:12px;border-radius:50%;background:var(--accent);animation:bounce .8s infinite;}
+.loading{text-align:center;padding:40px 20px;display:none;}
+.loading-dots{display:flex;justify-content:center;gap:8px;margin-bottom:14px;}
+.dot{width:11px;height:11px;border-radius:50%;background:var(--accent);animation:bounce .8s infinite;}
 .dot:nth-child(2){background:var(--pink);animation-delay:.15s;}
 .dot:nth-child(3){background:var(--accent2);animation-delay:.3s;}
 @keyframes bounce{0%,80%,100%{transform:scale(.7);opacity:.5}40%{transform:scale(1);opacity:1}}
-.loading-status{color:var(--muted);font-size:.92rem;line-height:1.6;}
-.loading-tip{margin-top:10px;font-size:.78rem;color:rgba(255,255,255,.3);}
-
 /* Result */
 .result-card{background:var(--surface);border:2px solid var(--accent);border-radius:var(--radius);overflow:hidden;margin-bottom:32px;display:none;animation:fadeIn .4s ease;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.result-top{padding:20px 28px 0;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
-.result-title{font-family:'Fredoka One',cursive;font-size:1.3rem;}
-.result-badge{background:rgba(124,58,237,.15);color:#a78bfa;border:1px solid rgba(124,58,237,.3);border-radius:50px;padding:4px 14px;font-size:.75rem;font-weight:800;}
-.svg-stage{display:flex;align-items:center;justify-content:center;padding:28px 28px 20px;background:white;margin:18px 28px 0;border-radius:14px;border:2px dashed #e0e0e0;min-height:340px;}
-.svg-stage svg{width:100%;height:auto;max-height:75vh;display:block;}
-.fallback-note{text-align:center;padding:6px 28px 0;font-size:.77rem;color:var(--muted);}
-.result-actions{display:flex;gap:10px;flex-wrap:wrap;padding:18px 28px 26px;}
-.btn-action{flex:1;min-width:120px;padding:12px 16px;border-radius:50px;font-weight:800;font-size:.86rem;cursor:pointer;border:none;font-family:'Nunito',sans-serif;display:flex;align-items:center;justify-content:center;gap:7px;transition:all .2s;}
+.result-top{padding:18px 26px 0;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.result-title{font-family:'Fredoka One',cursive;font-size:1.25rem;}
+.result-match{background:rgba(124,58,237,.15);color:#a78bfa;border:1px solid rgba(124,58,237,.3);border-radius:50px;padding:4px 13px;font-size:.74rem;font-weight:800;}
+.svg-stage{display:flex;align-items:center;justify-content:center;padding:24px;background:white;margin:16px 24px 0;border-radius:12px;border:2px dashed #e0e0e0;min-height:300px;}
+.svg-stage svg{width:100%;height:auto;max-height:72vh;display:block;}
+.result-actions{display:flex;gap:10px;flex-wrap:wrap;padding:16px 24px 24px;}
+.btn-action{flex:1;min-width:110px;padding:11px 14px;border-radius:50px;font-weight:800;font-size:.85rem;cursor:pointer;border:none;font-family:'Nunito',sans-serif;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s;}
 .btn-action:hover{opacity:.85;transform:translateY(-1px);}
 .btn-print{background:linear-gradient(135deg,var(--green),#16a34a);color:white;}
 .btn-download{background:linear-gradient(135deg,var(--accent2),var(--accent));color:white;}
 .btn-another{background:var(--surface2);border:2px solid var(--border);color:var(--text);}
-
-/* Tips */
-.tips-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px 28px;margin-bottom:40px;}
-.tips-card h3{font-family:'Fredoka One',cursive;font-size:1.05rem;margin-bottom:14px;}
-.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;}
-.tip-item{background:var(--surface2);border-radius:11px;padding:12px 14px;font-size:.83rem;line-height:1.5;display:flex;gap:9px;}
-.tip-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px;}
-
 footer{text-align:center;padding:28px 0;color:var(--muted);font-size:.8rem;border-top:1px solid var(--border);}
 footer a{color:var(--muted);text-decoration:none;}
 footer a:hover{color:var(--text);}
-
-@media(max-width:560px){
-  .hero h1{font-size:1.75rem;}
-  .svg-stage{padding:16px;margin:14px 16px 0;}
-  .result-actions{padding:14px 16px 22px;}
-  .options-row{gap:10px;}
-}
+@media(max-width:540px){.hero h1{font-size:1.7rem;}.svg-stage{padding:14px;margin:12px 14px 0;}}
 </style>
 </head>
 <body>
-
 <header>
   <div class="container">
     <div class="header-inner">
@@ -118,81 +92,54 @@ footer a:hover{color:var(--text);}
 <main class="container">
   <div class="hero">
     <div class="hero-icon">🎨</div>
-    <h1 id="heroTitle">Dibujos con IA para Colorear</h1>
-    <p id="heroDesc">Describe cualquier escena — personajes, lugares, animales — y nuestra IA genera un dibujo de página completa listo para imprimir y colorear.</p>
+    <h1 id="heroTitle">Dibujos para Colorear</h1>
+    <p id="heroDesc">Describe lo que quieres colorear y nuestra IA elige el mejor dibujo de página completa para imprimir.</p>
   </div>
 
   <div class="form-card">
-    <label class="field-label" id="descLabel" for="descInput">Describe tu dibujo</label>
-    <textarea class="desc-input" id="descInput" rows="3" placeholder="Ej: un dragón amigable volando sobre un castillo medieval con montañas de fondo..." maxlength="300"></textarea>
-
-    <div class="options-row">
-      <div class="option-group">
-        <div class="field-label" id="ageLabel">Edad del niño</div>
-        <div class="option-chips" id="ageChips">
-          <button class="chip age sel" data-v="3-5" onclick="selAge(this)">3-5</button>
-          <button class="chip age" data-v="6-9" onclick="selAge(this)">6-9</button>
-          <button class="chip age" data-v="10+" onclick="selAge(this)">10+</button>
-        </div>
-      </div>
-      <div class="option-group">
-        <div class="field-label" id="styleLabel">Estilo</div>
-        <div class="option-chips" id="styleChips">
-          <button class="chip sel" data-v="simple" onclick="selStyle(this)" id="styleSimple">Simple</button>
-          <button class="chip" data-v="detailed" onclick="selStyle(this)" id="styleDetailed">Detallado</button>
-        </div>
-      </div>
+    <label class="field-label" id="descLabel" for="descInput">¿Qué quieres colorear hoy?</label>
+    <textarea class="desc-input" id="descInput" rows="2" placeholder="Ej: un dragón con castillo y montañas..." maxlength="250"></textarea>
+    <div class="field-label" style="margin-top:16px" id="ideasLabel">Ideas populares</div>
+    <div class="ideas-grid" id="ideasGrid">
+      <button class="idea-chip" onclick="useIdea(this)">🐉 Dragón con castillo</button>
+      <button class="idea-chip" onclick="useIdea(this)">🧜 Sirena bajo el mar</button>
+      <button class="idea-chip" onclick="useIdea(this)">🚀 Astronauta en el espacio</button>
+      <button class="idea-chip" onclick="useIdea(this)">🦕 Dinosaurios en el bosque</button>
+      <button class="idea-chip" onclick="useIdea(this)">🦄 Unicornio con arcoíris</button>
+      <button class="idea-chip" onclick="useIdea(this)">🏴‍☠️ Barco pirata</button>
+      <button class="idea-chip" onclick="useIdea(this)">👸 Princesa en el jardín</button>
+      <button class="idea-chip" onclick="useIdea(this)">🐄 Animales de la granja</button>
+      <button class="idea-chip" onclick="useIdea(this)">🦸 Superhéroe en la ciudad</button>
+      <button class="idea-chip" onclick="useIdea(this)">🐠 Vida bajo el océano</button>
+      <button class="idea-chip" onclick="useIdea(this)">🎪 Circo con elefante</button>
+      <button class="idea-chip" onclick="useIdea(this)">🐱 Gatito en el jardín</button>
     </div>
-
-    <div class="ideas-section">
-      <div class="field-label" id="ideasLabel">Ideas de escenas</div>
-      <div class="ideas-grid" id="ideasGrid">
-        <button class="idea-chip" onclick="useIdea(this)">🐉 Dragón con castillo</button>
-        <button class="idea-chip" onclick="useIdea(this)">🧜 Sirena bajo el mar</button>
-        <button class="idea-chip" onclick="useIdea(this)">🚀 Astronauta en el espacio</button>
-        <button class="idea-chip" onclick="useIdea(this)">🦁 Safari en la sabana</button>
-        <button class="idea-chip" onclick="useIdea(this)">🏰 Princesa en su torre</button>
-        <button class="idea-chip" onclick="useIdea(this)">🌋 Dinosaurios en el bosque</button>
-        <button class="idea-chip" onclick="useIdea(this)">🧙 Mago con caldero mágico</button>
-        <button class="idea-chip" onclick="useIdea(this)">🦋 Jardín de mariposas</button>
-        <button class="idea-chip" onclick="useIdea(this)">🐬 Océano con animales marinos</button>
-        <button class="idea-chip" onclick="useIdea(this)">🎠 Parque de diversiones</button>
-      </div>
-    </div>
-
-    <button class="btn-generate" id="btnGenerate" onclick="generateDrawing()">
-      <span id="btnGenerateText">✨ Generar Dibujo</span>
+    <button class="btn-generate" id="btnGenerate" onclick="generate()">
+      <span id="btnGenerateText">🎨 Encontrar mi dibujo</span>
     </button>
   </div>
 
   <div class="loading" id="loading">
     <div class="loading-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-    <div class="loading-status" id="loadingStatus">Creando tu dibujo con IA...</div>
-    <div class="loading-tip" id="loadingTip">Las escenas detalladas pueden tardar hasta 20 segundos</div>
+    <p id="loadingText" style="color:var(--muted);font-size:.92rem">Buscando el mejor dibujo para ti...</p>
   </div>
 
   <div class="result-card" id="resultCard">
     <div class="result-top">
-      <div class="result-title" id="resultTitle">¡Tu dibujo está listo!</div>
-      <div class="result-badge" id="resultBadge">Para colorear</div>
+      <div class="result-title" id="resultTitle">¡Dibujo listo para colorear!</div>
+      <div class="result-match" id="resultMatch">🎨 Seleccionado por IA</div>
     </div>
     <div class="svg-stage" id="svgStage"></div>
-    <p class="fallback-note" id="fallbackNote" style="display:none"></p>
     <div class="result-actions">
       <button class="btn-action btn-print" onclick="printDrawing()">🖨️ <span id="printText">Imprimir</span></button>
-      <button class="btn-action btn-download" onclick="downloadSVG()">⬇️ <span id="downloadText">Descargar SVG</span></button>
-      <button class="btn-action btn-another" onclick="generateAnother()">🎲 <span id="anotherText">Nuevo dibujo</span></button>
+      <button class="btn-action btn-download" onclick="downloadSVG()">⬇️ <span id="dlText">Descargar SVG</span></button>
+      <button class="btn-action btn-another" onclick="newSearch()">🔍 <span id="otherText">Otro dibujo</span></button>
     </div>
   </div>
 
-  <div class="tips-card">
-    <h3 id="tipsTitle">💡 Consejos</h3>
-    <div class="tips-grid">
-      <div class="tip-item"><div class="tip-icon">🎭</div><div id="tip1">Describe una escena completa: personaje principal + lugar + elementos de fondo para un dibujo más rico.</div></div>
-      <div class="tip-item"><div class="tip-icon">🖍️</div><div id="tip2">Elige "Detallado" para niños mayores que disfrutan colorear áreas pequeñas con más precisión.</div></div>
-      <div class="tip-item"><div class="tip-icon">📄</div><div id="tip3">Imprime en papel de 90g o más. El botón Imprimir genera una hoja tamaño carta lista para usar.</div></div>
-      <div class="tip-item"><div class="tip-icon">🔄</div><div id="tip4">Si no te gusta el resultado, haz clic en "Nuevo dibujo" — cada generación es diferente.</div></div>
-    </div>
+  <div id="gallerySection" style="display:none">
+    <div class="field-label" style="margin-bottom:14px" id="galleryLabel">O elige directamente de la galería</div>
+    <div class="gallery-grid" id="galleryGrid"></div>
   </div>
 </main>
 
@@ -201,664 +148,7 @@ footer a:hover{color:var(--text);}
     <p>ChartKids · <a href="index.html">Inicio</a> · <a href="descargables.html">Descargables</a> · <a href="privacy.html">Privacidad</a></p>
   </div>
 </footer>
-
-<script>
-const API_URL = 'https://chartkids-api.jrau2303.workers.dev';
-let lang = 'es';
-let currentSVG = '';
-let currentDesc = '';
-let selectedAge = '3-5';
-let selectedStyle = 'simple';
-
-const TXT = {
-  es: {
-    heroTitle: 'Dibujos con IA para Colorear',
-    heroDesc: 'Describe cualquier escena — personajes, lugares, animales — y nuestra IA genera un dibujo de página completa listo para imprimir y colorear.',
-    descLabel: 'Describe tu dibujo',
-    placeholder: 'Ej: un dragón amigable volando sobre un castillo medieval con montañas de fondo...',
-    ageLabel: 'Edad del niño',
-    styleLabel: 'Estilo',
-    styleSimple: 'Simple',
-    styleDetailed: 'Detallado',
-    ideasLabel: 'Ideas de escenas',
-    ideas: ['🐉 Dragón con castillo','🧜 Sirena bajo el mar','🚀 Astronauta en el espacio','🦁 Safari en la sabana','🏰 Princesa en su torre','🌋 Dinosaurios en el bosque','🧙 Mago con caldero mágico','🦋 Jardín de mariposas','🐬 Océano con animales marinos','🎠 Parque de diversiones'],
-    btnGenerate: '✨ Generar Dibujo',
-    loadingStatus: 'Creando tu dibujo con IA...',
-    loadingTip: 'Las escenas detalladas pueden tardar hasta 20 segundos',
-    resultTitle: '¡Tu dibujo está listo!',
-    resultBadge: 'Para colorear',
-    printText: 'Imprimir',
-    downloadText: 'Descargar SVG',
-    anotherText: 'Nuevo dibujo',
-    tipsTitle: '💡 Consejos',
-    tip1: 'Describe una escena completa: personaje principal + lugar + elementos de fondo para un dibujo más rico.',
-    tip2: 'Elige "Detallado" para niños mayores que disfrutan colorear áreas pequeñas con más precisión.',
-    tip3: 'Imprime en papel de 90g o más. El botón Imprimir genera una hoja tamaño carta lista para usar.',
-    tip4: 'Si no te gusta el resultado, haz clic en "Nuevo dibujo" — cada generación es diferente.',
-    fallbackNote: 'Dibujo alternativo basado en tu descripción. Intenta de nuevo para un resultado personalizado.',
-    backBtn: '← Descargables',
-    printTitle: 'Dibujo para colorear',
-    printSub: 'Colorea con crayones o marcadores · chartkids.com',
-    errorRetry: 'Hubo un error al conectar. Intenta de nuevo.',
-  },
-  en: {
-    heroTitle: 'AI Coloring Pages',
-    heroDesc: 'Describe any scene — characters, places, animals — and our AI generates a full-page drawing ready to print and color.',
-    descLabel: 'Describe your drawing',
-    placeholder: 'E.g.: a friendly dragon flying over a medieval castle with mountains in the background...',
-    ageLabel: "Child's age",
-    styleLabel: 'Style',
-    styleSimple: 'Simple',
-    styleDetailed: 'Detailed',
-    ideasLabel: 'Scene ideas',
-    ideas: ['🐉 Dragon with castle','🧜 Mermaid underwater','🚀 Astronaut in space','🦁 Safari on the savanna','🏰 Princess in her tower','🌋 Dinosaurs in the forest','🧙 Wizard with magic cauldron','🦋 Butterfly garden','🐬 Ocean with sea animals','🎠 Amusement park'],
-    btnGenerate: '✨ Generate Drawing',
-    loadingStatus: 'Creating your drawing with AI...',
-    loadingTip: 'Detailed scenes can take up to 20 seconds',
-    resultTitle: 'Your drawing is ready!',
-    resultBadge: 'Coloring page',
-    printText: 'Print',
-    downloadText: 'Download SVG',
-    anotherText: 'New drawing',
-    tipsTitle: '💡 Tips',
-    tip1: 'Describe a full scene: main character + setting + background elements for a richer drawing.',
-    tip2: 'Choose "Detailed" for older children who enjoy coloring smaller areas with more precision.',
-    tip3: 'Print on 90g or heavier paper. The Print button generates a letter-size page ready to use.',
-    tip4: 'If you don\'t like the result, click "New drawing" — each generation is different.',
-    fallbackNote: 'Alternative drawing based on your description. Try again for a custom result.',
-    backBtn: '← Printables',
-    printTitle: 'Coloring page',
-    printSub: 'Color with crayons or markers · chartkids.com',
-    errorRetry: 'Connection error. Please try again.',
-  }
-};
-
-function setLang(l) {
-  lang = l;
-  document.getElementById('btnES').classList.toggle('active', l === 'es');
-  document.getElementById('btnEN').classList.toggle('active', l === 'en');
-  applyTranslations();
-}
-
-function applyTranslations() {
-  const t = TXT[lang];
-  const ids = ['heroTitle','heroDesc','descLabel','ageLabel','styleLabel','ideasLabel','btnGenerateText','loadingStatus','loadingTip','resultTitle','resultBadge','printText','downloadText','anotherText','tipsTitle','tip1','tip2','tip3','tip4','backBtn'];
-  ids.forEach(id => {
-    const el = document.getElementById(id);
-    if (el && t[id] !== undefined) el.textContent = t[id];
-  });
-  document.getElementById('descInput').placeholder = t.placeholder;
-  document.getElementById('styleSimple').textContent = t.styleSimple;
-  document.getElementById('styleDetailed').textContent = t.styleDetailed;
-  const chips = document.querySelectorAll('#ideasGrid .idea-chip');
-  t.ideas.forEach((txt, i) => { if (chips[i]) chips[i].textContent = txt; });
-}
-
-function selAge(btn) {
-  document.querySelectorAll('#ageChips .chip').forEach(c => c.classList.remove('sel'));
-  btn.classList.add('sel');
-  selectedAge = btn.dataset.v;
-}
-
-function selStyle(btn) {
-  document.querySelectorAll('#styleChips .chip').forEach(c => c.classList.remove('sel'));
-  btn.classList.add('sel');
-  selectedStyle = btn.dataset.v;
-}
-
-function useIdea(btn) {
-  const text = btn.textContent.replace(/^[\p{Emoji}‍\s]+/u, '').trim();
-  document.getElementById('descInput').value = text;
-  document.getElementById('descInput').focus();
-}
-
-function buildPrompt(desc, age, style, lang) {
-  const isSimple = style === 'simple';
-  const ageNote = age === '3-5'
-    ? (lang === 'es' ? 'niños de 3-5 años (formas muy grandes y simples, pocas líneas)' : 'children aged 3-5 (very large simple shapes, few lines)')
-    : age === '6-9'
-    ? (lang === 'es' ? 'niños de 6-9 años (formas medianas, algo de detalle)' : 'children aged 6-9 (medium shapes, some detail)')
-    : (lang === 'es' ? 'niños de 10+ años (más detalles y texturas)' : 'children aged 10+ (more details and textures)');
-
-  const styleNote = isSimple
-    ? (lang === 'es' ? 'contornos gruesos (stroke-width 4-6), formas grandes y redondeadas' : 'thick outlines (stroke-width 4-6), large rounded shapes')
-    : (lang === 'es' ? 'contornos medios (stroke-width 2.5-4), más elementos y detalles internos' : 'medium outlines (stroke-width 2.5-4), more elements and internal details');
-
-  if (lang === 'es') {
-    return `Eres un artista experto en páginas para colorear para niños. Crea un SVG de página completa para colorear basado en: "${desc}"
-
-REGLAS ESTRICTAS — sigue TODAS sin excepción:
-1. Responde SOLO con el código SVG. Sin explicación, sin markdown, sin bloques de código. Empieza con <svg y termina con </svg>.
-2. viewBox="0 0 600 780" (proporción carta vertical)
-3. El dibujo debe LLENAR toda la página — usa todo el espacio
-4. Estilo para ${ageNote}
-5. ${styleNote}
-6. TODOS los elementos: fill="none" stroke="#1a1a1a" (ajusta stroke-width según el elemento)
-7. Crea una ESCENA COMPLETA con: elemento principal (grande, ocupa 40-60% del espacio), elementos secundarios, fondo con detalles (suelo, cielo, nubes, árboles u otros elementos contextuales)
-8. Sin texto dentro del SVG
-9. Asegúrate de que cada elemento sea reconocible y tenga espacio para colorear
-
-Dibuja ahora el SVG:`;
-  } else {
-    return `You are an expert artist specializing in children's coloring pages. Create a full-page coloring SVG based on: "${desc}"
-
-STRICT RULES — follow ALL without exception:
-1. Respond ONLY with the SVG code. No explanation, no markdown, no code blocks. Start with <svg and end with </svg>.
-2. viewBox="0 0 600 780" (letter portrait proportion)
-3. The drawing must FILL the entire page — use all the space
-4. Style for ${ageNote}
-5. ${styleNote}
-6. ALL elements: fill="none" stroke="#1a1a1a" (adjust stroke-width per element)
-7. Create a COMPLETE SCENE with: main element (large, 40-60% of space), secondary elements, background details (ground, sky, clouds, trees or other contextual elements)
-8. No text inside the SVG
-9. Make sure each element is recognizable and has space to color
-
-Draw the SVG now:`;
-  }
-}
-
-function extractSVG(text) {
-  const m = text.match(/<svg[\s\S]*?<\/svg>/i);
-  if (!m) return null;
-  const svg = m[0];
-  if (svg.length < 200) return null;
-  return svg;
-}
-
-async function generateDrawing() {
-  const desc = document.getElementById('descInput').value.trim();
-  if (!desc) { document.getElementById('descInput').focus(); return; }
-
-  currentDesc = desc;
-  document.getElementById('btnGenerate').disabled = true;
-  document.getElementById('loading').style.display = 'block';
-  document.getElementById('resultCard').style.display = 'none';
-
-  const prompt = buildPrompt(desc, selectedAge, selectedStyle, lang);
-
-  try {
-    const res = await fetch(API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        messages: [{ role: 'user', content: prompt }],
-        lang
-      })
-    });
-    if (!res.ok) throw new Error('API error');
-    const data = await res.json();
-    const raw = data.response || '';
-    const svg = extractSVG(raw);
-    showResult(svg || getFallbackSVG(desc), !svg);
-  } catch (e) {
-    showResult(getFallbackSVG(desc), true);
-  }
-}
-
-function showResult(svg, isFallback) {
-  currentSVG = svg;
-  document.getElementById('loading').style.display = 'none';
-  document.getElementById('btnGenerate').disabled = false;
-  document.getElementById('svgStage').innerHTML = svg;
-  const note = document.getElementById('fallbackNote');
-  note.style.display = isFallback ? 'block' : 'none';
-  if (isFallback) note.textContent = TXT[lang].fallbackNote;
-  document.getElementById('resultCard').style.display = 'block';
-  setTimeout(() => document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 80);
-}
-
-function printDrawing() {
-  if (!currentSVG) return;
-  const t = TXT[lang];
-  const title = currentDesc || t.printTitle;
-  const w = window.open('', '_blank');
-  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8">
-<title>${title} — ChartKids</title>
-<style>
-  *{margin:0;padding:0;box-sizing:border-box;}
-  @page{size:letter portrait;margin:0.35in 0.45in;}
-  body{font-family:Arial,sans-serif;background:white;height:100vh;display:flex;flex-direction:column;}
-  .hdr{text-align:center;padding-bottom:10px;border-bottom:2px dashed #ddd;margin-bottom:14px;flex-shrink:0;}
-  .hdr h1{font-size:1.35rem;color:#7c3aed;font-weight:900;}
-  .hdr p{font-size:.72rem;color:#aaa;margin-top:2px;}
-  .drawing{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;}
-  .drawing svg{width:auto;height:auto;max-width:100%;max-height:100%;display:block;}
-  .ftr{text-align:center;padding-top:8px;border-top:2px dashed #ddd;margin-top:10px;font-size:.65rem;color:#ccc;flex-shrink:0;}
-</style></head><body>
-<div class="hdr"><h1>${title}</h1><p>${t.printSub}</p></div>
-<div class="drawing">${currentSVG}</div>
-<div class="ftr">chartkids.com · ${lang==='es'?'Generado con IA':'AI generated'}</div>
-</body></html>`);
-  w.document.close();
-  setTimeout(() => w.print(), 500);
-}
-
-function downloadSVG() {
-  if (!currentSVG) return;
-  const blob = new Blob([currentSVG], { type: 'image/svg+xml' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `chartkids-colorear-${Date.now()}.svg`;
-  a.click();
-  URL.revokeObjectURL(a.href);
-}
-
-function generateAnother() {
-  document.getElementById('resultCard').style.display = 'none';
-  document.getElementById('descInput').value = '';
-  document.getElementById('descInput').focus();
-}
-
-// Fallback SVGs keyed by keyword patterns
-function getFallbackSVG(desc) {
-  const d = desc.toLowerCase();
-  // Castle / dragon scene
-  if (/castillo|castle|dragon|dragón/.test(d)) return SCENE_CASTLE_DRAGON;
-  if (/sirena|mermaid|mar|ocean|sea/.test(d)) return SCENE_OCEAN;
-  if (/espacio|space|cohete|rocket|astronauta/.test(d)) return SCENE_SPACE;
-  if (/selva|bosque|forest|dinosaur|dinosaurio/.test(d)) return SCENE_FOREST;
-  return SCENE_CASTLE_DRAGON;
-}
-
-const SCENE_CASTLE_DRAGON = `<svg viewBox="0 0 600 780" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#1a1a1a">
-  <!-- Sky background -->
-  <rect x="0" y="0" width="600" height="500" rx="0" stroke="none" fill="none"/>
-  <!-- Sun -->
-  <circle cx="520" cy="80" r="45" stroke-width="4"/>
-  <line x1="520" y1="14" x2="520" y2="2" stroke-width="3"/>
-  <line x1="520" y1="158" x2="520" y2="146" stroke-width="3"/>
-  <line x1="454" y1="80" x2="442" y2="80" stroke-width="3"/>
-  <line x1="586" y1="80" x2="598" y2="80" stroke-width="3"/>
-  <line x1="473" y1="33" x2="465" y2="25" stroke-width="3"/>
-  <line x1="567" y1="127" x2="575" y2="135" stroke-width="3"/>
-  <line x1="567" y1="33" x2="575" y2="25" stroke-width="3"/>
-  <line x1="473" y1="127" x2="465" y2="135" stroke-width="3"/>
-  <!-- Clouds -->
-  <ellipse cx="100" cy="70" rx="55" ry="30" stroke-width="3"/>
-  <ellipse cx="140" cy="55" rx="40" ry="28" stroke-width="3"/>
-  <ellipse cx="65" cy="60" rx="35" ry="22" stroke-width="3"/>
-  <ellipse cx="320" cy="100" rx="50" ry="26" stroke-width="3"/>
-  <ellipse cx="355" cy="88" rx="36" ry="24" stroke-width="3"/>
-  <ellipse cx="290" cy="92" rx="32" ry="20" stroke-width="3"/>
-  <!-- Mountains -->
-  <polygon points="0,420 120,220 240,420" stroke-width="4" stroke-linejoin="round"/>
-  <polygon points="100,420 240,200 380,420" stroke-width="4" stroke-linejoin="round"/>
-  <polygon points="300,420 430,230 560,420" stroke-width="4" stroke-linejoin="round"/>
-  <polygon points="450,420 570,260 680,420" stroke-width="4" stroke-linejoin="round"/>
-  <!-- Snow caps -->
-  <polygon points="120,220 100,260 140,260" stroke-width="2.5"/>
-  <polygon points="240,200 218,245 262,245" stroke-width="2.5"/>
-  <polygon points="430,230 412,268 448,268" stroke-width="2.5"/>
-  <!-- Ground / grass -->
-  <rect x="0" y="490" width="600" height="290" stroke-width="3"/>
-  <path d="M0,490 Q50,470 100,490 Q150,510 200,490 Q250,470 300,490 Q350,510 400,490 Q450,470 500,490 Q550,510 600,490" stroke-width="3"/>
-  <!-- Grass tufts -->
-  <path d="M30,490 L25,475 L35,480 L40,465 L45,480 L55,475 L50,490" stroke-width="2.5"/>
-  <path d="M530,490 L525,475 L535,480 L540,465 L545,480 L555,475 L550,490" stroke-width="2.5"/>
-  <path d="M160,490 L155,477 L165,482 L170,469 L175,482 L185,477 L180,490" stroke-width="2.5"/>
-  <!-- Castle -->
-  <rect x="180" y="290" width="240" height="220" stroke-width="5"/>
-  <!-- Castle towers -->
-  <rect x="155" y="250" width="70" height="120" stroke-width="4"/>
-  <rect x="375" y="250" width="70" height="120" stroke-width="4"/>
-  <!-- Tower battlements -->
-  <rect x="155" y="238" width="16" height="18" stroke-width="3"/>
-  <rect x="177" y="238" width="16" height="18" stroke-width="3"/>
-  <rect x="199" y="238" width="16" height="18" stroke-width="3"/>
-  <rect x="375" y="238" width="16" height="18" stroke-width="3"/>
-  <rect x="397" y="238" width="16" height="18" stroke-width="3"/>
-  <rect x="419" y="238" width="16" height="18" stroke-width="3"/>
-  <!-- Main wall battlements -->
-  <rect x="180" y="278" width="18" height="18" stroke-width="3"/>
-  <rect x="206" y="278" width="18" height="18" stroke-width="3"/>
-  <rect x="232" y="278" width="18" height="18" stroke-width="3"/>
-  <rect x="258" y="278" width="18" height="18" stroke-width="3"/>
-  <rect x="284" y="278" width="18" height="18" stroke-width="3"/>
-  <rect x="310" y="278" width="18" height="18" stroke-width="3"/>
-  <rect x="336" y="278" width="18" height="18" stroke-width="3"/>
-  <rect x="362" y="278" width="18" height="18" stroke-width="3"/>
-  <!-- Castle gate (arch) -->
-  <path d="M256,510 L256,420 Q300,390 344,420 L344,510" stroke-width="5" stroke-linejoin="round"/>
-  <rect x="285" y="455" width="30" height="8" rx="2" stroke-width="2.5"/>
-  <!-- Tower windows -->
-  <path d="M180,295 L180,275 Q190,265 200,275 L200,295" stroke-width="3"/>
-  <path d="M400,295 L400,275 Q410,265 420,275 L420,295" stroke-width="3"/>
-  <!-- Castle windows -->
-  <path d="M220,340 L220,315 Q232,305 244,315 L244,340" stroke-width="3"/>
-  <path d="M356,340 L356,315 Q368,305 380,315 L380,340" stroke-width="3"/>
-  <!-- Flag -->
-  <line x1="190" y1="238" x2="190" y2="195" stroke-width="3"/>
-  <polygon points="190,195 220,207 190,218" stroke-width="2.5"/>
-  <!-- Dragon -->
-  <ellipse cx="430" cy="180" rx="80" ry="50" stroke-width="5"/>
-  <!-- Dragon head -->
-  <ellipse cx="510" cy="145" rx="45" ry="35" stroke-width="5"/>
-  <!-- Dragon eye -->
-  <circle cx="525" cy="138" r="8" stroke-width="3"/>
-  <circle cx="527" cy="137" r="3" stroke-width="3"/>
-  <!-- Dragon mouth / teeth -->
-  <path d="M540,152 Q550,162 540,170" stroke-width="3"/>
-  <path d="M530,165 L535,175 L542,165 L549,175 L556,165" stroke-width="2.5" stroke-linejoin="round"/>
-  <!-- Dragon nostril -->
-  <path d="M545,148 Q550,143 555,148" stroke-width="2.5"/>
-  <!-- Dragon horns -->
-  <path d="M508,112 L498,90 L518,105" stroke-width="3" stroke-linejoin="round"/>
-  <path d="M525,108 L520,85 L535,100" stroke-width="3" stroke-linejoin="round"/>
-  <!-- Dragon wings -->
-  <path d="M390,155 Q330,100 280,130 Q310,160 360,165 Q390,155 390,165" stroke-width="4" stroke-linejoin="round"/>
-  <path d="M310,130 L290,145" stroke-width="2.5"/>
-  <path d="M330,118 L315,135" stroke-width="2.5"/>
-  <path d="M350,112 L340,130" stroke-width="2.5"/>
-  <!-- Dragon tail -->
-  <path d="M355,205 Q300,230 260,215 Q240,240 265,250 Q290,235 340,225 Q380,220 400,205" stroke-width="4" stroke-linecap="round"/>
-  <!-- Dragon spines -->
-  <path d="M400,132 L388,110 L405,128" stroke-width="3" stroke-linejoin="round"/>
-  <path d="M420,125 L412,102 L428,120" stroke-width="3" stroke-linejoin="round"/>
-  <path d="M440,122 L435,98 L450,118" stroke-width="3" stroke-linejoin="round"/>
-  <!-- Dragon legs -->
-  <path d="M410,225 L405,265 L390,270 L398,275 L415,270 L420,265 L425,275 L430,265 L425,225" stroke-width="4" stroke-linejoin="round"/>
-  <path d="M450,228 L448,268 L435,273 L443,278 L458,272 L462,268 L468,278 L472,268 L468,228" stroke-width="4" stroke-linejoin="round"/>
-  <!-- Fire breath -->
-  <path d="M540,158 Q560,148 580,155 Q570,165 590,168 Q575,175 585,185 Q565,180 570,192 Q550,182 555,196 Q535,185 540,198 Q520,185 525,175 Q510,168 525,162 Q540,156 540,158 Z" stroke-width="3"/>
-  <!-- Trees -->
-  <rect x="30" y="440" width="18" height="55" stroke-width="3"/>
-  <ellipse cx="39" cy="425" rx="28" ry="35" stroke-width="3"/>
-  <ellipse cx="39" cy="400" rx="22" ry="28" stroke-width="3"/>
-  <rect x="540" y="445" width="18" height="50" stroke-width="3"/>
-  <ellipse cx="549" cy="428" rx="26" ry="32" stroke-width="3"/>
-  <ellipse cx="549" cy="404" rx="20" ry="26" stroke-width="3"/>
-  <!-- Path to castle -->
-  <path d="M200,780 Q240,660 256,510" stroke-width="4" stroke-dasharray="12,8"/>
-  <path d="M400,780 Q360,660 344,510" stroke-width="4" stroke-dasharray="12,8"/>
-  <!-- Flowers -->
-  <circle cx="80" cy="494" r="5" stroke-width="2"/>
-  <circle cx="90" cy="490" r="4" stroke-width="2"/>
-  <circle cx="80" cy="484" r="4" stroke-width="2"/>
-  <circle cx="70" cy="490" r="4" stroke-width="2"/>
-  <circle cx="80" cy="494" r="2" stroke-width="2"/>
-  <circle cx="490" cy="494" r="5" stroke-width="2"/>
-  <circle cx="500" cy="490" r="4" stroke-width="2"/>
-  <circle cx="490" cy="484" r="4" stroke-width="2"/>
-  <circle cx="480" cy="490" r="4" stroke-width="2"/>
-</svg>`;
-
-const SCENE_OCEAN = `<svg viewBox="0 0 600 780" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#1a1a1a">
-  <!-- Sky -->
-  <rect x="0" y="0" width="600" height="300" stroke="none"/>
-  <!-- Sun -->
-  <circle cx="540" cy="70" r="40" stroke-width="4"/>
-  <line x1="540" y1="18" x2="540" y2="6" stroke-width="3"/>
-  <line x1="540" y1="132" x2="540" y2="120" stroke-width="3"/>
-  <line x1="488" y1="70" x2="476" y2="70" stroke-width="3"/>
-  <line x1="592" y1="70" x2="604" y2="70" stroke-width="3"/>
-  <!-- Clouds -->
-  <ellipse cx="120" cy="60" rx="60" ry="28" stroke-width="3"/>
-  <ellipse cx="155" cy="46" rx="42" ry="26" stroke-width="3"/>
-  <ellipse cx="88" cy="54" rx="36" ry="22" stroke-width="3"/>
-  <ellipse cx="340" cy="90" rx="55" ry="26" stroke-width="3"/>
-  <!-- Ocean waves -->
-  <path d="M0,300 Q75,270 150,300 Q225,330 300,300 Q375,270 450,300 Q525,330 600,300 L600,780 L0,780 Z" stroke-width="4"/>
-  <path d="M0,350 Q75,325 150,350 Q225,375 300,350 Q375,325 450,350 Q525,375 600,350" stroke-width="3"/>
-  <path d="M0,400 Q75,378 150,400 Q225,422 300,400 Q375,378 450,400 Q525,422 600,400" stroke-width="2.5"/>
-  <!-- Mermaid -->
-  <!-- Mermaid tail -->
-  <path d="M270,550 Q260,620 240,680 Q220,720 260,740 Q300,760 340,740 Q380,720 360,680 Q340,620 330,550 Z" stroke-width="5"/>
-  <!-- Tail fin -->
-  <path d="M230,720 Q200,750 180,740 Q220,700 240,680" stroke-width="4"/>
-  <path d="M370,720 Q400,750 420,740 Q380,700 360,680" stroke-width="4"/>
-  <!-- Tail scales -->
-  <path d="M258,580 Q280,570 302,580" stroke-width="2.5"/>
-  <path d="M252,605 Q280,595 308,605" stroke-width="2.5"/>
-  <path d="M248,630 Q280,618 312,630" stroke-width="2.5"/>
-  <path d="M246,655 Q280,643 314,655" stroke-width="2.5"/>
-  <path d="M248,680 Q280,668 312,680" stroke-width="2.5"/>
-  <!-- Mermaid body -->
-  <ellipse cx="300" cy="490" rx="50" ry="70" stroke-width="5"/>
-  <!-- Shell bra -->
-  <ellipse cx="280" cy="480" rx="20" ry="16" stroke-width="3"/>
-  <ellipse cx="320" cy="480" rx="20" ry="16" stroke-width="3"/>
-  <path d="M264,490 Q280,498 296,490" stroke-width="2.5"/>
-  <path d="M304,490 Q320,498 336,490" stroke-width="2.5"/>
-  <!-- Mermaid head -->
-  <circle cx="300" cy="390" r="52" stroke-width="5"/>
-  <!-- Hair -->
-  <path d="M252,380 Q230,350 240,310 Q260,295 280,320 Q290,360 300,380" stroke-width="4"/>
-  <path d="M258,350 Q250,330 260,310" stroke-width="3"/>
-  <path d="M265,340 Q258,322 265,305" stroke-width="3"/>
-  <path d="M348,380 Q370,350 360,310 Q340,295 320,320 Q310,360 300,380" stroke-width="4"/>
-  <!-- Face -->
-  <circle cx="285" cy="385" r="7" stroke-width="3"/>
-  <circle cx="315" cy="385" r="7" stroke-width="3"/>
-  <circle cx="287" cy="385" r="3" stroke-width="3"/>
-  <circle cx="317" cy="385" r="3" stroke-width="3"/>
-  <path d="M288,400 Q300,410 312,400" stroke-width="3"/>
-  <!-- Flower in hair -->
-  <circle cx="340" cy="355" r="12" stroke-width="2.5"/>
-  <circle cx="340" cy="355" r="5" stroke-width="2.5"/>
-  <circle cx="340" cy="341" r="7" stroke-width="2"/>
-  <circle cx="354" cy="348" r="7" stroke-width="2"/>
-  <circle cx="354" cy="362" r="7" stroke-width="2"/>
-  <circle cx="340" cy="369" r="7" stroke-width="2"/>
-  <circle cx="326" cy="362" r="7" stroke-width="2"/>
-  <circle cx="326" cy="348" r="7" stroke-width="2"/>
-  <!-- Mermaid arms -->
-  <path d="M250,450 Q220,430 205,410 Q200,395 210,388 Q222,382 232,396 Q248,418 260,440" stroke-width="4"/>
-  <path d="M350,450 Q380,430 395,410 Q400,395 390,388 Q378,382 368,396 Q352,418 340,440" stroke-width="4"/>
-  <!-- Fish 1 -->
-  <ellipse cx="100" cy="420" rx="35" ry="22" stroke-width="4"/>
-  <path d="M65,420 L42,400 L42,440 Z" stroke-width="3"/>
-  <circle cx="118" cy="413" r="6" stroke-width="2.5"/>
-  <path d="M80,408 Q88,420 80,432" stroke-width="2"/>
-  <path d="M92,405 Q100,420 92,435" stroke-width="2"/>
-  <!-- Fish 2 -->
-  <ellipse cx="480" cy="500" rx="30" ry="18" stroke-width="4"/>
-  <path d="M510,500 L530,485 L530,515 Z" stroke-width="3"/>
-  <circle cx="464" cy="494" r="5" stroke-width="2.5"/>
-  <!-- Starfish -->
-  <path d="M120,620 L128,598 L136,620 L115,607 L141,607 Z" stroke-width="3"/>
-  <circle cx="128" cy="610" r="6" stroke-width="2.5"/>
-  <!-- Coral -->
-  <path d="M430,640 L430,580 Q440,560 450,580 L450,560 Q460,540 470,560 L470,580 Q480,560 490,580 L490,640" stroke-width="3.5" stroke-linejoin="round"/>
-  <path d="M440,590 Q455,578 470,590" stroke-width="2.5"/>
-  <!-- Seaweed -->
-  <path d="M50,780 Q40,740 55,700 Q65,660 50,620 Q40,580 55,540 Q65,500 50,460" stroke-width="3.5"/>
-  <path d="M540,780 Q550,745 535,705 Q525,665 540,625 Q550,585 535,545" stroke-width="3.5"/>
-  <!-- Bubbles -->
-  <circle cx="200" cy="350" r="10" stroke-width="2.5"/>
-  <circle cx="215" cy="330" r="7" stroke-width="2.5"/>
-  <circle cx="190" cy="315" r="5" stroke-width="2.5"/>
-  <circle cx="400" cy="360" r="9" stroke-width="2.5"/>
-  <circle cx="415" cy="340" r="6" stroke-width="2.5"/>
-  <!-- Sand at bottom -->
-  <path d="M0,720 Q100,700 200,720 Q300,740 400,720 Q500,700 600,720 L600,780 L0,780 Z" stroke-width="3"/>
-  <path d="M50,750 Q80,740 110,750" stroke-width="2"/>
-  <path d="M400,745 Q430,735 460,745" stroke-width="2"/>
-</svg>`;
-
-const SCENE_SPACE = `<svg viewBox="0 0 600 780" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#1a1a1a">
-  <!-- Stars background (dots) -->
-  <circle cx="30" cy="40" r="2" stroke-width="2"/>
-  <circle cx="80" cy="20" r="3" stroke-width="2"/>
-  <circle cx="150" cy="55" r="2" stroke-width="2"/>
-  <circle cx="200" cy="15" r="2" stroke-width="2"/>
-  <circle cx="250" cy="45" r="3" stroke-width="2"/>
-  <circle cx="320" cy="20" r="2" stroke-width="2"/>
-  <circle cx="380" cy="50" r="2" stroke-width="2"/>
-  <circle cx="450" cy="25" r="3" stroke-width="2"/>
-  <circle cx="500" cy="60" r="2" stroke-width="2"/>
-  <circle cx="560" cy="30" r="2" stroke-width="2"/>
-  <circle cx="60" cy="100" r="3" stroke-width="2"/>
-  <circle cx="500" cy="110" r="3" stroke-width="2"/>
-  <circle cx="170" cy="120" r="2" stroke-width="2"/>
-  <circle cx="420" cy="90" r="2" stroke-width="2"/>
-  <!-- Big star decorations -->
-  <path d="M30,160 L33,150 L36,160 L26,154 L40,154 Z" stroke-width="2"/>
-  <path d="M560,140 L563,130 L566,140 L556,134 L570,134 Z" stroke-width="2"/>
-  <!-- Earth planet (bottom) -->
-  <circle cx="300" cy="710" r="130" stroke-width="5"/>
-  <path d="M180,680 Q220,660 260,680 Q290,695 310,680 Q340,660 380,675 Q410,688 420,710" stroke-width="3"/>
-  <path d="M185,720 Q230,705 265,720 Q295,735 330,720 Q365,705 415,720" stroke-width="3"/>
-  <ellipse cx="245" cy="650" rx="30" ry="18" stroke-width="3"/>
-  <ellipse cx="360" cy="735" rx="25" ry="16" stroke-width="3"/>
-  <!-- Moon -->
-  <circle cx="480" cy="200" r="65" stroke-width="5"/>
-  <circle cx="455" cy="175" r="12" stroke-width="3"/>
-  <circle cx="500" cy="210" r="8" stroke-width="3"/>
-  <circle cx="475" cy="230" r="15" stroke-width="3"/>
-  <circle cx="510" cy="170" r="6" stroke-width="2.5"/>
-  <!-- Rocket -->
-  <path d="M200,180 Q230,120 260,100 Q290,120 320,180 L320,340 L200,340 Z" stroke-width="5" stroke-linejoin="round"/>
-  <!-- Rocket nose -->
-  <path d="M200,180 Q230,140 260,100 Q290,140 320,180" stroke-width="4"/>
-  <!-- Rocket window -->
-  <circle cx="260" cy="215" r="32" stroke-width="4"/>
-  <circle cx="260" cy="215" r="20" stroke-width="3"/>
-  <!-- Astronaut in window -->
-  <circle cx="260" cy="210" r="14" stroke-width="3"/>
-  <circle cx="255" cy="206" r="4" stroke-width="2.5"/>
-  <circle cx="265" cy="206" r="4" stroke-width="2.5"/>
-  <path d="M254,216 Q260,222 266,216" stroke-width="2.5"/>
-  <!-- Rocket fins -->
-  <path d="M200,300 L165,360 L200,340" stroke-width="4" stroke-linejoin="round"/>
-  <path d="M320,300 L355,360 L320,340" stroke-width="4" stroke-linejoin="round"/>
-  <!-- Rocket stripes -->
-  <line x1="200" y1="260" x2="320" y2="260" stroke-width="3"/>
-  <line x1="200" y1="295" x2="320" y2="295" stroke-width="3"/>
-  <!-- Rocket flame -->
-  <path d="M215,342 Q220,380 230,400 Q240,420 260,430 Q280,420 290,400 Q300,380 305,342" stroke-width="4"/>
-  <path d="M225,345 Q230,375 240,390 Q250,405 260,408 Q270,405 280,390 Q290,375 295,345" stroke-width="3"/>
-  <!-- Small planet -->
-  <circle cx="100" cy="250" r="50" stroke-width="4"/>
-  <ellipse cx="100" cy="250" rx="80" ry="18" stroke-width="3.5"/>
-  <!-- Another planet -->
-  <circle cx="490" cy="400" r="40" stroke-width="4"/>
-  <path d="M460,380 Q480,365 510,375" stroke-width="2.5"/>
-  <path d="M455,400 Q480,390 515,398" stroke-width="2.5"/>
-  <!-- Stars/asteroids -->
-  <path d="M80,450 L84,438 L88,450 L76,443 L92,443 Z" stroke-width="2.5"/>
-  <path d="M510,310 L514,300 L518,310 L508,304 L522,304 Z" stroke-width="2.5"/>
-  <path d="M140,370 L143,362 L146,370 L138,365 L148,365 Z" stroke-width="2"/>
-  <!-- Satellite -->
-  <rect x="380" y="160" width="30" height="20" rx="4" stroke-width="3"/>
-  <rect x="350" y="166" width="30" height="8" rx="2" stroke-width="2.5"/>
-  <rect x="410" y="166" width="30" height="8" rx="2" stroke-width="2.5"/>
-  <line x1="365" y1="170" x2="380" y2="170" stroke-width="2"/>
-  <line x1="410" y1="170" x2="425" y2="170" stroke-width="2"/>
-  <!-- Comet -->
-  <circle cx="520" cy="550" r="15" stroke-width="3.5"/>
-  <path d="M505,542 Q470,510 440,490 Q410,475 370,470" stroke-width="3" stroke-linecap="round"/>
-  <path d="M505,548 Q468,525 435,515 Q405,505 365,502" stroke-width="2.5" stroke-linecap="round"/>
-  <path d="M510,558 Q480,545 455,540 Q428,535 395,534" stroke-width="2" stroke-linecap="round"/>
-</svg>`;
-
-const SCENE_FOREST = `<svg viewBox="0 0 600 780" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#1a1a1a">
-  <!-- Sky -->
-  <rect x="0" y="0" width="600" height="350" stroke="none"/>
-  <!-- Sun -->
-  <circle cx="80" cy="80" r="50" stroke-width="5"/>
-  <!-- Sun rays -->
-  <line x1="80" y1="14" x2="80" y2="2" stroke-width="3.5"/>
-  <line x1="80" y1="158" x2="80" y2="146" stroke-width="3.5"/>
-  <line x1="14" y1="80" x2="2" y2="80" stroke-width="3.5"/>
-  <line x1="146" y1="80" x2="158" y2="80" stroke-width="3.5"/>
-  <line x1="33" y1="33" x2="25" y2="25" stroke-width="3"/>
-  <line x1="127" y1="127" x2="135" y2="135" stroke-width="3"/>
-  <line x1="127" y1="33" x2="135" y2="25" stroke-width="3"/>
-  <line x1="33" y1="127" x2="25" y2="135" stroke-width="3"/>
-  <!-- Clouds -->
-  <ellipse cx="350" cy="65" rx="65" ry="30" stroke-width="3.5"/>
-  <ellipse cx="390" cy="50" rx="48" ry="28" stroke-width="3.5"/>
-  <ellipse cx="315" cy="58" rx="40" ry="24" stroke-width="3.5"/>
-  <ellipse cx="510" cy="100" rx="52" ry="25" stroke-width="3"/>
-  <!-- Ground -->
-  <rect x="0" y="500" width="600" height="280" stroke-width="3"/>
-  <path d="M0,500 Q75,480 150,500 Q225,520 300,500 Q375,480 450,500 Q525,520 600,500" stroke-width="3"/>
-  <!-- Big tree left -->
-  <rect x="55" y="330" width="28" height="175" stroke-width="5"/>
-  <ellipse cx="69" cy="280" rx="65" ry="75" stroke-width="5"/>
-  <ellipse cx="69" cy="230" rx="50" ry="58" stroke-width="4"/>
-  <ellipse cx="69" cy="190" rx="38" ry="46" stroke-width="4"/>
-  <!-- Tree branches left -->
-  <path d="M60,350 Q30,330 15,310" stroke-width="3.5"/>
-  <path d="M75,370 Q105,345 118,322" stroke-width="3.5"/>
-  <!-- Big tree right -->
-  <rect x="518" y="330" width="28" height="175" stroke-width="5"/>
-  <ellipse cx="532" cy="280" rx="65" ry="75" stroke-width="5"/>
-  <ellipse cx="532" cy="230" rx="50" ry="58" stroke-width="4"/>
-  <ellipse cx="532" cy="190" rx="38" ry="46" stroke-width="4"/>
-  <!-- Tree right branches -->
-  <path d="M522,350 Q492,330 478,310" stroke-width="3.5"/>
-  <path d="M540,370 Q570,345 585,322" stroke-width="3.5"/>
-  <!-- Medium trees background -->
-  <rect x="155" y="380" width="20" height="125" stroke-width="4"/>
-  <ellipse cx="165" cy="340" rx="45" ry="55" stroke-width="4"/>
-  <ellipse cx="165" cy="300" rx="35" ry="45" stroke-width="3.5"/>
-  <rect x="425" y="380" width="20" height="125" stroke-width="4"/>
-  <ellipse cx="435" cy="340" rx="45" ry="55" stroke-width="4"/>
-  <ellipse cx="435" cy="300" rx="35" ry="45" stroke-width="3.5"/>
-  <!-- T-Rex dinosaur -->
-  <!-- Body -->
-  <ellipse cx="310" cy="440" rx="80" ry="55" stroke-width="5"/>
-  <!-- Head -->
-  <path d="M360,390 L420,345 L445,375 L425,400 L365,405 Z" stroke-width="5" stroke-linejoin="round"/>
-  <!-- Jaw -->
-  <path d="M365,405 L425,400 L435,415 L365,415 Z" stroke-width="4" stroke-linejoin="round"/>
-  <!-- Teeth -->
-  <path d="M378,405 L375,415 L383,405 L388,415 L395,405 L400,415 L407,405 L412,415 L418,405" stroke-width="2.5" stroke-linejoin="round"/>
-  <!-- Eye -->
-  <circle cx="415" cy="360" r="10" stroke-width="3.5"/>
-  <circle cx="417" cy="359" r="4" stroke-width="3"/>
-  <!-- Nostril -->
-  <path d="M436,378 Q440,373 444,378" stroke-width="2.5"/>
-  <!-- T-Rex arms (tiny) -->
-  <path d="M358,415 L338,438 L325,432 L330,422 L340,425 L348,408" stroke-width="4" stroke-linejoin="round"/>
-  <!-- T-Rex back spines -->
-  <path d="M264,400 L252,372 L272,395" stroke-width="3.5" stroke-linejoin="round"/>
-  <path d="M285,388 L276,358 L296,382" stroke-width="3.5" stroke-linejoin="round"/>
-  <path d="M308,382 L302,350 L322,376" stroke-width="3.5" stroke-linejoin="round"/>
-  <path d="M330,384 L328,352 L346,378" stroke-width="3.5" stroke-linejoin="round"/>
-  <!-- T-Rex tail -->
-  <path d="M232,460 Q175,450 140,465 Q110,478 105,500 Q130,492 165,488 Q210,480 248,478" stroke-width="5" stroke-linecap="round"/>
-  <!-- Tail spike -->
-  <path d="M105,500 L88,518 L100,510" stroke-width="3.5"/>
-  <!-- T-Rex legs -->
-  <path d="M268,488 L252,550 L235,558 L245,568 L268,560 L278,548 L285,562 L298,548 L290,488" stroke-width="5" stroke-linejoin="round"/>
-  <path d="M330,490 L318,552 L302,560 L312,570 L335,562 L344,550 L350,563 L362,550 L355,490" stroke-width="5" stroke-linejoin="round"/>
-  <!-- Ferns / ground plants -->
-  <path d="M400,510 Q420,485 440,495 Q425,510 400,510" stroke-width="3"/>
-  <path d="M400,510 Q380,485 360,495 Q375,510 400,510" stroke-width="3"/>
-  <line x1="400" y1="500" x2="400" y2="535" stroke-width="3"/>
-  <path d="M130,510 Q150,485 170,495 Q155,510 130,510" stroke-width="3"/>
-  <path d="M130,510 Q110,485 90,495 Q105,510 130,510" stroke-width="3"/>
-  <line x1="130" y1="500" x2="130" y2="535" stroke-width="3"/>
-  <!-- Mushrooms -->
-  <rect x="198" y="510" width="10" height="22" rx="2" stroke-width="2.5"/>
-  <path d="M188,512 Q203,492 218,512 Z" stroke-width="3"/>
-  <path d="M196,505 Q203,498 210,505" stroke-width="2"/>
-  <rect x="475" y="510" width="10" height="22" rx="2" stroke-width="2.5"/>
-  <path d="M465,512 Q480,492 495,512 Z" stroke-width="3"/>
-  <!-- Butterflies -->
-  <path d="M460,230 Q445,215 450,200 Q465,210 460,230" stroke-width="2.5"/>
-  <path d="M460,230 Q475,215 470,200 Q455,210 460,230" stroke-width="2.5"/>
-  <path d="M460,230 Q445,245 450,258 Q465,248 460,230" stroke-width="2.5"/>
-  <path d="M460,230 Q475,245 470,258 Q455,248 460,230" stroke-width="2.5"/>
-  <circle cx="460" cy="230" r="4" stroke-width="2.5"/>
-  <!-- River -->
-  <path d="M0,550 Q100,530 200,550 Q300,570 400,550 Q500,530 600,550" stroke-width="3.5"/>
-  <path d="M0,570 Q100,550 200,570 Q300,590 400,570 Q500,550 600,570" stroke-width="3"/>
-  <!-- Rocks in river -->
-  <ellipse cx="150" cy="558" rx="18" ry="10" stroke-width="2.5"/>
-  <ellipse cx="450" cy="558" rx="15" ry="9" stroke-width="2.5"/>
-</svg>`;
-
-// detect lang from URL or browser
-(function(){
-  const p = new URLSearchParams(location.search);
-  const urlLang = p.get('lang');
-  if (urlLang === 'en') { setLang('en'); return; }
-  if (urlLang === 'es') return;
-  if ((navigator.language || '').toLowerCase().startsWith('en')) setLang('en');
-})();
-</script>
+<script src="colorear-ia-scenes.js"></script>
+<script src="colorear-ia-app.js"></script>
 </body>
 </html>
