@@ -1465,6 +1465,97 @@ button::-moz-focus-inner { border: 0; }
   .trust-badge { min-width: 120px; padding: 16px 12px; }
   .hero { padding-top: 32px; padding-bottom: 36px; border-radius: 20px; }
 }
+
+/* ═══ Design improvements v3 ═════════════════════════════ */
+
+/* Sticky nav with glassmorphism */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: rgba(15,15,26,.88);
+  border-bottom: 1px solid rgba(46,46,80,.8);
+  margin: 0 -20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Hero: stats as card pills */
+.hero-stats { gap: 10px; margin-top: 28px; }
+.hero-stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 8px 18px;
+  transition: border-color .2s, background .2s;
+}
+.hero-stat:hover { border-color: var(--accent); background: var(--surface2); }
+
+/* Hero CTA: pulsing glow */
+.hero-cta { animation: cta-glow 2.5s ease-in-out infinite alternate; }
+@keyframes cta-glow {
+  from { box-shadow: 0 8px 28px rgba(124,58,237,.38); }
+  to   { box-shadow: 0 10px 44px rgba(124,58,237,.65), 0 0 64px rgba(124,58,237,.18); }
+}
+.hero-cta:hover { animation: none; }
+
+/* Panels: colored top accent borders */
+.chat-panel-wrap .panel { border-top: 3px solid var(--accent); }
+.chart-card { border-top: 3px solid var(--accent2); }
+
+/* How It Works: step number glow rings */
+.step-number { box-shadow: 0 0 0 5px rgba(124,58,237,.14), 0 0 0 10px rgba(124,58,237,.06); }
+.step-card:hover .step-number { box-shadow: 0 0 0 7px rgba(124,58,237,.3), 0 0 0 14px rgba(124,58,237,.1); }
+
+/* Step arrows: circular pill on desktop */
+@media (min-width: 900px) {
+  .step-arrow {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    font-size: 1.3rem;
+    color: var(--accent);
+    background: rgba(124,58,237,.1);
+    border: 1px solid rgba(124,58,237,.3);
+    border-radius: 50%;
+    opacity: 1;
+  }
+}
+
+/* Testimonials: unique avatar gradient per card */
+.testimonials-grid .testimonial-card:nth-child(1) .testimonial-avatar { background: linear-gradient(135deg, var(--accent), var(--pink)); }
+.testimonials-grid .testimonial-card:nth-child(2) .testimonial-avatar { background: linear-gradient(135deg, var(--accent2), var(--green)); }
+.testimonials-grid .testimonial-card:nth-child(3) .testimonial-avatar { background: linear-gradient(135deg, var(--yellow), #f97316); }
+
+/* Showcase cards: shadow depth on hover */
+.showcase-card:hover { box-shadow: 0 20px 52px rgba(0,0,0,.26); }
+
+/* Examples Gallery: per-card top color accent */
+.examples-scroll .example-card:nth-child(1) { border-top: 3px solid var(--accent); }
+.examples-scroll .example-card:nth-child(2) { border-top: 3px solid var(--green); }
+.examples-scroll .example-card:nth-child(3) { border-top: 3px solid #ec4899; }
+.examples-scroll .example-card:nth-child(4) { border-top: 3px solid var(--accent2); }
+
+/* Comparison table: ChartKids column highlight */
+.comparison-row > div:nth-child(2) { background: rgba(124,58,237,.09); }
+
+/* Footer: rainbow gradient top border */
+.app-footer { border-top: none; border-image: none; }
+.app-footer { border-top: 2px solid; border-image: linear-gradient(90deg, var(--accent), var(--accent2), var(--green), var(--yellow), var(--pink)) 1; }
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  nav { margin: 0 -14px; padding-left: 14px; padding-right: 14px; }
+  .hero-stat { padding: 6px 13px; }
+  .hero-stats { gap: 8px; }
+}
+@media (max-width: 400px) {
+  nav { margin: 0 -10px; padding-left: 10px; padding-right: 10px; }
+}
 </style>
 </head>
 <body>
