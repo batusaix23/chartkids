@@ -12,77 +12,89 @@
 :root{--bg:#0f0f1a;--surface:#1a1a2e;--surface2:#232340;--border:#2e2e50;--accent:#7c3aed;--accent2:#06b6d4;--green:#22c55e;--yellow:#fbbf24;--pink:#ec4899;--text:#f1f5f9;--muted:#94a3b8;--radius:16px;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
-.container{max-width:860px;margin:0 auto;padding:0 20px;}
+.container{max-width:900px;margin:0 auto;padding:0 20px;}
 
-header{padding:24px 0;border-bottom:1px solid var(--border);margin-bottom:40px;}
-.header-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+header{padding:22px 0;border-bottom:1px solid var(--border);margin-bottom:36px;}
+.header-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
 .logo{font-family:'Fredoka One',cursive;font-size:1.5rem;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;}
 .logo span{-webkit-text-fill-color:var(--yellow);}
 .nav-right{display:flex;align-items:center;gap:12px;}
-.back-btn{background:var(--surface);border:1px solid var(--border);padding:10px 20px;border-radius:50px;color:var(--text);text-decoration:none;font-weight:700;transition:all .2s;font-size:.9rem;}
+.back-btn{background:var(--surface);border:1px solid var(--border);padding:9px 18px;border-radius:50px;color:var(--text);text-decoration:none;font-weight:700;transition:all .2s;font-size:.88rem;}
 .back-btn:hover{background:var(--accent);border-color:var(--accent);}
-
 .lang-toggle{display:flex;background:var(--surface2);border-radius:50px;padding:3px;gap:2px;}
 .lang-btn{padding:5px 14px;border-radius:50px;border:none;background:transparent;color:var(--muted);font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .2s;}
 .lang-btn.active{background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;}
 
-.hero{text-align:center;padding:36px 0 44px;}
-.hero-icon{font-size:3.5rem;margin-bottom:16px;}
-.hero h1{font-family:'Fredoka One',cursive;font-size:2.4rem;margin-bottom:12px;background:linear-gradient(135deg,var(--pink),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.hero p{color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto;line-height:1.7;}
+.hero{text-align:center;padding:28px 0 36px;}
+.hero-icon{font-size:3rem;margin-bottom:14px;}
+.hero h1{font-family:'Fredoka One',cursive;font-size:2.2rem;margin-bottom:10px;background:linear-gradient(135deg,var(--pink),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p{color:var(--muted);font-size:.95rem;max-width:540px;margin:0 auto;line-height:1.7;}
 
-.form-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px;margin-bottom:28px;}
-.form-card h2{font-family:'Fredoka One',cursive;font-size:1.3rem;margin-bottom:24px;}
-.field-label{font-size:.82rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;display:block;}
-.desc-input{width:100%;background:var(--surface2);border:2px solid var(--border);border-radius:14px;padding:16px 20px;font-family:'Nunito',sans-serif;font-size:1rem;color:var(--text);resize:none;outline:none;transition:border-color .2s;line-height:1.5;}
+.form-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px 32px;margin-bottom:24px;}
+.field-label{font-size:.8rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:9px;display:block;}
+.desc-input{width:100%;background:var(--surface2);border:2px solid var(--border);border-radius:14px;padding:14px 18px;font-family:'Nunito',sans-serif;font-size:1rem;color:var(--text);resize:none;outline:none;transition:border-color .2s;line-height:1.55;}
 .desc-input:focus{border-color:var(--accent);}
 .desc-input::placeholder{color:var(--muted);}
-.chips-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
-.chip{background:var(--surface2);border:2px solid var(--border);padding:8px 16px;border-radius:50px;font-size:.84rem;font-weight:700;cursor:pointer;transition:all .18s;font-family:'Nunito',sans-serif;color:var(--text);}
-.chip:hover{border-color:var(--accent);color:var(--accent);}
-.chip.selected{background:rgba(124,58,237,.15);border-color:var(--accent);color:var(--accent);}
 
-.btn-generate{width:100%;padding:16px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--pink),var(--accent));color:white;font-family:'Fredoka One',cursive;font-size:1.2rem;cursor:pointer;transition:opacity .2s;margin-top:20px;letter-spacing:.02em;}
+.options-row{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.option-group{flex:1;min-width:160px;}
+.option-chips{display:flex;gap:7px;flex-wrap:wrap;}
+.chip{background:var(--surface2);border:1.5px solid var(--border);padding:7px 14px;border-radius:50px;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .18s;font-family:'Nunito',sans-serif;color:var(--text);}
+.chip:hover{border-color:var(--accent);}
+.chip.sel{background:rgba(124,58,237,.15);border-color:var(--accent);color:var(--accent);}
+.chip.sel.age{background:rgba(251,191,36,.15);border-color:var(--yellow);color:var(--yellow);}
+
+.ideas-section{margin-top:20px;}
+.ideas-grid{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px;}
+.idea-chip{background:var(--surface2);border:1.5px solid var(--border);padding:7px 14px;border-radius:50px;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .18s;font-family:'Nunito',sans-serif;color:var(--text);display:flex;align-items:center;gap:5px;}
+.idea-chip:hover{border-color:var(--pink);color:var(--pink);background:rgba(236,72,153,.08);}
+
+.btn-generate{width:100%;padding:15px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--pink),var(--accent));color:white;font-family:'Fredoka One',cursive;font-size:1.15rem;cursor:pointer;transition:opacity .2s;margin-top:22px;letter-spacing:.02em;}
 .btn-generate:hover{opacity:.88;}
-.btn-generate:disabled{opacity:.4;cursor:not-allowed;}
+.btn-generate:disabled{opacity:.38;cursor:not-allowed;}
 
-.loading{text-align:center;padding:56px 20px;display:none;}
+/* Loading */
+.loading{text-align:center;padding:52px 20px;display:none;}
 .loading-dots{display:flex;justify-content:center;gap:8px;margin-bottom:16px;}
 .dot{width:12px;height:12px;border-radius:50%;background:var(--accent);animation:bounce .8s infinite;}
 .dot:nth-child(2){background:var(--pink);animation-delay:.15s;}
 .dot:nth-child(3){background:var(--accent2);animation-delay:.3s;}
 @keyframes bounce{0%,80%,100%{transform:scale(.7);opacity:.5}40%{transform:scale(1);opacity:1}}
-.loading p{color:var(--muted);font-size:.95rem;}
+.loading-status{color:var(--muted);font-size:.92rem;line-height:1.6;}
+.loading-tip{margin-top:10px;font-size:.78rem;color:rgba(255,255,255,.3);}
 
-.result-card{background:var(--surface);border:2px solid var(--accent);border-radius:var(--radius);overflow:hidden;margin-bottom:32px;display:none;}
-.result-header{padding:20px 28px 0;display:flex;align-items:center;gap:12px;}
-.result-title{font-family:'Fredoka One',cursive;font-size:1.4rem;}
-.result-tag{background:rgba(124,58,237,.15);color:var(--accent);border:1px solid rgba(124,58,237,.3);border-radius:50px;padding:4px 14px;font-size:.75rem;font-weight:800;}
-.svg-display{display:flex;align-items:center;justify-content:center;padding:32px;background:white;border-radius:12px;margin:20px 28px;}
-.svg-display svg{width:100%;max-width:380px;height:auto;display:block;}
-.fallback-note{text-align:center;padding:0 28px 10px;font-size:.78rem;color:var(--muted);}
-.result-actions{display:flex;gap:10px;flex-wrap:wrap;padding:20px 28px 28px;}
-.btn-action{flex:1;min-width:130px;padding:12px 18px;border-radius:50px;font-weight:800;font-size:.88rem;cursor:pointer;border:none;font-family:'Nunito',sans-serif;display:flex;align-items:center;justify-content:center;gap:7px;transition:all .2s;}
+/* Result */
+.result-card{background:var(--surface);border:2px solid var(--accent);border-radius:var(--radius);overflow:hidden;margin-bottom:32px;display:none;animation:fadeIn .4s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.result-top{padding:20px 28px 0;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.result-title{font-family:'Fredoka One',cursive;font-size:1.3rem;}
+.result-badge{background:rgba(124,58,237,.15);color:#a78bfa;border:1px solid rgba(124,58,237,.3);border-radius:50px;padding:4px 14px;font-size:.75rem;font-weight:800;}
+.svg-stage{display:flex;align-items:center;justify-content:center;padding:28px 28px 20px;background:white;margin:18px 28px 0;border-radius:14px;border:2px dashed #e0e0e0;min-height:340px;}
+.svg-stage svg{width:100%;height:auto;max-height:75vh;display:block;}
+.fallback-note{text-align:center;padding:6px 28px 0;font-size:.77rem;color:var(--muted);}
+.result-actions{display:flex;gap:10px;flex-wrap:wrap;padding:18px 28px 26px;}
+.btn-action{flex:1;min-width:120px;padding:12px 16px;border-radius:50px;font-weight:800;font-size:.86rem;cursor:pointer;border:none;font-family:'Nunito',sans-serif;display:flex;align-items:center;justify-content:center;gap:7px;transition:all .2s;}
 .btn-action:hover{opacity:.85;transform:translateY(-1px);}
 .btn-print{background:linear-gradient(135deg,var(--green),#16a34a);color:white;}
 .btn-download{background:linear-gradient(135deg,var(--accent2),var(--accent));color:white;}
 .btn-another{background:var(--surface2);border:2px solid var(--border);color:var(--text);}
 
-.tips-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-bottom:40px;}
-.tips-card h3{font-family:'Fredoka One',cursive;font-size:1.1rem;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
-.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
-.tip-item{background:var(--surface2);border-radius:12px;padding:14px 16px;font-size:.85rem;line-height:1.5;display:flex;gap:10px;align-items:flex-start;}
-.tip-icon{font-size:1.2rem;flex-shrink:0;margin-top:1px;}
+/* Tips */
+.tips-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px 28px;margin-bottom:40px;}
+.tips-card h3{font-family:'Fredoka One',cursive;font-size:1.05rem;margin-bottom:14px;}
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;}
+.tip-item{background:var(--surface2);border-radius:11px;padding:12px 14px;font-size:.83rem;line-height:1.5;display:flex;gap:9px;}
+.tip-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px;}
 
-footer{text-align:center;padding:32px 0;color:var(--muted);font-size:.82rem;border-top:1px solid var(--border);}
+footer{text-align:center;padding:28px 0;color:var(--muted);font-size:.8rem;border-top:1px solid var(--border);}
 footer a{color:var(--muted);text-decoration:none;}
 footer a:hover{color:var(--text);}
 
-@media(max-width:540px){
-  .hero h1{font-size:1.8rem;}
-  .svg-display{padding:20px;margin:16px;}
-  .result-actions{padding:16px;}
-  .btn-action{font-size:.82rem;padding:11px 14px;}
+@media(max-width:560px){
+  .hero h1{font-size:1.75rem;}
+  .svg-stage{padding:16px;margin:14px 16px 0;}
+  .result-actions{padding:14px 16px 22px;}
+  .options-row{gap:10px;}
 }
 </style>
 </head>
@@ -107,61 +119,79 @@ footer a:hover{color:var(--text);}
   <div class="hero">
     <div class="hero-icon">🎨</div>
     <h1 id="heroTitle">Dibujos con IA para Colorear</h1>
-    <p id="heroDesc">Describe el dibujo que quieres y nuestra IA lo creará en segundos. ¡Listo para imprimir y colorear!</p>
+    <p id="heroDesc">Describe cualquier escena — personajes, lugares, animales — y nuestra IA genera un dibujo de página completa listo para imprimir y colorear.</p>
   </div>
 
   <div class="form-card">
-    <h2 id="formTitle">✍️ Describe tu dibujo</h2>
-    <label class="field-label" id="descLabel" for="descInput">¿Qué quieres colorear?</label>
-    <textarea class="desc-input" id="descInput" rows="3" placeholder="Ej: un dinosaurio feliz jugando en el bosque..." maxlength="200"></textarea>
-    <div>
-      <div class="field-label" style="margin-top:16px" id="quickLabel">Ideas rápidas</div>
-      <div class="chips-row" id="quickChips">
-        <button class="chip" onclick="useIdea(this)">🦁 León</button>
-        <button class="chip" onclick="useIdea(this)">🦋 Mariposa</button>
-        <button class="chip" onclick="useIdea(this)">🚀 Cohete</button>
-        <button class="chip" onclick="useIdea(this)">🏰 Castillo</button>
-        <button class="chip" onclick="useIdea(this)">🐉 Dragón</button>
-        <button class="chip" onclick="useIdea(this)">🧜 Sirena</button>
-        <button class="chip" onclick="useIdea(this)">🤖 Robot</button>
-        <button class="chip" onclick="useIdea(this)">🦄 Unicornio</button>
+    <label class="field-label" id="descLabel" for="descInput">Describe tu dibujo</label>
+    <textarea class="desc-input" id="descInput" rows="3" placeholder="Ej: un dragón amigable volando sobre un castillo medieval con montañas de fondo..." maxlength="300"></textarea>
+
+    <div class="options-row">
+      <div class="option-group">
+        <div class="field-label" id="ageLabel">Edad del niño</div>
+        <div class="option-chips" id="ageChips">
+          <button class="chip age sel" data-v="3-5" onclick="selAge(this)">3-5</button>
+          <button class="chip age" data-v="6-9" onclick="selAge(this)">6-9</button>
+          <button class="chip age" data-v="10+" onclick="selAge(this)">10+</button>
+        </div>
+      </div>
+      <div class="option-group">
+        <div class="field-label" id="styleLabel">Estilo</div>
+        <div class="option-chips" id="styleChips">
+          <button class="chip sel" data-v="simple" onclick="selStyle(this)" id="styleSimple">Simple</button>
+          <button class="chip" data-v="detailed" onclick="selStyle(this)" id="styleDetailed">Detallado</button>
+        </div>
       </div>
     </div>
+
+    <div class="ideas-section">
+      <div class="field-label" id="ideasLabel">Ideas de escenas</div>
+      <div class="ideas-grid" id="ideasGrid">
+        <button class="idea-chip" onclick="useIdea(this)">🐉 Dragón con castillo</button>
+        <button class="idea-chip" onclick="useIdea(this)">🧜 Sirena bajo el mar</button>
+        <button class="idea-chip" onclick="useIdea(this)">🚀 Astronauta en el espacio</button>
+        <button class="idea-chip" onclick="useIdea(this)">🦁 Safari en la sabana</button>
+        <button class="idea-chip" onclick="useIdea(this)">🏰 Princesa en su torre</button>
+        <button class="idea-chip" onclick="useIdea(this)">🌋 Dinosaurios en el bosque</button>
+        <button class="idea-chip" onclick="useIdea(this)">🧙 Mago con caldero mágico</button>
+        <button class="idea-chip" onclick="useIdea(this)">🦋 Jardín de mariposas</button>
+        <button class="idea-chip" onclick="useIdea(this)">🐬 Océano con animales marinos</button>
+        <button class="idea-chip" onclick="useIdea(this)">🎠 Parque de diversiones</button>
+      </div>
+    </div>
+
     <button class="btn-generate" id="btnGenerate" onclick="generateDrawing()">
       <span id="btnGenerateText">✨ Generar Dibujo</span>
     </button>
   </div>
 
   <div class="loading" id="loading">
-    <div class="loading-dots">
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-    </div>
-    <p id="loadingText">Creando tu dibujo con IA...</p>
+    <div class="loading-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+    <div class="loading-status" id="loadingStatus">Creando tu dibujo con IA...</div>
+    <div class="loading-tip" id="loadingTip">Las escenas detalladas pueden tardar hasta 20 segundos</div>
   </div>
 
   <div class="result-card" id="resultCard">
-    <div class="result-header">
+    <div class="result-top">
       <div class="result-title" id="resultTitle">¡Tu dibujo está listo!</div>
-      <div class="result-tag" id="resultTag">Para colorear</div>
+      <div class="result-badge" id="resultBadge">Para colorear</div>
     </div>
-    <div class="svg-display" id="svgDisplay"></div>
+    <div class="svg-stage" id="svgStage"></div>
     <p class="fallback-note" id="fallbackNote" style="display:none"></p>
     <div class="result-actions">
-      <button class="btn-action btn-print" onclick="printDrawing()" id="btnPrint">🖨️ <span id="printText">Imprimir</span></button>
-      <button class="btn-action btn-download" onclick="downloadSVG()" id="btnDownload">⬇️ <span id="downloadText">Descargar SVG</span></button>
-      <button class="btn-action btn-another" onclick="generateAnother()" id="btnAnother">🎲 <span id="anotherText">Otro dibujo</span></button>
+      <button class="btn-action btn-print" onclick="printDrawing()">🖨️ <span id="printText">Imprimir</span></button>
+      <button class="btn-action btn-download" onclick="downloadSVG()">⬇️ <span id="downloadText">Descargar SVG</span></button>
+      <button class="btn-action btn-another" onclick="generateAnother()">🎲 <span id="anotherText">Nuevo dibujo</span></button>
     </div>
   </div>
 
   <div class="tips-card">
-    <h3 id="tipsTitle">💡 Consejos para mejores resultados</h3>
-    <div class="tips-grid" id="tipsGrid">
-      <div class="tip-item"><div class="tip-icon">🐾</div><div id="tip1">Sé específico: "un gato durmiendo en una luna" genera un dibujo más único que solo "un gato".</div></div>
-      <div class="tip-item"><div class="tip-icon">😊</div><div id="tip2">Agrega emociones o acciones: "feliz", "bailando", "volando" hacen el dibujo más dinámico.</div></div>
-      <div class="tip-item"><div class="tip-icon">🌿</div><div id="tip3">Incluye el entorno: "en el bosque", "en el espacio", "bajo el mar" añaden contexto al dibujo.</div></div>
-      <div class="tip-item"><div class="tip-icon">🖍️</div><div id="tip4">Imprime en papel grueso (90g o más) para que los colores no traspasen al reverso.</div></div>
+    <h3 id="tipsTitle">💡 Consejos</h3>
+    <div class="tips-grid">
+      <div class="tip-item"><div class="tip-icon">🎭</div><div id="tip1">Describe una escena completa: personaje principal + lugar + elementos de fondo para un dibujo más rico.</div></div>
+      <div class="tip-item"><div class="tip-icon">🖍️</div><div id="tip2">Elige "Detallado" para niños mayores que disfrutan colorear áreas pequeñas con más precisión.</div></div>
+      <div class="tip-item"><div class="tip-icon">📄</div><div id="tip3">Imprime en papel de 90g o más. El botón Imprimir genera una hoja tamaño carta lista para usar.</div></div>
+      <div class="tip-item"><div class="tip-icon">🔄</div><div id="tip4">Si no te gusta el resultado, haz clic en "Nuevo dibujo" — cada generación es diferente.</div></div>
     </div>
   </div>
 </main>
@@ -177,107 +207,70 @@ const API_URL = 'https://chartkids-api.jrau2303.workers.dev';
 let lang = 'es';
 let currentSVG = '';
 let currentDesc = '';
+let selectedAge = '3-5';
+let selectedStyle = 'simple';
 
 const TXT = {
   es: {
     heroTitle: 'Dibujos con IA para Colorear',
-    heroDesc: 'Describe el dibujo que quieres y nuestra IA lo creará en segundos. ¡Listo para imprimir y colorear!',
-    formTitle: '✍️ Describe tu dibujo',
-    descLabel: '¿Qué quieres colorear?',
-    placeholder: 'Ej: un dinosaurio feliz jugando en el bosque...',
-    quickLabel: 'Ideas rápidas',
+    heroDesc: 'Describe cualquier escena — personajes, lugares, animales — y nuestra IA genera un dibujo de página completa listo para imprimir y colorear.',
+    descLabel: 'Describe tu dibujo',
+    placeholder: 'Ej: un dragón amigable volando sobre un castillo medieval con montañas de fondo...',
+    ageLabel: 'Edad del niño',
+    styleLabel: 'Estilo',
+    styleSimple: 'Simple',
+    styleDetailed: 'Detallado',
+    ideasLabel: 'Ideas de escenas',
+    ideas: ['🐉 Dragón con castillo','🧜 Sirena bajo el mar','🚀 Astronauta en el espacio','🦁 Safari en la sabana','🏰 Princesa en su torre','🌋 Dinosaurios en el bosque','🧙 Mago con caldero mágico','🦋 Jardín de mariposas','🐬 Océano con animales marinos','🎠 Parque de diversiones'],
     btnGenerate: '✨ Generar Dibujo',
-    loadingText: 'Creando tu dibujo con IA...',
+    loadingStatus: 'Creando tu dibujo con IA...',
+    loadingTip: 'Las escenas detalladas pueden tardar hasta 20 segundos',
     resultTitle: '¡Tu dibujo está listo!',
-    resultTag: 'Para colorear',
+    resultBadge: 'Para colorear',
     printText: 'Imprimir',
     downloadText: 'Descargar SVG',
-    anotherText: 'Otro dibujo',
-    tipsTitle: '💡 Consejos para mejores resultados',
-    tip1: 'Sé específico: "un gato durmiendo en una luna" genera un dibujo más único que solo "un gato".',
-    tip2: 'Agrega emociones o acciones: "feliz", "bailando", "volando" hacen el dibujo más dinámico.',
-    tip3: 'Incluye el entorno: "en el bosque", "en el espacio", "bajo el mar" añaden contexto al dibujo.',
-    tip4: 'Imprime en papel grueso (90g o más) para que los colores no traspasen al reverso.',
-    fallbackNote: 'Dibujo sugerido basado en tu descripción.',
+    anotherText: 'Nuevo dibujo',
+    tipsTitle: '💡 Consejos',
+    tip1: 'Describe una escena completa: personaje principal + lugar + elementos de fondo para un dibujo más rico.',
+    tip2: 'Elige "Detallado" para niños mayores que disfrutan colorear áreas pequeñas con más precisión.',
+    tip3: 'Imprime en papel de 90g o más. El botón Imprimir genera una hoja tamaño carta lista para usar.',
+    tip4: 'Si no te gusta el resultado, haz clic en "Nuevo dibujo" — cada generación es diferente.',
+    fallbackNote: 'Dibujo alternativo basado en tu descripción. Intenta de nuevo para un resultado personalizado.',
     backBtn: '← Descargables',
-    chips: ['🦁 León','🦋 Mariposa','🚀 Cohete','🏰 Castillo','🐉 Dragón','🧜 Sirena','🤖 Robot','🦄 Unicornio'],
-    errorMsg: 'Hubo un error. Intenta de nuevo.',
-    printTitle: 'Dibujo para colorear — ChartKids',
+    printTitle: 'Dibujo para colorear',
     printSub: 'Colorea con crayones o marcadores · chartkids.com',
+    errorRetry: 'Hubo un error al conectar. Intenta de nuevo.',
   },
   en: {
     heroTitle: 'AI Coloring Pages',
-    heroDesc: 'Describe the drawing you want and our AI will create it in seconds. Ready to print and color!',
-    formTitle: '✍️ Describe your drawing',
-    descLabel: 'What do you want to color?',
-    placeholder: 'E.g.: a happy dinosaur playing in the forest...',
-    quickLabel: 'Quick ideas',
+    heroDesc: 'Describe any scene — characters, places, animals — and our AI generates a full-page drawing ready to print and color.',
+    descLabel: 'Describe your drawing',
+    placeholder: 'E.g.: a friendly dragon flying over a medieval castle with mountains in the background...',
+    ageLabel: "Child's age",
+    styleLabel: 'Style',
+    styleSimple: 'Simple',
+    styleDetailed: 'Detailed',
+    ideasLabel: 'Scene ideas',
+    ideas: ['🐉 Dragon with castle','🧜 Mermaid underwater','🚀 Astronaut in space','🦁 Safari on the savanna','🏰 Princess in her tower','🌋 Dinosaurs in the forest','🧙 Wizard with magic cauldron','🦋 Butterfly garden','🐬 Ocean with sea animals','🎠 Amusement park'],
     btnGenerate: '✨ Generate Drawing',
-    loadingText: 'Creating your drawing with AI...',
+    loadingStatus: 'Creating your drawing with AI...',
+    loadingTip: 'Detailed scenes can take up to 20 seconds',
     resultTitle: 'Your drawing is ready!',
-    resultTag: 'Coloring page',
+    resultBadge: 'Coloring page',
     printText: 'Print',
     downloadText: 'Download SVG',
     anotherText: 'New drawing',
-    tipsTitle: '💡 Tips for better results',
-    tip1: 'Be specific: "a cat sleeping on a moon" generates a more unique drawing than just "a cat".',
-    tip2: 'Add emotions or actions: "happy", "dancing", "flying" make the drawing more dynamic.',
-    tip3: 'Include the setting: "in the forest", "in space", "underwater" add context to the drawing.',
-    tip4: 'Print on thick paper (90g or more) so colors don\'t bleed through to the back.',
-    fallbackNote: 'Suggested drawing based on your description.',
+    tipsTitle: '💡 Tips',
+    tip1: 'Describe a full scene: main character + setting + background elements for a richer drawing.',
+    tip2: 'Choose "Detailed" for older children who enjoy coloring smaller areas with more precision.',
+    tip3: 'Print on 90g or heavier paper. The Print button generates a letter-size page ready to use.',
+    tip4: 'If you don\'t like the result, click "New drawing" — each generation is different.',
+    fallbackNote: 'Alternative drawing based on your description. Try again for a custom result.',
     backBtn: '← Printables',
-    chips: ['🦁 Lion','🦋 Butterfly','🚀 Rocket','🏰 Castle','🐉 Dragon','🧜 Mermaid','🤖 Robot','🦄 Unicorn'],
-    errorMsg: 'There was an error. Please try again.',
-    printTitle: 'Coloring page — ChartKids',
+    printTitle: 'Coloring page',
     printSub: 'Color with crayons or markers · chartkids.com',
+    errorRetry: 'Connection error. Please try again.',
   }
-};
-
-// Keyword → fallback SVG
-const FALLBACK_KEYWORDS = {
-  'leon|lion|leona':         'lion',
-  'dinosaurio|dinosaur|dino|rex|triceratops': 'dinosaur',
-  'pez|fish|tiburon|shark|delfin|dolphin|pulpo|octopus': 'fish',
-  'robot':                   'robot',
-  'unicornio|unicorn':       'unicorn',
-  'muñeca|doll|princess|princesa': 'doll',
-  'casa|house|home|hogar':   'house',
-  'arbol|tree|bosque|forest|naturaleza|nature': 'tree',
-  'flor|flower|flores':      'flower',
-  'cohete|rocket|astronauta|astronaut|planeta|planet|espacio|space': 'rocket',
-  'castillo|castle':         'castle',
-  'dragon|dragón':           'dragon',
-  'caballero|knight':        'knight',
-  'auto|carro|car|coche':    'car',
-  'avion|airplane|avión':    'airplane',
-  'tren|train':              'train',
-  'mariposa|butterfly':      'butterfly',
-  'calabaza|pumpkin|halloween|fantasma|ghost': 'pumpkin',
-  'navidad|christmas|arbol navidad|santa|noel': 'christmas_tree',
-  'nieve|snow|muñeco de nieve|snowman':        'snowman',
-};
-
-const FALLBACK_SVGS = {
-  lion: '<svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg"><circle cx="70" cy="72" r="44" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="70" cy="72" r="30" fill="none" stroke="#222" stroke-width="3"/><polygon points="52,46 44,28 62,42" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/><polygon points="88,46 96,28 78,42" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/><circle cx="59" cy="65" r="5" fill="none" stroke="#222" stroke-width="2"/><circle cx="81" cy="65" r="5" fill="none" stroke="#222" stroke-width="2"/><circle cx="60" cy="66" r="2" fill="none" stroke="#222" stroke-width="2"/><circle cx="82" cy="66" r="2" fill="none" stroke="#222" stroke-width="2"/><path d="M67,74 L70,79 L73,74" fill="none" stroke="#222" stroke-width="2"/><path d="M62,83 Q70,89 78,83" fill="none" stroke="#222" stroke-width="2.5"/><line x1="44" y1="75" x2="64" y2="77" stroke="#222" stroke-width="1.5"/><line x1="44" y1="80" x2="64" y2="80" stroke="#222" stroke-width="1.5"/><line x1="96" y1="75" x2="76" y2="77" stroke="#222" stroke-width="1.5"/><line x1="96" y1="80" x2="76" y2="80" stroke="#222" stroke-width="1.5"/><path d="M70,102 L64,125 L76,125" fill="none" stroke="#222" stroke-width="2.5" stroke-linecap="round"/><circle cx="70" cy="130" r="5" fill="none" stroke="#222" stroke-width="2"/></svg>',
-  dinosaur: '<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg"><ellipse cx="80" cy="102" rx="50" ry="34" fill="none" stroke="#222" stroke-width="3"/><path d="M118,82 L155,62 L174,78 L158,92 L118,92 Z" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><path d="M118,92 L158,92 L168,106 L118,98" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/><circle cx="158" cy="70" r="5" fill="none" stroke="#222" stroke-width="2"/><circle cx="159" cy="71" r="2" fill="none" stroke="#222" stroke-width="2"/><path d="M138,92 L140,101 L143,92 L146,101 L149,92 L152,101 L155,92" fill="none" stroke="#222" stroke-width="2" stroke-linejoin="round"/><path d="M116,90 L104,110 L115,114" fill="none" stroke="#222" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M35,98 Q10,88 8,115 Q22,110 35,118" fill="none" stroke="#222" stroke-width="3" stroke-linecap="round"/><path d="M60,132 L55,158 L65,158 L67,145 L74,158 L83,158 L80,132" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><path d="M88,132 L86,158 L96,158 L98,145 L106,158 L115,158 L108,132" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><path d="M46,68 L51,56 L56,68 L61,52 L66,68 L71,55 L76,68" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/></svg>',
-  fish: '<svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg"><ellipse cx="88" cy="60" rx="58" ry="36" fill="none" stroke="#222" stroke-width="3"/><path d="M32,60 L8,32 L8,88 Z" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><circle cx="125" cy="50" r="8" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="127" cy="48" r="3" fill="none" stroke="#222" stroke-width="2"/><path d="M143,58 Q148,65 143,72" fill="none" stroke="#222" stroke-width="2.5"/><path d="M74,26 Q92,12 108,26" fill="none" stroke="#222" stroke-width="2.5"/><path d="M74,94 Q92,108 108,94" fill="none" stroke="#222" stroke-width="2.5"/><path d="M62,46 Q68,60 62,74" fill="none" stroke="#222" stroke-width="1.5"/><path d="M76,43 Q83,60 76,77" fill="none" stroke="#222" stroke-width="1.5"/><path d="M90,42 Q98,60 90,78" fill="none" stroke="#222" stroke-width="1.5"/></svg>',
-  robot: '<svg viewBox="0 0 140 200" xmlns="http://www.w3.org/2000/svg"><line x1="70" y1="8" x2="70" y2="18" stroke="#222" stroke-width="2.5"/><circle cx="70" cy="6" r="4" fill="none" stroke="#222" stroke-width="2"/><rect x="35" y="18" width="70" height="52" rx="8" fill="none" stroke="#222" stroke-width="3"/><rect x="44" y="28" width="18" height="14" rx="4" fill="none" stroke="#222" stroke-width="2"/><rect x="78" y="28" width="18" height="14" rx="4" fill="none" stroke="#222" stroke-width="2"/><circle cx="53" cy="35" r="4" fill="none" stroke="#222" stroke-width="2"/><circle cx="87" cy="35" r="4" fill="none" stroke="#222" stroke-width="2"/><rect x="46" y="52" width="48" height="10" rx="3" fill="none" stroke="#222" stroke-width="2"/><line x1="58" y1="52" x2="58" y2="62" stroke="#222" stroke-width="1.5"/><line x1="70" y1="52" x2="70" y2="62" stroke="#222" stroke-width="1.5"/><line x1="82" y1="52" x2="82" y2="62" stroke="#222" stroke-width="1.5"/><rect x="55" y="70" width="30" height="12" rx="4" fill="none" stroke="#222" stroke-width="2"/><rect x="20" y="82" width="100" height="72" rx="8" fill="none" stroke="#222" stroke-width="3"/><rect x="42" y="94" width="56" height="36" rx="5" fill="none" stroke="#222" stroke-width="2"/><circle cx="62" cy="108" r="6" fill="none" stroke="#222" stroke-width="2"/><circle cx="78" cy="108" r="6" fill="none" stroke="#222" stroke-width="2"/><circle cx="62" cy="122" r="6" fill="none" stroke="#222" stroke-width="2"/><circle cx="78" cy="122" r="6" fill="none" stroke="#222" stroke-width="2"/><rect x="0" y="85" width="20" height="52" rx="10" fill="none" stroke="#222" stroke-width="3"/><rect x="120" y="85" width="20" height="52" rx="10" fill="none" stroke="#222" stroke-width="3"/><rect x="28" y="154" width="30" height="36" rx="8" fill="none" stroke="#222" stroke-width="3"/><rect x="82" y="154" width="30" height="36" rx="8" fill="none" stroke="#222" stroke-width="3"/></svg>',
-  unicorn: '<svg viewBox="0 0 190 165" xmlns="http://www.w3.org/2000/svg"><ellipse cx="78" cy="108" rx="54" ry="33" fill="none" stroke="#222" stroke-width="3"/><path d="M120,90 L128,118 L134,113 L130,82" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><circle cx="150" cy="72" r="27" fill="none" stroke="#222" stroke-width="3"/><path d="M161,46 L149,43 L152,67" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/><line x1="153" y1="64" x2="157" y2="53" stroke="#222" stroke-width="1.5"/><line x1="152" y1="58" x2="155" y2="48" stroke="#222" stroke-width="1.5"/><circle cx="157" cy="72" r="6" fill="none" stroke="#222" stroke-width="2.5"/><path d="M138,48 L132,34 L144,46" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/><path d="M40,134 L35,160 L45,160" fill="none" stroke="#222" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M62,136 L60,162 L70,162" fill="none" stroke="#222" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M95,136 L93,162 L103,162" fill="none" stroke="#222" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M114,134 L112,160 L122,160" fill="none" stroke="#222" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M27,102 Q8,90 10,114 Q14,128 24,120" fill="none" stroke="#222" stroke-width="2.5" stroke-linecap="round"/></svg>',
-  doll: '<svg viewBox="0 0 140 200" xmlns="http://www.w3.org/2000/svg"><circle cx="70" cy="34" r="26" fill="none" stroke="#222" stroke-width="3"/><path d="M44,24 Q44,8 58,6 Q70,3 82,6 Q96,8 96,24" fill="none" stroke="#222" stroke-width="3"/><circle cx="58" cy="30" r="5" fill="none" stroke="#222" stroke-width="2"/><circle cx="82" cy="30" r="5" fill="none" stroke="#222" stroke-width="2"/><path d="M62,44 Q70,50 78,44" fill="none" stroke="#222" stroke-width="2.5"/><path d="M32,72 L58,72 L58,128 L82,128 L82,72 L108,72 L118,88 L108,132 L32,132 L22,88 Z" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><path d="M50,132 L45,172 L55,172 L60,152 L65,172 L75,172 L70,132" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><path d="M70,132 L68,172 L78,172 L83,152 L88,172 L98,172 L93,132" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/></svg>',
-  house: '<svg viewBox="0 0 180 160" xmlns="http://www.w3.org/2000/svg"><rect x="18" y="74" width="144" height="82" rx="4" fill="none" stroke="#222" stroke-width="3"/><polygon points="8,74 90,14 172,74" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><rect x="70" y="112" width="40" height="44" rx="4" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="100" cy="134" r="3" fill="none" stroke="#222" stroke-width="2"/><rect x="26" y="85" width="40" height="34" rx="4" fill="none" stroke="#222" stroke-width="2.5"/><line x1="46" y1="85" x2="46" y2="119" stroke="#222" stroke-width="2"/><line x1="26" y1="102" x2="66" y2="102" stroke="#222" stroke-width="2"/><rect x="114" y="85" width="40" height="34" rx="4" fill="none" stroke="#222" stroke-width="2.5"/><line x1="134" y1="85" x2="134" y2="119" stroke="#222" stroke-width="2"/><line x1="114" y1="102" x2="154" y2="102" stroke="#222" stroke-width="2"/></svg>',
-  tree: '<svg viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg"><rect x="68" y="148" width="24" height="44" rx="4" fill="none" stroke="#222" stroke-width="3"/><polygon points="80,14 20,90 50,90 14,140 146,140 110,90 140,90" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><line x1="50" y1="90" x2="80" y2="14" stroke="#222" stroke-width="2" stroke-dasharray="0"/><line x1="110" y1="90" x2="80" y2="14" stroke="#222" stroke-width="2"/></svg>',
-  flower: '<svg viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg"><circle cx="80" cy="80" r="20" fill="none" stroke="#222" stroke-width="3"/><ellipse cx="80" cy="46" rx="16" ry="22" fill="none" stroke="#222" stroke-width="3"/><ellipse cx="80" cy="114" rx="16" ry="22" fill="none" stroke="#222" stroke-width="3"/><ellipse cx="46" cy="80" rx="22" ry="16" fill="none" stroke="#222" stroke-width="3"/><ellipse cx="114" cy="80" rx="22" ry="16" fill="none" stroke="#222" stroke-width="3"/><ellipse cx="55" cy="55" rx="14" ry="20" fill="none" stroke="#222" stroke-width="3" transform="rotate(-45,55,55)"/><ellipse cx="105" cy="55" rx="14" ry="20" fill="none" stroke="#222" stroke-width="3" transform="rotate(45,105,55)"/><ellipse cx="55" cy="105" rx="14" ry="20" fill="none" stroke="#222" stroke-width="3" transform="rotate(45,55,105)"/><ellipse cx="105" cy="105" rx="14" ry="20" fill="none" stroke="#222" stroke-width="3" transform="rotate(-45,105,105)"/><line x1="80" y1="100" x2="80" y2="170" stroke="#222" stroke-width="3"/><path d="M80,145 Q102,130 108,118" fill="none" stroke="#222" stroke-width="2.5"/></svg>',
-  rocket: '<svg viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg"><path d="M80,10 Q110,30 118,90 L118,150 L80,170 L42,150 L42,90 Q50,30 80,10 Z" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><circle cx="80" cy="80" r="22" fill="none" stroke="#222" stroke-width="3"/><path d="M42,120 L14,160 L42,150" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><path d="M118,120 L146,160 L118,150" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><path d="M60,170 Q54,190 50,210" fill="none" stroke="#222" stroke-width="2.5" stroke-linecap="round"/><path d="M100,170 Q106,190 110,210" fill="none" stroke="#222" stroke-width="2.5" stroke-linecap="round"/><path d="M72,170 Q76,185 80,200 Q84,185 88,170" fill="none" stroke="#222" stroke-width="2.5" stroke-linecap="round"/></svg>',
-  castle: '<svg viewBox="0 0 220 200" xmlns="http://www.w3.org/2000/svg"><rect x="14" y="80" width="192" height="112" fill="none" stroke="#222" stroke-width="3"/><rect x="14" y="44" width="30" height="40" fill="none" stroke="#222" stroke-width="3"/><rect x="176" y="44" width="30" height="40" fill="none" stroke="#222" stroke-width="3"/><rect x="80" y="32" width="60" height="52" fill="none" stroke="#222" stroke-width="3"/><rect x="20" y="44" width="8" height="14" fill="none" stroke="#222" stroke-width="2"/><rect x="30" y="44" width="8" height="14" fill="none" stroke="#222" stroke-width="2"/><rect x="182" y="44" width="8" height="14" fill="none" stroke="#222" stroke-width="2"/><rect x="192" y="44" width="8" height="14" fill="none" stroke="#222" stroke-width="2"/><rect x="86" y="32" width="8" height="14" fill="none" stroke="#222" stroke-width="2"/><rect x="98" y="32" width="8" height="14" fill="none" stroke="#222" stroke-width="2"/><rect x="110" y="32" width="8" height="14" fill="none" stroke="#222" stroke-width="2"/><rect x="122" y="32" width="8" height="14" fill="none" stroke="#222" stroke-width="2"/><rect x="90" y="140" width="40" height="52" rx="20" fill="none" stroke="#222" stroke-width="3"/><rect x="30" y="100" width="36" height="28" rx="4" fill="none" stroke="#222" stroke-width="2.5"/><rect x="154" y="100" width="36" height="28" rx="4" fill="none" stroke="#222" stroke-width="2.5"/></svg>',
-  dragon: '<svg viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg"><ellipse cx="100" cy="110" rx="60" ry="40" fill="none" stroke="#222" stroke-width="3"/><path d="M148,82 L190,54 L200,78 L176,94 L148,96" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><circle cx="185" cy="66" r="6" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="186" cy="67" r="2.5" fill="none" stroke="#222" stroke-width="2"/><path d="M148,82 L152,98 L164,86 L162,102 L174,88 L168,106 L180,92" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/><path d="M60,90 Q30,60 10,80 Q22,100 40,104" fill="none" stroke="#222" stroke-width="3" stroke-linecap="round"/><path d="M68,78 L55,50 L80,72" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><path d="M92,78 L88,46 L108,72" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><path d="M50,140 L44,172 L56,172 L62,155 L70,172 L82,172 L74,140" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><path d="M118,140 L115,172 L127,172 L132,155 L138,172 L150,172 L144,140" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><path d="M140,115 Q170,120 190,108" fill="none" stroke="#222" stroke-width="3" stroke-linecap="round"/></svg>',
-  knight: '<svg viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg"><rect x="44" y="18" width="72" height="60" rx="10" fill="none" stroke="#222" stroke-width="3"/><rect x="52" y="30" width="56" height="22" rx="5" fill="none" stroke="#222" stroke-width="2.5"/><line x1="52" y1="41" x2="108" y2="41" stroke="#222" stroke-width="2"/><line x1="80" y1="30" x2="80" y2="52" stroke="#222" stroke-width="2"/><rect x="52" y="78" width="56" height="76" rx="5" fill="none" stroke="#222" stroke-width="3"/><line x1="80" y1="78" x2="80" y2="154" stroke="#222" stroke-width="2"/><line x1="52" y1="116" x2="108" y2="116" stroke="#222" stroke-width="2"/><rect x="14" y="82" width="38" height="58" rx="10" fill="none" stroke="#222" stroke-width="3"/><rect x="108" y="82" width="38" height="58" rx="10" fill="none" stroke="#222" stroke-width="3"/><rect x="40" y="154" width="35" height="52" rx="8" fill="none" stroke="#222" stroke-width="3"/><rect x="85" y="154" width="35" height="52" rx="8" fill="none" stroke="#222" stroke-width="3"/><rect x="32" y="196" width="50" height="14" rx="7" fill="none" stroke="#222" stroke-width="2.5"/><rect x="78" y="196" width="50" height="14" rx="7" fill="none" stroke="#222" stroke-width="2.5"/><line x1="120" y1="2" x2="120" y2="90" stroke="#222" stroke-width="3"/><path d="M108,8 L132,8 L132,20 L108,20 Z" fill="none" stroke="#222" stroke-width="2.5"/></svg>',
-  car: '<svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="62" width="184" height="44" rx="10" fill="none" stroke="#222" stroke-width="3"/><path d="M38,62 L52,28 L148,28 L162,62" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><rect x="56" y="32" width="38" height="26" rx="4" fill="none" stroke="#222" stroke-width="2.5"/><rect x="106" y="32" width="38" height="26" rx="4" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="45" cy="110" r="18" fill="none" stroke="#222" stroke-width="3"/><circle cx="45" cy="110" r="7" fill="none" stroke="#222" stroke-width="2"/><circle cx="155" cy="110" r="18" fill="none" stroke="#222" stroke-width="3"/><circle cx="155" cy="110" r="7" fill="none" stroke="#222" stroke-width="2"/><rect x="184" y="72" width="10" height="10" rx="3" fill="none" stroke="#222" stroke-width="2"/></svg>',
-  airplane: '<svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg"><path d="M15,65 Q22,52 55,50 L165,58 L178,65 L165,72 L55,80 Q22,78 15,65 Z" fill="none" stroke="#222" stroke-width="3"/><path d="M82,52 L68,16 L104,30 L104,52" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><path d="M82,78 L68,114 L104,100 L104,78" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><path d="M24,56 L10,38 L22,44" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><path d="M24,74 L10,92 L22,86" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><circle cx="130" cy="60" r="6" fill="none" stroke="#222" stroke-width="2"/><circle cx="148" cy="60" r="6" fill="none" stroke="#222" stroke-width="2"/></svg>',
-  train: '<svg viewBox="0 0 220 135" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="40" width="100" height="64" rx="8" fill="none" stroke="#222" stroke-width="3"/><rect x="108" y="48" width="52" height="56" rx="6" fill="none" stroke="#222" stroke-width="3"/><rect x="138" y="26" width="14" height="25" rx="4" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="135" cy="22" r="6" fill="none" stroke="#222" stroke-width="2"/><rect x="22" y="54" width="28" height="24" rx="4" fill="none" stroke="#222" stroke-width="2"/><rect x="68" y="54" width="28" height="24" rx="4" fill="none" stroke="#222" stroke-width="2"/><rect x="118" y="56" width="24" height="18" rx="3" fill="none" stroke="#222" stroke-width="2"/><circle cx="30" cy="110" r="14" fill="none" stroke="#222" stroke-width="3"/><circle cx="30" cy="110" r="5" fill="none" stroke="#222" stroke-width="2"/><circle cx="85" cy="110" r="14" fill="none" stroke="#222" stroke-width="3"/><circle cx="85" cy="110" r="5" fill="none" stroke="#222" stroke-width="2"/><circle cx="140" cy="110" r="14" fill="none" stroke="#222" stroke-width="3"/><circle cx="140" cy="110" r="5" fill="none" stroke="#222" stroke-width="2"/><line x1="0" y1="124" x2="220" y2="124" stroke="#222" stroke-width="2"/></svg>',
-  butterfly: '<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg"><line x1="100" y1="20" x2="100" y2="140" stroke="#222" stroke-width="2.5"/><ellipse cx="65" cy="65" rx="45" ry="30" fill="none" stroke="#222" stroke-width="3" transform="rotate(-20,65,65)"/><ellipse cx="135" cy="65" rx="45" ry="30" fill="none" stroke="#222" stroke-width="3" transform="rotate(20,135,65)"/><ellipse cx="68" cy="105" rx="30" ry="22" fill="none" stroke="#222" stroke-width="3" transform="rotate(15,68,105)"/><ellipse cx="132" cy="105" rx="30" ry="22" fill="none" stroke="#222" stroke-width="3" transform="rotate(-15,132,105)"/><circle cx="100" cy="30" r="10" fill="none" stroke="#222" stroke-width="2.5"/><path d="M94,22 Q88,10 82,6" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round"/><path d="M106,22 Q112,10 118,6" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round"/><circle cx="100" cy="65" r="6" fill="none" stroke="#222" stroke-width="2"/></svg>',
-  pumpkin: '<svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg"><ellipse cx="90" cy="110" rx="70" ry="55" fill="none" stroke="#222" stroke-width="3"/><path d="M58,62 Q38,60 26,80 Q22,100 30,118" fill="none" stroke="#222" stroke-width="2.5" stroke-linecap="round"/><path d="M122,62 Q142,60 154,80 Q158,100 150,118" fill="none" stroke="#222" stroke-width="2.5" stroke-linecap="round"/><path d="M73,65 Q60,72 58,110 Q60,140 73,148" fill="none" stroke="#222" stroke-width="2.5"/><path d="M107,65 Q120,72 122,110 Q120,140 107,148" fill="none" stroke="#222" stroke-width="2.5"/><line x1="90" y1="55" x2="90" y2="130" stroke="#222" stroke-width="2.5"/><path d="M86,30 Q88,20 90,14 Q92,20 94,30" fill="none" stroke="#222" stroke-width="2.5" stroke-linecap="round"/><path d="M90,14 Q100,5 108,8" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round"/><polygon points="68,96 78,84 88,96 78,108" fill="none" stroke="#222" stroke-width="2.5"/><polygon points="92,96 102,84 112,96 102,108" fill="none" stroke="#222" stroke-width="2.5"/><path d="M72,120 Q82,132 90,126 Q98,132 108,120" fill="none" stroke="#222" stroke-width="2.5" stroke-linecap="round"/></svg>',
-  christmas_tree: '<svg viewBox="0 0 180 220" xmlns="http://www.w3.org/2000/svg"><rect x="72" y="180" width="36" height="36" rx="4" fill="none" stroke="#222" stroke-width="3"/><polygon points="90,14 28,90 60,90 22,148 158,148 120,90 152,90" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><circle cx="90" cy="30" r="7" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="64" cy="72" r="6" fill="none" stroke="#222" stroke-width="2"/><circle cx="116" cy="72" r="6" fill="none" stroke="#222" stroke-width="2"/><circle cx="50" cy="120" r="7" fill="none" stroke="#222" stroke-width="2"/><circle cx="90" cy="110" r="7" fill="none" stroke="#222" stroke-width="2"/><circle cx="130" cy="120" r="7" fill="none" stroke="#222" stroke-width="2"/><circle cx="72" cy="140" r="5" fill="none" stroke="#222" stroke-width="2"/><circle cx="108" cy="140" r="5" fill="none" stroke="#222" stroke-width="2"/><path d="M78,180 Q75,190 72,200" fill="none" stroke="#222" stroke-width="2"/><path d="M102,180 Q105,190 108,200" fill="none" stroke="#222" stroke-width="2"/></svg>',
-  snowman: '<svg viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg"><circle cx="80" cy="50" r="36" fill="none" stroke="#222" stroke-width="3"/><circle cx="80" cy="140" r="58" fill="none" stroke="#222" stroke-width="3"/><circle cx="68" cy="42" r="5" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="92" cy="42" r="5" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="80" cy="54" r="3" fill="none" stroke="#222" stroke-width="2"/><path d="M68,62 Q80,70 92,62" fill="none" stroke="#222" stroke-width="2.5"/><rect x="44" y="8" width="72" height="24" rx="6" fill="none" stroke="#222" stroke-width="2.5"/><path d="M44,18 Q80,26 116,18" fill="none" stroke="#222" stroke-width="1.5"/><path d="M32,90 L10,78" fill="none" stroke="#222" stroke-width="3" stroke-linecap="round"/><path d="M10,78 L6,64" fill="none" stroke="#222" stroke-width="2.5" stroke-linecap="round"/><path d="M10,78 L4,86" fill="none" stroke="#222" stroke-width="2.5" stroke-linecap="round"/><path d="M128,90 L150,78" fill="none" stroke="#222" stroke-width="3" stroke-linecap="round"/><path d="M150,78 L154,64" fill="none" stroke="#222" stroke-width="2.5" stroke-linecap="round"/><path d="M150,78 L156,86" fill="none" stroke="#222" stroke-width="2.5" stroke-linecap="round"/><circle cx="70" cy="124" r="5" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="80" cy="130" r="5" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="90" cy="124" r="5" fill="none" stroke="#222" stroke-width="2.5"/></svg>',
 };
 
 function setLang(l) {
@@ -289,105 +282,116 @@ function setLang(l) {
 
 function applyTranslations() {
   const t = TXT[lang];
-  document.getElementById('heroTitle').textContent = t.heroTitle;
-  document.getElementById('heroDesc').textContent = t.heroDesc;
-  document.getElementById('formTitle').textContent = t.formTitle;
-  document.getElementById('descLabel').textContent = t.descLabel;
+  const ids = ['heroTitle','heroDesc','descLabel','ageLabel','styleLabel','ideasLabel','btnGenerateText','loadingStatus','loadingTip','resultTitle','resultBadge','printText','downloadText','anotherText','tipsTitle','tip1','tip2','tip3','tip4','backBtn'];
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && t[id] !== undefined) el.textContent = t[id];
+  });
   document.getElementById('descInput').placeholder = t.placeholder;
-  document.getElementById('quickLabel').textContent = t.quickLabel;
-  document.getElementById('btnGenerateText').textContent = t.btnGenerate;
-  document.getElementById('loadingText').textContent = t.loadingText;
-  document.getElementById('resultTitle').textContent = t.resultTitle;
-  document.getElementById('resultTag').textContent = t.resultTag;
-  document.getElementById('printText').textContent = t.printText;
-  document.getElementById('downloadText').textContent = t.downloadText;
-  document.getElementById('anotherText').textContent = t.anotherText;
-  document.getElementById('tipsTitle').textContent = t.tipsTitle;
-  document.getElementById('tip1').textContent = t.tip1;
-  document.getElementById('tip2').textContent = t.tip2;
-  document.getElementById('tip3').textContent = t.tip3;
-  document.getElementById('tip4').textContent = t.tip4;
-  document.getElementById('backBtn').textContent = t.backBtn;
-  // Update chips
-  const chips = document.querySelectorAll('#quickChips .chip');
-  const labels = t.chips;
-  chips.forEach((c, i) => { if (labels[i]) c.textContent = labels[i]; });
+  document.getElementById('styleSimple').textContent = t.styleSimple;
+  document.getElementById('styleDetailed').textContent = t.styleDetailed;
+  const chips = document.querySelectorAll('#ideasGrid .idea-chip');
+  t.ideas.forEach((txt, i) => { if (chips[i]) chips[i].textContent = txt; });
+}
+
+function selAge(btn) {
+  document.querySelectorAll('#ageChips .chip').forEach(c => c.classList.remove('sel'));
+  btn.classList.add('sel');
+  selectedAge = btn.dataset.v;
+}
+
+function selStyle(btn) {
+  document.querySelectorAll('#styleChips .chip').forEach(c => c.classList.remove('sel'));
+  btn.classList.add('sel');
+  selectedStyle = btn.dataset.v;
 }
 
 function useIdea(btn) {
-  const text = btn.textContent.replace(/^[\p{Emoji}\s]+/u, '').trim();
+  const text = btn.textContent.replace(/^[\p{Emoji}‍\s]+/u, '').trim();
   document.getElementById('descInput').value = text;
-  document.querySelectorAll('#quickChips .chip').forEach(c => c.classList.remove('selected'));
-  btn.classList.add('selected');
+  document.getElementById('descInput').focus();
+}
+
+function buildPrompt(desc, age, style, lang) {
+  const isSimple = style === 'simple';
+  const ageNote = age === '3-5'
+    ? (lang === 'es' ? 'niños de 3-5 años (formas muy grandes y simples, pocas líneas)' : 'children aged 3-5 (very large simple shapes, few lines)')
+    : age === '6-9'
+    ? (lang === 'es' ? 'niños de 6-9 años (formas medianas, algo de detalle)' : 'children aged 6-9 (medium shapes, some detail)')
+    : (lang === 'es' ? 'niños de 10+ años (más detalles y texturas)' : 'children aged 10+ (more details and textures)');
+
+  const styleNote = isSimple
+    ? (lang === 'es' ? 'contornos gruesos (stroke-width 4-6), formas grandes y redondeadas' : 'thick outlines (stroke-width 4-6), large rounded shapes')
+    : (lang === 'es' ? 'contornos medios (stroke-width 2.5-4), más elementos y detalles internos' : 'medium outlines (stroke-width 2.5-4), more elements and internal details');
+
+  if (lang === 'es') {
+    return `Eres un artista experto en páginas para colorear para niños. Crea un SVG de página completa para colorear basado en: "${desc}"
+
+REGLAS ESTRICTAS — sigue TODAS sin excepción:
+1. Responde SOLO con el código SVG. Sin explicación, sin markdown, sin bloques de código. Empieza con <svg y termina con </svg>.
+2. viewBox="0 0 600 780" (proporción carta vertical)
+3. El dibujo debe LLENAR toda la página — usa todo el espacio
+4. Estilo para ${ageNote}
+5. ${styleNote}
+6. TODOS los elementos: fill="none" stroke="#1a1a1a" (ajusta stroke-width según el elemento)
+7. Crea una ESCENA COMPLETA con: elemento principal (grande, ocupa 40-60% del espacio), elementos secundarios, fondo con detalles (suelo, cielo, nubes, árboles u otros elementos contextuales)
+8. Sin texto dentro del SVG
+9. Asegúrate de que cada elemento sea reconocible y tenga espacio para colorear
+
+Dibuja ahora el SVG:`;
+  } else {
+    return `You are an expert artist specializing in children's coloring pages. Create a full-page coloring SVG based on: "${desc}"
+
+STRICT RULES — follow ALL without exception:
+1. Respond ONLY with the SVG code. No explanation, no markdown, no code blocks. Start with <svg and end with </svg>.
+2. viewBox="0 0 600 780" (letter portrait proportion)
+3. The drawing must FILL the entire page — use all the space
+4. Style for ${ageNote}
+5. ${styleNote}
+6. ALL elements: fill="none" stroke="#1a1a1a" (adjust stroke-width per element)
+7. Create a COMPLETE SCENE with: main element (large, 40-60% of space), secondary elements, background details (ground, sky, clouds, trees or other contextual elements)
+8. No text inside the SVG
+9. Make sure each element is recognizable and has space to color
+
+Draw the SVG now:`;
+  }
 }
 
 function extractSVG(text) {
-  const match = text.match(/<svg[\s\S]*?<\/svg>/i);
-  return match ? match[0] : null;
-}
-
-function findFallbackSVG(desc) {
-  const lower = desc.toLowerCase();
-  for (const [pattern, key] of Object.entries(FALLBACK_KEYWORDS)) {
-    const rx = new RegExp(pattern);
-    if (rx.test(lower) && FALLBACK_SVGS[key]) return FALLBACK_SVGS[key];
-  }
-  // Default fallback: star/flower
-  return FALLBACK_SVGS.flower;
+  const m = text.match(/<svg[\s\S]*?<\/svg>/i);
+  if (!m) return null;
+  const svg = m[0];
+  if (svg.length < 200) return null;
+  return svg;
 }
 
 async function generateDrawing() {
   const desc = document.getElementById('descInput').value.trim();
-  if (!desc) {
-    document.getElementById('descInput').focus();
-    return;
-  }
+  if (!desc) { document.getElementById('descInput').focus(); return; }
 
   currentDesc = desc;
   document.getElementById('btnGenerate').disabled = true;
   document.getElementById('loading').style.display = 'block';
   document.getElementById('resultCard').style.display = 'none';
 
-  const systemPrompt = lang === 'es'
-    ? `Eres un generador de páginas para colorear en SVG para niños de 3 a 10 años. El usuario te describe un dibujo y tú respondes ÚNICAMENTE con código SVG válido (sin explicaciones, sin markdown, sin bloques de código). El SVG debe:
-- Usar viewBox="0 0 300 300"
-- Ser un dibujo sencillo y adorable apto para colorear
-- Todas las formas: fill="none" stroke="#222" stroke-width="3" (o stroke-width="2.5" para detalles)
-- Sin texto dentro del SVG
-- Líneas limpias, formas simples que un niño pueda colorear fácilmente
-- Empezar con <svg y terminar con </svg> — NADA más`
-    : `You are an SVG coloring page generator for children aged 3-10. The user describes a drawing and you respond ONLY with valid SVG code (no explanations, no markdown, no code blocks). The SVG must:
-- Use viewBox="0 0 300 300"
-- Be a simple, adorable drawing suitable for coloring
-- All shapes: fill="none" stroke="#222" stroke-width="3" (or stroke-width="2.5" for details)
-- No text inside the SVG
-- Clean lines, simple shapes that a child can easily color
-- Start with <svg and end with </svg> — NOTHING else`;
+  const prompt = buildPrompt(desc, selectedAge, selectedStyle, lang);
 
   try {
     const res = await fetch(API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        messages: [
-          { role: 'user', content: `${systemPrompt}\n\n${lang === 'es' ? 'Dibujo:' : 'Drawing:'} ${desc}` }
-        ],
+        messages: [{ role: 'user', content: prompt }],
         lang
       })
     });
-
     if (!res.ok) throw new Error('API error');
     const data = await res.json();
     const raw = data.response || '';
     const svg = extractSVG(raw);
-
-    if (svg && svg.length > 100) {
-      showResult(svg, false);
-    } else {
-      showResult(findFallbackSVG(desc), true);
-    }
+    showResult(svg || getFallbackSVG(desc), !svg);
   } catch (e) {
-    showResult(findFallbackSVG(desc), true);
+    showResult(getFallbackSVG(desc), true);
   }
 }
 
@@ -395,16 +399,12 @@ function showResult(svg, isFallback) {
   currentSVG = svg;
   document.getElementById('loading').style.display = 'none';
   document.getElementById('btnGenerate').disabled = false;
-  document.getElementById('svgDisplay').innerHTML = svg;
+  document.getElementById('svgStage').innerHTML = svg;
   const note = document.getElementById('fallbackNote');
-  if (isFallback) {
-    note.style.display = 'block';
-    note.textContent = TXT[lang].fallbackNote;
-  } else {
-    note.style.display = 'none';
-  }
+  note.style.display = isFallback ? 'block' : 'none';
+  if (isFallback) note.textContent = TXT[lang].fallbackNote;
   document.getElementById('resultCard').style.display = 'block';
-  document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  setTimeout(() => document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 80);
 }
 
 function printDrawing() {
@@ -416,21 +416,21 @@ function printDrawing() {
 <title>${title} — ChartKids</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:Arial,sans-serif;padding:30px 40px;color:#111;display:flex;flex-direction:column;align-items:center;}
-  h1{font-size:1.3rem;color:#7c3aed;margin-bottom:6px;text-align:center;}
-  .sub{font-size:.78rem;color:#888;margin-bottom:28px;text-align:center;}
-  .drawing{width:100%;max-width:480px;border:2px dashed #ccc;border-radius:12px;padding:20px;background:white;}
-  .drawing svg{width:100%;height:auto;display:block;}
-  .footer{margin-top:24px;font-size:.65rem;color:#bbb;text-align:center;}
-  @media print{.footer{margin-top:16px;}}
+  @page{size:letter portrait;margin:0.35in 0.45in;}
+  body{font-family:Arial,sans-serif;background:white;height:100vh;display:flex;flex-direction:column;}
+  .hdr{text-align:center;padding-bottom:10px;border-bottom:2px dashed #ddd;margin-bottom:14px;flex-shrink:0;}
+  .hdr h1{font-size:1.35rem;color:#7c3aed;font-weight:900;}
+  .hdr p{font-size:.72rem;color:#aaa;margin-top:2px;}
+  .drawing{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;}
+  .drawing svg{width:auto;height:auto;max-width:100%;max-height:100%;display:block;}
+  .ftr{text-align:center;padding-top:8px;border-top:2px dashed #ddd;margin-top:10px;font-size:.65rem;color:#ccc;flex-shrink:0;}
 </style></head><body>
-<h1>${title}</h1>
-<div class="sub">${t.printSub}</div>
+<div class="hdr"><h1>${title}</h1><p>${t.printSub}</p></div>
 <div class="drawing">${currentSVG}</div>
-<div class="footer">chartkids.com · ${lang === 'es' ? 'Dibujo generado con IA' : 'AI-generated drawing'}</div>
+<div class="ftr">chartkids.com · ${lang==='es'?'Generado con IA':'AI generated'}</div>
 </body></html>`);
   w.document.close();
-  setTimeout(() => w.print(), 400);
+  setTimeout(() => w.print(), 500);
 }
 
 function downloadSVG() {
@@ -447,14 +447,417 @@ function generateAnother() {
   document.getElementById('resultCard').style.display = 'none';
   document.getElementById('descInput').value = '';
   document.getElementById('descInput').focus();
-  document.querySelectorAll('#quickChips .chip').forEach(c => c.classList.remove('selected'));
 }
+
+// Fallback SVGs keyed by keyword patterns
+function getFallbackSVG(desc) {
+  const d = desc.toLowerCase();
+  // Castle / dragon scene
+  if (/castillo|castle|dragon|dragón/.test(d)) return SCENE_CASTLE_DRAGON;
+  if (/sirena|mermaid|mar|ocean|sea/.test(d)) return SCENE_OCEAN;
+  if (/espacio|space|cohete|rocket|astronauta/.test(d)) return SCENE_SPACE;
+  if (/selva|bosque|forest|dinosaur|dinosaurio/.test(d)) return SCENE_FOREST;
+  return SCENE_CASTLE_DRAGON;
+}
+
+const SCENE_CASTLE_DRAGON = `<svg viewBox="0 0 600 780" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#1a1a1a">
+  <!-- Sky background -->
+  <rect x="0" y="0" width="600" height="500" rx="0" stroke="none" fill="none"/>
+  <!-- Sun -->
+  <circle cx="520" cy="80" r="45" stroke-width="4"/>
+  <line x1="520" y1="14" x2="520" y2="2" stroke-width="3"/>
+  <line x1="520" y1="158" x2="520" y2="146" stroke-width="3"/>
+  <line x1="454" y1="80" x2="442" y2="80" stroke-width="3"/>
+  <line x1="586" y1="80" x2="598" y2="80" stroke-width="3"/>
+  <line x1="473" y1="33" x2="465" y2="25" stroke-width="3"/>
+  <line x1="567" y1="127" x2="575" y2="135" stroke-width="3"/>
+  <line x1="567" y1="33" x2="575" y2="25" stroke-width="3"/>
+  <line x1="473" y1="127" x2="465" y2="135" stroke-width="3"/>
+  <!-- Clouds -->
+  <ellipse cx="100" cy="70" rx="55" ry="30" stroke-width="3"/>
+  <ellipse cx="140" cy="55" rx="40" ry="28" stroke-width="3"/>
+  <ellipse cx="65" cy="60" rx="35" ry="22" stroke-width="3"/>
+  <ellipse cx="320" cy="100" rx="50" ry="26" stroke-width="3"/>
+  <ellipse cx="355" cy="88" rx="36" ry="24" stroke-width="3"/>
+  <ellipse cx="290" cy="92" rx="32" ry="20" stroke-width="3"/>
+  <!-- Mountains -->
+  <polygon points="0,420 120,220 240,420" stroke-width="4" stroke-linejoin="round"/>
+  <polygon points="100,420 240,200 380,420" stroke-width="4" stroke-linejoin="round"/>
+  <polygon points="300,420 430,230 560,420" stroke-width="4" stroke-linejoin="round"/>
+  <polygon points="450,420 570,260 680,420" stroke-width="4" stroke-linejoin="round"/>
+  <!-- Snow caps -->
+  <polygon points="120,220 100,260 140,260" stroke-width="2.5"/>
+  <polygon points="240,200 218,245 262,245" stroke-width="2.5"/>
+  <polygon points="430,230 412,268 448,268" stroke-width="2.5"/>
+  <!-- Ground / grass -->
+  <rect x="0" y="490" width="600" height="290" stroke-width="3"/>
+  <path d="M0,490 Q50,470 100,490 Q150,510 200,490 Q250,470 300,490 Q350,510 400,490 Q450,470 500,490 Q550,510 600,490" stroke-width="3"/>
+  <!-- Grass tufts -->
+  <path d="M30,490 L25,475 L35,480 L40,465 L45,480 L55,475 L50,490" stroke-width="2.5"/>
+  <path d="M530,490 L525,475 L535,480 L540,465 L545,480 L555,475 L550,490" stroke-width="2.5"/>
+  <path d="M160,490 L155,477 L165,482 L170,469 L175,482 L185,477 L180,490" stroke-width="2.5"/>
+  <!-- Castle -->
+  <rect x="180" y="290" width="240" height="220" stroke-width="5"/>
+  <!-- Castle towers -->
+  <rect x="155" y="250" width="70" height="120" stroke-width="4"/>
+  <rect x="375" y="250" width="70" height="120" stroke-width="4"/>
+  <!-- Tower battlements -->
+  <rect x="155" y="238" width="16" height="18" stroke-width="3"/>
+  <rect x="177" y="238" width="16" height="18" stroke-width="3"/>
+  <rect x="199" y="238" width="16" height="18" stroke-width="3"/>
+  <rect x="375" y="238" width="16" height="18" stroke-width="3"/>
+  <rect x="397" y="238" width="16" height="18" stroke-width="3"/>
+  <rect x="419" y="238" width="16" height="18" stroke-width="3"/>
+  <!-- Main wall battlements -->
+  <rect x="180" y="278" width="18" height="18" stroke-width="3"/>
+  <rect x="206" y="278" width="18" height="18" stroke-width="3"/>
+  <rect x="232" y="278" width="18" height="18" stroke-width="3"/>
+  <rect x="258" y="278" width="18" height="18" stroke-width="3"/>
+  <rect x="284" y="278" width="18" height="18" stroke-width="3"/>
+  <rect x="310" y="278" width="18" height="18" stroke-width="3"/>
+  <rect x="336" y="278" width="18" height="18" stroke-width="3"/>
+  <rect x="362" y="278" width="18" height="18" stroke-width="3"/>
+  <!-- Castle gate (arch) -->
+  <path d="M256,510 L256,420 Q300,390 344,420 L344,510" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="285" y="455" width="30" height="8" rx="2" stroke-width="2.5"/>
+  <!-- Tower windows -->
+  <path d="M180,295 L180,275 Q190,265 200,275 L200,295" stroke-width="3"/>
+  <path d="M400,295 L400,275 Q410,265 420,275 L420,295" stroke-width="3"/>
+  <!-- Castle windows -->
+  <path d="M220,340 L220,315 Q232,305 244,315 L244,340" stroke-width="3"/>
+  <path d="M356,340 L356,315 Q368,305 380,315 L380,340" stroke-width="3"/>
+  <!-- Flag -->
+  <line x1="190" y1="238" x2="190" y2="195" stroke-width="3"/>
+  <polygon points="190,195 220,207 190,218" stroke-width="2.5"/>
+  <!-- Dragon -->
+  <ellipse cx="430" cy="180" rx="80" ry="50" stroke-width="5"/>
+  <!-- Dragon head -->
+  <ellipse cx="510" cy="145" rx="45" ry="35" stroke-width="5"/>
+  <!-- Dragon eye -->
+  <circle cx="525" cy="138" r="8" stroke-width="3"/>
+  <circle cx="527" cy="137" r="3" stroke-width="3"/>
+  <!-- Dragon mouth / teeth -->
+  <path d="M540,152 Q550,162 540,170" stroke-width="3"/>
+  <path d="M530,165 L535,175 L542,165 L549,175 L556,165" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- Dragon nostril -->
+  <path d="M545,148 Q550,143 555,148" stroke-width="2.5"/>
+  <!-- Dragon horns -->
+  <path d="M508,112 L498,90 L518,105" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M525,108 L520,85 L535,100" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Dragon wings -->
+  <path d="M390,155 Q330,100 280,130 Q310,160 360,165 Q390,155 390,165" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M310,130 L290,145" stroke-width="2.5"/>
+  <path d="M330,118 L315,135" stroke-width="2.5"/>
+  <path d="M350,112 L340,130" stroke-width="2.5"/>
+  <!-- Dragon tail -->
+  <path d="M355,205 Q300,230 260,215 Q240,240 265,250 Q290,235 340,225 Q380,220 400,205" stroke-width="4" stroke-linecap="round"/>
+  <!-- Dragon spines -->
+  <path d="M400,132 L388,110 L405,128" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M420,125 L412,102 L428,120" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M440,122 L435,98 L450,118" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Dragon legs -->
+  <path d="M410,225 L405,265 L390,270 L398,275 L415,270 L420,265 L425,275 L430,265 L425,225" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M450,228 L448,268 L435,273 L443,278 L458,272 L462,268 L468,278 L472,268 L468,228" stroke-width="4" stroke-linejoin="round"/>
+  <!-- Fire breath -->
+  <path d="M540,158 Q560,148 580,155 Q570,165 590,168 Q575,175 585,185 Q565,180 570,192 Q550,182 555,196 Q535,185 540,198 Q520,185 525,175 Q510,168 525,162 Q540,156 540,158 Z" stroke-width="3"/>
+  <!-- Trees -->
+  <rect x="30" y="440" width="18" height="55" stroke-width="3"/>
+  <ellipse cx="39" cy="425" rx="28" ry="35" stroke-width="3"/>
+  <ellipse cx="39" cy="400" rx="22" ry="28" stroke-width="3"/>
+  <rect x="540" y="445" width="18" height="50" stroke-width="3"/>
+  <ellipse cx="549" cy="428" rx="26" ry="32" stroke-width="3"/>
+  <ellipse cx="549" cy="404" rx="20" ry="26" stroke-width="3"/>
+  <!-- Path to castle -->
+  <path d="M200,780 Q240,660 256,510" stroke-width="4" stroke-dasharray="12,8"/>
+  <path d="M400,780 Q360,660 344,510" stroke-width="4" stroke-dasharray="12,8"/>
+  <!-- Flowers -->
+  <circle cx="80" cy="494" r="5" stroke-width="2"/>
+  <circle cx="90" cy="490" r="4" stroke-width="2"/>
+  <circle cx="80" cy="484" r="4" stroke-width="2"/>
+  <circle cx="70" cy="490" r="4" stroke-width="2"/>
+  <circle cx="80" cy="494" r="2" stroke-width="2"/>
+  <circle cx="490" cy="494" r="5" stroke-width="2"/>
+  <circle cx="500" cy="490" r="4" stroke-width="2"/>
+  <circle cx="490" cy="484" r="4" stroke-width="2"/>
+  <circle cx="480" cy="490" r="4" stroke-width="2"/>
+</svg>`;
+
+const SCENE_OCEAN = `<svg viewBox="0 0 600 780" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#1a1a1a">
+  <!-- Sky -->
+  <rect x="0" y="0" width="600" height="300" stroke="none"/>
+  <!-- Sun -->
+  <circle cx="540" cy="70" r="40" stroke-width="4"/>
+  <line x1="540" y1="18" x2="540" y2="6" stroke-width="3"/>
+  <line x1="540" y1="132" x2="540" y2="120" stroke-width="3"/>
+  <line x1="488" y1="70" x2="476" y2="70" stroke-width="3"/>
+  <line x1="592" y1="70" x2="604" y2="70" stroke-width="3"/>
+  <!-- Clouds -->
+  <ellipse cx="120" cy="60" rx="60" ry="28" stroke-width="3"/>
+  <ellipse cx="155" cy="46" rx="42" ry="26" stroke-width="3"/>
+  <ellipse cx="88" cy="54" rx="36" ry="22" stroke-width="3"/>
+  <ellipse cx="340" cy="90" rx="55" ry="26" stroke-width="3"/>
+  <!-- Ocean waves -->
+  <path d="M0,300 Q75,270 150,300 Q225,330 300,300 Q375,270 450,300 Q525,330 600,300 L600,780 L0,780 Z" stroke-width="4"/>
+  <path d="M0,350 Q75,325 150,350 Q225,375 300,350 Q375,325 450,350 Q525,375 600,350" stroke-width="3"/>
+  <path d="M0,400 Q75,378 150,400 Q225,422 300,400 Q375,378 450,400 Q525,422 600,400" stroke-width="2.5"/>
+  <!-- Mermaid -->
+  <!-- Mermaid tail -->
+  <path d="M270,550 Q260,620 240,680 Q220,720 260,740 Q300,760 340,740 Q380,720 360,680 Q340,620 330,550 Z" stroke-width="5"/>
+  <!-- Tail fin -->
+  <path d="M230,720 Q200,750 180,740 Q220,700 240,680" stroke-width="4"/>
+  <path d="M370,720 Q400,750 420,740 Q380,700 360,680" stroke-width="4"/>
+  <!-- Tail scales -->
+  <path d="M258,580 Q280,570 302,580" stroke-width="2.5"/>
+  <path d="M252,605 Q280,595 308,605" stroke-width="2.5"/>
+  <path d="M248,630 Q280,618 312,630" stroke-width="2.5"/>
+  <path d="M246,655 Q280,643 314,655" stroke-width="2.5"/>
+  <path d="M248,680 Q280,668 312,680" stroke-width="2.5"/>
+  <!-- Mermaid body -->
+  <ellipse cx="300" cy="490" rx="50" ry="70" stroke-width="5"/>
+  <!-- Shell bra -->
+  <ellipse cx="280" cy="480" rx="20" ry="16" stroke-width="3"/>
+  <ellipse cx="320" cy="480" rx="20" ry="16" stroke-width="3"/>
+  <path d="M264,490 Q280,498 296,490" stroke-width="2.5"/>
+  <path d="M304,490 Q320,498 336,490" stroke-width="2.5"/>
+  <!-- Mermaid head -->
+  <circle cx="300" cy="390" r="52" stroke-width="5"/>
+  <!-- Hair -->
+  <path d="M252,380 Q230,350 240,310 Q260,295 280,320 Q290,360 300,380" stroke-width="4"/>
+  <path d="M258,350 Q250,330 260,310" stroke-width="3"/>
+  <path d="M265,340 Q258,322 265,305" stroke-width="3"/>
+  <path d="M348,380 Q370,350 360,310 Q340,295 320,320 Q310,360 300,380" stroke-width="4"/>
+  <!-- Face -->
+  <circle cx="285" cy="385" r="7" stroke-width="3"/>
+  <circle cx="315" cy="385" r="7" stroke-width="3"/>
+  <circle cx="287" cy="385" r="3" stroke-width="3"/>
+  <circle cx="317" cy="385" r="3" stroke-width="3"/>
+  <path d="M288,400 Q300,410 312,400" stroke-width="3"/>
+  <!-- Flower in hair -->
+  <circle cx="340" cy="355" r="12" stroke-width="2.5"/>
+  <circle cx="340" cy="355" r="5" stroke-width="2.5"/>
+  <circle cx="340" cy="341" r="7" stroke-width="2"/>
+  <circle cx="354" cy="348" r="7" stroke-width="2"/>
+  <circle cx="354" cy="362" r="7" stroke-width="2"/>
+  <circle cx="340" cy="369" r="7" stroke-width="2"/>
+  <circle cx="326" cy="362" r="7" stroke-width="2"/>
+  <circle cx="326" cy="348" r="7" stroke-width="2"/>
+  <!-- Mermaid arms -->
+  <path d="M250,450 Q220,430 205,410 Q200,395 210,388 Q222,382 232,396 Q248,418 260,440" stroke-width="4"/>
+  <path d="M350,450 Q380,430 395,410 Q400,395 390,388 Q378,382 368,396 Q352,418 340,440" stroke-width="4"/>
+  <!-- Fish 1 -->
+  <ellipse cx="100" cy="420" rx="35" ry="22" stroke-width="4"/>
+  <path d="M65,420 L42,400 L42,440 Z" stroke-width="3"/>
+  <circle cx="118" cy="413" r="6" stroke-width="2.5"/>
+  <path d="M80,408 Q88,420 80,432" stroke-width="2"/>
+  <path d="M92,405 Q100,420 92,435" stroke-width="2"/>
+  <!-- Fish 2 -->
+  <ellipse cx="480" cy="500" rx="30" ry="18" stroke-width="4"/>
+  <path d="M510,500 L530,485 L530,515 Z" stroke-width="3"/>
+  <circle cx="464" cy="494" r="5" stroke-width="2.5"/>
+  <!-- Starfish -->
+  <path d="M120,620 L128,598 L136,620 L115,607 L141,607 Z" stroke-width="3"/>
+  <circle cx="128" cy="610" r="6" stroke-width="2.5"/>
+  <!-- Coral -->
+  <path d="M430,640 L430,580 Q440,560 450,580 L450,560 Q460,540 470,560 L470,580 Q480,560 490,580 L490,640" stroke-width="3.5" stroke-linejoin="round"/>
+  <path d="M440,590 Q455,578 470,590" stroke-width="2.5"/>
+  <!-- Seaweed -->
+  <path d="M50,780 Q40,740 55,700 Q65,660 50,620 Q40,580 55,540 Q65,500 50,460" stroke-width="3.5"/>
+  <path d="M540,780 Q550,745 535,705 Q525,665 540,625 Q550,585 535,545" stroke-width="3.5"/>
+  <!-- Bubbles -->
+  <circle cx="200" cy="350" r="10" stroke-width="2.5"/>
+  <circle cx="215" cy="330" r="7" stroke-width="2.5"/>
+  <circle cx="190" cy="315" r="5" stroke-width="2.5"/>
+  <circle cx="400" cy="360" r="9" stroke-width="2.5"/>
+  <circle cx="415" cy="340" r="6" stroke-width="2.5"/>
+  <!-- Sand at bottom -->
+  <path d="M0,720 Q100,700 200,720 Q300,740 400,720 Q500,700 600,720 L600,780 L0,780 Z" stroke-width="3"/>
+  <path d="M50,750 Q80,740 110,750" stroke-width="2"/>
+  <path d="M400,745 Q430,735 460,745" stroke-width="2"/>
+</svg>`;
+
+const SCENE_SPACE = `<svg viewBox="0 0 600 780" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#1a1a1a">
+  <!-- Stars background (dots) -->
+  <circle cx="30" cy="40" r="2" stroke-width="2"/>
+  <circle cx="80" cy="20" r="3" stroke-width="2"/>
+  <circle cx="150" cy="55" r="2" stroke-width="2"/>
+  <circle cx="200" cy="15" r="2" stroke-width="2"/>
+  <circle cx="250" cy="45" r="3" stroke-width="2"/>
+  <circle cx="320" cy="20" r="2" stroke-width="2"/>
+  <circle cx="380" cy="50" r="2" stroke-width="2"/>
+  <circle cx="450" cy="25" r="3" stroke-width="2"/>
+  <circle cx="500" cy="60" r="2" stroke-width="2"/>
+  <circle cx="560" cy="30" r="2" stroke-width="2"/>
+  <circle cx="60" cy="100" r="3" stroke-width="2"/>
+  <circle cx="500" cy="110" r="3" stroke-width="2"/>
+  <circle cx="170" cy="120" r="2" stroke-width="2"/>
+  <circle cx="420" cy="90" r="2" stroke-width="2"/>
+  <!-- Big star decorations -->
+  <path d="M30,160 L33,150 L36,160 L26,154 L40,154 Z" stroke-width="2"/>
+  <path d="M560,140 L563,130 L566,140 L556,134 L570,134 Z" stroke-width="2"/>
+  <!-- Earth planet (bottom) -->
+  <circle cx="300" cy="710" r="130" stroke-width="5"/>
+  <path d="M180,680 Q220,660 260,680 Q290,695 310,680 Q340,660 380,675 Q410,688 420,710" stroke-width="3"/>
+  <path d="M185,720 Q230,705 265,720 Q295,735 330,720 Q365,705 415,720" stroke-width="3"/>
+  <ellipse cx="245" cy="650" rx="30" ry="18" stroke-width="3"/>
+  <ellipse cx="360" cy="735" rx="25" ry="16" stroke-width="3"/>
+  <!-- Moon -->
+  <circle cx="480" cy="200" r="65" stroke-width="5"/>
+  <circle cx="455" cy="175" r="12" stroke-width="3"/>
+  <circle cx="500" cy="210" r="8" stroke-width="3"/>
+  <circle cx="475" cy="230" r="15" stroke-width="3"/>
+  <circle cx="510" cy="170" r="6" stroke-width="2.5"/>
+  <!-- Rocket -->
+  <path d="M200,180 Q230,120 260,100 Q290,120 320,180 L320,340 L200,340 Z" stroke-width="5" stroke-linejoin="round"/>
+  <!-- Rocket nose -->
+  <path d="M200,180 Q230,140 260,100 Q290,140 320,180" stroke-width="4"/>
+  <!-- Rocket window -->
+  <circle cx="260" cy="215" r="32" stroke-width="4"/>
+  <circle cx="260" cy="215" r="20" stroke-width="3"/>
+  <!-- Astronaut in window -->
+  <circle cx="260" cy="210" r="14" stroke-width="3"/>
+  <circle cx="255" cy="206" r="4" stroke-width="2.5"/>
+  <circle cx="265" cy="206" r="4" stroke-width="2.5"/>
+  <path d="M254,216 Q260,222 266,216" stroke-width="2.5"/>
+  <!-- Rocket fins -->
+  <path d="M200,300 L165,360 L200,340" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M320,300 L355,360 L320,340" stroke-width="4" stroke-linejoin="round"/>
+  <!-- Rocket stripes -->
+  <line x1="200" y1="260" x2="320" y2="260" stroke-width="3"/>
+  <line x1="200" y1="295" x2="320" y2="295" stroke-width="3"/>
+  <!-- Rocket flame -->
+  <path d="M215,342 Q220,380 230,400 Q240,420 260,430 Q280,420 290,400 Q300,380 305,342" stroke-width="4"/>
+  <path d="M225,345 Q230,375 240,390 Q250,405 260,408 Q270,405 280,390 Q290,375 295,345" stroke-width="3"/>
+  <!-- Small planet -->
+  <circle cx="100" cy="250" r="50" stroke-width="4"/>
+  <ellipse cx="100" cy="250" rx="80" ry="18" stroke-width="3.5"/>
+  <!-- Another planet -->
+  <circle cx="490" cy="400" r="40" stroke-width="4"/>
+  <path d="M460,380 Q480,365 510,375" stroke-width="2.5"/>
+  <path d="M455,400 Q480,390 515,398" stroke-width="2.5"/>
+  <!-- Stars/asteroids -->
+  <path d="M80,450 L84,438 L88,450 L76,443 L92,443 Z" stroke-width="2.5"/>
+  <path d="M510,310 L514,300 L518,310 L508,304 L522,304 Z" stroke-width="2.5"/>
+  <path d="M140,370 L143,362 L146,370 L138,365 L148,365 Z" stroke-width="2"/>
+  <!-- Satellite -->
+  <rect x="380" y="160" width="30" height="20" rx="4" stroke-width="3"/>
+  <rect x="350" y="166" width="30" height="8" rx="2" stroke-width="2.5"/>
+  <rect x="410" y="166" width="30" height="8" rx="2" stroke-width="2.5"/>
+  <line x1="365" y1="170" x2="380" y2="170" stroke-width="2"/>
+  <line x1="410" y1="170" x2="425" y2="170" stroke-width="2"/>
+  <!-- Comet -->
+  <circle cx="520" cy="550" r="15" stroke-width="3.5"/>
+  <path d="M505,542 Q470,510 440,490 Q410,475 370,470" stroke-width="3" stroke-linecap="round"/>
+  <path d="M505,548 Q468,525 435,515 Q405,505 365,502" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M510,558 Q480,545 455,540 Q428,535 395,534" stroke-width="2" stroke-linecap="round"/>
+</svg>`;
+
+const SCENE_FOREST = `<svg viewBox="0 0 600 780" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#1a1a1a">
+  <!-- Sky -->
+  <rect x="0" y="0" width="600" height="350" stroke="none"/>
+  <!-- Sun -->
+  <circle cx="80" cy="80" r="50" stroke-width="5"/>
+  <!-- Sun rays -->
+  <line x1="80" y1="14" x2="80" y2="2" stroke-width="3.5"/>
+  <line x1="80" y1="158" x2="80" y2="146" stroke-width="3.5"/>
+  <line x1="14" y1="80" x2="2" y2="80" stroke-width="3.5"/>
+  <line x1="146" y1="80" x2="158" y2="80" stroke-width="3.5"/>
+  <line x1="33" y1="33" x2="25" y2="25" stroke-width="3"/>
+  <line x1="127" y1="127" x2="135" y2="135" stroke-width="3"/>
+  <line x1="127" y1="33" x2="135" y2="25" stroke-width="3"/>
+  <line x1="33" y1="127" x2="25" y2="135" stroke-width="3"/>
+  <!-- Clouds -->
+  <ellipse cx="350" cy="65" rx="65" ry="30" stroke-width="3.5"/>
+  <ellipse cx="390" cy="50" rx="48" ry="28" stroke-width="3.5"/>
+  <ellipse cx="315" cy="58" rx="40" ry="24" stroke-width="3.5"/>
+  <ellipse cx="510" cy="100" rx="52" ry="25" stroke-width="3"/>
+  <!-- Ground -->
+  <rect x="0" y="500" width="600" height="280" stroke-width="3"/>
+  <path d="M0,500 Q75,480 150,500 Q225,520 300,500 Q375,480 450,500 Q525,520 600,500" stroke-width="3"/>
+  <!-- Big tree left -->
+  <rect x="55" y="330" width="28" height="175" stroke-width="5"/>
+  <ellipse cx="69" cy="280" rx="65" ry="75" stroke-width="5"/>
+  <ellipse cx="69" cy="230" rx="50" ry="58" stroke-width="4"/>
+  <ellipse cx="69" cy="190" rx="38" ry="46" stroke-width="4"/>
+  <!-- Tree branches left -->
+  <path d="M60,350 Q30,330 15,310" stroke-width="3.5"/>
+  <path d="M75,370 Q105,345 118,322" stroke-width="3.5"/>
+  <!-- Big tree right -->
+  <rect x="518" y="330" width="28" height="175" stroke-width="5"/>
+  <ellipse cx="532" cy="280" rx="65" ry="75" stroke-width="5"/>
+  <ellipse cx="532" cy="230" rx="50" ry="58" stroke-width="4"/>
+  <ellipse cx="532" cy="190" rx="38" ry="46" stroke-width="4"/>
+  <!-- Tree right branches -->
+  <path d="M522,350 Q492,330 478,310" stroke-width="3.5"/>
+  <path d="M540,370 Q570,345 585,322" stroke-width="3.5"/>
+  <!-- Medium trees background -->
+  <rect x="155" y="380" width="20" height="125" stroke-width="4"/>
+  <ellipse cx="165" cy="340" rx="45" ry="55" stroke-width="4"/>
+  <ellipse cx="165" cy="300" rx="35" ry="45" stroke-width="3.5"/>
+  <rect x="425" y="380" width="20" height="125" stroke-width="4"/>
+  <ellipse cx="435" cy="340" rx="45" ry="55" stroke-width="4"/>
+  <ellipse cx="435" cy="300" rx="35" ry="45" stroke-width="3.5"/>
+  <!-- T-Rex dinosaur -->
+  <!-- Body -->
+  <ellipse cx="310" cy="440" rx="80" ry="55" stroke-width="5"/>
+  <!-- Head -->
+  <path d="M360,390 L420,345 L445,375 L425,400 L365,405 Z" stroke-width="5" stroke-linejoin="round"/>
+  <!-- Jaw -->
+  <path d="M365,405 L425,400 L435,415 L365,415 Z" stroke-width="4" stroke-linejoin="round"/>
+  <!-- Teeth -->
+  <path d="M378,405 L375,415 L383,405 L388,415 L395,405 L400,415 L407,405 L412,415 L418,405" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- Eye -->
+  <circle cx="415" cy="360" r="10" stroke-width="3.5"/>
+  <circle cx="417" cy="359" r="4" stroke-width="3"/>
+  <!-- Nostril -->
+  <path d="M436,378 Q440,373 444,378" stroke-width="2.5"/>
+  <!-- T-Rex arms (tiny) -->
+  <path d="M358,415 L338,438 L325,432 L330,422 L340,425 L348,408" stroke-width="4" stroke-linejoin="round"/>
+  <!-- T-Rex back spines -->
+  <path d="M264,400 L252,372 L272,395" stroke-width="3.5" stroke-linejoin="round"/>
+  <path d="M285,388 L276,358 L296,382" stroke-width="3.5" stroke-linejoin="round"/>
+  <path d="M308,382 L302,350 L322,376" stroke-width="3.5" stroke-linejoin="round"/>
+  <path d="M330,384 L328,352 L346,378" stroke-width="3.5" stroke-linejoin="round"/>
+  <!-- T-Rex tail -->
+  <path d="M232,460 Q175,450 140,465 Q110,478 105,500 Q130,492 165,488 Q210,480 248,478" stroke-width="5" stroke-linecap="round"/>
+  <!-- Tail spike -->
+  <path d="M105,500 L88,518 L100,510" stroke-width="3.5"/>
+  <!-- T-Rex legs -->
+  <path d="M268,488 L252,550 L235,558 L245,568 L268,560 L278,548 L285,562 L298,548 L290,488" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M330,490 L318,552 L302,560 L312,570 L335,562 L344,550 L350,563 L362,550 L355,490" stroke-width="5" stroke-linejoin="round"/>
+  <!-- Ferns / ground plants -->
+  <path d="M400,510 Q420,485 440,495 Q425,510 400,510" stroke-width="3"/>
+  <path d="M400,510 Q380,485 360,495 Q375,510 400,510" stroke-width="3"/>
+  <line x1="400" y1="500" x2="400" y2="535" stroke-width="3"/>
+  <path d="M130,510 Q150,485 170,495 Q155,510 130,510" stroke-width="3"/>
+  <path d="M130,510 Q110,485 90,495 Q105,510 130,510" stroke-width="3"/>
+  <line x1="130" y1="500" x2="130" y2="535" stroke-width="3"/>
+  <!-- Mushrooms -->
+  <rect x="198" y="510" width="10" height="22" rx="2" stroke-width="2.5"/>
+  <path d="M188,512 Q203,492 218,512 Z" stroke-width="3"/>
+  <path d="M196,505 Q203,498 210,505" stroke-width="2"/>
+  <rect x="475" y="510" width="10" height="22" rx="2" stroke-width="2.5"/>
+  <path d="M465,512 Q480,492 495,512 Z" stroke-width="3"/>
+  <!-- Butterflies -->
+  <path d="M460,230 Q445,215 450,200 Q465,210 460,230" stroke-width="2.5"/>
+  <path d="M460,230 Q475,215 470,200 Q455,210 460,230" stroke-width="2.5"/>
+  <path d="M460,230 Q445,245 450,258 Q465,248 460,230" stroke-width="2.5"/>
+  <path d="M460,230 Q475,245 470,258 Q455,248 460,230" stroke-width="2.5"/>
+  <circle cx="460" cy="230" r="4" stroke-width="2.5"/>
+  <!-- River -->
+  <path d="M0,550 Q100,530 200,550 Q300,570 400,550 Q500,530 600,550" stroke-width="3.5"/>
+  <path d="M0,570 Q100,550 200,570 Q300,590 400,570 Q500,550 600,570" stroke-width="3"/>
+  <!-- Rocks in river -->
+  <ellipse cx="150" cy="558" rx="18" ry="10" stroke-width="2.5"/>
+  <ellipse cx="450" cy="558" rx="15" ry="9" stroke-width="2.5"/>
+</svg>`;
 
 // detect lang from URL or browser
 (function(){
   const p = new URLSearchParams(location.search);
-  const l = p.get('lang') || (navigator.language || '').toLowerCase().startsWith('en') ? 'en' : 'es';
-  if (l === 'en') setLang('en');
+  const urlLang = p.get('lang');
+  if (urlLang === 'en') { setLang('en'); return; }
+  if (urlLang === 'es') return;
+  if ((navigator.language || '').toLowerCase().startsWith('en')) setLang('en');
 })();
 </script>
 </body>
