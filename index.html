@@ -1557,6 +1557,49 @@ nav {
   nav { margin: 0 -10px; padding-left: 10px; padding-right: 10px; }
 }
 
+/* ═══ Streak counter ════════════════════════════════════════ */
+.streak-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: linear-gradient(135deg, rgba(251,191,36,.1), rgba(249,115,22,.07));
+  border: 1.5px solid rgba(251,191,36,.3);
+  border-radius: 14px;
+  padding: 12px 18px;
+  margin-top: 10px;
+  animation: fadeIn .4s ease;
+}
+.streak-flames { font-size: 1.7rem; line-height: 1; flex-shrink: 0; }
+.streak-info { flex: 1; min-width: 0; }
+.streak-count {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.1rem;
+  color: #fbbf24;
+  line-height: 1.1;
+}
+.streak-lbl { font-size: .72rem; color: rgba(255,255,255,.55); font-weight: 700; margin-top: 3px; }
+.streak-bar.legendary {
+  background: linear-gradient(135deg, rgba(124,58,237,.15), rgba(251,191,36,.1));
+  border-color: rgba(124,58,237,.5);
+  box-shadow: 0 0 18px rgba(124,58,237,.2);
+}
+.streak-bar.legendary .streak-count { color: #a78bfa; }
+
+/* History streak pill */
+.history-streak-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(251,191,36,.12);
+  border: 1px solid rgba(251,191,36,.3);
+  border-radius: 50px;
+  padding: 5px 14px;
+  font-size: .78rem;
+  font-weight: 800;
+  color: #fbbf24;
+  margin-bottom: 14px;
+}
+
 /* ═══ Modo Niño ══════════════════════════════════════════════ */
 .kid-mode-btn {
   display: none;
@@ -2044,6 +2087,13 @@ nav {
         <button class="btn btn-secondary" id="btnShare" onclick="shareChart()">📤 Compartir</button>
         <button class="btn btn-secondary" id="btnPrint" onclick="window.print()">🖨️ Imprimir</button>
         <button class="btn btn-primary" id="btnNew" onclick="resetChart()">🔄 Nuevo</button>
+      </div>
+      <div class="streak-bar" id="streakBar" style="display:none">
+        <div class="streak-flames" id="streakFlames">🔥</div>
+        <div class="streak-info">
+          <div class="streak-count" id="streakCount">1 semana</div>
+          <div class="streak-lbl" id="streakLbl">¡Sigue así!</div>
+        </div>
       </div>
     </div>
   </div>
@@ -4159,6 +4209,7 @@ function buildChart(data, preserveProgress = false) {
   document.getElementById('actionRow').style.display = 'flex';
   document.getElementById('quickPrompts').style.display = 'none';
   document.getElementById('kidModeBtn').style.display = 'flex';
+  updateStreakDisplay();
 }
 
 function toggleCheck(ti, d, total, goalAmount) {
@@ -4230,6 +4281,9 @@ function updateProgress(total, goalAmount) {
     motivation.textContent = msgs[idx];
     motivation.className = pct >= 100 ? 'chart-motivation winner' : 'chart-motivation';
   }
+
+  // Update streak badge whenever progress crosses threshold
+  updateStreakDisplay();
 }
 
 // ─── Celebration Effects ──────────────────────────────────
@@ -4346,6 +4400,7 @@ function resetChart() {
   renderEmptyState();
   document.getElementById('progressCard').style.display = 'none';
   document.getElementById('actionRow').style.display = 'none';
+  document.getElementById('streakBar').style.display = 'none';
   document.getElementById('quickPrompts').style.display = 'flex';
   document.getElementById('kidModeBtn').style.display = 'none';
   resetChat(true);
@@ -5140,6 +5195,14 @@ function _doStartNewWeek() {
   if (history.length > 12) history.pop();
   saveChartHistory(currentChartId, history);
 
+  // Check streak milestone before resetting checked
+  const newStreak = (function() {
+    let s = 0;
+    for (const w of history) { if (w.percentage >= STREAK_THRESHOLD) s++; else break; }
+    return s;
+  })();
+  setTimeout(() => checkStreakMilestone(newStreak), 800);
+
   // Reset progress for new week
   checked = new Set();
   saveProgress();
@@ -5176,16 +5239,23 @@ function renderHistoryList() {
     return;
   }
 
-  container.innerHTML = history.map(week => {
+  // Streak pill at top of history
+  const streak = calculateStreak(currentChartId);
+  const streakPill = streak >= 1
+    ? `<div class="history-streak-pill">🔥 ${streak} ${streak === 1 ? (lang === 'es' ? 'semana seguida' : 'week in a row') : (lang === 'es' ? 'semanas seguidas' : 'weeks in a row')}</div>`
+    : '';
+
+  container.innerHTML = streakPill + history.map(week => {
     const date = new Date(week.date).toLocaleDateString();
     const isComplete = week.percentage >= 100;
+    const countsForStreak = week.percentage >= STREAK_THRESHOLD;
 
     return `
       <div class="history-week-item">
         <div class="history-week-header">
           <span class="history-week-date">📅 ${t('weekOf')} ${date}</span>
           <span class="history-week-badge ${isComplete ? '' : 'incomplete'}">
-            ${isComplete ? '🏆 100%' : `${week.percentage}%`}
+            ${isComplete ? '🏆 100%' : `${week.percentage}%`}${countsForStreak && !isComplete ? ' 🔥' : ''}
           </span>
         </div>
         <div class="history-progress-bar">
@@ -5946,6 +6016,77 @@ setTimeout(() => {
   // Show banner after 2 seconds
   setTimeout(showInstallBanner, 2000);
 }, 1000);
+
+// ─── Streak Counter ───────────────────────────────────────
+const STREAK_THRESHOLD = 75; // % needed to count a week
+
+function calculateStreak(chartId) {
+  if (!chartId || !chartData) return 0;
+  const history = getChartHistory(chartId);
+
+  // Count consecutive completed archived weeks (history[0] = most recent)
+  let archivedStreak = 0;
+  for (const week of history) {
+    if (week.percentage >= STREAK_THRESHOLD) archivedStreak++;
+    else break;
+  }
+
+  // Add current week if on track
+  const days  = chartData.days  || 7;
+  const tasks = chartData.tasks || [];
+  const total = tasks.length * days;
+  const pct   = total > 0 ? Math.round((checked.size / total) * 100) : 0;
+  const currentOnTrack = pct >= STREAK_THRESHOLD;
+
+  // Only add current week if it extends an existing archived streak or is the first week tracked
+  if (currentOnTrack && (archivedStreak > 0 || history.length === 0)) {
+    return archivedStreak + 1;
+  }
+  return archivedStreak;
+}
+
+function updateStreakDisplay() {
+  const streak = calculateStreak(currentChartId);
+  const bar    = document.getElementById('streakBar');
+  if (!bar) return;
+
+  if (streak < 1) {
+    bar.style.display = 'none';
+    return;
+  }
+
+  bar.style.display = 'flex';
+  bar.classList.toggle('legendary', streak >= 10);
+
+  // Flames
+  const flames = streak >= 10 ? '⚡' : streak >= 5 ? '🔥🔥' : '🔥';
+  document.getElementById('streakFlames').textContent = flames;
+
+  // Count text
+  const weekWord = streak === 1
+    ? (lang === 'es' ? 'semana' : 'week')
+    : (lang === 'es' ? 'semanas' : 'weeks');
+  document.getElementById('streakCount').textContent = `${streak} ${weekWord} ${lang === 'es' ? 'seguidas' : 'in a row'}`;
+
+  // Label
+  let lbl;
+  if      (streak >= 10) lbl = lang === 'es' ? '⚡ ¡LEYENDA!' : '⚡ LEGEND!';
+  else if (streak >= 5)  lbl = lang === 'es' ? '🔥 ¡Imparable!' : '🔥 Unstoppable!';
+  else if (streak >= 3)  lbl = lang === 'es' ? '¡En racha!' : 'On a streak!';
+  else if (streak >= 2)  lbl = lang === 'es' ? '¡Seguimos!' : 'Keep it up!';
+  else                   lbl = lang === 'es' ? '¡Primera semana!' : 'First week!';
+  document.getElementById('streakLbl').textContent = lbl;
+}
+
+function checkStreakMilestone(newStreak) {
+  const milestones = { 3: '🔥 ¡3 semanas seguidas!', 5: '🔥🔥 ¡5 semanas imparable!', 10: '⚡ ¡¡LEYENDA!! 10 semanas' };
+  const milestonesEN = { 3: '🔥 3 weeks in a row!', 5: '🔥🔥 5 weeks unstoppable!', 10: '⚡ LEGEND!! 10 weeks' };
+  const msgs = lang === 'es' ? milestones : milestonesEN;
+  if (msgs[newStreak]) {
+    showToast(msgs[newStreak]);
+    showConfetti();
+  }
+}
 
 // ─── Rueda de Premios ─────────────────────────────────────
 const WHEEL_PRIZES_ES = [
