@@ -81,6 +81,18 @@ footer a{color:var(--accent);text-decoration:none;}
   .hero h1{font-size:1.9rem;}
   .how-to-print{flex-direction:column;}
 }
+
+/* ── Seasonal filter ── */
+.season-filter{display:flex;justify-content:center;gap:8px;margin-bottom:32px;flex-wrap:wrap;}
+.season-btn{background:var(--surface);border:2px solid var(--border);padding:7px 16px;border-radius:50px;color:var(--muted);font-weight:700;font-size:.82rem;cursor:pointer;transition:all .2s;font-family:'Nunito',sans-serif;display:flex;align-items:center;gap:5px;}
+.season-btn:hover{border-color:var(--yellow);color:var(--yellow);}
+.season-btn.active{background:rgba(251,191,36,.12);border-color:var(--yellow);color:var(--yellow);}
+.season-btn[data-s="primavera"]:hover,.season-btn[data-s="primavera"].active{border-color:#4ade80;color:#4ade80;background:rgba(74,222,128,.1);}
+.season-btn[data-s="verano"]:hover,.season-btn[data-s="verano"].active{border-color:#fb923c;color:#fb923c;background:rgba(251,146,60,.1);}
+.season-btn[data-s="otono"]:hover,.season-btn[data-s="otono"].active{border-color:#f97316;color:#f97316;background:rgba(249,115,22,.1);}
+.season-btn[data-s="invierno"]:hover,.season-btn[data-s="invierno"].active{border-color:#67e8f9;color:#67e8f9;background:rgba(103,232,249,.1);}
+.season-btn[data-s="fiestas"]:hover,.season-btn[data-s="fiestas"].active{border-color:#f472b6;color:#f472b6;background:rgba(244,114,182,.1);}
+.season-divider{width:100%;height:1px;background:var(--border);margin:4px 0;}
 </style>
 </head>
 <body>
@@ -110,6 +122,15 @@ footer a{color:var(--accent);text-decoration:none;}
   <button class="filter-btn" onclick="filterCat('fichas',this)" data-en="📋 Sheets" data-es="📋 Fichas">📋 Fichas</button>
   <button class="filter-btn" onclick="filterCat('calendar',this)" data-en="📅 Calendars" data-es="📅 Calendarios">📅 Calendarios</button>
   <button class="filter-btn" onclick="filterCat('colorear',this)" data-en="🖍️ Coloring" data-es="🖍️ Colorear">🖍️ Colorear</button>
+</div>
+
+<div class="season-filter">
+  <button class="season-btn active" data-s="all" onclick="filterSeason('all',this)" data-en="🌍 All seasons" data-es="🌍 Todas">🌍 <span data-en="All seasons" data-es="Todas">Todas</span></button>
+  <button class="season-btn" data-s="primavera" onclick="filterSeason('primavera',this)" data-en="🌸 Spring" data-es="🌸 Primavera">🌸 <span data-en="Spring" data-es="Primavera">Primavera</span></button>
+  <button class="season-btn" data-s="verano" onclick="filterSeason('verano',this)" data-en="☀️ Summer" data-es="☀️ Verano">☀️ <span data-en="Summer" data-es="Verano">Verano</span></button>
+  <button class="season-btn" data-s="otono" onclick="filterSeason('otono',this)" data-en="🍂 Fall" data-es="🍂 Otoño">🍂 <span data-en="Fall" data-es="Otoño">Otoño</span></button>
+  <button class="season-btn" data-s="invierno" onclick="filterSeason('invierno',this)" data-en="❄️ Winter" data-es="❄️ Invierno">❄️ <span data-en="Winter" data-es="Invierno">Invierno</span></button>
+  <button class="season-btn" data-s="fiestas" onclick="filterSeason('fiestas',this)" data-en="🎉 Holidays" data-es="🎉 Fiestas">🎉 <span data-en="Holidays" data-es="Fiestas">Fiestas</span></button>
 </div>
 
 <div class="how-to-print">
@@ -262,7 +283,7 @@ footer a{color:var(--accent);text-decoration:none;}
     </div>
   </div>
 
-  <div class="dl-card" data-cat="colorear">
+  <div class="dl-card" data-cat="colorear" data-season="primavera">
     <div class="dl-thumb colorear"><span>🌿</span><span class="free-badge" data-en="FREE" data-es="GRATIS">GRATIS</span></div>
     <div class="dl-body">
       <span class="dl-tag colorear" data-en="Coloring" data-es="Colorear">Colorear</span>
@@ -295,7 +316,7 @@ footer a{color:var(--accent);text-decoration:none;}
     </div>
   </div>
 
-  <div class="dl-card" data-cat="colorear">
+  <div class="dl-card" data-cat="colorear" data-season="verano">
     <div class="dl-thumb colorear"><span>🌊</span><span class="free-badge" data-en="FREE" data-es="GRATIS">GRATIS</span></div>
     <div class="dl-body">
       <span class="dl-tag colorear" data-en="Coloring" data-es="Colorear">Colorear</span>
@@ -336,6 +357,39 @@ footer a{color:var(--accent);text-decoration:none;}
       <p data-en="Superhero boy, girl and sidekick — create your own color combinations." data-es="Superhéroe niño, niña y compañero — crea tus propias combinaciones de colores.">Superhéroe niño, niña y compañero — crea tus propias combinaciones de colores.</p>
       <div class="dl-meta"><span class="dl-info" data-en="4-12 yrs · 3 drawings" data-es="4-12 años · 3 dibujos">4-12 años · 3 dibujos</span></div>
       <button class="btn-dl" onclick="printColorear('superheroes')">🖨️ <span data-en="Print drawings" data-es="Imprimir dibujos">Imprimir dibujos</span></button>
+    </div>
+  </div>
+
+  <div class="dl-card" data-cat="colorear" data-season="primavera">
+    <div class="dl-thumb colorear"><span>🦋</span><span class="free-badge" data-en="FREE" data-es="GRATIS">GRATIS</span></div>
+    <div class="dl-body">
+      <span class="dl-tag colorear" data-en="Coloring" data-es="Colorear">Colorear</span>
+      <h3 data-en="Spring" data-es="Primavera">Primavera</h3>
+      <p data-en="Butterfly, caterpillar and ladybug — perfect for spring." data-es="Mariposa, oruga y mariquita — perfectos para la primavera.">Mariposa, oruga y mariquita — perfectos para la primavera.</p>
+      <div class="dl-meta"><span class="dl-info" data-en="🌸 Spring · 3 drawings" data-es="🌸 Primavera · 3 dibujos">🌸 Primavera · 3 dibujos</span></div>
+      <button class="btn-dl" onclick="printColorear('primavera')">🖨️ <span data-en="Print drawings" data-es="Imprimir dibujos">Imprimir dibujos</span></button>
+    </div>
+  </div>
+
+  <div class="dl-card" data-cat="colorear" data-season="fiestas">
+    <div class="dl-thumb colorear"><span>🎃</span><span class="free-badge" data-en="FREE" data-es="GRATIS">GRATIS</span></div>
+    <div class="dl-body">
+      <span class="dl-tag colorear" data-en="Coloring" data-es="Colorear">Colorear</span>
+      <h3 data-en="Halloween" data-es="Halloween">Halloween</h3>
+      <p data-en="Pumpkin, ghost and bat — spooky and fun for Halloween." data-es="Calabaza, fantasma y murciélago — terroríficos y divertidos para Halloween.">Calabaza, fantasma y murciélago — terroríficos y divertidos para Halloween.</p>
+      <div class="dl-meta"><span class="dl-info" data-en="🎃 Halloween · 3 drawings" data-es="🎃 Halloween · 3 dibujos">🎃 Halloween · 3 dibujos</span></div>
+      <button class="btn-dl" onclick="printColorear('halloween')">🖨️ <span data-en="Print drawings" data-es="Imprimir dibujos">Imprimir dibujos</span></button>
+    </div>
+  </div>
+
+  <div class="dl-card" data-cat="colorear" data-season="fiestas">
+    <div class="dl-thumb colorear"><span>🎄</span><span class="free-badge" data-en="FREE" data-es="GRATIS">GRATIS</span></div>
+    <div class="dl-body">
+      <span class="dl-tag colorear" data-en="Coloring" data-es="Colorear">Colorear</span>
+      <h3 data-en="Christmas" data-es="Navidad">Navidad</h3>
+      <p data-en="Christmas tree, snowman and Santa Claus — magical scenes for Christmas." data-es="Árbol de Navidad, muñeco de nieve y Papa Noel — escenas mágicas para Navidad.">Árbol de Navidad, muñeco de nieve y Papa Noel — escenas mágicas para Navidad.</p>
+      <div class="dl-meta"><span class="dl-info" data-en="🎄 Christmas · 3 drawings" data-es="🎄 Navidad · 3 dibujos">🎄 Navidad · 3 dibujos</span></div>
+      <button class="btn-dl" onclick="printColorear('navidad')">🖨️ <span data-en="Print drawings" data-es="Imprimir dibujos">Imprimir dibujos</span></button>
     </div>
   </div>
 
@@ -413,13 +467,43 @@ function setLang(lang) {
 }
 setLang(currentLang);
 
-/* ── Category filter ── */
-function filterCat(cat, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+/* ── Combined filter state ── */
+let activeCat    = 'all';
+let activeSeason = 'all';
+
+function applyFilters() {
   document.querySelectorAll('.dl-card').forEach(card => {
-    card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
+    const catOk    = activeCat === 'all' || card.dataset.cat === activeCat;
+    const cardSeas = card.dataset.season;
+    const seasOk   = activeSeason === 'all' || !cardSeas || cardSeas === activeSeason;
+    card.style.display = (catOk && seasOk) ? '' : 'none';
   });
+  // Show/hide section titles based on whether any visible card follows them
+  ['sec-fichas','sec-calendar','sec-colorear'].forEach(id => {
+    const sec = document.getElementById(id);
+    if (!sec) return;
+    let sibling = sec.nextElementSibling;
+    let hasVisible = false;
+    while (sibling && !sibling.classList.contains('section-title')) {
+      sibling.querySelectorAll('.dl-card').forEach(c => { if (c.style.display !== 'none') hasVisible = true; });
+      sibling = sibling.nextElementSibling;
+    }
+    sec.style.display = hasVisible ? '' : 'none';
+  });
+}
+
+function filterCat(cat, btn) {
+  activeCat = cat;
+  document.querySelectorAll('.cat-filter .filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+function filterSeason(season, btn) {
+  activeSeason = season;
+  document.querySelectorAll('.season-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
 }
 
 /* ── SVG drawings for coloring pages ── */
@@ -479,6 +563,24 @@ const SVGS = {
   hero_boy: '<svg viewBox="0 0 140 200" xmlns="http://www.w3.org/2000/svg"><circle cx="70" cy="30" r="24" fill="none" stroke="#222" stroke-width="3"/><path d="M56,18 L52,6 L60,15" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/><path d="M70,6 L72,2 L76,10" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/><path d="M84,18 L88,6 L80,15" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/><circle cx="60" cy="27" r="4" fill="none" stroke="#222" stroke-width="2"/><circle cx="80" cy="27" r="4" fill="none" stroke="#222" stroke-width="2"/><path d="M63,38 Q70,44 77,38" fill="none" stroke="#222" stroke-width="2.5"/><rect x="42" y="54" width="56" height="72" rx="8" fill="none" stroke="#222" stroke-width="3"/><polygon points="70,68 60,82 70,78 80,82" fill="none" stroke="#222" stroke-width="2" stroke-linejoin="round"/><path d="M42,58 L18,70 L14,100 L32,96" fill="none" stroke="#222" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M98,58 L122,70 L126,100 L108,96" fill="none" stroke="#222" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="14" cy="108" r="10" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="126" cy="108" r="10" fill="none" stroke="#222" stroke-width="2.5"/><path d="M44,126 L38,162 L50,162 L55,146 L62,162 L74,162 L66,126" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><path d="M74,126 L70,162 L82,162 L87,146 L94,162 L106,162 L98,126" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/></svg>',
 
   hero_girl: '<svg viewBox="0 0 140 200" xmlns="http://www.w3.org/2000/svg"><circle cx="70" cy="30" r="24" fill="none" stroke="#222" stroke-width="3"/><path d="M46,24 Q46,6 58,4 Q70,2 82,4 Q94,6 94,24" fill="none" stroke="#222" stroke-width="3"/><path d="M46,28 Q34,20 32,36 Q34,48 46,42" fill="none" stroke="#222" stroke-width="2.5"/><path d="M94,28 Q106,20 108,36 Q106,48 94,42" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="60" cy="27" r="4" fill="none" stroke="#222" stroke-width="2"/><circle cx="80" cy="27" r="4" fill="none" stroke="#222" stroke-width="2"/><path d="M63,39 Q70,45 77,39" fill="none" stroke="#222" stroke-width="2.5"/><path d="M52,54 L30,90 L70,84 L110,90 L88,54 Z" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><line x1="70" y1="54" x2="70" y2="84" stroke="#222" stroke-width="2"/><polygon points="70,62 60,74 70,70 80,74" fill="none" stroke="#222" stroke-width="2" stroke-linejoin="round"/><path d="M52,58 L28,72 L22,104 L40,98" fill="none" stroke="#222" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M88,58 L112,72 L118,104 L100,98" fill="none" stroke="#222" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="18" cy="110" r="10" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="122" cy="110" r="10" fill="none" stroke="#222" stroke-width="2.5"/><path d="M30,90 L26,124 L114,124 L110,90" fill="none" stroke="#222" stroke-width="2.5"/><path d="M26,124 L18,165 L40,165 L52,140 L70,150 L88,140 L100,165 L122,165 L114,124" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/></svg>',
+
+  butterfly: '<svg viewBox="0 0 190 165" xmlns="http://www.w3.org/2000/svg"><ellipse cx="95" cy="92" rx="5" ry="44" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="95" cy="44" r="9" fill="none" stroke="#222" stroke-width="2.5"/><path d="M90,36 Q80,22 75,12" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round"/><circle cx="74" cy="10" r="3.5" fill="none" stroke="#222" stroke-width="2"/><path d="M100,36 Q110,22 115,12" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round"/><circle cx="116" cy="10" r="3.5" fill="none" stroke="#222" stroke-width="2"/><path d="M92,68 Q56,46 28,58 Q10,68 18,88 Q28,110 62,100 Q84,90 92,76" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/><path d="M98,68 Q134,46 162,58 Q180,68 172,88 Q162,110 128,100 Q106,90 98,76" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/><ellipse cx="52" cy="80" rx="20" ry="13" fill="none" stroke="#222" stroke-width="1.5"/><ellipse cx="138" cy="80" rx="20" ry="13" fill="none" stroke="#222" stroke-width="1.5"/><path d="M92,100 Q68,104 48,122 Q40,138 56,146 Q74,152 88,128 Q92,116 92,108" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/><path d="M98,100 Q122,104 142,122 Q150,138 134,146 Q116,152 102,128 Q98,116 98,108" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/></svg>',
+
+  caterpillar: '<svg viewBox="0 0 220 100" xmlns="http://www.w3.org/2000/svg"><circle cx="178" cy="60" r="20" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="136" cy="62" r="22" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="92" cy="62" r="22" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="48" cy="62" r="22" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="196" cy="42" r="23" fill="none" stroke="#222" stroke-width="3"/><circle cx="186" cy="33" r="5" fill="none" stroke="#222" stroke-width="2"/><circle cx="204" cy="33" r="5" fill="none" stroke="#222" stroke-width="2"/><path d="M188,20 Q181,8 176,3" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round"/><circle cx="175" cy="2" r="3" fill="none" stroke="#222" stroke-width="2"/><path d="M204,20 Q211,8 216,3" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round"/><circle cx="217" cy="2" r="3" fill="none" stroke="#222" stroke-width="2"/><path d="M187,54 Q196,60 205,54" fill="none" stroke="#222" stroke-width="2.5"/><line x1="38" y1="82" x2="30" y2="96" stroke="#222" stroke-width="2"/><line x1="52" y1="82" x2="60" y2="96" stroke="#222" stroke-width="2"/><line x1="82" y1="82" x2="74" y2="96" stroke="#222" stroke-width="2"/><line x1="102" y1="82" x2="110" y2="96" stroke="#222" stroke-width="2"/><line x1="126" y1="82" x2="118" y2="96" stroke="#222" stroke-width="2"/><line x1="146" y1="82" x2="154" y2="96" stroke="#222" stroke-width="2"/></svg>',
+
+  ladybug: '<svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><ellipse cx="80" cy="100" rx="58" ry="46" fill="none" stroke="#222" stroke-width="3"/><line x1="80" y1="54" x2="80" y2="146" stroke="#222" stroke-width="2.5"/><path d="M80,54 Q50,56 26,72 Q10,86 22,104" fill="none" stroke="#222" stroke-width="2.5"/><path d="M80,54 Q110,56 134,72 Q150,86 138,104" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="48" cy="76" r="9" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="108" cy="76" r="9" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="36" cy="106" r="8" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="122" cy="106" r="8" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="62" cy="118" r="7" fill="none" stroke="#222" stroke-width="2"/><circle cx="98" cy="118" r="7" fill="none" stroke="#222" stroke-width="2"/><ellipse cx="80" cy="46" rx="26" ry="18" fill="none" stroke="#222" stroke-width="3"/><circle cx="65" cy="40" r="5" fill="none" stroke="#222" stroke-width="2"/><circle cx="95" cy="40" r="5" fill="none" stroke="#222" stroke-width="2"/><path d="M74,52 Q80,56 86,52" fill="none" stroke="#222" stroke-width="2"/><path d="M70,28 L66,14" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round"/><circle cx="65" cy="12" r="3" fill="none" stroke="#222" stroke-width="2"/><path d="M90,28 L94,14" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round"/><circle cx="95" cy="12" r="3" fill="none" stroke="#222" stroke-width="2"/></svg>',
+
+  pumpkin: '<svg viewBox="0 0 170 165" xmlns="http://www.w3.org/2000/svg"><path d="M85,24 Q83,14 79,10 Q87,12 90,20" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/><ellipse cx="85" cy="104" rx="66" ry="54" fill="none" stroke="#222" stroke-width="3"/><path d="M85,50 Q85,158 85,158" fill="none" stroke="#222" stroke-width="2"/><path d="M64,52 Q48,78 50,104 Q52,128 64,150" fill="none" stroke="#222" stroke-width="2"/><path d="M106,52 Q122,78 120,104 Q118,128 106,150" fill="none" stroke="#222" stroke-width="2"/><polygon points="60,84 50,96 70,96" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/><polygon points="110,84 100,96 120,96" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/><polygon points="85,98 80,106 90,106" fill="none" stroke="#222" stroke-width="2"/><path d="M56,116 Q64,124 76,118 Q85,122 94,118 Q106,124 114,116" fill="none" stroke="#222" stroke-width="2.5"/></svg>',
+
+  ghost: '<svg viewBox="0 0 140 175" xmlns="http://www.w3.org/2000/svg"><path d="M20,82 Q20,30 70,16 Q120,30 120,82 L120,154 Q108,140 94,152 Q82,164 70,152 Q58,140 46,152 Q32,164 20,154 Z" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><circle cx="52" cy="80" r="11" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="88" cy="80" r="11" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="54" cy="82" r="4" fill="none" stroke="#222" stroke-width="2"/><circle cx="90" cy="82" r="4" fill="none" stroke="#222" stroke-width="2"/><path d="M52,106 Q70,116 88,106" fill="none" stroke="#222" stroke-width="2.5"/></svg>',
+
+  bat: '<svg viewBox="0 0 200 125" xmlns="http://www.w3.org/2000/svg"><ellipse cx="100" cy="76" rx="17" ry="22" fill="none" stroke="#222" stroke-width="3"/><circle cx="100" cy="47" r="17" fill="none" stroke="#222" stroke-width="2.5"/><path d="M89,34 L82,18 L95,32" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/><path d="M111,34 L118,18 L105,32" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/><circle cx="92" cy="44" r="4" fill="none" stroke="#222" stroke-width="2"/><circle cx="108" cy="44" r="4" fill="none" stroke="#222" stroke-width="2"/><path d="M94,58 L91,66" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round"/><path d="M106,58 L109,66" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round"/><path d="M83,64 Q56,42 18,40 Q8,56 18,74 Q42,84 68,80 Q83,78 88,76" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/><path d="M117,64 Q144,42 182,40 Q192,56 182,74 Q158,84 132,80 Q117,78 112,76" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/><path d="M83,64 Q56,54 18,54" fill="none" stroke="#222" stroke-width="1.5"/><path d="M117,64 Q144,54 182,54" fill="none" stroke="#222" stroke-width="1.5"/><path d="M83,64 Q65,70 42,75" fill="none" stroke="#222" stroke-width="1.5"/><path d="M117,64 Q135,70 158,75" fill="none" stroke="#222" stroke-width="1.5"/></svg>',
+
+  christmas_tree: '<svg viewBox="0 0 170 205" xmlns="http://www.w3.org/2000/svg"><rect x="72" y="172" width="26" height="30" rx="4" fill="none" stroke="#222" stroke-width="2.5"/><polygon points="85,10 28,84 142,84" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><polygon points="85,44 18,116 152,116" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><polygon points="85,78 10,148 160,148" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><polygon points="85,112 8,172 162,172" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round"/><polygon points="85,4 88,14 98,14 90,20 93,30 85,24 77,30 80,20 72,14 82,14" fill="none" stroke="#222" stroke-width="2" stroke-linejoin="round"/><circle cx="65" cy="72" r="5" fill="none" stroke="#222" stroke-width="2"/><circle cx="105" cy="72" r="5" fill="none" stroke="#222" stroke-width="2"/><circle cx="44" cy="104" r="6" fill="none" stroke="#222" stroke-width="2"/><circle cx="85" cy="100" r="6" fill="none" stroke="#222" stroke-width="2"/><circle cx="126" cy="104" r="6" fill="none" stroke="#222" stroke-width="2"/><circle cx="34" cy="136" r="5" fill="none" stroke="#222" stroke-width="2"/><circle cx="72" cy="133" r="5" fill="none" stroke="#222" stroke-width="2"/><circle cx="112" cy="133" r="5" fill="none" stroke="#222" stroke-width="2"/><circle cx="148" cy="136" r="5" fill="none" stroke="#222" stroke-width="2"/><path d="M50,84 Q85,90 120,84" fill="none" stroke="#222" stroke-width="1.5"/><path d="M34,116 Q85,122 136,116" fill="none" stroke="#222" stroke-width="1.5"/><path d="M22,148 Q85,154 148,148" fill="none" stroke="#222" stroke-width="1.5"/></svg>',
+
+  snowman: '<svg viewBox="0 0 140 205" xmlns="http://www.w3.org/2000/svg"><circle cx="70" cy="46" r="34" fill="none" stroke="#222" stroke-width="3"/><circle cx="70" cy="138" r="54" fill="none" stroke="#222" stroke-width="3"/><ellipse cx="70" cy="14" rx="37" ry="9" fill="none" stroke="#222" stroke-width="2.5"/><rect x="45" y="14" width="50" height="36" fill="none" stroke="#222" stroke-width="2.5"/><line x1="45" y1="36" x2="95" y2="36" stroke="#222" stroke-width="3"/><circle cx="57" cy="38" r="5" fill="none" stroke="#222" stroke-width="2"/><circle cx="83" cy="38" r="5" fill="none" stroke="#222" stroke-width="2"/><path d="M70,48 L81,53 L70,57" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/><path d="M55,62 Q70,72 85,62" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="70" cy="106" r="5" fill="none" stroke="#222" stroke-width="2"/><circle cx="70" cy="124" r="5" fill="none" stroke="#222" stroke-width="2"/><circle cx="70" cy="142" r="5" fill="none" stroke="#222" stroke-width="2"/><path d="M20,120 Q34,112 50,110" fill="none" stroke="#222" stroke-width="2.5" stroke-linecap="round"/><path d="M120,120 Q106,112 90,110" fill="none" stroke="#222" stroke-width="2.5" stroke-linecap="round"/><path d="M22,116 Q18,108 20,120" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round"/><path d="M118,116 Q122,108 120,120" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round"/><path d="M44,86 Q70,94 96,86" fill="none" stroke="#222" stroke-width="3"/><path d="M44,86 L40,100 L52,96" fill="none" stroke="#222" stroke-width="2.5" stroke-linecap="round"/></svg>',
+
+  santa: '<svg viewBox="0 0 140 205" xmlns="http://www.w3.org/2000/svg"><polygon points="70,10 28,58 112,58" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/><circle cx="70" cy="10" r="9" fill="none" stroke="#222" stroke-width="2"/><rect x="23" y="56" width="94" height="15" rx="7" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="56" cy="80" r="5" fill="none" stroke="#222" stroke-width="2"/><circle cx="84" cy="80" r="5" fill="none" stroke="#222" stroke-width="2"/><circle cx="70" cy="89" r="5" fill="none" stroke="#222" stroke-width="2"/><circle cx="48" cy="91" r="8" fill="none" stroke="#222" stroke-width="1.5"/><circle cx="92" cy="91" r="8" fill="none" stroke="#222" stroke-width="1.5"/><path d="M55,98 Q70,108 85,98" fill="none" stroke="#222" stroke-width="2.5"/><path d="M42,100 Q30,112 34,130 Q42,155 70,160 Q98,155 106,130 Q110,112 98,100" fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="round"/><path d="M42,100 Q56,110 70,104 Q84,110 98,100" fill="none" stroke="#222" stroke-width="2"/><rect x="22" y="116" width="96" height="78" rx="12" fill="none" stroke="#222" stroke-width="3"/><rect x="54" y="114" width="32" height="10" rx="5" fill="none" stroke="#222" stroke-width="2"/><line x1="70" y1="124" x2="70" y2="194" stroke="#222" stroke-width="2"/><rect x="22" y="156" width="96" height="12" fill="none" stroke="#222" stroke-width="2"/><rect x="62" y="156" width="16" height="12" fill="none" stroke="#222" stroke-width="2"/><circle cx="70" cy="140" r="3.5" fill="none" stroke="#222" stroke-width="2"/><circle cx="70" cy="182" r="3.5" fill="none" stroke="#222" stroke-width="2"/><path d="M22,124 L4,144 L14,156 L28,147" fill="none" stroke="#222" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M118,124 L136,144 L126,156 L112,147" fill="none" stroke="#222" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="5" cy="152" r="11" fill="none" stroke="#222" stroke-width="2.5"/><circle cx="135" cy="152" r="11" fill="none" stroke="#222" stroke-width="2.5"/></svg>',
 
   sidekick: '<svg viewBox="0 0 120 180" xmlns="http://www.w3.org/2000/svg"><rect x="28" y="28" width="64" height="56" rx="12" fill="none" stroke="#222" stroke-width="3"/><rect x="38" y="44" width="18" height="14" rx="6" fill="none" stroke="#222" stroke-width="2"/><rect x="64" y="44" width="18" height="14" rx="6" fill="none" stroke="#222" stroke-width="2"/><circle cx="47" cy="51" r="4" fill="none" stroke="#222" stroke-width="2"/><circle cx="73" cy="51" r="4" fill="none" stroke="#222" stroke-width="2"/><path d="M44,68 Q60,76 76,68" fill="none" stroke="#222" stroke-width="2.5"/><rect x="50" y="84" width="20" height="10" rx="4" fill="none" stroke="#222" stroke-width="2"/><rect x="16" y="94" width="88" height="58" rx="10" fill="none" stroke="#222" stroke-width="3"/><rect x="34" y="106" width="52" height="30" rx="6" fill="none" stroke="#222" stroke-width="2"/><circle cx="52" cy="118" r="5" fill="none" stroke="#222" stroke-width="2"/><circle cx="68" cy="118" r="5" fill="none" stroke="#222" stroke-width="2"/><rect x="36" y="126" width="48" height="6" rx="3" fill="none" stroke="#222" stroke-width="1.5"/><rect x="0" y="96" width="18" height="44" rx="9" fill="none" stroke="#222" stroke-width="3"/><rect x="102" y="96" width="18" height="44" rx="9" fill="none" stroke="#222" stroke-width="3"/><rect x="30" y="152" width="24" height="24" rx="8" fill="none" stroke="#222" stroke-width="3"/><rect x="66" y="152" width="24" height="24" rx="8" fill="none" stroke="#222" stroke-width="3"/><line x1="60" y1="28" x2="60" y2="16" stroke="#222" stroke-width="2.5"/><circle cx="60" cy="12" r="5" fill="none" stroke="#222" stroke-width="2"/></svg>'
 };
@@ -562,6 +664,30 @@ const COLORING_THEMES = {
       { name_es: 'Superhéroe', name_en: 'Superhero', key: 'hero_boy' },
       { name_es: 'Superheroína', name_en: 'Superheroine', key: 'hero_girl' },
       { name_es: 'Compañero Robot', name_en: 'Robot Sidekick', key: 'sidekick' }
+    ]
+  },
+  primavera: {
+    title_es: 'Primavera', title_en: 'Spring',
+    items: [
+      { name_es: 'Mariposa', name_en: 'Butterfly', key: 'butterfly' },
+      { name_es: 'Oruga', name_en: 'Caterpillar', key: 'caterpillar' },
+      { name_es: 'Mariquita', name_en: 'Ladybug', key: 'ladybug' }
+    ]
+  },
+  halloween: {
+    title_es: 'Halloween', title_en: 'Halloween',
+    items: [
+      { name_es: 'Calabaza', name_en: 'Pumpkin', key: 'pumpkin' },
+      { name_es: 'Fantasma', name_en: 'Ghost', key: 'ghost' },
+      { name_es: 'Murciélago', name_en: 'Bat', key: 'bat' }
+    ]
+  },
+  navidad: {
+    title_es: 'Navidad', title_en: 'Christmas',
+    items: [
+      { name_es: 'Árbol de Navidad', name_en: 'Christmas Tree', key: 'christmas_tree' },
+      { name_es: 'Muñeco de Nieve', name_en: 'Snowman', key: 'snowman' },
+      { name_es: 'Papa Noel', name_en: 'Santa Claus', key: 'santa' }
     ]
   }
 };
