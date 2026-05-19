@@ -91,6 +91,14 @@ header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom:
 .faq-q:hover { color: var(--gold); }
 .faq-a { font-size: .88rem; color: var(--muted); line-height: 1.6; display: none; padding-top: 6px; }
 
+/* Demo bar */
+.demo-bar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; background: rgba(251,191,36,.1); border: 1px solid rgba(251,191,36,.3); border-radius: 50px; padding: 8px 16px; margin-bottom: 28px; }
+.demo-bar-label { font-size: .72rem; font-weight: 800; color: var(--yellow); text-transform: uppercase; letter-spacing: .05em; }
+.demo-btn-activate { padding: 6px 18px; border-radius: 50px; border: none; font-family: 'Nunito', sans-serif; font-size: .82rem; font-weight: 800; cursor: pointer; background: rgba(251,191,36,.25); color: var(--yellow); border: 1px solid rgba(251,191,36,.4); transition: all .2s; }
+.demo-btn-activate:hover { opacity: .8; transform: translateY(-1px); }
+.demo-btn-clear { padding: 6px 16px; border-radius: 50px; border: 1px solid var(--border); font-family: 'Nunito', sans-serif; font-size: .8rem; font-weight: 800; cursor: pointer; background: rgba(148,163,184,.12); color: var(--muted); transition: all .2s; }
+.demo-btn-clear:hover { opacity: .8; }
+
 footer { border-top: 1px solid var(--border); padding: 28px 0; text-align: center; margin-top: 20px; }
 footer p { color: var(--muted); font-size: .85rem; }
 footer a { color: var(--accent); text-decoration: none; }
@@ -111,6 +119,13 @@ footer a { color: var(--accent); text-decoration: none; }
     <a href="actividades.html" class="back-btn">← Actividades</a>
   </div>
 </header>
+
+<!-- Demo bar -->
+<div class="demo-bar">
+  <span class="demo-bar-label">Demo</span>
+  <button class="demo-btn-activate" onclick="activateDemo()">👑 Simular suscripción</button>
+  <button class="demo-btn-clear"    onclick="clearDemo()">Limpiar</button>
+</div>
 
 <!-- Already premium banner (shown via JS) -->
 <div class="already-premium" id="already-premium">
@@ -246,6 +261,22 @@ function initPayPal() {
     },
     onError(err) { console.error('PayPal error:', err); }
   }).render('#paypal-btn-container');
+}
+
+function activateDemo() {
+  localStorage.setItem('chartkids_premium', 'true');
+  localStorage.setItem('chartkids_premium_sub', 'DEMO-SUB-001');
+  document.getElementById('already-premium').style.display = 'block';
+  document.getElementById('hero-section').style.display = 'none';
+  document.getElementById('paypal-btn-container').style.display = 'none';
+  document.getElementById('pricing-note').style.display = 'none';
+  document.getElementById('success-state').style.display = 'none';
+}
+
+function clearDemo() {
+  localStorage.removeItem('chartkids_premium');
+  localStorage.removeItem('chartkids_premium_sub');
+  location.reload();
 }
 
 function toggleFaq(el) {
