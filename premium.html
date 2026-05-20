@@ -7,6 +7,8 @@
 <meta name="description" content="Desbloquea actividades exclusivas, kits imprimibles, certificados y badges premium para toda la familia.">
 <link rel="canonical" href="https://www.chartkids.com/premium.html">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="ck-auth.js"></script>
 <script src="https://www.paypal.com/sdk/js?client-id=Aa0khjubdaZqeyeVfDubi3n1povc_yU8kS5Ell6VEqMLYToNo45EijWzRsri32iJoVPWDtX4AWqDZYdB&vault=true&intent=subscription&currency=USD" data-sdk-integration-source="button-factory"></script>
 <style>
 :root {
@@ -81,6 +83,11 @@ header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom:
 .success-state { display: none; text-align: center; padding: 20px 0; }
 .success-state h3 { font-family: 'Fredoka One', cursive; font-size: 1.6rem; color: var(--green); margin-bottom: 8px; }
 .success-state p { color: var(--muted); margin-bottom: 20px; }
+.login-prompt { display: none; margin-top: 16px; background: rgba(124,58,237,.1); border: 1px solid rgba(124,58,237,.3); border-radius: 14px; padding: 18px; }
+.login-prompt p { color: var(--text); font-size: .9rem; margin-bottom: 12px; }
+.login-google-btn { display: inline-flex; align-items: center; gap: 8px; background: white; color: #333; padding: 10px 22px; border-radius: 50px; font-weight: 800; font-size: .88rem; cursor: pointer; border: none; font-family: 'Nunito', sans-serif; transition: opacity .2s; }
+.login-google-btn:hover { opacity: .88; }
+.already-logged { color: var(--green); font-weight: 700; font-size: .88rem; margin-top: 10px; }
 
 /* FAQ */
 .faq { margin-bottom: 60px; }
@@ -201,6 +208,12 @@ footer a { color: var(--accent); text-decoration: none; }
       <h3>🎉 ¡Premium activado!</h3>
       <p>Ya tienes acceso a todo el contenido exclusivo.</p>
       <a href="actividades.html" class="go-btn">Ver actividades →</a>
+      <div class="login-prompt" id="login-prompt">
+        <p>☁️ Inicia sesión para sincronizar tu progreso en todos tus dispositivos.</p>
+        <button class="login-google-btn" onclick="ckSignIn()">
+          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="18"> Continuar con Google
+        </button>
+      </div>
     </div>
     <p class="pricing-note" id="pricing-note">Pago seguro con PayPal · Cancela en cualquier momento</p>
   </div>
@@ -252,12 +265,14 @@ function initPayPal() {
     createSubscription(data, actions) {
       return actions.subscription.create({ plan_id: 'P-FZ9MSHLYCWXE6' });
     },
-    onApprove(data) {
+    async onApprove(data) {
       localStorage.setItem('chartkids_premium', 'true');
       localStorage.setItem('chartkids_premium_sub', data.subscriptionID || '');
       document.getElementById('paypal-btn-container').style.display = 'none';
       document.getElementById('pricing-note').style.display = 'none';
       document.getElementById('success-state').style.display = 'block';
+      const user = await ckGetUser();
+      if (!user) document.getElementById('login-prompt').style.display = 'block';
     },
     onError(err) { console.error('PayPal error:', err); }
   }).render('#paypal-btn-container');
