@@ -309,23 +309,12 @@ footer a { color: var(--accent); text-decoration: none; }
   .semana-cta    { width: 100%; text-align: center; padding: 10px; }
 }
 </style>
+<script src="ck-nav.js"></script>
 </head>
 <body>
 <div class="container">
 
-<header>
-  <div class="header-inner">
-    <a href="index.html" class="logo">ChartKids<span>✨</span></a>
-    <div class="header-actions">
-      <a href="index.html" class="back-btn">← <span data-en="Back to App" data-es="Volver a la App">Volver a la App</span></a>
-      <a href="recompensas.html" class="xp-widget" id="xp-widget"><span class="xp-icon">⭐</span><span id="xp-display">0 XP</span></a>
-      <div class="lang-toggle">
-        <button class="lang-btn active" onclick="setLang('es')">ES</button>
-        <button class="lang-btn" onclick="setLang('en')">EN</button>
-      </div>
-    </div>
-  </div>
-</header>
+<div id="ck-nav"></div>
 
 <div class="hero">
   <div class="hero-badge" data-en="New activity every week" data-es="Actividad nueva cada semana">Actividad nueva cada semana</div>

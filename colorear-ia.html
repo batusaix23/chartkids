@@ -72,22 +72,10 @@ footer a{color:var(--muted);text-decoration:none;}
 footer a:hover{color:var(--text);}
 @media(max-width:540px){.hero h1{font-size:1.7rem;}.svg-stage{padding:14px;margin:12px 14px 0;}}
 </style>
+<script src="ck-nav.js"></script>
 </head>
 <body>
-<header>
-  <div class="container">
-    <div class="header-inner">
-      <a class="logo" href="index.html">Chart<span>Kids</span></a>
-      <div class="nav-right">
-        <div class="lang-toggle">
-          <button class="lang-btn active" id="btnES" onclick="setLang('es')">ES</button>
-          <button class="lang-btn" id="btnEN" onclick="setLang('en')">EN</button>
-        </div>
-        <a href="descargables.html" class="back-btn" id="backBtn">← Descargables</a>
-      </div>
-    </div>
-  </div>
-</header>
+<div id="ck-nav"></div>
 
 <main class="container">
   <div class="hero">

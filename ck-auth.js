@@ -76,4 +76,5 @@ _sb.auth.onAuthStateChange(async (event, session) => {
     await ckMigrate(session.user);
   }
   ckOnAuthChange(event, session);
+  if (window.renderCknAuth) await window.renderCknAuth();
 });
