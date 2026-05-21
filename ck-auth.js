@@ -1,7 +1,8 @@
 // ck-auth.js — ChartKids auth + data layer (Supabase)
 const _sb = supabase.createClient(
   'https://zxusjnlphxiugjkusybd.supabase.co',
-  'sb_publishable_lakdqaF7FZ0bIEZDdkSipA_zAwvWbDw'
+  'sb_publishable_lakdqaF7FZ0bIEZDdkSipA_zAwvWbDw',
+  { auth: { flowType: 'implicit' } }
 );
 
 async function ckGetUser() {
@@ -10,9 +11,10 @@ async function ckGetUser() {
 }
 
 async function ckSignIn() {
+  const redirectTo = location.origin + location.pathname;
   await _sb.auth.signInWithOAuth({
     provider: 'google',
-    options: { redirectTo: location.href }
+    options: { redirectTo }
   });
 }
 
