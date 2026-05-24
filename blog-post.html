@@ -62,6 +62,15 @@ footer a{color:var(--accent);text-decoration:none;}
 <div id="ck-nav"></div>
 <div class="container">
 
+<!-- Breadcrumb -->
+<nav id="breadcrumb" style="padding:16px 0 0;font-size:.82rem;color:#64748b;font-weight:700;display:none;">
+  <a href="index.html" id="bc-home" style="color:#94a3b8;text-decoration:none;">🏠 Inicio</a>
+  <span style="margin:0 8px;color:#2e2e50;">›</span>
+  <a href="blog.html" id="bc-blog" style="color:#94a3b8;text-decoration:none;">Blog</a>
+  <span style="margin:0 8px;color:#2e2e50;">›</span>
+  <span id="bc-category" style="color:#a78bfa;"></span>
+</nav>
+
 <div id="article-root"></div>
 
 <footer>
@@ -75,30 +84,49 @@ const params = new URLSearchParams(location.search);
 const id = params.get('id');
 const article = BLOG_ARTICLES.find(a => a.id === id);
 const root = document.getElementById('article-root');
+const lang = localStorage.getItem('ck_lang') || 'es';
+
+function t(en, es) { return (lang === 'es' && es) ? es : en; }
+
+function setLang(newLang) {
+  location.reload();
+}
 
 if (!article) {
   root.innerHTML = `<div class="not-found">
-    <h2>Article not found</h2>
-    <p>Sorry, we couldn't find that article.</p>
-    <a href="blog.html" class="back-link">← Back to Blog</a>
+    <h2>${t('Article not found','Artículo no encontrado')}</h2>
+    <p>${t('Sorry, we couldn\'t find that article.','No pudimos encontrar ese artículo.')}</p>
+    <a href="blog.html" class="back-link">← ${t('Back to Blog','Volver al Blog')}</a>
   </div>`;
 } else {
-  document.getElementById('page-title').textContent = article.title + ' — ChartKids';
-  document.getElementById('page-desc').content = article.summary;
+  const title = t(article.title, article.title_es);
+  const summary = t(article.summary, article.summary_es);
+  const category = t(article.category, article.category_es);
+
+  document.getElementById('page-title').textContent = title + ' — ChartKids';
+  document.getElementById('page-desc').content = summary;
+
+  // Show breadcrumb
+  const bc = document.getElementById('breadcrumb');
+  bc.style.display = 'block';
+  document.getElementById('bc-home').textContent = t('🏠 Home', '🏠 Inicio');
+  document.getElementById('bc-blog').textContent = 'Blog';
+  document.getElementById('bc-category').textContent = category;
 
   const related = BLOG_ARTICLES.filter(a => a.id !== id).slice(0, 3);
   const relatedHTML = related.map(a => `
     <a href="blog-post.html?id=${a.id}" class="related-card">
       <div class="related-emoji">${a.emoji}</div>
-      <h3>${a.title}</h3>
+      <h3>${t(a.title, a.title_es)}</h3>
       <span>${a.readTime}</span>
     </a>`).join('');
 
   root.innerHTML = `
+    <a href="blog.html" class="back-link" style="margin-top:24px;">← ${t('Back to Blog','Volver al Blog')}</a>
     <div class="article-header">
-      <span class="article-category">${article.category}</span>
-      <h1 class="article-title">${article.title}</h1>
-      <p class="article-summary">${article.summary}</p>
+      <span class="article-category">${category}</span>
+      <h1 class="article-title">${title}</h1>
+      <p class="article-summary">${summary}</p>
       <div class="article-meta">
         <span>📅 ${article.date}</span>
         <span>⏱ ${article.readTime}</span>
@@ -106,9 +134,9 @@ if (!article) {
     </div>
     <div class="article-emoji">${article.emoji}</div>
     <div class="article-body">${article.content}</div>
-    <a href="blog.html" class="back-link">← Back to Blog</a>
+    <a href="blog.html" class="back-link">← ${t('Back to Blog','Volver al Blog')}</a>
     <div class="related-section">
-      <div class="related-title">More Articles</div>
+      <div class="related-title">${t('More Articles','Más Artículos')}</div>
       <div class="related-grid">${relatedHTML}</div>
     </div>
   `;

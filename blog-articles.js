@@ -2,10 +2,12 @@
 const BLOG_ARTICLES = [
   {
     id: 'science-reward-charts',
-    category: 'Reward Charts',
+    category: 'Reward Charts', category_es: 'Charts de Recompensas',
     emoji: '🧠',
     title: 'The Science Behind Reward Charts: Why They Work',
+    title_es: 'La Ciencia detrás de los Charts: Por qué Funcionan',
     summary: 'Discover the psychological principles that make reward charts so effective for children ages 3–12. Learn how visual progress tracking activates the brain\'s reward system and builds lasting habits.',
+    summary_es: 'Descubre los principios psicológicos que hacen tan efectivos los charts de recompensas para niños de 3 a 12 años y cómo construyen hábitos duraderos.',
     date: 'May 2025',
     readTime: '8 min read',
     featured: true,
@@ -53,10 +55,12 @@ const BLOG_ARTICLES = [
   },
   {
     id: 'morning-routines',
-    category: 'Morning Routines',
+    category: 'Morning Routines', category_es: 'Rutinas Matutinas',
     emoji: '🌅',
     title: '5 Tips for Stress-Free Morning Routines',
+    title_es: '5 Consejos para Mañanas sin Estrés',
     summary: 'Transform chaotic mornings into smooth sailing with these proven strategies that work for any family.',
+    summary_es: 'Convierte las mañanas caóticas en algo fluido con estas estrategias comprobadas que funcionan para cualquier familia.',
     date: 'April 2025',
     readTime: '5 min read',
     content: `
@@ -89,10 +93,12 @@ const BLOG_ARTICLES = [
   },
   {
     id: 'money-skills',
-    category: 'Money Skills',
+    category: 'Money Skills', category_es: 'Habilidades Financieras',
     emoji: '💰',
     title: 'Teaching Kids About Money with Reward Charts',
+    title_es: 'Enseñar a los Niños sobre el Dinero con Charts',
     summary: 'How to use allowance-based reward charts to teach financial literacy from an early age.',
+    summary_es: 'Cómo usar charts de recompensas con mesada para enseñar educación financiera desde una edad temprana.',
     date: 'April 2025',
     readTime: '7 min read',
     content: `
@@ -133,10 +139,12 @@ const BLOG_ARTICLES = [
   },
   {
     id: 'toddler-charts',
-    category: 'Age 3–5',
+    category: 'Age 3–5', category_es: 'Edad 3–5',
     emoji: '👶',
     title: 'Reward Charts for Toddlers: A Beginner\'s Guide',
+    title_es: 'Charts de Recompensas para Bebés: Guía para Principiantes',
     summary: 'Simple, visual charts that work for even the youngest children. Start building good habits early!',
+    summary_es: 'Charts simples y visuales que funcionan incluso para los niños más pequeños. ¡Empieza a construir buenos hábitos desde temprano!',
     date: 'March 2025',
     readTime: '4 min read',
     content: `
@@ -176,10 +184,12 @@ const BLOG_ARTICLES = [
   },
   {
     id: 'homework-motivation',
-    category: 'Homework',
+    category: 'Homework', category_es: 'Tareas Escolares',
     emoji: '📚',
     title: 'Motivating Kids to Do Homework Without Tears',
+    title_es: 'Motivar a los Niños a Hacer la Tarea sin Lágrimas',
     summary: 'Proven strategies to make homework time productive and conflict-free using positive reinforcement.',
+    summary_es: 'Estrategias comprobadas para hacer el tiempo de tarea productivo y libre de conflictos usando refuerzo positivo.',
     date: 'March 2025',
     readTime: '6 min read',
     content: `
@@ -219,10 +229,12 @@ const BLOG_ARTICLES = [
   },
   {
     id: 'troubleshooting-charts',
-    category: 'Behavior',
+    category: 'Behavior', category_es: 'Comportamiento',
     emoji: '😤',
     title: 'When Reward Charts Don\'t Work: Troubleshooting Guide',
+    title_es: 'Cuando los Charts no Funcionan: Guía de Solución',
     summary: 'Common mistakes parents make and how to adjust your approach for better results.',
+    summary_es: 'Errores comunes que cometen los padres y cómo ajustar tu enfoque para obtener mejores resultados.',
     date: 'February 2025',
     readTime: '8 min read',
     content: `
@@ -262,10 +274,12 @@ const BLOG_ARTICLES = [
   },
   {
     id: 'sibling-systems',
-    category: 'Multiple Kids',
+    category: 'Multiple Kids', category_es: 'Varios Hijos',
     emoji: '👧👦',
     title: 'Fair Reward Systems for Siblings',
+    title_es: 'Sistemas de Recompensas Justos para Hermanos',
     summary: 'How to create charts that motivate all your children without causing competition or jealousy.',
+    summary_es: 'Cómo crear charts que motiven a todos tus hijos sin generar competencia ni celos.',
     date: 'February 2025',
     readTime: '5 min read',
     content: `
