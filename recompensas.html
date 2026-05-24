@@ -96,23 +96,6 @@ header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom:
 .reset-btn { background: none; border: 1px solid var(--border); padding: 10px 24px; border-radius: 50px; color: var(--muted); font-size: 0.82rem; font-weight: 700; cursor: pointer; font-family: 'Nunito', sans-serif; transition: all .2s; }
 .reset-btn:hover { border-color: var(--pink); color: var(--pink); }
 
-/* Auth UI */
-.auth-btn { background: var(--surface2); border: 1px solid var(--border); padding: 8px 18px; border-radius: 50px; color: var(--text); font-weight: 700; font-size: .82rem; cursor: pointer; font-family: 'Nunito', sans-serif; transition: all .2s; }
-.auth-btn:hover { background: var(--accent); border-color: var(--accent); }
-.auth-user { display: flex; align-items: center; gap: 8px; background: rgba(34,197,94,.08); border: 1px solid rgba(34,197,94,.25); padding: 6px 14px 6px 8px; border-radius: 50px; font-size: .8rem; }
-.auth-avatar { width: 26px; height: 26px; border-radius: 50%; }
-.auth-name { font-weight: 700; color: var(--green); max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.signout-link { background: none; border: none; color: var(--muted); font-size: .72rem; cursor: pointer; font-family: 'Nunito', sans-serif; text-decoration: underline; padding: 0; }
-
-/* Demo bar */
-.demo-bar { display: none; align-items: center; gap: 10px; flex-wrap: wrap; background: rgba(251,191,36,.1); border: 1px solid rgba(251,191,36,.3); border-radius: 50px; padding: 8px 16px; margin-bottom: 24px; }
-.demo-bar-label { font-size: .72rem; font-weight: 800; color: var(--yellow); text-transform: uppercase; letter-spacing: .05em; }
-.demo-btn { padding: 6px 16px; border-radius: 50px; border: none; font-family: 'Nunito', sans-serif; font-size: .8rem; font-weight: 800; cursor: pointer; transition: all .2s; }
-.demo-btn-free    { background: rgba(34,197,94,.2); color: var(--green); border: 1px solid rgba(34,197,94,.3); }
-.demo-btn-premium { background: rgba(251,191,36,.2); color: var(--yellow); border: 1px solid rgba(251,191,36,.3); }
-.demo-btn-clear   { background: rgba(148,163,184,.12); color: var(--muted); border: 1px solid var(--border); }
-.demo-btn:hover { opacity: .8; transform: translateY(-1px); }
-
 footer { border-top: 1px solid var(--border); padding: 28px 0; text-align: center; }
 footer p { color: var(--muted); font-size: 0.85rem; }
 footer a { color: var(--accent); text-decoration: none; }
@@ -127,14 +110,6 @@ footer a { color: var(--accent); text-decoration: none; }
 <body>
 <div id="ck-nav"></div>
 <div class="container">
-
-<!-- Demo bar (hidden until render() shows it) -->
-<div class="demo-bar" id="demo-bar">
-  <span class="demo-bar-label">Demo</span>
-  <button class="demo-btn demo-btn-free"    onclick="loadDemo(false)">Usuario Free</button>
-  <button class="demo-btn demo-btn-premium" onclick="loadDemo(true)">Usuario Premium</button>
-  <button class="demo-btn demo-btn-clear"   onclick="clearDemo()">Limpiar</button>
-</div>
 
 <div class="hero">
   <div class="hero-badge">⭐ Mis Recompensas</div>
@@ -321,30 +296,6 @@ async function render(overrideData) {
     </div>`;
   }).join('');
 
-  document.getElementById('demo-bar').style.display = 'flex';
-}
-
-function loadDemo(withPremium) {
-  const data = {
-    completed: ['w1','w2','w3','w4','w5','w6','w7','w8','w9','w10','w11','w12'],
-    xp: 310,
-    badges: ['first','artist','crafter','scientist','chef','super'],
-    cats: { dibujos:3, manualidades:5, experimentos:3, cocina:4, juegos:2, recicladas:3, montessori:1 }
-  };
-  if (withPremium) {
-    localStorage.setItem('chartkids_premium', 'true');
-    localStorage.setItem('chartkids_premium_sub', 'DEMO-SUB-001');
-  } else {
-    localStorage.removeItem('chartkids_premium');
-  }
-  render(data); // pass data directly — bypasses cloud so demo works for any user
-}
-
-function clearDemo() {
-  localStorage.removeItem('ck_rewards');
-  localStorage.removeItem('chartkids_premium');
-  localStorage.removeItem('chartkids_premium_sub');
-  render();
 }
 
 function resetProgress() {
@@ -354,29 +305,10 @@ function resetProgress() {
   render();
 }
 
-async function renderAuthUI() {
-  const user = await ckGetUser();
-  const el = document.getElementById('auth-ui');
-  if (!el) return;
-  if (user) {
-    const name = user.user_metadata?.full_name || user.email;
-    const avatar = user.user_metadata?.avatar_url;
-    el.innerHTML = `<div class="auth-user">
-      ${avatar ? `<img class="auth-avatar" src="${avatar}" referrerpolicy="no-referrer">` : ''}
-      <span class="auth-name">${name}</span>
-      <button class="signout-link" onclick="ckSignOut()">Salir</button>
-    </div>`;
-  } else {
-    el.innerHTML = `<button class="auth-btn" onclick="ckSignIn()">☁️ Guardar progreso</button>`;
-  }
-}
-
 ckOnAuthChange = async (event, session) => {
-  await renderAuthUI();
   if (event === 'SIGNED_IN' || event === 'SIGNED_OUT') render();
 };
 
-renderAuthUI();
 render();
 </script>
 </body>
