@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Blog — ChartKids</title>
+<meta name="description" id="page-desc" content="ChartKids blog article">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3864436143903858" crossorigin="anonymous"></script>
+<script src="ck-nav.js" defer></script>
+<style>
+:root{--bg:#0f0f1a;--surface:#1a1a2e;--surface2:#232340;--border:#2e2e50;--accent:#7c3aed;--accent2:#06b6d4;--green:#22c55e;--yellow:#fbbf24;--text:#f1f5f9;--muted:#94a3b8;--radius:16px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+.container{max-width:760px;margin:0 auto;padding:0 20px;}
+
+/* Article header */
+.article-header{padding:48px 0 40px;border-bottom:1px solid var(--border);margin-bottom:48px;}
+.article-category{display:inline-block;background:rgba(124,58,237,.2);color:#a78bfa;padding:5px 14px;border-radius:20px;font-size:.78rem;font-weight:800;margin-bottom:16px;}
+.article-title{font-family:'Fredoka One',cursive;font-size:2.4rem;line-height:1.25;margin-bottom:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.article-summary{color:var(--muted);font-size:1.05rem;line-height:1.7;margin-bottom:20px;}
+.article-meta{display:flex;align-items:center;gap:16px;color:var(--muted);font-size:.82rem;font-weight:700;}
+.article-emoji{font-size:5rem;text-align:center;padding:32px;background:linear-gradient(135deg,var(--surface),var(--surface2));border-radius:var(--radius);margin-bottom:40px;}
+
+/* Article body */
+.article-body{line-height:1.8;font-size:1rem;color:#e2e8f0;}
+.article-body h2{font-family:'Fredoka One',cursive;font-size:1.5rem;color:var(--text);margin:40px 0 14px;padding-left:16px;border-left:4px solid var(--accent);}
+.article-body p{margin-bottom:18px;}
+.article-body ul{margin:0 0 18px 24px;}
+.article-body ul li{margin-bottom:8px;}
+.article-body strong{color:var(--text);}
+
+/* Back + Related */
+.back-link{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-weight:700;font-size:.88rem;margin:48px 0 32px;padding:10px 20px;border:1px solid var(--border);border-radius:50px;transition:all .2s;}
+.back-link:hover{color:var(--text);border-color:var(--accent);}
+
+.related-section{border-top:1px solid var(--border);padding-top:40px;margin-top:48px;margin-bottom:60px;}
+.related-title{font-family:'Fredoka One',cursive;font-size:1.3rem;margin-bottom:20px;color:var(--muted);}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;}
+.related-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;text-decoration:none;color:var(--text);transition:all .2s;display:block;}
+.related-card:hover{border-color:var(--accent);transform:translateY(-2px);}
+.related-emoji{font-size:1.8rem;margin-bottom:8px;}
+.related-card h3{font-size:.9rem;font-weight:800;line-height:1.4;margin-bottom:6px;}
+.related-card span{font-size:.75rem;color:var(--muted);}
+
+/* Not found */
+.not-found{text-align:center;padding:80px 20px;}
+.not-found h2{font-family:'Fredoka One',cursive;font-size:2rem;margin-bottom:12px;}
+.not-found p{color:var(--muted);margin-bottom:24px;}
+
+footer{border-top:1px solid var(--border);padding:28px 0;text-align:center;}
+footer p{color:var(--muted);font-size:.85rem;}
+footer a{color:var(--accent);text-decoration:none;}
+
+@media(max-width:600px){
+  .article-title{font-size:1.8rem;}
+  .article-emoji{font-size:3.5rem;padding:24px;}
+}
+</style>
+</head>
+<body>
+<div id="ck-nav"></div>
+<div class="container">
+
+<div id="article-root"></div>
+
+<footer>
+  <p>© 2025 ChartKids. <a href="blog.html">← Blog</a> · <a href="index.html">App</a> · <a href="privacy.html">Privacy</a></p>
+</footer>
+
+</div>
+<script src="blog-articles.js"></script>
+<script>
+const params = new URLSearchParams(location.search);
+const id = params.get('id');
+const article = BLOG_ARTICLES.find(a => a.id === id);
+const root = document.getElementById('article-root');
+
+if (!article) {
+  root.innerHTML = `<div class="not-found">
+    <h2>Article not found</h2>
+    <p>Sorry, we couldn't find that article.</p>
+    <a href="blog.html" class="back-link">← Back to Blog</a>
+  </div>`;
+} else {
+  document.getElementById('page-title').textContent = article.title + ' — ChartKids';
+  document.getElementById('page-desc').content = article.summary;
+
+  const related = BLOG_ARTICLES.filter(a => a.id !== id).slice(0, 3);
+  const relatedHTML = related.map(a => `
+    <a href="blog-post.html?id=${a.id}" class="related-card">
+      <div class="related-emoji">${a.emoji}</div>
+      <h3>${a.title}</h3>
+      <span>${a.readTime}</span>
+    </a>`).join('');
+
+  root.innerHTML = `
+    <div class="article-header">
+      <span class="article-category">${article.category}</span>
+      <h1 class="article-title">${article.title}</h1>
+      <p class="article-summary">${article.summary}</p>
+      <div class="article-meta">
+        <span>📅 ${article.date}</span>
+        <span>⏱ ${article.readTime}</span>
+      </div>
+    </div>
+    <div class="article-emoji">${article.emoji}</div>
+    <div class="article-body">${article.content}</div>
+    <a href="blog.html" class="back-link">← Back to Blog</a>
+    <div class="related-section">
+      <div class="related-title">More Articles</div>
+      <div class="related-grid">${relatedHTML}</div>
+    </div>
+  `;
+}
+</script>
+</body>
+</html>
