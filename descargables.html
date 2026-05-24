@@ -380,7 +380,7 @@ footer a{color:var(--accent);text-decoration:none;}
     </div>
   </div>
 
-  <div class="dl-card" data-cat="colorear" data-season="fiestas">
+  <div class="dl-card" data-cat="colorear" data-season="otono">
     <div class="dl-thumb colorear"><span>🎃</span><span class="free-badge" data-en="FREE" data-es="GRATIS">GRATIS</span></div>
     <div class="dl-body">
       <span class="dl-tag colorear" data-en="Coloring" data-es="Colorear">Colorear</span>
@@ -391,7 +391,7 @@ footer a{color:var(--accent);text-decoration:none;}
     </div>
   </div>
 
-  <div class="dl-card" data-cat="colorear" data-season="fiestas">
+  <div class="dl-card" data-cat="colorear" data-season="invierno">
     <div class="dl-thumb colorear"><span>🎄</span><span class="free-badge" data-en="FREE" data-es="GRATIS">GRATIS</span></div>
     <div class="dl-body">
       <span class="dl-tag colorear" data-en="Coloring" data-es="Colorear">Colorear</span>
@@ -706,9 +706,14 @@ let activeSeason = 'all';
 
 function applyFilters() {
   document.querySelectorAll('.dl-card').forEach(card => {
-    const catOk    = activeCat === 'all' || card.dataset.cat === activeCat;
+    const catOk   = activeCat === 'all' || card.dataset.cat === activeCat;
+    const cardCat = card.dataset.cat;
     const cardSeas = card.dataset.season;
-    const seasOk   = activeSeason === 'all' || !cardSeas || cardSeas === activeSeason;
+    // Season filter only applies to colorear cards; fichas/calendars always visible
+    // When a season is active, only show colorear cards tagged with that exact season
+    const seasOk  = activeSeason === 'all'
+      || cardCat !== 'colorear'
+      || cardSeas === activeSeason;
     card.style.display = (catOk && seasOk) ? '' : 'none';
   });
   // Show/hide section titles based on whether any visible card follows them
