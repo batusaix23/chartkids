@@ -1,6 +1,6 @@
 // descargables-images.js — Coloring page images via Pollinations.ai
 // Model: flux | Prompts optimized for black-and-white line art
-// Seeds: 7001-7193 (new series for fresh generation)
+// Seeds 6001-6039: original 13 themes | Seeds 7001-7193: expansion pack (20 themes)
 
 const BASE = 'https://image.pollinations.ai/prompt/';
 const OPTS = '&nologo=true&model=flux&width=800&height=1040';
@@ -13,6 +13,70 @@ function cpUrl(prompt, seed) {
 }
 
 const COLORING_IMAGES = {
+
+  // ── VEHÍCULOS ──
+  car:      cpUrl('cute car driving on road, round headlights, simple windows, trees and buildings background', 6001),
+  airplane: cpUrl('airplane flying through clouds, round windows, wings and tail, sky and clouds around', 6002),
+  train:    cpUrl('steam train on tracks, locomotive with chimney puffing steam, passenger cars behind, countryside', 6003),
+
+  // ── ANIMALES ──
+  lion:     cpUrl('lion with big fluffy mane, sitting proudly, savanna grass and acacia tree in background', 6011),
+  dinosaur: cpUrl('friendly T-Rex dinosaur standing upright, small arms, big teeth smile, jungle background', 6012),
+  fish:     cpUrl('cute fish with big round eye, fins and scales, underwater with seaweed and bubbles', 6013),
+
+  // ── PERSONAJES ──
+  robot:    cpUrl('friendly robot with square body, round eyes, antennae on head, simple mechanical arms and legs', 6021),
+  unicorn:  cpUrl('unicorn with flowing mane and tail, spiral horn, stars around, meadow with flowers', 6022),
+  doll:     cpUrl('rag doll with button eyes, yarn hair in pigtails, cute dress with bow, sitting pose', 6023),
+
+  // ── NATURALEZA ──
+  house:    cpUrl('cozy house with pointed roof, chimney with smoke, garden fence, flowers and trees around', 6031),
+  tree:     cpUrl('big oak tree with round leafy canopy, thick trunk, birds sitting on branches, grass below', 6032),
+  flower:   cpUrl('large sunflower with petals and seeds, stem with leaves, bee and butterfly nearby, garden', 6033),
+
+  // ── DINOSAURIOS ──
+  brachio:  cpUrl('brachiosaurus dinosaur with very long neck eating leaves from tall tree, jungle background', 6041),
+  tricera:  cpUrl('triceratops dinosaur with three horns and neck frill, walking in prehistoric landscape', 6042),
+
+  // ── CASTILLOS ──
+  castle:   cpUrl('medieval castle with towers, battlements, drawbridge over moat, flag on top, clouds behind', 6051),
+  dragon:   cpUrl('friendly dragon with wings spread, scales on body, breathing small flames, mountain background', 6052),
+  knight:   cpUrl('knight in full armor with helmet, holding shield and sword, castle gate behind', 6053),
+
+  // ── MAR ──
+  dolphin:  cpUrl('dolphin jumping out of ocean waves, splash of water, sun shining, seagulls above', 6061),
+  octopus:  cpUrl('cute octopus with eight tentacles, big eyes, underwater coral reef and fish around', 6062),
+  shark:    cpUrl('friendly cartoon shark swimming, big smile, underwater with fish and seaweed around', 6063),
+
+  // ── ESPACIO ──
+  rocket:   cpUrl('rocket ship blasting off, flames from engines, stars and planets in space background', 6071),
+  astronaut:cpUrl('astronaut in full space suit floating in space, helmet visor, Earth and stars behind', 6072),
+  planet:   cpUrl('ringed planet like Saturn with bands, moons and stars around, space background', 6073),
+
+  // ── MANDALAS ──
+  mandala1: cpUrl('simple circular mandala with flower petals and geometric shapes, symmetric pattern, centered', 6081),
+  mandala2: cpUrl('circular mandala with stars and curved leaves, intricate symmetric pattern, for kids to color', 6082),
+  mandala3: cpUrl('circular mandala with hearts and swirl patterns, easy symmetric design, kids coloring page', 6083),
+
+  // ── SUPERHÉROES ──
+  hero_boy: cpUrl('boy superhero in cape and mask, hands on hips, city skyline in background, heroic pose', 6091),
+  hero_girl:cpUrl('girl superhero in cape and mask, flying pose, stars around her, city below', 6092),
+  sidekick: cpUrl('small friendly robot sidekick with big round eyes, cape on back, stars around', 6093),
+
+  // ── PRIMAVERA ──
+  butterfly:  cpUrl('butterfly with detailed wing patterns, landing on flower, garden with flowers behind', 6101),
+  caterpillar:cpUrl('cute caterpillar with round body segments, antennae, walking on leaf with other leaves', 6102),
+  ladybug:    cpUrl('round ladybug with spots, six legs, sitting on large leaf, flowers and grass around', 6103),
+
+  // ── HALLOWEEN ──
+  pumpkin:  cpUrl('jack-o-lantern pumpkin with carved face, candle glow, bats and full moon behind', 6111),
+  ghost:    cpUrl('friendly ghost with round eyes and open mouth smile, floating, stars and moon behind', 6112),
+  bat:      cpUrl('cartoon bat with spread wings, big ears, hanging upside down from branch, moon behind', 6113),
+
+  // ── NAVIDAD ──
+  christmas_tree: cpUrl('christmas tree with star on top, ornament balls and tinsel, gifts under tree, snow outside window', 6121),
+  snowman:        cpUrl('snowman with carrot nose, scarf, buttons, stick arms, snowy landscape and falling snowflakes', 6122),
+  santa:          cpUrl('Santa Claus with big belly, red suit and hat, white beard, holding sack of gifts, chimney', 6123),
 
   // ── GRANJA ──
   vaca:    cpUrl('happy cow standing in farm field, fence and red barn behind, udder visible, spots on body, simple friendly design', 7001),
