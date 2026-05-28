@@ -121,6 +121,7 @@ if (!article) {
       <span>${a.readTime}</span>
     </a>`).join('');
 
+  const content = (lang === 'es' && article.content_es) ? article.content_es : article.content;
   root.innerHTML = `
     <a href="blog.html" class="back-link" style="margin-top:24px;">← ${t('Back to Blog','Volver al Blog')}</a>
     <div class="article-header">
@@ -133,7 +134,7 @@ if (!article) {
       </div>
     </div>
     <div class="article-emoji">${article.emoji}</div>
-    <div class="article-body">${article.content}</div>
+    <div class="article-body">${content}</div>
     <a href="blog.html" class="back-link">← ${t('Back to Blog','Volver al Blog')}</a>
     <div class="related-section">
       <div class="related-title">${t('More Articles','Más Artículos')}</div>
