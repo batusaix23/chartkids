@@ -96,6 +96,7 @@
       b.classList.toggle('active', b.textContent === lang.toUpperCase())
     );
     if (typeof setLang === 'function') setLang(lang);
+    if (typeof ckeRefreshLang === 'function') ckeRefreshLang(lang);
   };
 
   function init() {
