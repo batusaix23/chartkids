@@ -178,9 +178,6 @@
   window.ckeRefreshLang = function (lang) { render(lang); };
 
   function init() {
-    // Skip index.html — it already has its own showcase section
-    const cur = location.pathname.split('/').pop() || 'index.html';
-    if (cur === 'index.html' || cur === '') return;
     injectStyles();
     render();
   }
