@@ -47,15 +47,15 @@
       cColor: '#a78bfa'
     },
     {
-      href: 'descargables.html',
-      emoji: '📥',
+      href: 'imprime-y-juega.html',
+      emoji: '🖨️',
       badge_es: 'Gratis', badge_en: 'Free',
-      bColor: '#6366f1',
-      title_es: 'Descargables',     title_en: 'Downloads',
-      desc_es:  'Láminas para colorear, fichas de actividades e imprimibles temáticos.',
-      desc_en:  'Coloring pages, activity sheets and themed printables.',
-      cta_es: 'Ver descargables →', cta_en: 'See downloads →',
-      cColor: '#818cf8'
+      bColor: '#ec4899',
+      title_es: 'Imprime y Juega',  title_en: 'Print & Play',
+      desc_es:  '900+ fichas imprimibles: colorear, laberintos, matemáticas, escritura y más.',
+      desc_en:  '900+ printable sheets: colouring, mazes, maths, writing and more.',
+      cta_es: 'Ver imprimibles →',  cta_en: 'See printables →',
+      cColor: '#f472b6'
     },
     {
       href: 'recompensas.html',
