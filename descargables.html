@@ -96,19 +96,19 @@ footer a{color:var(--accent);text-decoration:none;}
 /* ── Print section (same-page printing, no popup) ── */
 #print-section{display:none;}
 @media print{
+  body,html{background:white!important;color:#111!important;}
   body>*{display:none!important;}
-  #print-section{display:block!important;position:static;}
-  @page{size:letter;margin:.4in .5in;}
-  .cp-page{width:100%;min-height:100vh;display:flex;flex-direction:column;page-break-after:always;break-after:page;font-family:Arial,sans-serif;}
-  .cp-page:last-child{page-break-after:avoid;break-after:avoid;}
-  .cp-header{text-align:center;padding:0 0 12px;border-bottom:2px dashed #e0d4f7;margin-bottom:16px;flex-shrink:0;}
-  .cp-header h1{font-size:1.6rem;color:#7c3aed;font-weight:900;letter-spacing:-.01em;}
-  .cp-header p{font-size:.8rem;color:#888;margin-top:3px;}
-  .cp-drawing{flex:1;display:flex;align-items:center;justify-content:center;overflow:hidden;min-height:0;}
+  #print-section{display:flex!important;flex-direction:row!important;align-items:flex-start!important;gap:8px!important;position:static!important;background:white!important;}
+  @page{size:letter portrait;margin:.35in .4in;}
+  .cp-page{flex:1;min-height:0;display:flex;flex-direction:column;font-family:Arial,sans-serif;background:white!important;border:1.5px solid #d8c8f5;border-radius:5px;padding:7px;box-sizing:border-box;}
+  .cp-header{text-align:center;padding:0 0 6px;border-bottom:1.5px dashed #d8c8f5;margin-bottom:7px;flex-shrink:0;}
+  .cp-header h1{font-size:.95rem;color:#7c3aed;font-weight:900;margin:0;}
+  .cp-header p{font-size:.6rem;color:#888;margin:2px 0 0;}
+  .cp-drawing{flex:1;display:flex;align-items:center;justify-content:center;overflow:hidden;background:white!important;}
   .cp-drawing svg,.cp-drawing img{max-width:100%;max-height:100%;object-fit:contain;display:block;}
-  .cp-footer{display:flex;align-items:center;justify-content:space-between;padding:12px 0 0;border-top:2px dashed #e0d4f7;margin-top:16px;flex-shrink:0;}
-  .cp-name{font-size:1.15rem;font-weight:900;color:#444;}
-  .cp-url{font-size:.7rem;color:#bbb;}
+  .cp-footer{display:flex;align-items:center;justify-content:space-between;padding:5px 0 0;border-top:1.5px dashed #d8c8f5;margin-top:5px;flex-shrink:0;}
+  .cp-name{font-size:.78rem;font-weight:900;color:#444;}
+  .cp-url{font-size:.58rem;color:#bbb;}
 }
 </style>
 <script src="ck-nav.js" defer></script>
