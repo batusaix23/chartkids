@@ -80,6 +80,15 @@ export default {
         return await generateActividad(request, env);
       }
 
+      // ─── CUSTOM WORKSHEET GENERATOR ─────────────────────────
+      // Handles both /api/generate (via Cloudflare route) and /generate (direct)
+      if ((path === '/generate' || path === '/api/generate') && request.method === 'POST') {
+        return await generateWorksheet(request, env);
+      }
+      if ((path === '/generate' || path === '/api/generate') && request.method === 'GET') {
+        return Response.redirect('https://chartkids.com/crear/', 302);
+      }
+
       // ─── CHAT ENDPOINT (POST only) ──────────────────────────
       if (request.method !== 'POST') {
         return jsonResponse({ error: 'Method not allowed' }, 405);
@@ -500,6 +509,117 @@ async function getAnalytics(env) {
   }
 
   return jsonResponse({ dailyStats: stats });
+}
+
+// ─── CUSTOM WORKSHEET GENERATOR ─────────────────────────────
+
+async function generateWorksheet(request, env) {
+  let body;
+  try { body = await request.json(); } catch { return jsonResponse({ error: 'Invalid JSON' }, 400); }
+
+  const { type = 'tracing', word = '', emoji = '✏️', color = '#7c3aed' } = body;
+
+  // Sanitize: uppercase, letters/digits/accented chars/spaces only, max 12 chars
+  const clean = (word || '').toUpperCase().replace(/[^A-ZÁÉÍÓÚÜÑ0-9 ]/g, '').trim().slice(0, 12);
+  if (!clean) return jsonResponse({ error: 'Escribe una palabra válida (letras, máx 12)' }, 400);
+
+  // Validate color (must be a hex color)
+  const safeColor = /^#[0-9a-fA-F]{6}$/.test(color) ? color : '#7c3aed';
+
+  if (type === 'tracing') {
+    const svg  = buildTracingSVG(clean, emoji, safeColor);
+    const html = buildTracingPage(clean, emoji, safeColor, svg);
+    return new Response(html, {
+      headers: { 'Content-Type': 'text/html;charset=UTF-8', ...corsHeaders() }
+    });
+  }
+
+  return jsonResponse({ error: 'Tipo no soportado. Usa: tracing' }, 400);
+}
+
+function buildTracingSVG(word, emoji, catColor) {
+  const W = 500, H = 650;
+  // Baselines for 4 practice rows. font-size 56 → cap ≈ 40px above baseline.
+  const LINE_Y = [245, 348, 451, 554];
+  const CAP = 42, DESC = 16;
+
+  let guides = '';
+  LINE_Y.forEach(y => {
+    guides += `<line x1="36" y1="${y - CAP}"  x2="464" y2="${y - CAP}"  stroke="#d1d5db" stroke-width="1"   stroke-dasharray="4 4"/>`;
+    guides += `<line x1="36" y1="${y}"      x2="464" y2="${y}"      stroke="#b0b8c8" stroke-width="1.5"/>`;
+    guides += `<line x1="36" y1="${y + DESC}" x2="464" y2="${y + DESC}" stroke="#d1d5db" stroke-width="1"   stroke-dasharray="4 4"/>`;
+  });
+
+  const r1y = LINE_Y[0], r2y = LINE_Y[1];
+  const traceDashed = `<text x="250" y="${r1y}" text-anchor="middle" font-family="Arial,sans-serif" font-size="56" font-weight="bold" fill="none" stroke="#bfdbfe" stroke-width="6" stroke-dasharray="12 6" paint-order="stroke">${esc(word)}</text>`;
+  const traceLight  = `<text x="250" y="${r2y}" text-anchor="middle" font-family="Arial,sans-serif" font-size="56" font-weight="bold" fill="none" stroke="#e5e7eb" stroke-width="4" stroke-dasharray="8 5"  paint-order="stroke">${esc(word)}</text>`;
+  const arrows = `
+    <text x="20" y="${r1y - CAP / 2}" font-size="16" text-anchor="middle" fill="${safeHex(catColor)}">✏️</text>
+    <text x="20" y="${r2y - CAP / 2}" font-size="16" text-anchor="middle" fill="${safeHex(catColor)}" opacity=".45">✏️</text>`;
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}">
+<rect width="${W}" height="${H}" fill="#fafafa"/>
+<rect width="${W}" height="${H}" fill="white" opacity=".8"/>
+<rect width="${W}" height="90" fill="${safeHex(catColor)}"/>
+<text x="250" y="28" text-anchor="middle" font-size="10" fill="white" font-weight="800" opacity=".85" font-family="Arial,sans-serif">TRAZADO DE PALABRAS · WRITING PRACTICE</text>
+<text x="250" y="58" text-anchor="middle" font-size="36" fill="white" font-weight="900" font-family="Arial,sans-serif">${esc(emoji)} ${esc(word)}</text>
+<text x="250" y="78" text-anchor="middle" font-size="10" fill="white" opacity=".85" font-family="Arial,sans-serif">Traza las letras · chartkids.com</text>
+<text x="250" y="148" text-anchor="middle" font-size="58" font-weight="900" fill="${safeHex(catColor)}" opacity=".18" font-family="Arial,sans-serif">${esc(word)}</text>
+<text x="250" y="148" text-anchor="middle" font-size="58" font-weight="900" fill="none" stroke="${safeHex(catColor)}" stroke-width="1.5" font-family="Arial,sans-serif">${esc(word)}</text>
+<text x="250" y="163" text-anchor="middle" font-size="8" fill="#9ca3af" font-family="Arial,sans-serif">MODELO</text>
+${guides}
+${traceDashed}
+${traceLight}
+${arrows}
+<text x="40" y="${LINE_Y[0] - CAP - 6}" font-size="9" fill="#9ca3af" font-weight="700" font-family="Arial,sans-serif" letter-spacing="1">1 · TRAZA</text>
+<text x="40" y="${LINE_Y[1] - CAP - 6}" font-size="9" fill="#9ca3af" font-weight="700" font-family="Arial,sans-serif" letter-spacing="1">2 · TRAZA</text>
+<text x="40" y="${LINE_Y[2] - CAP - 6}" font-size="9" fill="#9ca3af" font-weight="700" font-family="Arial,sans-serif" letter-spacing="1">3 · ESCRIBE SOLO/A</text>
+<text x="40" y="${LINE_Y[3] - CAP - 6}" font-size="9" fill="#9ca3af" font-weight="700" font-family="Arial,sans-serif" letter-spacing="1">4 · ESCRIBE SOLO/A</text>
+<text x="250" y="642" text-anchor="middle" font-size="8" fill="#94a3b8" font-family="Arial,sans-serif">Imprimible gratuito · chartkids.com/crear/</text>
+</svg>`;
+}
+
+function buildTracingPage(word, emoji, catColor, svg) {
+  const minSvg = svg.replace(/\n/g, ' ').replace(/\s{2,}/g, ' ');
+  return `<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trazar ${esc(word)} | ChartKids</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f8fafc;color:#1e293b;padding:16px}
+.wrap{max-width:560px;margin:0 auto}
+.preview{background:white;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.1);margin-bottom:16px}
+.preview svg{width:100%;height:auto;display:block}
+.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-print{background:${safeHex(catColor)};color:white;border:none;padding:12px 28px;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer}
+.btn-back{background:white;color:#475569;border:1.5px solid #e2e8f0;padding:12px 24px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none;display:inline-block}
+h1{font-size:22px;margin-bottom:12px;color:#1e293b}
+@media print{.actions,h1,body>*:not(.wrap){display:none!important}.wrap{max-width:100%;padding:0}.preview{box-shadow:none;border-radius:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>${esc(emoji)} Ficha: ${esc(word)}</h1>
+  <div class="preview">${minSvg}</div>
+  <div class="actions">
+    <button class="btn-print" onclick="window.print()">🖨️ Imprimir</button>
+    <a href="/crear/" class="btn-back">← Crear otra</a>
+  </div>
+</div>
+</body>
+</html>`;
+}
+
+// Escape HTML special chars for SVG text content
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// Ensure a value is a safe hex color (prevent CSS injection)
+function safeHex(v) {
+  return /^#[0-9a-fA-F]{6}$/.test(v) ? v : '#7c3aed';
 }
 
 // ─── AI SYSTEM PROMPT ───────────────────────────────────────
