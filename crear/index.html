@@ -4,66 +4,32 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Crear Ficha Personalizada | ChartKids</title>
 <meta name="description" content="Crea fichas de trazado personalizadas. Escribe cualquier palabra o nombre y genera tu hoja de escritura imprimible gratis.">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/style.css">
-<style>
-.crear-hero{background:linear-gradient(135deg,#7c3aed,#db2777);color:white;padding:32px 16px;text-align:center}
-.crear-hero h1{font-size:2rem;margin-bottom:8px}
-.crear-hero p{opacity:.9;font-size:1rem}
-.crear-form{background:white;border-radius:16px;padding:28px;max-width:560px;margin:24px auto;box-shadow:0 4px 16px rgba(0,0,0,.08)}
-.form-group{margin-bottom:20px}
-.form-group label{display:block;font-weight:800;margin-bottom:6px;color:#1e293b;font-size:.95rem}
-.form-group input,.form-group select{width:100%;padding:12px 14px;border:2px solid #e2e8f0;border-radius:10px;font-size:1rem;font-family:inherit;color:#1e293b;transition:border-color .2s}
-.form-group input:focus,.form-group select:focus{outline:none;border-color:#7c3aed}
-.color-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
-.color-btn{width:36px;height:36px;border-radius:50%;border:3px solid transparent;cursor:pointer;transition:transform .15s,border-color .15s}
-.color-btn.active,.color-btn:hover{transform:scale(1.15);border-color:white;box-shadow:0 0 0 3px #7c3aed}
-.emoji-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
-.emoji-btn{font-size:1.6rem;background:#f8fafc;border:2px solid #e2e8f0;border-radius:10px;width:48px;height:48px;cursor:pointer;transition:all .15s}
-.emoji-btn.active,.emoji-btn:hover{background:#ede9fe;border-color:#7c3aed;transform:scale(1.1)}
-.btn-generate{width:100%;padding:16px;background:linear-gradient(135deg,#7c3aed,#db2777);color:white;border:none;border-radius:12px;font-size:1.1rem;font-weight:900;cursor:pointer;font-family:inherit;transition:opacity .2s}
-.btn-generate:hover{opacity:.9}
-.btn-generate:disabled{opacity:.5;cursor:not-allowed}
-.preview-area{max-width:560px;margin:0 auto 24px;display:none}
-.preview-area iframe{width:100%;height:680px;border:none;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.1)}
-.preview-actions{display:flex;gap:10px;justify-content:center;margin-top:12px;flex-wrap:wrap}
-.btn-print{background:#7c3aed;color:white;border:none;padding:12px 28px;border-radius:10px;font-size:1rem;font-weight:800;cursor:pointer;font-family:inherit}
-.btn-otra{background:white;color:#7c3aed;border:2px solid #7c3aed;padding:12px 24px;border-radius:10px;font-size:1rem;font-weight:800;cursor:pointer;font-family:inherit}
-.loading{text-align:center;padding:40px;color:#7c3aed;font-weight:800;font-size:1.1rem;display:none}
-.examples{background:#f8fafc;border-radius:12px;padding:20px;max-width:560px;margin:0 auto 24px}
-.examples h3{font-size:.95rem;font-weight:800;color:#475569;margin-bottom:12px;text-transform:uppercase;letter-spacing:.05em}
-.example-chips{display:flex;gap:8px;flex-wrap:wrap}
-.chip{background:white;border:1.5px solid #e2e8f0;border-radius:20px;padding:6px 14px;font-size:.9rem;font-weight:700;cursor:pointer;transition:all .15s;color:#475569}
-.chip:hover{border-color:#7c3aed;color:#7c3aed;background:#ede9fe}
-.tipo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
-.tipo-card{border:2px solid #e2e8f0;border-radius:10px;padding:14px;cursor:pointer;transition:all .15s;text-align:center}
-.tipo-card:hover,.tipo-card.active{border-color:#7c3aed;background:#ede9fe}
-.tipo-card .icon{font-size:1.8rem;margin-bottom:4px}
-.tipo-card .name{font-weight:800;font-size:.9rem;color:#1e293b}
-.tipo-card .desc{font-size:.78rem;color:#64748b;margin-top:2px}
-.badge-pronto{font-size:.65rem;background:#e2e8f0;color:#94a3b8;padding:2px 8px;border-radius:10px;display:inline-block;margin-top:4px}
-</style>
+<script src="/js/lang.js" defer></script>
 </head>
 <body>
 <header class="site-header"><div class="container header-inner">
-  <a href="/" class="logo">🎨 Chart<em>Kids</em></a>
-  <nav class="main-nav">
-    <a href="/tracing/">Trazado</a>
-    <a href="/patterns/">Patrones</a>
-    <a href="/wordsearch/">Sopa</a>
-  <a href="/crear/">✨ Crear</a></nav>
+  <a href="/" class="logo">Chart<span>Kids</span> ✨</a>
+  <div class="header-right">
+    <nav class="main-nav"><a href="/tracing/" data-es="Trazado" data-en="Tracing">Trazado</a><a href="/wordsearch/" data-es="Sopa" data-en="Word Search">Sopa</a><a href="/patterns/" data-es="Patrones" data-en="Patterns">Patrones</a><a href="/crear/" class="active" data-es="✨ Crear" data-en="✨ Create">✨ Crear</a></nav>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btnES" onclick="setLang('es')">🇲🇽 ES</button>
+      <button class="lang-btn" id="btnEN" onclick="setLang('en')">🇺🇸 EN</button>
+    </div>
+  </div>
 </div></header>
 
 <div class="crear-hero">
-  <h1>✨ Crea tu Ficha Personalizada</h1>
-  <p>Escribe cualquier palabra o nombre — generamos la hoja en segundos</p>
+  <h1 data-es="✨ Crea tu Ficha Personalizada" data-en="✨ Create Your Custom Worksheet">✨ Crea tu Ficha Personalizada</h1>
+  <p data-es="Escribe cualquier palabra o nombre — generamos la hoja en segundos" data-en="Type any word or name — we generate the worksheet in seconds">Escribe cualquier palabra o nombre — generamos la hoja en segundos</p>
 </div>
 
 <div class="container" style="padding:0 16px">
 
   <!-- Ejemplos rápidos -->
   <div class="examples">
-    <h3>Ejemplos rápidos</h3>
+    <h3 data-es="Ejemplos rápidos" data-en="Quick examples">Ejemplos rápidos</h3>
     <div class="example-chips">
       <span class="chip" onclick="fillWord('EMMA','🌸','#db2777')">EMMA 🌸</span>
       <span class="chip" onclick="fillWord('LUCAS','⚡','#2563eb')">LUCAS ⚡</span>
@@ -80,43 +46,43 @@
   <div class="crear-form">
 
     <div class="form-group">
-      <label>Tipo de ficha</label>
+      <label data-es="Tipo de ficha" data-en="Worksheet type">Tipo de ficha</label>
       <div class="tipo-grid">
         <div class="tipo-card active" data-type="tracing" onclick="selectType(this,'tracing')">
           <div class="icon">✏️</div>
-          <div class="name">Trazado</div>
-          <div class="desc">Practica escribir la palabra</div>
+          <div class="name" data-es="Trazado" data-en="Tracing">Trazado</div>
+          <div class="desc" data-es="Practica escribir la palabra" data-en="Practice writing the word">Practica escribir la palabra</div>
         </div>
         <div class="tipo-card" data-type="patterns" onclick="selectType(this,'patterns')">
           <div class="icon">🔷</div>
-          <div class="name">Patrones</div>
-          <div class="desc">Completa la secuencia</div>
-          <span class="badge-pronto">Pronto</span>
+          <div class="name" data-es="Patrones" data-en="Patterns">Patrones</div>
+          <div class="desc" data-es="Completa la secuencia" data-en="Complete the sequence">Completa la secuencia</div>
+          <span class="badge-pronto" data-es="Pronto" data-en="Coming soon">Pronto</span>
         </div>
         <div class="tipo-card" data-type="counting" onclick="selectType(this,'counting')">
           <div class="icon">🔢</div>
-          <div class="name">Conteo</div>
-          <div class="desc">Cuenta los objetos</div>
-          <span class="badge-pronto">Pronto</span>
+          <div class="name" data-es="Conteo" data-en="Counting">Conteo</div>
+          <div class="desc" data-es="Cuenta los objetos" data-en="Count the objects">Cuenta los objetos</div>
+          <span class="badge-pronto" data-es="Pronto" data-en="Coming soon">Pronto</span>
         </div>
         <div class="tipo-card" data-type="wordsearch" onclick="selectType(this,'wordsearch')">
           <div class="icon">🔤</div>
-          <div class="name">Sopa de Letras</div>
-          <div class="desc">Encuentra las palabras</div>
-          <span class="badge-pronto">Pronto</span>
+          <div class="name" data-es="Sopa de Letras" data-en="Word Search">Sopa de Letras</div>
+          <div class="desc" data-es="Encuentra las palabras" data-en="Find the words">Encuentra las palabras</div>
+          <span class="badge-pronto" data-es="Pronto" data-en="Coming soon">Pronto</span>
         </div>
       </div>
     </div>
 
     <div class="form-group">
-      <label for="word-input">Palabra o nombre (máx. 12 letras)</label>
+      <label for="word-input" data-es="Palabra o nombre (máx. 12 letras)" data-en="Word or name (max. 12 letters)">Palabra o nombre (máx. 12 letras)</label>
       <input type="text" id="word-input" placeholder="Ej: EMMA, DRAGON, PIZZA…"
         maxlength="12" autocomplete="off" autocapitalize="characters"
         oninput="this.value=this.value.toUpperCase()">
     </div>
 
     <div class="form-group">
-      <label>Emoji decorativo</label>
+      <label data-es="Emoji decorativo" data-en="Decorative emoji">Emoji decorativo</label>
       <div class="emoji-row" id="emoji-row">
         <button class="emoji-btn active" data-emoji="✏️" onclick="selectEmoji(this)">✏️</button>
         <button class="emoji-btn" data-emoji="⭐" onclick="selectEmoji(this)">⭐</button>
@@ -132,7 +98,7 @@
     </div>
 
     <div class="form-group">
-      <label>Color del tema</label>
+      <label data-es="Color del tema" data-en="Theme color">Color del tema</label>
       <div class="color-row" id="color-row">
         <button class="color-btn" style="background:#7c3aed" data-color="#7c3aed" onclick="selectColor(this)" title="Morado"></button>
         <button class="color-btn" style="background:#db2777" data-color="#db2777" onclick="selectColor(this)" title="Rosa"></button>
@@ -147,25 +113,27 @@
       </div>
     </div>
 
-    <button class="btn-generate" id="btn-gen" onclick="generate()">✨ Generar Ficha</button>
+    <button class="btn-generate" id="btn-gen" onclick="generate()"><span data-es="✨ Generar Ficha" data-en="✨ Generate Worksheet">✨ Generar Ficha</span></button>
   </div>
 
   <!-- Loading -->
-  <div class="loading" id="loading">⏳ Generando tu ficha…</div>
+  <div class="loading" id="loading"><span data-es="⏳ Generando tu ficha…" data-en="⏳ Generating your worksheet…">⏳ Generando tu ficha…</span></div>
 
   <!-- Preview -->
   <div class="preview-area" id="preview-area">
     <iframe id="preview-frame" title="Vista previa de la ficha"></iframe>
     <div class="preview-actions">
-      <button class="btn-print" onclick="document.getElementById('preview-frame').contentWindow.print()">🖨️ Imprimir</button>
-      <button class="btn-otra" onclick="resetForm()">← Crear otra</button>
+      <button class="btn-print" onclick="document.getElementById('preview-frame').contentWindow.print()"><span data-es="🖨️ Imprimir" data-en="🖨️ Print">🖨️ Imprimir</span></button>
+      <button class="btn-otra" onclick="resetForm()"><span data-es="← Crear otra" data-en="← Create another">← Crear otra</span></button>
     </div>
   </div>
 
 </div><!-- /container -->
 
 <footer class="site-footer"><div class="container footer-inner">
-  <p>© 2025 ChartKids · <a href="/privacy.html">Privacidad</a></p>
+  <span>© 2025 ChartKids</span>
+  <a href="/privacy.html" data-es="Privacidad" data-en="Privacy">Privacidad</a>
+  <a href="/blog/" data-es="Blog" data-en="Blog">Blog</a>
 </div></footer>
 
 <script>
@@ -174,9 +142,6 @@ const API_URL = 'https://chartkids.com/api/generate';
 let selectedType  = 'tracing';
 let selectedEmoji = '✏️';
 let selectedColor = '#9333ea';
-
-// Sync initial active states
-document.querySelector('#color-row .active').classList.add('active');
 
 function selectType(el, type) {
   if (type !== 'tracing') return; // others coming soon
@@ -240,7 +205,6 @@ async function generate() {
     btn.disabled = false;
   }
 }
-// Allow Enter key to generate
 document.getElementById('word-input').addEventListener('keydown', e => {
   if (e.key === 'Enter') generate();
 });
