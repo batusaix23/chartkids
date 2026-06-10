@@ -551,8 +551,13 @@ function buildTracingSVG(word, emoji, catColor) {
   });
 
   const r1y = LINE_Y[0], r2y = LINE_Y[1];
-  const traceDashed = `<text x="250" y="${r1y}" text-anchor="middle" font-family="Arial,sans-serif" font-size="56" font-weight="bold" fill="none" stroke="#bfdbfe" stroke-width="6" stroke-dasharray="12 6" paint-order="stroke">${esc(word)}</text>`;
-  const traceLight  = `<text x="250" y="${r2y}" text-anchor="middle" font-family="Arial,sans-serif" font-size="56" font-weight="bold" fill="none" stroke="#e5e7eb" stroke-width="4" stroke-dasharray="8 5"  paint-order="stroke">${esc(word)}</text>`;
+  // Two-layer approach: light fill shows full letter shape; dashed stroke marks the tracing path
+  const traceDashed = `
+  <text x="250" y="${r1y}" text-anchor="middle" font-family="Arial,sans-serif" font-size="56" font-weight="900" fill="#dbeafe">${esc(word)}</text>
+  <text x="250" y="${r1y}" text-anchor="middle" font-family="Arial,sans-serif" font-size="56" font-weight="900" fill="none" stroke="#818cf8" stroke-width="2" stroke-dasharray="5 4">${esc(word)}</text>`;
+  const traceLight  = `
+  <text x="250" y="${r2y}" text-anchor="middle" font-family="Arial,sans-serif" font-size="56" font-weight="900" fill="#f1f5f9">${esc(word)}</text>
+  <text x="250" y="${r2y}" text-anchor="middle" font-family="Arial,sans-serif" font-size="56" font-weight="900" fill="none" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="4 5">${esc(word)}</text>`;
   const arrows = `
     <text x="20" y="${r1y - CAP / 2}" font-size="16" text-anchor="middle" fill="${safeHex(catColor)}">✏️</text>
     <text x="20" y="${r2y - CAP / 2}" font-size="16" text-anchor="middle" fill="${safeHex(catColor)}" opacity=".45">✏️</text>`;
