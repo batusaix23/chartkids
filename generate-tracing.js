@@ -46,15 +46,21 @@ function buildTracingSVG(word, emoji, catColor) {
     guides+=`<line x1="36" y1="${y+DESC}" x2="464" y2="${y+DESC}" stroke="#d1d5db" stroke-width="1"   stroke-dasharray="4 4"/>`;
   });
 
-  // Row 1 — heavy dashed stroke so child traces over the letter outline
+  // Row 1 — light fill shows full letter shape; dashed stroke marks the tracing path
   const r1y = LINE_Y[0];
-  const traceDashed=`<text x="250" y="${r1y}" text-anchor="middle" font-family="'Fredoka One',Arial,sans-serif" font-size="${FS}" font-weight="bold"
-    fill="none" stroke="#bfdbfe" stroke-width="6" stroke-dasharray="12 6" paint-order="stroke">${word}</text>`;
+  const traceDashed=`
+  <text x="250" y="${r1y}" text-anchor="middle" font-family="'Fredoka One',Arial,sans-serif" font-size="${FS}" font-weight="900"
+    fill="#dbeafe">${word}</text>
+  <text x="250" y="${r1y}" text-anchor="middle" font-family="'Fredoka One',Arial,sans-serif" font-size="${FS}" font-weight="900"
+    fill="none" stroke="#818cf8" stroke-width="2" stroke-dasharray="5 4">${word}</text>`;
 
-  // Row 2 — lighter dashed so child gets less help
+  // Row 2 — very faint hint so child relies on memory
   const r2y = LINE_Y[1];
-  const traceLight=`<text x="250" y="${r2y}" text-anchor="middle" font-family="'Fredoka One',Arial,sans-serif" font-size="${FS}" font-weight="bold"
-    fill="none" stroke="#e5e7eb" stroke-width="4" stroke-dasharray="8 5" paint-order="stroke">${word}</text>`;
+  const traceLight=`
+  <text x="250" y="${r2y}" text-anchor="middle" font-family="'Fredoka One',Arial,sans-serif" font-size="${FS}" font-weight="900"
+    fill="#f1f5f9">${word}</text>
+  <text x="250" y="${r2y}" text-anchor="middle" font-family="'Fredoka One',Arial,sans-serif" font-size="${FS}" font-weight="900"
+    fill="none" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="4 5">${word}</text>`;
 
   // Rows 3 & 4 are blank (guide lines only — already drawn above)
 
