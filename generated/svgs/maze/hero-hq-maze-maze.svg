@@ -1,0 +1,58 @@
+<svg viewBox="0 0 500 650" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <filter id="sh" x="-5%" y="-5%" width="110%" height="110%">
+    <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#00000022"/>
+  </filter>
+</defs>
+<!-- Background -->
+<rect width="500" height="650" fill="#f9fafb"/>
+<rect width="500" height="650" fill="white" opacity=".7"/>
+
+<!-- Header gradient band -->
+<rect width="500" height="82" fill="#e11d48" rx="0"/>
+<rect width="500" height="82" fill="url(#hg)" opacity=".25"/>
+
+<!-- Header: character emoji LEFT -->
+<rect x="5" y="8" width="68" height="66" rx="12" fill="rgba(255,255,255,0.18)"/>
+<text x="39" y="56" font-size="36" text-anchor="middle" font-family="Segoe UI Emoji,Apple Color Emoji,sans-serif">🦸</text>
+
+<!-- Header: info CENTER -->
+<text x="250" y="24" font-family="Nunito,sans-serif" font-size="9" fill="white" font-weight="800" opacity=".85" text-anchor="middle">SUPERHÉROES · LABERINTO · ★★★</text>
+<text x="250" y="46" font-family="'Fredoka One',Nunito,sans-serif" font-size="20" fill="white" font-weight="900" text-anchor="middle">Hero HQ Maze</text>
+<text x="250" y="68" font-family="Nunito,sans-serif" font-size="10" fill="white" opacity=".9" text-anchor="middle" font-style="italic">¡Regresa al cuartel general!</text>
+
+<!-- Header: destination emoji RIGHT -->
+<rect x="427" y="8" width="68" height="66" rx="12" fill="rgba(255,255,255,0.18)"/>
+<text x="461" y="56" font-size="36" text-anchor="middle" font-family="Segoe UI Emoji,Apple Color Emoji,sans-serif">🏢</text>
+
+<!-- Arrow in header -->
+<text x="250" y="56" font-size="18" text-anchor="middle" fill="white" opacity=".35" font-family="sans-serif">→</text>
+
+<!-- Maze grid shadow -->
+<rect x="48" y="95" width="404" height="504" rx="4" fill="#00000015" filter="url(#sh)"/>
+<!-- Maze background -->
+<rect x="50" y="97" width="400" height="500" fill="white"/>
+
+<!-- Walls -->
+<path d="M50,97h400v500h-400Z M75,97v25 M75,122h25 M125,122h25 M175,97v25 M175,122h25 M225,122h25 M250,122h25 M275,122h25 M325,122h25 M350,97v25 M375,122h25 M50,147h25 M100,122v25 M100,147h25 M150,122v25 M150,147h25 M200,122v25 M200,147h25 M250,147h25 M300,122v25 M300,147h25 M325,122v25 M350,147h25 M375,122v25 M400,147h25 M425,122v25 M75,147v25 M75,172h25 M125,147v25 M175,147v25 M175,172h25 M225,147v25 M225,172h25 M275,147v25 M275,172h25 M325,147v25 M350,147v25 M375,147v25 M375,172h25 M425,147v25 M50,197h25 M100,172v25 M125,172v25 M150,172v25 M150,197h25 M200,172v25 M200,197h25 M250,172v25 M250,197h25 M275,172v25 M325,172v25 M325,197h25 M375,172v25 M400,197h25 M425,172v25 M100,197v25 M125,197v25 M125,222h25 M150,197v25 M175,222h25 M200,197v25 M225,197v25 M225,222h25 M275,197v25 M300,197v25 M325,222h25 M350,197v25 M375,197v25 M375,222h25 M425,197v25 M425,222h25 M75,222v25 M100,222v25 M100,247h25 M150,222v25 M175,222v25 M200,247h25 M250,222v25 M275,222v25 M300,222v25 M300,247h25 M325,222v25 M350,247h25 M375,222v25 M400,222v25 M400,247h25 M75,247v25 M75,272h25 M125,247v25 M150,247v25 M175,247v25 M200,247v25 M225,247v25 M250,247v25 M275,247v25 M275,272h25 M325,247v25 M350,247v25 M400,272h25 M425,247v25 M100,272v25 M100,297h25 M125,272v25 M125,297h25 M150,297h25 M175,272v25 M200,297h25 M225,272v25 M250,272v25 M250,297h25 M300,272v25 M300,297h25 M325,297h25 M350,297h25 M375,272v25 M400,272v25 M75,297v25 M75,322h25 M125,322h25 M150,297v25 M175,322h25 M200,297v25 M225,322h25 M275,297v25 M275,322h25 M325,297v25 M375,297v25 M375,322h25 M400,297v25 M425,297v25 M425,322h25 M50,347h25 M100,322v25 M100,347h25 M125,347h25 M150,347h25 M175,347h25 M200,322v25 M225,322v25 M250,322v25 M275,322v25 M300,347h25 M325,322v25 M350,322v25 M350,347h25 M400,322v25 M400,347h25 M75,347v25 M75,372h25 M100,372h25 M150,347v25 M175,372h25 M200,372h25 M225,347v25 M250,347v25 M275,347v25 M275,372h25 M325,347v25 M375,347v25 M375,372h25 M425,347v25 M75,372v25 M100,397h25 M125,397h25 M150,372v25 M150,397h25 M200,372v25 M200,397h25 M225,397h25 M250,397h25 M275,372v25 M300,397h25 M325,372v25 M350,372v25 M350,397h25 M400,372v25 M400,397h25 M75,422h25 M100,397v25 M125,422h25 M175,397v25 M225,397v25 M275,397v25 M275,422h25 M325,397v25 M325,422h25 M350,397v25 M375,422h25 M400,397v25 M400,422h25 M425,422h25 M75,422v25 M100,422v25 M125,422v25 M150,422v25 M175,422v25 M175,447h25 M200,422v25 M225,422v25 M250,422v25 M250,447h25 M300,422v25 M300,447h25 M350,422v25 M350,447h25 M375,447h25 M400,447h25 M75,472h25 M100,447v25 M125,447v25 M150,447v25 M175,447v25 M225,447v25 M225,472h25 M275,447v25 M300,472h25 M325,447v25 M350,447v25 M375,472h25 M425,447v25 M75,472v25 M100,497h25 M125,472v25 M125,497h25 M150,497h25 M175,497h25 M200,472v25 M200,497h25 M225,472v25 M250,497h25 M275,472v25 M275,497h25 M325,472v25 M350,472v25 M375,472v25 M400,472v25 M400,497h25 M75,497v25 M75,522h25 M100,522h25 M125,522h25 M175,497v25 M200,522h25 M225,522h25 M250,497v25 M275,522h25 M325,497v25 M325,522h25 M350,522h25 M375,497v25 M400,497v25 M425,522h25 M50,547h25 M100,522v25 M150,522v25 M175,522v25 M175,547h25 M200,547h25 M250,522v25 M250,547h25 M300,522v25 M300,547h25 M325,522v25 M350,547h25 M400,522v25 M400,547h25 M75,547v25 M75,572h25 M100,572h25 M125,547v25 M150,547v25 M175,547v25 M225,547v25 M225,572h25 M275,547v25 M275,572h25 M325,547v25 M325,572h25 M375,547v25 M400,547v25 M425,572h25 M150,572v25 M200,572v25 M300,572v25 M375,572v25" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+
+<!-- Open entrance (top of column 0) -->
+<line x1="50" y1="97" x2="75" y2="97" stroke="white" stroke-width="4"/>
+<!-- Open exit (bottom of last column) -->
+<line x1="425" y1="597" x2="450" y2="597" stroke="white" stroke-width="4"/>
+
+<!-- START badge -->
+<rect x="49" y="74" width="27" height="21" rx="5" fill="#e11d48"/>
+<text x="62.5" y="88" font-family="Nunito,sans-serif" font-size="9.0" font-weight="900" fill="white" text-anchor="middle">INICIO</text>
+<!-- START cell emoji -->
+<text x="62.5" y="116.72" font-size="19" text-anchor="middle" opacity=".9" font-family="Segoe UI Emoji,Apple Color Emoji,sans-serif">🦸</text>
+
+<!-- FINISH badge -->
+<rect x="424" y="599" width="27" height="21" rx="5" fill="#0f172a"/>
+<text x="437.5" y="613" font-family="Nunito,sans-serif" font-size="9.0" font-weight="900" fill="white" text-anchor="middle">META</text>
+<!-- END cell emoji -->
+<text x="437.5" y="591.72" font-size="19" text-anchor="middle" opacity=".9" font-family="Segoe UI Emoji,Apple Color Emoji,sans-serif">🏢</text>
+
+<!-- Footer -->
+<text x="250" y="638" font-family="Nunito,sans-serif" font-size="8" fill="#94a3b8" text-anchor="middle">Imprimible gratuito · chartkids.com/maze/hero-hq-maze-maze/ · Edad 6-9</text>
+</svg>

@@ -1,0 +1,33 @@
+<svg viewBox="0 0 500 650" xmlns="http://www.w3.org/2000/svg">
+<rect width="500" height="650" fill="white"/>
+
+<!-- Sports field -->
+<rect x="0" y="490" width="500" height="160" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Field lines -->
+<line x1="250" y1="490" x2="250" y2="650" stroke="#1a1a1a" stroke-width="1.5"/>
+<circle cx="250" cy="570" r="55" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+<rect x="185" y="490" width="130" height="55" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+<!-- Crowd stands -->
+<rect x="0" y="390" width="500" height="102" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<line x1="0" y1="395" x2="500" y2="395" stroke="#1a1a1a" stroke-width="1"/><line x1="0" y1="415" x2="500" y2="415" stroke="#1a1a1a" stroke-width="1"/><line x1="0" y1="435" x2="500" y2="435" stroke="#1a1a1a" stroke-width="1"/><line x1="0" y1="455" x2="500" y2="455" stroke="#1a1a1a" stroke-width="1"/><line x1="0" y1="475" x2="500" y2="475" stroke="#1a1a1a" stroke-width="1"/>
+<!-- Clouds -->
+<ellipse cx="40" cy="55" rx="30" ry="22" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<ellipse cx="60" cy="50" rx="34" ry="13" fill="white" stroke="#1a1a1a" stroke-width="2"/><ellipse cx="270" cy="75" rx="44" ry="19" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<ellipse cx="288" cy="63" rx="22" ry="13" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<g transform="translate(65.0,115.0) scale(5.14)">
+
+  <g id="line">
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M36,35.9583c0,10.7223-5.6044,19.9898-14.2923,24.9988"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M36,35.958c-8.9994-5.878-13.6673-15.7121-13.1101-25.7252"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M35.9933,35.9513c9.1533-5.6353,20.0795-5.5746,28.8998-0.8024"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M33.0808,48.9141c9.1533-5.6353,20.2095-5.5746,29.0298-0.8024"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M22.9297,60.6942c9.8471-6.0624,21.3595-6.6171,30.2812-2.4044"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M26.813,26.5626c0.0229,10.7489-5.8045,19.8966-14.4818,24.9242"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M22.2601,11.2887c0.0258,12.0976-5.7717,22.6704-14.4061,28.3264"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M49.3099,31.6352c-9.6212-4.7929-15.4122-14.2113-16.0219-24.2213"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M64.3321,33.8675C53.5037,28.4732,46.6464,18.9614,45.4557,8.7083"/>
+    <circle cx="35.9885" cy="35.9583" r="29" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389"/>
+  </g>
+
+</g>
+</svg>

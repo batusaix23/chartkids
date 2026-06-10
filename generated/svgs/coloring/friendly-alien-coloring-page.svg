@@ -1,0 +1,29 @@
+<svg viewBox="0 0 500 650" xmlns="http://www.w3.org/2000/svg">
+<rect width="500" height="650" fill="white"/>
+
+<!-- Stars -->
+<circle cx="41" cy="251" r="2.5" fill="#1a1a1a"/><circle cx="304" cy="238" r="1.5" fill="#1a1a1a"/><circle cx="184" cy="38" r="1.5" fill="#1a1a1a"/><circle cx="275" cy="216" r="1.5" fill="#1a1a1a"/><circle cx="449" cy="244" r="1.5" fill="#1a1a1a"/><circle cx="144" cy="144" r="2.5" fill="#1a1a1a"/><circle cx="257" cy="125" r="1.5" fill="#1a1a1a"/><circle cx="339" cy="100" r="1.5" fill="#1a1a1a"/><circle cx="160" cy="24" r="1.5" fill="#1a1a1a"/><circle cx="243" cy="57" r="1.5" fill="#1a1a1a"/><circle cx="115" cy="168" r="2.5" fill="#1a1a1a"/><circle cx="173" cy="273" r="1.5" fill="#1a1a1a"/><circle cx="421" cy="198" r="1.5" fill="#1a1a1a"/><circle cx="370" cy="135" r="1.5" fill="#1a1a1a"/><circle cx="341" cy="66" r="1.5" fill="#1a1a1a"/><circle cx="435" cy="54" r="2.5" fill="#1a1a1a"/><circle cx="57" cy="107" r="1.5" fill="#1a1a1a"/><circle cx="424" cy="29" r="1.5" fill="#1a1a1a"/><circle cx="422" cy="232" r="1.5" fill="#1a1a1a"/><circle cx="262" cy="15" r="1.5" fill="#1a1a1a"/><circle cx="149" cy="116" r="2.5" fill="#1a1a1a"/><circle cx="393" cy="213" r="1.5" fill="#1a1a1a"/><circle cx="346" cy="160" r="1.5" fill="#1a1a1a"/><circle cx="314" cy="287" r="1.5" fill="#1a1a1a"/><circle cx="488" cy="85" r="1.5" fill="#1a1a1a"/><circle cx="220" cy="88" r="2.5" fill="#1a1a1a"/><circle cx="226" cy="19" r="1.5" fill="#1a1a1a"/><circle cx="182" cy="289" r="1.5" fill="#1a1a1a"/><circle cx="44" cy="275" r="1.5" fill="#1a1a1a"/><circle cx="59" cy="165" r="1.5" fill="#1a1a1a"/><circle cx="172" cy="286" r="2.5" fill="#1a1a1a"/><circle cx="42" cy="115" r="1.5" fill="#1a1a1a"/><circle cx="406" cy="118" r="1.5" fill="#1a1a1a"/><circle cx="91" cy="169" r="1.5" fill="#1a1a1a"/><circle cx="417" cy="211" r="1.5" fill="#1a1a1a"/><circle cx="488" cy="154" r="2.5" fill="#1a1a1a"/><circle cx="325" cy="223" r="1.5" fill="#1a1a1a"/><circle cx="56" cy="219" r="1.5" fill="#1a1a1a"/><circle cx="451" cy="237" r="1.5" fill="#1a1a1a"/><circle cx="123" cy="192" r="1.5" fill="#1a1a1a"/><circle cx="212" cy="11" r="2.5" fill="#1a1a1a"/><circle cx="120" cy="64" r="1.5" fill="#1a1a1a"/><circle cx="87" cy="294" r="1.5" fill="#1a1a1a"/><circle cx="164" cy="165" r="1.5" fill="#1a1a1a"/><circle cx="137" cy="78" r="1.5" fill="#1a1a1a"/><circle cx="309" cy="175" r="2.5" fill="#1a1a1a"/><circle cx="107" cy="233" r="1.5" fill="#1a1a1a"/><circle cx="14" cy="50" r="1.5" fill="#1a1a1a"/><circle cx="188" cy="221" r="1.5" fill="#1a1a1a"/><circle cx="462" cy="126" r="1.5" fill="#1a1a1a"/><circle cx="301" cy="94" r="2.5" fill="#1a1a1a"/><circle cx="314" cy="167" r="1.5" fill="#1a1a1a"/><circle cx="315" cy="63" r="1.5" fill="#1a1a1a"/><circle cx="41" cy="95" r="1.5" fill="#1a1a1a"/><circle cx="139" cy="17" r="1.5" fill="#1a1a1a"/>
+<!-- Saturn -->
+<ellipse cx="420" cy="80" rx="38" ry="22" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<ellipse cx="420" cy="80" rx="20" ry="20" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<ellipse cx="420" cy="80" rx="52" ry="9" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+<!-- Small planet -->
+<circle cx="65" cy="100" r="24" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<line x1="43" y1="100" x2="87" y2="100" stroke="#1a1a1a" stroke-width="1.5"/>
+<!-- Moon crescent -->
+<circle cx="60" cy="560" r="30" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<circle cx="72" cy="553" r="24" fill="white" stroke="white" stroke-width="0"/>
+<!-- Shooting star -->
+<line x1="150" y1="40" x2="200" y2="70" stroke="#1a1a1a" stroke-width="2"/>
+<circle cx="148" cy="39" r="3" fill="#1a1a1a"/>
+<g transform="translate(65.0,115.0) scale(5.14)">
+
+  <g id="line">
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" d="m30.7465,53.6689c.4295.4051,2.3337,2.11,5.1016,1.9273,2.2456-.1483,3.7515-1.4526,4.2513-1.9273"/>
+    <path fill="none" stroke="#1a1a1a" stroke-miterlimit="10" stroke-width="0.389" d="m22.5696,42.348c1.9926,3.7,5.3442,5.7121,7.4861,4.4943,2.1418-1.2178,2.2628-5.2045.2702-8.9045s-5.3442-5.7121-7.4861-4.4943-2.2628,5.2046-.2702,8.9045Z"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" d="m35.9426,63c-8.125,0-11.9655-7.7752-13.12-10.6909-.2705-.6831-.6645-1.3029-1.1743-1.8319-1.8804-1.9513-6.49-7.7864-6.49-18.0994,0-14.9608,10.3921-22.3778,20.7843-22.3778s20.7843,7.417,20.7843,22.3778c0,10.3722-4.1733,15.6905-6.2294,17.8189-.6696.6932-1.2358,1.4796-1.6556,2.3472-4.0276,8.3235-8.733,10.4561-12.8993,10.4561Z"/>
+    <path fill="none" stroke="#1a1a1a" stroke-miterlimit="10" stroke-width="0.389" d="m49.0317,42.348c-1.9926,3.7-5.3442,5.7121-7.4861,4.4943-2.1418-1.2178-2.2628-5.2045-.2702-8.9045s5.3442-5.7121,7.4861-4.4943c2.1418,1.2179,2.2628,5.2046.2702,8.9045Z"/>
+  </g>
+
+</g>
+</svg>

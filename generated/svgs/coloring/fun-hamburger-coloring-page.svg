@@ -1,0 +1,31 @@
+<svg viewBox="0 0 500 650" xmlns="http://www.w3.org/2000/svg">
+<rect width="500" height="650" fill="white"/>
+
+<!-- Table -->
+<rect x="25" y="535" width="450" height="22" rx="5" fill="white" stroke="#1a1a1a" stroke-width="2.5"/>
+<rect x="55" y="555" width="20" height="75" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<rect x="425" y="555" width="20" height="75" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Plate ring -->
+<ellipse cx="250" cy="538" rx="195" ry="13" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<ellipse cx="250" cy="538" rx="175" ry="10" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+<!-- Fork -->
+<rect x="52" y="440" width="6" height="85" rx="2" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<rect x="47" y="440" width="4" height="28" rx="2" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<rect x="56" y="440" width="4" height="28" rx="2" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<!-- Knife -->
+<rect x="442" y="440" width="6" height="85" rx="2" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<path d="M442,440 Q452,455 442,468" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<!-- Decorative stars -->
+<circle cx="465" cy="325" r="4" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><line x1="458" y1="325" x2="472" y2="325" stroke="#1a1a1a" stroke-width="1.5"/><line x1="465" y1="318" x2="465" y2="332" stroke="#1a1a1a" stroke-width="1.5"/><circle cx="402" cy="449" r="4" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><line x1="395" y1="449" x2="409" y2="449" stroke="#1a1a1a" stroke-width="1.5"/><line x1="402" y1="442" x2="402" y2="456" stroke="#1a1a1a" stroke-width="1.5"/><circle cx="250" cy="500" r="4" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><line x1="243" y1="500" x2="257" y2="500" stroke="#1a1a1a" stroke-width="1.5"/><line x1="250" y1="493" x2="250" y2="507" stroke="#1a1a1a" stroke-width="1.5"/><circle cx="98" cy="449" r="4" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><line x1="91" y1="449" x2="105" y2="449" stroke="#1a1a1a" stroke-width="1.5"/><line x1="98" y1="442" x2="98" y2="456" stroke="#1a1a1a" stroke-width="1.5"/><circle cx="35" cy="325" r="4" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><line x1="28" y1="325" x2="42" y2="325" stroke="#1a1a1a" stroke-width="1.5"/><line x1="35" y1="318" x2="35" y2="332" stroke="#1a1a1a" stroke-width="1.5"/><circle cx="98" cy="201" r="4" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><line x1="91" y1="201" x2="105" y2="201" stroke="#1a1a1a" stroke-width="1.5"/><line x1="98" y1="194" x2="98" y2="208" stroke="#1a1a1a" stroke-width="1.5"/><circle cx="250" cy="150" r="4" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><line x1="243" y1="150" x2="257" y2="150" stroke="#1a1a1a" stroke-width="1.5"/><line x1="250" y1="143" x2="250" y2="157" stroke="#1a1a1a" stroke-width="1.5"/><circle cx="402" cy="201" r="4" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><line x1="395" y1="201" x2="409" y2="201" stroke="#1a1a1a" stroke-width="1.5"/><line x1="402" y1="194" x2="402" y2="208" stroke="#1a1a1a" stroke-width="1.5"/>
+<g transform="translate(65.0,115.0) scale(5.14)">
+
+  <g id="line">
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="m32.88 49.3h-16.88c-1.104 0-2-0.8955-2-2v-6.75c0-1.104 0.8955-2 2-2h40c1.104 0 2 0.8955 2 2v6.75c0 1.104-0.8955 2-2 2h-16.79z"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="m32.88 49.47h-17.88c-1.104 0-2 0.7013-2 1.566v4.699c0 0.865 0.8955 1.566 2 1.566h42c1.104 0 2-0.7013 2-1.566v-4.699c0-0.865-0.8955-1.566-2-1.566h-17.79z"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="m59 27.93c0 0.7243-0.8955 1.312-2 1.312h-42c-1.104 0-2-0.5872-2-1.312 1.484-7.465 11.21-13.23 23-13.23s21.52 5.765 23 13.23z"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="m43.24 38.93h-14.48l7.242 7.164z"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="m59.19 34.1c-0.7619 0.3964-1.358 0.8199-2.487 1.002-1.368 0.3587-3.178 0.2195-4.602 0-1.928-0.3112-2.302-1.326-4.602-1.708-1.424-0.2195-3.178-0.2195-4.602 0-2.299 0.3815-2.673 1.396-4.602 1.708-1.424 0.2195-3.178 0.2195-4.602 0-1.928-0.3112-2.302-1.326-4.602-1.708-1.424-0.2195-3.178-0.2195-4.602 0-2.299 0.3815-2.673 1.396-4.602 1.708-1.424 0.2195-3.178 0.2195-4.602 0-1.129-0.1823-1.725-0.6058-2.487-1.002" paint-order="stroke fill markers"/>
+  </g>
+
+</g>
+</svg>

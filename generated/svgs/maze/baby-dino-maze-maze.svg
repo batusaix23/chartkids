@@ -1,0 +1,58 @@
+<svg viewBox="0 0 500 650" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <filter id="sh" x="-5%" y="-5%" width="110%" height="110%">
+    <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#00000022"/>
+  </filter>
+</defs>
+<!-- Background -->
+<rect width="500" height="650" fill="#f9fafb"/>
+<rect width="500" height="650" fill="white" opacity=".7"/>
+
+<!-- Header gradient band -->
+<rect width="500" height="82" fill="#dc2626" rx="0"/>
+<rect width="500" height="82" fill="url(#hg)" opacity=".25"/>
+
+<!-- Header: character emoji LEFT -->
+<rect x="5" y="8" width="68" height="66" rx="12" fill="rgba(255,255,255,0.18)"/>
+<text x="39" y="56" font-size="36" text-anchor="middle" font-family="Segoe UI Emoji,Apple Color Emoji,sans-serif">🦕</text>
+
+<!-- Header: info CENTER -->
+<text x="250" y="24" font-family="Nunito,sans-serif" font-size="9" fill="white" font-weight="800" opacity=".85" text-anchor="middle">DINOSAURIOS · LABERINTO · ★☆☆</text>
+<text x="250" y="46" font-family="'Fredoka One',Nunito,sans-serif" font-size="20" fill="white" font-weight="900" text-anchor="middle">Baby Dino Maze</text>
+<text x="250" y="68" font-family="Nunito,sans-serif" font-size="10" fill="white" opacity=".9" text-anchor="middle" font-style="italic">¡Ayuda al Dino a encontrar su huevo!</text>
+
+<!-- Header: destination emoji RIGHT -->
+<rect x="427" y="8" width="68" height="66" rx="12" fill="rgba(255,255,255,0.18)"/>
+<text x="461" y="56" font-size="36" text-anchor="middle" font-family="Segoe UI Emoji,Apple Color Emoji,sans-serif">🥚</text>
+
+<!-- Arrow in header -->
+<text x="250" y="56" font-size="18" text-anchor="middle" fill="white" opacity=".35" font-family="sans-serif">→</text>
+
+<!-- Maze grid shadow -->
+<rect x="56" y="95" width="388" height="484" rx="4" fill="#00000015" filter="url(#sh)"/>
+<!-- Maze background -->
+<rect x="58" y="97" width="384" height="480" fill="white"/>
+
+<!-- Walls -->
+<path d="M58,97h384v480h-384Z M106,97v48 M106,145h48 M202,145h48 M250,145h48 M298,97v48 M346,145h48 M58,193h48 M154,145v48 M154,193h48 M250,193h48 M298,193h48 M346,145v48 M106,193v48 M106,241h48 M202,193v48 M250,193v48 M298,241h48 M346,241h48 M394,193v48 M106,289h48 M154,289h48 M202,241v48 M250,241v48 M250,289h48 M346,241v48 M394,241v48 M106,289v48 M106,337h48 M154,337h48 M202,337h48 M250,289v48 M298,337h48 M346,289v48 M394,289v48 M58,385h48 M154,337v48 M250,337v48 M298,337v48 M346,385h48 M394,337v48 M106,385v48 M106,433h48 M154,433h48 M202,385v48 M202,433h48 M250,433h48 M298,385v48 M346,385v48 M394,433h48 M154,481h48 M202,481h48 M250,481h48 M346,433v48 M346,481h48 M106,481v48 M154,481v48 M202,529h48 M298,481v48 M298,529h48 M346,481v48 M394,529h48 M106,529v48 M250,529v48" fill="none" stroke="#1e293b" stroke-width="4" stroke-linecap="square" stroke-linejoin="miter"/>
+
+<!-- Open entrance (top of column 0) -->
+<line x1="58" y1="97" x2="106" y2="97" stroke="white" stroke-width="6"/>
+<!-- Open exit (bottom of last column) -->
+<line x1="394" y1="577" x2="442" y2="577" stroke="white" stroke-width="6"/>
+
+<!-- START badge -->
+<rect x="57" y="74" width="50" height="21" rx="5" fill="#dc2626"/>
+<text x="82" y="88" font-family="Nunito,sans-serif" font-size="9.0" font-weight="900" fill="white" text-anchor="middle">INICIO</text>
+<!-- START cell emoji -->
+<text x="82" y="131.64" font-size="28" text-anchor="middle" opacity=".9" font-family="Segoe UI Emoji,Apple Color Emoji,sans-serif">🦕</text>
+
+<!-- FINISH badge -->
+<rect x="393" y="579" width="50" height="21" rx="5" fill="#0f172a"/>
+<text x="418" y="593" font-family="Nunito,sans-serif" font-size="9.0" font-weight="900" fill="white" text-anchor="middle">META</text>
+<!-- END cell emoji -->
+<text x="418" y="563.64" font-size="28" text-anchor="middle" opacity=".9" font-family="Segoe UI Emoji,Apple Color Emoji,sans-serif">🥚</text>
+
+<!-- Footer -->
+<text x="250" y="638" font-family="Nunito,sans-serif" font-size="8" fill="#94a3b8" text-anchor="middle">Imprimible gratuito · chartkids.com/maze/baby-dino-maze-maze/ · Edad 3-6</text>
+</svg>

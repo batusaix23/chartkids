@@ -1,0 +1,30 @@
+<svg viewBox="0 0 500 650" xmlns="http://www.w3.org/2000/svg">
+<rect width="500" height="650" fill="white"/>
+
+<!-- Mountains -->
+<polygon points="0,380 110,180 220,380" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<polygon points="180,380 320,140 460,380" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<polygon points="360,380 460,210 500,380" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Volcano smoke -->
+<circle cx="320" cy="110" r="22" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<circle cx="335" cy="84" r="16" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<circle cx="325" cy="62" r="11" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<!-- Ground -->
+<path d="M0,500 Q125,485 250,500 Q375,515 500,500 L500,650 L0,650 Z" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Ferns -->
+<path d="M30,500 C10,468 50,452 42,488" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<path d="M42,500 C62,468 22,452 30,488" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<path d="M440,500 C420,468 460,452 452,488" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<path d="M452,500 C472,468 432,452 440,488" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Palm tree -->
+<rect x="76" y="380" width="10" height="120" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<path d="M81,380 C60,355 30,360 45,375 C30,345 10,355 35,365 C55,340 80,350 81,380" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<path d="M81,380 C102,355 132,360 117,375 C132,345 152,355 127,365 C107,340 82,350 81,380" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<g transform="translate(65.0,115.0) scale(5.14)">
+
+  <g id="line">
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" d="M36,64c12.8581,0,20.9609-11.9773,20.9609-26.1572,0-14.6517-8.4161-29.8428-20.9609-29.8428S15.0391,23.1911,15.0391,37.8428c0,14.1799,8.1028,26.1572,20.9609,26.1572Z"/>
+  </g>
+
+</g>
+</svg>

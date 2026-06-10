@@ -1,0 +1,38 @@
+<svg viewBox="0 0 500 650" xmlns="http://www.w3.org/2000/svg">
+<rect width="500" height="650" fill="white"/>
+
+<!-- Stars -->
+<circle cx="41" cy="251" r="2.5" fill="#1a1a1a"/><circle cx="304" cy="238" r="1.5" fill="#1a1a1a"/><circle cx="184" cy="38" r="1.5" fill="#1a1a1a"/><circle cx="275" cy="216" r="1.5" fill="#1a1a1a"/><circle cx="449" cy="244" r="1.5" fill="#1a1a1a"/><circle cx="144" cy="144" r="2.5" fill="#1a1a1a"/><circle cx="257" cy="125" r="1.5" fill="#1a1a1a"/><circle cx="339" cy="100" r="1.5" fill="#1a1a1a"/><circle cx="160" cy="24" r="1.5" fill="#1a1a1a"/><circle cx="243" cy="57" r="1.5" fill="#1a1a1a"/><circle cx="115" cy="168" r="2.5" fill="#1a1a1a"/><circle cx="173" cy="273" r="1.5" fill="#1a1a1a"/><circle cx="421" cy="198" r="1.5" fill="#1a1a1a"/><circle cx="370" cy="135" r="1.5" fill="#1a1a1a"/><circle cx="341" cy="66" r="1.5" fill="#1a1a1a"/><circle cx="435" cy="54" r="2.5" fill="#1a1a1a"/><circle cx="57" cy="107" r="1.5" fill="#1a1a1a"/><circle cx="424" cy="29" r="1.5" fill="#1a1a1a"/><circle cx="422" cy="232" r="1.5" fill="#1a1a1a"/><circle cx="262" cy="15" r="1.5" fill="#1a1a1a"/><circle cx="149" cy="116" r="2.5" fill="#1a1a1a"/><circle cx="393" cy="213" r="1.5" fill="#1a1a1a"/><circle cx="346" cy="160" r="1.5" fill="#1a1a1a"/><circle cx="314" cy="287" r="1.5" fill="#1a1a1a"/><circle cx="488" cy="85" r="1.5" fill="#1a1a1a"/><circle cx="220" cy="88" r="2.5" fill="#1a1a1a"/><circle cx="226" cy="19" r="1.5" fill="#1a1a1a"/><circle cx="182" cy="289" r="1.5" fill="#1a1a1a"/><circle cx="44" cy="275" r="1.5" fill="#1a1a1a"/><circle cx="59" cy="165" r="1.5" fill="#1a1a1a"/><circle cx="172" cy="286" r="2.5" fill="#1a1a1a"/><circle cx="42" cy="115" r="1.5" fill="#1a1a1a"/><circle cx="406" cy="118" r="1.5" fill="#1a1a1a"/><circle cx="91" cy="169" r="1.5" fill="#1a1a1a"/><circle cx="417" cy="211" r="1.5" fill="#1a1a1a"/><circle cx="488" cy="154" r="2.5" fill="#1a1a1a"/><circle cx="325" cy="223" r="1.5" fill="#1a1a1a"/><circle cx="56" cy="219" r="1.5" fill="#1a1a1a"/><circle cx="451" cy="237" r="1.5" fill="#1a1a1a"/><circle cx="123" cy="192" r="1.5" fill="#1a1a1a"/><circle cx="212" cy="11" r="2.5" fill="#1a1a1a"/><circle cx="120" cy="64" r="1.5" fill="#1a1a1a"/><circle cx="87" cy="294" r="1.5" fill="#1a1a1a"/><circle cx="164" cy="165" r="1.5" fill="#1a1a1a"/><circle cx="137" cy="78" r="1.5" fill="#1a1a1a"/><circle cx="309" cy="175" r="2.5" fill="#1a1a1a"/><circle cx="107" cy="233" r="1.5" fill="#1a1a1a"/><circle cx="14" cy="50" r="1.5" fill="#1a1a1a"/><circle cx="188" cy="221" r="1.5" fill="#1a1a1a"/><circle cx="462" cy="126" r="1.5" fill="#1a1a1a"/><circle cx="301" cy="94" r="2.5" fill="#1a1a1a"/><circle cx="314" cy="167" r="1.5" fill="#1a1a1a"/><circle cx="315" cy="63" r="1.5" fill="#1a1a1a"/><circle cx="41" cy="95" r="1.5" fill="#1a1a1a"/><circle cx="139" cy="17" r="1.5" fill="#1a1a1a"/>
+<!-- Saturn -->
+<ellipse cx="420" cy="80" rx="38" ry="22" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<ellipse cx="420" cy="80" rx="20" ry="20" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<ellipse cx="420" cy="80" rx="52" ry="9" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+<!-- Small planet -->
+<circle cx="65" cy="100" r="24" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<line x1="43" y1="100" x2="87" y2="100" stroke="#1a1a1a" stroke-width="1.5"/>
+<!-- Moon crescent -->
+<circle cx="60" cy="560" r="30" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<circle cx="72" cy="553" r="24" fill="white" stroke="white" stroke-width="0"/>
+<!-- Shooting star -->
+<line x1="150" y1="40" x2="200" y2="70" stroke="#1a1a1a" stroke-width="2"/>
+<circle cx="148" cy="39" r="3" fill="#1a1a1a"/>
+<g transform="translate(65.0,115.0) scale(5.14)">
+
+  <g id="line">
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.290" d="M28.0542,44.3144l1.0332,2.7421.3112,2.0492-1.0159,2.793L27.4042,53.07l-1.6.7034-1.0825.5953-2.4946.6928-.7573-.165-1.9634-.025-2.03-.9106-1.6125-2.0421-.7486-2.0038-.974-2.0116.448-1.2854.3246-1.2306.5009-2.3322,3.8089-2.0374L21.56,41s.9362.4209,1.2579.56c.1121.0485,1.0541.38,1.1731.4077Z"/>
+    <line x1="26.8412" x2="46.2765" y1="36.7588" y2="17.3235" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389"/>
+    <line x1="31.7824" x2="55.3824" y1="37.9824" y2="14.3824" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389"/>
+    <line x1="35.1706" x2="51.1353" y1="40.2294" y2="24.2647" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389"/>
+    <line x1="40.1706" x2="43.7" y1="18.2294" y2="14.7" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389"/>
+    <line x1="25.1706" x2="28.7" y1="33.2294" y2="29.7" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389"/>
+    <line x1="33.1706" x2="36.7" y1="46.2294" y2="42.7" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389"/>
+    <line x1="56.1706" x2="59.7" y1="19.2294" y2="15.7" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389"/>
+    <path fill="#1a1a1a" d="M22.6083,30.4963a1.1257,1.1257,0,0,0,0-2.25,1.1257,1.1257,0,0,0,0,2.25Z"/>
+    <path fill="#1a1a1a" d="M30.6083,58.4963a1.1257,1.1257,0,0,0,0-2.25,1.1257,1.1257,0,0,0,0,2.25Z"/>
+    <polygon fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" points="40 41 42 41 42.75 38.75 43.5 41 45.5 41 44 42.25 44.5 44.25 42.75 43 41 44.25 41.75 42.25 40 41"/>
+    <polygon fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" points="28 20 30 20 30.75 17.75 31.5 20 33.5 20 32 21.25 32.5 23.25 30.75 22 29 23.25 29.75 21.25 28 20"/>
+    <path fill="#1a1a1a" d="M53.6083,28.4963a1.1257,1.1257,0,0,0,0-2.25,1.1257,1.1257,0,0,0,0,2.25Z"/>
+  </g>
+
+</g>
+</svg>

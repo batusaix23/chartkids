@@ -1,0 +1,32 @@
+<svg viewBox="0 0 500 650" xmlns="http://www.w3.org/2000/svg">
+<rect width="500" height="650" fill="white"/>
+
+<!-- Mountains -->
+<polygon points="0,380 110,180 220,380" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<polygon points="180,380 320,140 460,380" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<polygon points="360,380 460,210 500,380" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Volcano smoke -->
+<circle cx="320" cy="110" r="22" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<circle cx="335" cy="84" r="16" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<circle cx="325" cy="62" r="11" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<!-- Ground -->
+<path d="M0,500 Q125,485 250,500 Q375,515 500,500 L500,650 L0,650 Z" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Ferns -->
+<path d="M30,500 C10,468 50,452 42,488" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<path d="M42,500 C62,468 22,452 30,488" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<path d="M440,500 C420,468 460,452 452,488" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<path d="M452,500 C472,468 432,452 440,488" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Palm tree -->
+<rect x="76" y="380" width="10" height="120" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<path d="M81,380 C60,355 30,360 45,375 C30,345 10,355 35,365 C55,340 80,350 81,380" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<path d="M81,380 C102,355 132,360 117,375 C132,345 152,355 127,365 C107,340 82,350 81,380" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<g transform="translate(65.0,115.0) scale(5.14)">
+
+  <g id="line">
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M43,41c0,0,2-3.8333,4.5-1.4167C50,42,47,43,46,42s-2,2-2,2"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M39,48c0,0,6.125-2.6797,6.6514,0.8374c0.1505,1.0055-0.2436,2.0174-0.9153,2.7807L40,57c0,0,6.4305,1.9098,5.1667,3.4167 C43,63,34,61,34,61l1-5c-16,4-20-11-20-11s14.1667,11.6667,20.0833,1.8333s3.0833-29.6667,15.5-29.25 c8.358,0.2805,9.844,4.7143,9.9224,7.583c0.0381,1.393-0.2557,2.417-0.2557,2.417c-0.0778,0.5793-0.1852,1.086-0.3188,1.53 c-1.1539,3.8354-4.2597,2.9991-7.0978,3.97C49.6667,34.1667,50.75,37.5,50.75,37.5C56.5,36,56,43,54,41 s-3.1667,1.3333-3.1667,1.3333S51,49,49,51"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M54.5,44.8333c3.5,2.8333-3.9167,9.5-3.9167,9.5S62,57,52.6667,57.3333C43.3333,57.6667,46,55,46,55"/>
+  </g>
+
+</g>
+</svg>

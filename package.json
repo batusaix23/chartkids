@@ -20,5 +20,8 @@
   "homepage": "https://github.com/batusaix23/chartkids#readme",
   "dependencies": {
     "@anthropic-ai/sdk": "^0.100.1"
+  },
+  "devDependencies": {
+    "wrangler": "^4.98.0"
   }
 }

@@ -1,0 +1,33 @@
+<svg viewBox="0 0 500 650" xmlns="http://www.w3.org/2000/svg">
+<rect width="500" height="650" fill="white"/>
+
+<!-- Night sky -->
+<circle cx="41" cy="251" r="2.5" fill="#1a1a1a"/><circle cx="304" cy="238" r="1.5" fill="#1a1a1a"/><circle cx="184" cy="38" r="1.5" fill="#1a1a1a"/><circle cx="275" cy="216" r="1.5" fill="#1a1a1a"/><circle cx="449" cy="244" r="1.5" fill="#1a1a1a"/><circle cx="144" cy="144" r="2.5" fill="#1a1a1a"/><circle cx="257" cy="125" r="1.5" fill="#1a1a1a"/><circle cx="339" cy="100" r="1.5" fill="#1a1a1a"/><circle cx="160" cy="24" r="1.5" fill="#1a1a1a"/><circle cx="243" cy="57" r="1.5" fill="#1a1a1a"/><circle cx="115" cy="168" r="2.5" fill="#1a1a1a"/><circle cx="173" cy="273" r="1.5" fill="#1a1a1a"/><circle cx="421" cy="198" r="1.5" fill="#1a1a1a"/><circle cx="370" cy="135" r="1.5" fill="#1a1a1a"/><circle cx="341" cy="66" r="1.5" fill="#1a1a1a"/><circle cx="435" cy="54" r="2.5" fill="#1a1a1a"/><circle cx="57" cy="107" r="1.5" fill="#1a1a1a"/><circle cx="424" cy="29" r="1.5" fill="#1a1a1a"/><circle cx="422" cy="232" r="1.5" fill="#1a1a1a"/><circle cx="262" cy="15" r="1.5" fill="#1a1a1a"/><circle cx="149" cy="116" r="2.5" fill="#1a1a1a"/><circle cx="393" cy="213" r="1.5" fill="#1a1a1a"/><circle cx="346" cy="160" r="1.5" fill="#1a1a1a"/><circle cx="314" cy="287" r="1.5" fill="#1a1a1a"/><circle cx="488" cy="85" r="1.5" fill="#1a1a1a"/>
+<!-- Moon -->
+<circle cx="430" cy="58" r="34" fill="white" stroke="#1a1a1a" stroke-width="2.5"/>
+<circle cx="447" cy="50" r="26" fill="white" stroke="white"/>
+<!-- Castle tower left -->
+<rect x="0" y="380" width="85" height="275" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<rect x="0" y="365" width="13" height="20" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="18" y="365" width="13" height="20" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="36" y="365" width="13" height="20" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="54" y="365" width="13" height="20" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<rect x="28" y="420" width="28" height="35" rx="14" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Castle tower right -->
+<rect x="415" y="380" width="85" height="275" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<rect x="416" y="365" width="13" height="20" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="434" y="365" width="13" height="20" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="452" y="365" width="13" height="20" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="470" y="365" width="13" height="20" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<rect x="443" y="420" width="28" height="35" rx="14" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Ground with flowers -->
+<path d="M0,540 Q125,525 250,540 Q375,555 500,540 L500,650 L0,650 Z" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<circle cx="55" cy="538" r="7" fill="white" stroke="#1a1a1a" stroke-width="2"/><line x1="55" y1="545" x2="55" y2="565" stroke="#1a1a1a" stroke-width="2"/><circle cx="115" cy="538" r="7" fill="white" stroke="#1a1a1a" stroke-width="2"/><line x1="115" y1="545" x2="115" y2="565" stroke="#1a1a1a" stroke-width="2"/><circle cx="175" cy="538" r="7" fill="white" stroke="#1a1a1a" stroke-width="2"/><line x1="175" y1="545" x2="175" y2="565" stroke="#1a1a1a" stroke-width="2"/><circle cx="235" cy="538" r="7" fill="white" stroke="#1a1a1a" stroke-width="2"/><line x1="235" y1="545" x2="235" y2="565" stroke="#1a1a1a" stroke-width="2"/><circle cx="295" cy="538" r="7" fill="white" stroke="#1a1a1a" stroke-width="2"/><line x1="295" y1="545" x2="295" y2="565" stroke="#1a1a1a" stroke-width="2"/><circle cx="355" cy="538" r="7" fill="white" stroke="#1a1a1a" stroke-width="2"/><line x1="355" y1="545" x2="355" y2="565" stroke="#1a1a1a" stroke-width="2"/><circle cx="415" cy="538" r="7" fill="white" stroke="#1a1a1a" stroke-width="2"/><line x1="415" y1="545" x2="415" y2="565" stroke="#1a1a1a" stroke-width="2"/>
+<g transform="translate(65.0,115.0) scale(5.14)">
+
+  <g id="line">
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M58.4549,37.7826C60.2229,40.1443,65,44.4647,64.5,54.0208"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M32.5,41.8854c0,0,8.4783,6.7823,0,18.7647"/>
+    <polyline fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" points="24.809,19.1338 10.25,11.75 21.1747,23.995"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M35.1962,30.8696c0.5489,8.3555-9.3225,9.703-11.954,10.3347c-0.3325,0.0798-0.6318,0.25-0.8736,0.4919l-2.2227,2.2227 c-0.3494,0.3494-0.8234,0.5458-1.3176,0.5458h-3.5121c-1.203,0-2.2711-0.7698-2.6515-1.9111l-0.531-1.5931 c-0.258-0.774-0.1649-1.6222,0.2549-2.3218l8.7862-14.6436l4.7238-4.7238l-2.1151-6.9054c0,0,7.8026-0.6987,8.4135,5.3308 c0,0,16.9281,2.4418,10.5531,19.383c0,0-1.625,5.9489,2.375,11.1846"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M30.9167,14.0208c0,0,22.2444-4.0208,19.9583,19.9583"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M49.9187,23.155c0,0,14.7665,6.5865,5.4563,22.22c0,0-5.375,6.5625,0.625,13.6042"/>
+    <circle cx="24.4167" cy="28.9304" r="2" fill="#1a1a1a" stroke="none"/>
+  </g>
+
+</g>
+</svg>

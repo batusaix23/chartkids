@@ -1,0 +1,75 @@
+<svg viewBox="0 0 500 650" xmlns="http://www.w3.org/2000/svg">
+<rect width="500" height="650" fill="white"/>
+<rect width="500" height="72" fill="#a78bfa"/>
+<text x="18" y="29" font-family="Nunito,sans-serif" font-size="10" fill="white" font-weight="800" opacity=".85">🐉 PRINCESSES & FANTASY · CONNECT THE DOTS</text>
+<text x="18" y="57" font-family="'Fredoka One',Nunito,sans-serif" font-size="21" fill="white" font-weight="900">Connect the Dragon</text>
+<text x="224" y="52" font-size="15" fill="#a78bfa" font-family="sans-serif">★</text><text x="244" y="52" font-size="15" fill="#a78bfa" font-family="sans-serif">★</text><text x="264" y="52" font-size="15" fill="#d1d5db" font-family="sans-serif">★</text>
+<text x="284" y="52" font-family="Nunito,sans-serif" font-size="9" fill="white" opacity=".7">MEDIUM · Ages 4-7</text>
+<text x="488" y="52" font-family="Nunito,sans-serif" font-size="8" fill="white" opacity=".6" text-anchor="end">chartkids.com</text>
+<!-- Ghost outline (faint answer hint) -->
+<path d="M258.8,248.2 L276.4,257.0 L294.0,274.6 L302.8,292.2 L311.6,309.8 L307.2,327.4 L298.4,336.2 L289.6,331.8 L329.2,292.2 L346.8,318.6 L338.0,353.8 L311.6,371.4 L302.8,389.0 L311.6,424.2 L298.4,446.2 L285.2,446.2 L280.8,424.2 L267.6,415.4 L258.8,446.2 L245.6,446.2 L245.6,415.4 L232.4,397.8 L206.0,380.2 L179.6,362.6 L162.0,345.0 L153.2,327.4 L170.8,318.6 L197.2,327.4 L214.8,318.6 L197.2,283.4 L214.8,265.8 L241.2,257.0Z" fill="none" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="4,3"/>
+<!-- Numbered dots -->
+<circle cx="258.8" cy="248.2" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="266.8" y="243.0" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="start">1</text>
+<circle cx="281.3" cy="261.9" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="289.3" y="256.7" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="start">2</text>
+<circle cx="297.9" cy="282.3" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="305.9" y="277.1" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="start">3</text>
+<circle cx="309.8" cy="306.1" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="317.8" y="300.9" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="start">4</text>
+<circle cx="304.1" cy="330.5" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="312.1" y="325.3" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="start">5</text>
+<circle cx="295.7" cy="325.7" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="303.7" y="320.5" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="start">6</text>
+<circle cx="314.6" cy="306.8" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="322.6" y="301.6" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="start">7</text>
+<circle cx="332.5" cy="297.1" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="340.5" y="291.9" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="start">8</text>
+<circle cx="346.6" cy="319.4" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="354.6" y="314.2" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="start">9</text>
+<circle cx="340.2" cy="345.2" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="348.2" y="356.0" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="start">10</text>
+<circle cx="323.3" cy="363.6" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="331.3" y="374.4" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="start">11</text>
+<circle cx="306.0" cy="382.7" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="314.0" y="393.5" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="start">12</text>
+<circle cx="307.5" cy="407.9" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="315.5" y="418.7" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="start">13</text>
+<circle cx="306.5" cy="432.6" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="314.5" y="443.4" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="start">14</text>
+<circle cx="287.6" cy="446.2" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="295.6" y="457.0" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="start">15</text>
+<circle cx="279.3" cy="423.2" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="287.3" y="434.0" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="start">16</text>
+<circle cx="264.2" cy="427.4" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="272.2" y="438.2" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="start">17</text>
+<circle cx="251.7" cy="446.2" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="259.7" y="457.0" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="start">18</text>
+<circle cx="245.6" cy="425.7" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="237.6" y="436.5" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="end">19</text>
+<circle cx="235.8" cy="402.4" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="227.8" y="413.2" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="end">20</text>
+<circle cx="215.0" cy="386.2" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="207.0" y="397.0" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="end">21</text>
+<circle cx="192.9" cy="371.5" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="184.9" y="382.3" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="end">22</text>
+<circle cx="172.1" cy="355.1" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="164.1" y="365.9" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="end">23</text>
+<circle cx="156.5" cy="333.9" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="148.5" y="328.7" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="end">24</text>
+<circle cx="170.5" cy="318.8" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="162.5" y="313.6" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="end">25</text>
+<circle cx="195.7" cy="326.9" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="187.7" y="321.7" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="end">26</text>
+<circle cx="212.4" cy="313.8" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="204.4" y="308.6" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="end">27</text>
+<circle cx="200.5" cy="290.0" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="192.5" y="284.8" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="end">28</text>
+<circle cx="210.8" cy="269.8" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="202.8" y="264.6" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="end">29</text>
+<circle cx="234.6" cy="259.2" r="5" fill="white" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="226.6" y="254.0" font-family="Nunito,sans-serif" font-size="8" font-weight="800" fill="#1a1a1a" text-anchor="end">30</text>
+<!-- Footer instruction -->
+<text x="250" y="618" font-family="Nunito,sans-serif" font-size="11" fill="#475569" text-anchor="middle" font-weight="700">Connect the dots in order from 1 to 30!</text>
+<text x="250" y="643" font-family="Nunito,sans-serif" font-size="8" fill="#94a3b8" text-anchor="middle">Free printable · chartkids.com/dots/connect-the-dragon-dots/</text>
+</svg>

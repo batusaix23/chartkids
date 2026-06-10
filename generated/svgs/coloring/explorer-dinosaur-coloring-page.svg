@@ -1,0 +1,30 @@
+<svg viewBox="0 0 500 650" xmlns="http://www.w3.org/2000/svg">
+<rect width="500" height="650" fill="white"/>
+
+<!-- Mountains -->
+<polygon points="0,380 110,180 220,380" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<polygon points="180,380 320,140 460,380" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<polygon points="360,380 460,210 500,380" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Volcano smoke -->
+<circle cx="320" cy="110" r="22" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<circle cx="335" cy="84" r="16" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<circle cx="325" cy="62" r="11" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<!-- Ground -->
+<path d="M0,500 Q125,485 250,500 Q375,515 500,500 L500,650 L0,650 Z" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Ferns -->
+<path d="M30,500 C10,468 50,452 42,488" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<path d="M42,500 C62,468 22,452 30,488" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<path d="M440,500 C420,468 460,452 452,488" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<path d="M452,500 C472,468 432,452 440,488" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Palm tree -->
+<rect x="76" y="380" width="10" height="120" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<path d="M81,380 C60,355 30,360 45,375 C30,345 10,355 35,365 C55,340 80,350 81,380" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<path d="M81,380 C102,355 132,360 117,375 C132,345 152,355 127,365 C107,340 82,350 81,380" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<g transform="translate(65.0,115.0) scale(5.14)">
+
+  <g id="line">
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" d="M5,52c0,0,15-3,17-10 s14.6667-11.1667,20.8333-8.5833c0,0,6.3333,0.5833,8.25-7.4167C53,18,55,9,62,10s6.1667,6.3333,4.0833,7.1667C64,18,61,18,60,19.5 s-2.1667,16.1667-6.5833,19.8333c0,0-4.9167,6.5-4.6667,9.5833C49,52,50.5833,61.25,47,61c-3.6293-0.2532-3-7-3-8s-8-3-11-1 s-2.1667,8-4.5833,8.5S23.5,60.8333,22.75,59.9167C22,59,23.3494,53.229,22.25,51.25"/>
+  </g>
+
+</g>
+</svg>

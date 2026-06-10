@@ -1,0 +1,31 @@
+<svg viewBox="0 0 500 650" xmlns="http://www.w3.org/2000/svg">
+<rect width="500" height="650" fill="white"/>
+
+<!-- Road -->
+<rect x="0" y="545" width="500" height="105" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Lane dashes -->
+<rect x="0" y="592" width="55" height="9" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="88" y="592" width="55" height="9" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="176" y="592" width="55" height="9" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="264" y="592" width="55" height="9" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="352" y="592" width="55" height="9" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="440" y="592" width="55" height="9" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<!-- Sidewalk -->
+<rect x="0" y="530" width="500" height="18" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<!-- Sky/Clouds -->
+<ellipse cx="40" cy="59" rx="30" ry="22" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<ellipse cx="60" cy="54" rx="34" ry="13" fill="white" stroke="#1a1a1a" stroke-width="2"/><ellipse cx="193.33333333333334" cy="79" rx="44" ry="19" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<ellipse cx="211.33333333333334" cy="67" rx="22" ry="13" fill="white" stroke="#1a1a1a" stroke-width="2"/><ellipse cx="346.6666666666667" cy="76" rx="48" ry="19" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<ellipse cx="364.6666666666667" cy="65" rx="36" ry="18" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Buildings -->
+<rect x="15" y="340" width="65" height="195" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<rect x="22" y="355" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="40" y="355" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="58" y="355" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="22" y="400" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="40" y="400" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="58" y="400" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<rect x="420" y="310" width="72" height="225" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<rect x="427" y="325" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="446" y="325" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="465" y="325" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="427" y="370" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="446" y="370" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="465" y="370" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<g transform="translate(65.0,115.0) scale(5.14)">
+
+  <g id="line">
+    <polygon fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.396" points="38.5351 7.9458 38.5351 35.8514 55.2281 35.8514 38.5351 7.9458"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" d="m52.0409,47.2948c2.68-2.68,4.3606-6.9768,4.3606-6.9768H17.9887s-1.0793,4.3214,2.494,7.0014"/>
+    <polygon fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" points="35.196 14.4117 35.196 35.8514 24.901 35.8514 35.196 14.4117"/>
+    <line x1="38.5351" x2="38.5351" y1="8.1584" y2="40.318" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.396"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" d="m8.1621,44.7846c2.68,0,8.0399,2.68,13.3998,2.68s8.9332-2.68,14.2931-2.68,9.8265,2.68,14.2931,2.68,6.2533-2.68,13.3998-2.68"/>
+  </g>
+
+</g>
+</svg>

@@ -1,0 +1,40 @@
+<svg viewBox="0 0 500 650" xmlns="http://www.w3.org/2000/svg">
+<rect width="500" height="650" fill="white"/>
+
+<!-- Road -->
+<rect x="0" y="545" width="500" height="105" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Lane dashes -->
+<rect x="0" y="592" width="55" height="9" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="88" y="592" width="55" height="9" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="176" y="592" width="55" height="9" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="264" y="592" width="55" height="9" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="352" y="592" width="55" height="9" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="440" y="592" width="55" height="9" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<!-- Sidewalk -->
+<rect x="0" y="530" width="500" height="18" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<!-- Sky/Clouds -->
+<ellipse cx="40" cy="59" rx="30" ry="22" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<ellipse cx="60" cy="54" rx="34" ry="13" fill="white" stroke="#1a1a1a" stroke-width="2"/><ellipse cx="193.33333333333334" cy="79" rx="44" ry="19" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<ellipse cx="211.33333333333334" cy="67" rx="22" ry="13" fill="white" stroke="#1a1a1a" stroke-width="2"/><ellipse cx="346.6666666666667" cy="76" rx="48" ry="19" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<ellipse cx="364.6666666666667" cy="65" rx="36" ry="18" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Buildings -->
+<rect x="15" y="340" width="65" height="195" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<rect x="22" y="355" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="40" y="355" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="58" y="355" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="22" y="400" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="40" y="400" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="58" y="400" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<rect x="420" y="310" width="72" height="225" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<rect x="427" y="325" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="446" y="325" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="465" y="325" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="427" y="370" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="446" y="370" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="465" y="370" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<g transform="translate(65.0,115.0) scale(5.14)">
+
+  <g id="line">
+    <rect x="16" y="48.9583" rx="2.6211" ry="2.6211" width="40" height="8" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389"/>
+    <rect x="18" y="56.9583" rx="2" ry="2" width="6" height="4"/>
+    <rect x="48" y="56.9583" rx="2" ry="2" width="6" height="4"/>
+    <line x1="16" x2="13" y1="25.9583" y2="25.9583" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389"/>
+    <line x1="13" x2="13" y1="22.9583" y2="28.9583" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389"/>
+    <line x1="56" x2="59" y1="25.9583" y2="25.9583" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389"/>
+    <line x1="59" x2="59" y1="22.9583" y2="28.9583" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" d="M44.1556,13.9583H47.77A7.2518,7.2518,0,0,1,55,21.1888v26.27a1.5044,1.5044,0,0,1-1.5,1.5h-35a1.5044,1.5044,0,0,1-1.5-1.5v-26.27a7.2515,7.2515,0,0,1,7.23-7.23h2.6142"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" d="M51,21.9583v11.8H21"/>
+    <polyline fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" points="21 44.958 27 44.958 27 42.958"/>
+    <polyline fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" points="45 44.958 51 44.958 51 42.958"/>
+    <line x1="32" x2="41" y1="41.9583" y2="41.9583" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-miterlimit="10" stroke-width="0.389"/>
+    <line x1="32" x2="41" y1="44.9583" y2="44.9583" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-miterlimit="10" stroke-width="0.389"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" d="M26.8444,13.9583v-.4791a2.5283,2.5283,0,0,1,2.5209-2.5209H41.6347a2.5283,2.5283,0,0,1,2.5209,2.5209v.4791"/>
+  </g>
+
+</g>
+</svg>

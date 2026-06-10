@@ -1,0 +1,32 @@
+<svg viewBox="0 0 500 650" xmlns="http://www.w3.org/2000/svg">
+<rect width="500" height="650" fill="white"/>
+
+<!-- Mountains -->
+<polygon points="0,380 110,180 220,380" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<polygon points="180,380 320,140 460,380" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<polygon points="360,380 460,210 500,380" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Volcano smoke -->
+<circle cx="320" cy="110" r="22" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<circle cx="335" cy="84" r="16" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<circle cx="325" cy="62" r="11" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<!-- Ground -->
+<path d="M0,500 Q125,485 250,500 Q375,515 500,500 L500,650 L0,650 Z" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Ferns -->
+<path d="M30,500 C10,468 50,452 42,488" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<path d="M42,500 C62,468 22,452 30,488" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<path d="M440,500 C420,468 460,452 452,488" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<path d="M452,500 C472,468 432,452 440,488" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Palm tree -->
+<rect x="76" y="380" width="10" height="120" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<path d="M81,380 C60,355 30,360 45,375 C30,345 10,355 35,365 C55,340 80,350 81,380" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<path d="M81,380 C102,355 132,360 117,375 C132,345 152,355 127,365 C107,340 82,350 81,380" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<g transform="translate(65.0,115.0) scale(5.14)">
+
+  <g id="line">
+    <path id="Swan_Line_1" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" d="M27.1986,41.0877c3.045-.91,8.4833-7.14,19.8118-2.7989,8.2484,3.1606,12.9832-2.8445,12.9832-2.8445S57.8916,57.793,47.4045,60.3609c-7.2623,1.7782-22.7242,2.1761-28.0357,0-9.18-3.7611-8.2246-15.4921-5.3956-20.54,2.911-5.1941,10.142-8.5786,10.2681-19.3019"/>
+    <path id="Swan_Line_2" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" d="M23.77,43.5077c.71-12.0817,7.0657-20.416,6.1609-26.3062-.6954-4.5273-3.7741-7.76-8.2922-6.3379-3.1468.99-7.0343,9.2494-7.0343,9.2494,2.9462,1.17,7.426-2.1242,7.426-2.1242"/>
+    <path id="Swan_Line_3" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" d="M49.6121,44.31c-2.1331,3.4989-11.9,5.3058-16.6525,5.4247"/>
+  </g>
+
+</g>
+</svg>

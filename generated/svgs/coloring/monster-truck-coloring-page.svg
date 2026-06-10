@@ -1,0 +1,32 @@
+<svg viewBox="0 0 500 650" xmlns="http://www.w3.org/2000/svg">
+<rect width="500" height="650" fill="white"/>
+
+<!-- Road -->
+<rect x="0" y="545" width="500" height="105" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Lane dashes -->
+<rect x="0" y="592" width="55" height="9" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="88" y="592" width="55" height="9" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="176" y="592" width="55" height="9" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="264" y="592" width="55" height="9" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="352" y="592" width="55" height="9" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="440" y="592" width="55" height="9" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<!-- Sidewalk -->
+<rect x="0" y="530" width="500" height="18" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<!-- Sky/Clouds -->
+<ellipse cx="40" cy="59" rx="30" ry="22" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<ellipse cx="60" cy="54" rx="34" ry="13" fill="white" stroke="#1a1a1a" stroke-width="2"/><ellipse cx="193.33333333333334" cy="79" rx="44" ry="19" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<ellipse cx="211.33333333333334" cy="67" rx="22" ry="13" fill="white" stroke="#1a1a1a" stroke-width="2"/><ellipse cx="346.6666666666667" cy="76" rx="48" ry="19" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<ellipse cx="364.6666666666667" cy="65" rx="36" ry="18" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Buildings -->
+<rect x="15" y="340" width="65" height="195" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<rect x="22" y="355" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="40" y="355" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="58" y="355" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="22" y="400" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="40" y="400" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="58" y="400" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<rect x="420" y="310" width="72" height="225" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<rect x="427" y="325" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="446" y="325" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="465" y="325" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="427" y="370" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="446" y="370" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="465" y="370" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<g transform="translate(65.0,115.0) scale(5.14)">
+
+  <g id="line">
+    <circle cx="16.3333" cy="53.25" r="3" fill="none" stroke="#1a1a1a" stroke-miterlimit="10" stroke-width="0.389"/>
+    <polyline fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" points="10.75,41 15.8333,41 15.8333,35.0833"/>
+    <circle cx="57.4167" cy="53.25" r="3" fill="none" stroke="#1a1a1a" stroke-miterlimit="10" stroke-width="0.389"/>
+    <circle cx="48.4167" cy="53.25" r="3" fill="none" stroke="#1a1a1a" stroke-miterlimit="10" stroke-width="0.389"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M10.3401,51.88H5.86c-0.5499,0-0.99-0.44-1-0.99l-0.0859-6.277c-0.0056-0.4754,0.1011-0.944,0.3129-1.3697 c0.2638-0.5303,0.6003-1.2013,0.6404-1.2545c0.0577-0.0765,0.8983-2.4368,2.3327-7.6088c1.4499-5.23,10.53-5.92,13.6098-6 c0.5601-0.01,1.02,0.44,1.02,1v21.5c0,0.32-0.0024,0.745-0.0024,0.745"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M42.625,51.19H26.1899V28.31c0-0.55,0.4501-1,1-1H66.25c0.55,0,1,0.45,1,1v21.88c0,0.55-0.45,1-1,1h-3.11"/>
+  </g>
+
+</g>
+</svg>

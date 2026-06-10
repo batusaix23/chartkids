@@ -1,0 +1,28 @@
+<svg viewBox="0 0 500 650" xmlns="http://www.w3.org/2000/svg">
+<rect width="500" height="650" fill="white"/>
+
+<!-- Sports field -->
+<rect x="0" y="490" width="500" height="160" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Field lines -->
+<line x1="250" y1="490" x2="250" y2="650" stroke="#1a1a1a" stroke-width="1.5"/>
+<circle cx="250" cy="570" r="55" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+<rect x="185" y="490" width="130" height="55" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+<!-- Crowd stands -->
+<rect x="0" y="390" width="500" height="102" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<line x1="0" y1="395" x2="500" y2="395" stroke="#1a1a1a" stroke-width="1"/><line x1="0" y1="415" x2="500" y2="415" stroke="#1a1a1a" stroke-width="1"/><line x1="0" y1="435" x2="500" y2="435" stroke="#1a1a1a" stroke-width="1"/><line x1="0" y1="455" x2="500" y2="455" stroke="#1a1a1a" stroke-width="1"/><line x1="0" y1="475" x2="500" y2="475" stroke="#1a1a1a" stroke-width="1"/>
+<!-- Clouds -->
+<ellipse cx="40" cy="55" rx="30" ry="22" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<ellipse cx="60" cy="50" rx="34" ry="13" fill="white" stroke="#1a1a1a" stroke-width="2"/><ellipse cx="270" cy="75" rx="44" ry="19" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<ellipse cx="288" cy="63" rx="22" ry="13" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<g transform="translate(65.0,115.0) scale(5.14)">
+
+  <g id="line">
+    <line x1="7" x2="65" y1="36" y2="36" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389"/>
+    <line x1="36" x2="36" y1="7" y2="65" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M55.2,57.7c-5.6-5.6-9-13.2-9-21.8c0-8.5,3.4-16.2,9-21.8"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M16.9,14.2c5.6,5.6,9,13.3,9,21.8s-3.4,16.2-9,21.8"/>
+    <circle cx="36" cy="36" r="29" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389"/>
+  </g>
+
+</g>
+</svg>

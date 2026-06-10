@@ -1,0 +1,36 @@
+<svg viewBox="0 0 500 650" xmlns="http://www.w3.org/2000/svg">
+<rect width="500" height="650" fill="white"/>
+
+<!-- Road -->
+<rect x="0" y="545" width="500" height="105" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Lane dashes -->
+<rect x="0" y="592" width="55" height="9" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="88" y="592" width="55" height="9" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="176" y="592" width="55" height="9" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="264" y="592" width="55" height="9" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="352" y="592" width="55" height="9" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="440" y="592" width="55" height="9" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<!-- Sidewalk -->
+<rect x="0" y="530" width="500" height="18" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<!-- Sky/Clouds -->
+<ellipse cx="40" cy="59" rx="30" ry="22" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<ellipse cx="60" cy="54" rx="34" ry="13" fill="white" stroke="#1a1a1a" stroke-width="2"/><ellipse cx="193.33333333333334" cy="79" rx="44" ry="19" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<ellipse cx="211.33333333333334" cy="67" rx="22" ry="13" fill="white" stroke="#1a1a1a" stroke-width="2"/><ellipse cx="346.6666666666667" cy="76" rx="48" ry="19" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<ellipse cx="364.6666666666667" cy="65" rx="36" ry="18" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Buildings -->
+<rect x="15" y="340" width="65" height="195" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<rect x="22" y="355" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="40" y="355" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="58" y="355" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="22" y="400" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="40" y="400" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="58" y="400" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<rect x="420" y="310" width="72" height="225" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<rect x="427" y="325" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="446" y="325" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="465" y="325" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="427" y="370" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="446" y="370" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="465" y="370" width="11" height="14" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<g transform="translate(65.0,115.0) scale(5.14)">
+
+  <g id="line">
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M17.9247,52.9753l-6.625-0.017c0,0-1.0625,0-1.0625-1.25s-0.0625-3.5625-0.0625-3.5625s0.6832-9.4798,2.625-10.625 c1.625-0.9583,46.544-0.7036,53.1365-0.5781c0.4728,0.009,0.8668,0.3478,0.9496,0.8133c0.2375,1.3354,0.6809,4.0966,0.7264,6.3273 c0.0625,3.0625-0.125,8-0.125,8l-4.7646,0.7952"/>
+    <line x1="50.3414" x2="30.1747" y1="53.0606" y2="53.0065" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389"/>
+    <polyline fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" points="11.2997,40.5 6.7372,40.8125 5.2997,44.125"/>
+    <circle cx="56.4803" cy="53.2917" r="3" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389"/>
+    <circle cx="23.9803" cy="53.2917" r="3" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M45.5493,43.0283l18.1254,0.1592c0,0,0.0142-0.0017,0.0403-0.0069"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M13.2782,46.3109c0,0,4.0241-0.9494,7.709-3.4984l19.5,0.1713"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M17.9247,52.9753l-6.625-0.017c0,0-1.0625,0-1.0625-1.25s-0.0625-3.5625-0.0625-3.5625s0.6832-9.4798,2.625-10.625 c1.625-0.9583,46.544-0.7036,53.1365-0.5781c0.4728,0.009,0.8668,0.3478,0.9496,0.8133c0.2375,1.3354,0.6809,4.0966,0.7264,6.3273 c0.0625,3.0625-0.125,8-0.125,8"/>
+    <rect x="40.4872" y="40.3177" width="5.0625" height="12.6667" fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389"/>
+    <polyline fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" points="11.1591,50.6562 13.7374,50.6562 14.8097,49.2948"/>
+  </g>
+
+</g>
+</svg>

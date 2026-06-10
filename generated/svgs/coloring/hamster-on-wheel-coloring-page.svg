@@ -1,0 +1,40 @@
+<svg viewBox="0 0 500 650" xmlns="http://www.w3.org/2000/svg">
+<rect width="500" height="650" fill="white"/>
+
+<!-- Home interior -->
+<!-- Wall -->
+<rect x="0" y="0" width="500" height="545" fill="white" stroke="none"/>
+<!-- Floor -->
+<rect x="0" y="543" width="500" height="107" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Rug -->
+<ellipse cx="250" cy="553" rx="195" ry="32" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<ellipse cx="250" cy="553" rx="158" ry="24" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+<ellipse cx="250" cy="553" rx="108" ry="16" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+<!-- Ball toy -->
+<circle cx="72" cy="520" r="22" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<path d="M54,510 Q72,525 90,510" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+<path d="M54,530 Q72,515 90,530" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+<!-- Window -->
+<rect x="376" y="58" width="100" height="125" rx="5" fill="white" stroke="#1a1a1a" stroke-width="2.5"/>
+<line x1="426" y1="58" x2="426" y2="183" stroke="#1a1a1a" stroke-width="1.5"/>
+<line x1="376" y1="120" x2="476" y2="120" stroke="#1a1a1a" stroke-width="1.5"/>
+<ellipse cx="400" cy="92" rx="16" ry="9" fill="white" stroke="#1a1a1a" stroke-width="1"/>
+<g transform="translate(65.0,115.0) scale(5.14)">
+
+  <g id="line">
+    <circle cx="27.8144" cy="32.0855" r="3"/>
+    <circle cx="44.4394" cy="32.0855" r="3"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" d="m32.3769,43.7564s.75,2.5833,3.75,2.9167c3,.3333,4-2.9167,4-2.9167"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" d="m36.1269,46.673l.125,4.3334c1.6287,1.0459,2.5723,1.5093,5.0416,1"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" d="m31.3769,52.0064c1.9583.3334,2.9167,0,4.875-1"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" d="m41.8823,56.673c5.397,2.7745,9.6846,1.7224,12.7521-.243"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" d="m11.0307,44.478c-3.7861-13.5237,9.0129-18.7216,9.0129-18.7216-3-1-8.3333-9.5833-3.9167-13.5833s10.5,3.3333,10.5,3.3333c0,0,9.8443-4.1667,20.0055,0,0,0,6.0833-7.3333,10.5-3.3333s-.9167,12.5833-3.9167,13.5833c0,0,12.5816,5.0927,9.1061,18.3773"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" d="m19.2213,56.7912c3.0177,1.722,7.0999,2.4809,12.1556-.1181"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" d="m26.6269,43.5064s-17,2.6667-19.75,11.75"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" d="m27.3769,47.2267s-12.2519,2.2168-14.5,13.2797"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" d="m46.6324,43.5064s17,2.6667,19.75,11.75"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.389" d="m45.8824,47.2267s11.7426,3.7797,14.5,13.2797"/>
+  </g>
+
+</g>
+</svg>

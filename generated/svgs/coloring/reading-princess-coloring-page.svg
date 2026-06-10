@@ -1,0 +1,38 @@
+<svg viewBox="0 0 500 650" xmlns="http://www.w3.org/2000/svg">
+<rect width="500" height="650" fill="white"/>
+
+<!-- Night sky -->
+<circle cx="41" cy="251" r="2.5" fill="#1a1a1a"/><circle cx="304" cy="238" r="1.5" fill="#1a1a1a"/><circle cx="184" cy="38" r="1.5" fill="#1a1a1a"/><circle cx="275" cy="216" r="1.5" fill="#1a1a1a"/><circle cx="449" cy="244" r="1.5" fill="#1a1a1a"/><circle cx="144" cy="144" r="2.5" fill="#1a1a1a"/><circle cx="257" cy="125" r="1.5" fill="#1a1a1a"/><circle cx="339" cy="100" r="1.5" fill="#1a1a1a"/><circle cx="160" cy="24" r="1.5" fill="#1a1a1a"/><circle cx="243" cy="57" r="1.5" fill="#1a1a1a"/><circle cx="115" cy="168" r="2.5" fill="#1a1a1a"/><circle cx="173" cy="273" r="1.5" fill="#1a1a1a"/><circle cx="421" cy="198" r="1.5" fill="#1a1a1a"/><circle cx="370" cy="135" r="1.5" fill="#1a1a1a"/><circle cx="341" cy="66" r="1.5" fill="#1a1a1a"/><circle cx="435" cy="54" r="2.5" fill="#1a1a1a"/><circle cx="57" cy="107" r="1.5" fill="#1a1a1a"/><circle cx="424" cy="29" r="1.5" fill="#1a1a1a"/><circle cx="422" cy="232" r="1.5" fill="#1a1a1a"/><circle cx="262" cy="15" r="1.5" fill="#1a1a1a"/><circle cx="149" cy="116" r="2.5" fill="#1a1a1a"/><circle cx="393" cy="213" r="1.5" fill="#1a1a1a"/><circle cx="346" cy="160" r="1.5" fill="#1a1a1a"/><circle cx="314" cy="287" r="1.5" fill="#1a1a1a"/><circle cx="488" cy="85" r="1.5" fill="#1a1a1a"/>
+<!-- Moon -->
+<circle cx="430" cy="58" r="34" fill="white" stroke="#1a1a1a" stroke-width="2.5"/>
+<circle cx="447" cy="50" r="26" fill="white" stroke="white"/>
+<!-- Castle tower left -->
+<rect x="0" y="380" width="85" height="275" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<rect x="0" y="365" width="13" height="20" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="18" y="365" width="13" height="20" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="36" y="365" width="13" height="20" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="54" y="365" width="13" height="20" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<rect x="28" y="420" width="28" height="35" rx="14" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Castle tower right -->
+<rect x="415" y="380" width="85" height="275" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<rect x="416" y="365" width="13" height="20" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="434" y="365" width="13" height="20" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="452" y="365" width="13" height="20" fill="white" stroke="#1a1a1a" stroke-width="1.5"/><rect x="470" y="365" width="13" height="20" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+<rect x="443" y="420" width="28" height="35" rx="14" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<!-- Ground with flowers -->
+<path d="M0,540 Q125,525 250,540 Q375,555 500,540 L500,650 L0,650 Z" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+<circle cx="55" cy="538" r="7" fill="white" stroke="#1a1a1a" stroke-width="2"/><line x1="55" y1="545" x2="55" y2="565" stroke="#1a1a1a" stroke-width="2"/><circle cx="115" cy="538" r="7" fill="white" stroke="#1a1a1a" stroke-width="2"/><line x1="115" y1="545" x2="115" y2="565" stroke="#1a1a1a" stroke-width="2"/><circle cx="175" cy="538" r="7" fill="white" stroke="#1a1a1a" stroke-width="2"/><line x1="175" y1="545" x2="175" y2="565" stroke="#1a1a1a" stroke-width="2"/><circle cx="235" cy="538" r="7" fill="white" stroke="#1a1a1a" stroke-width="2"/><line x1="235" y1="545" x2="235" y2="565" stroke="#1a1a1a" stroke-width="2"/><circle cx="295" cy="538" r="7" fill="white" stroke="#1a1a1a" stroke-width="2"/><line x1="295" y1="545" x2="295" y2="565" stroke="#1a1a1a" stroke-width="2"/><circle cx="355" cy="538" r="7" fill="white" stroke="#1a1a1a" stroke-width="2"/><line x1="355" y1="545" x2="355" y2="565" stroke="#1a1a1a" stroke-width="2"/><circle cx="415" cy="538" r="7" fill="white" stroke="#1a1a1a" stroke-width="2"/><line x1="415" y1="545" x2="415" y2="565" stroke="#1a1a1a" stroke-width="2"/>
+<g transform="translate(65.0,115.0) scale(5.14)">
+
+  <g id="line">
+    <path d="M41.9851,26.9809c0,1.1045-0.8965,2-2,2s-2-0.8955-2-2c0-1.1035,0.8965-2,2-2S41.9851,25.8774,41.9851,26.9809"/>
+    <path d="M33.9851,26.9809c0,1.1045-0.8965,2-2,2s-2-0.8955-2-2c0-1.1035,0.8965-2,2-2S33.9851,25.8774,33.9851,26.9809"/>
+    <path d="M35.9849,36.9833c-1.1518,0-2.3037-0.2861-3.4472-0.8579c-0.4942-0.2471-0.6944-0.8477-0.4473-1.3418 c0.2466-0.4937,0.8462-0.6943,1.3418-0.4473c1.7178,0.8594,3.3877,0.8594,5.1055,0c0.4946-0.247,1.0947-0.0464,1.3418,0.4473 c0.247,0.4941,0.0468,1.0947-0.4473,1.3418C38.2886,36.6972,37.1368,36.9833,35.9849,36.9833z"/>
+    <path fill="none" stroke="#1a1a1a" stroke-miterlimit="10" stroke-width="0.389" d="M24.9671,24.9804 c-0.2096,1.0775-0.3208,2.2032-0.3208,3.3613c0,7.8276,5.0765,14.1732,11.3386,14.1732c6.2622,0,11.3386-6.3456,11.3386-14.1732 c0-1.1582-0.1111-2.2839-0.3208-3.3614"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M16.925,57.8337c0,0-2-13,10-13c3.1919,2.1279,5.9264,3.5984,9,3.5921H35.8c3.0736,0.0063,5.8081-1.4642,9-3.5921c12,0,10,13,10,13"/>
+    <polygon fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" points="31.4401,17.5603 31.4417,7.817 34.557,10.4685 35.9721,6.9227 37.4406,10.3322 40.2849,7.817 40.2849,17.5603"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M17.6432,50.7128c0,0,3.8632,3.1152,3.8632,7.1267"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M51.8127,47.3561c-4.4249-0.4802-6.0588,8.7658-6.0588,8.7658c-3.6822-4.6369-9.8914,0.17-9.8914,0.17s-6.3702-4.8069-10.0525-0.17 c0,0-1.6339-9.246-6.0587-8.7658"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M53.9208,50.7128c0,0-3.8632,3.1252-3.8632,7.1367"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M44.2693,15.055c14.5692,14.5357-6.295,9.3461-8.256,4.3248c-1.9611,5.0213-22.8252,10.2109-8.2561-4.3248"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M23.0563,23.8263c-1.1906,4.0541-3.9987,14.9608-0.898,18.4335"/>
+    <path fill="none" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="0.389" d="M48.9037,23.8263c1.1906,4.0541,3.9986,14.9608,0.8979,18.4335"/>
+  </g>
+
+</g>
+</svg>

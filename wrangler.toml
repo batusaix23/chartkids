@@ -3,7 +3,7 @@ main = "worker.js"
 compatibility_date = "2024-09-23"
 
 # Workers AI binding (used for /actividad and chat endpoints)
-[[ai]]
+[ai]
 binding = "AI"
 
 # KV Namespace binding
@@ -11,7 +11,7 @@ binding = "AI"
 # Then replace the id below with the one it prints
 [[kv_namespaces]]
 binding = "DATA"
-id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+id = "293986d65ad24b60ad58e2249016f5be"
 
 # Custom route: routes all /api/* requests on chartkids.com to this Worker
 # Requires the chartkids.com zone to be on Cloudflare (it already is)

@@ -1,0 +1,578 @@
+[
+  {
+    "id": 1,
+    "category": "animals",
+    "title": "Lion Maze",
+    "age": "3-6",
+    "difficulty": "easy",
+    "slug": "lion-maze-maze"
+  },
+  {
+    "id": 2,
+    "category": "animals",
+    "title": "Elephant Maze",
+    "age": "4-7",
+    "difficulty": "easy",
+    "slug": "elephant-maze-maze"
+  },
+  {
+    "id": 3,
+    "category": "animals",
+    "title": "Jungle Maze",
+    "age": "4-7",
+    "difficulty": "medium",
+    "slug": "jungle-maze-maze"
+  },
+  {
+    "id": 4,
+    "category": "animals",
+    "title": "Safari Maze",
+    "age": "5-8",
+    "difficulty": "medium",
+    "slug": "safari-maze-maze"
+  },
+  {
+    "id": 5,
+    "category": "animals",
+    "title": "Ocean Animals Maze",
+    "age": "6-9",
+    "difficulty": "hard",
+    "slug": "ocean-animals-maze-maze"
+  },
+  {
+    "id": 6,
+    "category": "animals",
+    "title": "Arctic Animals Maze",
+    "age": "6-9",
+    "difficulty": "hard",
+    "slug": "arctic-animals-maze-maze"
+  },
+  {
+    "id": 7,
+    "category": "dinosaurs",
+    "title": "Baby Dino Maze",
+    "age": "3-6",
+    "difficulty": "easy",
+    "slug": "baby-dino-maze-maze"
+  },
+  {
+    "id": 8,
+    "category": "dinosaurs",
+    "title": "Jurassic Maze",
+    "age": "4-7",
+    "difficulty": "medium",
+    "slug": "jurassic-maze-maze"
+  },
+  {
+    "id": 9,
+    "category": "dinosaurs",
+    "title": "Volcano Maze",
+    "age": "5-8",
+    "difficulty": "medium",
+    "slug": "volcano-maze-maze"
+  },
+  {
+    "id": 10,
+    "category": "dinosaurs",
+    "title": "Prehistoric Maze",
+    "age": "6-9",
+    "difficulty": "hard",
+    "slug": "prehistoric-maze-maze"
+  },
+  {
+    "id": 11,
+    "category": "dinosaurs",
+    "title": "Dino Egg Hunt Maze",
+    "age": "5-8",
+    "difficulty": "medium",
+    "slug": "dino-egg-hunt-maze-maze"
+  },
+  {
+    "id": 12,
+    "category": "dinosaurs",
+    "title": "T-Rex Escape Maze",
+    "age": "7-10",
+    "difficulty": "hard",
+    "slug": "t-rex-escape-maze-maze"
+  },
+  {
+    "id": 13,
+    "category": "vehicles",
+    "title": "Car Park Maze",
+    "age": "3-6",
+    "difficulty": "easy",
+    "slug": "car-park-maze-maze"
+  },
+  {
+    "id": 14,
+    "category": "vehicles",
+    "title": "City Traffic Maze",
+    "age": "4-7",
+    "difficulty": "easy",
+    "slug": "city-traffic-maze-maze"
+  },
+  {
+    "id": 15,
+    "category": "vehicles",
+    "title": "Race Track Maze",
+    "age": "5-8",
+    "difficulty": "medium",
+    "slug": "race-track-maze-maze"
+  },
+  {
+    "id": 16,
+    "category": "vehicles",
+    "title": "Airport Maze",
+    "age": "5-8",
+    "difficulty": "medium",
+    "slug": "airport-maze-maze"
+  },
+  {
+    "id": 17,
+    "category": "vehicles",
+    "title": "Train Tracks Maze",
+    "age": "6-9",
+    "difficulty": "hard",
+    "slug": "train-tracks-maze-maze"
+  },
+  {
+    "id": 18,
+    "category": "vehicles",
+    "title": "Space Launch Maze",
+    "age": "7-10",
+    "difficulty": "hard",
+    "slug": "space-launch-maze-maze"
+  },
+  {
+    "id": 19,
+    "category": "space",
+    "title": "Rocket Maze",
+    "age": "4-7",
+    "difficulty": "easy",
+    "slug": "rocket-maze-maze"
+  },
+  {
+    "id": 20,
+    "category": "space",
+    "title": "Planet Hop Maze",
+    "age": "5-8",
+    "difficulty": "medium",
+    "slug": "planet-hop-maze-maze"
+  },
+  {
+    "id": 21,
+    "category": "space",
+    "title": "Astronaut Maze",
+    "age": "5-8",
+    "difficulty": "medium",
+    "slug": "astronaut-maze-maze"
+  },
+  {
+    "id": 22,
+    "category": "space",
+    "title": "Galaxy Maze",
+    "age": "6-9",
+    "difficulty": "hard",
+    "slug": "galaxy-maze-maze"
+  },
+  {
+    "id": 23,
+    "category": "space",
+    "title": "Star Map Maze",
+    "age": "6-9",
+    "difficulty": "hard",
+    "slug": "star-map-maze-maze"
+  },
+  {
+    "id": 24,
+    "category": "space",
+    "title": "Black Hole Maze",
+    "age": "7-10",
+    "difficulty": "hard",
+    "slug": "black-hole-maze-maze"
+  },
+  {
+    "id": 25,
+    "category": "superheroes",
+    "title": "Hero Training Maze",
+    "age": "4-7",
+    "difficulty": "easy",
+    "slug": "hero-training-maze-maze"
+  },
+  {
+    "id": 26,
+    "category": "superheroes",
+    "title": "City Rescue Maze",
+    "age": "5-8",
+    "difficulty": "medium",
+    "slug": "city-rescue-maze-maze"
+  },
+  {
+    "id": 27,
+    "category": "superheroes",
+    "title": "Superpower Maze",
+    "age": "5-8",
+    "difficulty": "medium",
+    "slug": "superpower-maze-maze"
+  },
+  {
+    "id": 28,
+    "category": "superheroes",
+    "title": "Villain Maze",
+    "age": "6-9",
+    "difficulty": "hard",
+    "slug": "villain-maze-maze"
+  },
+  {
+    "id": 29,
+    "category": "superheroes",
+    "title": "Hero HQ Maze",
+    "age": "6-9",
+    "difficulty": "hard",
+    "slug": "hero-hq-maze-maze"
+  },
+  {
+    "id": 30,
+    "category": "superheroes",
+    "title": "Final Battle Maze",
+    "age": "7-10",
+    "difficulty": "hard",
+    "slug": "final-battle-maze-maze"
+  },
+  {
+    "id": 31,
+    "category": "fantasy",
+    "title": "Castle Maze",
+    "age": "4-7",
+    "difficulty": "easy",
+    "slug": "castle-maze-maze"
+  },
+  {
+    "id": 32,
+    "category": "fantasy",
+    "title": "Dragon Cave Maze",
+    "age": "5-8",
+    "difficulty": "medium",
+    "slug": "dragon-cave-maze-maze"
+  },
+  {
+    "id": 33,
+    "category": "fantasy",
+    "title": "Enchanted Forest Maze",
+    "age": "5-8",
+    "difficulty": "medium",
+    "slug": "enchanted-forest-maze-maze"
+  },
+  {
+    "id": 34,
+    "category": "fantasy",
+    "title": "Magic Tower Maze",
+    "age": "6-9",
+    "difficulty": "hard",
+    "slug": "magic-tower-maze-maze"
+  },
+  {
+    "id": 35,
+    "category": "fantasy",
+    "title": "Unicorn Garden Maze",
+    "age": "4-7",
+    "difficulty": "easy",
+    "slug": "unicorn-garden-maze-maze"
+  },
+  {
+    "id": 36,
+    "category": "fantasy",
+    "title": "Wizard Maze",
+    "age": "7-10",
+    "difficulty": "hard",
+    "slug": "wizard-maze-maze"
+  },
+  {
+    "id": 37,
+    "category": "jobs",
+    "title": "Fire Station Maze",
+    "age": "3-6",
+    "difficulty": "easy",
+    "slug": "fire-station-maze-maze"
+  },
+  {
+    "id": 38,
+    "category": "jobs",
+    "title": "Hospital Maze",
+    "age": "4-7",
+    "difficulty": "easy",
+    "slug": "hospital-maze-maze"
+  },
+  {
+    "id": 39,
+    "category": "jobs",
+    "title": "City Jobs Maze",
+    "age": "5-8",
+    "difficulty": "medium",
+    "slug": "city-jobs-maze-maze"
+  },
+  {
+    "id": 40,
+    "category": "jobs",
+    "title": "Construction Maze",
+    "age": "5-8",
+    "difficulty": "medium",
+    "slug": "construction-maze-maze"
+  },
+  {
+    "id": 41,
+    "category": "jobs",
+    "title": "Farm Maze",
+    "age": "4-7",
+    "difficulty": "easy",
+    "slug": "farm-maze-maze"
+  },
+  {
+    "id": 42,
+    "category": "jobs",
+    "title": "Big City Maze",
+    "age": "6-9",
+    "difficulty": "hard",
+    "slug": "big-city-maze-maze"
+  },
+  {
+    "id": 43,
+    "category": "sports",
+    "title": "Soccer Field Maze",
+    "age": "4-7",
+    "difficulty": "easy",
+    "slug": "soccer-field-maze-maze"
+  },
+  {
+    "id": 44,
+    "category": "sports",
+    "title": "Sports Arena Maze",
+    "age": "5-8",
+    "difficulty": "medium",
+    "slug": "sports-arena-maze-maze"
+  },
+  {
+    "id": 45,
+    "category": "sports",
+    "title": "Olympic Maze",
+    "age": "5-8",
+    "difficulty": "medium",
+    "slug": "olympic-maze-maze"
+  },
+  {
+    "id": 46,
+    "category": "sports",
+    "title": "Stadium Maze",
+    "age": "6-9",
+    "difficulty": "hard",
+    "slug": "stadium-maze-maze"
+  },
+  {
+    "id": 47,
+    "category": "sports",
+    "title": "Gym Maze",
+    "age": "4-7",
+    "difficulty": "easy",
+    "slug": "gym-maze-maze"
+  },
+  {
+    "id": 48,
+    "category": "sports",
+    "title": "Championship Maze",
+    "age": "7-10",
+    "difficulty": "hard",
+    "slug": "championship-maze-maze"
+  },
+  {
+    "id": 49,
+    "category": "food",
+    "title": "Pizza Delivery Maze",
+    "age": "3-6",
+    "difficulty": "easy",
+    "slug": "pizza-delivery-maze-maze"
+  },
+  {
+    "id": 50,
+    "category": "food",
+    "title": "Fruit Garden Maze",
+    "age": "3-6",
+    "difficulty": "easy",
+    "slug": "fruit-garden-maze-maze"
+  },
+  {
+    "id": 51,
+    "category": "food",
+    "title": "Kitchen Maze",
+    "age": "4-7",
+    "difficulty": "medium",
+    "slug": "kitchen-maze-maze"
+  },
+  {
+    "id": 52,
+    "category": "food",
+    "title": "Restaurant Maze",
+    "age": "5-8",
+    "difficulty": "medium",
+    "slug": "restaurant-maze-maze"
+  },
+  {
+    "id": 53,
+    "category": "food",
+    "title": "Bakery Maze",
+    "age": "4-7",
+    "difficulty": "easy",
+    "slug": "bakery-maze-maze"
+  },
+  {
+    "id": 54,
+    "category": "food",
+    "title": "Food Market Maze",
+    "age": "6-9",
+    "difficulty": "hard",
+    "slug": "food-market-maze-maze"
+  },
+  {
+    "id": 55,
+    "category": "nature",
+    "title": "Garden Maze",
+    "age": "3-6",
+    "difficulty": "easy",
+    "slug": "garden-maze-maze"
+  },
+  {
+    "id": 56,
+    "category": "nature",
+    "title": "Forest Path Maze",
+    "age": "4-7",
+    "difficulty": "easy",
+    "slug": "forest-path-maze-maze"
+  },
+  {
+    "id": 57,
+    "category": "nature",
+    "title": "Mountain Trail Maze",
+    "age": "5-8",
+    "difficulty": "medium",
+    "slug": "mountain-trail-maze-maze"
+  },
+  {
+    "id": 58,
+    "category": "nature",
+    "title": "Jungle Path Maze",
+    "age": "5-8",
+    "difficulty": "medium",
+    "slug": "jungle-path-maze-maze"
+  },
+  {
+    "id": 59,
+    "category": "nature",
+    "title": "River Maze",
+    "age": "6-9",
+    "difficulty": "hard",
+    "slug": "river-maze-maze"
+  },
+  {
+    "id": 60,
+    "category": "nature",
+    "title": "Volcano Path Maze",
+    "age": "7-10",
+    "difficulty": "hard",
+    "slug": "volcano-path-maze-maze"
+  },
+  {
+    "id": 61,
+    "category": "holidays",
+    "title": "Christmas Tree Maze",
+    "age": "3-6",
+    "difficulty": "easy",
+    "slug": "christmas-tree-maze-maze"
+  },
+  {
+    "id": 62,
+    "category": "holidays",
+    "title": "Halloween Maze",
+    "age": "4-7",
+    "difficulty": "easy",
+    "slug": "halloween-maze-maze"
+  },
+  {
+    "id": 63,
+    "category": "holidays",
+    "title": "Easter Egg Hunt Maze",
+    "age": "4-7",
+    "difficulty": "easy",
+    "slug": "easter-egg-hunt-maze-maze"
+  },
+  {
+    "id": 64,
+    "category": "holidays",
+    "title": "Holiday Party Maze",
+    "age": "5-8",
+    "difficulty": "medium",
+    "slug": "holiday-party-maze-maze"
+  },
+  {
+    "id": 65,
+    "category": "holidays",
+    "title": "Winter Maze",
+    "age": "5-8",
+    "difficulty": "medium",
+    "slug": "winter-maze-maze"
+  },
+  {
+    "id": 66,
+    "category": "holidays",
+    "title": "Festival Maze",
+    "age": "6-9",
+    "difficulty": "hard",
+    "slug": "festival-maze-maze"
+  },
+  {
+    "id": 67,
+    "category": "pets",
+    "title": "Puppy Maze",
+    "age": "3-6",
+    "difficulty": "easy",
+    "slug": "puppy-maze-maze"
+  },
+  {
+    "id": 68,
+    "category": "pets",
+    "title": "Kitten Maze",
+    "age": "3-6",
+    "difficulty": "easy",
+    "slug": "kitten-maze-maze"
+  },
+  {
+    "id": 69,
+    "category": "pets",
+    "title": "Pet Park Maze",
+    "age": "4-7",
+    "difficulty": "easy",
+    "slug": "pet-park-maze-maze"
+  },
+  {
+    "id": 70,
+    "category": "pets",
+    "title": "Bug Garden Maze",
+    "age": "4-7",
+    "difficulty": "medium",
+    "slug": "bug-garden-maze-maze"
+  },
+  {
+    "id": 71,
+    "category": "pets",
+    "title": "Pet Show Maze",
+    "age": "5-8",
+    "difficulty": "medium",
+    "slug": "pet-show-maze-maze"
+  },
+  {
+    "id": 72,
+    "category": "pets",
+    "title": "Butterfly Maze",
+    "age": "5-8",
+    "difficulty": "medium",
+    "slug": "butterfly-maze-maze"
+  }
+]
