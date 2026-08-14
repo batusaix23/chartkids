@@ -7,11 +7,12 @@
 //    - Variable name: DATA
 //    - KV Namespace: CHARTKIDS_DATA
 // 3. En Worker Settings > Variables > Environment Variables:
-//    - ADMIN_KEY: tu clave secreta de admin (ej: chartkids2024admin)
+//    - ADMIN_KEY: tu clave secreta de admin (usa un valor largo y aleatorio)
 //    - PAYPAL_CLIENT_ID: tu client ID de PayPal
 //    - PAYPAL_SECRET: tu secret de PayPal (para API calls)
 
-const ADMIN_KEY = 'chartkids2024admin'; // Cambia esto o usa env.ADMIN_KEY
+// ADMIN_KEY must be set as a Secret in Cloudflare Dashboard.
+// Worker refuses admin endpoints if it's missing (fail-closed, no hardcoded fallback).
 
 export default {
   async fetch(request, env) {
@@ -31,8 +32,11 @@ export default {
 
       // ─── ADMIN ENDPOINTS ────────────────────────────────────
       if (path.startsWith('/admin')) {
+        if (!env.ADMIN_KEY) {
+          return jsonResponse({ error: 'Server misconfigured: ADMIN_KEY not set' }, 500);
+        }
         const authKey = url.searchParams.get('key');
-        if (authKey !== (env.ADMIN_KEY || ADMIN_KEY)) {
+        if (!authKey || !timingSafeEqual(authKey, env.ADMIN_KEY)) {
           return jsonResponse({ error: 'Unauthorized' }, 401);
         }
 
@@ -68,8 +72,11 @@ export default {
 
       // ─── ANALYTICS STATS ENDPOINT ───────────────────────────
       if (path === '/stats' && request.method === 'GET') {
+        if (!env.ADMIN_KEY) {
+          return jsonResponse({ error: 'Server misconfigured: ADMIN_KEY not set' }, 500);
+        }
         const authKey = url.searchParams.get('key');
-        if (authKey !== (env.ADMIN_KEY || ADMIN_KEY)) {
+        if (!authKey || !timingSafeEqual(authKey, env.ADMIN_KEY)) {
           return jsonResponse({ error: 'Unauthorized' }, 401);
         }
         return await getAnalytics(env);
@@ -189,6 +196,14 @@ function jsonResponse(data, status = 200) {
     status,
     headers: { 'Content-Type': 'application/json', ...corsHeaders() },
   });
+}
+
+// Constant-time string compare — avoids leaking ADMIN_KEY via response-time diffs
+function timingSafeEqual(a, b) {
+  if (typeof a !== 'string' || typeof b !== 'string' || a.length !== b.length) return false;
+  let mismatch = 0;
+  for (let i = 0; i < a.length; i++) mismatch |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  return mismatch === 0;
 }
 
 // ─── WEBHOOK HANDLER ────────────────────────────────────────

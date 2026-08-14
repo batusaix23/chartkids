@@ -224,35 +224,43 @@ tr:hover { background: var(--surface2); }
 </div>
 
 <script>
-// Configuration - Update with your Worker URL
+// Admin key is never hardcoded here — user types it, we validate against the Worker.
+// It lives only in sessionStorage for this tab and is cleared on logout/close.
 const API_URL = 'https://chartkids-api.jrau2303.workers.dev';
-const ADMIN_KEY = 'chartkids2024admin'; // Change this to a secure key
 
-let isLoggedIn = false;
+function getKey() { return sessionStorage.getItem('admin_key') || ''; }
+function keyParam() { return 'key=' + encodeURIComponent(getKey()); }
 
-// Login
-function login() {
-  const key = document.getElementById('adminKey').value;
-  if (key === ADMIN_KEY) {
-    isLoggedIn = true;
-    sessionStorage.setItem('admin_logged', 'true');
-    document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('adminPanel').style.display = 'block';
-    document.getElementById('webhookUrl').textContent = API_URL + '/webhook';
-    loadDashboard();
-  } else {
-    document.getElementById('loginError').style.display = 'block';
-    document.getElementById('adminKey').value = '';
+async function login() {
+  const key = document.getElementById('adminKey').value.trim();
+  const errEl = document.getElementById('loginError');
+  errEl.style.display = 'none';
+  if (!key) { errEl.style.display = 'block'; return; }
+
+  try {
+    const res = await fetch(`${API_URL}/admin/stats?key=${encodeURIComponent(key)}`);
+    if (res.status === 200) {
+      sessionStorage.setItem('admin_key', key);
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('adminPanel').style.display = 'block';
+      document.getElementById('webhookUrl').textContent = API_URL + '/webhook';
+      loadDashboard();
+    } else {
+      errEl.style.display = 'block';
+      document.getElementById('adminKey').value = '';
+    }
+  } catch (e) {
+    errEl.style.display = 'block';
   }
 }
 
 function logout() {
-  sessionStorage.removeItem('admin_logged');
+  sessionStorage.removeItem('admin_key');
   location.reload();
 }
 
-// Check if already logged in
-if (sessionStorage.getItem('admin_logged') === 'true') {
+// Restore session if key is still in sessionStorage (page refresh in same tab)
+if (getKey()) {
   document.getElementById('loginScreen').style.display = 'none';
   document.getElementById('adminPanel').style.display = 'block';
   document.getElementById('webhookUrl').textContent = API_URL + '/webhook';
@@ -268,7 +276,8 @@ async function loadDashboard() {
 
 async function loadStats() {
   try {
-    const res = await fetch(`${API_URL}/admin/stats?key=${ADMIN_KEY}`);
+    const res = await fetch(`${API_URL}/admin/stats?${keyParam()}`);
+    if (res.status === 401) { logout(); return; }
     const data = await res.json();
 
     document.getElementById('statActive').textContent = data.activeSubscriptions || 0;
@@ -285,7 +294,8 @@ async function loadSubscriptions() {
   tbody.innerHTML = '<tr><td colspan="6" class="loading"><div class="spinner"></div></td></tr>';
 
   try {
-    const res = await fetch(`${API_URL}/admin/subscriptions?key=${ADMIN_KEY}`);
+    const res = await fetch(`${API_URL}/admin/subscriptions?${keyParam()}`);
+    if (res.status === 401) { logout(); return; }
     const data = await res.json();
 
     if (!data.subscriptions || data.subscriptions.length === 0) {
@@ -317,7 +327,8 @@ async function loadWebhooks() {
   log.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
 
   try {
-    const res = await fetch(`${API_URL}/admin/webhooks?key=${ADMIN_KEY}`);
+    const res = await fetch(`${API_URL}/admin/webhooks?${keyParam()}`);
+    if (res.status === 401) { logout(); return; }
     const data = await res.json();
 
     if (!data.events || data.events.length === 0) {
@@ -351,7 +362,8 @@ async function viewSubscription(id) {
   body.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
 
   try {
-    const res = await fetch(`${API_URL}/admin/subscription/${id}?key=${ADMIN_KEY}`);
+    const res = await fetch(`${API_URL}/admin/subscription/${encodeURIComponent(id)}?${keyParam()}`);
+    if (res.status === 401) { logout(); return; }
     const sub = await res.json();
 
     if (sub.error) {
@@ -408,9 +420,10 @@ async function cancelSubscription(id) {
   if (!confirm('¿Seguro que quieres cancelar esta suscripción? Esta acción no se puede deshacer.')) return;
 
   try {
-    const res = await fetch(`${API_URL}/admin/subscription/${id}/cancel?key=${ADMIN_KEY}`, {
+    const res = await fetch(`${API_URL}/admin/subscription/${encodeURIComponent(id)}/cancel?${keyParam()}`, {
       method: 'POST'
     });
+    if (res.status === 401) { logout(); return; }
     const data = await res.json();
 
     if (data.success) {

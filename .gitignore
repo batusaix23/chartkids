@@ -1,1 +1,9 @@
 .claude/
+
+# Secrets — never commit
+*.env
+.env
+.env.*
+*api*key*.txt
+*api*key*.env
+secrets/
