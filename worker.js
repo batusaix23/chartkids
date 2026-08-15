@@ -17,7 +17,9 @@
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    const path = url.pathname;
+    // Normalize: chartkids.com/api/* route delivers paths like /api/admin/stats.
+    // Strip the /api prefix so all downstream matches work with a single canonical path.
+    const path = url.pathname.startsWith('/api/') ? url.pathname.slice(4) : url.pathname;
 
     // CORS preflight
     if (request.method === 'OPTIONS') {
@@ -88,11 +90,10 @@ export default {
       }
 
       // ─── CUSTOM WORKSHEET GENERATOR ─────────────────────────
-      // Handles both /api/generate (via Cloudflare route) and /generate (direct)
-      if ((path === '/generate' || path === '/api/generate') && request.method === 'POST') {
+      if (path === '/generate' && request.method === 'POST') {
         return await generateWorksheet(request, env);
       }
-      if ((path === '/generate' || path === '/api/generate') && request.method === 'GET') {
+      if (path === '/generate' && request.method === 'GET') {
         return Response.redirect('https://chartkids.com/crear/', 302);
       }
 

@@ -226,7 +226,8 @@ tr:hover { background: var(--surface2); }
 <script>
 // Admin key is never hardcoded here — user types it, we validate against the Worker.
 // It lives only in sessionStorage for this tab and is cleared on logout/close.
-const API_URL = 'https://chartkids-api.jrau2303.workers.dev';
+// API_URL uses the chartkids.com/api/* route so the workers.dev subdomain can stay off.
+const API_URL = 'https://chartkids.com/api';
 
 function getKey() { return sessionStorage.getItem('admin_key') || ''; }
 function keyParam() { return 'key=' + encodeURIComponent(getKey()); }
