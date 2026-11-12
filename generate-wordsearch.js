@@ -2,6 +2,7 @@
 // generate-wordsearch.js — 72 word search puzzles (12 categories × 6 difficulty levels)
 const fs   = require('fs');
 const path = require('path');
+const L    = require('./activity-layout');
 
 const CAT_COLORS={animals:'#16a34a',dinosaurs:'#dc2626',vehicles:'#2563eb',space:'#7c3aed',
   superheroes:'#e11d48',fantasy:'#db2777',jobs:'#0891b2',sports:'#0284c7',
@@ -130,23 +131,21 @@ function buildPage(cat,level,words,grid,placed,catColor){
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Sopa de Letras ${catEs} — ${level.label} | ChartKids</title>
 <meta name="description" content="Sopa de letras de ${catEs} nivel ${level.label}. ${words.length} palabras para encontrar.">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+${L.FONTS_LINK}
 <link rel="stylesheet" href="/css/style.css">
 <style>@media print{header,.page-actions,.page-sidebar,footer{display:none!important}}</style>
+${L.LANG_SCRIPT}
 </head>
 <body>
-<header class="site-header"><div class="container header-inner">
-  <a href="/" class="logo">🎨 Chart<em>Kids</em></a>
-  <nav class="main-nav"><a href="/wordsearch/" class="active">Sopa de Letras</a><a href="/maze/">Laberintos</a></nav>
-</div></header>
+${L.siteHeader('wordsearch')}
 <main class="container page-layout">
   <div class="page-main">
-    <h1>🔤 Sopa de Letras: ${catEs}</h1>
+    ${L.bi('h1', `🔤 Sopa de Letras: ${catEs}`, `🔤 Word Search: ${L.catEn(cat)}`)}
     <div style="margin-bottom:12px"><span class="pill" style="background:${catColor}20;color:${catColor}">${level.label}</span><span class="pill">${words.length} palabras</span></div>
     <div class="print-area" style="max-width:540px;margin:0 auto">${minSvg}</div>
     <div class="page-actions">
-      <button onclick="window.print()" class="btn-print">🖨️ Imprimir</button>
-      <a href="/wordsearch/" class="btn-secondary">Más sopas</a>
+      ${L.printButton()}
+      <a href="/wordsearch/" class="btn-secondary">${L.bi('span', 'Más sopas', 'More word searches')}</a>
     </div>
   </div>
   <aside class="page-sidebar">
@@ -158,11 +157,12 @@ function buildPage(cat,level,words,grid,placed,catColor){
     </div>
   </aside>
 </main>
-<footer class="site-footer"><div class="container footer-inner"><p>© 2025 ChartKids</p></div></footer>
+${L.siteFooter()}
 </body>
 </html>`;
 }
 
+const FORCE=process.argv.includes('--force');
 let built=0,skipped=0;
 const sitemapLines=[];
 const catCards=[];
@@ -174,7 +174,9 @@ for(const [cat,bank] of Object.entries(WORD_BANK)){
     const slug=`wordsearch-${cat}-${level.name}-${level.id}`;
     const dir=path.join('wordsearch',slug);
     const htmlPath=path.join(dir,'index.html');
-    if(fs.existsSync(htmlPath)){skipped++;continue;}
+    if(level.id===1) catCards.push(`<a class="card" href="/wordsearch/${slug}/" style="border-top:4px solid ${catColor}">
+      <div class="card-title">${catEs}</div><div class="card-age">6 niveles</div></a>`);
+    if(fs.existsSync(htmlPath)&&!FORCE){skipped++;continue;}
     const rng=seededRng(cat.length*100+level.id*17+31);
     // Pick words
     const shuffled=[...bank].sort(()=>rng()-0.5);
@@ -188,39 +190,36 @@ for(const [cat,bank] of Object.entries(WORD_BANK)){
     console.log(`  build ${slug}`);
     built++;
     sitemapLines.push(`  <url><loc>https://chartkids.com/wordsearch/${slug}/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>`);
-    if(level.id===1) catCards.push(`<a class="card" href="/wordsearch/${slug}/" style="border-top:4px solid ${catColor}">
-      <div class="card-title">${catEs}</div><div class="card-age">6 niveles</div></a>`);
   }
 }
 
 // Build index
+const NCATS=Object.keys(WORD_BANK).length, TOTAL=NCATS*DIFF.length;
 const indexHtml=`<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Sopa de Letras para Niños | ChartKids</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+${L.FONTS_LINK}
 <link rel="stylesheet" href="/css/style.css">
+${L.LANG_SCRIPT}
 </head>
 <body>
-<header class="site-header"><div class="container header-inner">
-  <a href="/" class="logo">🎨 Chart<em>Kids</em></a>
-  <nav class="main-nav"><a href="/wordsearch/" class="active">Sopa de Letras</a><a href="/maze/">Laberintos</a></nav>
-</div></header>
-<section style="background:#0284c7;color:white;padding:24px;text-align:center">
-  <h1 style="font-size:2rem;margin-bottom:6px">🔤 Sopa de Letras</h1>
-  <p>72 sopas de letras en 12 categorías. Niveles Fácil, Medio y Difícil.</p>
-</section>
+${L.siteHeader('wordsearch')}
+${L.activityHero(
+  {es:'🔤 Sopa de Letras', en:'🔤 Word Search'},
+  {es:`${TOTAL} sopas de letras en ${NCATS} categorías. Niveles Fácil, Medio y Difícil.`,
+   en:`${TOTAL} word searches in ${NCATS} categories. Easy, Medium and Hard levels.`})}
 <div class="container" style="padding:20px 16px">
   <div class="cards-grid">${catCards.join('')}</div>
 </div>
-<footer class="site-footer"><div class="container footer-inner"><p>© 2025 ChartKids</p></div></footer>
+${L.siteFooter()}
 </body>
 </html>`;
 fs.mkdirSync('wordsearch',{recursive:true});
 fs.writeFileSync(path.join('wordsearch','index.html'),indexHtml);
 
-if(sitemapLines.length>0){
+if(sitemapLines.length>0&&!FORCE){
   const sm=fs.readFileSync('sitemap.xml','utf8');
   const updated=sm.replace('</urlset>',
     '  <url><loc>https://chartkids.com/wordsearch/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>\n'

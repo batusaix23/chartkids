@@ -2,6 +2,7 @@
 // generate-patterns.js — Pattern completion worksheets
 const fs   = require('fs');
 const path = require('path');
+const L    = require('./activity-layout');
 
 const CAT_COLORS={animals:'#16a34a',dinosaurs:'#dc2626',vehicles:'#2563eb',space:'#7c3aed',
   superheroes:'#e11d48',fantasy:'#db2777',jobs:'#0891b2',sports:'#0284c7',
@@ -103,6 +104,7 @@ ${rowsSvg}
 </svg>`;
 }
 
+const FORCE=process.argv.includes('--force');
 let built=0,skipped=0;
 const sitemapLines=[];
 
@@ -112,7 +114,7 @@ for(const [cat,emojis] of Object.entries(CAT_EMOJIS)){
     const slug=`patterns-${cat}-${level.name}-${level.id}`;
     const dir=path.join('patterns',slug);
     const htmlPath=path.join(dir,'index.html');
-    if(fs.existsSync(htmlPath)){skipped++;continue;}
+    if(fs.existsSync(htmlPath)&&!FORCE){skipped++;continue;}
 
     const rng=seededRng(cat.length*77+level.id*23+11);
     const nRows=5;
@@ -130,23 +132,21 @@ for(const [cat,emojis] of Object.entries(CAT_EMOJIS)){
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Patrones ${catEs} ${level.label} | ChartKids</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+${L.FONTS_LINK}
 <link rel="stylesheet" href="/css/style.css">
 <style>@media print{header,.page-actions,.page-sidebar,footer{display:none!important}}</style>
+${L.LANG_SCRIPT}
 </head>
 <body>
-<header class="site-header"><div class="container header-inner">
-  <a href="/" class="logo">🎨 Chart<em>Kids</em></a>
-  <nav class="main-nav"><a href="/patterns/" class="active">Patrones</a><a href="/maze/">Laberintos</a></nav>
-</div></header>
+${L.siteHeader('patterns')}
 <main class="container page-layout">
   <div class="page-main">
-    <h1>🔷 Patrones: ${catEs}</h1>
+    ${L.bi('h1', `🔷 Patrones: ${catEs}`, `🔷 Patterns: ${L.catEn(cat)}`)}
     <div style="margin:8px 0"><span class="pill" style="background:${catColor}20;color:${catColor}">${level.label}</span></div>
     <div class="print-area" style="max-width:540px;margin:0 auto">${minSvg}</div>
     <div class="page-actions">
-      <button onclick="window.print()" class="btn-print">🖨️ Imprimir</button>
-      <a href="/patterns/" class="btn-secondary">Más fichas</a>
+      ${L.printButton()}
+      <a href="/patterns/" class="btn-secondary">${L.bi('span', 'Más fichas', 'More worksheets')}</a>
     </div>
   </div>
   <aside class="page-sidebar">
@@ -158,7 +158,7 @@ for(const [cat,emojis] of Object.entries(CAT_EMOJIS)){
     </div>
   </aside>
 </main>
-<footer class="site-footer"><div class="container footer-inner"><p>© 2025 ChartKids</p></div></footer>
+${L.siteFooter()}
 </body>
 </html>`;
     fs.mkdirSync(dir,{recursive:true});
@@ -170,6 +170,7 @@ for(const [cat,emojis] of Object.entries(CAT_EMOJIS)){
 }
 
 // Index
+const TOTAL=Object.keys(CAT_EMOJIS).length*LEVELS.length;
 const catCards=Object.entries(CAT_EMOJIS).map(([cat])=>{
   const color=CAT_COLORS[cat];
   return `<a class="card" href="/patterns/patterns-${cat}-easy-1/" style="border-top:4px solid ${color}">
@@ -181,24 +182,22 @@ fs.writeFileSync(path.join('patterns','index.html'),`<!DOCTYPE html>
 <html lang="es"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Fichas de Patrones para Niños | ChartKids</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+${L.FONTS_LINK}
 <link rel="stylesheet" href="/css/style.css">
+${L.LANG_SCRIPT}
 </head><body>
-<header class="site-header"><div class="container header-inner">
-  <a href="/" class="logo">🎨 Chart<em>Kids</em></a>
-  <nav class="main-nav"><a href="/patterns/" class="active">Patrones</a></nav>
-</div></header>
-<section style="background:#db2777;color:white;padding:24px;text-align:center">
-  <h1 style="font-size:2rem;margin-bottom:6px">🔷 Fichas de Patrones</h1>
-  <p>72 fichas. Continúa el patrón con emojis temáticos. ABAB, AABB, ABC y más.</p>
-</section>
+${L.siteHeader('patterns')}
+${L.activityHero(
+  {es:'🔷 Fichas de Patrones', en:'🔷 Pattern Worksheets'},
+  {es:`${TOTAL} fichas. Continúa el patrón con emojis temáticos. ABAB, AABB, ABC y más.`,
+   en:`${TOTAL} worksheets. Continue the pattern with themed emojis. ABAB, AABB, ABC and more.`})}
 <div class="container" style="padding:20px 16px">
   <div class="cards-grid">${catCards}</div>
 </div>
-<footer class="site-footer"><div class="container footer-inner"><p>© 2025 ChartKids</p></div></footer>
+${L.siteFooter()}
 </body></html>`);
 
-if(sitemapLines.length>0){
+if(sitemapLines.length>0&&!FORCE){
   const sm=fs.readFileSync('sitemap.xml','utf8');
   const updated=sm.replace('</urlset>',
     '  <url><loc>https://chartkids.com/patterns/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>\n'

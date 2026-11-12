@@ -2,6 +2,7 @@
 // generate-tracing.js — Word tracing worksheets (12 categories × 6 words = 72 pages)
 const fs   = require('fs');
 const path = require('path');
+const L    = require('./activity-layout');
 
 const CAT_COLORS = {
   animals:'#16a34a',dinosaurs:'#dc2626',vehicles:'#2563eb',space:'#7c3aed',
@@ -113,30 +114,24 @@ function buildHTML(word, emoji, catColor, catEs, slug) {
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Trazar "${word}" — Ficha de Escritura | ChartKids</title>
 <meta name="description" content="Practica escribir la palabra ${word} con guías de trazado. Imprimible gratis para niños.">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+${L.FONTS_LINK}
 <link rel="stylesheet" href="/css/style.css">
 <style>@media print{header,.page-actions,.page-sidebar,footer{display:none!important}}</style>
+${L.LANG_SCRIPT}
 </head>
 <body>
-<header class="site-header"><div class="container header-inner">
-  <a href="/" class="logo">🎨 Chart<em>Kids</em></a>
-  <nav class="main-nav">
-    <a href="/tracing/" class="active">Trazado</a>
-    <a href="/maze/">Laberintos</a>
-    <a href="/wordsearch/">Sopa de Letras</a>
-  </nav>
-</div></header>
+${L.siteHeader('tracing')}
 <main class="container page-layout">
   <div class="page-main">
-    <h1>${emoji} Trazar: ${word}</h1>
+    ${L.bi('h1', `${emoji} Trazar: ${word}`, `${emoji} Trace: ${word}`)}
     <div style="margin-bottom:12px">
       <span class="pill" style="background:${catColor}20;color:${catColor}">${catEs}</span>
       <span class="pill">Escritura</span>
     </div>
     <div class="print-area" style="max-width:540px;margin:0 auto">${minSvg}</div>
     <div class="page-actions">
-      <button onclick="window.print()" class="btn-print">🖨️ Imprimir</button>
-      <a href="/tracing/" class="btn-secondary">Ver más fichas</a>
+      ${L.printButton()}
+      <a href="/tracing/" class="btn-secondary">${L.bi('span', 'Ver más fichas', 'More worksheets')}</a>
     </div>
   </div>
   <aside class="page-sidebar">
@@ -149,9 +144,7 @@ function buildHTML(word, emoji, catColor, catEs, slug) {
     </div>
   </aside>
 </main>
-<footer class="site-footer"><div class="container footer-inner">
-  <p>© 2025 ChartKids</p>
-</div></footer>
+${L.siteFooter()}
 </body>
 </html>`;
 }
@@ -207,20 +200,18 @@ const indexHtml=`<!DOCTYPE html>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Fichas de Trazado para Niños | ChartKids</title>
 <meta name="description" content="72 fichas de trazado de palabras. Practica escritura con guías dashed. Imprimibles gratis.">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+${L.FONTS_LINK}
 <link rel="stylesheet" href="/css/style.css">
+${L.LANG_SCRIPT}
 </head>
 <body>
-<header class="site-header"><div class="container header-inner">
-  <a href="/" class="logo">🎨 Chart<em>Kids</em></a>
-  <nav class="main-nav"><a href="/tracing/" class="active">Trazado</a><a href="/maze/">Laberintos</a><a href="/blog/">Blog</a></nav>
-</div></header>
-<section style="background:#0891b2;color:white;padding:24px;text-align:center">
-  <h1 style="font-size:2rem;margin-bottom:6px">✏️ Fichas de Trazado</h1>
-  <p>72 fichas para practicar escritura en inglés. Traza las letras y escribe solo.</p>
-</section>
+${L.siteHeader('tracing')}
+${L.activityHero(
+  {es:'✏️ Fichas de Trazado', en:'✏️ Tracing Worksheets'},
+  {es:`${pages.length} fichas para practicar escritura en inglés. Traza las letras y escribe solo.`,
+   en:`${pages.length} worksheets to practice writing in English. Trace the letters, then write on your own.`})}
 <div class="container" style="padding:20px 16px">${catSections}</div>
-<footer class="site-footer"><div class="container footer-inner"><p>© 2025 ChartKids</p></div></footer>
+${L.siteFooter()}
 </body>
 </html>`;
 fs.mkdirSync('tracing',{recursive:true});
