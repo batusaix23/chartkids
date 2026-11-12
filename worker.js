@@ -14,6 +14,35 @@
 // ADMIN_KEY must be set as a Secret in Cloudflare Dashboard.
 // Worker refuses admin endpoints if it's missing (fail-closed, no hardcoded fallback).
 
+// Workers AI models, tried in order. Cloudflare retires models periodically
+// (@cf/meta/llama-3.1-8b-instruct was deprecated 2026-05-30), so a fallback keeps the
+// AI features alive if the primary one disappears.
+const AI_MODELS = [
+  '@cf/meta/llama-3.3-70b-instruct-fp8-fast',
+  '@cf/meta/llama-3.1-8b-instruct-fp8',
+];
+
+async function runAI(env, options) {
+  let lastErr;
+  for (const model of AI_MODELS) {
+    try {
+      return await env.AI.run(model, options);
+    } catch (err) {
+      lastErr = err;
+      console.error(`Workers AI model ${model} failed:`, err.message);
+    }
+  }
+  throw lastErr;
+}
+
+// Newer Workers AI models return `response` already parsed into an object when the
+// output is JSON. Callers (and the browser) expect a string, so normalize it here.
+function aiText(result) {
+  const r = result && result.response;
+  if (typeof r === 'string') return r;
+  return r == null ? '' : JSON.stringify(r);
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -119,7 +148,7 @@ export default {
         ...messages
       ];
 
-      const response = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
+      const response = await runAI(env, {
         messages: aiMessages,
         max_tokens: 1024,
         temperature: 0.7,
@@ -127,7 +156,7 @@ export default {
 
       await saveInteraction(env, messages, lang, request);
 
-      return jsonResponse({ response: response.response });
+      return jsonResponse({ response: aiText(response) });
 
     } catch (error) {
       console.error('Worker error:', error);
@@ -163,7 +192,7 @@ Responde ÚNICAMENTE con JSON válido, sin texto adicional, en este formato exac
   "tip": "un consejo práctico para los padres"
 }`;
 
-  const response = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
+  const response = await runAI(env, {
     messages: [
       { role: 'system', content: 'Eres un experto en actividades creativas para niños. Respondes solo con JSON válido.' },
       { role: 'user', content: prompt }
@@ -173,7 +202,7 @@ Responde ÚNICAMENTE con JSON válido, sin texto adicional, en este formato exac
   });
 
   try {
-    const text = response.response.trim();
+    const text = aiText(response).trim();
     const jsonMatch = text.match(/\{[\s\S]*\}/);
     const activity = JSON.parse(jsonMatch ? jsonMatch[0] : text);
     return jsonResponse({ activity });

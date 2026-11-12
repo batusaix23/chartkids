@@ -257,7 +257,8 @@ footer a{color:var(--accent);text-decoration:none;}
 
 </div>
 <script>
-const WORKER_URL = 'https://chartkids-api.jrau2303.workers.dev';
+// chartkids.com/api/* is routed to the chartkids-api Worker (the workers.dev subdomain is off).
+const WORKER_URL = 'https://chartkids.com/api/';
 const state = { age: null, cat: null, tiempo: null, gender: null };
 let lastActivity = null;
 let currentLang = 'en';
@@ -334,6 +335,11 @@ async function generate() {
   }
 }
 
+// AI output is untrusted text — escape before inserting as HTML.
+function esc(s) {
+  return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
 function renderResult(a) {
   document.getElementById('r-emoji').textContent = a.emoji || '🎨';
   document.getElementById('r-title').textContent = a.title;
@@ -341,10 +347,10 @@ function renderResult(a) {
   document.getElementById('r-age').textContent   = a.age;
   document.getElementById('r-time').textContent  = a.time;
   document.getElementById('r-diff').textContent  = a.difficulty;
-  document.getElementById('r-mats').innerHTML     = (a.materials||[]).map(m=>`<span class="mat-pill">📦 ${m}</span>`).join('');
-  document.getElementById('r-steps').innerHTML    = (a.steps||[]).map((s,i)=>`<li><span class="s-num">${i+1}</span><span class="s-text">${s}</span></li>`).join('');
-  document.getElementById('r-benefits').innerHTML = (a.benefits||[]).map(b=>`<span class="benefit">✅ ${b}</span>`).join('');
-  document.getElementById('r-tip').innerHTML = `<strong>💡 ${currentLang==='es'?'Consejo':'Tip'}:</strong> ${a.tip||''}`;
+  document.getElementById('r-mats').innerHTML     = (a.materials||[]).map(m=>`<span class="mat-pill">📦 ${esc(m)}</span>`).join('');
+  document.getElementById('r-steps').innerHTML    = (a.steps||[]).map((s,i)=>`<li><span class="s-num">${i+1}</span><span class="s-text">${esc(s)}</span></li>`).join('');
+  document.getElementById('r-benefits').innerHTML = (a.benefits||[]).map(b=>`<span class="benefit">✅ ${esc(b)}</span>`).join('');
+  document.getElementById('r-tip').innerHTML = `<strong>💡 ${currentLang==='es'?'Consejo':'Tip'}:</strong> ${esc(a.tip)}`;
   const card = document.getElementById('result-card');
   card.style.display = 'block';
   card.scrollIntoView({ behavior:'smooth', block:'start' });
@@ -367,7 +373,7 @@ function printActivity() {
   if (!lastActivity) return;
   const a = lastActivity;
   const w = window.open('','_blank');
-  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${a.title}</title>
+  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${esc(a.title)}</title>
 <style>body{font-family:Arial,sans-serif;max-width:600px;margin:40px auto;padding:20px;color:#111;}
 h1{font-size:1.5rem;margin-bottom:4px;} .meta{color:#666;font-size:.85rem;margin-bottom:18px;}
 h2{font-size:.9rem;font-weight:800;margin:16px 0 8px;color:#444;text-transform:uppercase;}
@@ -377,14 +383,14 @@ h2{font-size:.9rem;font-weight:800;margin:16px 0 8px;color:#444;text-transform:u
 .ben{display:inline-block;background:#dcfce7;color:#166534;padding:3px 10px;border-radius:12px;margin:3px;font-size:.8rem;}
 .tip{background:#fef9c3;border-left:4px solid #ca8a04;padding:10px 14px;margin-top:14px;font-size:.86rem;}
 .foot{margin-top:28px;text-align:center;color:#bbb;font-size:.7rem;border-top:1px solid #eee;padding-top:10px;}</style></head><body>
-<div style="text-align:center;font-size:3rem;margin-bottom:8px">${a.emoji}</div>
-<h1 style="text-align:center">${a.title}</h1>
-<div class="meta" style="text-align:center">${a.age} · ${a.time} · ${a.difficulty}</div>
-<p style="color:#555;line-height:1.6;margin-bottom:14px">${a.description}</p>
-<h2>Materials</h2>${(a.materials||[]).map(m=>`<span class="mat">${m}</span>`).join('')}
-<h2>Steps</h2>${(a.steps||[]).map((s,i)=>`<div class="step"><div class="sn">${i+1}</div><div>${s}</div></div>`).join('')}
-<h2>Skills</h2>${(a.benefits||[]).map(b=>`<span class="ben">${b}</span>`).join('')}
-<div class="tip"><strong>💡 Tip:</strong> ${a.tip||''}</div>
+<div style="text-align:center;font-size:3rem;margin-bottom:8px">${esc(a.emoji)}</div>
+<h1 style="text-align:center">${esc(a.title)}</h1>
+<div class="meta" style="text-align:center">${esc(a.age)} · ${esc(a.time)} · ${esc(a.difficulty)}</div>
+<p style="color:#555;line-height:1.6;margin-bottom:14px">${esc(a.description)}</p>
+<h2>Materials</h2>${(a.materials||[]).map(m=>`<span class="mat">${esc(m)}</span>`).join('')}
+<h2>Steps</h2>${(a.steps||[]).map((s,i)=>`<div class="step"><div class="sn">${i+1}</div><div>${esc(s)}</div></div>`).join('')}
+<h2>Skills</h2>${(a.benefits||[]).map(b=>`<span class="ben">${esc(b)}</span>`).join('')}
+<div class="tip"><strong>💡 Tip:</strong> ${esc(a.tip)}</div>
 <div class="foot">Generated with ChartKids.com · AI Activity Generator</div></body></html>`);
   w.document.close(); setTimeout(()=>w.print(),400);
 }

@@ -1,5 +1,5 @@
 // Service Worker para ChartKids - Permite funcionar offline
-const CACHE_NAME = 'chartkids-v41';
+const CACHE_NAME = 'chartkids-v42';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -39,7 +39,7 @@ self.addEventListener('activate', event => {
 // Fetch - servir desde cache, actualizar en background
 self.addEventListener('fetch', event => {
   // No cachear llamadas a la API
-  if (event.request.url.includes('workers.dev')) {
+  if (event.request.method !== 'GET' || event.request.url.includes('workers.dev') || new URL(event.request.url).pathname.startsWith('/api/')) {
     return;
   }
 
