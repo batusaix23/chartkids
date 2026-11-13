@@ -3267,6 +3267,7 @@ const T = {
     greeting: '¡Hola! Soy tu asistente para crear charts de actividades. 👋<br><br>Cuéntame: ¿cuántos años tiene tu hijo/a, qué tipo de tareas quieres incluir y cuál será su premio o meta? Yo diseñaré el chart perfecto. 🌟',
     resetGreeting: '¡Listo para crear un nuevo chart! 🎉<br><br>Cuéntame sobre tu hijo/a: ¿cuántos años tiene, qué tareas necesita y cuál será su premio? 🌟',
     errorMsg: '⚠️ Hubo un error de conexión. Por favor intenta de nuevo.',
+    aiResting: '😴 Nuestro asistente de IA está descansando por hoy. Mientras tanto, elige una plantilla rápida aquí abajo para crear tu chart — ¡es igual de fácil!',
     taskCol: 'Tarea',
     starsOf: (a,b) => `${a} de ${b} ⭐ completadas`,
     perStar: 'c/estrella',
@@ -3575,6 +3576,7 @@ const T = {
     greeting: "Hi! I'm your assistant for creating activity charts. 👋<br><br>Tell me: how old is your child, what kind of tasks do you want to include, and what will their reward or goal be? I'll design the perfect chart! 🌟",
     resetGreeting: "Ready to create a new chart! 🎉<br><br>Tell me about your child: how old are they, what tasks do they need, and what's their reward? 🌟",
     errorMsg: '⚠️ Connection error. Please try again.',
+    aiResting: '😴 Our AI assistant is resting for today. Meanwhile, pick a quick template below to build your chart — it is just as easy!',
     taskCol: 'Task',
     starsOf: (a,b) => `${a} of ${b} ⭐ completed`,
     perStar: 'per ⭐',
@@ -4205,7 +4207,9 @@ async function sendMessage() {
     });
 
     if (!response.ok) {
-      throw new Error('API Error');
+      const e = new Error('API Error ' + response.status);
+      e.status = response.status;
+      throw e;
     }
 
     const data = await response.json();
@@ -4298,7 +4302,15 @@ async function sendMessage() {
   } catch(err) {
     removeTyping();
     console.error(err);
-    addMessage('ai', t('errorMsg'));
+    // 503 = AI unavailable (daily free budget used up), 429 = too many requests:
+    // point to the quick templates instead of showing an error.
+    if (err.status === 503 || err.status === 429) {
+      addMessage('ai', t('aiResting'));
+      const sec = document.getElementById('templatesSection');
+      if (sec && sec.style.display === 'none' && typeof toggleTemplates === 'function') toggleTemplates();
+    } else {
+      addMessage('ai', t('errorMsg'));
+    }
   } finally {
     isLoading = false;
     document.getElementById('sendBtn').disabled = false;

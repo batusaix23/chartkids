@@ -24,10 +24,21 @@ const AI_MODELS = [
   '@cf/meta/llama-3.3-70b-instruct-fp8-fast',
   '@cf/meta/llama-3.1-8b-instruct-fp8',
 ];
+// Cheaper order (~6× fewer neurons) for chat and activity ideas; the kid-safety check
+// for coloring keeps the bigger model first because accuracy matters there.
+const AI_MODELS_LITE = [
+  '@cf/meta/llama-3.1-8b-instruct-fp8',
+  '@cf/meta/llama-3.3-70b-instruct-fp8-fast',
+];
 
-async function runAI(env, options) {
+// Thrown when Workers AI can't serve the request (quota, outage, retired model…).
+// The top-level handler turns it into a 503 {error:'ai_unavailable'} so pages can
+// fall back to non-AI content instead of showing a raw error.
+class AIUnavailable extends Error {}
+
+async function runAI(env, options, models = AI_MODELS) {
   let lastErr;
-  for (const model of AI_MODELS) {
+  for (const model of models) {
     try {
       return await env.AI.run(model, options);
     } catch (err) {
@@ -35,7 +46,75 @@ async function runAI(env, options) {
       console.error(`Workers AI model ${model} failed:`, err.message);
     }
   }
-  throw lastErr;
+  throw new AIUnavailable(lastErr ? lastErr.message : 'AI failed');
+}
+
+// ─── AI COST PROTECTION ─────────────────────────────────────
+// Policy (owner's decision, Nov 2026): stay inside the Workers AI FREE allocation
+// (10,000 neurons/day, resets 00:00 UTC) until the site earns money — even though
+// the account is on Workers Paid, nothing beyond the free allocation may be billed.
+// Every AI endpoint goes through guardAI():
+//   1. only requests from the site itself (Origin header)
+//   2. per-IP burst limit per minute (Workers Rate Limiting bindings in wrangler.toml)
+//   3. per-IP daily limit, and a site-wide daily NEURON BUDGET below the free 10,000.
+//      Each call is charged an estimated cost; when the budget is spent the endpoint
+//      answers 503 {error:'ai_unavailable'} and pages fall back to non-AI content.
+// Estimates are deliberately high so the real usage stays under the free allocation.
+// The budget is shared with offline batch jobs (printables/flux-batch.js), which run
+// against the same account — keep those small.
+const ALLOWED_ORIGINS = ['https://www.chartkids.com', 'https://chartkids.com'];
+const AI_DAILY_NEURON_BUDGET = 9000;
+const AI_LIMITS = {
+  image:     { binding: 'RL_AI_IMAGE', perDay: 15, cost: 120 },  // FLUX image + safety check
+  text:      { binding: 'RL_AI_TEXT', perDay: 40, cost: 90 },    // 70B safety check (coloring prompt)
+  textLite:  { binding: 'RL_AI_TEXT', perDay: 60, cost: 20 },    // 8B chat / activity ideas
+};
+
+// Local testing: start with `wrangler dev --var DEV_ALLOW_LOCAL:1` to also accept
+// http://localhost / 127.0.0.1 pages and Origin-less requests. Never set in production.
+const LOCAL_ORIGIN = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
+
+async function guardAI(request, env, kind) {
+  const origin = request.headers.get('Origin') || '';
+  const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+  const local = env.DEV_ALLOW_LOCAL === '1' && (!origin || LOCAL_ORIGIN.test(origin));
+  if (!local && !ALLOWED_ORIGINS.includes(origin)) {
+    return jsonResponse({ error: 'forbidden_origin' }, 403);
+  }
+  const cfg = AI_LIMITS[kind];
+
+  const limiter = env[cfg.binding];
+  if (limiter) {
+    const { success } = await limiter.limit({ key: `${kind}:${ip}` });
+    if (!success) return jsonResponse({ error: 'rate_limited', retry_after: 60 }, 429);
+  }
+
+  if (env.DATA) {
+    const day = new Date().toISOString().slice(0, 10);
+    const ipKey = `ai:${kind}:${day}:${ip}`, budgetKey = `ai:neurons:${day}`;
+    const [ipN, spent] = await Promise.all([env.DATA.get(ipKey), env.DATA.get(budgetKey)]);
+    if (Number(ipN || 0) >= cfg.perDay) return jsonResponse({ error: 'daily_limit' }, 429);
+    if (Number(spent || 0) + cfg.cost > AI_DAILY_NEURON_BUDGET) {
+      return jsonResponse({ error: 'ai_unavailable', reason: 'daily_budget' }, 503);
+    }
+    // KV counters are approximate (no atomic increment); the 1,000-neuron margin
+    // under the free 10,000 absorbs small races between concurrent requests.
+    const opts = { expirationTtl: 2 * 86400 };
+    await Promise.all([
+      env.DATA.put(ipKey, String(Number(ipN || 0) + 1), opts),
+      env.DATA.put(budgetKey, String(Number(spent || 0) + cfg.cost), opts),
+    ]);
+  }
+  return null;
+}
+
+// Keep chat input bounded: last 10 user/assistant turns, 1500 chars each.
+function boundMessages(messages) {
+  if (!Array.isArray(messages)) return [];
+  return messages
+    .filter(m => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
+    .slice(-10)
+    .map(m => ({ role: m.role, content: m.content.slice(0, 1500) }));
 }
 
 // Newer Workers AI models return `response` already parsed into an object when the
@@ -118,15 +197,15 @@ export default {
 
       // ─── COLOREAR IA: kid-safe prompt ───────────────────────
       if (path === '/coloring-prompt' && request.method === 'POST') {
-        return await coloringPrompt(request, env);
+        return (await guardAI(request, env, 'text')) || await coloringPrompt(request, env);
       }
       if (path === '/coloring-image' && request.method === 'POST') {
-        return await coloringImage(request, env);
+        return (await guardAI(request, env, 'image')) || await coloringImage(request, env);
       }
 
       // ─── ACTIVIDAD IA ENDPOINT ──────────────────────────────
       if (path === '/actividad' && request.method === 'POST') {
-        return await generateActividad(request, env);
+        return (await guardAI(request, env, 'textLite')) || await generateActividad(request, env);
       }
 
       // ─── CUSTOM WORKSHEET GENERATOR ─────────────────────────
@@ -151,7 +230,11 @@ export default {
       }
 
       // AI Chat
-      const { messages, lang } = body;
+      const blocked = await guardAI(request, env, 'textLite');
+      if (blocked) return blocked;
+      const messages = boundMessages(body.messages);
+      const lang = body.lang;
+      if (!messages.length) return jsonResponse({ error: 'Missing messages' }, 400);
       const systemPrompt = getSystemPrompt(lang);
 
       const aiMessages = [
@@ -161,9 +244,9 @@ export default {
 
       const response = await runAI(env, {
         messages: aiMessages,
-        max_tokens: 1024,
+        max_tokens: 600,
         temperature: 0.7,
-      });
+      }, AI_MODELS_LITE);
 
       await saveInteraction(env, messages, lang, request);
 
@@ -171,7 +254,8 @@ export default {
 
     } catch (error) {
       console.error('Worker error:', error);
-      return jsonResponse({ error: 'Error processing request', details: error.message }, 500);
+      if (error instanceof AIUnavailable) return jsonResponse({ error: 'ai_unavailable' }, 503);
+      return jsonResponse({ error: 'Error processing request' }, 500);
     }
   },
 };
@@ -232,7 +316,8 @@ async function coloringPrompt(request, env) {
   if (!desc) return jsonResponse({ error: 'Missing desc' }, 400);
   try {
     return jsonResponse(await checkColoringRequest(desc, env));
-  } catch {
+  } catch (err) {
+    if (err instanceof AIUnavailable) throw err;          // → 503 ai_unavailable
     return jsonResponse({ error: 'AI returned invalid JSON' }, 502);
   }
 }
@@ -256,7 +341,10 @@ async function coloringImage(request, env) {
 
   let check;
   try { check = await checkColoringRequest(desc, env); }
-  catch { return jsonResponse({ error: 'AI returned invalid JSON' }, 502); }
+  catch (err) {
+    if (err instanceof AIUnavailable) throw err;          // → 503 ai_unavailable
+    return jsonResponse({ error: 'AI returned invalid JSON' }, 502);
+  }
   if (!check.safe) return jsonResponse({ safe: false });
 
   try {
@@ -306,7 +394,7 @@ Responde ÚNICAMENTE con JSON válido, sin texto adicional, en este formato exac
     ],
     max_tokens: 800,
     temperature: 0.85,
-  });
+  }, AI_MODELS_LITE);
 
   try {
     const text = aiText(response).trim();

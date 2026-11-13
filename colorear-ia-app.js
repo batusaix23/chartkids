@@ -31,6 +31,7 @@ const TXT = {
     galleryLabel:'Biblioteca de dibujos',
     printSub:'Colorea con crayones o marcadores · chartkids.com',
     aiError:'La IA tardó demasiado. Mostrando dibujo de la biblioteca.',
+    aiResting:'✨ Nuestra IA de dibujos está descansando por hoy. Te mostramos uno de la galería que se parece a lo que pediste.',
     notForKids:'🙈 Ese dibujo no es para niños. ¡Prueba con animales, dinosaurios, el espacio, princesas o superhéroes!',
   },
   en: {
@@ -53,6 +54,7 @@ const TXT = {
     galleryLabel:'Drawing library',
     printSub:'Color with crayons or markers · chartkids.com',
     aiError:'AI took too long. Showing library drawing.',
+    aiResting:'✨ Our drawing AI is resting for today. Here is a similar one from our gallery.',
     notForKids:"🙈 That drawing isn't for kids. Try animals, dinosaurs, space, princesses or superheroes!",
   }
 };
@@ -192,6 +194,7 @@ async function generate() {
       // Could not verify the request → never send raw text to the image model.
       loadEl.textContent = t.loadingFallback;
       showLibraryFallback(desc);
+      showSafeMsg(t.aiResting);
     } else {
       try {
         let src;

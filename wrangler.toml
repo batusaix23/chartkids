@@ -26,3 +26,19 @@ zone_name = "chartkids.com"
 #   ADMIN_KEY      → your secret admin key
 #   PAYPAL_CLIENT_ID
 #   PAYPAL_SECRET
+
+# Per-IP burst limits for the AI endpoints (see guardAI in worker.js).
+# Workers AI is billed per use; these keep one client from running up the bill.
+[[ratelimits]]
+name = "RL_AI_IMAGE"
+namespace_id = "2001"
+  [ratelimits.simple]
+  limit = 4
+  period = 60
+
+[[ratelimits]]
+name = "RL_AI_TEXT"
+namespace_id = "2002"
+  [ratelimits.simple]
+  limit = 12
+  period = 60

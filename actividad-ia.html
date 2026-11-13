@@ -83,6 +83,8 @@ header{padding:24px 0;border-bottom:1px solid var(--border);margin-bottom:40px;}
 .btn-compartir{background:linear-gradient(135deg,var(--pink),var(--orange));color:white;}
 
 .error-box{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:12px;padding:16px 20px;color:#f87171;font-size:.9rem;margin-bottom:20px;display:none;}
+.soft-note{background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.3);border-radius:12px;padding:12px 16px;color:#c4b5fd;font-size:.88rem;line-height:1.5;margin-bottom:16px;}
+[hidden]{display:none!important;}
 
 .examples{margin-bottom:48px;}
 .examples h2{font-family:'Fredoka One',cursive;font-size:1.3rem;margin-bottom:16px;color:var(--muted);}
@@ -176,6 +178,7 @@ footer a{color:var(--accent);text-decoration:none;}
   </div>
 
   <div class="error-box" id="error-box"></div>
+  <div class="soft-note" id="soft-note" role="status" hidden></div>
   <button class="btn-generate" id="btn-gen" onclick="generate()" data-en="✨ Generate activity" data-es="✨ Generar actividad">✨ Generate activity</button>
 </div>
 
@@ -292,7 +295,7 @@ async function generate() {
       : 'Please select age, category and available time.');
     return;
   }
-  hideError();
+  hideError(); hideSoftNote();
   document.getElementById('loading').style.display = 'block';
   document.getElementById('result-card').style.display = 'none';
   document.getElementById('btn-gen').disabled = true;
@@ -316,7 +319,7 @@ async function generate() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ messages: [{ role: 'user', content: prompt }], lang: currentLang })
     });
-    if (!res.ok) throw new Error('Server error ' + res.status);
+    if (!res.ok) { const e = new Error('Server error ' + res.status); e.status = res.status; throw e; }
     const data = await res.json();
     const text = data.response || '';
     const match = text.match(/\{[\s\S]*\}/);
@@ -325,15 +328,68 @@ async function generate() {
     lastActivity = activity;
     renderResult(activity);
   } catch (err) {
-    console.error(err);
-    showError(currentLang === 'es'
-      ? 'No se pudo generar la actividad. Verifica tu conexión e intenta de nuevo.'
-      : 'Could not generate activity. Check your connection and try again.');
+    // AI unavailable (daily free budget used up, too many requests, outage, bad answer):
+    // show a hand-written activity from our library instead of an error.
+    console.warn('AI activity unavailable, using library:', err.message);
+    await showLibraryActivity(err.status);
   } finally {
     document.getElementById('loading').style.display = 'none';
     document.getElementById('btn-gen').disabled = false;
   }
 }
+
+/* ── Library fallback (no AI) ── */
+function loadLibrary() {
+  if (window.ACTIVIDADES_RESPALDO) return Promise.resolve(window.ACTIVIDADES_RESPALDO);
+  return new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = '/js/actividades-respaldo.js';
+    s.onload = () => resolve(window.ACTIVIDADES_RESPALDO || []);
+    s.onerror = () => reject(new Error('library failed to load'));
+    document.head.appendChild(s);
+  });
+}
+
+// Pick an activity that fits the chosen category and age, avoiding the one just shown.
+function pickLibraryActivity(list) {
+  const age = parseInt(state.age, 10) || 6;
+  const byCat = state.cat && state.cat !== 'surprise' ? list.filter(a => a.cat === state.cat) : list;
+  const fitsAge = byCat.filter(a => age >= a.minAge - 1 && age <= a.maxAge + 1);
+  const pool = (fitsAge.length ? fitsAge : byCat.length ? byCat : list).filter(a => !lastActivity || a.id !== lastActivity._id);
+  const a = pool[Math.floor(Math.random() * pool.length)] || list[0];
+  const t = a[currentLang] || a.es;
+  return {
+    _id: a.id, emoji: a.emoji, title: t.title,
+    description: currentLang === 'es'
+      ? `${t.cat} · una actividad probada para hacer en casa con lo que tienes a la mano.`
+      : `${t.cat} · a tried-and-true activity to do at home with what you have.`,
+    age: currentLang === 'es' ? `${a.minAge}-${a.maxAge} años` : `Ages ${a.minAge}-${a.maxAge}`,
+    time: a.time, difficulty: currentLang === 'es' ? 'Fácil' : 'Easy',
+    materials: t.materials, steps: t.steps, benefits: t.benefits, tip: t.tip,
+  };
+}
+
+async function showLibraryActivity(status) {
+  hideError();
+  try {
+    const activity = pickLibraryActivity(await loadLibrary());
+    lastActivity = activity;
+    renderResult(activity);
+    const busy = status === 429;
+    showSoftNote(currentLang === 'es'
+      ? (busy ? '⏳ Has pedido muchas ideas seguidas. Mientras tanto, aquí tienes una de nuestras actividades favoritas.'
+              : '✨ Nuestra IA está descansando por hoy. Te dejamos una de nuestras actividades favoritas de la biblioteca.')
+      : (busy ? '⏳ You asked for many ideas in a row. Meanwhile, here is one of our favorite activities.'
+              : '✨ Our AI is resting for today. Here is one of our favorite activities from the library.'));
+  } catch (e) {
+    showError(currentLang === 'es'
+      ? 'No pudimos cargar una actividad. Revisa tu conexión e intenta de nuevo.'
+      : 'We could not load an activity. Check your connection and try again.');
+  }
+}
+
+function showSoftNote(msg) { const n = document.getElementById('soft-note'); n.textContent = msg; n.hidden = false; }
+function hideSoftNote() { document.getElementById('soft-note').hidden = true; }
 
 // AI output is untrusted text — escape before inserting as HTML.
 function esc(s) {
