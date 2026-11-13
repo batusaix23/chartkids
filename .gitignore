@@ -7,3 +7,8 @@
 *api*key*.txt
 *api*key*.env
 secrets/
+
+# Local build artifacts
+.wrangler/
+node_modules/.mf/
+printables/cache/

@@ -1,12 +1,12 @@
 // ck-nav.js — ChartKids shared navigation bar
 (function () {
   const PAGES = [
-    { href: 'index.html',        emoji: '🏠', label: 'Charts' },
-    { href: 'actividades.html',  emoji: '🎨', label: 'Actividades' },
-    { href: 'recompensas.html',  emoji: '⭐', label: 'Recompensas' },
-    { href: 'imprime-y-juega.html', emoji: '🖨️', label: 'Imprime y Juega' },
-    { href: 'blog.html',         emoji: '📝', label: 'Blog' },
-    { href: 'premium.html',      emoji: '👑', label: 'Premium', gold: true },
+    { href: '/index.html',        emoji: '🏠', label: 'Charts' },
+    { href: '/actividades.html',  emoji: '🎨', label: 'Actividades' },
+    { href: '/recompensas.html',  emoji: '⭐', label: 'Recompensas' },
+    { href: '/imprime-y-juega.html', emoji: '🖨️', label: 'Imprime y Juega' },
+    { href: '/blog.html',         emoji: '📝', label: 'Blog' },
+    { href: '/premium.html',      emoji: '👑', label: 'Premium', gold: true },
   ];
 
   const CSS = `
@@ -40,8 +40,15 @@
     }
   `;
 
+  // Printable item pages live in folders (/maze/<slug>/ …) and category hubs are
+  // flat pages; both belong to the "Imprime y Juega" section.
+  const PRINT_PAGES = /^\/(maze|dots|coloring|numbers|busca|mate|escritura|stem|certificados|calendarios)\/|^\/(laberintos|une-los-puntos|colorear|colorear-numeros|busca-encuentra|matematicas|escritura|stem|certificados|calendarios)\.html$/;
+
   function currentPage() {
-    return location.pathname.split('/').pop() || 'index.html';
+    const p = location.pathname;
+    if (PRINT_PAGES.test(p)) return 'imprime-y-juega.html';
+    if (p === '/') return 'index.html';
+    return p.endsWith('/') ? '' : p.split('/').pop();
   }
 
   function getLang() {
@@ -53,13 +60,13 @@
     const lang = getLang();
 
     const links = PAGES.map(p => {
-      const active = cur === p.href ? ' ckn-active' : '';
+      const active = '/' + cur === p.href ? ' ckn-active' : '';
       const gold   = p.gold ? ' ckn-gold' : '';
       return `<a href="${p.href}" class="ckn-link${gold}${active}">${p.emoji} <span class="ckn-label">${p.label}</span></a>`;
     }).join('');
 
     return `
-      <a href="index.html" class="ckn-logo">Chart<span>Kids</span>✨</a>
+      <a href="/index.html" class="ckn-logo">Chart<span>Kids</span>✨</a>
       <div class="ckn-links">${links}</div>
       <div class="ckn-right">
         <div id="ckn-auth"></div>
