@@ -31,6 +31,7 @@ const TXT = {
     galleryLabel:'Biblioteca de dibujos',
     printSub:'Colorea con crayones o marcadores · chartkids.com',
     aiError:'La IA tardó demasiado. Mostrando dibujo de la biblioteca.',
+    notForKids:'🙈 Ese dibujo no es para niños. ¡Prueba con animales, dinosaurios, el espacio, princesas o superhéroes!',
   },
   en: {
     heroTitle:'AI Coloring Pages',
@@ -52,79 +53,118 @@ const TXT = {
     galleryLabel:'Drawing library',
     printSub:'Color with crayons or markers · chartkids.com',
     aiError:'AI took too long. Showing library drawing.',
+    notForKids:"🙈 That drawing isn't for kids. Try animals, dinosaurs, space, princesses or superheroes!",
   }
 };
 
-// Translation map: common Spanish drawing terms → English for AI prompt
-const ES_TO_EN = {
-  'dragón':'dragon','dragon':'dragon','castillo':'castle','montañas':'mountains',
-  'paisaje':'landscape','fuego':'fire','caballero':'knight',
-  'sirena':'mermaid','mar':'ocean','océano':'ocean','coral':'coral','pez':'fish','peces':'fish',
-  'ballena':'whale','delfín':'dolphin','tiburón':'shark','pulpo':'octopus',
-  'espacio':'space','cohete':'rocket','astronauta':'astronaut','planeta':'planet','luna':'moon','estrella':'star',
-  'dinosaurio':'dinosaur','dinosaurios':'dinosaurs','bosque':'forest','selva':'jungle','árbol':'tree',
-  'unicornio':'unicorn','arcoíris':'rainbow','magia':'magic','caballo':'horse',
-  'pirata':'pirate','barco':'ship','tesoro':'treasure','isla':'island','vela':'sail',
-  'granja':'farm','vaca':'cow','cerdo':'pig','gallina':'chicken','oveja':'sheep','tractor':'tractor',
-  'princesa':'princess','flor':'flower','flores':'flowers','jardín':'garden','mariposa':'butterfly','corona':'crown',
-  'superhéroe':'superhero','héroe':'hero','ciudad':'city','edificios':'buildings','capa':'cape',
-  'circo':'circus','elefante':'elephant','payaso':'clown','carpa':'tent','acróbata':'acrobat',
-  'gato':'cat','gatito':'kitten','perro':'dog','pájaro':'bird','conejo':'rabbit',
-  'bajo':'under','el':'the','un':'a','una':'a','con':'with','en':'in','de':'of','y':'and',
-  'feliz':'happy','grande':'big','pequeño':'small','volando':'flying','saltando':'jumping',
-  'nube':'cloud','nubes':'clouds','sol':'sun','luna':'moon','arco iris':'rainbow',
-  'robot':'robot','nave espacial':'spaceship','castillo medieval':'medieval castle',
-};
+// The Worker checks the request (word list + AI judge), rewrites it as a kid-friendly
+// scene and draws it with FLUX. Pollinations is only a fallback, fed the checked subject.
+const API_URL = 'https://chartkids.com/api/coloring-image';
 
-function translateForPrompt(desc) {
-  let result = desc.toLowerCase();
-  Object.entries(ES_TO_EN).forEach(([es, en]) => {
-    result = result.replace(new RegExp(es, 'gi'), en);
-  });
-  return result;
-}
-
-function buildPrompt(desc) {
-  const translated = translateForPrompt(desc);
+// Style is fixed here; the Worker only supplies the (kid-safe, English) subject.
+// Everything pushes toward a page a child can color: thick closed outlines, big
+// areas, nothing pre-shaded.
+function buildPrompt(subject) {
   return encodeURIComponent(
-    `children coloring book page, thick bold black outlines, pure white background, ` +
-    `black and white only no colors, clean line art, printable coloring page, ` +
-    `professional children illustration, simple clear outlines, ` +
-    `${translated}, ` +
-    `coloring page style, black outline drawing, white fill`
+    `simple coloring book page for young children, ${subject}, ` +
+    `cute friendly cartoon style, thick clean bold black outlines, large simple closed shapes, ` +
+    `few details, big areas to color, pure white background, black and white line art only, ` +
+    `no shading, no gray, no hatching, no texture, no filled black areas, no text, no letters, ` +
+    `full figure centered with margin`
   );
 }
 
-function generateWithPollinations(desc) {
-  return new Promise((resolve, reject) => {
-    const seed = Math.floor(Math.random() * 99999);
-    const prompt = buildPrompt(desc);
-    const url = `${POLLINATIONS}/${prompt}?width=1500&height=1950&nologo=true&model=flux&seed=${seed}`;
+// Ask the Worker to judge the request, rewrite it and (usually) draw it.
+// Resolves {safe:true, subject, image?} | {safe:false}; rejects on network/server error.
+async function getSafeSubject(desc) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 40000);
+  try {
+    const res = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ desc, lang }),
+      signal: ctrl.signal,
+    });
+    if (!res.ok) throw new Error('coloring-prompt ' + res.status);
+    const data = await res.json();
+    if (data.safe === true && typeof data.subject === 'string' && data.subject) return data;
+    return { safe: false };
+  } finally {
+    clearTimeout(timer);
+  }
+}
 
+function loadImage(url, timeoutMs) {
+  return new Promise((resolve, reject) => {
     const img = new Image();
     img.crossOrigin = 'anonymous';
-
-    const timer = setTimeout(() => {
-      img.src = ''; // cancel
-      reject(new Error('timeout'));
-    }, 40000);
-
-    img.onload = () => {
-      clearTimeout(timer);
-      resolve(url);
-    };
-    img.onerror = () => {
-      clearTimeout(timer);
-      reject(new Error('load error'));
-    };
+    const timer = setTimeout(() => { img.src = ''; reject(new Error('timeout')); }, timeoutMs);
+    img.onload = () => { clearTimeout(timer); resolve(img); };
+    img.onerror = () => { clearTimeout(timer); reject(new Error('load error')); };
     img.src = url;
   });
+}
+
+// Force the image to pure black lines on white: removes the gray shading and
+// soft fills image models add, so the printed page has clean areas to color.
+// Returns a PNG data URL, or null if the browser blocks reading the pixels.
+function toCleanLineArt(img) {
+  try {
+    const c = document.createElement('canvas');
+    c.width = img.naturalWidth; c.height = img.naturalHeight;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, c.width, c.height);
+    ctx.drawImage(img, 0, 0);
+    const d = ctx.getImageData(0, 0, c.width, c.height);
+    const px = d.data;
+    for (let i = 0; i < px.length; i += 4) {
+      const lum = 0.299 * px[i] + 0.587 * px[i + 1] + 0.114 * px[i + 2];
+      // 170 keeps thin/soft outlines (110 erased them in tests) while dropping light gray shading.
+      const v = lum < 170 ? 0 : 255;
+      px[i] = px[i + 1] = px[i + 2] = v; px[i + 3] = 255;
+    }
+    ctx.putImageData(d, 0, 0);
+    return c.toDataURL('image/png');
+  } catch (e) {
+    console.warn('Line-art cleanup skipped:', e.message);
+    return null;
+  }
+}
+
+async function generateWithPollinations(subject) {
+  const seed = Math.floor(Math.random() * 99999);
+  const url = `${POLLINATIONS}/${buildPrompt(subject)}?width=1024&height=1332&nologo=true&model=flux&safe=true&enhance=false&seed=${seed}`;
+  const img = await loadImage(url, 45000);
+  return toCleanLineArt(img) || url;
+}
+
+function showSafeMsg(text) {
+  const el = document.getElementById('safeMsg');
+  el.textContent = text;
+  el.style.display = text ? 'block' : 'none';
+}
+
+function showLibraryFallback(desc) {
+  const key = pickScene(desc);
+  selectedSceneKey = key;
+  currentSVG = SCENES[key].svg;
+  showSVGResult(key, false);
 }
 
 // ─── Main generate flow ─────────────────────────────────────
 async function generate() {
   const desc = document.getElementById('descInput').value.trim();
   if (!desc) { document.getElementById('descInput').focus(); return; }
+  const t = TXT[lang];
+  showSafeMsg('');
+
+  // Layer 1: instant word check in the browser (same list the Worker uses).
+  if (window.KidSafe && KidSafe.findBlocked(desc)) {
+    showSafeMsg(t.notForKids);
+    return;
+  }
 
   currentDesc = desc;
   currentImageUrl = '';
@@ -133,10 +173,7 @@ async function generate() {
   document.getElementById('resultCard').style.display = 'none';
   document.getElementById('loading').style.display = 'block';
 
-  const t = TXT[lang];
   const loadEl = document.getElementById('loadingText');
-
-  // Show countdown hint
   loadEl.textContent = t.loadingAI;
   let elapsed = 0;
   const ticker = setInterval(() => {
@@ -145,22 +182,39 @@ async function generate() {
   }, 5000);
 
   try {
-    const url = await generateWithPollinations(desc);
-    clearInterval(ticker);
-    currentImageUrl = url;
-    showImageResult(url, true);
-  } catch (e) {
-    clearInterval(ticker);
-    loadEl.textContent = t.loadingFallback;
-    await new Promise(r => setTimeout(r, 600));
-    const key = pickScene(desc);
-    selectedSceneKey = key;
-    currentSVG = SCENES[key].svg;
-    showSVGResult(key, false);
-  }
+    // Layer 2: the Worker's AI judges the request and rewrites it.
+    let check = null;
+    try { check = await getSafeSubject(desc); } catch (e) { console.warn('coloring-image failed:', e.message); }
 
-  document.getElementById('loading').style.display = 'none';
-  document.getElementById('btnGenerate').disabled = false;
+    if (check && check.safe === false) {
+      showSafeMsg(t.notForKids);
+    } else if (!check) {
+      // Could not verify the request → never send raw text to the image model.
+      loadEl.textContent = t.loadingFallback;
+      showLibraryFallback(desc);
+    } else {
+      try {
+        let src;
+        if (check.image) {
+          const img = await loadImage(check.image, 10000);
+          src = toCleanLineArt(img) || check.image;
+        } else {
+          src = await generateWithPollinations(check.subject);
+        }
+        currentImageUrl = src;
+        showImageResult(src, true);
+      } catch (e) {
+        loadEl.textContent = t.loadingFallback;
+        await new Promise(r => setTimeout(r, 600));
+        showSafeMsg(t.aiError);
+        showLibraryFallback(desc);
+      }
+    }
+  } finally {
+    clearInterval(ticker);
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('btnGenerate').disabled = false;
+  }
 }
 
 function showImageResult(url, isAI) {
@@ -221,6 +275,7 @@ function pickScene(desc) {
 function newSearch() {
   document.getElementById('resultCard').style.display = 'none';
   document.getElementById('descInput').value = '';
+  showSafeMsg('');
   currentImageUrl = '';
   currentSVG = '';
   document.getElementById('descInput').focus();
@@ -233,9 +288,13 @@ function useIdea(btn) {
   document.getElementById('descInput').focus();
 }
 
+function escHtml(s) {
+  return String(s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
+
 function printDrawing() {
   const t = TXT[lang];
-  const title = currentDesc || (lang === 'es' ? 'Dibujo para colorear' : 'Coloring page');
+  const title = escHtml(currentDesc || (lang === 'es' ? 'Dibujo para colorear' : 'Coloring page'));
 
   if (currentImageUrl) {
     const w = window.open('', '_blank');
@@ -287,7 +346,7 @@ function downloadDrawing() {
   if (currentImageUrl) {
     const a = document.createElement('a');
     a.href = currentImageUrl;
-    a.download = `chartkids-colorear-${Date.now()}.jpg`;
+    a.download = `chartkids-colorear-${Date.now()}.${currentImageUrl.startsWith('data:') ? 'png' : 'jpg'}`;
     a.target = '_blank';
     a.click();
   } else if (currentSVG) {
@@ -324,10 +383,11 @@ function selectFromGallery(key) {
 }
 
 // ─── Translations ────────────────────────────────────────────
+// Also called by the shared nav (ck-nav.js → cknSetLang), which owns the ES/EN buttons.
 function setLang(l) {
-  lang = l;
-  document.getElementById('btnES').classList.toggle('active', l === 'es');
-  document.getElementById('btnEN').classList.toggle('active', l === 'en');
+  lang = l === 'en' ? 'en' : 'es';
+  document.getElementById('btnES')?.classList.toggle('active', lang === 'es');
+  document.getElementById('btnEN')?.classList.toggle('active', lang === 'en');
   applyTranslations();
   renderGallery();
 }
@@ -354,7 +414,10 @@ function applyTranslations() {
 (function(){
   const p = new URLSearchParams(location.search);
   const urlLang = p.get('lang');
-  if (urlLang === 'en') { lang = 'en'; }
-  else if (!urlLang && (navigator.language||'').toLowerCase().startsWith('en')) { lang = 'en'; }
+  let saved = null;
+  try { saved = localStorage.getItem('ck_lang'); } catch (e) {}   // set by the shared nav
+  if (urlLang === 'en' || urlLang === 'es') lang = urlLang;
+  else if (saved === 'en' || saved === 'es') lang = saved;
+  else lang = 'es';   // same default as the shared nav, so its ES/EN highlight matches the page
   setLang(lang);
 })();

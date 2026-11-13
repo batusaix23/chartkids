@@ -14,6 +14,9 @@
 // ADMIN_KEY must be set as a Secret in Cloudflare Dashboard.
 // Worker refuses admin endpoints if it's missing (fail-closed, no hardcoded fallback).
 
+// Shared kid-safe word list; sets globalThis.KidSafe (same file the browser loads).
+import './js/kid-safe.js';
+
 // Workers AI models, tried in order. Cloudflare retires models periodically
 // (@cf/meta/llama-3.1-8b-instruct was deprecated 2026-05-30), so a fallback keeps the
 // AI features alive if the primary one disappears.
@@ -113,6 +116,14 @@ export default {
         return await getAnalytics(env);
       }
 
+      // ─── COLOREAR IA: kid-safe prompt ───────────────────────
+      if (path === '/coloring-prompt' && request.method === 'POST') {
+        return await coloringPrompt(request, env);
+      }
+      if (path === '/coloring-image' && request.method === 'POST') {
+        return await coloringImage(request, env);
+      }
+
       // ─── ACTIVIDAD IA ENDPOINT ──────────────────────────────
       if (path === '/actividad' && request.method === 'POST') {
         return await generateActividad(request, env);
@@ -164,6 +175,102 @@ export default {
     }
   },
 };
+
+// ─── COLOREAR IA ────────────────────────────────────────────
+// Turns a child's free-text request (ES or EN) into a short, kid-friendly English
+// scene for the image model — or refuses it. Two layers: the shared word list
+// (js/kid-safe.js) and an AI judge that also rewrites the scene so it draws well
+// as a coloring page (few subjects, big simple shapes).
+const COLORING_SYSTEM = `You prepare requests for a coloring-book generator used by children aged 3 to 10.
+Decide if the request is appropriate for young children, then rewrite it.
+
+REFUSE (safe=false) anything with: violence, weapons, fighting, blood, injury, death, horror or scary themes,
+romance or kissing, nudity or body focus, alcohol, drugs, smoking, hate, insults, real people or celebrities,
+politics, religion-mocking content, or anything a parent would not want a small child to see.
+
+ALLOWED and should be made friendly: animals, dinosaurs, dragons, monsters, pirates, knights, superheroes,
+princesses, vehicles, space, nature, food, holidays, fantasy. Make them cute and smiling, never scary.
+Famous cartoon characters or brands: describe a generic look-alike instead (e.g. "a friendly superhero kid
+with a cape"), never the name.
+
+When safe, write "subject": ONE short English sentence (max 25 words) describing the scene for a coloring page:
+1 or 2 main characters, a simple background with at most 3 elements, big simple shapes, cheerful.
+No colors, no text, no style words.
+
+Reply ONLY with JSON: {"safe": true, "subject": "..."} or {"safe": false}`;
+
+// Returns {safe:false} | {safe:true, subject}; throws if the AI answer is unusable.
+async function checkColoringRequest(desc, env) {
+  if (KidSafe.findBlocked(desc)) return { safe: false };
+
+  const result = await runAI(env, {
+    messages: [
+      { role: 'system', content: COLORING_SYSTEM },
+      { role: 'user', content: desc },
+    ],
+    max_tokens: 120,
+    temperature: 0.2,
+  });
+
+  const text = aiText(result);
+  const parsed = JSON.parse((text.match(/\{[\s\S]*\}/) || [text])[0]);
+  const subject = typeof parsed.subject === 'string' ? parsed.subject.trim().slice(0, 300) : '';
+  // Fail closed: anything not clearly safe, or a rewrite that itself trips the word list, is refused.
+  if (parsed.safe !== true || !subject || KidSafe.findBlocked(subject)) return { safe: false };
+  return { safe: true, subject };
+}
+
+async function readDesc(request) {
+  let desc = '';
+  try { ({ desc = '' } = await request.json()); } catch { /* bad JSON → empty */ }
+  return String(desc).trim().slice(0, 200);
+}
+
+// POST /coloring-prompt {desc} → {safe, subject?}
+async function coloringPrompt(request, env) {
+  const desc = await readDesc(request);
+  if (!desc) return jsonResponse({ error: 'Missing desc' }, 400);
+  try {
+    return jsonResponse(await checkColoringRequest(desc, env));
+  } catch {
+    return jsonResponse({ error: 'AI returned invalid JSON' }, 502);
+  }
+}
+
+// Fixed style for every page: what makes a drawing easy for a child to color.
+function coloringImagePrompt(subject) {
+  return `Children's coloring book page, black and white line art. ${subject}. ` +
+    `Cute, friendly, smiling cartoon style for little kids. Thick, even, bold black outlines; ` +
+    `large simple closed shapes with big empty white areas to color; few details. ` +
+    `Minimal background with only a few big simple elements, lots of white space. ` +
+    `No shading, no gray tones, no solid black fills, no words, no letters, no numbers.`;
+}
+
+// POST /coloring-image {desc} → {safe:false} | {safe:true, subject, image?}
+// The image is generated here, so an unchecked request never reaches an image model.
+// If generation fails, `image` is omitted and the page falls back to Pollinations
+// with the already-checked subject.
+async function coloringImage(request, env) {
+  const desc = await readDesc(request);
+  if (!desc) return jsonResponse({ error: 'Missing desc' }, 400);
+
+  let check;
+  try { check = await checkColoringRequest(desc, env); }
+  catch { return jsonResponse({ error: 'AI returned invalid JSON' }, 502); }
+  if (!check.safe) return jsonResponse({ safe: false });
+
+  try {
+    const out = await env.AI.run('@cf/black-forest-labs/flux-1-schnell', {
+      prompt: coloringImagePrompt(check.subject),
+      steps: 8,
+    });
+    if (!out || !out.image) throw new Error('no image returned');
+    return jsonResponse({ ...check, image: `data:image/jpeg;base64,${out.image}` });
+  } catch (err) {
+    console.error('coloring-image generation failed:', err.message);
+    return jsonResponse(check);
+  }
+}
 
 // ─── ACTIVIDAD IA ───────────────────────────────────────────
 async function generateActividad(request, env) {
