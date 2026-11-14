@@ -1,0 +1,172 @@
+[
+ {
+  "id": "kit-laberintos",
+  "title_es": "Kit de Laberintos",
+  "title_en": "Maze Kit",
+  "emoji": "🌀",
+  "color": "#7c3aed",
+  "desc_es": "30 laberintos de los tres niveles, del más fácil al más difícil, con soluciones.",
+  "sheets": 30,
+  "pages": 62,
+  "bytes": 808367,
+  "preview": [
+   "/maze/lion-maze-maze/sheet.svg",
+   "/maze/elephant-maze-maze/sheet.svg",
+   "/maze/baby-dino-maze-maze/sheet.svg",
+   "/maze/car-park-maze-maze/sheet.svg"
+  ]
+ },
+ {
+  "id": "kit-primeros-numeros",
+  "title_es": "Kit Primeros Números",
+  "title_en": "First Numbers Kit",
+  "emoji": "🔢",
+  "color": "#ca8a04",
+  "desc_es": "Contar, comparar y sumar con dibujos: 24 fichas para preescolar con respuestas.",
+  "sheets": 24,
+  "pages": 50,
+  "bytes": 1090611,
+  "preview": [
+   "/mate/contar-hasta-5-1/sheet.svg",
+   "/mate/contar-hasta-5-2/sheet.svg",
+   "/mate/contar-hasta-5-3/sheet.svg",
+   "/mate/contar-hasta-5-4/sheet.svg"
+  ]
+ },
+ {
+  "id": "kit-tablas-de-multiplicar",
+  "title_es": "Kit Tablas de Multiplicar",
+  "title_en": "Times Tables Kit",
+  "emoji": "✖️",
+  "color": "#ca8a04",
+  "desc_es": "Las tablas del 2 al 9 más multiplicación en columna y división: 16 fichas con respuestas.",
+  "sheets": 16,
+  "pages": 34,
+  "bytes": 762664,
+  "preview": [
+   "/mate/tabla-del-2/sheet.svg",
+   "/mate/tabla-del-3/sheet.svg",
+   "/mate/tabla-del-4/sheet.svg",
+   "/mate/tabla-del-5/sheet.svg"
+  ]
+ },
+ {
+  "id": "kit-abecedario",
+  "title_es": "Kit del Abecedario",
+  "title_en": "Alphabet Kit",
+  "emoji": "🔤",
+  "color": "#6366f1",
+  "desc_es": "Las 27 letras del abecedario, de la A a la Z con la Ñ, en mayúscula y minúscula.",
+  "sheets": 27,
+  "pages": 28,
+  "bytes": 540893,
+  "preview": [
+   "/escritura/letra-a/sheet.svg",
+   "/escritura/letra-b/sheet.svg",
+   "/escritura/letra-c/sheet.svg",
+   "/escritura/letra-d/sheet.svg"
+  ]
+ },
+ {
+  "id": "kit-preescritura",
+  "title_es": "Kit de Preescritura",
+  "title_en": "Pre-writing Kit",
+  "emoji": "✏️",
+  "color": "#6366f1",
+  "desc_es": "Trazos, números del 0 al 9 y vocales: 24 fichas para preparar la mano antes de escribir.",
+  "sheets": 24,
+  "pages": 25,
+  "bytes": 1807446,
+  "preview": [
+   "/escritura/trazos-rectas/sheet.svg",
+   "/escritura/trazos-verticales/sheet.svg",
+   "/escritura/trazos-diagonales/sheet.svg",
+   "/escritura/trazos-zigzag/sheet.svg"
+  ]
+ },
+ {
+  "id": "kit-busca-y-encuentra",
+  "title_es": "Kit Busca y Encuentra",
+  "title_en": "Seek and Find Kit",
+  "emoji": "🔍",
+  "color": "#16a34a",
+  "desc_es": "20 escenas para buscar y contar, de cuatro temas distintos, con soluciones.",
+  "sheets": 20,
+  "pages": 42,
+  "bytes": 2218734,
+  "preview": [
+   "/busca/busca-oceano-1/sheet.svg",
+   "/busca/busca-oceano-2/sheet.svg",
+   "/busca/busca-oceano-3/sheet.svg",
+   "/busca/busca-oceano-4/sheet.svg"
+  ]
+ },
+ {
+  "id": "kit-stem",
+  "title_es": "Kit de Experimentos STEM",
+  "title_en": "STEM Experiments Kit",
+  "emoji": "🔬",
+  "color": "#10b981",
+  "desc_es": "15 experimentos para hacer en casa, con hoja de predicción y la explicación científica.",
+  "sheets": 15,
+  "pages": 32,
+  "bytes": 922326,
+  "preview": [
+   "/stem/volcan-bicarbonato/sheet.svg",
+   "/stem/flor-que-cambia-color/sheet.svg",
+   "/stem/pimienta-que-huye/sheet.svg",
+   "/stem/semilla-en-frasco/sheet.svg"
+  ]
+ },
+ {
+  "id": "kit-certificados",
+  "title_es": "Kit de Certificados",
+  "title_en": "Certificates Kit",
+  "emoji": "🏆",
+  "color": "#f59e0b",
+  "desc_es": "Los 50 certificados para premiar logros, valores y momentos especiales.",
+  "sheets": 50,
+  "pages": 51,
+  "bytes": 3541495,
+  "preview": [
+   "/certificados/lector-estrella/sheet.svg",
+   "/certificados/genio-matematicas/sheet.svg",
+   "/certificados/buen-comportamiento/sheet.svg",
+   "/certificados/super-ayudante/sheet.svg"
+  ]
+ },
+ {
+  "id": "kit-calendario-2027",
+  "title_es": "Kit Calendario 2027",
+  "title_en": "2027 Calendar Kit",
+  "emoji": "📅",
+  "color": "#8b5cf6",
+  "desc_es": "Los 12 meses de 2027, el calendario anual y las rutinas de mañana, noche y tareas.",
+  "sheets": 17,
+  "pages": 18,
+  "bytes": 782987,
+  "preview": [
+   "/calendarios/calendario-enero-2027/sheet.svg",
+   "/calendarios/calendario-febrero-2027/sheet.svg",
+   "/calendarios/calendario-marzo-2027/sheet.svg",
+   "/calendarios/calendario-abril-2027/sheet.svg"
+  ]
+ },
+ {
+  "id": "kit-navidad",
+  "title_es": "Kit de Navidad",
+  "title_en": "Christmas Kit",
+  "emoji": "🎄",
+  "color": "#dc2626",
+  "desc_es": "Calendario de diciembre, cuenta regresiva, laberintos, búsquedas y certificado navideños.",
+  "sheets": 13,
+  "pages": 23,
+  "bytes": 1038310,
+  "preview": [
+   "/calendarios/calendario-diciembre-2026/sheet.svg",
+   "/calendarios/cuenta-regresiva-navidad/sheet.svg",
+   "/calendarios/cuenta-regresiva-reyes/sheet.svg",
+   "/maze/christmas-tree-maze-maze/sheet.svg"
+  ]
+ }
+]

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kits Imprimibles Premium en PDF — ChartKids</title>
+<meta name="description" content="Kits imprimibles en PDF listos para imprimir de una vez: laberintos, matemáticas, abecedario, experimentos STEM, certificados, calendario 2027 y Navidad. Para suscriptores ChartKids Premium.">
+<link rel="canonical" href="https://www.chartkids.com/kits.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kits Imprimibles Premium — ChartKids">
+<meta property="og:image" content="https://www.chartkids.com/maze/lion-maze-maze/og.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/printables-category.css">
+<style>
+:root{--cat:#f59e0b}
+.kits{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-bottom:40px}
+.kit{background:var(--surface);border:1.5px solid var(--border);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+.kit-prev{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:10px;background:linear-gradient(135deg,var(--kc),#0f0f1a)}
+.kit-prev img{width:100%;aspect-ratio:816/1056;background:#fff;border-radius:4px;object-fit:contain}
+.kit-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.kit-title{font-family:'Fredoka One',cursive;font-size:1.2rem}
+.kit-desc{color:var(--muted);font-size:.88rem;line-height:1.5}
+.kit-meta{font-size:.78rem;font-weight:800;color:var(--muted)}
+.kit-btn{margin-top:auto;padding:11px;border:none;border-radius:50px;font:800 .92rem 'Nunito',sans-serif;cursor:pointer;color:#fff;background:linear-gradient(135deg,#f59e0b,#ea580c)}
+.kit-btn[disabled]{opacity:.6;cursor:wait}
+.kit-msg{font-size:.82rem;line-height:1.45;color:#fcd34d}
+.kit-msg a{color:#fbbf24}
+.status{max-width:640px;margin:0 auto 26px;text-align:center;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 18px;color:var(--muted);font-weight:700}
+.status a{color:#fbbf24}
+[hidden]{display:none!important}
+</style>
+<script src="/ck-nav.js" defer></script>
+</head>
+<body>
+<div id="ck-nav"></div>
+<div class="container">
+<nav class="crumbs">
+  <a href="/index.html" data-es="🏠 Inicio" data-en="🏠 Home">🏠 Inicio</a> ›
+  <a href="/imprime-y-juega.html" data-es="Imprime y Juega" data-en="Print &amp; Play">Imprime y Juega</a> ›
+  <span data-es="Kits Premium" data-en="Premium Kits">Kits Premium</span>
+</nav>
+<div class="cat-hero">
+  <div class="cat-hero-icon">👑</div>
+  <span class="cat-badge" id="kitCount" data-es="Kits en PDF" data-en="PDF kits">Kits en PDF</span>
+  <h1 data-es="Kits Imprimibles Premium" data-en="Premium Printable Kits">Kits Imprimibles Premium</h1>
+  <p class="cat-hero-desc" data-es="Colecciones completas en un solo PDF, con portada y soluciones al final: imprímelas de una vez para la semana, las vacaciones o el salón de clases." data-en="Complete collections in a single PDF, with a cover and answer keys at the end: print them all at once for the week, the holidays or the classroom.">Colecciones completas en un solo PDF, con portada y soluciones al final: imprímelas de una vez para la semana, las vacaciones o el salón de clases.</p>
+</div>
+<p class="status" id="status"></p>
+<div class="kits" id="kits"></div>
+<a href="/imprime-y-juega.html" class="back-link" data-es="← Todas las categorías" data-en="← All categories">← Todas las categorías</a>
+</div>
+<footer><p>© <span id="yr"></span> ChartKids · <a href="/premium.html">Premium</a> · <a href="/imprime-y-juega.html">Imprime y Juega</a> · <a href="/privacy.html">Privacidad</a></p></footer>
+<script>
+(function () {
+  var API = 'https://chartkids.com/api/kit';
+  var lang = 'es';
+  try { lang = localStorage.getItem('ck_lang') === 'en' ? 'en' : 'es'; } catch (e) {}
+  var sub = '';
+  try { sub = localStorage.getItem('chartkids_premium_sub') || ''; } catch (e) {}
+  var t = function (es, en) { return lang === 'en' ? en : es; };
+  var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  function applyLang() {
+    document.querySelectorAll('[data-es]').forEach(function (el) { el.textContent = lang === 'en' ? (el.dataset.en || el.dataset.es) : el.dataset.es; });
+    document.getElementById('status').innerHTML = sub
+      ? t('👑 Suscripción Premium detectada en este navegador. ¡Descarga los kits que quieras!', '👑 Premium subscription found in this browser. Download any kit you like!')
+      : t('🔒 Los kits son para suscriptores. <a href="/premium.html">Hazte Premium</a> para descargarlos. Las fichas sueltas siguen siendo gratis.', '🔒 Kits are for subscribers. <a href="/premium.html">Go Premium</a> to download them. Single worksheets stay free.');
+  }
+  window.setLang = function (l) { lang = l === 'en' ? 'en' : 'es'; applyLang(); render(); };
+
+  var kits = [];
+  function render() {
+    document.getElementById('kits').innerHTML = kits.map(function (k) {
+      return '<div class="kit" style="--kc:' + k.color + '">' +
+        '<div class="kit-prev">' + k.preview.map(function (p) { return '<img src="' + p + '" alt="" loading="lazy">'; }).join('') + '</div>' +
+        '<div class="kit-body"><div class="kit-title">' + k.emoji + ' ' + esc(t(k.title_es, k.title_en)) + '</div>' +
+        '<div class="kit-desc">' + esc(k.desc_es) + '</div>' +
+        '<div class="kit-meta">📄 ' + k.pages + ' ' + t('páginas', 'pages') + ' · ' + (k.bytes / 1048576).toFixed(1) + ' MB</div>' +
+        '<button class="kit-btn" data-kit="' + k.id + '">' + (sub ? '⬇️ ' + t('Descargar PDF', 'Download PDF') : '👑 ' + t('Desbloquear con Premium', 'Unlock with Premium')) + '</button>' +
+        '<div class="kit-msg" hidden></div></div></div>';
+    }).join('');
+  }
+
+  document.getElementById('kits').addEventListener('click', async function (ev) {
+    var btn = ev.target.closest('.kit-btn');
+    if (!btn) return;
+    if (!sub) { location.href = '/premium.html'; return; }
+    var msg = btn.nextElementSibling, label = btn.textContent;
+    msg.hidden = true; btn.disabled = true; btn.textContent = '⏳ ' + t('Preparando PDF…', 'Preparing PDF…');
+    try {
+      var res = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ kit: btn.dataset.kit, subscriptionID: sub }) });
+      if (res.ok) {
+        var url = URL.createObjectURL(await res.blob());
+        var a = document.createElement('a'); a.href = url; a.download = 'chartkids-' + btn.dataset.kit + '.pdf';
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
+        return;
+      }
+      var err = ''; try { err = (await res.json()).error; } catch (e) {}
+      msg.innerHTML = err === 'not_premium'
+        ? t('Tu suscripción no aparece activa en PayPal. Si acabas de pagar, espera unos minutos; si no, <a href="/premium.html">revisa tu suscripción</a>.', 'Your subscription is not active on PayPal. If you just paid, wait a few minutes; otherwise <a href="/premium.html">check your subscription</a>.')
+        : err === 'rate_limited'
+          ? t('Hiciste muchas descargas hoy. Vuelve a intentarlo mañana.', 'Too many downloads today. Please try again tomorrow.')
+          : t('La descarga no está disponible en este momento. Intenta de nuevo más tarde.', 'Downloads are not available right now. Please try again later.');
+      msg.hidden = false;
+    } catch (e) {
+      msg.textContent = t('No pudimos conectar. Revisa tu internet e intenta de nuevo.', 'Could not connect. Check your internet and try again.');
+      msg.hidden = false;
+    } finally { btn.disabled = false; btn.textContent = label; }
+  });
+
+  applyLang();
+  fetch('/data/kits.json').then(function (r) { return r.json(); }).then(function (k) {
+    kits = k;
+    document.getElementById('kitCount').dataset.es = k.length + ' kits en PDF';
+    document.getElementById('kitCount').dataset.en = k.length + ' PDF kits';
+    applyLang(); render();
+  });
+})();
+</script>
+</body>
+</html>

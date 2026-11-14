@@ -143,6 +143,11 @@ export default {
         return await handleWebhook(request, env);
       }
 
+      // ─── PREMIUM KIT PDFs (verified subscribers only) ──────
+      if (path === '/kit' && request.method === 'POST') {
+        return await kitDownload(request, env);
+      }
+
       // ─── ADMIN ENDPOINTS ────────────────────────────────────
       if (path.startsWith('/admin')) {
         if (!env.ADMIN_KEY) {
@@ -433,9 +438,103 @@ function timingSafeEqual(a, b) {
 
 // ─── WEBHOOK HANDLER ────────────────────────────────────────
 
+// ─── PAYPAL ─────────────────────────────────────────────────
+// Secrets (wrangler secret put …): PAYPAL_CLIENT_ID, PAYPAL_SECRET, PAYPAL_WEBHOOK_ID.
+// Optional var PAYPAL_API (default live: https://api-m.paypal.com; sandbox:
+// https://api-m.sandbox.paypal.com).
+const PAYPAL_PLAN_ID = 'P-FZ9MSHLYCWXE6';           // the plan premium.html sells
+const paypalBase = env => env.PAYPAL_API || 'https://api-m.paypal.com';
+const paypalConfigured = env => !!(env.PAYPAL_CLIENT_ID && env.PAYPAL_SECRET);
+
+async function paypalToken(env) {
+  const cached = env.DATA && await env.DATA.get('paypal:token', 'json');
+  if (cached && cached.exp > Date.now()) return cached.token;
+  const res = await fetch(`${paypalBase(env)}/v1/oauth2/token`, {
+    method: 'POST',
+    headers: { Authorization: 'Basic ' + btoa(`${env.PAYPAL_CLIENT_ID}:${env.PAYPAL_SECRET}`), 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: 'grant_type=client_credentials',
+  });
+  if (!res.ok) throw new Error(`PayPal token ${res.status}`);
+  const j = await res.json();
+  const ttl = Math.max(60, (j.expires_in || 3600) - 300);
+  if (env.DATA) await env.DATA.put('paypal:token', JSON.stringify({ token: j.access_token, exp: Date.now() + ttl * 1000 }), { expirationTtl: ttl });
+  return j.access_token;
+}
+
+// Asks PayPal itself (not our KV, which a forged webhook could have written)
+// whether this subscription is ACTIVE on our plan. Cached 6 h per subscription.
+async function verifySubscription(env, id) {
+  if (!/^I-[A-Z0-9]{8,20}$/.test(id || '')) return false;
+  const key = `paypal:sub:${id}`;
+  const cached = env.DATA && await env.DATA.get(key, 'json');
+  if (cached) return cached.active;
+  const res = await fetch(`${paypalBase(env)}/v1/billing/subscriptions/${id}`, { headers: { Authorization: `Bearer ${await paypalToken(env)}` } });
+  if (res.status === 404) { if (env.DATA) await env.DATA.put(key, '{"active":false}', { expirationTtl: 3600 }); return false; }
+  if (!res.ok) throw new Error(`PayPal subscription ${res.status}`);
+  const s = await res.json();
+  const active = s.status === 'ACTIVE' && s.plan_id === PAYPAL_PLAN_ID;
+  if (env.DATA) await env.DATA.put(key, JSON.stringify({ active }), { expirationTtl: 6 * 3600 });
+  return active;
+}
+
+// PayPal's own signature check for webhook deliveries.
+async function verifyWebhookSignature(request, env, event) {
+  if (!paypalConfigured(env) || !env.PAYPAL_WEBHOOK_ID) return false;
+  const h = name => request.headers.get(name);
+  const res = await fetch(`${paypalBase(env)}/v1/notifications/verify-webhook-signature`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${await paypalToken(env)}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      auth_algo: h('PAYPAL-AUTH-ALGO'), cert_url: h('PAYPAL-CERT-URL'), transmission_id: h('PAYPAL-TRANSMISSION-ID'),
+      transmission_sig: h('PAYPAL-TRANSMISSION-SIG'), transmission_time: h('PAYPAL-TRANSMISSION-TIME'),
+      webhook_id: env.PAYPAL_WEBHOOK_ID, webhook_event: event,
+    }),
+  });
+  if (!res.ok) return false;
+  return (await res.json()).verification_status === 'SUCCESS';
+}
+
+// POST /kit {kit, subscriptionID} → the kit PDF, only for an active subscription.
+async function kitDownload(request, env) {
+  const origin = request.headers.get('Origin') || '';
+  if (!ALLOWED_ORIGINS.includes(origin) && !(env.DEV_ALLOW_LOCAL === '1' && (!origin || LOCAL_ORIGIN.test(origin)))) {
+    return jsonResponse({ error: 'forbidden_origin' }, 403);
+  }
+  if (!paypalConfigured(env)) return jsonResponse({ error: 'not_configured' }, 503);
+  let body = {};
+  try { body = await request.json(); } catch { /* empty */ }
+  const kit = String(body.kit || '');
+  if (!/^kit-[a-z0-9-]{2,40}$/.test(kit)) return jsonResponse({ error: 'bad_kit' }, 400);
+
+  // per-IP brake against guessing subscription IDs
+  const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+  const day = new Date().toISOString().slice(0, 10), rlKey = `kit:dl:${day}:${ip}`;
+  const n = Number(await env.DATA.get(rlKey) || 0);
+  if (n >= 60) return jsonResponse({ error: 'rate_limited' }, 429);
+  await env.DATA.put(rlKey, String(n + 1), { expirationTtl: 2 * 86400 });
+
+  let ok;
+  try { ok = await verifySubscription(env, String(body.subscriptionID || '')); }
+  catch (e) { console.error('PayPal verify failed:', e.message); return jsonResponse({ error: 'verify_unavailable' }, 503); }
+  if (!ok) return jsonResponse({ error: 'not_premium' }, 403);
+
+  const pdf = await env.DATA.get(`kit:${kit}`, 'arrayBuffer');
+  if (!pdf) return jsonResponse({ error: 'not_found' }, 404);
+  return new Response(pdf, { headers: {
+    'Content-Type': 'application/pdf', 'Content-Disposition': `attachment; filename="chartkids-${kit}.pdf"`,
+    'Cache-Control': 'private, no-store', ...corsHeaders(),
+  } });
+}
+
 async function handleWebhook(request, env) {
   try {
-    const payload = await request.json();
+    const raw = await request.text();
+    const payload = JSON.parse(raw || '{}');
+    // Only act on deliveries PayPal signs; anything else could be forged.
+    if (!(await verifyWebhookSignature(request, env, payload))) {
+      console.warn('Rejected unverified webhook', payload.event_type);
+      return jsonResponse({ error: paypalConfigured(env) && env.PAYPAL_WEBHOOK_ID ? 'invalid_signature' : 'not_configured' }, 401);
+    }
     const eventType = payload.event_type;
     const resource = payload.resource || {};
 
