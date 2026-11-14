@@ -25,11 +25,11 @@ const TEXT = {
     d_es: 'escenas para encontrar y contar objetos escondidos. Entrenan la atención y la observación. Con hoja de soluciones.',
     d_en: 'scenes to find and count hidden objects. Great for attention and observation. Answer key included.' },
   matematicas:  { h1_es: 'Fichas de Matemáticas', h1_en: 'Math Worksheets',
-    d_es: 'fichas de conteo, sumas, restas, multiplicaciones y fracciones, por niveles. Todas con hoja de respuestas.',
-    d_en: 'worksheets for counting, addition, subtraction, multiplication and fractions, by level. All with answer keys.' },
+    d_es: 'fichas de conteo, patrones, sumas, restas, multiplicaciones y fracciones, por niveles. Las de operaciones incluyen hoja de respuestas.',
+    d_en: 'worksheets for counting, patterns, addition, subtraction, multiplication and fractions, by level. Operations come with answer keys.' },
   escritura:    { h1_es: 'Fichas de Escritura', h1_en: 'Writing Worksheets',
-    d_es: 'fichas de trazos, letras, palabras y frases con guías para practicar la escritura paso a paso.',
-    d_en: 'worksheets for strokes, letters, words and sentences with guide lines to practice handwriting step by step.' },
+    d_es: 'fichas de trazos, letras, palabras, frases, trazado de palabras en inglés y sopas de letras para practicar la escritura paso a paso.',
+    d_en: 'worksheets for strokes, letters, words, sentences, word tracing and word searches to practice handwriting step by step.' },
   stem:         { h1_es: 'Fichas STEM', h1_en: 'STEM Worksheets',
     d_es: 'experimentos y retos de ciencia, tecnología, ingeniería y matemáticas para hacer en casa, con hoja de registro.',
     d_en: 'science, technology, engineering and math experiments and challenges to do at home, with a record sheet.' },
@@ -120,6 +120,43 @@ function updateHub(manifests) {
   console.log(`✓ imprime-y-juega.html: ${total} fichas en total (se muestra "${shown}+")`);
 }
 
+// Older printable collections (their own generators and URLs) shown inside a hub.
+// Each item keeps its URL; its inline SVG is saved as sheet.svg for the thumbnail.
+const LEGACY = {
+  escritura: [
+    { dir: 'tracing', group_es: 'Trazado de palabras', group_en: 'Word tracing', diff: () => 'facil' },
+    { dir: 'wordsearch', group_es: 'Sopa de letras', group_en: 'Word search' },
+  ],
+  matematicas: [
+    { dir: 'counting', group_es: 'Conteo', group_en: 'Counting' },
+    { dir: 'patterns', group_es: 'Patrones', group_en: 'Patterns' },
+  ],
+};
+const LEVEL_OF = slug => /-hard-/.test(slug) ? 'dificil' : /-medium-/.test(slug) ? 'medio' : 'facil';
+const AGE_OF = { facil: '3-5', medio: '6-8', dificil: '9-12' };
+
+function legacyItems(cat) {
+  const out = [];
+  for (const src of LEGACY[cat] || []) {
+    const base = path.join(L.ROOT, src.dir);
+    for (const slug of fs.readdirSync(base).sort()) {
+      const page = path.join(base, slug, 'index.html');
+      if (!fs.existsSync(page)) continue;
+      const html = fs.readFileSync(page, 'utf8');
+      const h1 = html.match(/<h1[^>]*data-es="([^"]*)"[^>]*data-en="([^"]*)"/);
+      const svg = html.match(/<svg[\s\S]*?<\/svg>/);
+      if (!h1 || !svg) throw new Error(`${src.dir}/${slug}: no title or drawing found`);
+      const one = svg[0].includes('xmlns=') ? svg[0] : svg[0].replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
+      fs.writeFileSync(path.join(base, slug, 'sheet.svg'), one);
+      const diff = src.diff ? src.diff(slug) : LEVEL_OF(slug);
+      const unq = s => s.replace(/&quot;/g, '"').replace(/&amp;/g, '&');
+      out.push({ slug, title_es: unq(h1[1]), title_en: unq(h1[2]), diff, age: AGE_OF[diff],
+        href: `/${src.dir}/${slug}/`, group_es: src.group_es, group_en: src.group_en, answer: false });
+    }
+  }
+  return out;
+}
+
 // For every built category, replace its sitemap entries (hub page + /<dir>/…) with
 // exactly the items in its manifest, so removed or renamed sheets drop out.
 function updateSitemap(manifests) {
@@ -132,7 +169,7 @@ function updateSitemap(manifests) {
     xml = xml.replace(owned, '');
     const today = new Date().toISOString().slice(0, 10);
     const entries = [`  <url><loc>${L.SITE}/${c.page}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>`]
-      .concat(m.items.map(i => `  <url><loc>${L.SITE}/${c.dir}/${i.slug}/</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>`));
+      .concat(m.items.filter(i => !i.href).map(i => `  <url><loc>${L.SITE}/${c.dir}/${i.slug}/</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>`));
     xml = xml.replace('</urlset>', entries.join('\n') + '\n</urlset>');
   }
   fs.writeFileSync(file, xml);
@@ -143,7 +180,12 @@ const manifests = {};
 for (const cat of Object.keys(L.CATS)) {
   const f = path.join(L.ROOT, 'data', 'printables', `${cat}.json`);
   if (!fs.existsSync(f)) continue;
-  manifests[cat] = JSON.parse(fs.readFileSync(f, 'utf8'));
+  const m = JSON.parse(fs.readFileSync(f, 'utf8'));
+  // own sheets (from gen-*.js) + older collections shown in this hub; idempotent
+  m.items = m.items.filter(i => !i.href).concat(legacyItems(cat));
+  m.total = m.items.length;
+  fs.writeFileSync(f, JSON.stringify(m));
+  manifests[cat] = m;
   fs.writeFileSync(path.join(L.ROOT, L.CATS[cat].page), hubPage(cat, manifests[cat]));
   console.log(`✓ ${L.CATS[cat].page}: ${manifests[cat].total} fichas`);
 }

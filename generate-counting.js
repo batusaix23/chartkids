@@ -2,6 +2,7 @@
 // generate-counting.js — Counting worksheets using emoji objects
 const fs   = require('fs');
 const path = require('path');
+const L    = require('./activity-layout');
 
 const CAT_COLORS={animals:'#16a34a',dinosaurs:'#dc2626',vehicles:'#2563eb',space:'#7c3aed',
   superheroes:'#e11d48',fantasy:'#db2777',jobs:'#0891b2',sports:'#0284c7',
@@ -92,6 +93,7 @@ ${rows}
 
 let built=0,skipped=0;
 const sitemapLines=[];
+const FORCE=process.argv.includes('--force');
 
 for(const [cat,itemArr] of Object.entries(ITEMS)){
   const catColor=CAT_COLORS[cat]||'#7c3aed';
@@ -100,9 +102,11 @@ for(const [cat,itemArr] of Object.entries(ITEMS)){
     const slug=`counting-${cat}-${level.name}-${level.id}`;
     const dir=path.join('counting',slug);
     const htmlPath=path.join(dir,'index.html');
-    if(fs.existsSync(htmlPath)){skipped++;continue;}
+    if(fs.existsSync(htmlPath)&&!FORCE){skipped++;continue;}
 
-    const rng=seededRng(cat.length*50+level.id*13+7);
+    // seed from the category NAME (the old seed used only its length, so e.g. animals
+    // and fantasy got identical counts)
+    const rng=seededRng([...cat].reduce((h,ch)=>(h*31+ch.charCodeAt(0))>>>0,7)+level.id*13);
     const nQ=5;
     const questions=[];
     for(let qi=0;qi<nQ;qi++){
@@ -119,23 +123,21 @@ for(const [cat,itemArr] of Object.entries(ITEMS)){
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Conteo ${catEs} ${level.label} | ChartKids</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+${L.FONTS_LINK}
 <link rel="stylesheet" href="/css/style.css">
 <style>@media print{header,.page-actions,.page-sidebar,footer{display:none!important}}</style>
+${L.LANG_SCRIPT}
 </head>
 <body>
-<header class="site-header"><div class="container header-inner">
-  <a href="/" class="logo">🎨 Chart<em>Kids</em></a>
-  <nav class="main-nav"><a href="/counting/" class="active">Conteo</a><a href="/maze/">Laberintos</a></nav>
-</div></header>
+${L.siteHeader('counting')}
 <main class="container page-layout">
   <div class="page-main">
-    <h1>🔢 Conteo: ${catEs}</h1>
+    ${L.bi('h1', `🔢 Conteo: ${catEs}`, `🔢 Counting: ${L.catEn(cat)}`)}
     <div style="margin:8px 0"><span class="pill" style="background:${catColor}20;color:${catColor}">${level.label}</span></div>
     <div class="print-area" style="max-width:540px;margin:0 auto">${minSvg}</div>
     <div class="page-actions">
-      <button onclick="window.print()" class="btn-print">🖨️ Imprimir</button>
-      <a href="/counting/" class="btn-secondary">Más fichas</a>
+      ${L.printButton()}
+      <a href="/matematicas.html" class="btn-secondary">${L.bi('span', 'Más fichas', 'More worksheets')}</a>
     </div>
   </div>
   <aside class="page-sidebar">
@@ -147,7 +149,7 @@ for(const [cat,itemArr] of Object.entries(ITEMS)){
     </div>
   </aside>
 </main>
-<footer class="site-footer"><div class="container footer-inner"><p>© 2025 ChartKids</p></div></footer>
+${L.siteFooter()}
 </body>
 </html>`;
     fs.mkdirSync(dir,{recursive:true});
@@ -170,24 +172,22 @@ fs.writeFileSync(path.join('counting','index.html'),`<!DOCTYPE html>
 <html lang="es"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Fichas de Conteo | ChartKids</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+${L.FONTS_LINK}
 <link rel="stylesheet" href="/css/style.css">
+${L.LANG_SCRIPT}
 </head><body>
-<header class="site-header"><div class="container header-inner">
-  <a href="/" class="logo">🎨 Chart<em>Kids</em></a>
-  <nav class="main-nav"><a href="/counting/" class="active">Conteo</a></nav>
-</div></header>
-<section style="background:#0891b2;color:white;padding:24px;text-align:center">
-  <h1 style="font-size:2rem;margin-bottom:6px">🔢 Fichas de Conteo</h1>
-  <p>72 fichas de contar objetos. ¿Cuántos hay? Para Pre-K a Primaria.</p>
-</section>
+${L.siteHeader('counting')}
+${L.activityHero(
+  {es:'🔢 Fichas de Conteo', en:'🔢 Counting Worksheets'},
+  {es:`${Object.keys(ITEMS).length*LEVELS.length} fichas de contar objetos. ¿Cuántos hay? Para Pre-K a Primaria.`,
+   en:`${Object.keys(ITEMS).length*LEVELS.length} worksheets for counting objects. How many are there? Pre-K to elementary.`})}
 <div class="container" style="padding:20px 16px">
   <div class="cards-grid">${catSections}</div>
 </div>
-<footer class="site-footer"><div class="container footer-inner"><p>© 2025 ChartKids</p></div></footer>
+${L.siteFooter()}
 </body></html>`);
 
-if(sitemapLines.length>0){
+if(sitemapLines.length>0&&!FORCE){
   const sm=fs.readFileSync('sitemap.xml','utf8');
   const updated=sm.replace('</urlset>',
     '  <url><loc>https://chartkids.com/counting/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>\n'

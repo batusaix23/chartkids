@@ -32,13 +32,15 @@
     var count = document.getElementById('resultCount');
     if (count) count.textContent = t(list.length + ' de ' + manifest.total + ' fichas', list.length + ' of ' + manifest.total + ' worksheets');
     grid.innerHTML = list.map(function (i) {
-      var href = '/' + manifest.dir + '/' + i.slug + '/';
+      // older collections in this hub carry their own URL (i.href)
+      var href = i.href || '/' + manifest.dir + '/' + i.slug + '/';
       var d = DIFF[i.diff] || ['', ''];
       return '<a class="item-card" href="' + href + '">' +
         '<div class="item-thumb"><img src="' + href + 'sheet.svg" alt="' + esc(t(i.title_es, i.title_en)) + '" loading="lazy" width="816" height="1056"></div>' +
         '<div class="item-info"><div class="item-name">' + esc(t(i.title_es, i.title_en)) + '</div>' +
         '<div class="item-tags"><span class="item-tag">' + esc(i.age) + ' ' + t('años', 'yrs') + '</span>' +
         '<span class="item-tag">' + esc(t(d[0], d[1])) + '</span>' +
+        (i.group_es ? '<span class="item-tag">' + esc(t(i.group_es, i.group_en)) + '</span>' : '') +
         (i.answer ? '<span class="item-tag">✔ ' + t('Solución', 'Answers') + '</span>' : '') + '</div>' +
         '<span class="item-btn btn-ready">🖨️ ' + t('Ver e imprimir', 'View & print') + '</span></div></a>';
     }).join('') || '<p class="no-results">' + t('Sin resultados con estos filtros.', 'No results for these filters.') + '</p>';
