@@ -135,6 +135,7 @@ for(const [cat,emojis] of Object.entries(CAT_EMOJIS)){
 ${L.FONTS_LINK}
 <link rel="stylesheet" href="/css/style.css">
 <style>@media print{header,.page-actions,.page-sidebar,footer{display:none!important}}</style>
+${L.ogMeta(`/patterns/${slug}/`, `Patrones: ${catEs} ${level.label}`)}
 ${L.LANG_SCRIPT}
 </head>
 <body>

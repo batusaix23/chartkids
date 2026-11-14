@@ -117,9 +117,32 @@ function itemPage(cat, item, i, items) {
 <title>${esc(item.title_es)} — ${esc(c.es)} para imprimir gratis | ChartKids</title>
 <meta name="description" content="${esc(descEs)}">
 <link rel="canonical" href="${url}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="${url}">
 <meta property="og:title" content="${esc(item.title_es)} — ChartKids">
 <meta property="og:description" content="${esc(descEs)}">
-<meta property="og:image" content="${SITE}${itemUrl(cat, item.slug)}sheet.svg">
+<meta property="og:image" content="${url}og.jpg">
+<meta property="og:image:width" content="1000">
+<meta property="og:image:height" content="525">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">${JSON.stringify([
+  {
+    '@context': 'https://schema.org', '@type': 'LearningResource',
+    name: item.title_es, description: descEs, url, image: url + 'og.jpg', inLanguage: 'es',
+    learningResourceType: 'Worksheet', isAccessibleForFree: true,
+    educationalLevel: d.level ? d.es : undefined,
+    typicalAgeRange: /^\d+-\d+$/.test(item.age) ? item.age : undefined,
+    about: c.es, publisher: { '@type': 'Organization', name: 'ChartKids', url: SITE },
+  },
+  {
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Imprime y Juega', item: `${SITE}/imprime-y-juega.html` },
+      { '@type': 'ListItem', position: 2, name: c.es, item: `${SITE}/${c.page}` },
+      { '@type': 'ListItem', position: 3, name: item.title_es, item: url },
+    ],
+  },
+]).replace(/</g, '\\u003c')}</script>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Fredoka+One${item.fonts ? '&family=' + item.fonts : ''}&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/printable-item.css">
 <style>:root{--cat:${c.color}}</style>
@@ -189,13 +212,19 @@ function writeCategory(cat, items, { keepDirs = [] } = {}) {
     }
   }
 
+  // Only touch files whose content changed: keeps git diffs small and lets
+  // build-og.js skip share images whose sheet didn't change.
+  const writeIfChanged = (file, content) => {
+    if (fs.existsSync(file) && fs.readFileSync(file, 'utf8') === content) return;
+    fs.writeFileSync(file, content);
+  };
   items.forEach((it, i) => {
     const dir = path.join(base, it.slug);
     fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(path.join(dir, 'index.html'), itemPage(cat, it, i, items));
-    fs.writeFileSync(path.join(dir, 'sheet.svg'), it.sheet);
+    writeIfChanged(path.join(dir, 'index.html'), itemPage(cat, it, i, items));
+    writeIfChanged(path.join(dir, 'sheet.svg'), it.sheet);
     const ans = path.join(dir, 'answer.svg');
-    if (it.answer) fs.writeFileSync(ans, it.answer);
+    if (it.answer) writeIfChanged(ans, it.answer);
     else if (fs.existsSync(ans)) fs.rmSync(ans);
   });
 

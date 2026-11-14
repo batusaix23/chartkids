@@ -126,6 +126,7 @@ for(const [cat,itemArr] of Object.entries(ITEMS)){
 ${L.FONTS_LINK}
 <link rel="stylesheet" href="/css/style.css">
 <style>@media print{header,.page-actions,.page-sidebar,footer{display:none!important}}</style>
+${L.ogMeta(`/counting/${slug}/`, `Conteo: ${catEs} ${level.label}`)}
 ${L.LANG_SCRIPT}
 </head>
 <body>

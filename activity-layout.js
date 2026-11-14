@@ -68,7 +68,21 @@ function printButton() {
   return `<button onclick="window.print()" class="btn-print">${bi('span', '🖨️ Imprimir', '🖨️ Print')}</button>`;
 }
 
+// Share-card tags for a printable page; og.jpg is rendered by printables/build-og.js.
+function ogMeta(pathname, title) {
+  const url = 'https://www.chartkids.com' + pathname;
+  return `<link rel="canonical" href="${url}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="${url}">
+<meta property="og:title" content="${escAttr(title)} — ChartKids">
+<meta property="og:image" content="${url}og.jpg">
+<meta property="og:image:width" content="1000">
+<meta property="og:image:height" content="525">
+<meta name="twitter:card" content="summary_large_image">`;
+}
+
 module.exports = {
+  ogMeta,
   FONTS_LINK, LANG_SCRIPT, escAttr, escText, bi, catEn,
   siteHeader, siteFooter, activityHero, printButton,
 };

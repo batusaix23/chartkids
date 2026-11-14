@@ -134,6 +134,7 @@ function buildPage(cat,level,words,grid,placed,catColor){
 ${L.FONTS_LINK}
 <link rel="stylesheet" href="/css/style.css">
 <style>@media print{header,.page-actions,.page-sidebar,footer{display:none!important}}</style>
+${L.ogMeta(`/wordsearch/wordsearch-${cat}-${level.name}-${level.id}/`, `Sopa de Letras: ${catEs} ${level.label}`)}
 ${L.LANG_SCRIPT}
 </head>
 <body>

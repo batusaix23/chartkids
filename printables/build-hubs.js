@@ -64,7 +64,15 @@ function hubPage(cat, m) {
 <title>${x.h1_es} Gratis — ChartKids | ${n} Fichas</title>
 <meta name="description" content="${n} ${L.esc(x.d_es)} Gratis y sin registro.">
 <link rel="canonical" href="${L.SITE}/${c.page}">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+${(() => { const first = m.items.find(i => !i.href); const img = first ? `${L.SITE}/${c.dir}/${first.slug}/og.jpg` : ''; return `<meta property="og:type" content="website">
+<meta property="og:url" content="${L.SITE}/${c.page}">
+<meta property="og:title" content="${x.h1_es} — ${n} fichas gratis | ChartKids">
+<meta property="og:description" content="${n} ${L.esc(x.d_es)}">
+${img ? `<meta property="og:image" content="${img}">
+<meta property="og:image:width" content="1000">
+<meta property="og:image:height" content="525">
+` : ''}<meta name="twitter:card" content="summary_large_image">
+`; })()}<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3864436143903858" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/css/printables-category.css">
 <style>:root{--cat:${c.color}}</style>
@@ -147,7 +155,8 @@ function legacyItems(cat) {
       const svg = html.match(/<svg[\s\S]*?<\/svg>/);
       if (!h1 || !svg) throw new Error(`${src.dir}/${slug}: no title or drawing found`);
       const one = svg[0].includes('xmlns=') ? svg[0] : svg[0].replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
-      fs.writeFileSync(path.join(base, slug, 'sheet.svg'), one);
+      const sheetFile = path.join(base, slug, 'sheet.svg');
+      if (!fs.existsSync(sheetFile) || fs.readFileSync(sheetFile, 'utf8') !== one) fs.writeFileSync(sheetFile, one);
       const diff = src.diff ? src.diff(slug) : LEVEL_OF(slug);
       const unq = s => s.replace(/&quot;/g, '"').replace(/&amp;/g, '&');
       out.push({ slug, title_es: unq(h1[1]), title_en: unq(h1[2]), diff, age: AGE_OF[diff],

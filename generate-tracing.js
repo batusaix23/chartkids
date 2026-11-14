@@ -117,6 +117,7 @@ function buildHTML(word, emoji, catColor, catEs, slug) {
 ${L.FONTS_LINK}
 <link rel="stylesheet" href="/css/style.css">
 <style>@media print{header,.page-actions,.page-sidebar,footer{display:none!important}}</style>
+${L.ogMeta(`/tracing/${slug}/`, `Trazar ${word}`)}
 ${L.LANG_SCRIPT}
 </head>
 <body>
