@@ -5868,7 +5868,9 @@ function initPayPalButton() {
       },
       createSubscription: function(data, actions) {
         return actions.subscription.create({
-          plan_id: 'P-8V697160D9829181ENL45O2I'
+          plan_id: 'P-8V697160D9829181ENL45O2I',
+          // Shown on PayPal's checkout instead of the account's business name; digital product, no shipping
+          application_context: { brand_name: 'ChartKids', shipping_preference: 'NO_SHIPPING', user_action: 'SUBSCRIBE_NOW' }
         });
       },
       onApprove: function(data, actions) {
