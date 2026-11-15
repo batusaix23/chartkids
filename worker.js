@@ -181,6 +181,11 @@ export default {
         }
 
         // GET /admin/webhooks
+        // GET /admin/paypal-check — diagnose PayPal credentials (no secrets returned)
+        if (path === '/admin/paypal-check') {
+          return await paypalCheck(env);
+        }
+
         if (path === '/admin/webhooks') {
           return await getWebhookLogs(env);
         }
@@ -444,14 +449,38 @@ function timingSafeEqual(a, b) {
 // https://api-m.sandbox.paypal.com).
 const PAYPAL_PLAN_ID = 'P-FZ9MSHLYCWXE6';           // the plan premium.html sells
 const paypalBase = env => env.PAYPAL_API || 'https://api-m.paypal.com';
-const paypalConfigured = env => !!(env.PAYPAL_CLIENT_ID && env.PAYPAL_SECRET);
+// Credentials pasted into a dashboard or terminal often carry stray spaces/newlines.
+const ppId = env => String(env.PAYPAL_CLIENT_ID || '').trim();
+const ppSecret = env => String(env.PAYPAL_SECRET || '').trim();
+const paypalConfigured = env => !!(ppId(env) && ppSecret(env));
+const PUBLIC_CLIENT_ID = 'Aa0khjubdaZqeyeVfDubi3n1povc_yU8kS5Ell6VEqMLYToNo45EijWzRsri32iJoVPWDtX4AWqDZYdB'; // premium.html
+
+// Admin-only diagnostic: never returns the secrets, only facts about them.
+async function paypalCheck(env) {
+  const id = ppId(env), secret = ppSecret(env);
+  const tryEnv = async base => {
+    const r = await fetch(`${base}/v1/oauth2/token`, { method: 'POST',
+      headers: { Authorization: 'Basic ' + btoa(`${id}:${secret}`), 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: 'grant_type=client_credentials' });
+    let detail = ''; try { const j = await r.json(); detail = j.error || (j.access_token ? 'ok' : ''); } catch {}
+    return { status: r.status, detail };
+  };
+  return jsonResponse({
+    clientId: { length: id.length, rawLength: String(env.PAYPAL_CLIENT_ID || '').length, startsWith: id.slice(0, 6), matchesPremiumPage: id === PUBLIC_CLIENT_ID },
+    secret: { length: secret.length, rawLength: String(env.PAYPAL_SECRET || '').length },
+    webhookIdSet: !!String(env.PAYPAL_WEBHOOK_ID || '').trim(),
+    apiBase: paypalBase(env),
+    live: id && secret ? await tryEnv('https://api-m.paypal.com') : null,
+    sandbox: id && secret ? await tryEnv('https://api-m.sandbox.paypal.com') : null,
+  });
+}
 
 async function paypalToken(env) {
   const cached = env.DATA && await env.DATA.get('paypal:token', 'json');
   if (cached && cached.exp > Date.now()) return cached.token;
   const res = await fetch(`${paypalBase(env)}/v1/oauth2/token`, {
     method: 'POST',
-    headers: { Authorization: 'Basic ' + btoa(`${env.PAYPAL_CLIENT_ID}:${env.PAYPAL_SECRET}`), 'Content-Type': 'application/x-www-form-urlencoded' },
+    headers: { Authorization: 'Basic ' + btoa(`${ppId(env)}:${ppSecret(env)}`), 'Content-Type': 'application/x-www-form-urlencoded' },
     body: 'grant_type=client_credentials',
   });
   if (!res.ok) throw new Error(`PayPal token ${res.status}`);
@@ -487,7 +516,7 @@ async function verifyWebhookSignature(request, env, event) {
     body: JSON.stringify({
       auth_algo: h('PAYPAL-AUTH-ALGO'), cert_url: h('PAYPAL-CERT-URL'), transmission_id: h('PAYPAL-TRANSMISSION-ID'),
       transmission_sig: h('PAYPAL-TRANSMISSION-SIG'), transmission_time: h('PAYPAL-TRANSMISSION-TIME'),
-      webhook_id: env.PAYPAL_WEBHOOK_ID, webhook_event: event,
+      webhook_id: String(env.PAYPAL_WEBHOOK_ID).trim(), webhook_event: event,
     }),
   });
   if (!res.ok) return false;
