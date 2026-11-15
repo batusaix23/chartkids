@@ -1,0 +1,2814 @@
+{
+ "slime": {
+  "emoji": "🧪",
+  "title_es": "Slime Casero Básico",
+  "title_en": "Homemade Slime",
+  "cat_es": "✂️ Manualidades",
+  "cat_en": "✂️ Crafts",
+  "age": "5-10",
+  "time": "20 min",
+  "materials_es": [
+   "1 taza de pegamento blanco",
+   "1 cucharada de bicarbonato",
+   "Colorante (el color que quieras)",
+   "1 cucharada de solución para lentes de contacto"
+  ],
+  "materials_en": [
+   "1 cup white glue",
+   "1 tbsp baking soda",
+   "Food coloring (your favorite color)",
+   "1 tbsp contact lens solution"
+  ],
+  "steps_es": [
+   "Coloca el pegamento en un recipiente grande.",
+   "Agrega el bicarbonato y mezcla bien.",
+   "Añade el colorante de tu color favorito.",
+   "Agrega la solución para lentes de contacto lentamente.",
+   "Mezcla hasta que el slime se despegue del recipiente."
+  ],
+  "steps_en": [
+   "Put the glue in a large bowl.",
+   "Add baking soda and mix well.",
+   "Add your favorite food coloring.",
+   "Slowly add the contact lens solution.",
+   "Mix until the slime no longer sticks to the bowl."
+  ],
+  "benefits_es": [
+   "Motricidad fina",
+   "Estimulación sensorial",
+   "Creatividad"
+  ],
+  "benefits_en": [
+   "Fine motor skills",
+   "Sensory stimulation",
+   "Creativity"
+  ],
+  "tip_es": "Si el slime queda muy pegajoso, agrega un poco más de solución para lentes.",
+  "tip_en": "If the slime is too sticky, add a little more contact lens solution."
+ },
+ "volcan": {
+  "emoji": "🌋",
+  "title_es": "Volcán Casero",
+  "title_en": "Homemade Volcano",
+  "cat_es": "🔬 Experimentos",
+  "cat_en": "🔬 Science",
+  "age": "4-10",
+  "time": "15 min",
+  "materials_es": [
+   "Vinagre blanco",
+   "Bicarbonato de sodio",
+   "Botella pequeña",
+   "Colorante rojo",
+   "Bandeja grande"
+  ],
+  "materials_en": [
+   "White vinegar",
+   "Baking soda",
+   "Small bottle",
+   "Red food coloring",
+   "Large tray"
+  ],
+  "steps_es": [
+   "Coloca la botella en el centro de la bandeja.",
+   "Vierte bicarbonato dentro de la botella.",
+   "Agrega el colorante rojo.",
+   "Vierte el vinagre lentamente.",
+   "¡Observa la erupción y repite las veces que quieras!"
+  ],
+  "steps_en": [
+   "Place the bottle in the center of the tray.",
+   "Pour baking soda inside the bottle.",
+   "Add red food coloring.",
+   "Slowly pour the vinegar.",
+   "Watch the eruption — repeat as many times as you like!"
+  ],
+  "benefits_es": [
+   "Reacciones químicas",
+   "Observación científica",
+   "Diversión educativa"
+  ],
+  "benefits_en": [
+   "Chemical reactions",
+   "Scientific observation",
+   "Educational fun"
+  ],
+  "tip_es": "Coloca una toalla debajo de la bandeja para facilitar la limpieza.",
+  "tip_en": "Place a towel under the tray for easy cleanup."
+ },
+ "avion": {
+  "emoji": "✈️",
+  "title_es": "Aviones de Papel",
+  "title_en": "Paper Airplanes",
+  "cat_es": "✂️ Manualidades",
+  "cat_en": "✂️ Crafts",
+  "age": "5-12",
+  "time": "20 min",
+  "materials_es": [
+   "Hojas de papel (tamaño carta)",
+   "Marcadores de colores"
+  ],
+  "materials_en": [
+   "Letter-size paper sheets",
+   "Colored markers"
+  ],
+  "steps_es": [
+   "Dobla el papel por la mitad a lo largo.",
+   "Dobla las esquinas superiores hacia el centro formando un triángulo.",
+   "Dobla las alas hacia abajo siguiendo la línea central.",
+   "Decora tu avión con los marcadores.",
+   "Organiza una competencia: ¿quién llega más lejos?"
+  ],
+  "steps_en": [
+   "Fold the paper in half lengthwise.",
+   "Fold the top corners inward to the center, forming a triangle.",
+   "Fold the wings down along the center line.",
+   "Decorate your airplane with markers.",
+   "Hold a contest: who flies farthest?"
+  ],
+  "benefits_es": [
+   "Coordinación fina",
+   "Creatividad",
+   "Física básica (aerodinámica)"
+  ],
+  "benefits_en": [
+   "Fine coordination",
+   "Creativity",
+   "Basic physics (aerodynamics)"
+  ],
+  "tip_es": "Dobla con cuidado — los bordes bien marcados hacen volar mejor al avión.",
+  "tip_en": "Fold carefully — crisp edges make the airplane fly better."
+ },
+ "huerto": {
+  "emoji": "🌱",
+  "title_es": "Mini Huerto Casero",
+  "title_en": "Mini Home Garden",
+  "cat_es": "🔬 Experimentos",
+  "cat_en": "🔬 Science",
+  "age": "4-10",
+  "time": "30 min + seguimiento / 30 min + tracking",
+  "materials_es": [
+   "Vasos de plástico o yogurt",
+   "Tierra para macetas",
+   "Semillas (frijol, lenteja o chía)",
+   "Agua"
+  ],
+  "materials_en": [
+   "Plastic cups or yogurt containers",
+   "Potting soil",
+   "Seeds (bean, lentil or chia)",
+   "Water"
+  ],
+  "steps_es": [
+   "Llena los vasos con tierra hasta ¾.",
+   "Haz un hueco pequeño con el dedo y coloca la semilla.",
+   "Cubre con un poco de tierra.",
+   "Riega con una cucharada de agua.",
+   "Observa y riega cada día. Anota cuándo aparece el primer brote."
+  ],
+  "steps_en": [
+   "Fill cups ¾ full with soil.",
+   "Make a small hole with your finger and place the seed.",
+   "Cover with a little soil.",
+   "Water with one tablespoon of water.",
+   "Observe and water daily. Note when the first sprout appears."
+  ],
+  "benefits_es": [
+   "Responsabilidad diaria",
+   "Aprendizaje sobre naturaleza",
+   "Paciencia"
+  ],
+  "benefits_en": [
+   "Daily responsibility",
+   "Learning about nature",
+   "Patience"
+  ],
+  "tip_es": "Pon los vasos cerca de una ventana con luz solar. Las lentejas brotan en 3-4 días.",
+  "tip_en": "Place cups near a sunny window. Lentils sprout in 3-4 days."
+ },
+ "torre": {
+  "emoji": "🏗️",
+  "title_es": "Torre de Malvaviscos",
+  "title_en": "Marshmallow Tower",
+  "cat_es": "🔬 Experimentos",
+  "cat_en": "🔬 Science",
+  "age": "5-12",
+  "time": "20 min",
+  "materials_es": [
+   "Malvaviscos (1 bolsa)",
+   "Palillos de dientes (1 caja)"
+  ],
+  "materials_en": [
+   "Marshmallows (1 bag)",
+   "Toothpicks (1 box)"
+  ],
+  "steps_es": [
+   "Conecta los malvaviscos con palillos formando cuadrados.",
+   "Apila las estructuras para ir subiendo la torre.",
+   "Construye la torre más alta y estable posible.",
+   "Mide la altura con una regla.",
+   "¡Compara alturas con todos los participantes!"
+  ],
+  "steps_en": [
+   "Connect marshmallows with toothpicks to form squares.",
+   "Stack the structures to build your tower higher.",
+   "Build the tallest and most stable tower you can.",
+   "Measure the height with a ruler.",
+   "Compare heights with everyone who played!"
+  ],
+  "benefits_es": [
+   "Resolución de problemas",
+   "Ingeniería básica",
+   "Trabajo en equipo"
+  ],
+  "benefits_en": [
+   "Problem solving",
+   "Basic engineering",
+   "Teamwork"
+  ],
+  "tip_es": "Las bases más anchas hacen torres más estables. ¡Experimenta con las formas!",
+  "tip_en": "Wider bases make more stable towers. Experiment with different shapes!"
+ },
+ "pizza": {
+  "emoji": "🍕",
+  "title_es": "Mini Pizzas en Casa",
+  "title_en": "Mini Pizzas at Home",
+  "cat_es": "🍳 Cocina",
+  "cat_en": "🍳 Cooking",
+  "age": "5-12",
+  "time": "45 min",
+  "materials_es": [
+   "Masa de pizza (comprada o casera)",
+   "Salsa de tomate",
+   "Queso mozzarella rallado",
+   "Toppings a elección: jamón, aceitunas, pimientos, etc."
+  ],
+  "materials_en": [
+   "Pizza dough (store-bought or homemade)",
+   "Tomato sauce",
+   "Shredded mozzarella cheese",
+   "Toppings of choice: ham, olives, peppers, etc."
+  ],
+  "steps_es": [
+   "Precalienta el horno a 200°C.",
+   "Divide la masa en porciones pequeñas (una por niño).",
+   "Estira cada porción con las manos.",
+   "Cada niño decora su pizza como quiera.",
+   "Hornea 12-15 minutos hasta que el queso burbujee."
+  ],
+  "steps_en": [
+   "Preheat the oven to 400°F (200°C).",
+   "Divide the dough into small portions (one per child).",
+   "Each child stretches their portion by hand.",
+   "Everyone decorates their pizza however they like.",
+   "Bake 12-15 minutes until the cheese bubbles."
+  ],
+  "benefits_es": [
+   "Creatividad culinaria",
+   "Nutrición",
+   "Trabajo en equipo"
+  ],
+  "benefits_en": [
+   "Culinary creativity",
+   "Nutrition",
+   "Teamwork"
+  ],
+  "tip_es": "¡Deja que cada niño nombre su pizza. Hace que se la coman con más orgullo!",
+  "tip_en": "Let each child name their pizza — they'll eat it with extra pride!"
+ },
+ "burbujas": {
+  "emoji": "💦",
+  "title_es": "Burbujas Gigantes",
+  "title_en": "Giant Bubbles",
+  "cat_es": "🔬 Experimentos",
+  "cat_en": "🔬 Science",
+  "age": "3-10",
+  "time": "10 min",
+  "materials_es": [
+   "½ taza de agua",
+   "2 cucharadas de jabón lavavajillas",
+   "1 cucharada de glicerina o miel",
+   "Palitos o pajillas"
+  ],
+  "materials_en": [
+   "½ cup water",
+   "2 tbsp dish soap",
+   "1 tbsp glycerin or honey",
+   "Sticks or straws"
+  ],
+  "steps_es": [
+   "Mezcla el agua, el jabón y la glicerina en un recipiente amplio.",
+   "Deja reposar la mezcla 5 minutos.",
+   "Sumerge los palitos o pajillas en la mezcla.",
+   "Sopla suavemente para crear burbujas.",
+   "¡Experimenta soplando más despacio o más rápido para hacer burbujas de distintos tamaños!"
+  ],
+  "steps_en": [
+   "Mix the water, soap and glycerin in a wide bowl.",
+   "Let the mixture rest 5 minutes.",
+   "Dip the sticks or straws into the mixture.",
+   "Blow gently to create bubbles.",
+   "Experiment blowing slower or faster to make different sizes!"
+  ],
+  "benefits_es": [
+   "Comprensión de tensión superficial",
+   "Coordinación respiratoria",
+   "Exploración sensorial"
+  ],
+  "benefits_en": [
+   "Understanding surface tension",
+   "Breath coordination",
+   "Sensory exploration"
+  ],
+  "tip_es": "La glicerina hace las burbujas más resistentes. Si no tienes, usa miel o jarabe de maíz.",
+  "tip_en": "Glycerin makes bubbles stronger. No glycerin? Use honey or corn syrup instead."
+ },
+ "playdough": {
+  "emoji": "🎨",
+  "title_es": "Masa Moldeable de Colores",
+  "title_en": "Colorful Playdough",
+  "cat_es": "✂️ Manualidades",
+  "cat_en": "✂️ Crafts",
+  "age": "3-8",
+  "time": "25 min",
+  "materials_es": [
+   "1 taza de harina",
+   "¼ taza de sal",
+   "½ taza de agua caliente",
+   "1 cucharada de aceite vegetal",
+   "Colorante alimentario"
+  ],
+  "materials_en": [
+   "1 cup flour",
+   "¼ cup salt",
+   "½ cup warm water",
+   "1 tbsp vegetable oil",
+   "Food coloring"
+  ],
+  "steps_es": [
+   "Mezcla la harina y la sal en un recipiente.",
+   "Agrega el aceite y el agua caliente poco a poco.",
+   "Amasa hasta obtener una textura suave y no pegajosa.",
+   "Divide en porciones y añade un color diferente a cada una.",
+   "¡Guarda en bolsas con cierre — dura hasta una semana!"
+  ],
+  "steps_en": [
+   "Mix flour and salt in a bowl.",
+   "Add oil and warm water little by little.",
+   "Knead until smooth and non-sticky.",
+   "Divide into portions and add a different color to each.",
+   "Store in zip-lock bags — it lasts up to a week!"
+  ],
+  "benefits_es": [
+   "Motricidad fina",
+   "Creatividad libre",
+   "Relajación sensorial"
+  ],
+  "benefits_en": [
+   "Fine motor skills",
+   "Free creativity",
+   "Sensory relaxation"
+  ],
+  "tip_es": "Si queda muy pegajosa agrega más harina; si queda seca, unas gotas de agua.",
+  "tip_en": "Too sticky? Add more flour. Too dry? Add a few drops of water."
+ },
+ "galletas": {
+  "emoji": "🍪",
+  "title_es": "Galletas Decoradas",
+  "title_en": "Decorated Cookies",
+  "cat_es": "🍳 Cocina",
+  "cat_en": "🍳 Cooking",
+  "age": "4-12",
+  "time": "60 min",
+  "materials_es": [
+   "2 tazas de harina",
+   "½ taza de mantequilla blanda",
+   "½ taza de azúcar",
+   "1 huevo",
+   "1 cucharadita de vainilla",
+   "Azúcar glass y colorante para decorar"
+  ],
+  "materials_en": [
+   "2 cups flour",
+   "½ cup softened butter",
+   "½ cup sugar",
+   "1 egg",
+   "1 tsp vanilla extract",
+   "Powdered sugar and food coloring for decorating"
+  ],
+  "steps_es": [
+   "Bate la mantequilla con el azúcar hasta obtener una crema.",
+   "Agrega el huevo y la vainilla, mezcla bien.",
+   "Incorpora la harina poco a poco hasta formar una masa.",
+   "Refrigera 20 min, extiende con rodillo y corta figuras.",
+   "Hornea a 180 °C por 10–12 min. Decora cuando estén frías."
+  ],
+  "steps_en": [
+   "Beat butter and sugar until creamy.",
+   "Add egg and vanilla, mix well.",
+   "Gradually add flour until a dough forms.",
+   "Refrigerate 20 min, roll out and cut shapes.",
+   "Bake at 350 °F for 10–12 min. Decorate when cool."
+  ],
+  "benefits_es": [
+   "Matemáticas (medidas)",
+   "Coordinación manual",
+   "Creatividad artística"
+  ],
+  "benefits_en": [
+   "Math (measurements)",
+   "Hand coordination",
+   "Artistic creativity"
+  ],
+  "tip_es": "Usa cortadores con formas de estrellas, corazones y animales para más diversión.",
+  "tip_en": "Use star, heart and animal cookie cutters for extra fun."
+ },
+ "titeres": {
+  "emoji": "🧦",
+  "title_es": "Títeres de Calcetín",
+  "title_en": "Sock Puppets",
+  "cat_es": "✂️ Manualidades",
+  "cat_en": "✂️ Crafts",
+  "age": "4-10",
+  "time": "30 min",
+  "materials_es": [
+   "Calcetines viejos (uno por niño)",
+   "Ojos movibles o botones",
+   "Pegamento o hilo y aguja",
+   "Fieltro, lana o tela de colores",
+   "Marcadores permanentes"
+  ],
+  "materials_en": [
+   "Old socks (one per child)",
+   "Googly eyes or buttons",
+   "Glue or needle and thread",
+   "Felt, yarn or colored fabric",
+   "Permanent markers"
+  ],
+  "steps_es": [
+   "Pon el calcetín en tu mano y dobla los dedos para formar la boca.",
+   "Pega los ojos movibles encima del pliegue de la boca.",
+   "Corta cabello de fieltro o lana y pégalo.",
+   "Agrega detalles con marcadores: nariz, lengua, manchas.",
+   "¡Inventa un nombre y una voz especial para tu personaje!"
+  ],
+  "steps_en": [
+   "Put the sock on your hand and fold your fingers to make a mouth.",
+   "Glue googly eyes above the mouth fold.",
+   "Cut hair or bangs from felt or yarn and glue them on.",
+   "Add details with markers: nose, tongue, spots.",
+   "Invent a name and a special voice for your character!"
+  ],
+  "benefits_es": [
+   "Expresión oral y dramática",
+   "Creatividad",
+   "Motricidad fina"
+  ],
+  "benefits_en": [
+   "Oral and dramatic expression",
+   "Creativity",
+   "Fine motor skills"
+  ],
+  "tip_es": "Organiza una función de títeres al final. ¡Los niños adorarán actuar con sus personajes!",
+  "tip_en": "Put on a puppet show at the end — kids love performing with their characters!"
+ },
+ "smoothie": {
+  "emoji": "🥤",
+  "title_es": "Smoothie de Frutas",
+  "title_en": "Fruit Smoothie",
+  "cat_es": "🍳 Cocina",
+  "cat_en": "🍳 Cooking",
+  "age": "4-10",
+  "time": "10 min",
+  "materials_es": [
+   "1 banana madura",
+   "1 taza de fresas u otras frutas",
+   "½ taza de leche o yogur natural",
+   "Hielo (opcional)",
+   "Miel al gusto"
+  ],
+  "materials_en": [
+   "1 ripe banana",
+   "1 cup strawberries or other fruit",
+   "½ cup milk or plain yogurt",
+   "Ice (optional)",
+   "Honey to taste"
+  ],
+  "steps_es": [
+   "Pela y corta las frutas en trozos pequeños.",
+   "Coloca todo en la licuadora: frutas, leche y miel.",
+   "Agrega hielo si lo quieres más frío.",
+   "Licúa a velocidad alta 30 segundos.",
+   "Sirve en vasos y decora el borde con una rodaja de fruta."
+  ],
+  "steps_en": [
+   "Peel and cut the fruit into small pieces.",
+   "Put everything in the blender: fruit, milk and honey.",
+   "Add ice for an extra-cold smoothie.",
+   "Blend on high for 30 seconds.",
+   "Serve in glasses and decorate the rim with a fruit slice."
+  ],
+  "benefits_es": [
+   "Hábitos alimenticios saludables",
+   "Medición y proporciones",
+   "Autonomía en cocina"
+  ],
+  "benefits_en": [
+   "Healthy eating habits",
+   "Measuring and proportions",
+   "Kitchen independence"
+  ],
+  "tip_es": "¡Mezcla frutas de distintos colores y convierte el smoothie en un arcoíris!",
+  "tip_en": "Mix fruits of different colors to turn your smoothie into a rainbow!"
+ },
+ "soplado": {
+  "emoji": "🌬️",
+  "title_es": "Arte con Soplado",
+  "title_en": "Blow Art",
+  "cat_es": "🎨 Arte",
+  "cat_en": "🎨 Art",
+  "age": "4-10",
+  "time": "20 min",
+  "materials_es": [
+   "Pintura lavable de varios colores",
+   "Pajillas",
+   "Cartulina o papel grueso",
+   "Un poco de agua",
+   "Periódico para proteger la mesa"
+  ],
+  "materials_en": [
+   "Washable paint in several colors",
+   "Straws",
+   "Cardstock or thick paper",
+   "A little water",
+   "Newspaper to protect the table"
+  ],
+  "steps_es": [
+   "Cubre la mesa con periódico.",
+   "Diluye la pintura con un poco de agua para hacerla más fluida.",
+   "Coloca gotas de pintura sobre la cartulina.",
+   "Usa la pajilla para soplar la pintura en distintas direcciones.",
+   "Mezcla colores: observa cómo se crean nuevos tonos al combinarse."
+  ],
+  "steps_en": [
+   "Cover the table with newspaper.",
+   "Dilute the paint with a little water to make it more fluid.",
+   "Drop spots of paint onto the cardstock.",
+   "Use the straw to blow the paint in different directions.",
+   "Mix colors — watch new shades form where they meet."
+  ],
+  "benefits_es": [
+   "Expresión artística libre",
+   "Coordinación respiratoria",
+   "Comprensión del color"
+  ],
+  "benefits_en": [
+   "Free artistic expression",
+   "Breath coordination",
+   "Color theory"
+  ],
+  "tip_es": "Dobla el papel por la mitad mientras la pintura está húmeda para crear diseños simétricos.",
+  "tip_en": "Fold the paper in half while the paint is still wet to create symmetrical designs."
+ },
+ "puente": {
+  "emoji": "🌉",
+  "title_es": "Reto del Puente",
+  "title_en": "Bridge Challenge",
+  "cat_es": "🔬 Experimentos",
+  "cat_en": "🔬 Science",
+  "age": "6-12",
+  "time": "25 min",
+  "materials_es": [
+   "20 palitos de madera o de helado",
+   "Cinta adhesiva",
+   "Tijeras",
+   "Monedas para probar el peso",
+   "Dos pilas de libros (los apoyos del puente)"
+  ],
+  "materials_en": [
+   "20 wooden craft sticks",
+   "Tape",
+   "Scissors",
+   "Coins to test weight",
+   "Two stacks of books (bridge supports)"
+  ],
+  "steps_es": [
+   "Coloca dos pilas de libros separadas unos 20 cm.",
+   "El reto: construir un puente que las cruce usando solo palitos y cinta.",
+   "Dibuja tu diseño en papel antes de construir.",
+   "Construye el puente en 15 minutos.",
+   "¡Prueba cuánto peso aguanta colocando monedas una a una!"
+  ],
+  "steps_en": [
+   "Place two stacks of books about 20 cm apart.",
+   "Challenge: build a bridge spanning the gap using only sticks and tape.",
+   "Sketch your design on paper before building.",
+   "Build the bridge in 15 minutes.",
+   "Test how much weight it holds by adding coins one at a time!"
+  ],
+  "benefits_es": [
+   "Pensamiento ingenieril",
+   "Resolución de problemas",
+   "Trabajo en equipo"
+  ],
+  "benefits_en": [
+   "Engineering thinking",
+   "Problem solving",
+   "Teamwork"
+  ],
+  "tip_es": "Los triángulos son más resistentes que los cuadrados — ¡el secreto de los ingenieros!",
+  "tip_en": "Triangles are stronger than squares — that's the engineer's secret!"
+ },
+ "ensalada": {
+  "emoji": "🥗",
+  "title_es": "Ensalada de Frutas Arcoíris",
+  "title_en": "Rainbow Fruit Salad",
+  "cat_es": "🍳 Cocina",
+  "cat_en": "🍳 Cooking",
+  "age": "3-10",
+  "time": "15 min",
+  "materials_es": [
+   "Fresas o sandía (rojo)",
+   "Mandarina o naranja (naranja)",
+   "Piña o mango (amarillo)",
+   "Kiwi o uvas verdes (verde)",
+   "Arándanos o uvas moradas (morado)",
+   "Miel y jugo de limón al gusto"
+  ],
+  "materials_en": [
+   "Strawberries or watermelon (red)",
+   "Mandarin or orange (orange)",
+   "Pineapple or mango (yellow)",
+   "Kiwi or green grapes (green)",
+   "Blueberries or purple grapes (purple)",
+   "Honey and lime juice to taste"
+  ],
+  "steps_es": [
+   "Lava todas las frutas cuidadosamente.",
+   "Corta en trozos del mismo tamaño (con ayuda de un adulto).",
+   "Coloca las frutas por colores formando un arcoíris en el plato.",
+   "Mezcla la miel con el jugo de limón y rocía por encima.",
+   "¡Cuenta los colores del arcoíris y nómbralos antes de comer!"
+  ],
+  "steps_en": [
+   "Wash all the fruit carefully.",
+   "Cut into equal-sized pieces (with adult help).",
+   "Arrange the fruit by color to form a rainbow on the plate.",
+   "Mix honey with lime juice and drizzle over the top.",
+   "Count the rainbow colors and name them before eating!"
+  ],
+  "benefits_es": [
+   "Alimentación saludable",
+   "Colores y aprendizaje",
+   "Autonomía en cocina"
+  ],
+  "benefits_en": [
+   "Healthy eating",
+   "Colors and learning",
+   "Kitchen independence"
+  ],
+  "tip_es": "¡Convierte el plato en un juego: cada color del arcoíris da un superpoder diferente!",
+  "tip_en": "Make it a game: each rainbow color gives a different superpower!"
+ },
+ "densidades": {
+  "emoji": "🌈",
+  "title_es": "Arcoíris de Densidades",
+  "title_en": "Density Rainbow",
+  "cat_es": "🔬 Experimentos",
+  "cat_en": "🔬 Science",
+  "age": "5-12",
+  "time": "20 min",
+  "materials_es": [
+   "Miel (100 ml)",
+   "Jabón lavavajillas (100 ml)",
+   "Agua con colorante azul (100 ml)",
+   "Aceite vegetal (100 ml)",
+   "Alcohol isopropílico con colorante rojo (100 ml)",
+   "Vaso alto y transparente",
+   "Jeringa o cuchara para verter despacio"
+  ],
+  "materials_en": [
+   "Honey (100 ml)",
+   "Dish soap (100 ml)",
+   "Water with blue food coloring (100 ml)",
+   "Vegetable oil (100 ml)",
+   "Rubbing alcohol with red food coloring (100 ml)",
+   "Tall clear glass",
+   "Syringe or spoon for slow pouring"
+  ],
+  "steps_es": [
+   "Vierte la miel en el fondo del vaso muy despacio.",
+   "Agrega el jabón lavavajillas inclinando el vaso.",
+   "Vierte el agua coloreada con una cuchara para no mezclarla.",
+   "Añade el aceite vegetal con cuidado.",
+   "Termina con el alcohol de color rojo muy despacio. ¡Observa el arcoíris!"
+  ],
+  "steps_en": [
+   "Pour honey into the bottom of the glass very slowly.",
+   "Add dish soap by tilting the glass.",
+   "Pour the colored water over a spoon so it doesn't mix.",
+   "Carefully add the vegetable oil.",
+   "Finish with the red alcohol very slowly. Look at the rainbow!"
+  ],
+  "benefits_es": [
+   "Concepto de densidad",
+   "Método científico",
+   "Observación y registro"
+  ],
+  "benefits_en": [
+   "Density concept",
+   "Scientific method",
+   "Observation and recording"
+  ],
+  "tip_es": "Vierte cada líquido muy despacio por el borde del vaso. La paciencia es clave.",
+  "tip_en": "Pour each liquid very slowly down the side of the glass. Patience is key!"
+ },
+ "estatica": {
+  "emoji": "⚡",
+  "title_es": "Electricidad Estática",
+  "title_en": "Static Electricity",
+  "cat_es": "🔬 Experimentos",
+  "cat_en": "🔬 Science",
+  "age": "4-10",
+  "time": "15 min",
+  "materials_es": [
+   "1 globo inflado",
+   "Cabello limpio y seco (o suéter de lana)",
+   "Pimienta molida",
+   "Un vaso de agua",
+   "Papelitos pequeños recortados"
+  ],
+  "materials_en": [
+   "1 inflated balloon",
+   "Clean dry hair (or wool sweater)",
+   "Ground pepper",
+   "A glass of water",
+   "Small cut paper pieces"
+  ],
+  "steps_es": [
+   "Frota el globo contra tu cabello por 10 segundos.",
+   "Acerca el globo a los papelitos — ¡saltarán hacia él!",
+   "Frota el globo de nuevo y acércalo al chorrito de agua del grifo.",
+   "¡Observa cómo el chorro se dobla hacia el globo!",
+   "Esparce pimienta en un plato y acerca el globo cargado."
+  ],
+  "steps_en": [
+   "Rub the balloon against your hair for 10 seconds.",
+   "Hold the balloon near the paper pieces — they'll jump toward it!",
+   "Rub the balloon again and hold it near a thin stream of water from the tap.",
+   "Watch the stream bend toward the balloon!",
+   "Sprinkle pepper on a plate and hold the charged balloon above it."
+  ],
+  "benefits_es": [
+   "Introducción a la electricidad",
+   "Observación científica",
+   "Pensamiento causal"
+  ],
+  "benefits_en": [
+   "Introduction to electricity",
+   "Scientific observation",
+   "Cause-and-effect thinking"
+  ],
+  "tip_es": "Funciona mejor en días secos. La humedad reduce la carga estática del globo.",
+  "tip_en": "Works best on dry days. Humidity reduces the static charge on the balloon."
+ },
+ "cristales": {
+  "emoji": "💎",
+  "title_es": "Cristales de Sal",
+  "title_en": "Salt Crystals",
+  "cat_es": "🔬 Experimentos",
+  "cat_en": "🔬 Science",
+  "age": "6-12",
+  "time": "30 min + 3 días",
+  "materials_es": [
+   "1 taza de agua caliente",
+   "½ taza de sal de cocina o bórax",
+   "Hilo de lana o cuerda",
+   "Palito de madera o lápiz",
+   "Colorante alimentario (opcional)",
+   "Vaso o frasco"
+  ],
+  "materials_en": [
+   "1 cup hot water",
+   "½ cup table salt or borax",
+   "Wool thread or string",
+   "Wooden stick or pencil",
+   "Food coloring (optional)",
+   "Glass or jar"
+  ],
+  "steps_es": [
+   "Disuelve la sal en el agua caliente revolviendo hasta que no se disuelva más.",
+   "Agrega colorante si deseas cristales de colores.",
+   "Ata el hilo al palito y coloca el palito sobre el vaso para que cuelgue.",
+   "Vierte la solución en el vaso y cubre con papel.",
+   "Observa cada día — ¡en 3-5 días tendrás cristales brillantes!"
+  ],
+  "steps_en": [
+   "Dissolve salt in hot water, stirring until no more dissolves.",
+   "Add food coloring if you want colored crystals.",
+   "Tie the thread to the stick and lay the stick across the glass so the thread hangs in.",
+   "Pour the solution into the glass and cover with paper.",
+   "Observe daily — in 3-5 days you'll have sparkling crystals!"
+  ],
+  "benefits_es": [
+   "Concepto de saturación",
+   "Paciencia y observación diaria",
+   "Método científico"
+  ],
+  "benefits_en": [
+   "Saturation concept",
+   "Patience and daily observation",
+   "Scientific method"
+  ],
+  "tip_es": "Cuanto más saturada esté la solución, más rápido y grandes crecerán los cristales.",
+  "tip_en": "The more saturated the solution, the faster and bigger the crystals will grow."
+ },
+ "barco_jabon": {
+  "emoji": "🚢",
+  "title_es": "Barco de Jabón",
+  "title_en": "Soap-Powered Boat",
+  "cat_es": "🔬 Experimentos",
+  "cat_en": "🔬 Science",
+  "age": "4-10",
+  "time": "15 min",
+  "materials_es": [
+   "Cartón o cartulina",
+   "Tijeras",
+   "Jabón lavavajillas",
+   "Bandeja o fuente con agua",
+   "Marcadores para decorar"
+  ],
+  "materials_en": [
+   "Cardboard or cardstock",
+   "Scissors",
+   "Dish soap",
+   "Tray or basin with water",
+   "Markers for decorating"
+  ],
+  "steps_es": [
+   "Recorta un triángulo pequeño de cartón (tu barco).",
+   "Haz una pequeña muesca en V en la parte trasera del triángulo.",
+   "Decora el barco con marcadores.",
+   "Coloca el barco en la superficie del agua.",
+   "Pon una gota de jabón en la muesca — ¡el barco saldrá disparado!"
+  ],
+  "steps_en": [
+   "Cut a small triangle from cardboard (your boat).",
+   "Make a small V-notch at the back of the triangle.",
+   "Decorate the boat with markers.",
+   "Place the boat on the water surface.",
+   "Put one drop of soap in the notch — the boat will shoot forward!"
+  ],
+  "benefits_es": [
+   "Tensión superficial",
+   "Acción y reacción",
+   "Pensamiento científico"
+  ],
+  "benefits_en": [
+   "Surface tension",
+   "Action and reaction",
+   "Scientific thinking"
+  ],
+  "tip_es": "El experimento solo funciona una vez por fuente de agua — el jabón rompe la tensión de toda la superficie.",
+  "tip_en": "The experiment only works once per tray — the soap breaks the surface tension of all the water."
+ },
+ "germinacion": {
+  "emoji": "🌱",
+  "title_es": "Germinación en Bolsa",
+  "title_en": "Bag Germination",
+  "cat_es": "🔬 Experimentos",
+  "cat_en": "🔬 Science",
+  "age": "3-10",
+  "time": "15 min + seguimiento",
+  "materials_es": [
+   "Bolsa con cierre zip",
+   "Papel de cocina húmedo",
+   "Semillas (frijol, lenteja o chía)",
+   "Cinta adhesiva",
+   "Marcador para etiquetar",
+   "Ventana soleada"
+  ],
+  "materials_en": [
+   "Zip-lock bag",
+   "Wet paper towel",
+   "Seeds (bean, lentil or chia)",
+   "Tape",
+   "Marker for labeling",
+   "Sunny window"
+  ],
+  "steps_es": [
+   "Humedece el papel de cocina y dóblalo dentro de la bolsa.",
+   "Coloca 2-3 semillas entre el papel y la pared transparente de la bolsa.",
+   "Cierra la bolsa y pégala en la ventana con cinta.",
+   "Etiqueta con la fecha y el tipo de semilla.",
+   "Registra cada día: ¿cuándo aparece la raíz? ¿cuándo el tallo?"
+  ],
+  "steps_en": [
+   "Wet the paper towel and fold it inside the bag.",
+   "Place 2-3 seeds between the paper and the transparent wall of the bag.",
+   "Seal the bag and tape it to the window.",
+   "Label with the date and seed type.",
+   "Record daily: when does the root appear? When does the stem?"
+  ],
+  "benefits_es": [
+   "Ciclo de vida de las plantas",
+   "Registro científico diario",
+   "Responsabilidad y paciencia"
+  ],
+  "benefits_en": [
+   "Plant life cycle",
+   "Daily scientific recording",
+   "Responsibility and patience"
+  ],
+  "tip_es": "Las lentejas germinan en 2-3 días, los frijoles en 4-5. ¡Prueba las dos y compara!",
+  "tip_en": "Lentils sprout in 2-3 days, beans in 4-5. Try both and compare!"
+ },
+ "colores_agua": {
+  "emoji": "🌀",
+  "title_es": "Colores que Bailan",
+  "title_en": "Dancing Colors",
+  "cat_es": "🔬 Experimentos",
+  "cat_en": "🔬 Science",
+  "age": "3-8",
+  "time": "10 min",
+  "materials_es": [
+   "Frasco o vaso transparente",
+   "Agua",
+   "Aceite vegetal (¼ taza)",
+   "Colorante alimentario de varios colores",
+   "Cuchara o palito para agitar"
+  ],
+  "materials_en": [
+   "Clear jar or glass",
+   "Water",
+   "Vegetable oil (¼ cup)",
+   "Food coloring in several colors",
+   "Spoon or stick for stirring"
+  ],
+  "steps_es": [
+   "Llena el frasco con agua hasta la mitad.",
+   "Vierte el aceite por encima — verás que se separa.",
+   "Agrega gotas de distintos colorantes sobre el aceite.",
+   "Observa cómo las gotas caen a través del aceite y se disuelven en el agua.",
+   "Agita suavemente y observa los remolinos de color bailar."
+  ],
+  "steps_en": [
+   "Fill the jar halfway with water.",
+   "Pour oil on top — it will separate immediately.",
+   "Drop different food colorings onto the oil.",
+   "Watch the drops fall through the oil and dissolve in the water.",
+   "Swirl gently and watch the color tornadoes dance."
+  ],
+  "benefits_es": [
+   "Inmiscibilidad de líquidos",
+   "Densidad",
+   "Asombro científico"
+  ],
+  "benefits_en": [
+   "Liquid immiscibility",
+   "Density",
+   "Scientific wonder"
+  ],
+  "tip_es": "Para un efecto dramático, usa al menos 3 colores distintos y agrega las gotas desde altura.",
+  "tip_en": "For a dramatic effect, use at least 3 different colors and drop them from a height."
+ },
+ "origami": {
+  "emoji": "🦢",
+  "title_es": "Origami Fácil",
+  "title_en": "Easy Origami",
+  "cat_es": "✂️ Manualidades",
+  "cat_en": "✂️ Crafts",
+  "age": "6-12",
+  "time": "30 min",
+  "materials_es": [
+   "Hojas de papel cuadradas de colores (15×15 cm)",
+   "Mesa limpia y plana",
+   "Regla (opcional)"
+  ],
+  "materials_en": [
+   "Colored square paper sheets (6×6 in)",
+   "Clean flat table",
+   "Ruler (optional)"
+  ],
+  "steps_es": [
+   "BARCO: Dobla el cuadrado por la mitad, vuelve a doblar las esquinas hacia el centro, dobla el borde inferior hacia arriba por ambos lados y abre el barco desde el interior.",
+   "RANA SALTARINA: Dobla en triángulo dos veces, lleva las esquinas laterales al pico y dobla las patas hacia atrás. Presiona para que salte.",
+   "GRULLA: Dobla en forma de cometa, gira, repite, abre y aplana ambos lados, dobla las alas hacia afuera.",
+   "Practica cada figura al menos 2 veces.",
+   "¡Decora con marcadores y crea una escena con todas las figuras!"
+  ],
+  "steps_en": [
+   "BOAT: Fold square in half, fold again, bring corners to the center, fold bottom edge up on both sides, and open the boat from inside.",
+   "JUMPING FROG: Fold into triangle twice, bring side corners to the tip and fold legs back. Press to make it jump.",
+   "CRANE: Fold into kite shape, flip, repeat, open and flatten both sides, fold wings outward.",
+   "Practice each figure at least twice.",
+   "Decorate with markers and create a scene with all your figures!"
+  ],
+  "benefits_es": [
+   "Geometría y espacialidad",
+   "Concentración",
+   "Motricidad fina avanzada"
+  ],
+  "benefits_en": [
+   "Geometry and spatial thinking",
+   "Concentration",
+   "Advanced fine motor skills"
+  ],
+  "tip_es": "El secreto del origami es marcar bien cada pliegue con la uña antes de continuar.",
+  "tip_en": "The secret of origami is to crease each fold firmly with your nail before moving on."
+ },
+ "piedras": {
+  "emoji": "🌿",
+  "title_es": "Jardín de Piedras Pintadas",
+  "title_en": "Painted Rock Garden",
+  "cat_es": "🎨 Arte",
+  "cat_en": "🎨 Art",
+  "age": "4-10",
+  "time": "45 min",
+  "materials_es": [
+   "Piedras lisas y limpias",
+   "Pintura acrílica o de dedos",
+   "Pinceles finos y gruesos",
+   "Barniz transparente (opcional)",
+   "Periódico para la mesa"
+  ],
+  "materials_en": [
+   "Smooth clean rocks",
+   "Acrylic or finger paint",
+   "Fine and thick brushes",
+   "Clear varnish (optional)",
+   "Newspaper for the table"
+  ],
+  "steps_es": [
+   "Lava y seca bien las piedras.",
+   "Da una capa base de pintura blanca y deja secar 10 minutos.",
+   "Pinta tu diseño: animales, caras, mandalas o patrones.",
+   "Agrega detalles finos con un pincel delgado.",
+   "Cuando esté seco, aplica barniz para proteger y dar brillo."
+  ],
+  "steps_en": [
+   "Wash and dry the rocks well.",
+   "Apply a white base coat and let dry 10 minutes.",
+   "Paint your design: animals, faces, mandalas or patterns.",
+   "Add fine details with a thin brush.",
+   "When dry, apply varnish to protect and add shine."
+  ],
+  "benefits_es": [
+   "Expresión artística",
+   "Paciencia y detalle",
+   "Conexión con la naturaleza"
+  ],
+  "benefits_en": [
+   "Artistic expression",
+   "Patience and attention to detail",
+   "Connection with nature"
+  ],
+  "tip_es": "¡Esconde piedras pintadas en parques o plazas para que otros niños las encuentren!",
+  "tip_en": "Hide your painted rocks in parks or plazas for other kids to find!"
+ },
+ "cuento": {
+  "emoji": "📖",
+  "title_es": "Inventa tu Cuento",
+  "title_en": "Invent Your Story",
+  "cat_es": "✏️ Escritura",
+  "cat_en": "✏️ Writing",
+  "age": "5-12",
+  "time": "30 min",
+  "materials_es": [
+   "Esta ficha impresa",
+   "Lápiz o bolígrafo",
+   "Colores para ilustrar (opcional)"
+  ],
+  "materials_en": [
+   "This printed sheet",
+   "Pencil or pen",
+   "Colors for illustrating (optional)"
+  ],
+  "steps_es": [
+   "MI PERSONAJE: ¿Cómo se llama? ¿Qué poderes o talentos tiene? Dibújalo.",
+   "EL PROBLEMA: ¿Qué desafío enfrenta? ¿Por qué es difícil?",
+   "LA AVENTURA: Describe 3 cosas que hace para resolver el problema.",
+   "LA AYUDA: ¿Quién o qué lo ayuda en el camino?",
+   "EL FINAL: ¿Cómo termina la historia? ¿Qué aprende el personaje?"
+  ],
+  "steps_en": [
+   "MY CHARACTER: What's their name? What powers or talents do they have? Draw them.",
+   "THE PROBLEM: What challenge do they face? Why is it hard?",
+   "THE ADVENTURE: Describe 3 things they do to solve the problem.",
+   "THE HELP: Who or what helps them along the way?",
+   "THE ENDING: How does the story end? What does the character learn?"
+  ],
+  "benefits_es": [
+   "Escritura creativa",
+   "Estructura narrativa",
+   "Vocabulario y expresión"
+  ],
+  "benefits_en": [
+   "Creative writing",
+   "Narrative structure",
+   "Vocabulary and expression"
+  ],
+  "tip_es": "Los mejores cuentos tienen un personaje con un defecto que supera al final. ¿Cuál es el de tu personaje?",
+  "tip_en": "The best stories have a character with a flaw they overcome. What's your character's flaw?"
+ },
+ "yoga": {
+  "emoji": "🧘",
+  "title_es": "Yoga Infantil",
+  "title_en": "Kids Yoga",
+  "cat_es": "🌟 Bienestar",
+  "cat_en": "🌟 Wellness",
+  "age": "3-10",
+  "time": "20 min",
+  "materials_es": [
+   "Una esterilla o toalla en el suelo",
+   "Ropa cómoda",
+   "Espacio despejado",
+   "Música suave (opcional)"
+  ],
+  "materials_en": [
+   "A mat or towel on the floor",
+   "Comfortable clothes",
+   "Clear space",
+   "Soft music (optional)"
+  ],
+  "steps_es": [
+   "MONTAÑA: De pie, pies juntos, brazos al lado. Respira profundo 3 veces.",
+   "ÁRBOL: Un pie en el tobillo contrario, manos juntas arriba. Equilibrio 10 seg.",
+   "PERRO BOCA ABAJO: Manos y pies en el suelo, cadera arriba, forma una V.",
+   "COBRA: Boca abajo, manos bajo los hombros, eleva el pecho.",
+   "NIÑO: Rodillas en el suelo, siéntate en los talones y estira los brazos al frente.",
+   "GUERRERO: Un pie adelante, rodilla doblada, brazos extendidos.",
+   "MARIPOSA: Sentado, plantas de los pies juntas, aletea las rodillas.",
+   "ESTRELLA DE MAR: Acostado boca arriba, brazos y piernas extendidos. Respira."
+  ],
+  "steps_en": [
+   "MOUNTAIN: Stand tall, feet together, arms at sides. Breathe deeply 3 times.",
+   "TREE: One foot on the opposite ankle, hands together above. Balance 10 sec.",
+   "DOWNWARD DOG: Hands and feet on floor, hips up, form an upside-down V.",
+   "COBRA: Face down, hands under shoulders, lift your chest.",
+   "CHILD'S POSE: Knees on floor, sit back on heels, stretch arms forward.",
+   "WARRIOR: One foot forward, knee bent, arms extended.",
+   "BUTTERFLY: Seated, soles of feet together, flap your knees like wings.",
+   "STARFISH: Lie on back, arms and legs wide. Breathe slowly."
+  ],
+  "benefits_es": [
+   "Equilibrio y coordinación",
+   "Regulación emocional",
+   "Conciencia corporal"
+  ],
+  "benefits_en": [
+   "Balance and coordination",
+   "Emotional regulation",
+   "Body awareness"
+  ],
+  "tip_es": "Haz cada postura al ritmo de 5 respiraciones lentas. La calma llega sola.",
+  "tip_en": "Hold each pose for 5 slow breaths. Calmness comes naturally."
+ },
+ "pulseras": {
+  "emoji": "🧵",
+  "title_es": "Pulseras de Hilo",
+  "title_en": "Friendship Bracelets",
+  "cat_es": "✂️ Manualidades",
+  "cat_en": "✂️ Crafts",
+  "age": "6-12",
+  "time": "30 min",
+  "materials_es": [
+   "Hilo de bordar o lana de colores (3-4 colores)",
+   "Tijeras",
+   "Cinta adhesiva o pinza para sujetar",
+   "Tabla o libro para trabajar"
+  ],
+  "materials_en": [
+   "Embroidery floss or yarn in 3-4 colors",
+   "Scissors",
+   "Tape or clip to anchor",
+   "Board or book to work on"
+  ],
+  "steps_es": [
+   "Corta 4 hilos de unos 60 cm cada uno, uno de cada color.",
+   "Junta los extremos y haz un nudo dejando 5 cm de cola.",
+   "PATRÓN BÁSICO: Toma el primer hilo y haz nudos en forma de 4 sobre cada uno de los demás hilos de izquierda a derecha.",
+   "Repite con el siguiente hilo hasta llegar al ancho deseado.",
+   "Mide la pulsera en la muñeca y remata con un nudo firme."
+  ],
+  "steps_en": [
+   "Cut 4 threads about 60 cm each, one of each color.",
+   "Knot the ends together leaving 5 cm tail.",
+   "BASIC PATTERN: Take the first thread and make figure-4 knots over each of the other threads from left to right.",
+   "Repeat with the next thread until you reach the desired length.",
+   "Measure the bracelet on the wrist and finish with a firm knot."
+  ],
+  "benefits_es": [
+   "Motricidad fina avanzada",
+   "Paciencia y concentración",
+   "Sentido del regalo y amistad"
+  ],
+  "benefits_en": [
+   "Advanced fine motor skills",
+   "Patience and concentration",
+   "Sense of gifting and friendship"
+  ],
+  "tip_es": "Asegura el nudo inicial con cinta a una mesa o libro para que no se mueva mientras trabajas.",
+  "tip_en": "Tape the starting knot to a table or book so it doesn't move while you work."
+ },
+ "marcapaginas": {
+  "emoji": "🔖",
+  "title_es": "Marcapáginas Decorados",
+  "title_en": "Decorated Bookmarks",
+  "cat_es": "✂️ Manualidades",
+  "cat_en": "✂️ Crafts",
+  "age": "5-12",
+  "time": "20 min",
+  "materials_es": [
+   "Cartulina o cartón fino",
+   "Tijeras o cúter (con ayuda de adulto)",
+   "Marcadores, colores o acuarelas",
+   "Pegamento y recortes de revista o papel de regalo",
+   "Plastificadora o cinta adhesiva transparente para proteger"
+  ],
+  "materials_en": [
+   "Cardstock or thin cardboard",
+   "Scissors or craft knife (with adult help)",
+   "Markers, colored pencils or watercolors",
+   "Glue and magazine or gift-wrap scraps",
+   "Laminator or clear tape to protect"
+  ],
+  "steps_es": [
+   "Recorta tiras de cartulina de 5×15 cm (una por marcapáginas).",
+   "TÉCNICA 1 — Dibujo libre: dibuja un personaje o paisaje con marcadores.",
+   "TÉCNICA 2 — Collage: pega recortes de revista y crea una composición colorida.",
+   "TÉCNICA 3 — Acuarela + contorno: pinta fondos y agrega tinta negra encima.",
+   "Cubre con cinta transparente o plastifica para que dure mucho más."
+  ],
+  "steps_en": [
+   "Cut strips of cardstock 5×15 cm (one per bookmark).",
+   "TECHNIQUE 1 — Free drawing: draw a character or landscape with markers.",
+   "TECHNIQUE 2 — Collage: glue magazine scraps into a colorful composition.",
+   "TECHNIQUE 3 — Watercolor + outline: paint backgrounds and add black ink on top.",
+   "Cover with clear tape or laminate so it lasts much longer."
+  ],
+  "benefits_es": [
+   "Lectura y amor por los libros",
+   "Creatividad artística",
+   "Motricidad fina"
+  ],
+  "benefits_en": [
+   "Reading and love of books",
+   "Artistic creativity",
+   "Fine motor skills"
+  ],
+  "tip_es": "¡Regala los marcapáginas a amigos o familiares — son el regalo perfecto hecho a mano!",
+  "tip_en": "Gift the bookmarks to friends or family — they're the perfect handmade present!"
+ },
+ "corona": {
+  "emoji": "🌸",
+  "title_es": "Corona de Flores de Papel",
+  "title_en": "Paper Flower Crown",
+  "cat_es": "✂️ Manualidades",
+  "cat_en": "✂️ Crafts",
+  "age": "5-10",
+  "time": "30 min",
+  "materials_es": [
+   "Papel de seda o papel crepé de colores",
+   "Tijeras",
+   "Alambre delgado floral o tiras de cartulina",
+   "Cinta adhesiva verde",
+   "Pegamento en barra"
+  ],
+  "materials_en": [
+   "Tissue paper or crepe paper in colors",
+   "Scissors",
+   "Thin floral wire or cardstock strips",
+   "Green tape",
+   "Glue stick"
+  ],
+  "steps_es": [
+   "Corta cuadrados de papel de seda de 10×10 cm (6 por flor).",
+   "Apila 6 cuadrados, dóblalos en acordeón y ata el centro con alambre.",
+   "Separa las capas con cuidado hacia arriba para formar la flor.",
+   "Envuelve el alambre con cinta verde para hacer el tallo.",
+   "Mide una tira de cartulina para la cabeza y pega las flores hasta cubrir la corona."
+  ],
+  "steps_en": [
+   "Cut 10×10 cm squares of tissue paper (6 per flower).",
+   "Stack 6 squares, accordion-fold them and tie the center with wire.",
+   "Carefully separate the layers upward to shape the flower.",
+   "Wrap the wire with green tape to make the stem.",
+   "Measure a cardstock strip to fit the head and glue flowers all around."
+  ],
+  "benefits_es": [
+   "Creatividad y diseño",
+   "Motricidad fina",
+   "Expresión personal"
+  ],
+  "benefits_en": [
+   "Creativity and design",
+   "Fine motor skills",
+   "Personal expression"
+  ],
+  "tip_es": "Mezcla flores de 2-3 colores diferentes para una corona más vistosa. ¡Úsala en fotos!",
+  "tip_en": "Mix flowers in 2-3 different colors for a more striking crown. Wear it for photos!"
+ },
+ "movil": {
+  "emoji": "🎐",
+  "title_es": "Móvil de Figuras",
+  "title_en": "Hanging Mobile",
+  "cat_es": "✂️ Manualidades",
+  "cat_en": "✂️ Crafts",
+  "age": "5-10",
+  "time": "35 min",
+  "materials_es": [
+   "Cartulina de colores",
+   "Tijeras",
+   "Hilo o lana",
+   "Palito de madera o rama delgada (30 cm)",
+   "Marcadores y colores para decorar",
+   "Perforadora o aguja para los agujeros"
+  ],
+  "materials_en": [
+   "Colored cardstock",
+   "Scissors",
+   "Thread or yarn",
+   "Wooden stick or thin branch (30 cm)",
+   "Markers and pencils to decorate",
+   "Hole punch or needle for holes"
+  ],
+  "steps_es": [
+   "Dibuja y recorta 5-7 figuras en cartulina (animales, estrellas, nubes, planetas).",
+   "Decora ambas caras de cada figura con colores.",
+   "Haz un agujero pequeño en la parte superior de cada figura.",
+   "Ata hilos de distintas longitudes a las figuras.",
+   "Cuelga todas las figuras de la rama y ajusta el equilibrio desplazando los hilos."
+  ],
+  "steps_en": [
+   "Draw and cut out 5-7 shapes in cardstock (animals, stars, clouds, planets).",
+   "Decorate both sides of each shape with colors.",
+   "Make a small hole at the top of each shape.",
+   "Tie threads of different lengths to the shapes.",
+   "Hang all shapes from the branch and balance by sliding the threads."
+  ],
+  "benefits_es": [
+   "Equilibrio y física básica",
+   "Creatividad espacial",
+   "Decoración del entorno"
+  ],
+  "benefits_en": [
+   "Balance and basic physics",
+   "Spatial creativity",
+   "Room decoration"
+  ],
+  "tip_es": "Cuélgalo cerca de una ventana — la brisa lo hará girar lentamente como un móvil real.",
+  "tip_en": "Hang it near a window — the breeze will make it spin slowly like a real mobile."
+ },
+ "caja": {
+  "emoji": "🎁",
+  "title_es": "Caja de Regalo Decorada",
+  "title_en": "Decorated Gift Box",
+  "cat_es": "✂️ Manualidades",
+  "cat_en": "✂️ Crafts",
+  "age": "6-12",
+  "time": "30 min",
+  "materials_es": [
+   "Cartulina gruesa o cartón fino",
+   "Regla y lápiz",
+   "Tijeras y pegamento",
+   "Marcadores, colores o papel de regalo",
+   "Cinta o lazo para decorar"
+  ],
+  "materials_en": [
+   "Thick cardstock or thin cardboard",
+   "Ruler and pencil",
+   "Scissors and glue",
+   "Markers, colored pencils or gift wrap",
+   "Ribbon or bow for decoration"
+  ],
+  "steps_es": [
+   "Dibuja una cruz con 4 cuadrados iguales de 8×8 cm y un rectángulo de 8×2 cm a cada lado.",
+   "Recorta la figura completa.",
+   "Dobla todos los bordes hacia adentro marcando las líneas con la regla.",
+   "Pega las pestañas para formar la caja.",
+   "Decora con marcadores, papel de regalo o cinta. ¡Lista para regalar!"
+  ],
+  "steps_en": [
+   "Draw a cross with 4 equal 8×8 cm squares and an 8×2 cm rectangle on each side.",
+   "Cut out the whole shape.",
+   "Fold all edges inward, creasing with the ruler.",
+   "Glue the tabs to form the box.",
+   "Decorate with markers, gift wrap or ribbon. Ready to give!"
+  ],
+  "benefits_es": [
+   "Geometría y medida",
+   "Planificación espacial",
+   "Generosidad"
+  ],
+  "benefits_en": [
+   "Geometry and measurement",
+   "Spatial planning",
+   "Generosity"
+  ],
+  "tip_es": "Haz la tapa 1 cm más grande que la caja base para que encaje perfectamente.",
+  "tip_en": "Make the lid 1 cm larger than the base so it fits perfectly."
+ },
+ "acuarela": {
+  "emoji": "🎨",
+  "title_es": "Pintura con Acuarelas",
+  "title_en": "Watercolor Painting",
+  "cat_es": "🎨 Arte",
+  "cat_en": "🎨 Art",
+  "age": "4-10",
+  "time": "25 min",
+  "materials_es": [
+   "Acuarelas (en pastilla o líquidas)",
+   "Pinceles grueso, mediano y fino",
+   "Papel acuarela o papel grueso",
+   "Vaso con agua limpia",
+   "Papel de cocina para limpiar el pincel"
+  ],
+  "materials_en": [
+   "Watercolors (pan or liquid)",
+   "Thick, medium and fine brushes",
+   "Watercolor or thick paper",
+   "Glass of clean water",
+   "Paper towel to clean brush"
+  ],
+  "steps_es": [
+   "LAVADO PLANO: moja bien el papel, aplica un color y deja que se extienda solo.",
+   "HÚMEDO SOBRE HÚMEDO: añade otro color mientras el primero aún está mojado — ¡se mezclan solos!",
+   "DEGRADADO: carga el pincel con un color oscuro y ve añadiendo agua para aclararlo progresivamente.",
+   "SALPICADO: carga el pincel, golpéalo con otro dedo para salpicar gotitas de color.",
+   "¡Combina las 4 técnicas en un solo cuadro!"
+  ],
+  "steps_en": [
+   "FLAT WASH: wet the paper well, apply a color and let it spread on its own.",
+   "WET ON WET: add another color while the first is still wet — they blend themselves!",
+   "GRADIENT: load the brush with a dark color and add water progressively to lighten.",
+   "SPLATTER: load the brush, tap it with another finger to splatter color drops.",
+   "Combine all 4 techniques in a single painting!"
+  ],
+  "benefits_es": [
+   "Técnica artística",
+   "Control del color y el agua",
+   "Paciencia y observación"
+  ],
+  "benefits_en": [
+   "Art technique",
+   "Color and water control",
+   "Patience and observation"
+  ],
+  "tip_es": "Limpia el pincel entre colores para no ensuciar la paleta. El agua turbia da colores opacos.",
+  "tip_en": "Clean the brush between colors to keep the palette clean. Murky water makes muddy colors."
+ },
+ "mosaico": {
+  "emoji": "🟦",
+  "title_es": "Mosaico de Papel",
+  "title_en": "Paper Mosaic",
+  "cat_es": "🎨 Arte",
+  "cat_en": "🎨 Art",
+  "age": "5-12",
+  "time": "30 min",
+  "materials_es": [
+   "Revistas viejas o papel de colores",
+   "Tijeras",
+   "Pegamento en barra",
+   "Cartulina negra o blanca",
+   "Lápiz para dibujar el contorno"
+  ],
+  "materials_en": [
+   "Old magazines or colored paper",
+   "Scissors",
+   "Glue stick",
+   "Black or white cardstock",
+   "Pencil to draw the outline"
+  ],
+  "steps_es": [
+   "Dibuja con lápiz el contorno de una figura simple en la cartulina (pez, sol, mariposa).",
+   "Recorta pequeños cuadrados o rectángulos de papel de colores (1×1 cm aprox).",
+   "Ordena los cuadraditos por colores antes de pegar.",
+   "Pega las piezas dentro del contorno dejando un pequeño espacio entre ellas.",
+   "Rellena también el fondo con cuadraditos de un color distinto."
+  ],
+  "steps_en": [
+   "Draw a simple shape outline in pencil on the cardstock (fish, sun, butterfly).",
+   "Cut small squares or rectangles from colored paper (about 1×1 cm).",
+   "Sort the pieces by color before gluing.",
+   "Glue the pieces inside the outline leaving a small gap between them.",
+   "Fill the background with pieces in a different color."
+  ],
+  "benefits_es": [
+   "Paciencia y precisión",
+   "Composición artística",
+   "Reconocimiento del color"
+  ],
+  "benefits_en": [
+   "Patience and precision",
+   "Artistic composition",
+   "Color recognition"
+  ],
+  "tip_es": "Cuanto más pequeñas sean las piezas, más detallado y bonito quedará el mosaico.",
+  "tip_en": "The smaller the pieces, the more detailed and beautiful the mosaic will look."
+ },
+ "estampado": {
+  "emoji": "🥔",
+  "title_es": "Estampado con Verduras",
+  "title_en": "Vegetable Printing",
+  "cat_es": "🎨 Arte",
+  "cat_en": "🎨 Art",
+  "age": "4-10",
+  "time": "25 min",
+  "materials_es": [
+   "Papa, apio, pimiento o zanahoria",
+   "Cuchillo (uso de adulto)",
+   "Pintura acrílica o tempera lavable",
+   "Platos pequeños o paleta",
+   "Papel o tela para estampar",
+   "Periódico para la mesa"
+  ],
+  "materials_en": [
+   "Potato, celery, bell pepper or carrot",
+   "Knife (adult use)",
+   "Acrylic or washable tempera paint",
+   "Small plates or palette",
+   "Paper or fabric for printing",
+   "Newspaper for the table"
+  ],
+  "steps_es": [
+   "Un adulto corta las verduras por la mitad o en formas simples.",
+   "Vierte pintura en platos planos, una por color.",
+   "Presiona la verdura sobre la pintura y luego sobre el papel.",
+   "Experimenta con diferentes presiones: suave = luz, fuerte = relleno completo.",
+   "Combina varios vegetales para crear un cuadro lleno de texturas únicas."
+  ],
+  "steps_en": [
+   "An adult cuts the vegetables in half or into simple shapes.",
+   "Pour paint into flat plates, one color per plate.",
+   "Press the vegetable onto the paint and then onto the paper.",
+   "Experiment with pressure: light = faint print, firm = full coverage.",
+   "Combine several vegetables to create artwork with unique textures."
+  ],
+  "benefits_es": [
+   "Exploración de texturas",
+   "Composición visual",
+   "Conexión con los alimentos"
+  ],
+  "benefits_en": [
+   "Texture exploration",
+   "Visual composition",
+   "Connection with food"
+  ],
+  "tip_es": "El apio cortado transversalmente hace círculos perfectos. ¡La papa permite tallar cualquier forma!",
+  "tip_en": "Celery cut crosswise makes perfect circles. Potatoes can be carved into any shape!"
+ },
+ "atardecer": {
+  "emoji": "🌅",
+  "title_es": "Siluetas de Atardecer",
+  "title_en": "Sunset Silhouettes",
+  "cat_es": "🎨 Arte",
+  "cat_en": "🎨 Art",
+  "age": "6-12",
+  "time": "25 min",
+  "materials_es": [
+   "Papel blanco grueso o acuarela",
+   "Acuarelas o temperas (amarillo, naranja, rojo, morado)",
+   "Papel negro para las siluetas",
+   "Tijeras",
+   "Pegamento"
+  ],
+  "materials_en": [
+   "Thick white or watercolor paper",
+   "Watercolors or tempera (yellow, orange, red, purple)",
+   "Black paper for silhouettes",
+   "Scissors",
+   "Glue"
+  ],
+  "steps_es": [
+   "Pinta el cielo con franjas horizontales de amarillo, naranja, rojo y morado de abajo a arriba.",
+   "Mezcla los colores ligeramente mientras están húmedos para transiciones suaves.",
+   "Deja secar completamente el fondo (15-20 min).",
+   "En papel negro, recorta siluetas de árboles, animales, casas o personas.",
+   "Pega las siluetas negras en el borde inferior del atardecer."
+  ],
+  "steps_en": [
+   "Paint the sky with horizontal stripes of yellow, orange, red and purple from bottom to top.",
+   "Blend the colors slightly while wet for smooth transitions.",
+   "Let the background dry completely (15-20 min).",
+   "On black paper, cut out silhouettes of trees, animals, houses or people.",
+   "Glue the black silhouettes along the bottom edge of the sunset."
+  ],
+  "benefits_es": [
+   "Técnica de capas y color",
+   "Contraste visual",
+   "Composición artística"
+  ],
+  "benefits_en": [
+   "Layering and color technique",
+   "Visual contrast",
+   "Artistic composition"
+  ],
+  "tip_es": "Recorta siluetas bien sencillas — el contraste negro/atardecer hace todo el trabajo visual.",
+  "tip_en": "Cut very simple silhouettes — the black/sunset contrast does all the visual work."
+ },
+ "tacos": {
+  "emoji": "🌮",
+  "title_es": "Tacos Rápidos",
+  "title_en": "Quick Tacos",
+  "cat_es": "🍳 Cocina",
+  "cat_en": "🍳 Cooking",
+  "age": "4-12",
+  "time": "30 min",
+  "materials_es": [
+   "Tortillas de maíz o harina",
+   "Pollo cocido desmenuzado o frijoles",
+   "Lechuga y tomate picados",
+   "Queso rallado",
+   "Crema, salsa y limón",
+   "Sartén y espátula"
+  ],
+  "materials_en": [
+   "Corn or flour tortillas",
+   "Cooked shredded chicken or beans",
+   "Chopped lettuce and tomato",
+   "Shredded cheese",
+   "Sour cream, salsa and lime",
+   "Skillet and spatula"
+  ],
+  "steps_es": [
+   "Calienta la tortilla en la sartén 30 segundos por lado.",
+   "Coloca el pollo o frijoles en el centro de la tortilla.",
+   "Agrega lechuga, tomate y queso al gusto.",
+   "Añade crema y salsa.",
+   "Dobla y exprime limón por encima. ¡A disfrutar!"
+  ],
+  "steps_en": [
+   "Heat the tortilla in the skillet 30 seconds per side.",
+   "Place the chicken or beans in the center of the tortilla.",
+   "Add lettuce, tomato and cheese to taste.",
+   "Add sour cream and salsa.",
+   "Fold and squeeze lime over the top. Enjoy!"
+  ],
+  "benefits_es": [
+   "Autonomía en cocina",
+   "Nutrición equilibrada",
+   "Diversidad cultural"
+  ],
+  "benefits_en": [
+   "Kitchen independence",
+   "Balanced nutrition",
+   "Cultural diversity"
+  ],
+  "tip_es": "Organiza todos los ingredientes en tazones pequeños — cada niño arma su taco a su gusto.",
+  "tip_en": "Set up all ingredients in small bowls — each child builds their own taco their way."
+ },
+ "limonada": {
+  "emoji": "🍋",
+  "title_es": "Limonada Casera",
+  "title_en": "Homemade Lemonade",
+  "cat_es": "🍳 Cocina",
+  "cat_en": "🍳 Cooking",
+  "age": "3-10",
+  "time": "10 min",
+  "materials_es": [
+   "4 limones",
+   "4 cucharadas de azúcar o miel",
+   "1 litro de agua fría",
+   "Hielo",
+   "Menta fresca (opcional)",
+   "Exprimidor y jarra"
+  ],
+  "materials_en": [
+   "4 lemons",
+   "4 tbsp sugar or honey",
+   "1 liter cold water",
+   "Ice",
+   "Fresh mint (optional)",
+   "Juicer and pitcher"
+  ],
+  "steps_es": [
+   "Exprime los 4 limones y vierte el jugo en la jarra.",
+   "Agrega el azúcar o miel y revuelve hasta disolver.",
+   "Vierte el agua fría y mezcla bien.",
+   "Agrega hielo y hojas de menta.",
+   "Prueba y ajusta: ¿necesita más limón, más dulce o más agua?"
+  ],
+  "steps_en": [
+   "Squeeze the 4 lemons and pour the juice into the pitcher.",
+   "Add sugar or honey and stir until dissolved.",
+   "Pour in the cold water and mix well.",
+   "Add ice and mint leaves.",
+   "Taste and adjust: does it need more lemon, more sweet or more water?"
+  ],
+  "benefits_es": [
+   "Medición y proporciones",
+   "Equilibrio de sabores",
+   "Autonomía en cocina"
+  ],
+  "benefits_en": [
+   "Measuring and proportions",
+   "Flavor balance",
+   "Kitchen independence"
+  ],
+  "tip_es": "VERSIÓN CON GAS: usa agua con gas en vez de agua normal — ¡queda deliciosa!",
+  "tip_en": "SPARKLING VERSION: use sparkling water instead of still water — absolutely delicious!"
+ },
+ "muffins": {
+  "emoji": "🧁",
+  "title_es": "Muffins de Banana",
+  "title_en": "Banana Muffins",
+  "cat_es": "🍳 Cocina",
+  "cat_en": "🍳 Cooking",
+  "age": "4-12",
+  "time": "45 min",
+  "materials_es": [
+   "3 bananas muy maduras",
+   "2 tazas de harina",
+   "½ taza de azúcar",
+   "1 huevo",
+   "⅓ taza de mantequilla derretida",
+   "1 cucharadita de polvo de hornear",
+   "Molde para muffins y capacillos"
+  ],
+  "materials_en": [
+   "3 very ripe bananas",
+   "2 cups flour",
+   "½ cup sugar",
+   "1 egg",
+   "⅓ cup melted butter",
+   "1 tsp baking powder",
+   "Muffin tin and liners"
+  ],
+  "steps_es": [
+   "Aplasta las bananas con un tenedor hasta obtener un puré.",
+   "Mezcla el puré con el huevo, el azúcar y la mantequilla.",
+   "Agrega la harina y el polvo de hornear, mezcla sin batir demasiado.",
+   "Llena los capacillos hasta ¾ de su capacidad.",
+   "Hornea a 180 °C por 20-22 min hasta que un palillo salga limpio."
+  ],
+  "steps_en": [
+   "Mash the bananas with a fork until pureed.",
+   "Mix the puree with the egg, sugar and butter.",
+   "Add flour and baking powder — mix without over-beating.",
+   "Fill the liners ¾ full.",
+   "Bake at 350 °F for 20-22 min until a toothpick comes out clean."
+  ],
+  "benefits_es": [
+   "Química de hornear",
+   "Aprovechamiento de alimentos maduros",
+   "Satisfacción creativa"
+  ],
+  "benefits_en": [
+   "Baking chemistry",
+   "Using overripe food",
+   "Creative satisfaction"
+  ],
+  "tip_es": "Cuanto más maduras y negras estén las bananas, más dulces y húmedos quedarán los muffins.",
+  "tip_en": "The riper and blacker the bananas, the sweeter and more moist the muffins will be."
+ },
+ "paletas": {
+  "emoji": "🍦",
+  "title_es": "Paletas de Frutas",
+  "title_en": "Fruit Popsicles",
+  "cat_es": "🍳 Cocina",
+  "cat_en": "🍳 Cooking",
+  "age": "3-10",
+  "time": "15 min + congelado",
+  "materials_es": [
+   "Frutas variadas: fresas, mango, kiwi, piña",
+   "Jugo de naranja o leche de coco",
+   "Moldes para paletas o vasos pequeños",
+   "Palitos de madera o cucharas plásticas",
+   "Licuadora (opcional)"
+  ],
+  "materials_en": [
+   "Assorted fruit: strawberries, mango, kiwi, pineapple",
+   "Orange juice or coconut milk",
+   "Popsicle molds or small cups",
+   "Wooden sticks or plastic spoons",
+   "Blender (optional)"
+  ],
+  "steps_es": [
+   "PALETA DE FRUTA ENTERA: corta frutas en trozos y colócalas en los moldes.",
+   "Rellena con jugo de naranja hasta cubrir las frutas.",
+   "PALETA DE PURÉ: licúa las frutas con un poco de jugo y vierte en los moldes.",
+   "Inserta el palito y congela al menos 4 horas o toda la noche.",
+   "Para desmoldar, pasa el molde bajo agua tibia 10 segundos."
+  ],
+  "steps_en": [
+   "WHOLE FRUIT POPSICLE: cut fruit into pieces and place them in the molds.",
+   "Fill with orange juice to cover the fruit.",
+   "PURÉE POPSICLE: blend fruit with a little juice and pour into molds.",
+   "Insert the stick and freeze at least 4 hours or overnight.",
+   "To unmold, run the mold under warm water for 10 seconds."
+  ],
+  "benefits_es": [
+   "Paciencia (esperar el resultado)",
+   "Alimentación saludable",
+   "Creatividad culinaria"
+  ],
+  "benefits_en": [
+   "Patience (waiting for results)",
+   "Healthy eating",
+   "Culinary creativity"
+  ],
+  "tip_es": "Usa vasos de yogur y cucharas como moldes alternativos si no tienes moldes especiales.",
+  "tip_en": "Use yogurt cups and spoons as alternative molds if you don't have popsicle molds."
+ },
+ "pancakes": {
+  "emoji": "🥞",
+  "title_es": "Pancakes con Formas",
+  "title_en": "Shaped Pancakes",
+  "cat_es": "🍳 Cocina",
+  "cat_en": "🍳 Cooking",
+  "age": "4-12",
+  "time": "20 min",
+  "materials_es": [
+   "1 taza de harina",
+   "1 taza de leche",
+   "1 huevo",
+   "2 cucharadas de mantequilla derretida",
+   "1 cucharadita de polvo de hornear",
+   "Sartén y espátula",
+   "Botella con pico (para formas)"
+  ],
+  "materials_en": [
+   "1 cup flour",
+   "1 cup milk",
+   "1 egg",
+   "2 tbsp melted butter",
+   "1 tsp baking powder",
+   "Skillet and spatula",
+   "Squeeze bottle (for shapes)"
+  ],
+  "steps_es": [
+   "Mezcla todos los ingredientes hasta obtener una mezcla homogénea.",
+   "Calienta la sartén a fuego medio y añade un poco de mantequilla.",
+   "FORMA BÁSICA: vierte la mezcla con cuchara para hacer círculos.",
+   "FORMAS ESPECIALES: usa una botella con pico para dibujar estrellas, corazones o letras.",
+   "Cuando aparezcan burbujas en la superficie, voltea con la espátula."
+  ],
+  "steps_en": [
+   "Mix all ingredients until smooth.",
+   "Heat the skillet over medium heat and add a little butter.",
+   "BASIC SHAPE: pour batter with a spoon to make circles.",
+   "SPECIAL SHAPES: use a squeeze bottle to draw stars, hearts or letters.",
+   "When bubbles appear on the surface, flip with the spatula."
+  ],
+  "benefits_es": [
+   "Coordinación y precisión",
+   "Química de hornear",
+   "Paciencia y observación"
+  ],
+  "benefits_en": [
+   "Coordination and precision",
+   "Baking chemistry",
+   "Patience and observation"
+  ],
+  "tip_es": "La botella con pico es el truco para hacer letras y formas perfectas. ¡Prueba escribir nombres!",
+  "tip_en": "The squeeze bottle is the trick for perfect letters and shapes. Try spelling names!"
+ },
+ "tesoro": {
+  "emoji": "🗺️",
+  "title_es": "Búsqueda del Tesoro",
+  "title_en": "Treasure Hunt",
+  "cat_es": "🎮 Juegos",
+  "cat_en": "🎮 Games",
+  "age": "4-12",
+  "time": "1 hora",
+  "materials_es": [
+   "Esta ficha impresa (pistas y mapa)",
+   "Tijeras para recortar las tarjetas de pistas",
+   "Premio o \"tesoro\" escondido",
+   "Bolígrafo para personalizar las pistas",
+   "Cinta adhesiva para pegar pistas en lugares"
+  ],
+  "materials_en": [
+   "This printed sheet (clues and map)",
+   "Scissors to cut the clue cards",
+   "Prize or \"treasure\" to hide",
+   "Pen to personalize the clues",
+   "Tape to stick clues in locations"
+  ],
+  "steps_es": [
+   "Escoge 6 lugares en casa o el jardín como pistas (sofá, nevera, árbol, etc.).",
+   "Escribe en cada tarjeta una pista que lleve al siguiente lugar.",
+   "Esconde las pistas en orden y el tesoro al final.",
+   "Entrega la primera pista al niño y deja que resuelva el resto.",
+   "¡Celebra con el tesoro y repite con nuevas pistas!"
+  ],
+  "steps_en": [
+   "Choose 6 locations around the house or yard as clue spots (sofa, fridge, tree, etc.).",
+   "Write a clue on each card that leads to the next location.",
+   "Hide the clues in order and the treasure at the end.",
+   "Give the child the first clue and let them solve the rest.",
+   "Celebrate with the treasure and repeat with new clues!"
+  ],
+  "benefits_es": [
+   "Lectura comprensiva",
+   "Resolución de problemas",
+   "Emoción y motivación"
+  ],
+  "benefits_en": [
+   "Reading comprehension",
+   "Problem solving",
+   "Excitement and motivation"
+  ],
+  "tip_es": "Adapta las pistas al nivel lector del niño: dibujos para los más pequeños, acertijos para los mayores.",
+  "tip_en": "Adapt clues to the child's reading level: drawings for younger kids, riddles for older ones."
+ },
+ "mimica": {
+  "emoji": "🎭",
+  "title_es": "Mímica y Charadas",
+  "title_en": "Charades & Mime",
+  "cat_es": "🎮 Juegos",
+  "cat_en": "🎮 Games",
+  "age": "4-12",
+  "time": "20 min",
+  "materials_es": [
+   "Esta ficha impresa",
+   "Tijeras para recortar las tarjetas",
+   "Bolsa o caja para mezclar las tarjetas",
+   "Temporizador (reloj o teléfono)"
+  ],
+  "materials_en": [
+   "This printed sheet",
+   "Scissors to cut the cards",
+   "Bag or box to mix the cards",
+   "Timer (watch or phone)"
+  ],
+  "steps_es": [
+   "Recorta las 40 tarjetas con animales, acciones y palabras.",
+   "Divide al grupo en 2 equipos.",
+   "Un jugador saca una tarjeta y la actúa sin hablar en 60 segundos.",
+   "Su equipo adivina. Si aciertan suman 1 punto.",
+   "Gana el equipo con más puntos al terminar las tarjetas."
+  ],
+  "steps_en": [
+   "Cut out the 40 cards with animals, actions and words.",
+   "Divide the group into 2 teams.",
+   "A player draws a card and acts it out silently in 60 seconds.",
+   "Their team guesses. If correct, they score 1 point.",
+   "The team with the most points when cards run out wins."
+  ],
+  "benefits_es": [
+   "Comunicación no verbal",
+   "Trabajo en equipo",
+   "Vocabulario y expresión"
+  ],
+  "benefits_en": [
+   "Non-verbal communication",
+   "Teamwork",
+   "Vocabulary and expression"
+  ],
+  "tip_es": "Para los más pequeños, permite que susurren una sola pista al equipo durante su turno.",
+  "tip_en": "For younger children, allow them to whisper one single clue to their team during their turn."
+ },
+ "obstaculos": {
+  "emoji": "🏃",
+  "title_es": "Circuito de Obstáculos",
+  "title_en": "Obstacle Course",
+  "cat_es": "🎮 Juegos",
+  "cat_en": "🎮 Games",
+  "age": "3-10",
+  "time": "20 min",
+  "materials_es": [
+   "Cojines, sillas y mantas de casa",
+   "Cinta adhesiva para marcar el suelo",
+   "Globos (opcional)",
+   "Cronómetro",
+   "Esta ficha con los 15 retos"
+  ],
+  "materials_en": [
+   "Home cushions, chairs and blankets",
+   "Tape to mark the floor",
+   "Balloons (optional)",
+   "Stopwatch",
+   "This sheet with 15 challenges"
+  ],
+  "steps_es": [
+   "MONTA EL CIRCUITO: usa los muebles y objetos de casa para crear estaciones.",
+   "Ej: TÚNEL (pasa por debajo de la silla), SALTO (salta los cojines), EQUILIBRIO (camina sobre una línea de cinta).",
+   "Añade GIRO (da 3 vueltas y luego camina recto), RASTREO (gatea 3 metros) y LANZAMIENTO (mete una pelota en un cesto).",
+   "Cada niño recorre el circuito mientras se le toma el tiempo.",
+   "¡Repite y trata de batir tu propio récord!"
+  ],
+  "steps_en": [
+   "SET UP THE COURSE: use furniture and home objects to create stations.",
+   "E.g.: TUNNEL (crawl under the chair), JUMP (jump over cushions), BALANCE (walk along a tape line).",
+   "Add SPIN (turn 3 times then walk straight), CRAWL (crawl 3 meters) and TOSS (get a ball in a basket).",
+   "Each child runs the course while you time them.",
+   "Repeat and try to beat your own record!"
+  ],
+  "benefits_es": [
+   "Coordinación motriz gruesa",
+   "Autocompetencia y superación",
+   "Energía física saludable"
+  ],
+  "benefits_en": [
+   "Gross motor coordination",
+   "Self-competition and improvement",
+   "Healthy physical energy"
+  ],
+  "tip_es": "Toma el tiempo de cada intento — ver cómo mejoran los propios récords motiva muchísimo.",
+  "tip_en": "Time every attempt — watching personal records improve is extremely motivating."
+ },
+ "bingo": {
+  "emoji": "🎯",
+  "title_es": "Bingo de Animales",
+  "title_en": "Animal Bingo",
+  "cat_es": "🎮 Juegos",
+  "cat_en": "🎮 Games",
+  "age": "4-10",
+  "time": "25 min",
+  "materials_es": [
+   "Esta ficha impresa (4 cartones + lista de animales)",
+   "Tijeras",
+   "Fichas, botones o semillas para marcar los cuadros",
+   "Una bolsa para los cantos"
+  ],
+  "materials_en": [
+   "This printed sheet (4 cards + animal list)",
+   "Scissors",
+   "Chips, buttons or seeds to mark squares",
+   "A bag for the call pieces"
+  ],
+  "steps_es": [
+   "Recorta los 4 cartones de bingo — uno para cada jugador.",
+   "Recorta también los nombres de animales y mézclalos en la bolsa.",
+   "El animador saca un nombre de la bolsa y lo dice en voz alta.",
+   "Quien tenga ese animal en su cartón lo cubre con una ficha.",
+   "¡El primero en completar una fila horizontal, vertical o diagonal grita BINGO y gana!"
+  ],
+  "steps_en": [
+   "Cut out the 4 bingo cards — one per player.",
+   "Also cut out the animal names and mix them in the bag.",
+   "The caller draws a name from the bag and reads it aloud.",
+   "Players who have that animal cover it with a chip.",
+   "The first to complete a row horizontally, vertically or diagonally shouts BINGO and wins!"
+  ],
+  "benefits_es": [
+   "Atención y concentración",
+   "Reconocimiento de palabras",
+   "Diversión en grupo"
+  ],
+  "benefits_en": [
+   "Attention and concentration",
+   "Word recognition",
+   "Group fun"
+  ],
+  "tip_es": "Juega varias rondas cambiando la regla: línea, L, cruz o cartón completo.",
+  "tip_en": "Play multiple rounds with different rules: line, L-shape, cross or full card."
+ },
+ "dados": {
+  "emoji": "🎲",
+  "title_es": "Dados de Cuentos",
+  "title_en": "Story Dice",
+  "cat_es": "🎮 Juegos",
+  "cat_en": "🎮 Games",
+  "age": "5-12",
+  "time": "20 min",
+  "materials_es": [
+   "Esta ficha impresa (3 plantillas de dado)",
+   "Tijeras",
+   "Pegamento o cinta adhesiva",
+   "Bolígrafo para personalizar"
+  ],
+  "materials_en": [
+   "This printed sheet (3 dice templates)",
+   "Scissors",
+   "Glue or tape",
+   "Pen to personalize"
+  ],
+  "steps_es": [
+   "Recorta las 3 plantillas de dado (personaje, lugar y objeto).",
+   "Dobla por las líneas punteadas y pega las pestañas para armar cada dado.",
+   "DADO 1 — PERSONAJE: princesa, robot, detective, dragón, niño, mago.",
+   "DADO 2 — LUGAR: bosque, ciudad, espacio, submarino, desierto, castillo.",
+   "DADO 3 — OBJETO: espejo mágico, mochila voladora, llave dorada, mapa, bote, lámpara.",
+   "Tira los 3 dados y crea un cuento con lo que salga — ¡cada lanzamiento da una historia nueva!"
+  ],
+  "steps_en": [
+   "Cut out the 3 dice templates (character, setting and object).",
+   "Fold along the dotted lines and glue the tabs to form each die.",
+   "DIE 1 — CHARACTER: princess, robot, detective, dragon, child, wizard.",
+   "DIE 2 — SETTING: forest, city, space, submarine, desert, castle.",
+   "DIE 3 — OBJECT: magic mirror, flying backpack, golden key, map, boat, lamp.",
+   "Roll all 3 dice and create a story from what comes up — every roll gives a brand new tale!"
+  ],
+  "benefits_es": [
+   "Creatividad narrativa",
+   "Vocabulario",
+   "Imaginación ilimitada"
+  ],
+  "benefits_en": [
+   "Narrative creativity",
+   "Vocabulary",
+   "Unlimited imagination"
+  ],
+  "tip_es": "¡Graba los cuentos con el teléfono! Escucharlos después es aún más divertido que inventarlos.",
+  "tip_en": "Record the stories on your phone! Listening back is even more fun than making them up."
+ },
+ "ritmo": {
+  "emoji": "🥁",
+  "title_es": "Ritmo con el Cuerpo",
+  "title_en": "Body Rhythm",
+  "cat_es": "🎵 Música",
+  "cat_en": "🎵 Music",
+  "age": "4-10",
+  "time": "20 min",
+  "materials_es": [
+   "Tus manos y pies",
+   "Una silla",
+   "Música (opcional)"
+  ],
+  "materials_en": [
+   "Your hands and feet",
+   "A chair",
+   "Music (optional)"
+  ],
+  "steps_es": [
+   "Siéntate con las manos en las rodillas.",
+   "Practica este patrón: palma-palma-rodilla-rodilla.",
+   "Acelera poco a poco sin perder el ritmo.",
+   "Añade los pies: talón-puntera-talón-puntera.",
+   "Combina manos y pies y crea tu propio patrón.",
+   "¡Pon música y sigue el ritmo de la canción!"
+  ],
+  "steps_en": [
+   "Sit down with your hands on your knees.",
+   "Practice this pattern: clap-clap-knees-knees.",
+   "Speed up little by little without losing the beat.",
+   "Add your feet: heel-toe-heel-toe.",
+   "Combine hands and feet and make your own pattern.",
+   "Put on music and follow the song's rhythm!"
+  ],
+  "benefits_es": [
+   "Coordinación motriz",
+   "Sentido del ritmo",
+   "Concentración"
+  ],
+  "benefits_en": [
+   "Motor coordination",
+   "Sense of rhythm",
+   "Focus"
+  ],
+  "tip_es": "¡Graba un video del patrón más difícil que logres y muéstraselo a la familia!",
+  "tip_en": "Record a video of the hardest pattern you can do and show it to your family!"
+ },
+ "instrumento": {
+  "emoji": "🎺",
+  "title_es": "Instrumento Casero",
+  "title_en": "Homemade Instrument",
+  "cat_es": "🎵 Música",
+  "cat_en": "🎵 Music",
+  "age": "5-12",
+  "time": "30 min",
+  "materials_es": [
+   "Botella de plástico vacía",
+   "Arroz o semillas secas",
+   "Cinta adhesiva",
+   "Palitos de madera o cucharas"
+  ],
+  "materials_en": [
+   "Empty plastic bottle",
+   "Rice or dry seeds",
+   "Adhesive tape",
+   "Wooden sticks or spoons"
+  ],
+  "steps_es": [
+   "Echa arroz o semillas en la botella hasta la mitad.",
+   "Cierra bien con la tapa y sella con cinta.",
+   "Agita la botella: ¡ya tienes una maraca!",
+   "Coge dos palitos y golpea una superficie dura: ¡son tus palillos de batería!",
+   "Combina maraca y palillos para tocar un ritmo.",
+   "Decora el instrumento con papeles de colores."
+  ],
+  "steps_en": [
+   "Pour rice or seeds into the bottle until half-full.",
+   "Close tightly with the cap and seal with tape.",
+   "Shake the bottle — you've got a maraca!",
+   "Take two sticks and tap a hard surface: they're your drumsticks!",
+   "Combine maraca and sticks to play a rhythm.",
+   "Decorate the instrument with coloured paper."
+  ],
+  "benefits_es": [
+   "Creatividad",
+   "Motricidad fina",
+   "Expresión musical"
+  ],
+  "benefits_en": [
+   "Creativity",
+   "Fine motor skills",
+   "Musical expression"
+  ],
+  "tip_es": "Llena varias botellas con diferente cantidad de arroz: ¡cada una suena distinto!",
+  "tip_en": "Fill several bottles with different amounts of rice — each one sounds different!"
+ },
+ "notas": {
+  "emoji": "🎵",
+  "title_es": "Aprende las Notas",
+  "title_en": "Learn the Notes",
+  "cat_es": "🎵 Música",
+  "cat_en": "🎵 Music",
+  "age": "6-12",
+  "time": "25 min",
+  "materials_es": [
+   "Papel",
+   "Lápices de colores",
+   "Una regla"
+  ],
+  "materials_en": [
+   "Paper",
+   "Coloured pencils",
+   "A ruler"
+  ],
+  "steps_es": [
+   "Dibuja cinco líneas horizontales paralelas (pentagrama).",
+   "Escribe DO, RE, MI, FA, SOL, LA, SI en cada posición.",
+   "Colorea cada nota de un color diferente.",
+   "Canta las notas siguiendo el pentagrama de abajo a arriba.",
+   "Inventa una melodía corta usando solo DO-MI-SOL.",
+   "Toca la melodía dando palmadas: una palmada por nota."
+  ],
+  "steps_en": [
+   "Draw five parallel horizontal lines (a staff).",
+   "Write DO, RE, MI, FA, SOL, LA, SI at each position.",
+   "Colour each note a different colour.",
+   "Sing the notes following the staff from bottom to top.",
+   "Invent a short melody using only DO-MI-SOL.",
+   "Play the melody by clapping: one clap per note."
+  ],
+  "benefits_es": [
+   "Lectura musical básica",
+   "Memoria auditiva",
+   "Creatividad"
+  ],
+  "benefits_en": [
+   "Basic music reading",
+   "Auditory memory",
+   "Creativity"
+  ],
+  "tip_es": "¡Dibuja las notas en tarjetas y úsalas para componer canciones cambiándolas de orden!",
+  "tip_en": "Draw the notes on cards and use them to compose songs by changing their order!"
+ },
+ "cancion": {
+  "emoji": "🎤",
+  "title_es": "Crea tu Canción",
+  "title_en": "Create Your Song",
+  "cat_es": "🎵 Música",
+  "cat_en": "🎵 Music",
+  "age": "6-14",
+  "time": "35 min",
+  "materials_es": [
+   "Papel y bolígrafo",
+   "Tu voz",
+   "Un instrumento (opcional)"
+  ],
+  "materials_en": [
+   "Paper and pen",
+   "Your voice",
+   "An instrument (optional)"
+  ],
+  "steps_es": [
+   "Elige un tema: tu animal favorito, las vacaciones, tu familia…",
+   "Escribe cuatro frases cortas sobre ese tema.",
+   "Intenta que las frases 1 y 3 rimen, y las frases 2 y 4 también.",
+   "Inventa una melodía simple: tararea algo que te guste.",
+   "Canta tus frases con esa melodía.",
+   "¡Ensaya y actúa para alguien de casa!"
+  ],
+  "steps_en": [
+   "Choose a theme: your favourite animal, holidays, your family…",
+   "Write four short phrases about that theme.",
+   "Try to make phrases 1 & 3 rhyme, and phrases 2 & 4 rhyme.",
+   "Invent a simple melody: hum something you like.",
+   "Sing your phrases with that melody.",
+   "Rehearse and perform it for someone at home!"
+  ],
+  "benefits_es": [
+   "Expresión creativa",
+   "Lenguaje y rima",
+   "Confianza"
+  ],
+  "benefits_en": [
+   "Creative expression",
+   "Language and rhyme",
+   "Confidence"
+  ],
+  "tip_es": "No importa si la melodía es sencilla — lo más importante es que sea tuya.",
+  "tip_en": "It doesn't matter if the melody is simple — the most important thing is that it's yours."
+ },
+ "baile": {
+  "emoji": "💃",
+  "title_es": "Mi Coreografía",
+  "title_en": "My Choreography",
+  "cat_es": "🎵 Música",
+  "cat_en": "🎵 Music",
+  "age": "4-12",
+  "time": "30 min",
+  "materials_es": [
+   "Una canción que te guste",
+   "Espacio para moverte"
+  ],
+  "materials_en": [
+   "A song you like",
+   "Space to move"
+  ],
+  "steps_es": [
+   "Pon tu canción favorita y escúchala entera una vez.",
+   "Inventa un movimiento para el estribillo (la parte que se repite).",
+   "Añade dos movimientos para el resto de la canción.",
+   "Combina todos los movimientos y ensaya 3 veces.",
+   "Ponle un nombre a tu coreografía.",
+   "¡Actúa delante de tu familia o graba un video!"
+  ],
+  "steps_en": [
+   "Put on your favourite song and listen to it all the way through once.",
+   "Invent a move for the chorus (the part that repeats).",
+   "Add two moves for the rest of the song.",
+   "Combine all the moves and rehearse 3 times.",
+   "Give your choreography a name.",
+   "Perform it for your family or record a video!"
+  ],
+  "benefits_es": [
+   "Expresión corporal",
+   "Memoria secuencial",
+   "Autoestima"
+  ],
+  "benefits_en": [
+   "Body expression",
+   "Sequential memory",
+   "Self-esteem"
+  ],
+  "tip_es": "Empieza con movimientos simples: saltos, giros, aplausos — ¡funcionan genial!",
+  "tip_en": "Start with simple moves: jumps, spins, claps — they work great!"
+ },
+ "hojas": {
+  "emoji": "🍃",
+  "title_es": "Arte con Hojas",
+  "title_en": "Leaf Art",
+  "cat_es": "🌿 Naturaleza",
+  "cat_en": "🌿 Nature",
+  "age": "4-10",
+  "time": "30 min",
+  "materials_es": [
+   "Hojas de distintos árboles",
+   "Papel blanco",
+   "Crayones o lápices de colores"
+  ],
+  "materials_en": [
+   "Leaves from different trees",
+   "White paper",
+   "Crayons or coloured pencils"
+  ],
+  "steps_es": [
+   "Recoge 5-8 hojas de diferentes formas y tamaños.",
+   "Coloca una hoja debajo del papel blanco.",
+   "Frota suavemente con el crayón sobre el papel: ¡aparece la hoja!",
+   "Repite con todas las hojas usando colores diferentes.",
+   "Recorta algunas y pégalas en un cartón para hacer un collage.",
+   "Escribe el nombre del árbol al lado de cada hoja si lo sabes."
+  ],
+  "steps_en": [
+   "Collect 5-8 leaves of different shapes and sizes.",
+   "Place a leaf under the white paper.",
+   "Gently rub a crayon over the paper — the leaf appears!",
+   "Repeat with all the leaves using different colours.",
+   "Cut some out and glue them on card to make a collage.",
+   "Write the tree's name next to each leaf if you know it."
+  ],
+  "benefits_es": [
+   "Observación de la naturaleza",
+   "Motricidad fina",
+   "Creatividad"
+  ],
+  "benefits_en": [
+   "Nature observation",
+   "Fine motor skills",
+   "Creativity"
+  ],
+  "tip_es": "Las hojas con nervios muy marcados dan los mejores resultados al frotar.",
+  "tip_en": "Leaves with very prominent veins give the best results when rubbing."
+ },
+ "aves": {
+  "emoji": "🐦",
+  "title_es": "Observa los Pájaros",
+  "title_en": "Birdwatching",
+  "cat_es": "🌿 Naturaleza",
+  "cat_en": "🌿 Nature",
+  "age": "5-12",
+  "time": "40 min",
+  "materials_es": [
+   "Cuaderno o papel",
+   "Lápices de colores",
+   "Prismáticos (opcional)"
+  ],
+  "materials_en": [
+   "Notebook or paper",
+   "Coloured pencils",
+   "Binoculars (optional)"
+  ],
+  "steps_es": [
+   "Siéntate cerca de una ventana o sal al jardín/parque.",
+   "Espera en silencio 5 minutos observando.",
+   "Cuando veas un pájaro, dibuja su silueta rápidamente.",
+   "Anota: ¿de qué color es? ¿Qué tamaño tiene? ¿Qué hace?",
+   "Intenta identificarlo con un libro o una app de aves.",
+   "Lleva un registro de todos los pájaros que encuentres."
+  ],
+  "steps_en": [
+   "Sit near a window or go to the garden/park.",
+   "Wait quietly for 5 minutes and observe.",
+   "When you spot a bird, quickly sketch its silhouette.",
+   "Note: what colour is it? How big? What is it doing?",
+   "Try to identify it with a book or a bird app.",
+   "Keep a log of all the birds you find."
+  ],
+  "benefits_es": [
+   "Paciencia y observación",
+   "Conexión con la naturaleza",
+   "Ciencias naturales"
+  ],
+  "benefits_en": [
+   "Patience and observation",
+   "Connection with nature",
+   "Natural sciences"
+  ],
+  "tip_es": "El amanecer y el atardecer son los mejores momentos para ver más pájaros.",
+  "tip_en": "Dawn and dusk are the best times to spot more birds."
+ },
+ "tiempo": {
+  "emoji": "☁️",
+  "title_es": "Diario del Tiempo",
+  "title_en": "Weather Journal",
+  "cat_es": "🌿 Naturaleza",
+  "cat_en": "🌿 Nature",
+  "age": "5-12",
+  "time": "10 min/día",
+  "materials_es": [
+   "Cuaderno",
+   "Lápices de colores",
+   "Termómetro (opcional)"
+  ],
+  "materials_en": [
+   "Notebook",
+   "Coloured pencils",
+   "Thermometer (optional)"
+  ],
+  "steps_es": [
+   "Crea una tabla con 7 columnas (una por día de la semana).",
+   "Cada mañana observa el cielo y dibuja el tiempo: sol, nubes, lluvia, viento.",
+   "Escribe la temperatura si tienes termómetro.",
+   "Describe con una palabra cómo se siente el aire: frío, cálido, húmedo…",
+   "Al final de la semana, analiza: ¿qué día fue más soleado? ¿llovió mucho?",
+   "¡Compara tu diario con el parte meteorológico de la tele!"
+  ],
+  "steps_en": [
+   "Create a table with 7 columns (one for each day of the week).",
+   "Each morning, observe the sky and draw the weather: sun, clouds, rain, wind.",
+   "Write the temperature if you have a thermometer.",
+   "Describe the air in one word: cold, warm, humid…",
+   "At the end of the week, analyse: which day was sunniest? Did it rain much?",
+   "Compare your journal with the TV weather forecast!"
+  ],
+  "benefits_es": [
+   "Ciencias atmosféricas",
+   "Hábito de observación",
+   "Análisis de datos"
+  ],
+  "benefits_en": [
+   "Atmospheric science",
+   "Observation habit",
+   "Data analysis"
+  ],
+  "tip_es": "Lleva el diario durante un mes entero para ver los cambios de temporada.",
+  "tip_en": "Keep the journal for a whole month to see seasonal changes."
+ },
+ "luna_fases": {
+  "emoji": "🌙",
+  "title_es": "Fases de la Luna",
+  "title_en": "Moon Phases",
+  "cat_es": "🌿 Naturaleza",
+  "cat_en": "🌿 Nature",
+  "age": "6-12",
+  "time": "28 días",
+  "materials_es": [
+   "Papel",
+   "Lápiz negro",
+   "Linterna (opcional)"
+  ],
+  "materials_en": [
+   "Paper",
+   "Black pencil",
+   "Torch (optional)"
+  ],
+  "steps_es": [
+   "Dibuja 8 círculos en una hoja y etiquétalos: Luna nueva, Creciente, Cuarto creciente, Gibosa creciente, Llena, Gibosa menguante, Cuarto menguante, Menguante.",
+   "Cada noche (si está despejado) mira la luna y colorea el círculo correspondiente.",
+   "Comprueba si tu observación coincide con las fases oficiales.",
+   "Anota cuántos días tarda en pasar de luna nueva a luna llena.",
+   "Investiga: ¿por qué cambia la forma de la luna?",
+   "¡Dibuja el ciclo completo en un círculo grande como un reloj!"
+  ],
+  "steps_en": [
+   "Draw 8 circles on a sheet and label them: New Moon, Waxing Crescent, First Quarter, Waxing Gibbous, Full Moon, Waning Gibbous, Last Quarter, Waning Crescent.",
+   "Each night (if clear) look at the moon and colour the matching circle.",
+   "Check if your observation matches the official phases.",
+   "Note how many days it takes to go from new moon to full moon.",
+   "Research: why does the shape of the moon change?",
+   "Draw the complete cycle in a large circle like a clock!"
+  ],
+  "benefits_es": [
+   "Astronomía básica",
+   "Observación sistemática",
+   "Paciencia"
+  ],
+  "benefits_en": [
+   "Basic astronomy",
+   "Systematic observation",
+   "Patience"
+  ],
+  "tip_es": "Usa una app de astronomía para ver el nombre oficial de la fase de cada noche.",
+  "tip_en": "Use an astronomy app to see the official name of each night's phase."
+ },
+ "bichos": {
+  "emoji": "🐛",
+  "title_es": "Explorador de Bichos",
+  "title_en": "Bug Explorer",
+  "cat_es": "🌿 Naturaleza",
+  "cat_en": "🌿 Nature",
+  "age": "4-10",
+  "time": "45 min",
+  "materials_es": [
+   "Lupa",
+   "Cuaderno",
+   "Lápices",
+   "Tarro de cristal (opcional)"
+  ],
+  "materials_en": [
+   "Magnifying glass",
+   "Notebook",
+   "Pencils",
+   "Glass jar (optional)"
+  ],
+  "steps_es": [
+   "Busca un jardín, parque o maceta grande.",
+   "Con la lupa, examina la tierra, las hojas y las piedras.",
+   "Cuando encuentres un bicho, dibújalo y anota: ¿cuántas patas tiene? ¿tiene alas?",
+   "Si tienes tarro, mételo con cuidado, obsérvalo 10 minutos y suéltalo.",
+   "Intenta identificar qué bicho es con un libro o internet.",
+   "Crea una \"ficha de explorador\" para cada bicho que encuentres."
+  ],
+  "steps_en": [
+   "Find a garden, park or large plant pot.",
+   "Use the magnifying glass to examine soil, leaves and stones.",
+   "When you find a bug, draw it and note: how many legs? Does it have wings?",
+   "If you have a jar, gently put it inside, observe for 10 minutes and release it.",
+   "Try to identify the bug using a book or the internet.",
+   "Create an \"explorer card\" for each bug you find."
+  ],
+  "benefits_es": [
+   "Biología",
+   "Curiosidad científica",
+   "Respeto por la naturaleza"
+  ],
+  "benefits_en": [
+   "Biology",
+   "Scientific curiosity",
+   "Respect for nature"
+  ],
+  "tip_es": "Los mejores sitios para encontrar bichos son debajo de las piedras y en la corteza de los árboles.",
+  "tip_en": "The best places to find bugs are under stones and in tree bark."
+ },
+ "olimpiadas": {
+  "emoji": "🏅",
+  "title_es": "Mini Olimpiadas en Casa",
+  "title_en": "Mini Home Olympics",
+  "cat_es": "🏃 Deportes",
+  "cat_en": "🏃 Sports",
+  "age": "5-12",
+  "time": "45 min",
+  "materials_es": [
+   "Cinta adhesiva para marcar",
+   "Calcetines o globos",
+   "Cucharas",
+   "Cronómetro"
+  ],
+  "materials_en": [
+   "Adhesive tape for marking",
+   "Socks or balloons",
+   "Spoons",
+   "Stopwatch"
+  ],
+  "steps_es": [
+   "Diseña 5 pruebas: salto de longitud, carrera, equilibrio, lanzamiento y relevos.",
+   "Marca las líneas de salida y meta con cinta.",
+   "Para salto: mide la distancia con una regla y anota el récord.",
+   "Para lanzamiento: intenta meter calcetines en un cubo.",
+   "Para equilibrio: camina con un globo entre las rodillas.",
+   "¡Entrega medallas de papel al ganador de cada prueba!"
+  ],
+  "steps_en": [
+   "Design 5 events: long jump, race, balance, throwing and relay.",
+   "Mark start and finish lines with tape.",
+   "For jump: measure the distance with a ruler and record the best.",
+   "For throwing: try to get socks into a bucket.",
+   "For balance: walk with a balloon between your knees.",
+   "Give paper medals to the winner of each event!"
+  ],
+  "benefits_es": [
+   "Actividad física",
+   "Espíritu deportivo",
+   "Organización"
+  ],
+  "benefits_en": [
+   "Physical activity",
+   "Sportsmanship",
+   "Organisation"
+  ],
+  "tip_es": "Crea una tabla de puntuación y repite las olimpiadas cada mes para batir récords.",
+  "tip_en": "Create a scoreboard and repeat the Olympics each month to break records."
+ },
+ "futbol": {
+  "emoji": "⚽",
+  "title_es": "Trucos de Fútbol",
+  "title_en": "Football Tricks",
+  "cat_es": "🏃 Deportes",
+  "cat_en": "🏃 Sports",
+  "age": "5-14",
+  "time": "30 min",
+  "materials_es": [
+   "Un balón de fútbol (o de goma)",
+   "Espacio abierto"
+  ],
+  "materials_en": [
+   "A football (or rubber ball)",
+   "Open space"
+  ],
+  "steps_es": [
+   "Empieza con el control básico: da 10 toques con el pie derecho sin que caiga.",
+   "Repite con el pie izquierdo: intenta llegar a 5 toques.",
+   "Practica el pase: chuta contra una pared y controla el rebote.",
+   "Intenta el caño: pasa la pelota entre dos conos o botellas.",
+   "Aprende el regate: mueve la pelota en zigzag entre conos.",
+   "¡Crea tu propio truco y ponle un nombre!"
+  ],
+  "steps_en": [
+   "Start with basic control: do 10 touches with your right foot without dropping.",
+   "Repeat with the left foot: try to reach 5 touches.",
+   "Practise passing: kick against a wall and control the rebound.",
+   "Try the nutmeg: pass the ball between two cones or bottles.",
+   "Learn the dribble: move the ball in a zigzag between cones.",
+   "Create your own trick and give it a name!"
+  ],
+  "benefits_es": [
+   "Coordinación",
+   "Perseverancia",
+   "Habilidad técnica"
+  ],
+  "benefits_en": [
+   "Coordination",
+   "Perseverance",
+   "Technical skill"
+  ],
+  "tip_es": "Grábate en video para ver tus errores y mejorar más rápido.",
+  "tip_en": "Film yourself to see your mistakes and improve faster."
+ },
+ "atletismo": {
+  "emoji": "🏆",
+  "title_es": "Atletismo Casero",
+  "title_en": "Home Athletics",
+  "cat_es": "🏃 Deportes",
+  "cat_en": "🏃 Sports",
+  "age": "6-14",
+  "time": "40 min",
+  "materials_es": [
+   "Cinta métrica",
+   "Cinta adhesiva",
+   "Cronómetro",
+   "Tiza (si hay acera)"
+  ],
+  "materials_en": [
+   "Tape measure",
+   "Adhesive tape",
+   "Stopwatch",
+   "Chalk (if pavement)"
+  ],
+  "steps_es": [
+   "Elige tres pruebas: velocidad (20 m lisos), salto de longitud y lanzamiento de globo de agua.",
+   "Marca la pista con cinta o tiza.",
+   "Calienta 5 minutos: trote suave y estiramientos.",
+   "Realiza cada prueba dos veces y quédate con el mejor intento.",
+   "Mide y anota los resultados en una tabla personal.",
+   "Repite en 2 semanas: ¿superaste tu marca?"
+  ],
+  "steps_en": [
+   "Choose three events: speed (20 m sprint), long jump and water-balloon throw.",
+   "Mark the track with tape or chalk.",
+   "Warm up for 5 minutes: gentle jog and stretches.",
+   "Perform each event twice and keep the best attempt.",
+   "Measure and record the results in a personal table.",
+   "Repeat in 2 weeks: did you beat your mark?"
+  ],
+  "benefits_es": [
+   "Condición física",
+   "Mentalidad de mejora continua",
+   "Disciplina"
+  ],
+  "benefits_en": [
+   "Physical fitness",
+   "Continuous improvement mindset",
+   "Discipline"
+  ],
+  "tip_es": "Establece una \"marca personal\" y celebra cada vez que la superes.",
+  "tip_en": "Set a \"personal best\" and celebrate every time you beat it."
+ },
+ "balon": {
+  "emoji": "🏀",
+  "title_es": "Retos con Balón",
+  "title_en": "Ball Challenges",
+  "cat_es": "🏃 Deportes",
+  "cat_en": "🏃 Sports",
+  "age": "5-12",
+  "time": "25 min",
+  "materials_es": [
+   "Un balón de baloncesto o de goma",
+   "Una papelera o cubo"
+  ],
+  "materials_en": [
+   "A basketball or rubber ball",
+   "A wastepaper basket or bucket"
+  ],
+  "steps_es": [
+   "Reto 1: bota el balón 20 veces seguidas sin que se escape.",
+   "Reto 2: bótalo alternando mano derecha e izquierda.",
+   "Reto 3: lanza al cubo desde 1 m — ¿metes 5 de 10?",
+   "Reto 4: retrocede 50 cm cada vez que metas dos seguidas.",
+   "Reto 5: cronometra cuánto tardas en hacer 50 botes.",
+   "¡Intenta mejorar tu tiempo cada día!"
+  ],
+  "steps_en": [
+   "Challenge 1: dribble the ball 20 times in a row without losing it.",
+   "Challenge 2: dribble alternating right and left hand.",
+   "Challenge 3: shoot into the bucket from 1 m — can you score 5 out of 10?",
+   "Challenge 4: move back 50 cm each time you score two in a row.",
+   "Challenge 5: time how long it takes you to do 50 dribbles.",
+   "Try to beat your time every day!"
+  ],
+  "benefits_es": [
+   "Coordinación mano-ojo",
+   "Concentración",
+   "Perseverancia"
+  ],
+  "benefits_en": [
+   "Hand-eye coordination",
+   "Focus",
+   "Perseverance"
+  ],
+  "tip_es": "Practica con la mano no dominante — en unas semanas notarás una gran mejoría.",
+  "tip_en": "Practise with your non-dominant hand — in a few weeks you'll notice a huge improvement."
+ },
+ "natacion": {
+  "emoji": "🏊",
+  "title_es": "Preparación para Nadar",
+  "title_en": "Swimming Prep",
+  "cat_es": "🏃 Deportes",
+  "cat_en": "🏃 Sports",
+  "age": "5-12",
+  "time": "20 min",
+  "materials_es": [
+   "Espacio en el suelo",
+   "Esterilla (opcional)",
+   "Botella de agua"
+  ],
+  "materials_en": [
+   "Floor space",
+   "Mat (optional)",
+   "Water bottle"
+  ],
+  "steps_es": [
+   "Aprende la posición horizontal: échate boca abajo y estira los brazos al frente.",
+   "Practica el movimiento de brazos de crol: alternando derecha e izquierda.",
+   "Añade el pateo de piernas: piernas rectas, movimiento desde la cadera.",
+   "Combina brazos y piernas durante 30 segundos.",
+   "Practica la respiración: gira la cabeza a un lado al mover el brazo.",
+   "Repite la secuencia 3 veces y descansa bebiendo agua."
+  ],
+  "steps_en": [
+   "Learn the horizontal position: lie face down and stretch your arms forward.",
+   "Practise the freestyle arm stroke: alternating right and left.",
+   "Add the leg kick: straight legs, movement from the hip.",
+   "Combine arms and legs for 30 seconds.",
+   "Practise breathing: turn your head to one side as you move your arm.",
+   "Repeat the sequence 3 times and rest by drinking water."
+  ],
+  "benefits_es": [
+   "Coordinación corporal",
+   "Preparación física",
+   "Seguridad acuática"
+  ],
+  "benefits_en": [
+   "Body coordination",
+   "Physical preparation",
+   "Water safety"
+  ],
+  "tip_es": "Este ejercicio seco en casa te ayuda a aprender los movimientos antes de entrar al agua.",
+  "tip_en": "This dry-land exercise at home helps you learn the movements before getting in the water."
+ }
+}

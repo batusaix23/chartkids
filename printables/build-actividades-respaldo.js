@@ -1,6 +1,6 @@
 'use strict';
-// printables/build-actividades-respaldo.js — extracts the 58 hand-written activities
-// from descargables.html into js/actividades-respaldo.js, the offline library that
+// printables/build-actividades-respaldo.js — turns the 58 hand-written activities in
+// data/actividades-fichas.json into js/actividades-respaldo.js, the offline library that
 // actividad-ia.html shows when the AI is unavailable (daily free budget spent, outage).
 // Run: node printables/build-actividades-respaldo.js
 
@@ -8,10 +8,8 @@ const fs = require('fs');
 const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 
-const html = fs.readFileSync(path.join(ROOT, 'descargables.html'), 'utf8');
-const start = html.indexOf('const FICHAS = {'), end = html.indexOf('\nfunction printFicha', start);
-if (start < 0 || end < 0) throw new Error('FICHAS block not found in descargables.html');
-const FICHAS = new Function(html.slice(start, end).replace('const FICHAS =', 'return') + ';')();
+// Source of truth (moved out of the retired descargables.html page).
+const FICHAS = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'actividades-fichas.json'), 'utf8'));
 
 // Page categories (actividad-ia.html chips) ← library categories
 const CAT = {

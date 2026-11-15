@@ -172,6 +172,11 @@ function updateSitemap(manifests) {
   const file = path.join(L.ROOT, 'sitemap.xml');
   let xml = fs.readFileSync(file, 'utf8');
   const before = (xml.match(/<url>/g) || []).length;
+  // The site is served from www (chartkids.com redirects there): one canonical host,
+  // and drop duplicate entries left over from older generators.
+  xml = xml.replace(/<loc>https?:\/\/chartkids\.com/g, '<loc>https://www.chartkids.com');
+  const seen = new Set();
+  xml = xml.replace(/\s*<url>\s*<loc>([^<]+)<\/loc>[\s\S]*?<\/url>/g, (m, loc) => (seen.has(loc) ? '' : (seen.add(loc), m)));
   for (const [cat, m] of Object.entries(manifests)) {
     const c = L.CATS[cat];
     const owned = new RegExp(`\\s*<url>\\s*<loc>https?://(www\\.)?chartkids\\.com/(${c.dir}/[^<]*|${c.page.replace('.', '\\.')})</loc>[\\s\\S]*?</url>`, 'g');

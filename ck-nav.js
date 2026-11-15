@@ -116,7 +116,12 @@
     setTimeout(renderCknAuth, 150);
   }
 
+  // Footers write "© <span class="ck-year">YYYY</span>"; keep it current every year.
+  function updateYear() {
+    document.querySelectorAll('.ck-year').forEach(el => { el.textContent = new Date().getFullYear(); });
+  }
+
   document.readyState === 'loading'
-    ? document.addEventListener('DOMContentLoaded', init)
-    : init();
+    ? document.addEventListener('DOMContentLoaded', () => { init(); updateYear(); })
+    : (init(), updateYear());
 })();

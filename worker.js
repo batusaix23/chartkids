@@ -472,6 +472,22 @@ async function paypalCheck(env) {
     apiBase: paypalBase(env),
     live: id && secret ? await tryEnv('https://api-m.paypal.com') : null,
     sandbox: id && secret ? await tryEnv('https://api-m.sandbox.paypal.com') : null,
+    plan: await (async () => {
+      // Is the plan premium.html sells real and ACTIVE on this account?
+      try {
+        const token = await paypalToken(env);
+        const H = { Authorization: `Bearer ${token}` };
+        const one = await fetch(`${paypalBase(env)}/v1/billing/plans/${PAYPAL_PLAN_ID}`, { headers: H });
+        const p = one.ok ? await one.json() : null;
+        const list = await fetch(`${paypalBase(env)}/v1/billing/plans?page_size=20&total_required=true`, { headers: H });
+        const all = list.ok ? (await list.json()).plans || [] : [];
+        return {
+          id: PAYPAL_PLAN_ID, httpStatus: one.status, status: p && p.status, name: p && p.name,
+          price: p && p.billing_cycles ? p.billing_cycles.map(b => `${b.pricing_scheme && b.pricing_scheme.fixed_price ? b.pricing_scheme.fixed_price.value + ' ' + b.pricing_scheme.fixed_price.currency_code : '?'} / ${b.frequency && b.frequency.interval_unit}`) : null,
+          plansInAccount: all.map(x => ({ id: x.id, status: x.status, name: x.name })),
+        };
+      } catch (e) { return { error: e.message }; }
+    })(),
   });
 }
 
