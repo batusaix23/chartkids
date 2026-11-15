@@ -249,7 +249,7 @@ function initPayPal() {
   paypal.Buttons({
     style: { shape:'pill', color:'gold', layout:'vertical', label:'subscribe' },
     createSubscription(data, actions) {
-      return actions.subscription.create({ plan_id: 'P-FZ9MSHLYCWXE6' });
+      return actions.subscription.create({ plan_id: 'P-8V697160D9829181ENL45O2I' });
     },
     async onApprove(data) {
       localStorage.setItem('chartkids_premium', 'true');

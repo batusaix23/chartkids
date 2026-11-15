@@ -447,7 +447,7 @@ function timingSafeEqual(a, b) {
 // Secrets (wrangler secret put …): PAYPAL_CLIENT_ID, PAYPAL_SECRET, PAYPAL_WEBHOOK_ID.
 // Optional var PAYPAL_API (default live: https://api-m.paypal.com; sandbox:
 // https://api-m.sandbox.paypal.com).
-const PAYPAL_PLAN_ID = 'P-FZ9MSHLYCWXE6';           // the plan premium.html sells
+const PAYPAL_PLAN_ID = 'P-8V697160D9829181ENL45O2I';           // the plan premium.html sells
 const paypalBase = env => env.PAYPAL_API || 'https://api-m.paypal.com';
 // Credentials pasted into a dashboard or terminal often carry stray spaces/newlines.
 const ppId = env => String(env.PAYPAL_CLIENT_ID || '').trim();
