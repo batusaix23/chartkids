@@ -39,6 +39,12 @@ const CATS = {
   stem:         { dir: 'stem',      page: 'stem.html',              color: '#10b981', emoji: '🔬', es: 'STEM',                en: 'STEM' },
   certificados: { dir: 'certificados', page: 'certificados.html',   color: '#f59e0b', emoji: '🏆', es: 'Certificados',        en: 'Certificates' },
   calendarios:  { dir: 'calendarios',  page: 'calendarios.html',    color: '#8b5cf6', emoji: '📅', es: 'Calendarios',         en: 'Calendars' },
+  // Older collections (own generators, own URLs) shown inside other hubs; hub:false →
+  // build-hubs.js does not write a hub page or sitemap section for them.
+  trazado:      { dir: 'tracing',    page: 'escritura.html',   color: '#6366f1', emoji: '✏️', es: 'Trazado de palabras', en: 'Word Tracing', hub: false },
+  sopas:        { dir: 'wordsearch', page: 'escritura.html',   color: '#0284c7', emoji: '🔤', es: 'Sopa de letras',      en: 'Word Search',  hub: false },
+  conteo:       { dir: 'counting',   page: 'matematicas.html', color: '#ca8a04', emoji: '🔢', es: 'Conteo',              en: 'Counting',     hub: false },
+  patrones:     { dir: 'patterns',   page: 'matematicas.html', color: '#db2777', emoji: '🔷', es: 'Patrones',            en: 'Patterns',     hub: false },
 };
 
 function esc(s) {
@@ -243,6 +249,7 @@ function writeCategory(cat, items, { keepDirs = [] } = {}) {
 }
 
 module.exports = {
+  itemPage,
   ROOT, SITE, W, H, BODY_TOP, BODY_BOTTOM, DIFF, CATS, FONT, BODY_FONT, EMOJI_FONT,
   esc, rng, seedOf, shuffle, sheet, itemUrl, writeCategory,
 };

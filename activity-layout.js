@@ -56,7 +56,7 @@ function siteFooter() {
   return `<footer class="site-footer"><div class="container footer-inner">
   <span>© ${new Date().getFullYear()} ChartKids</span>
   ${bi('a', 'Privacidad', 'Privacy', 'href="/privacy.html"')}
-  ${bi('a', 'Blog', 'Blog', 'href="/blog/"')}
+  ${bi('a', 'Blog', 'Blog', 'href="/blog.html"')}
 </div></footer>`;
 }
 

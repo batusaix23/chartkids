@@ -228,3 +228,6 @@ if (sitemapLines.length>0 && !FORCE) {
   console.log(`✓ sitemap +${sitemapLines.length+1} URLs`);
 }
 console.log(`\n✓ Built: ${built}  Skipped: ${skipped}`);
+
+// Put the pages on the shared printable item format (printables/upgrade-legacy.js).
+require('./printables/upgrade-legacy').upgrade('tracing');

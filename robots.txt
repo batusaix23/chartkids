@@ -9,6 +9,9 @@ Sitemap: https://www.chartkids.com/sitemap.xml
 
 # Disallow admin and private pages
 Disallow: /admin.html
+Disallow: /generate-images.html
+Disallow: /instagram-posts.html
+Disallow: /printables/
 
 # Allow search engines to crawl everything else
 Allow: /index.html

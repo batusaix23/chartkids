@@ -43,12 +43,10 @@ h1 { font-family: 'Fredoka One', cursive; font-size: 2.5rem; margin-bottom: 10px
 .lang-btn { background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.2s; }
 .lang-btn:hover, .lang-btn.active { background: var(--accent); border-color: var(--accent); }
 </style>
+<script src="/ck-nav.js" defer></script>
 </head>
 <body>
-<div class="lang-switch">
-  <button class="lang-btn active" onclick="setLang('es')">ES</button>
-  <button class="lang-btn" onclick="setLang('en')">EN</button>
-</div>
+<div id="ck-nav"></div>
 
 <div class="container">
   <a href="index.html" class="back-link">← <span id="backText">Volver a ChartKids</span></a>
@@ -183,7 +181,7 @@ const translations = {
 
 // Detect user language (same logic as main app)
 function detectUserLanguage() {
-  const saved = localStorage.getItem('chartkids_lang');
+  const saved = (localStorage.getItem('ck_lang') || localStorage.getItem('chartkids_lang'));
   if (saved) return saved;
   const browserLang = navigator.language || navigator.userLanguage || 'en';
   return browserLang.startsWith('es') ? 'es' : 'en';
@@ -192,10 +190,10 @@ let currentLang = detectUserLanguage();
 
 function setLang(lang) {
   currentLang = lang;
-  localStorage.setItem('chartkids_lang', lang);
+  localStorage.setItem('ck_lang', lang);
   document.documentElement.lang = lang;
   document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`)?.classList.add('active');
 
   const t = translations[lang];
   document.getElementById('backText').textContent = t.backText;
@@ -218,5 +216,15 @@ function setLang(lang) {
 // Initialize
 setLang(currentLang);
 </script>
+<style>
+.ck-footer{border-top:1px solid #2e2e50;margin-top:48px;padding:26px 16px 34px;text-align:center;font-family:'Nunito',sans-serif;color:#94a3b8;font-size:.86rem;line-height:1.9}
+.ck-footer a{color:#a78bfa;text-decoration:none;margin:0 8px;font-weight:700}
+.ck-footer a:hover{color:#f1f5f9}
+</style>
+<footer class="ck-footer">
+  <nav><a href="/index.html">Inicio</a><a href="/imprime-y-juega.html">Imprime y Juega</a><a href="/actividades.html">Actividades</a><a href="/blog.html">Blog</a><a href="/premium.html">Premium</a></nav>
+  <nav><a href="/terms.html">Términos</a><a href="/privacy.html">Privacidad</a><a href="/support.html">Soporte</a></nav>
+  <div>© <span class="ck-year">2026</span> ChartKids</div>
+</footer>
 </body>
 </html>

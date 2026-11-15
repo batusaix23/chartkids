@@ -330,7 +330,7 @@ pirate: {
 <circle cx="258" cy="140" r="5" stroke-width="2.5"/>
 <circle cx="272" cy="140" r="5" stroke-width="2.5"/>
 <circle cx="278" cy="138" r="2" stroke-width="2.5"/>
-<path d="M300" cy="95" L295,95 L300,80 L305,95 Z" stroke-width="2.5"/>
+<path d="M300,95 L295,95 L300,80 L305,95 Z" stroke-width="2.5"/>
 <path d="M248,128 L278,90 L300,80 L322,90 L352,128" stroke-width="3" stroke-linejoin="round"/>
 <path d="M148,340 L100,320 L110,260" stroke-width="4" stroke-linecap="round"/>
 <path d="M110,260 L145,285 L130,330" stroke-width="3" stroke-linecap="round"/>

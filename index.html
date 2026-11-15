@@ -5134,6 +5134,12 @@ function familySwitchChart(chartId) {
 }
 
 // ─── Charts Modal ─────────────────────────────────────────
+// Footer "Estadísticas" link: open "Mis Charts" on the statistics tab.
+function showStatsModal() {
+  openChartsModal();
+  switchTab('stats');
+}
+
 function openChartsModal() {
   document.getElementById('chartsModal').style.display = 'flex';
   renderChartsModal();

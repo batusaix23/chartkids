@@ -191,7 +191,7 @@ function updateSitemap(manifests) {
 }
 
 const manifests = {};
-for (const cat of Object.keys(L.CATS)) {
+for (const cat of Object.keys(L.CATS).filter(k => L.CATS[k].hub !== false)) {
   const f = path.join(L.ROOT, 'data', 'printables', `${cat}.json`);
   if (!fs.existsSync(f)) continue;
   const m = JSON.parse(fs.readFileSync(f, 'utf8'));

@@ -1407,7 +1407,9 @@ const RW = {
   },
 
   init() {
-    document.getElementById('xp-display').textContent = this.data.xp + ' XP';
+    // xp-display is optional on this page; a missing element used to throw here and
+    // stop the rest of the script (including the Premium unlock below).
+    document.querySelectorAll('#xp-display').forEach(el => el.textContent = this.data.xp + ' XP');
 
     // Inject complete buttons into activity cards
     document.querySelectorAll('.activity-card').forEach(card => {

@@ -1,0 +1,11 @@
+# printables/wrangler.flux.toml — config for the LOCAL-ONLY FLUX batch helper.
+# Kept separate from the site's wrangler.toml so it has no routes, KV or rate limits
+# (in --remote mode the site config's chartkids.com route made previews redirect).
+# Run:  npx wrangler dev --config printables/wrangler.flux.toml --remote --port 8788
+# Never deployed.
+name = "chartkids-flux-local"
+main = "flux-worker.js"
+compatibility_date = "2024-09-23"
+
+[ai]
+binding = "AI"
