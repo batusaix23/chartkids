@@ -178,6 +178,15 @@
       if (n && n.trim()) { p.name = n.trim().slice(0, 20); setPet(p); render(); }
     },
     refresh: render,
+    // For the weekly summary image (js/resumen.js): what the pet looks like now.
+    info() {
+      const p = getPet();
+      if (!p) return null;
+      const sp = SPECIES[p.species] || SPECIES.dragon, t = L(), lg = curLang();
+      const stage = stageOf(pctOf(ctx));
+      return { name: p.name, emoji: stage === 0 ? '🥚' : stage === 1 ? sp.baby : sp.big,
+        kind: stage === 0 ? t.egg : stage === 1 ? t.baby(sp[lg]) : t.big(sp[lg]) };
+    },
   };
 
   const css = document.createElement('style');

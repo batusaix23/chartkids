@@ -2186,6 +2186,7 @@ nav {
 <script src="/ck-nav.js" defer></script>
 <script src="/js/mascota.js"></script>
 <script src="/js/fiesta.js"></script>
+<script src="/js/resumen.js"></script>
 </head>
 <body>
 <div class="bg-orbs">
@@ -2298,6 +2299,7 @@ nav {
         <button class="btn btn-success" id="btnSaveHtml" onclick="saveAsHTML()">📄 HTML</button>
         <button class="btn btn-secondary" id="btnEdit" onclick="openEditModal()">✏️ <span id="btnEditText">Editar</span></button>
         <button class="btn btn-secondary" id="btnShare" onclick="shareChart()">📤 Compartir</button>
+        <button class="btn btn-success" id="btnResumen" onclick="ckResumen.open()">📲 <span id="btnResumenText">Resumen</span></button>
         <button class="btn btn-secondary" id="btnPrint" onclick="window.print()">🖨️ Imprimir</button>
         <button class="btn btn-primary" id="btnNew" onclick="resetChart()">🔄 Nuevo</button>
       </div>
@@ -3174,6 +3176,7 @@ nav {
       <div class="wsum-goal" id="wsumGoal" style="display:none"></div>
       <div class="wsum-motiv" id="wsumMotiv"></div>
       <div class="wsum-actions">
+        <button class="wsum-print-btn" onclick="ckResumen.open()">📲 <span id="wsumShareTxt">Compartir</span></button>
         <button class="wsum-print-btn" onclick="window.print()">🖨️ <span id="wsumPrintTxt">Imprimir</span></button>
         <button class="wsum-close-btn" onclick="closeWeekSummary()" id="wsumCloseTxt">Cerrar</button>
       </div>
@@ -3899,6 +3902,7 @@ function applyTranslations() {
   document.getElementById('chartsBtnText').textContent = t('chartsBtnText');
   document.getElementById('modalTitle').textContent = t('modalTitle');
   document.getElementById('btnEditText').textContent = t('btnEdit').replace('✏️ ', '');
+  document.getElementById('btnResumenText').textContent = lang === 'es' ? 'Resumen' : 'Summary';
   document.getElementById('editModalTitle').textContent = t('editModalTitle');
   document.getElementById('labelChildName').textContent = t('labelChildName');
   document.getElementById('labelTitle').textContent = t('labelTitle');
@@ -6420,6 +6424,7 @@ function showWeekSummary(weekData, streak) {
   document.getElementById('wsumMotiv').textContent = msgs[idx];
 
   document.getElementById('wsumPrintTxt').textContent = lang === 'es' ? 'Imprimir' : 'Print';
+  document.getElementById('wsumShareTxt').textContent = lang === 'es' ? 'Compartir' : 'Share';
   document.getElementById('wsumCloseTxt').textContent = lang === 'es' ? 'Cerrar' : 'Close';
 
   modal.classList.add('active');
