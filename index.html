@@ -2184,6 +2184,7 @@ nav {
 .activities-strip > button { flex-shrink: 0; white-space: nowrap; }
 </style>
 <script src="/ck-nav.js" defer></script>
+<script src="/js/mascota.js"></script>
 </head>
 <body>
 <div class="bg-orbs">
@@ -3226,6 +3227,9 @@ function detectUserLanguage() {
 }
 
 let lang = detectUserLanguage();
+// % needed to count a week in the streak. Declared up here because loadProgress()
+// runs during init (before the Streak Counter section) and reaches calculateStreak().
+const STREAK_THRESHOLD = 75;
 
 const T = {
   es: {
@@ -3911,7 +3915,7 @@ function applyTranslations() {
   renderQuickPrompts();
   renderEmptyState();
   updateChartsBadge();
-  if (chartData) buildChart(chartData);
+  if (chartData) rebuildChartKeepProgress();
   // Footer translations
   document.getElementById('footerDesc').textContent = t('footerDesc');
   document.getElementById('footerLegal').textContent = t('footerLegal');
@@ -4453,6 +4457,7 @@ function buildChart(data, preserveProgress = false) {
           </div>
         </div>
         ` : ''}
+        <div class="ckpet-slot"></div>
         <div class="chart-motivation" id="chartMotivation">${lang==='es'?'¡Tú puedes! Empieza ganando tus primeras estrellas 💪':'You can do it! Start earning your first stars 💪'}</div>
       </div>
 
@@ -4485,6 +4490,7 @@ function toggleCheck(ti, d, total, goalAmount) {
     el.classList.add('done');
     el.animate([{transform:'scale(1)'},{transform:'scale(1.3)'},{transform:'scale(1.05)'}],{duration:280});
     // Efectos de celebración al marcar
+    if (window.ckPet) ckPet.fed();
     playStarSound();
     showStarBurst(el);
   }
@@ -4542,6 +4548,13 @@ function updateProgress(total, goalAmount) {
 
   // Update streak badge whenever progress crosses threshold
   updateStreakDisplay();
+  if (window.ckPet) ckPet.update(petCtx());
+}
+
+// What the chart pet (js/mascota.js) needs to know about the open chart.
+function petCtx() {
+  const total = chartData ? (chartData.tasks || []).length * (chartData.days || 7) : 0;
+  return { id: currentChartId, count: checked.size, total };
 }
 
 // ─── Celebration Effects ──────────────────────────────────
@@ -5004,6 +5017,18 @@ function saveProgress() {
   if (charts.length > 10) charts.pop();
 
   saveAllCharts(charts);
+}
+
+// Re-render the open chart (e.g. after a language switch) without losing its checks.
+function rebuildChartKeepProgress() {
+  buildChart(chartData, true);
+  checked.forEach(key => {
+    const el = document.getElementById(`cb-${key}`);
+    if (el) el.classList.add('done');
+  });
+  const total = (chartData.tasks || []).length * (chartData.days || 7);
+  const goalAmount = chartData.goalType === 'money' && chartData.goalAmount > 0 ? chartData.goalAmount : 0;
+  updateProgress(total, goalAmount);
 }
 
 function loadChartById(chartId) {
@@ -5762,6 +5787,7 @@ buildChart = function(data, preserveProgress = false) {
     currentChartId = generateChartId();
     saveProgress();
   }
+  if (window.ckPet) ckPet.update(petCtx());
 };
 
 // ─── Premium Functions ────────────────────────────────────
@@ -6398,7 +6424,7 @@ function closeWeekSummary() {
 }
 
 // ─── Streak Counter ───────────────────────────────────────
-const STREAK_THRESHOLD = 75; // % needed to count a week
+// STREAK_THRESHOLD is declared next to `lang` near the top of this script.
 
 function calculateStreak(chartId) {
   if (!chartId || !chartData) return 0;
@@ -6727,6 +6753,7 @@ function renderKidOverlay() {
           <div class="kid-bar-fill" id="kidBarFill" style="width:${pct}%">${pct > 12 ? pct+'%' : ''}</div>
         </div>
         <div class="kid-motivation" id="kidMotiv">${motiv}</div>
+        <div class="ckpet-slot ckpet-kid"></div>
       </div>
       <div class="kid-days-header">
         <div></div>
@@ -6738,6 +6765,7 @@ function renderKidOverlay() {
       <div class="kid-exit-hint" id="kidExitHint"></div>
       <button class="kid-exit-btn" id="kidExitBtn" onclick="kidExitTap()" title="${lang === 'es' ? 'Salir (toca 3 veces)' : 'Exit (tap 3 times)'}">🔒</button>
     </div>`;
+  if (window.ckPet) ckPet.refresh();
 }
 
 function kidTap(ti, d, total, goalAmount) {
