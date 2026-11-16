@@ -16,7 +16,7 @@
 
 // Shared kid-safe word list; sets globalThis.KidSafe (same file the browser loads).
 import './js/kid-safe.js';
-import { buildCuentoMessages, parseCuento } from './cuento-prompt.js';
+import { buildCuentoMessages, parseCuento, buildHistoriaMessages, HISTORIA_LENGTH } from './cuento-prompt.js';
 
 // Workers AI models, tried in order. Cloudflare retires models periodically
 // (@cf/meta/llama-3.1-8b-instruct was deprecated 2026-05-30), so a fallback keeps the
@@ -69,6 +69,7 @@ const AI_LIMITS = {
   image:     { binding: 'RL_AI_IMAGE', perDay: 15, cost: 120 },  // FLUX image + safety check
   text:      { binding: 'RL_AI_TEXT', perDay: 40, cost: 90 },    // 70B safety check (coloring prompt)
   textLite:  { binding: 'RL_AI_TEXT', perDay: 60, cost: 20 },    // 8B chat / activity ideas
+  story:     { binding: 'RL_AI_TEXT', perDay: 10, cost: 150 },   // 70B "Crea tu historia" (up to ~400 words)
 };
 
 // Local testing: start with `wrangler dev --var DEV_ALLOW_LOCAL:1` to also accept
@@ -224,6 +225,11 @@ export default {
         return (await guardAI(request, env, 'text')) || await generateCuento(request, env);
       }
 
+      // ─── CREA TU HISTORIA (historias.html) ─────────────────
+      if (path === '/historia' && request.method === 'POST') {
+        return (await guardAI(request, env, 'story')) || await generateHistoria(request, env);
+      }
+
       // ─── CUSTOM WORKSHEET GENERATOR ─────────────────────────
       if (path === '/generate' && request.method === 'POST') {
         return await generateWorksheet(request, env);
@@ -311,6 +317,44 @@ async function generateCuento(request, env) {
     return jsonResponse({ error: 'ai_unavailable', reason: 'story_rejected' }, 503);
   }
   return jsonResponse(story);
+}
+
+// ─── CREA TU HISTORIA ────────────────────────────────────────
+// A new story from a short form (name, age, buddy, place, lesson, length).
+// Prompt: cuento-prompt.js (buildHistoriaMessages). Same input/output kid-safe checks
+// as the chart story; charged as 'story' (150 neurons, 10 per person per day).
+async function generateHistoria(request, env) {
+  let body;
+  try { body = await request.json(); } catch { return jsonResponse({ error: 'bad_request' }, 400); }
+  const lang = body.lang === 'en' ? 'en' : 'es';
+  const clean = (v, n) => {
+    const s = typeof v === 'string' ? v.replace(/[\u0000-\u001f<>{}`]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, n) : '';
+    return s && !KidSafe.findBlocked(s) ? s : '';
+  };
+  const facts = {
+    lang,
+    name: clean(body.name, 30) || (lang === 'es' ? 'una niña o un niño valiente' : 'a brave kid'),
+    age: Math.max(3, Math.min(12, Math.round(Number(body.age) || 6))),
+    companion: clean(body.companion, 50),
+    place: clean(body.place, 60),
+    lesson: clean(body.lesson, 80),
+    length: body.length === 'mediano' ? 'mediano' : 'corto',
+  };
+  const L = HISTORIA_LENGTH[facts.length];
+  // One retry if the answer comes back malformed or trips the kid-safe list
+  // (rare; the retry only spends neurons when it is needed).
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    const response = await runAI(env, {
+      messages: buildHistoriaMessages(facts),
+      max_tokens: L.maxTokens,
+      temperature: 0.85,
+    }, AI_MODELS);
+    const text = aiText(response);
+    const story = parseCuento(text, L.paragraphs + 2);
+    if (story && !KidSafe.findBlocked(text)) return jsonResponse(story);
+    console.warn('historia rejected (attempt ' + attempt + '):', story ? 'kid-safe' : 'format', text.slice(0, 120));
+  }
+  return jsonResponse({ error: 'ai_unavailable', reason: 'story_rejected' }, 503);
 }
 
 // ─── COLOREAR IA ────────────────────────────────────────────

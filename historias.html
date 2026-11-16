@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crea tu Historia con IA y Lector de Cuentos | ChartKids</title>
+<meta name="description" content="Crea un cuento infantil con IA usando el nombre, la edad y los gustos de tu hijo o hija, y escúchalo en voz alta. También lee en voz alta tus propios cuentos (texto o PDF) con resaltado frase por frase.">
+<link rel="canonical" href="https://www.chartkids.com/historias.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.chartkids.com/historias.html">
+<meta property="og:title" content="Crea tu Historia con IA — ChartKids">
+<meta property="og:description" content="Un cuento nuevo cada noche, con tu peque como protagonista, leído en voz alta.">
+<meta property="og:image" content="https://www.chartkids.com/og-image.png">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<script src="/ck-nav.js" defer></script>
+<script src="/js/kid-safe.js"></script>
+<script src="/js/voz.js"></script>
+<style>
+:root{--bg:#0f0f1a;--surface:#1a1a2e;--surface2:#232340;--border:#2e2e50;--text:#f1f5f9;--muted:#94a3b8;--accent:#7c3aed;--accent2:#06b6d4;--pink:#ec4899;--yellow:#fbbf24}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;line-height:1.5}
+.wrap{max-width:900px;margin:0 auto;padding:0 16px 60px}
+.hero{text-align:center;padding:34px 0 18px}
+.hero h1{font-family:'Fredoka One',cursive;font-size:clamp(1.9rem,5vw,2.8rem);margin:6px 0;background:linear-gradient(135deg,#a78bfa,#f472b6,#fbbf24);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-weight:700;margin:0 auto;max-width:600px}
+.tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:18px 0}
+.tab{padding:10px 18px;border-radius:50px;border:1px solid var(--border);background:var(--surface);color:var(--muted);font:800 .95rem 'Nunito',sans-serif;cursor:pointer}
+.tab.on{background:linear-gradient(135deg,var(--accent),var(--pink));color:#fff;border-color:transparent}
+.panel{display:none;background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:20px}
+.panel.on{display:block}
+label.f{display:block;font-weight:800;margin:14px 0 6px}
+input[type=text],select,textarea{width:100%;padding:11px 14px;border-radius:14px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font:700 1rem 'Nunito',sans-serif}
+textarea{min-height:170px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 140px;gap:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.chip{padding:8px 13px;border-radius:50px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font:800 .88rem 'Nunito',sans-serif;cursor:pointer}
+.chip.on{border-color:var(--accent);background:rgba(124,58,237,.25)}
+.len{display:flex;gap:10px;flex-wrap:wrap}
+.len label{flex:1;min-width:140px;display:flex;gap:8px;align-items:center;padding:11px 14px;border-radius:14px;border:1px solid var(--border);background:var(--surface2);font-weight:800;cursor:pointer}
+.go{display:block;width:100%;margin-top:18px;padding:15px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--accent),var(--pink));color:#fff;font:900 1.1rem 'Nunito',sans-serif;cursor:pointer}
+.go:disabled{opacity:.6;cursor:wait}
+.msg{margin-top:12px;padding:11px 14px;border-radius:12px;font-weight:800;display:none}
+.msg.on{display:block}.msg.err{background:rgba(239,68,68,.15);color:#fca5a5}.msg.ok{background:rgba(34,197,94,.12);color:#86efac}
+.file{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.hint{color:var(--muted);font-size:.85rem;font-weight:700;margin-top:6px}
+#reader{display:none;margin-top:22px}
+#reader.on{display:block}
+.controls{position:sticky;top:64px;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:10px;margin-bottom:12px}
+.controls .lbl{font-weight:800;color:var(--muted);font-size:.9rem}
+.cbtn{padding:9px 15px;border-radius:50px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font:800 .92rem 'Nunito',sans-serif;cursor:pointer}
+.cbtn.main{background:linear-gradient(135deg,var(--accent),var(--pink));border:none;color:#fff}
+.cbtn.on{background:var(--accent);border-color:var(--accent)}
+.controls input[type=range]{width:100px}
+.paper{background:linear-gradient(180deg,#fffaf3,#fdf2ff);color:#3b2a5a;border-radius:22px;padding:26px clamp(18px,4vw,40px);box-shadow:0 10px 40px rgba(0,0,0,.35)}
+.paper h2{font-family:'Fredoka One',cursive;color:#6d28d9;text-align:center;font-size:clamp(1.4rem,4vw,1.9rem);margin:0 0 16px;line-height:1.2}
+.paper p{margin:0 0 14px;font-weight:600;line-height:1.75;font-size:var(--fs,1.12rem)}
+.s{border-radius:6px;cursor:pointer;transition:background .2s}
+.s:hover{background:rgba(124,58,237,.08)}
+.s.now{background:#fde68a;box-shadow:0 0 0 3px #fde68a}
+.voicewarn{color:#fca5a5;font-weight:800;font-size:.85rem;text-align:center;width:100%;display:none}
+.list{display:grid;gap:10px}
+.item{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:12px 14px;border-radius:14px;background:var(--surface2);border:1px solid var(--border)}
+.item b{display:block}.item small{color:var(--muted);font-weight:700}
+.item .acts{display:flex;gap:6px;flex-shrink:0}
+.empty{color:var(--muted);text-align:center;font-weight:700;padding:20px}
+.ck-footer{border-top:1px solid #2e2e50;margin-top:48px;padding:26px 16px 34px;text-align:center;color:#94a3b8;font-size:.86rem;line-height:1.9}
+.ck-footer a{color:#a78bfa;text-decoration:none;margin:0 8px;font-weight:700}
+@media (max-width:560px){.row{grid-template-columns:1fr}.controls{top:56px}}
+@media print{#ck-nav,.hero,.tabs,.panel,.controls,.ck-footer,.hint{display:none!important}#reader{display:block!important}.paper{box-shadow:none}}
+</style>
+</head>
+<body>
+<div id="ck-nav"></div>
+<div class="wrap">
+  <div class="hero">
+    <div style="font-size:2.6rem">📖✨</div>
+    <h1 data-es="Crea tu historia" data-en="Make your story">Crea tu historia</h1>
+    <p data-es="Un cuento nuevo, con tu peque como protagonista, leído en voz alta. O escucha tus propios cuentos." data-en="A brand-new story starring your kid, read aloud. Or listen to your own stories.">Un cuento nuevo, con tu peque como protagonista, leído en voz alta. O escucha tus propios cuentos.</p>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab on" data-tab="crea" data-es="✨ Crea tu historia" data-en="✨ Make a story">✨ Crea tu historia</button>
+    <button class="tab" data-tab="lector" data-es="📖 Lector de cuentos" data-en="📖 Story reader">📖 Lector de cuentos</button>
+    <button class="tab" data-tab="mis" data-es="📚 Mis historias" data-en="📚 My stories">📚 Mis historias</button>
+  </div>
+
+  <section class="panel on" id="p-crea">
+    <div class="row">
+      <div><label class="f" for="name" data-es="Nombre del protagonista" data-en="Main character's name">Nombre del protagonista</label>
+        <input type="text" id="name" maxlength="30" autocomplete="off" data-ph-es="Ej. Sofía" data-ph-en="E.g. Sophie" placeholder="Ej. Sofía"></div>
+      <div><label class="f" for="age" data-es="Edad" data-en="Age">Edad</label>
+        <select id="age"></select></div>
+    </div>
+    <label class="f" data-es="Compañero de aventura" data-en="Adventure buddy">Compañero de aventura</label>
+    <div class="chips" data-for="companion"></div>
+    <input type="text" id="companion" maxlength="50" data-ph-es="…o escribe otro (ej. su perrito Max)" data-ph-en="…or write another (e.g. their dog Max)" placeholder="…o escribe otro (ej. su perrito Max)">
+    <label class="f" data-es="¿Dónde ocurre?" data-en="Where does it happen?">¿Dónde ocurre?</label>
+    <div class="chips" data-for="place"></div>
+    <input type="text" id="place" maxlength="60" data-ph-es="…o escribe otro lugar" data-ph-en="…or write another place" placeholder="…o escribe otro lugar">
+    <label class="f" data-es="Lección (opcional)" data-en="Lesson (optional)">Lección (opcional)</label>
+    <div class="chips" data-for="lesson"></div>
+    <input type="text" id="lesson" maxlength="80" data-ph-es="…o escribe una lección" data-ph-en="…or write a lesson" placeholder="…o escribe una lección">
+    <label class="f" data-es="Largo" data-en="Length">Largo</label>
+    <div class="len">
+      <label><input type="radio" name="len" value="corto" checked> <span data-es="Corto (~1 min)" data-en="Short (~1 min)">Corto (~1 min)</span></label>
+      <label><input type="radio" name="len" value="mediano"> <span data-es="Mediano (~3 min)" data-en="Medium (~3 min)">Mediano (~3 min)</span></label>
+    </div>
+    <button class="go" id="create" data-es="✨ Crear mi historia" data-en="✨ Create my story">✨ Crear mi historia</button>
+    <div class="msg" id="createMsg"></div>
+  </section>
+
+  <section class="panel" id="p-lector">
+    <label class="f" for="paste" data-es="Pega aquí el cuento" data-en="Paste the story here">Pega aquí el cuento</label>
+    <textarea id="paste" data-ph-es="Había una vez…" data-ph-en="Once upon a time…" placeholder="Había una vez…"></textarea>
+    <div class="file">
+      <label class="cbtn" for="fileIn" style="cursor:pointer">📎 <span data-es="Subir archivo (.txt o .pdf)" data-en="Upload file (.txt or .pdf)">Subir archivo (.txt o .pdf)</span></label>
+      <input type="file" id="fileIn" accept=".txt,.pdf,text/plain,application/pdf" hidden>
+      <span id="fileName" class="hint"></span>
+    </div>
+    <div class="hint" data-es="🔒 El archivo se lee en tu dispositivo: no se sube a ningún lado." data-en="🔒 The file is read on your device: it is not uploaded anywhere.">🔒 El archivo se lee en tu dispositivo: no se sube a ningún lado.</div>
+    <button class="go" id="readPaste" data-es="📖 Leer en voz alta" data-en="📖 Read aloud">📖 Leer en voz alta</button>
+    <div class="msg" id="readMsg"></div>
+  </section>
+
+  <section class="panel" id="p-mis">
+    <div class="list" id="list"></div>
+  </section>
+
+  <div id="reader">
+    <div class="controls">
+      <span class="lbl" data-es="Voz para:" data-en="Voice for:">Voz para:</span>
+      <button class="cbtn" data-g="m" data-es="👦 Niño" data-en="👦 Boy">👦 Niño</button>
+      <button class="cbtn" data-g="f" data-es="👧 Niña" data-en="👧 Girl">👧 Niña</button>
+      <button class="cbtn main" id="play" data-es="▶️ Leer" data-en="▶️ Read">▶️ Leer</button>
+      <button class="cbtn" id="stop" data-es="⏹️ Detener" data-en="⏹️ Stop">⏹️ Detener</button>
+      <span class="lbl">🐢</span><input type="range" id="rate" min="0.7" max="1.1" step="0.05" value="0.9" aria-label="Velocidad"><span class="lbl">🐇</span>
+      <button class="cbtn" id="smaller" aria-label="A-">A−</button><button class="cbtn" id="bigger" aria-label="A+">A+</button>
+      <button class="cbtn" id="print" aria-label="Imprimir">🖨️</button>
+      <div class="voicewarn" id="voiceWarn"></div>
+    </div>
+    <article class="paper" id="paper"></article>
+    <div class="hint" style="text-align:center" data-es="Toca cualquier frase para leer desde ahí." data-en="Tap any sentence to read from there.">Toca cualquier frase para leer desde ahí.</div>
+  </div>
+</div>
+
+<footer class="ck-footer">
+  <nav><a href="/index.html">Inicio</a><a href="/imprime-y-juega.html">Imprime y Juega</a><a href="/actividades.html">Actividades</a><a href="/blog.html">Blog</a><a href="/premium.html">Premium</a></nav>
+  <nav><a href="/terms.html">Términos</a><a href="/privacy.html">Privacidad</a><a href="/support.html">Soporte</a></nav>
+  <div>© <span class="ck-year">2026</span> ChartKids</div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  // Local testing only: http://127.0.0.1…/historias.html?api=http://127.0.0.1:8790/api/
+  const LOCAL = /^(127.0.0.1|localhost)$/.test(location.hostname);
+  const API = (LOCAL && new URLSearchParams(location.search).get('api')) || 'https://chartkids.com/api/';
+  const KEY = 'ck_historias', VKEY = 'ck_voz_historias';
+  const $ = id => document.getElementById(id);
+  const store = { get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+                  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
+  let lang = (() => { try { return localStorage.getItem('ck_lang') || (navigator.language || 'es').slice(0, 2); } catch (e) { return 'es'; } })();
+  if (lang !== 'en') lang = 'es';
+
+  const CHIPS = {
+    companion: { es: ['🐉 un dragón', '🦄 un unicornio', '🐶 un perrito', '🐱 un gatito', '🤖 un robot', '🧚 un hada', '🦖 un dinosaurio'],
+                 en: ['🐉 a dragon', '🦄 a unicorn', '🐶 a puppy', '🐱 a kitty', '🤖 a robot', '🧚 a fairy', '🦖 a dinosaur'] },
+    place: { es: ['🚀 el espacio', '🌴 la selva', '🌊 el fondo del mar', '🏰 un castillo', '🌲 un bosque mágico', '🏡 su casa', '☁️ las nubes'],
+             en: ['🚀 outer space', '🌴 the jungle', '🌊 under the sea', '🏰 a castle', '🌲 a magic forest', '🏡 their home', '☁️ the clouds'] },
+    lesson: { es: ['🤝 compartir', '🦁 ser valiente', '💬 decir la verdad', '🪥 lavarse los dientes', '🌙 dormir temprano', '🧹 ayudar en casa', '🥦 comer verduras', '💛 ser buen amigo'],
+              en: ['🤝 sharing', '🦁 being brave', '💬 telling the truth', '🪥 brushing teeth', '🌙 going to bed early', '🧹 helping at home', '🥦 eating vegetables', '💛 being a good friend'] },
+  };
+  const T = {
+    es: { needName: 'Escribe el nombre del protagonista.', blocked: 'Usa otras palabras, por favor: algo no es apropiado para un cuento infantil.',
+          writing: '✍️ Escribiendo tu historia… (unos segundos)', limit: 'Ya crearon 10 historias hoy. ¡Mañana hay más! Mientras, prueba el Lector de cuentos.',
+          busy: 'La IA está descansando en este momento. Intenta más tarde o usa el Lector de cuentos.', rate: 'Vas muy rápido 🙂 Espera un minuto e intenta de nuevo.',
+          noText: 'Pega un cuento o sube un archivo primero.', tooBig: 'El archivo es muy grande (máximo 10 MB).', badFile: 'No pude leer ese archivo. Prueba con .txt o .pdf.',
+          pdfEmpty: 'Ese archivo no tiene texto (puede ser una imagen escaneada).', reading: 'Leyendo archivo…',
+          noVoice: '🔇 Este dispositivo no tiene voz en español. Puedes leer el cuento en pantalla o instalar una voz en español en la configuración del dispositivo.',
+          noVoiceEn: '🔇 Este dispositivo no tiene voz en inglés.', empty: 'Aún no hay historias guardadas. ¡Crea la primera!',
+          open: 'Abrir', untitled: 'Mi cuento', ages: n => `${n} años`, pause: '⏸️ Pausa' },
+    en: { needName: "Write the main character's name.", blocked: 'Please use other words: something is not right for a kids story.',
+          writing: '✍️ Writing your story… (a few seconds)', limit: '10 stories made today already. More tomorrow! Meanwhile, try the Story reader.',
+          busy: 'The AI is resting right now. Try later or use the Story reader.', rate: 'Too fast 🙂 Wait a minute and try again.',
+          noText: 'Paste a story or upload a file first.', tooBig: 'The file is too big (10 MB max).', badFile: "Couldn't read that file. Try .txt or .pdf.",
+          pdfEmpty: 'That file has no text (it may be a scanned image).', reading: 'Reading file…',
+          noVoice: '🔇 This device has no Spanish voice. You can read the story on screen.', noVoiceEn: '🔇 This device has no English voice.',
+          empty: 'No saved stories yet. Make the first one!', open: 'Open', untitled: 'My story', ages: n => `${n} years`, pause: '⏸️ Pause' },
+  };
+  const t = () => T[lang];
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+  function applyLang() {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-es]').forEach(el => { el.textContent = el.dataset[lang]; });
+    document.querySelectorAll('[data-ph-es]').forEach(el => { el.placeholder = lang === 'es' ? el.dataset.phEs : el.dataset.phEn; });
+    const age = $('age'), cur = age.value || '6';
+    age.innerHTML = Array.from({ length: 10 }, (_, i) => i + 3).map(n => `<option value="${n}">${t().ages(n)}</option>`).join('');
+    age.value = cur;
+    document.querySelectorAll('.chips').forEach(box => {
+      box.innerHTML = CHIPS[box.dataset.for][lang].map(v => `<button type="button" class="chip">${esc(v)}</button>`).join('');
+    });
+    if (playing) $('play').textContent = t().pause;
+    renderList();
+  }
+  // ck-nav.js calls setLang() when ES/EN is pressed in the shared bar.
+  window.setLang = l => { lang = l === 'en' ? 'en' : 'es'; applyLang(); };
+
+  document.querySelectorAll('.tab').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x === b));
+    document.querySelectorAll('.panel').forEach(p => p.classList.toggle('on', p.id === 'p-' + b.dataset.tab));
+    if (b.dataset.tab === 'mis') renderList();
+  }));
+
+  // A chip fills its text field (without the emoji); tapping it again clears it.
+  document.addEventListener('click', e => {
+    const chip = e.target.closest('.chip');
+    if (!chip) return;
+    const box = chip.parentElement, input = $(box.dataset.for);
+    const on = !chip.classList.contains('on');
+    box.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
+    chip.classList.toggle('on', on);
+    input.value = on ? chip.textContent.replace(/^\S+\s+/, '').trim() : '';
+  });
+
+  function showMsg(id, text, kind) { const m = $(id); m.textContent = text || ''; m.className = 'msg' + (text ? ' on ' + (kind || 'err') : ''); }
+  const unsafe = (...vals) => window.KidSafe && vals.some(v => v && KidSafe.findBlocked(v));
+
+  $('create').addEventListener('click', async () => {
+    const f = { lang, name: $('name').value.trim(), age: +$('age').value, companion: $('companion').value.trim(),
+                place: $('place').value.trim(), lesson: $('lesson').value.trim(),
+                length: document.querySelector('input[name=len]:checked').value };
+    if (!f.name) { showMsg('createMsg', t().needName); $('name').focus(); return; }
+    if (unsafe(f.name, f.companion, f.place, f.lesson)) { showMsg('createMsg', t().blocked); return; }
+    const btn = $('create'); btn.disabled = true; showMsg('createMsg', t().writing, 'ok');
+    try {
+      const r = await fetch(API + 'historia', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(f) });
+      const j = await r.json().catch(() => ({}));
+      if (r.ok && j.title && Array.isArray(j.paragraphs)) {
+        showMsg('createMsg', '');
+        openStory(save({ title: j.title, paragraphs: j.paragraphs, lang, source: 'ia' }), true);
+      } else if (r.status === 429) {
+        showMsg('createMsg', j.error === 'daily_limit' ? t().limit : t().rate);
+      } else {
+        showMsg('createMsg', t().busy);
+      }
+    } catch (e) {
+      showMsg('createMsg', t().busy);
+    } finally { btn.disabled = false; }
+  });
+
+  // ── Lector: paste or file (read on the device, never uploaded) ──
+  let fromFile = false;
+  $('fileIn').addEventListener('change', async e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    $('fileName').textContent = file.name;
+    if (file.size > 10 * 1024 * 1024) { showMsg('readMsg', t().tooBig); return; }
+    showMsg('readMsg', t().reading, 'ok');
+    try {
+      let text = /\.pdf$/i.test(file.name) || file.type === 'application/pdf' ? await readPdf(file) : await file.text();
+      text = text.split(String.fromCharCode(0)).join('').trim().slice(0, 40000);
+      if (!text) { showMsg('readMsg', t().pdfEmpty); return; }
+      $('paste').value = text;
+      fromFile = true;
+      showMsg('readMsg', '');
+    } catch (err) { showMsg('readMsg', t().badFile); }
+  });
+
+  let pdfReady = null;
+  function loadPdfJs() {
+    if (!pdfReady) pdfReady = new Promise((res, rej) => {
+      const s = document.createElement('script');
+      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+      s.onload = () => { window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'; res(window.pdfjsLib); };
+      s.onerror = () => { pdfReady = null; rej(new Error('pdf.js')); };
+      document.head.appendChild(s);
+    });
+    return pdfReady;
+  }
+  async function readPdf(file) {
+    const pdfjs = await loadPdfJs();
+    const doc = await pdfjs.getDocument({ data: await file.arrayBuffer() }).promise;
+    const out = [];
+    for (let p = 1; p <= Math.min(doc.numPages, 40); p++) {
+      const tc = await (await doc.getPage(p)).getTextContent();
+      let line = '', lastY = null;
+      for (const it of tc.items) {
+        const y = it.transform ? Math.round(it.transform[5]) : null;
+        // A big vertical jump between text runs = a new paragraph.
+        if (lastY !== null && y !== null && Math.abs(y - lastY) > 18) { out.push(line.trim(), ''); line = ''; }
+        line += it.str + ' ';
+        lastY = y;
+      }
+      out.push(line.trim(), '');
+    }
+    return out.join('\n');
+  }
+
+  function guessLang(text) {
+    const w = text.toLowerCase().match(/\p{L}+/gu) || [];
+    const es = new Set(['el', 'la', 'los', 'las', 'que', 'y', 'de', 'en', 'un', 'una', 'su', 'con', 'por', 'para', 'era', 'muy', 'había', 'está', 'pero']);
+    const en = new Set(['the', 'and', 'of', 'to', 'a', 'in', 'was', 'he', 'she', 'it', 'with', 'they', 'his', 'her', 'on', 'very', 'there', 'but']);
+    let s = /[ñáéíóú¿¡]/i.test(text) ? 3 : 0;
+    w.slice(0, 400).forEach(x => { if (es.has(x)) s++; else if (en.has(x)) s--; });
+    return s >= 0 ? 'es' : 'en';
+  }
+
+  $('readPaste').addEventListener('click', () => {
+    const text = $('paste').value.trim();
+    if (!text) { showMsg('readMsg', t().noText); return; }
+    showMsg('readMsg', '');
+    const blocks = text.replace(/\r/g, '').split(/\n\s*\n/).map(b => b.replace(/\s*\n\s*/g, ' ').trim()).filter(Boolean);
+    const title = blocks.length > 1 && blocks[0].length <= 80 ? blocks.shift() : t().untitled;
+    openStory(save({ title, paragraphs: blocks.length ? blocks : [text], lang: guessLang(text), source: fromFile ? 'archivo' : 'texto' }), true);
+    fromFile = false;
+  });
+
+  // ── Mis historias (last 12, this device only) ──
+  function save(s) {
+    const all = store.get(KEY, []);
+    const story = { id: Date.now().toString(36), date: new Date().toISOString().slice(0, 10), ...s };
+    // Long pasted books are read but not kept, so the store stays small.
+    store.set(KEY, (JSON.stringify(story).length < 60000 ? [story, ...all] : all).slice(0, 12));
+    return story;
+  }
+  function renderList() {
+    const all = store.get(KEY, []);
+    const icon = { ia: '✨', archivo: '📎', texto: '📝' };
+    $('list').innerHTML = all.length ? all.map(s => `<div class="item"><div><b>${icon[s.source] || '📖'} ${esc(s.title)}</b><small>${s.date} · ${s.lang === 'en' ? 'English' : 'Español'}</small></div>
+      <div class="acts"><button class="cbtn" data-open="${s.id}">${t().open}</button><button class="cbtn" data-del="${s.id}" aria-label="Borrar">🗑️</button></div></div>`).join('')
+      : `<div class="empty">${t().empty}</div>`;
+  }
+  $('list').addEventListener('click', e => {
+    const o = e.target.closest('[data-open]'), d = e.target.closest('[data-del]');
+    const all = store.get(KEY, []);
+    if (o) { const s = all.find(x => x.id === o.dataset.open); if (s) openStory(s, false); }
+    if (d) { store.set(KEY, all.filter(x => x.id !== d.dataset.del)); renderList(); }
+  });
+
+  // ── Reader: sentence-by-sentence with highlight ──
+  let cur = null, spans = [], sentences = [], playing = false, lastIdx = 0;
+  function span(s) { sentences.push(s); return `<span class="s" data-i="${sentences.length - 1}">${esc(s)}</span>`; }
+  function openStory(story, autoplay) {
+    stopReading();
+    cur = story; sentences = []; lastIdx = 0;
+    let html = `<h2>${ckVoz.sentences(story.title).map(span).join(' ')}</h2>`;
+    story.paragraphs.forEach(p => { html += `<p>${ckVoz.sentences(p).map(span).join(' ')}</p>`; });
+    $('paper').innerHTML = html;
+    spans = [...$('paper').querySelectorAll('.s')];
+    $('reader').classList.add('on');
+    $('voiceWarn').style.display = 'none';
+    markGender();
+    $('reader').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (autoplay) setTimeout(() => readFrom(0), 500);
+  }
+  function current() { return Math.max(0, spans.findIndex(s => s.classList.contains('now'))); }
+  function highlight(i) {
+    spans.forEach(s => s.classList.remove('now'));
+    const el = spans[i];
+    if (!el) return;
+    el.classList.add('now');
+    const r = el.getBoundingClientRect();
+    if (r.top < 150 || r.bottom > innerHeight - 40) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  function resetPlay() { $('play').textContent = $('play').dataset[lang]; }
+  function stopReading() { ckVoz.stop(); playing = false; spans.forEach(s => s.classList.remove('now')); resetPlay(); }
+  async function readFrom(i) {
+    if (!cur) return;
+    const L = cur.lang === 'en' ? 'en' : 'es';
+    playing = true;
+    $('play').textContent = t().pause;
+    const ok = await ckVoz.speak('', L, { chunks: sentences, start: i, gender: store.get(VKEY, ''), rate: +$('rate').value,
+      onchunk: highlight, onend: () => { playing = false; lastIdx = 0; spans.forEach(s => s.classList.remove('now')); resetPlay(); } });
+    if (!ok) {
+      playing = false; resetPlay();
+      const w = $('voiceWarn'); w.textContent = L === 'es' ? t().noVoice : t().noVoiceEn; w.style.display = 'block';
+    }
+  }
+  $('play').addEventListener('click', () => {
+    if (playing) { lastIdx = current(); ckVoz.stop(); playing = false; resetPlay(); return; }
+    readFrom(lastIdx);
+  });
+  $('stop').addEventListener('click', () => { lastIdx = 0; stopReading(); });
+  $('paper').addEventListener('click', e => { const s = e.target.closest('.s'); if (s) { lastIdx = +s.dataset.i; readFrom(lastIdx); } });
+  $('rate').addEventListener('change', () => { if (playing) readFrom(current()); });
+  function markGender() { document.querySelectorAll('[data-g]').forEach(b => b.classList.toggle('on', b.dataset.g === store.get(VKEY, ''))); }
+  document.querySelectorAll('[data-g]').forEach(b => b.addEventListener('click', () => {
+    store.set(VKEY, b.dataset.g); markGender();
+    if (playing) readFrom(current());
+  }));
+  let fs = 1.12;
+  $('bigger').addEventListener('click', () => { fs = Math.min(1.8, fs + 0.12); $('paper').style.setProperty('--fs', fs + 'rem'); });
+  $('smaller').addEventListener('click', () => { fs = Math.max(0.9, fs - 0.12); $('paper').style.setProperty('--fs', fs + 'rem'); });
+  $('print').addEventListener('click', () => window.print());
+  addEventListener('pagehide', () => ckVoz.stop());
+
+  applyLang();
+})();
+</script>
+</body>
+</html>

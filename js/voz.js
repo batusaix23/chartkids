@@ -79,11 +79,20 @@
     return out;
   }
 
+  // Sentences of a text as written (for showing and highlighting them); speak() takes
+  // them back through opts.chunks and reads exactly those, one by one.
+  function sentences(text) {
+    return (String(text).replace(/\s+/g, ' ').match(/[^.!?…]+[.!?…]*["»”)]*/g) || [])
+      .map(s => s.trim()).filter(s => clean(s));
+  }
+
   let token = 0;
   function stop() { token++; try { speechSynthesis.cancel(); } catch (e) {} }
   function speaking() { try { return speechSynthesis.speaking || speechSynthesis.pending; } catch (e) { return false; } }
 
-  // Speak text in 'es' or 'en'. opts: { voice, gender: 'm'|'f', rate, onend }.
+  // Speak text in 'es' or 'en'. opts: { voice, gender: 'm'|'f', rate, onend,
+  //   chunks: [sentences] to read exactly those, start: index to begin at,
+  //   onchunk(i): called as each chunk starts (for highlighting) }.
   // Resolves false if the device has no voice for that language.
   async function speak(text, lang, opts) {
     opts = opts || {};
@@ -92,12 +101,16 @@
     const my = ++token;
     const voice = opts.voice || await pick(lang, opts.gender);
     if (!voice) return false;
-    const parts = chunks(text);
-    let i = 0;
+    const parts = opts.chunks || chunks(text);
+    let i = opts.start || 0;
     const next = () => {
       if (my !== token) return;
       if (i >= parts.length) { if (opts.onend) opts.onend(); return; }
-      const u = new SpeechSynthesisUtterance(parts[i++]);
+      const said = clean(parts[i]);
+      if (opts.onchunk) opts.onchunk(i);
+      i++;
+      if (!said) { next(); return; }
+      const u = new SpeechSynthesisUtterance(said);
       u.voice = voice; u.lang = voice.lang;
       u.rate = opts.rate || 0.9;
       u.pitch = 1;
@@ -109,5 +122,5 @@
     return true;
   }
 
-  window.ckVoz = { speak, stop, speaking, pick, voices, score, genderOf };
+  window.ckVoz = { speak, stop, speaking, pick, voices, score, genderOf, sentences };
 })();
