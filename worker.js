@@ -16,6 +16,7 @@
 
 // Shared kid-safe word list; sets globalThis.KidSafe (same file the browser loads).
 import './js/kid-safe.js';
+import { buildCuentoMessages, parseCuento } from './cuento-prompt.js';
 
 // Workers AI models, tried in order. Cloudflare retires models periodically
 // (@cf/meta/llama-3.1-8b-instruct was deprecated 2026-05-30), so a fallback keeps the
@@ -218,6 +219,11 @@ export default {
         return (await guardAI(request, env, 'textLite')) || await generateActividad(request, env);
       }
 
+      // ─── CUENTO DEL DÍA (chart story) ───────────────────────
+      if (path === '/cuento' && request.method === 'POST') {
+        return (await guardAI(request, env, 'text')) || await generateCuento(request, env);
+      }
+
       // ─── CUSTOM WORKSHEET GENERATOR ─────────────────────────
       if (path === '/generate' && request.method === 'POST') {
         return await generateWorksheet(request, env);
@@ -269,6 +275,43 @@ export default {
     }
   },
 };
+
+// ─── CUENTO DEL DÍA ──────────────────────────────────────────
+// A short bedtime-style story where the child is the hero, their chart pet is the
+// sidekick and the tasks they did are the heroic deeds. Prompt: cuento-prompt.js.
+// Charged as 'text' (90 neurons). Inputs are clipped and checked against the kid-safe list; anything blocked
+// is dropped (the story still works without it). The output is checked too — if it
+// trips the list, the page shows its built-in (non-AI) story instead.
+async function generateCuento(request, env) {
+  let body;
+  try { body = await request.json(); } catch { return jsonResponse({ error: 'bad_request' }, 400); }
+  const lang = body.lang === 'en' ? 'en' : 'es';
+  const clean = (v, n) => {
+    const s = typeof v === 'string' ? v.replace(/[\u0000-\u001f<>{}`]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, n) : '';
+    return s && !KidSafe.findBlocked(s) ? s : '';
+  };
+  const name = clean(body.name, 30) || (lang === 'es' ? 'nuestro héroe' : 'our hero');
+  const petName = clean(body.petName, 20);
+  const petKind = clean(body.petKind, 30);
+  const goal = clean(body.goal, 60);
+  const tasks = (Array.isArray(body.tasks) ? body.tasks : []).map(t => clean(t, 40)).filter(Boolean).slice(0, 4);
+  const stars = Math.max(0, Math.min(500, Number(body.stars) || 0));
+
+  // 70B first: in tests (Nov 2026) the 8B model wrote Spanish with spelling mistakes and
+  // invented star counts; 70B with this prompt costs ~50-90 neurons per story.
+  const response = await runAI(env, {
+    messages: buildCuentoMessages({ lang, name, petName, petKind, goal, tasks, stars }),
+    max_tokens: 520,
+    temperature: 0.8,
+  }, AI_MODELS);
+
+  const text = aiText(response);
+  const story = parseCuento(text);
+  if (!story || KidSafe.findBlocked(text)) {
+    return jsonResponse({ error: 'ai_unavailable', reason: 'story_rejected' }, 503);
+  }
+  return jsonResponse(story);
+}
 
 // ─── COLOREAR IA ────────────────────────────────────────────
 // Turns a child's free-text request (ES or EN) into a short, kid-friendly English

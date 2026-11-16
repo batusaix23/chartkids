@@ -2187,6 +2187,8 @@ nav {
 <script src="/js/mascota.js"></script>
 <script src="/js/fiesta.js"></script>
 <script src="/js/resumen.js"></script>
+<script src="/js/voz.js"></script>
+<script src="/js/cuento.js"></script>
 </head>
 <body>
 <div class="bg-orbs">
@@ -2300,6 +2302,7 @@ nav {
         <button class="btn btn-secondary" id="btnEdit" onclick="openEditModal()">✏️ <span id="btnEditText">Editar</span></button>
         <button class="btn btn-secondary" id="btnShare" onclick="shareChart()">📤 Compartir</button>
         <button class="btn btn-success" id="btnResumen" onclick="ckResumen.open()">📲 <span id="btnResumenText">Resumen</span></button>
+        <button class="btn btn-success" id="btnCuento" onclick="ckCuento.open()">📖 <span id="btnCuentoText">Cuento</span></button>
         <button class="btn btn-secondary" id="btnPrint" onclick="window.print()">🖨️ Imprimir</button>
         <button class="btn btn-primary" id="btnNew" onclick="resetChart()">🔄 Nuevo</button>
       </div>
@@ -3903,6 +3906,7 @@ function applyTranslations() {
   document.getElementById('modalTitle').textContent = t('modalTitle');
   document.getElementById('btnEditText').textContent = t('btnEdit').replace('✏️ ', '');
   document.getElementById('btnResumenText').textContent = lang === 'es' ? 'Resumen' : 'Summary';
+  document.getElementById('btnCuentoText').textContent = lang === 'es' ? 'Cuento' : 'Story';
   document.getElementById('editModalTitle').textContent = t('editModalTitle');
   document.getElementById('labelChildName').textContent = t('labelChildName');
   document.getElementById('labelTitle').textContent = t('labelTitle');
@@ -6751,6 +6755,7 @@ function renderKidOverlay() {
 
   document.getElementById('kidOverlay').innerHTML = `
     ${window.ckFx ? ckFx.muteButton() : ''}
+    ${window.ckCuento ? ckCuento.kidButton() : ''}
     <div class="kid-overlay-inner">
       <div class="kid-header">
         <div class="kid-greeting">${greeting}</div>
