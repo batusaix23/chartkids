@@ -24,6 +24,12 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://www.chartkids.com/juegos.html</loc>
+    <lastmod>2026-11-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <!-- ES Category pages -->
   <url>
     <loc>https://www.chartkids.com/colorear.html</loc>

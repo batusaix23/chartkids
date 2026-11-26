@@ -5,6 +5,7 @@
     { href: '/actividades.html',  emoji: '🎨', label: 'Actividades' },
     { href: '/recompensas.html',  emoji: '⭐', label: 'Recompensas' },
     { href: '/imprime-y-juega.html', emoji: '🖨️', label: 'Imprime y Juega' },
+    { href: '/juegos.html',       emoji: '🧠', label: 'Juegos' },
     { href: '/blog.html',         emoji: '📝', label: 'Blog' },
     { href: '/premium.html',      emoji: '👑', label: 'Premium', gold: true },
   ];

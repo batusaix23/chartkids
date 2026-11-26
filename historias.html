@@ -161,7 +161,8 @@ textarea{min-height:170px;resize:vertical}
   const $ = id => document.getElementById(id);
   const store = { get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
                   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
-  let lang = (() => { try { return localStorage.getItem('ck_lang') || (navigator.language || 'es').slice(0, 2); } catch (e) { return 'es'; } })();
+  // Same rule as the shared bar (ck-nav.js): the saved choice, otherwise Spanish.
+  let lang = (() => { try { return localStorage.getItem('ck_lang') || 'es'; } catch (e) { return 'es'; } })();
   if (lang !== 'en') lang = 'es';
 
   const CHIPS = {
