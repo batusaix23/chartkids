@@ -145,6 +145,11 @@ export default {
         return await handleWebhook(request, env);
       }
 
+      // ─── DIBUJA MI PREMIO (verified Premium subscribers only) ─
+      if (path === '/premio-dibujo' && request.method === 'POST') {
+        return await premioDibujo(request, env);
+      }
+
       // ─── PREMIUM KIT PDFs (verified subscribers only) ──────
       if (path === '/kit' && request.method === 'POST') {
         return await kitDownload(request, env);
@@ -435,7 +440,11 @@ function coloringImagePrompt(subject) {
 async function coloringImage(request, env) {
   const desc = await readDesc(request);
   if (!desc) return jsonResponse({ error: 'Missing desc' }, 400);
+  return drawColoring(desc, env);
+}
 
+// Kid-safety check, then the FLUX drawing. Shared by /coloring-image and /premio-dibujo.
+async function drawColoring(desc, env) {
   let check;
   try { check = await checkColoringRequest(desc, env); }
   catch (err) {
@@ -656,6 +665,43 @@ async function kitDownload(request, env) {
     'Content-Type': 'application/pdf', 'Content-Disposition': `attachment; filename="chartkids-${kit}.pdf"`,
     'Cache-Control': 'private, no-store', ...corsHeaders(),
   } });
+}
+
+// POST /premio-dibujo {subscriptionID, desc} → like /coloring-image, for the chart's
+// reward ("Dibuja mi premio"). Premium only: the PayPal subscription is verified BEFORE
+// any AI budget is spent, then the usual guardAI limits apply, plus 5 drawings per
+// subscription per day.
+async function premioDibujo(request, env) {
+  const origin = request.headers.get('Origin') || '';
+  if (!ALLOWED_ORIGINS.includes(origin) && !(env.DEV_ALLOW_LOCAL === '1' && (!origin || LOCAL_ORIGIN.test(origin)))) {
+    return jsonResponse({ error: 'forbidden_origin' }, 403);
+  }
+  if (!paypalConfigured(env)) return jsonResponse({ error: 'not_configured' }, 503);
+  let body = {};
+  try { body = await request.json(); } catch { /* empty */ }
+  const desc = typeof body.desc === 'string' ? body.desc.trim().slice(0, 120) : '';
+  if (!desc) return jsonResponse({ error: 'Missing desc' }, 400);
+
+  const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+  const day = new Date().toISOString().slice(0, 10);
+  const ipKey = `premio:ip:${day}:${ip}`;                 // brake against guessing subscription IDs
+  const ipN = Number(await env.DATA.get(ipKey) || 0);
+  if (ipN >= 30) return jsonResponse({ error: 'rate_limited' }, 429);
+  await env.DATA.put(ipKey, String(ipN + 1), { expirationTtl: 2 * 86400 });
+
+  const sub = String(body.subscriptionID || '');
+  let ok;
+  try { ok = await verifySubscription(env, sub); }
+  catch (e) { console.error('PayPal verify failed:', e.message); return jsonResponse({ error: 'verify_unavailable' }, 503); }
+  if (!ok) return jsonResponse({ error: 'not_premium' }, 403);
+
+  const subKey = `premio:sub:${day}:${sub}`;
+  const subN = Number(await env.DATA.get(subKey) || 0);
+  if (subN >= 5) return jsonResponse({ error: 'daily_limit' }, 429);
+  const blocked = await guardAI(request, env, 'image');
+  if (blocked) return blocked;
+  await env.DATA.put(subKey, String(subN + 1), { expirationTtl: 2 * 86400 });
+  return drawColoring(desc, env);
 }
 
 async function handleWebhook(request, env) {

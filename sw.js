@@ -1,5 +1,5 @@
 // Service Worker para ChartKids - Permite funcionar offline
-const CACHE_NAME = 'chartkids-v60';
+const CACHE_NAME = 'chartkids-v61';
 const urlsToCache = [
   '/',
   '/index.html',

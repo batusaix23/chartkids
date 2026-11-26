@@ -2193,6 +2193,7 @@ nav {
 <script src="/js/album.js"></script>
 <script src="/js/chat-rapido.js"></script>
 <script src="/js/equipo.js"></script>
+<script src="/js/premio-dibujo.js"></script>
 </head>
 <body>
 <div class="bg-orbs">
@@ -2312,6 +2313,7 @@ nav {
         <button class="btn btn-success" id="btnResumen" onclick="ckResumen.open()">📲 <span id="btnResumenText">Resumen</span></button>
         <button class="btn btn-success" id="btnCuento" onclick="ckCuento.open()">📖 <span id="btnCuentoText">Cuento</span></button>
         <button class="btn btn-secondary" id="btnCofre" onclick="ckCofre.open()" style="display:none">🎁 Cofre</button>
+        <button class="btn btn-secondary" id="btnPremioDibujo" onclick="ckPremioDibujo.open()">🖍️ <span id="btnPremioDibujoText">Dibuja mi premio</span> 👑</button>
         <button class="btn btn-secondary" id="btnPrint" onclick="window.print()">🖨️ Imprimir</button>
         <button class="btn btn-primary" id="btnNew" onclick="resetChart()">🔄 Nuevo</button>
       </div>
@@ -3918,6 +3920,7 @@ function applyTranslations() {
   document.getElementById('btnCuentoText').textContent = lang === 'es' ? 'Cuento' : 'Story';
   if (window.ckCofre) ckCofre.render();
   if (window.ckAlbum) ckAlbum.refresh();
+  document.getElementById('btnPremioDibujoText').textContent = lang === 'es' ? 'Dibuja mi premio' : 'Draw my reward';
   document.getElementById('astripHist').textContent = lang === 'es' ? '📖 Crea tu historia' : '📖 Make a story';
   document.getElementById('editModalTitle').textContent = t('editModalTitle');
   document.getElementById('labelChildName').textContent = t('labelChildName');
