@@ -20,12 +20,12 @@ const SUBJECTS = [
   ['connect-the-fish-bowl-dots', 'El Pez', 'Fish', 'a cartoon fish', 'facil'],
   ['connect-the-sun-dots', 'El Sol', 'Sun', 'a cartoon sun: a circle surrounded by eight big thick pointed triangle rays', 'facil'],
   ['connect-the-ice-cream-dots', 'El Helado', 'Ice Cream', 'an ice cream cone with one big round scoop on top', 'facil'],
-  ['connect-the-tree-dots', 'El Árbol', 'Tree', 'a palm tree with a curved trunk and big leaves', 'facil'],
+  ['puntos-platano', 'El Plátano', 'Banana', 'one single curved banana, side view, simple', 'facil'],
   ['connect-the-pumpkin-dots', 'La Calabaza', 'Pumpkin', 'a pumpkin with a short stem', 'facil'],
   ['connect-the-easter-egg-dots', 'El Huevo de Pascua', 'Easter Egg', 'an egg standing upright', 'facil'],
   ['connect-the-christmas-tree-dots', 'El Árbol de Navidad', 'Christmas Tree', 'a christmas tree with a star on top', 'facil'],
   ['connect-the-cake-dots', 'El Pastel', 'Cake', 'a birthday cake with three candles', 'facil'],
-  ['connect-the-snowman-dots', 'El Muñeco de Nieve', 'Snowman', 'a snowman made of three stacked balls with stick arms and a top hat, full body', 'facil'],
+  ['puntos-sandia', 'La Sandía', 'Watermelon', 'one triangle slice of watermelon with a curved rind at the bottom', 'facil'],
   ['connect-the-car-dots', 'El Carro', 'Car', 'a chunky cartoon car with big round wheels, side view', 'facil'],
   ['connect-the-rocket-dots', 'El Cohete', 'Rocket', 'a cartoon rocket standing upright with fins', 'facil'],
   ['connect-the-flower-dots', 'La Flor', 'Flower', 'a sunflower with a big round head, a thick stem and two big leaves', 'facil'],
@@ -65,7 +65,7 @@ const SUBJECTS = [
   ['connect-the-ufo-dots', 'El Platillo Volador', 'UFO', 'a flying saucer', 'medio'],
   ['connect-the-planet-dots', 'El Planeta', 'Planet', 'the planet saturn: a ball with one thick wide ring, tilted', 'medio'],
   ['connect-the-robot-dots', 'El Robot', 'Robot', 'a cartoon robot with a square head, antenna, arms and legs, front view, full body', 'medio'],
-  ['connect-the-mountain-dots', 'La Montaña', 'Mountain', 'one big mountain peak with snow on top', 'medio'],
+  ['connect-the-mountain-dots', 'La Montaña', 'Mountain', 'a single tall triangular mountain with one pointed top, simple', 'medio'],
   ['connect-the-parrot-dots', 'El Loro', 'Parrot', 'a parrot perched, side view', 'medio'],
   ['connect-the-alien-dots', 'El Extraterrestre', 'Alien', 'a cute cartoon alien with antennae', 'medio'],
   ['connect-the-spaceship-dots', 'La Nave Espacial', 'Spaceship', 'a cartoon spaceship', 'medio'],
@@ -82,7 +82,7 @@ const SUBJECTS = [
   ['puntos-cerdito', 'El Cerdito', 'Piglet', 'a pig standing, side view', 'medio'],
   ['puntos-oso', 'El Oso', 'Bear', 'a teddy bear sitting, front view, round ears, arms and legs', 'medio'],
   ['puntos-helicoptero', 'El Helicóptero', 'Helicopter', 'a helicopter, side view', 'medio'],
-  ['puntos-tractor', 'El Tractor', 'Tractor', 'a chunky cartoon farm tractor with a big back wheel, side view', 'medio'],
+  ['puntos-tractor', 'El Tractor', 'Tractor', 'a simple toy tractor, side view: a square cabin, one big round back wheel and one small round front wheel', 'medio'],
   ['puntos-guitarra', 'La Guitarra', 'Guitar', 'an acoustic guitar standing upright, front view', 'medio'],
   // ── difícil (55 puntos) ──
   ['connect-the-lion-dots', 'El León', 'Lion', 'a lion standing, side view', 'dificil'],
@@ -99,12 +99,12 @@ const SUBJECTS = [
   ['connect-the-princess-dots', 'La Princesa', 'Princess', 'a princess in a long gown with a crown', 'dificil'],
   ['connect-the-astronaut-dots', 'El Astronauta', 'Astronaut', 'an astronaut in a spacesuit standing, full body, arms away from the body', 'dificil'],
   ['connect-the-superhero-dots', 'El Superhéroe', 'Superhero', 'a superhero kid flying with a cape', 'dificil'],
-  ['connect-the-santa-dots', 'Santa Claus', 'Santa Claus', 'santa claus walking, side view, full body, carrying a big sack', 'dificil'],
+  ['puntos-rinoceronte', 'El Rinoceronte', 'Rhino', 'a rhinoceros standing, side view, full body, big horn on the nose, four legs', 'dificil'],
   ['connect-the-firefighter-dots', 'El Bombero', 'Firefighter', 'a firefighter with a helmet standing', 'dificil'],
   ['connect-the-chef-dots', 'El Chef', 'Chef', 'a chef with a tall hat holding a pan', 'dificil'],
   ['connect-the-doctor-dots', 'El Doctor', 'Doctor', 'a doctor standing with a stethoscope', 'dificil'],
   ['connect-the-pilot-dots', 'El Piloto', 'Pilot', 'a pilot standing with a cap', 'dificil'],
-  ['connect-the-scientist-dots', 'La Científica', 'Scientist', 'a kid scientist holding up a big flask, full body, side view', 'dificil'],
+  ['puntos-camello', 'El Camello', 'Camel', 'a camel standing, side view, full body, two big humps on the back, long neck, four legs', 'dificil'],
   ['connect-the-runner-dots', 'El Corredor', 'Runner', 'a child running', 'dificil'],
   ['connect-the-gymnast-dots', 'La Gimnasta', 'Gymnast', 'a gymnast doing a split jump', 'dificil'],
   ['connect-the-skater-dots', 'El Patinador', 'Skater', 'a kid on a skateboard', 'dificil'],
@@ -353,19 +353,22 @@ async function attempt(file, lv) {
 // Variant v of a subject's image. REDO lists subjects whose first images passed the
 // automatic checks but were judged unrecognisable on review: they start at a later variant.
 const REDO = {
-  'connect-the-tree-dots': 3,
-  'connect-the-snowman-dots': 2,
   'connect-the-flower-dots': 5,
   'connect-the-robot-dots': 2,
-  'connect-the-mountain-dots': 3,
-  'puntos-tractor': 4,
+  'connect-the-mountain-dots': 6,
+  'puntos-tractor': 8,
   'connect-the-tiger-dots': 4,
   'connect-the-astronaut-dots': 2,
-  'connect-the-santa-dots': 3,
-  'connect-the-scientist-dots': 5,
   'puntos-zanahoria': 2,
   'connect-the-ice-cream-dots': 3
 };
+// Subjects replaced because no silhouette of them was recognisable as dots (Nov 2026).
+// Their old URLs stay as noindex redirects to the hub instead of 404s.
+// Also the legacy sheets that were not carried over to the new set.
+const RETIRED = ['connect-the-tree-dots', 'connect-the-snowman-dots', 'connect-the-santa-dots', 'connect-the-scientist-dots',
+  'connect-the-battle-dots', 'connect-the-bicycle-dots', 'connect-the-builder-dots', 'connect-the-dino-herd-dots',
+  'connect-the-feast-dots', 'connect-the-fireworks-dots', 'connect-the-galaxy-dots', 'connect-the-sandwich-dots',
+  'connect-the-soccer-ball-dots', 'connect-the-swimmer-dots', 'connect-the-team-dots'];
 const keyOf = (slug, v) => v === 1 ? 'sil-' + slug : `sil-${slug}-v${v}`;
 const MAX_TRIES = 4;
 
@@ -403,10 +406,18 @@ async function build() {
   return items;
 }
 
-module.exports = { build, SUBJECTS, _t: { loadMask, morph, largestBlob, trace, simplify, layout, LEVEL } };
+module.exports = { build, SUBJECTS, RETIRED, _t: { loadMask, morph, largestBlob, trace, simplify, layout, LEVEL } };
 if (require.main === module) {
   build().then(items => {
     console.log(`listas: ${items.length} de ${SUBJECTS.length}`);
-    if (process.argv.includes('--write')) L.writeCategory('puntos', items);
+    if (!process.argv.includes('--write')) return;
+    L.writeCategory('puntos', items, { keepDirs: RETIRED });
+    const c = L.CATS.puntos;
+    for (const slug of RETIRED) {
+      const dir = require('path').join(L.ROOT, c.dir, slug);
+      require('fs').mkdirSync(dir, { recursive: true });
+      require('fs').writeFileSync(require('path').join(dir, 'index.html'),
+        `<!DOCTYPE html><meta charset="utf-8"><meta name="robots" content="noindex"><title>${c.es} | ChartKids</title><link rel="canonical" href="${L.SITE}/${c.page}"><meta http-equiv="refresh" content="0;url=/${c.page}"><a href="/${c.page}">${c.es}</a>`);
+    }
   }).catch(e => { console.error(e); process.exit(1); });
 }

@@ -2189,6 +2189,7 @@ nav {
 <script src="/js/resumen.js"></script>
 <script src="/js/voz.js"></script>
 <script src="/js/cuento.js"></script>
+<script src="/js/cofre.js"></script>
 </head>
 <body>
 <div class="bg-orbs">
@@ -2304,6 +2305,7 @@ nav {
         <button class="btn btn-secondary" id="btnShare" onclick="shareChart()">📤 Compartir</button>
         <button class="btn btn-success" id="btnResumen" onclick="ckResumen.open()">📲 <span id="btnResumenText">Resumen</span></button>
         <button class="btn btn-success" id="btnCuento" onclick="ckCuento.open()">📖 <span id="btnCuentoText">Cuento</span></button>
+        <button class="btn btn-secondary" id="btnCofre" onclick="ckCofre.open()" style="display:none">🎁 Cofre</button>
         <button class="btn btn-secondary" id="btnPrint" onclick="window.print()">🖨️ Imprimir</button>
         <button class="btn btn-primary" id="btnNew" onclick="resetChart()">🔄 Nuevo</button>
       </div>
@@ -3908,6 +3910,7 @@ function applyTranslations() {
   document.getElementById('btnEditText').textContent = t('btnEdit').replace('✏️ ', '');
   document.getElementById('btnResumenText').textContent = lang === 'es' ? 'Resumen' : 'Summary';
   document.getElementById('btnCuentoText').textContent = lang === 'es' ? 'Cuento' : 'Story';
+  if (window.ckCofre) ckCofre.render();
   document.getElementById('astripHist').textContent = lang === 'es' ? '📖 Crea tu historia' : '📖 Make a story';
   document.getElementById('editModalTitle').textContent = t('editModalTitle');
   document.getElementById('labelChildName').textContent = t('labelChildName');
@@ -4563,6 +4566,7 @@ function updateProgress(total, goalAmount) {
   // Update streak badge whenever progress crosses threshold
   updateStreakDisplay();
   if (window.ckPet) ckPet.update(petCtx());
+  if (window.ckCofre) ckCofre.update(petCtx());
 }
 
 // What the chart pet (js/mascota.js) needs to know about the open chart.
@@ -5804,6 +5808,7 @@ buildChart = function(data, preserveProgress = false) {
     saveProgress();
   }
   if (window.ckPet) ckPet.update(petCtx());
+  if (window.ckCofre) ckCofre.update(petCtx());
 };
 
 // ─── Premium Functions ────────────────────────────────────
@@ -6758,6 +6763,7 @@ function renderKidOverlay() {
   document.getElementById('kidOverlay').innerHTML = `
     ${window.ckFx ? ckFx.muteButton() : ''}
     ${window.ckCuento ? ckCuento.kidButton() : ''}
+    ${window.ckCofre ? ckCofre.kidButton() : ''}
     <div class="kid-overlay-inner">
       <div class="kid-header">
         <div class="kid-greeting">${greeting}</div>
@@ -6785,6 +6791,7 @@ function renderKidOverlay() {
       <button class="kid-exit-btn" id="kidExitBtn" onclick="kidExitTap()" title="${lang === 'es' ? 'Salir (toca 3 veces)' : 'Exit (tap 3 times)'}">🔒</button>
     </div>`;
   if (window.ckPet) ckPet.refresh();
+  if (window.ckCofre) ckCofre.render();
 }
 
 function kidTap(ti, d, total, goalAmount) {
