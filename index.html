@@ -2192,6 +2192,7 @@ nav {
 <script src="/js/cofre.js"></script>
 <script src="/js/album.js"></script>
 <script src="/js/chat-rapido.js"></script>
+<script src="/js/equipo.js"></script>
 </head>
 <body>
 <div class="bg-orbs">
@@ -2279,6 +2280,7 @@ nav {
     <div class="preview-panel">
       <!-- Family Bar -->
       <div class="family-bar" id="familyBar" style="display:none"></div>
+      <div id="ckTeam"></div>
 
       <div class="chart-card">
         <div class="panel-header">
@@ -4573,6 +4575,7 @@ function updateProgress(total, goalAmount) {
   updateStreakDisplay();
   if (window.ckPet) ckPet.update(petCtx());
   if (window.ckCofre) ckCofre.update(petCtx());
+  if (window.ckTeam) ckTeam.render();
 }
 
 // What the chart pet (js/mascota.js) needs to know about the open chart.
@@ -5145,6 +5148,7 @@ function renderFamilyBar() {
   const charts = getAllCharts();
   const bar = document.getElementById('familyBar');
   if (!bar) return;
+  if (window.ckTeam) ckTeam.render();
   if (charts.length < 2) { bar.style.display = 'none'; return; }
   bar.style.display = 'flex';
   const addTitle = lang === 'es' ? 'Agregar niño/a' : 'Add child';
