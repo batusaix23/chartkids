@@ -2190,6 +2190,7 @@ nav {
 <script src="/js/voz.js"></script>
 <script src="/js/cuento.js"></script>
 <script src="/js/cofre.js"></script>
+<script src="/js/album.js"></script>
 </head>
 <body>
 <div class="bg-orbs">
@@ -2205,6 +2206,7 @@ nav {
   <div class="activities-strip">
     <button class="charts-btn" id="chartsBtn" onclick="openChartsModal()">📚 <span id="chartsBtnText" class="nav-btn-label">Mis Charts</span> <span class="badge" id="chartsBadge">0</span></button>
     <button class="kid-mode-btn" id="kidModeBtn" onclick="enterKidMode()">🧒 <span class="nav-btn-label">Modo Niño</span></button>
+    <button class="charts-btn" id="albumBtn" onclick="ckAlbum.open()" style="background:linear-gradient(135deg,#f59e0b,#ec4899)">🏷️ <span class="cka-count nav-btn-label">Álbum</span></button>
     <button class="install-btn" id="installBtn" style="display:none" onclick="installApp()">📲 Instalar</button>
     <a href="actividad-semana.html" class="astrip-btn" id="astrip2">📅 Actividad Semanal</a>
     <a href="actividad-ia.html" class="astrip-btn" id="astrip3">🤖 Con IA</a>
@@ -3911,6 +3913,7 @@ function applyTranslations() {
   document.getElementById('btnResumenText').textContent = lang === 'es' ? 'Resumen' : 'Summary';
   document.getElementById('btnCuentoText').textContent = lang === 'es' ? 'Cuento' : 'Story';
   if (window.ckCofre) ckCofre.render();
+  if (window.ckAlbum) ckAlbum.refresh();
   document.getElementById('astripHist').textContent = lang === 'es' ? '📖 Crea tu historia' : '📖 Make a story';
   document.getElementById('editModalTitle').textContent = t('editModalTitle');
   document.getElementById('labelChildName').textContent = t('labelChildName');
@@ -6764,6 +6767,7 @@ function renderKidOverlay() {
     ${window.ckFx ? ckFx.muteButton() : ''}
     ${window.ckCuento ? ckCuento.kidButton() : ''}
     ${window.ckCofre ? ckCofre.kidButton() : ''}
+    ${window.ckAlbum ? ckAlbum.kidButton() : ''}
     <div class="kid-overlay-inner">
       <div class="kid-header">
         <div class="kid-greeting">${greeting}</div>

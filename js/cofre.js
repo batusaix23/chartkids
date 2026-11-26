@@ -26,6 +26,15 @@
     ['pinguino-patinador', '🐧', 'Pingüino Patinador', 'Skating Penguin'], ['abeja-trabajadora', '🐝', 'Abeja Trabajadora', 'Busy Bee'],
     ['koala-abrazos', '🐨', 'Koala Abrazos', 'Hugging Koala'], ['trofeo-campeon', '🏆', 'Trofeo de Campeón', "Champion's Trophy"],
   ];
+  // Golden Collection (Premium): half of a Premium member's chests bring one of these.
+  const GOLD = [
+    ['oro-dragon', '🐲', 'Dragón Dorado', 'Golden Dragon'], ['oro-unicornio', '🦄', 'Unicornio de Oro', 'Golden Unicorn'],
+    ['oro-fenix', '🔥', 'Fénix Brillante', 'Shining Phoenix'], ['oro-corona', '👑', 'Corona Mágica', 'Magic Crown'],
+    ['oro-diamante', '💎', 'Diamante Real', 'Royal Diamond'], ['oro-trofeo', '🏆', 'Súper Trofeo', 'Super Trophy'],
+    ['oro-cometa', '☄️', 'Cometa Veloz', 'Speedy Comet'], ['oro-planeta', '🪐', 'Planeta Anillado', 'Ringed Planet'],
+    ['oro-castillo', '🏰', 'Castillo Encantado', 'Enchanted Castle'], ['oro-sirena', '🧜', 'Sirena del Mar', 'Sea Mermaid'],
+    ['oro-mago', '🧙', 'Gran Mago', 'Great Wizard'], ['oro-estrella', '🌟', 'Estrella Dorada', 'Golden Star'],
+  ];
   const COUPONS = {
     es: ['Vale por elegir la cena 🍝', 'Vale por 15 minutos extra de juego 🎮', 'Vale por un baile en familia 💃', 'Vale por un cuento extra antes de dormir 📖',
          'Vale por elegir la película del fin de semana 🎬', 'Vale por un paseo al parque 🌳', 'Vale por hornear galletas juntos 🍪', 'Vale por una guerra de almohadas 🛏️'],
@@ -100,8 +109,12 @@
   const coupon = () => ({ type: 'cupon', i: Math.floor(Math.random() * COUPONS.es.length) });
   async function makePrize() {
     const have = new Set(get('ck_stickers', []).map(s => s.id));
-    const fresh = STICKERS.filter(s => !have.has(s[0]));
-    const sticker = (fresh.length ? pick(fresh) : pick(STICKERS))[0];
+    let isPremium = false;
+    try { isPremium = localStorage.getItem('chartkids_premium') === 'true'; } catch (e) {}
+    const goldLeft = GOLD.filter(s => !have.has(s[0]));
+    const set0 = isPremium && goldLeft.length && Math.random() < 0.5 ? goldLeft : STICKERS;
+    const fresh = set0.filter(s => !have.has(s[0]));
+    const sticker = (fresh.length ? pick(fresh) : pick(set0))[0];
     const r = Math.random();
     const extra = r < 0.4 ? await listPrize(pick(SHEET_CATS), 'ficha')
       : r < 0.85 ? coupon() : await listPrize('certificados', 'certificado');
@@ -120,7 +133,8 @@
   }
   function prizeHTML(p) {
     const es = curLang() === 'es';
-    const st = STICKERS.find(s => s[0] === p.sticker) || STICKERS[0];
+    const gold = GOLD.some(s => s[0] === p.sticker);
+    const st = [...STICKERS, ...GOLD].find(s => s[0] === p.sticker) || STICKERS[0];
     const x = p.extra || {};
     const view = es ? 'Ver e imprimir' : 'View & print';
     let extra = '';
@@ -133,8 +147,10 @@
         <span>${esc(COUPONS[es ? 'es' : 'en'][x.i] || COUPONS.es[0])}</span><small>${es ? 'Enséñaselo a mamá o papá 😉' : 'Show it to mom or dad 😉'}</small></div></div>`;
     }
     const n = get('ck_stickers', []).length;
-    return `<div class="ckcf-prize ckcf-sticker"><div class="ckcf-pe ckcf-big">${st[1]}</div><div><b>${es ? '¡Sticker nuevo!' : 'New sticker!'}</b>
-      <span>${esc(es ? st[2] : st[3])}</span><small>${es ? `Llevas ${n} de ${STICKERS.length} stickers` : `You have ${n} of ${STICKERS.length} stickers`}</small></div></div>${extra}`;
+    const album = window.ckAlbum ? `<button type="button" class="ckcf-btn" onclick="ckAlbum.open('${gold ? 'gold' : 'normal'}')">🏷️ ${es ? 'Ver mi álbum' : 'See my album'}</button>` : '';
+    const t = window.ckAlbum ? ckAlbum.total() : { have: n, of: STICKERS.length };
+    return `<div class="ckcf-prize ckcf-sticker"><div class="ckcf-pe ckcf-big">${st[1]}</div><div><b>${gold ? (es ? '¡Sticker DORADO! 👑' : 'GOLDEN sticker! 👑') : (es ? '¡Sticker nuevo!' : 'New sticker!')}</b>
+      <span>${esc(es ? st[2] : st[3])}</span><small>${es ? `Álbum: ${t.have} de ${t.of}` : `Album: ${t.have} of ${t.of}`}</small>${album}</div></div>${extra}`;
   }
 
   function open() {
@@ -180,12 +196,13 @@
       m.querySelector('.ckcf-dots').remove();
       m.querySelector('.ckcf-result').innerHTML = prizeHTML(prize);
       render();
+      if (window.ckAlbum) { ckAlbum.refresh(); ckAlbum.celebrateIfDone(); }
     });
   }
 
   const kidButton = () => `<button type="button" class="ckcf-kid" onclick="ckCofre.open()" aria-label="${curLang() === 'es' ? 'Cofre sorpresa' : 'Surprise chest'}">🎁</button>`;
 
-  window.ckCofre = { update, open, render, kidButton, STICKERS };
+  window.ckCofre = { update, open, render, kidButton, STICKERS, GOLD };
 
   const css = document.createElement('style');
   css.textContent = `

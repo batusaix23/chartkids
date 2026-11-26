@@ -82,18 +82,33 @@ function kvNumber(key) {
   try { return Number(kv(['get', key])) || 0; } catch { return 0; }   // missing key → 0
 }
 
+// KV reads can be stale for up to ~60 s (a just-written key, or a cached "not found"),
+// so two runs close together used to read 0 and overwrite the first run's reservation
+// (found 2026-11-26: 9 images generated, counter showed 120). A local ledger keeps
+// this machine's own reservations; the higher of KV and ledger is used.
+const LEDGER = path.join(CACHE, '..', 'ai-budget-ledger.json');
+function ledger(day, add) {
+  let all = {};
+  try { all = JSON.parse(fs.readFileSync(LEDGER, 'utf8')); } catch {}
+  const d = all[day] || { site: 0, batch: 0 };
+  if (add) { d.site += add; d.batch += add; all = { [day]: d }; fs.writeFileSync(LEDGER, JSON.stringify(all)); }
+  return d;
+}
+
 // Reserves budget for up to `wanted` images; returns how many fit today.
 function reserveBudget(wanted) {
   if (process.env.FLUX_SKIP_BUDGET === '1') return wanted;          // only for a paid-usage decision
   const day = new Date().toISOString().slice(0, 10);
   const siteKey = `ai:neurons:${day}`, batchKey = `ai:batch:${day}`;
-  const spent = kvNumber(siteKey), batchSpent = kvNumber(batchKey);
+  const local = ledger(day);
+  const spent = Math.max(kvNumber(siteKey), local.site), batchSpent = Math.max(kvNumber(batchKey), local.batch);
   const fit = Math.max(0, Math.min(
     Math.floor((BATCH_SHARE - batchSpent) / IMAGE_COST),
     Math.floor((SITE_BUDGET - spent) / IMAGE_COST)));
   const n = Math.min(fit, wanted);
   console.log(`Presupuesto IA hoy: sitio ${spent}/${SITE_BUDGET}, lotes ${batchSpent}/${BATCH_SHARE} → caben ${fit} imágenes`);
   if (n > 0) {
+    ledger(day, n * IMAGE_COST);
     const ttl = String(2 * 86400);
     kv(['put', siteKey, String(spent + n * IMAGE_COST), '--ttl', ttl]);
     kv(['put', batchKey, String(batchSpent + n * IMAGE_COST), '--ttl', ttl]);

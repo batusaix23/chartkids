@@ -17,7 +17,7 @@ const { ensureImages } = require('./flux-batch');
 const SUBJECTS = [
   // ── fácil (15 puntos) ──
   ['connect-the-apple-dots', 'La Manzana', 'Apple', 'an apple with a leaf', 'facil'],
-  ['connect-the-fish-bowl-dots', 'El Pez', 'Fish', 'a cartoon fish', 'facil'],
+  ['connect-the-fish-bowl-dots', 'El Pez', 'Fish', 'a simple fat round fish, side view, with a big triangle tail fin, no other fins', 'facil'],
   ['connect-the-sun-dots', 'El Sol', 'Sun', 'a cartoon sun: a circle surrounded by eight big thick pointed triangle rays', 'facil'],
   ['connect-the-ice-cream-dots', 'El Helado', 'Ice Cream', 'an ice cream cone with one big round scoop on top', 'facil'],
   ['puntos-platano', 'El Plátano', 'Banana', 'one single curved banana, side view, simple', 'facil'],
@@ -25,19 +25,19 @@ const SUBJECTS = [
   ['connect-the-easter-egg-dots', 'El Huevo de Pascua', 'Easter Egg', 'an egg standing upright', 'facil'],
   ['connect-the-christmas-tree-dots', 'El Árbol de Navidad', 'Christmas Tree', 'a christmas tree with a star on top', 'facil'],
   ['connect-the-cake-dots', 'El Pastel', 'Cake', 'a birthday cake with three candles', 'facil'],
-  ['puntos-sandia', 'La Sandía', 'Watermelon', 'one triangle slice of watermelon with a curved rind at the bottom', 'facil'],
-  ['connect-the-car-dots', 'El Carro', 'Car', 'a chunky cartoon car with big round wheels, side view', 'facil'],
+  ['puntos-sandia', 'La Sandía', 'Watermelon', 'one solid filled watermelon slice shaped like a wide triangle wedge pointing up, with a curved bottom edge, completely filled', 'facil'],
+  ['connect-the-car-dots', 'El Carro', 'Car', 'a simple cartoon car, side view, with two big round wheels clearly sticking out below the body, and a small cabin on top', 'facil'],
   ['connect-the-rocket-dots', 'El Cohete', 'Rocket', 'a cartoon rocket standing upright with fins', 'facil'],
-  ['connect-the-flower-dots', 'La Flor', 'Flower', 'a sunflower with a big round head, a thick stem and two big leaves', 'facil'],
-  ['connect-the-rainbow-dots', 'El Arcoíris', 'Rainbow', 'a thick rainbow arch with a cloud at each end', 'facil'],
-  ['connect-the-pizza-dots', 'La Pizza', 'Pizza', 'a triangular pizza wedge, food', 'facil'],
+  ['connect-the-flower-dots', 'La Flor', 'Flower', 'a simple daisy flower with five big round petals and a round center, on a straight stem with two leaves', 'facil'],
+  ['connect-the-rainbow-dots', 'El Arcoíris', 'Rainbow', 'a rainbow arch made of three wide curved stripes, with a small cloud at each end', 'facil'],
+  ['connect-the-pizza-dots', 'La Pizza', 'Pizza', 'one slice of pizza with round pepperoni slices on top, a thick crust edge', 'facil'],
   ['puntos-corazon', 'El Corazón', 'Heart', 'a heart shape', 'facil'],
   ['puntos-estrella', 'La Estrella', 'Star', 'a five-pointed star', 'facil'],
   ['puntos-casa', 'La Casa', 'House', 'a simple house with a chimney', 'facil'],
   ['puntos-barco', 'El Barquito', 'Little Boat', 'a toy boat with one triangular sail', 'facil'],
   ['puntos-globo', 'El Globo', 'Balloon', 'a round balloon with a short tied end', 'facil'],
   ['puntos-hongo', 'El Hongo', 'Mushroom', 'a cartoon mushroom with a round cap', 'facil'],
-  ['puntos-pera', 'La Pera', 'Pear', 'a big pear fruit with a stem and one leaf', 'facil'],
+  ['puntos-pera', 'La Pera', 'Pear', 'a big pear fruit, round bottom and narrow top, with a short thick stem, no leaf', 'facil'],
   ['puntos-taza', 'La Taza', 'Cup', 'a big coffee mug with a round handle, side view', 'facil'],
   ['puntos-nube', 'La Nube', 'Cloud', 'a fluffy cloud', 'facil'],
   ['puntos-luna', 'La Luna', 'Moon', 'a crescent moon', 'facil'],
@@ -46,12 +46,12 @@ const SUBJECTS = [
   ['puntos-campana', 'La Campana', 'Bell', 'a bell', 'facil'],
   ['puntos-gota', 'La Gota', 'Water Drop', 'a water drop', 'facil'],
   ['puntos-cometa', 'La Cometa', 'Kite', 'a diamond kite with a short tail', 'facil'],
-  ['puntos-regalo', 'El Regalo', 'Gift', 'a square gift box, front view, with a big ribbon bow on the top', 'facil'],
+  ['puntos-regalo', 'El Regalo', 'Gift', 'a gift box, front view, a square box with a big bow on top made of two large round loops like rabbit ears', 'facil'],
   ['puntos-sombrero', 'El Sombrero', 'Hat', 'a cowboy hat', 'facil'],
-  ['puntos-fresa', 'La Fresa', 'Strawberry', 'a strawberry with leaves on top', 'facil'],
+  ['puntos-fresa', 'La Fresa', 'Strawberry', 'a big plump strawberry shaped like an upside-down rounded triangle, with a small flat leafy cap on top', 'facil'],
   ['puntos-zanahoria', 'La Zanahoria', 'Carrot', 'a carrot with leaves', 'facil'],
   // ── medio (30 puntos) ──
-  ['connect-the-kitten-dots', 'El Gatito', 'Kitten', 'a cat sitting', 'medio'],
+  ['connect-the-kitten-dots', 'El Gatito', 'Kitten', 'a cat sitting, side view, with pointy ears and a long thick fluffy tail curling up beside its body', 'medio'],
   ['connect-the-puppy-dots', 'El Perrito', 'Puppy', 'a puppy sitting', 'medio'],
   ['connect-the-rabbit-dots', 'El Conejo', 'Rabbit', 'a rabbit sitting with tall ears', 'medio'],
   ['connect-the-elephant-dots', 'El Elefante', 'Elephant', 'an elephant walking, side view', 'medio'],
@@ -131,8 +131,10 @@ const prompt = s => `solid black silhouette of ${s}, one single simple compact s
   `no shadow, no ground, no grass, no smoke, no strings, no thin lines`;
 
 // ── image → contour ─────────────────────────────────────────
-async function loadMask(file, size = 512) {
-  const { data } = await sharp(file).resize(size, size, { fit: 'contain', background: '#fff' })
+async function loadMask(file, size = 512, flip = false) {
+  let img = sharp(file);
+  if (flip) img = img.flip();   // upside down (FLUX keeps drawing the rainbow as a U)
+  const { data } = await img.resize(size, size, { fit: 'contain', background: '#fff' })
     .flatten({ background: '#fff' }).greyscale().raw().toBuffer({ resolveWithObject: true });
   const m = new Uint8Array(size * size);
   for (let i = 0; i < m.length; i++) m[i] = data[i] < 128 ? 1 : 0;
@@ -319,6 +321,7 @@ function layout(pts, lv) {
     labels.push(ok.box);
     placed.push({ x, y, lx: ok.lx, ly: ok.ly, n: i + 1 });
   }
+  placed.tf = { k, minX, minY, ox, oy };   // image → sheet transform (for drawn details)
   return placed;
 }
 
@@ -326,6 +329,11 @@ function dotsBody(placed, lv, answer) {
   let s = '';
   if (answer) {
     s += `<polygon points="${placed.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ')}" fill="#e0f2fe" stroke="#0891b2" stroke-width="4" stroke-linejoin="round"/>`;
+  }
+  // Inner lines drawn in advance (eyes, windows…): an image in the same coordinates as the dots.
+  if (placed.detail) {
+    const { href, k, minX, minY, ox, oy, size } = placed.detail;
+    s += `<image href="${href}" x="${(ox - minX * k).toFixed(1)}" y="${(oy - minY * k).toFixed(1)}" width="${(size * k).toFixed(1)}" height="${(size * k).toFixed(1)}"/>`;
   }
   for (const p of placed) {
     const first = p.n === 1;
@@ -335,9 +343,67 @@ function dotsBody(placed, lv, answer) {
   return s;
 }
 
+// ── "con detalles": line-art source ─────────────────────────
+// A coloring-book line drawing instead of a solid silhouette: its outer outline becomes
+// the dots and the lines inside (eyes, windows, stripes) are printed already drawn, so
+// the picture is complete once the dots are joined. Every subject uses it (owner's
+// decision, 2026-11-26). PUNTOS_DETALLE=off goes back to the plain silhouettes.
+const usesDetail = () => process.env.PUNTOS_DETALLE !== 'off';
+const promptLine = s => `simple black and white line drawing of ${s}, children's coloring book style, ` +
+  `one thick clean black outline around the whole figure, only a few simple lines inside like eyes, mouth and big shapes, ` +
+  `no shading, no fill, no gray, no text, centered with lots of white margin, plain pure white background`;
+
+async function attemptLine(file, lv) {
+  const size = 512;
+  const { m } = await loadMask(file, size);                    // 1 = ink
+  // The figure = ink + everything the ink encloses: flood the background in from the border.
+  const bg = new Uint8Array(size * size), stack = [];
+  const seed = p => { if (!m[p] && !bg[p]) { bg[p] = 1; stack.push(p); } };
+  for (let i = 0; i < size; i++) { seed(i); seed((size - 1) * size + i); seed(i * size); seed(i * size + size - 1); }
+  while (stack.length) {
+    const p = stack.pop(), x = p % size, y = (p - x) / size;
+    if (x > 0) seed(p - 1); if (x < size - 1) seed(p + 1); if (y > 0) seed(p - size); if (y < size - 1) seed(p + size);
+  }
+  const shape = new Uint8Array(size * size);
+  for (let i = 0; i < shape.length; i++) shape[i] = bg[i] ? 0 : 1;
+  const opened = morph(morph(shape, size, 3, true), size, 3, false);
+  const { blob, area } = largestBlob(opened, size);
+  const frac = area / (size * size);
+  if (frac < 0.015 || frac > 0.7) return { fail: `figura de tamaño raro (${(frac * 100).toFixed(1)}%)` };
+  const contour = trace(blob, size);
+  const xs = contour.map(p => p[0]), ys = contour.map(p => p[1]);
+  if (Math.min(...xs) <= 1 || Math.min(...ys) <= 1 || Math.max(...xs) >= size - 2 || Math.max(...ys) >= size - 2) {
+    return { fail: 'la figura toca el borde (cortada)' };
+  }
+  const placed = layout(simplify(contour, lv.dots), lv);
+  if (placed.fail) return placed;
+
+  // Inner lines: ink well inside the figure (the outer outline is what the dots draw).
+  const inner = morph(blob, size, 7, true);
+  let ink = 0, room = 0;
+  for (let i = 0; i < inner.length; i++) if (inner[i]) { room++; if (m[i]) ink++; }
+  const r = room ? ink / room : 0;
+  if (r < 0.004) return { fail: 'sin detalles dentro' };
+  if (r > 0.3) return { fail: 'detalles demasiado cargados' };
+  const S = 1024;   // details at 2× for clean printing, anti-aliased
+  const { data } = await sharp(file).resize(S, S, { fit: 'contain', background: '#fff' })
+    .flatten({ background: '#fff' }).greyscale().raw().toBuffer({ resolveWithObject: true });
+  const rgba = Buffer.alloc(S * S * 4);
+  for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
+    const i = y * S + x;
+    if (!inner[(y >> 1) * size + (x >> 1)]) continue;
+    const a = 255 - data[i];
+    if (a < 50) continue;
+    rgba[i * 4] = 0x1e; rgba[i * 4 + 1] = 0x29; rgba[i * 4 + 2] = 0x3b; rgba[i * 4 + 3] = a;
+  }
+  const png = await sharp(rgba, { raw: { width: S, height: S, channels: 4 } }).png({ compressionLevel: 9, palette: true }).toBuffer();
+  placed.detail = { href: 'data:image/png;base64,' + png.toString('base64'), ...placed.tf, size };
+  return placed;
+}
+
 // One FLUX image → dot layout, or {fail} with the reason.
-async function attempt(file, lv) {
-  const { m, size } = await loadMask(file);
+async function attempt(file, lv, flip) {
+  const { m, size } = await loadMask(file, 512, flip);
   const opened = morph(morph(m, size, 3, true), size, 3, false);   // remove thin lines
   const { blob, area } = largestBlob(opened, size);
   const frac = area / (size * size);
@@ -353,6 +419,14 @@ async function attempt(file, lv) {
 // Variant v of a subject's image. REDO lists subjects whose first images passed the
 // automatic checks but were judged unrecognisable on review: they start at a later variant.
 const REDO = {
+  'connect-the-fish-bowl-dots': 20,
+  'puntos-sandia': 20,
+  'connect-the-car-dots': 20,
+  'connect-the-rainbow-dots': 20,
+  'puntos-pera': 20,
+  'puntos-regalo': 20,
+  'puntos-fresa': 22,
+  'connect-the-kitten-dots': 20,
   'connect-the-flower-dots': 5,
   'connect-the-robot-dots': 2,
   'connect-the-mountain-dots': 6,
@@ -369,18 +443,27 @@ const RETIRED = ['connect-the-tree-dots', 'connect-the-snowman-dots', 'connect-t
   'connect-the-battle-dots', 'connect-the-bicycle-dots', 'connect-the-builder-dots', 'connect-the-dino-herd-dots',
   'connect-the-feast-dots', 'connect-the-fireworks-dots', 'connect-the-galaxy-dots', 'connect-the-sandwich-dots',
   'connect-the-soccer-ball-dots', 'connect-the-swimmer-dots', 'connect-the-team-dots'];
+// Images to turn upside down before tracing.
+const FLIP = process.env.PUNTOS_DETALLE === 'off' ? ['connect-the-rainbow-dots'] : [];
+// Line drawings judged poor on review start at a later variant (like REDO above).
+const REDO_LINE = {
+  'connect-the-flower-dots': 2,
+};
+const keyOfLine = (slug, v) => v === 1 ? 'lin-' + slug : `lin-${slug}-v${v}`;
 const keyOf = (slug, v) => v === 1 ? 'sil-' + slug : `sil-${slug}-v${v}`;
 const MAX_TRIES = 4;
 
 async function build() {
   const items = [], problems = [];
-  let pending = SUBJECTS.map(s => ({ s, v: REDO[s[0]] || 1, tries: 0 }));
+  let pending = SUBJECTS.map(s => ({ s, v: usesDetail(s[0]) ? (REDO_LINE[s[0]] || 1) : (REDO[s[0]] || 1), tries: 0 }));
   const results = new Map();
   while (pending.length) {
-    const files = await ensureImages(pending.map(p => ({ key: keyOf(p.s[0], p.v), prompt: prompt(p.s[3]) })));
+    const key = p => (usesDetail(p.s[0]) ? keyOfLine : keyOf)(p.s[0], p.v);
+    const files = await ensureImages(pending.map(p => ({ key: key(p), prompt: (usesDetail(p.s[0]) ? promptLine : prompt)(p.s[3]) })));
     const next = [];
     for (const p of pending) {
-      const r = await attempt(files.get(keyOf(p.s[0], p.v)), LEVEL[p.s[4]]);
+      const r = usesDetail(p.s[0]) ? await attemptLine(files.get(key(p)), LEVEL[p.s[4]])
+        : await attempt(files.get(key(p)), LEVEL[p.s[4]], FLIP.includes(p.s[0]));
       if (!r.fail) { results.set(p.s[0], r); continue; }
       if (++p.tries >= MAX_TRIES) { problems.push(`${p.s[0]}: ${r.fail} (tras ${MAX_TRIES} intentos)`); continue; }
       next.push({ ...p, v: p.v + 1 });
@@ -406,7 +489,7 @@ async function build() {
   return items;
 }
 
-module.exports = { build, SUBJECTS, RETIRED, _t: { loadMask, morph, largestBlob, trace, simplify, layout, LEVEL } };
+module.exports = { build, SUBJECTS, RETIRED, _t: { attemptLine, dotsBody, keyOfLine, loadMask, morph, largestBlob, trace, simplify, layout, LEVEL } };
 if (require.main === module) {
   build().then(items => {
     console.log(`listas: ${items.length} de ${SUBJECTS.length}`);
