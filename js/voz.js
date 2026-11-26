@@ -90,7 +90,7 @@
   function stop() { token++; try { speechSynthesis.cancel(); } catch (e) {} }
   function speaking() { try { return speechSynthesis.speaking || speechSynthesis.pending; } catch (e) { return false; } }
 
-  // Speak text in 'es' or 'en'. opts: { voice, gender: 'm'|'f', rate, onend,
+  // Speak text in 'es' or 'en'. opts: { voice, gender: 'm'|'f', rate, pitch, onend,
   //   chunks: [sentences] to read exactly those, start: index to begin at,
   //   onchunk(i): called as each chunk starts (for highlighting) }.
   // Resolves false if the device has no voice for that language.
@@ -113,7 +113,7 @@
       const u = new SpeechSynthesisUtterance(said);
       u.voice = voice; u.lang = voice.lang;
       u.rate = opts.rate || 0.9;
-      u.pitch = 1;
+      u.pitch = opts.pitch || 1;
       u.onend = next;
       u.onerror = next;
       speechSynthesis.speak(u);

@@ -35,6 +35,7 @@
       next: n => `⭐ ${n} ${n === 1 ? 'estrella' : 'estrellas'} más para crecer`,
       fed: ['¡Ñam! ¡Gracias!', '¡Otra estrella! ¡Yupi!', '¡Me siento más fuerte!', '¡Eres genial!'],
       poke: ['¡Jiji, cosquillas!', '¡Vamos por otra estrella!', '¡Choca esos cinco! ✋', '¡Te quiero mucho!'],
+      hi: n => n ? `¡Hola, ${n}! ¿Ganamos estrellas hoy?` : '¡Hola! ¿Ganamos estrellas hoy?',
       hello: '¡Cuídame mucho! 💜', grew: '¡Crecí! 🎉', hatched: '¡Nací! ¡Hola! 🎉',
       rename: '¿Cómo se llama tu mascota?', change: 'Cambiar',
     },
@@ -49,6 +50,7 @@
       next: n => `⭐ ${n} more ${n === 1 ? 'star' : 'stars'} to grow`,
       fed: ['Yum! Thank you!', 'Another star! Yay!', 'I feel stronger!', 'You are awesome!'],
       poke: ['Hehe, that tickles!', 'Let’s get another star!', 'High five! ✋', 'I love you!'],
+      hi: n => n ? `Hi, ${n}! Shall we earn some stars today?` : 'Hi! Shall we earn some stars today?',
       hello: 'Take good care of me! 💜', grew: 'I grew! 🎉', hatched: 'I hatched! Hi! 🎉',
       rename: 'What is your pet’s name?', change: 'Change',
     },
@@ -56,6 +58,20 @@
 
   let ctx = null;          // { id, count, total } from the last update
   let pendingSay = null;   // speech bubble for the next render
+  let pendingVoice = false; // also say it out loud (js/voz.js)
+  let fedCount = 0, lastSpoke = 0;
+
+  // The pet's voice: the bubble read aloud, a bit higher-pitched, with the boy/girl
+  // voice chosen for this chart's story (localStorage ck_voz). Silent when the sound
+  // is off (js/fiesta.js) or the device has no voice for the language.
+  function say(text) {
+    if (!window.ckVoz || (window.ckFx && ckFx.muted())) return;
+    if (Date.now() - lastSpoke < 1200) return;
+    lastSpoke = Date.now();
+    let gender = '';
+    try { gender = (JSON.parse(localStorage.getItem('ck_voz') || '{}') || {})[ctx && ctx.id] || ''; } catch (e) {}
+    ckVoz.speak(text, curLang(), { rate: 1, pitch: 1.35, gender });
+  }
   let pendingAnim = '';    // animation class for the next render
 
   const curLang = () => {
@@ -124,6 +140,8 @@
     const p = getPet();
     const html = !ctx || !ctx.id || !ctx.total ? '' : p ? petHTML(p) : pickerHTML();
     slots.forEach(s => { s.innerHTML = html; });
+    if (pendingSay && pendingVoice && getPet()) say(pendingSay);
+    pendingVoice = false;
     pendingSay = null;
     pendingAnim = '';
   }
@@ -136,6 +154,7 @@
       if (stage > (p.stage || 0)) {
         pendingSay = (p.stage || 0) === 0 ? L().hatched : L().grew;
         pendingAnim = 'ckpet-grow';
+        pendingVoice = true;
       }
       if (stage !== p.stage) { p.stage = stage; setPet(p); }
     }
@@ -151,10 +170,12 @@
       setPet(p);
       pendingSay = pick(L().fed);
       pendingAnim = 'ckpet-jump';
+      pendingVoice = (fedCount++ % 3) === 0;   // first star, then every third
     },
     poke() {
       pendingSay = pick(L().poke);
       pendingAnim = 'ckpet-jump';
+      pendingVoice = true;
       render();
     },
     choose(species) {
@@ -162,6 +183,7 @@
       setPet({ species, name: SPECIES[species].name, born: Date.now(), lastFed: Date.now(), stage: stageOf(pctOf(ctx)) });
       pendingSay = L().hello;
       pendingAnim = 'ckpet-grow';
+      pendingVoice = true;
       render();
     },
     change() {
@@ -178,6 +200,16 @@
       if (n && n.trim()) { p.name = n.trim().slice(0, 20); setPet(p); render(); }
     },
     refresh: render,
+    // Modo Niño opens: the pet says hello (or that it missed the child).
+    greet(name) {
+      const p = getPet();
+      if (!p) return;
+      const sad = Date.now() - (p.lastFed || p.born || Date.now()) > SAD_AFTER_MS && pctOf(ctx) < 100;
+      pendingSay = sad ? L().mSad : L().hi(String(name || '').trim());
+      pendingAnim = 'ckpet-jump';
+      pendingVoice = true;
+      render();
+    },
     // For the weekly summary image (js/resumen.js): what the pet looks like now.
     info() {
       const p = getPet();

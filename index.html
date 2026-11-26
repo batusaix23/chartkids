@@ -2191,6 +2191,7 @@ nav {
 <script src="/js/cuento.js"></script>
 <script src="/js/cofre.js"></script>
 <script src="/js/album.js"></script>
+<script src="/js/chat-rapido.js"></script>
 </head>
 <body>
 <div class="bg-orbs">
@@ -2265,6 +2266,7 @@ nav {
           <div class="templates-title" id="templatesTitle">Plantillas por edad</div>
           <div class="templates-grid" id="templatesGrid"></div>
         </div>
+        <div id="ckWizard"></div>
         <div class="quick-prompts" id="quickPrompts"></div>
         <div class="chat-input-area">
           <label for="chatInput" class="sr-only">Mensaje</label>
@@ -4118,6 +4120,7 @@ function applyTranslations() {
 }
 
 function renderQuickPrompts() {
+  if (window.ckWizard) ckWizard.render();
   const qp = document.getElementById('quickPrompts');
   qp.innerHTML = '';
   T[lang].quickPrompts.forEach(p => {
@@ -5812,6 +5815,7 @@ buildChart = function(data, preserveProgress = false) {
   }
   if (window.ckPet) ckPet.update(petCtx());
   if (window.ckCofre) ckCofre.update(petCtx());
+  if (window.ckWizard) ckWizard.sync();
 };
 
 // ─── Premium Functions ────────────────────────────────────
@@ -6689,6 +6693,7 @@ function enterKidMode() {
   const overlay = document.getElementById('kidOverlay');
   overlay.classList.add('active');
   renderKidOverlay();
+  if (window.ckPet) setTimeout(() => ckPet.greet(chartData.childName || ''), 400);
   document.body.style.overflow = 'hidden';
   kidExitTaps = 0;
   const btn = document.getElementById('kidExitBtn');
