@@ -24,7 +24,13 @@
       games: {
         memo: ['🃏', 'Memorama', 'Encuentra las parejas'], sigue: ['🔁', '¿Qué sigue?', 'Descubre el patrón'],
         sudoku: ['🧩', 'Sudoku infantil', 'Sin repetir en fila, columna ni cuadro'], simon: ['🎵', 'Simón dice', 'Repite la secuencia'],
+        falta: ['👀', '¿Qué falta?', 'Memoriza y descubre cuál desapareció'], calculo: ['⚡', 'Cálculo rápido', 'Resuelve todo lo que puedas en 60 segundos'],
+        palabra: ['🎈', 'Palabra escondida', 'Adivina la palabra letra por letra'], intruso: ['🔍', 'Encuentra al intruso', '¿Cuál no pertenece al grupo?'],
       },
+      memorize: n => `👀 ¡Memoriza! ${n}…`, whichMissing: '¿Cuál falta?', faltaDone: (c, n) => `Encontraste ${c} de ${n}.`,
+      timeLeft: s => `⏱️ ${s} s`, correct: n => `✅ ${n}`, calcDone: n => `Resolviste ${n} operaciones en 60 segundos.`,
+      hint: 'Pista', wordN: (i, n) => `Palabra ${i} de ${n}`, wordWas: w => `Era: ${w}`, palabraDone: (c, n) => `Adivinaste ${c} de ${n} palabras.`,
+      whichOut: '¿Cuál no pertenece?', isNot: (x, c) => `${x} no es ${c}.`, intrusoDone: (c, n) => `Encontraste ${c} de ${n} intrusos.`,
       moves: n => `${n} intentos`, q: (i, n) => `Pregunta ${i} de ${n}`, whatNext: '¿Qué sigue?',
       sudokuHelp: 'Toca una casilla vacía y luego elige qué va. Cada fila, columna y cuadro lleva cada símbolo una sola vez.',
       erase: 'Borrar', simonWatch: '👀 Mira…', simonYou: '👆 ¡Tu turno!', simonLen: n => `Secuencia: ${n}`, start: '▶️ Empezar',
@@ -38,7 +44,13 @@
       games: {
         memo: ['🃏', 'Memory', 'Find the pairs'], sigue: ['🔁', 'What comes next?', 'Spot the pattern'],
         sudoku: ['🧩', 'Kids Sudoku', 'No repeats in a row, column or box'], simon: ['🎵', 'Simon says', 'Repeat the sequence'],
+        falta: ['👀', "What's missing?", 'Memorize and find what disappeared'], calculo: ['⚡', 'Quick math', 'Solve as many as you can in 60 seconds'],
+        palabra: ['🎈', 'Hidden word', 'Guess the word letter by letter'], intruso: ['🔍', 'Odd one out', "Which one doesn't belong?"],
       },
+      memorize: n => `👀 Memorize! ${n}…`, whichMissing: "Which one is missing?", faltaDone: (c, n) => `You found ${c} of ${n}.`,
+      timeLeft: s => `⏱️ ${s} s`, correct: n => `✅ ${n}`, calcDone: n => `You solved ${n} in 60 seconds.`,
+      hint: 'Hint', wordN: (i, n) => `Word ${i} of ${n}`, wordWas: w => `It was: ${w}`, palabraDone: (c, n) => `You guessed ${c} of ${n} words.`,
+      whichOut: "Which one doesn't belong?", isNot: (x, c) => `${x} is not ${c}.`, intrusoDone: (c, n) => `You found ${c} of ${n} odd ones.`,
       moves: n => `${n} tries`, q: (i, n) => `Question ${i} of ${n}`, whatNext: 'What comes next?',
       sudokuHelp: 'Tap an empty square, then pick what goes there. Each row, column and box has every symbol once.',
       erase: 'Erase', simonWatch: '👀 Watch…', simonYou: '👆 Your turn!', simonLen: n => `Sequence: ${n}`, start: '▶️ Start',
@@ -315,7 +327,212 @@
     }));
   }
 
-  const GAMES = { memo, sigue, sudoku, simon };
+  // ── shared picture groups (¿Qué falta? and Encuentra al intruso) ──
+  const GROUPS = {
+    frutas:    { es: 'una fruta', en: 'a fruit', items: ['🍎', '🍌', '🍇', '🍓', '🍉', '🍍', '🍒', '🍑', '🍋', '🥝'] },
+    verduras:  { es: 'una verdura', en: 'a vegetable', items: ['🥕', '🥦', '🌽', '🥒', '🍆', '🥔', '🧅', '🌶️'] },
+    animales:  { es: 'un animal', en: 'an animal', items: ['🐶', '🐱', '🐰', '🦊', '🐻', '🐼', '🐨', '🐯', '🦁', '🐮'] },
+    vehiculos: { es: 'un vehículo', en: 'a vehicle', items: ['🚗', '🚌', '🚒', '🚀', '✈️', '🚲', '🚂', '🚁', '⛵', '🚜'] },
+    ropa:      { es: 'ropa', en: 'clothing', items: ['👕', '👖', '👗', '🧦', '🧢', '👟', '🧤', '🧣', '👒'] },
+    deportes:  { es: 'una pelota de deporte', en: 'a sports ball', items: ['⚽', '🏀', '🏈', '⚾', '🎾', '🏐'] },
+    musica:    { es: 'un instrumento', en: 'an instrument', items: ['🎸', '🎹', '🥁', '🎺', '🎻', '🎷'] },
+    clima:     { es: 'el clima', en: 'weather', items: ['☀️', '🌧️', '⛄', '🌈', '⚡', '❄️', '🌪️'] },
+    vuelan:    { es: 'un animal que vuela', en: 'an animal that flies', items: ['🦅', '🐦', '🦋', '🐝', '🦉', '🦆', '🦜'] },
+    mar:       { es: 'un animal del mar', en: 'a sea animal', items: ['🐟', '🐬', '🐳', '🐙', '🦀', '🦈', '🐠'] },
+    granja:    { es: 'un animal de granja', en: 'a farm animal', items: ['🐮', '🐷', '🐔', '🐑', '🐴', '🐐'] },
+  };
+
+  // ── 5. ¿Qué falta? ──
+  function falta(level) {
+    const cfg = { facil: { n: 3, ms: 3000 }, medio: { n: 5, ms: 3000 }, dificil: { n: 7, ms: 2500 } }[level];
+    const pool = [...new Set(Object.values(GROUPS).flatMap(g => g.items))];
+    const N = 5, timers = [];
+    let i = 0, right = 0, alive = true;
+    stopCurrent = () => { alive = false; timers.forEach(clearTimeout); };
+    $('jgArea').innerHTML = head('falta', t().q(1, N)) + '<div id="jgFalta"></div>';
+    const round = () => {
+      const shown = pickN(pool, cfg.n), missing = shown[rnd(shown.length)];
+      const box = $('jgFalta');
+      $('jgInfo').textContent = t().q(i + 1, N);
+      let left = Math.ceil(cfg.ms / 1000);
+      box.innerHTML = `<div class="jg-ask" id="jgFaltaMsg">${t().memorize(left)}</div><div class="jg-objs">${shown.map(e => `<span>${e}</span>`).join('')}</div>`;
+      const tick = () => {
+        if (!alive) return;
+        left--;
+        if (left > 0) { $('jgFaltaMsg').textContent = t().memorize(left); timers.push(setTimeout(tick, 1000)); return; }
+        // Hide, then show the same objects minus one, in a new order.
+        const rest = shuffle(shown.filter(e => e !== missing));
+        const options = shuffle([missing, ...pickN(pool.filter(e => !shown.includes(e)), level === 'facil' ? 2 : 3)]);
+        box.innerHTML = `<div class="jg-objs jg-objs-after">${rest.map(e => `<span>${e}</span>`).join('')}<span class="jg-gap">?</span></div>
+          <div class="jg-ask">${t().whichMissing}</div><div class="jg-opts">${options.map(o => `<button type="button" class="jg-opt">${o}</button>`).join('')}</div>`;
+        let locked = false;
+        box.querySelectorAll('.jg-opt').forEach(b => b.addEventListener('click', () => {
+          if (locked) return;
+          locked = true;
+          const ok = b.textContent === missing;
+          b.classList.add(ok ? 'ok' : 'no');
+          if (!ok) box.querySelectorAll('.jg-opt').forEach(x => { if (x.textContent === missing) x.classList.add('ok'); });
+          box.querySelector('.jg-gap').textContent = missing;
+          if (ok) { right++; good(); } else bad();
+          timers.push(setTimeout(() => {
+            if (!alive) return;
+            if (++i < N) round();
+            else finish('falta', right === N ? 3 : right >= 4 ? 2 : right >= 2 ? 1 : 0, t().faltaDone(right, N));
+          }, ok ? 800 : 1400));
+        }));
+      };
+      timers.push(setTimeout(tick, 1000));
+    };
+    round();
+  }
+
+  // ── 6. Cálculo rápido ──
+  function makeSum(level) {
+    let a, b, op, ans;
+    if (level === 'facil') { a = rnd(6); b = rnd(11 - a); op = '+'; ans = a + b; }
+    else if (level === 'medio') {
+      if (Math.random() < 0.5) { a = rnd(11); b = rnd(21 - a); op = '+'; ans = a + b; }
+      else { a = 5 + rnd(16); b = rnd(a + 1); op = '−'; ans = a - b; }
+    } else {
+      const k = rnd(3);
+      if (k === 0) { a = 2 + rnd(9); b = 2 + rnd(9); op = '×'; ans = a * b; }
+      else if (k === 1) { a = 10 + rnd(60); b = 5 + rnd(30); op = '+'; ans = a + b; }
+      else { a = 30 + rnd(70); b = 5 + rnd(a - 10); op = '−'; ans = a - b; }
+    }
+    const near = [ans + 1, ans - 1, ans + 2, ans - 2, ans + 10, ans - 10, op === '×' ? ans + a : ans + 3].filter(x => x >= 0 && x !== ans);
+    return { text: `${a} ${op} ${b}`, ans, options: shuffle([ans, ...shuffle([...new Set(near)]).slice(0, 3)]) };
+  }
+  function calculo(level) {
+    const goals = { facil: [8, 12, 16], medio: [8, 12, 16], dificil: [6, 10, 14] }[level];
+    let left = 60, right = 0, q = null, iv = null;
+    stopCurrent = () => clearInterval(iv);
+    $('jgArea').innerHTML = head('calculo', '') +
+      `<div class="jg-ask" id="jgCalcMsg"><button type="button" class="jg-btn" id="jgCalcGo">${t().start}</button></div><div id="jgCalc"></div>`;
+    const info = () => { $('jgInfo').textContent = `${t().timeLeft(left)} · ${t().correct(right)}`; };
+    const ask = () => {
+      q = makeSum(level);
+      $('jgCalc').innerHTML = `<div class="jg-sum">${q.text} = ?</div><div class="jg-opts">${q.options.map(o => `<button type="button" class="jg-opt">${o}</button>`).join('')}</div>`;
+      $('jgCalc').querySelectorAll('.jg-opt').forEach(b => b.addEventListener('click', () => {
+        if (+b.textContent === q.ans) { right++; good(); info(); ask(); }
+        else { bad(); b.classList.add('no'); b.disabled = true; }
+      }));
+    };
+    $('jgCalcGo').addEventListener('click', () => {
+      $('jgCalcMsg').textContent = '';
+      info(); ask();
+      iv = setInterval(() => {
+        left--; info();
+        if (left <= 0) {
+          clearInterval(iv);
+          finish('calculo', right >= goals[2] ? 3 : right >= goals[1] ? 2 : right >= goals[0] ? 1 : 0, t().calcDone(right));
+        }
+      }, 1000);
+    });
+    info();
+  }
+
+  // ── 7. Palabra escondida (friendly hangman: a balloon pops per mistake) ──
+  const WORDS = {
+    es: {
+      facil: [['SOL', '☀️'], ['GATO', '🐱'], ['PATO', '🦆'], ['LUNA', '🌙'], ['OSO', '🐻'], ['CASA', '🏠'], ['PAN', '🍞'], ['PEZ', '🐟'], ['UVA', '🍇'], ['TREN', '🚂'], ['NUBE', '☁️'], ['FLOR', '🌸'], ['MANO', '✋'], ['VACA', '🐮']],
+      medio: [['PERRO', '🐶'], ['FRESA', '🍓'], ['CONEJO', '🐰'], ['BARCO', '⛵'], ['CAMISA', '👕'], ['LIBRO', '📚'], ['PLAYA', '🏖️'], ['PELOTA', '⚽'], ['ZAPATO', '👟'], ['CEREZA', '🍒'], ['RATON', '🐭'], ['PASTEL', '🎂']],
+      dificil: [['ESTRELLA', '⭐'], ['MARIPOSA', '🦋'], ['ELEFANTE', '🐘'], ['DINOSAURIO', '🦖'], ['CABALLO', '🐴'], ['TORTUGA', '🐢'], ['CHOCOLATE', '🍫'], ['MANZANA', '🍎'], ['ARCOIRIS', '🌈'], ['HELICOPTERO', '🚁'], ['GUITARRA', '🎸']],
+    },
+    en: {
+      facil: [['SUN', '☀️'], ['CAT', '🐱'], ['DOG', '🐶'], ['FISH', '🐟'], ['MOON', '🌙'], ['BEAR', '🐻'], ['CAKE', '🎂'], ['TREE', '🌳'], ['STAR', '⭐'], ['BOOK', '📚'], ['DUCK', '🦆'], ['BUS', '🚌']],
+      medio: [['APPLE', '🍎'], ['HORSE', '🐴'], ['TRAIN', '🚂'], ['HOUSE', '🏠'], ['CLOUD', '☁️'], ['PIZZA', '🍕'], ['ROBOT', '🤖'], ['TIGER', '🐯'], ['BREAD', '🍞'], ['FLOWER', '🌸'], ['RABBIT', '🐰']],
+      dificil: [['ELEPHANT', '🐘'], ['BUTTERFLY', '🦋'], ['DINOSAUR', '🦖'], ['RAINBOW', '🌈'], ['CHOCOLATE', '🍫'], ['PENGUIN', '🐧'], ['GIRAFFE', '🦒'], ['TURTLE', '🐢'], ['SNOWMAN', '⛄'], ['PINEAPPLE', '🍍'], ['GUITAR', '🎸']],
+    },
+  };
+  function palabra(level) {
+    const N = 3, LIVES = 6, timers = [];
+    const words = pickN(WORDS[lang][level], N);
+    let i = 0, solved = 0;
+    stopCurrent = () => timers.forEach(clearTimeout);
+    $('jgArea').innerHTML = head('palabra', t().wordN(1, N)) + '<div id="jgPal"></div>';
+    const keys = (lang === 'es' ? 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ' : 'ABCDEFGHIJKLMNOPQRSTUVWXYZ').split('');
+    const play = () => {
+      const [word, emoji] = words[i];
+      const found = new Set();
+      let lives = LIVES, over = false;
+      $('jgInfo').textContent = t().wordN(i + 1, N);
+      const draw = () => {
+        $('jgPal').innerHTML = `<div class="jg-hint">${emoji} <small>${t().hint}</small></div>
+          <div class="jg-balloons">${Array.from({ length: LIVES }, (_, k) => `<span class="${k < lives ? '' : 'pop'}">${k < lives ? '🎈' : '💥'}</span>`).join('')}</div>
+          <div class="jg-word">${word.split('').map(ch => `<span>${found.has(ch) || over ? ch : ''}</span>`).join('')}</div>
+          <div class="jg-keys">${keys.map(k => `<button type="button" class="jg-key${found.has(k) ? ' ok' : ''}${$('jgPal').dataset['x' + k] ? ' no' : ''}" data-k="${k}"${found.has(k) || $('jgPal').dataset['x' + k] || over ? ' disabled' : ''}>${k}</button>`).join('')}</div>`;
+      };
+      Object.keys($('jgPal').dataset).forEach(k => delete $('jgPal').dataset[k]);
+      draw();
+      $('jgPal').onclick = e => {
+        const b = e.target.closest('.jg-key');
+        if (!b || over || b.disabled) return;
+        const k = b.dataset.k;
+        if (word.includes(k)) { found.add(k); good(); }
+        else { $('jgPal').dataset['x' + k] = '1'; lives--; bad(); }
+        const won = word.split('').every(ch => found.has(ch));
+        if (won || lives <= 0) {
+          over = true;
+          if (won) solved++;
+          draw();
+          if (!won) $('jgPal').insertAdjacentHTML('beforeend', `<div class="jg-ask">${t().wordWas(word)}</div>`);
+          timers.push(setTimeout(() => {
+            if (++i < N) play();
+            else finish('palabra', solved, t().palabraDone(solved, N));
+          }, won ? 1000 : 1800));
+        } else draw();
+      };
+    };
+    play();
+  }
+
+  // ── 8. Encuentra al intruso ──
+  function intruso(level) {
+    const N = 6, timers = [];
+    let i = 0, right = 0;
+    stopCurrent = () => timers.forEach(clearTimeout);
+    // Easy: very different groups. Hard: close ones (fruit vs vegetable, sea vs farm…) and even/odd numbers.
+    const EASY = ['frutas', 'animales', 'vehiculos', 'ropa', 'musica', 'deportes'];
+    const HARD_PAIRS = [['frutas', 'verduras'], ['verduras', 'frutas'], ['mar', 'granja'], ['granja', 'mar'], ['vuelan', 'mar'], ['vuelan', 'granja'], ['clima', 'frutas']];
+    $('jgArea').innerHTML = head('intruso', t().q(1, N)) + '<div id="jgInt"></div>';
+    const round = () => {
+      let items, odd, why;
+      if (level === 'dificil' && Math.random() < 0.3) {
+        const even = Math.random() < 0.5;
+        const base = shuffle([...Array(20).keys()].map(x => x + 1).filter(x => (x % 2 === 0) === even)).slice(0, 4);
+        const out = shuffle([...Array(20).keys()].map(x => x + 1).filter(x => (x % 2 === 0) !== even))[0];
+        items = shuffle([...base.map(String), String(out)]); odd = String(out);
+        why = t().isNot(odd, lang === 'es' ? (even ? 'par' : 'impar') : (even ? 'even' : 'odd'));
+      } else {
+        const [g, o] = level === 'dificil' ? HARD_PAIRS[rnd(HARD_PAIRS.length)] : (() => { const g = EASY[rnd(EASY.length)]; return [g, shuffle(EASY.filter(x => x !== g))[0]]; })();
+        const n = level === 'facil' ? 3 : 4;
+        const cand = GROUPS[o].items.filter(x => !GROUPS[g].items.includes(x));
+        odd = cand[rnd(cand.length)];
+        items = shuffle([...pickN(GROUPS[g].items, n), odd]);
+        why = t().isNot(odd, GROUPS[g][lang]);
+      }
+      const box = $('jgInt');
+      $('jgInfo').textContent = t().q(i + 1, N);
+      box.innerHTML = `<div class="jg-ask">${t().whichOut}</div><div class="jg-opts jg-big">${items.map(o => `<button type="button" class="jg-opt">${o}</button>`).join('')}</div><div class="jg-why" id="jgWhy"></div>`;
+      let locked = false;
+      box.querySelectorAll('.jg-opt').forEach(b => b.addEventListener('click', () => {
+        if (locked) return;
+        locked = true;
+        const ok = b.textContent === odd;
+        b.classList.add(ok ? 'ok' : 'no');
+        if (!ok) box.querySelectorAll('.jg-opt').forEach(x => { if (x.textContent === odd) x.classList.add('ok'); });
+        $('jgWhy').textContent = why;
+        if (ok) { right++; good(); } else bad();
+        timers.push(setTimeout(() => {
+          if (++i < N) round();
+          else finish('intruso', right === N ? 3 : right >= 4 ? 2 : right >= 2 ? 1 : 0, t().intrusoDone(right, N));
+        }, ok ? 1100 : 1800));
+      }));
+    };
+    round();
+  }
+
+  const GAMES = { memo, sigue, sudoku, simon, falta, calculo, palabra, intruso };
 
   document.addEventListener('click', e => {
     const c = e.target.closest('[data-game]'); if (c) { start(c.dataset.game); return; }
@@ -334,6 +551,6 @@
   // ck-nav.js calls setLang() when ES/EN is pressed in the shared bar.
   window.setLang = l => { lang = l === 'en' ? 'en' : 'es'; applyLang(); };
 
-  window.ckJuegos = { start, menu, _t: { fullGrid, makeQuestion, SUDOKU } };
+  window.ckJuegos = { start, menu, _t: { fullGrid, makeQuestion, SUDOKU, makeSum, GROUPS, WORDS } };
   applyLang();
 })();
