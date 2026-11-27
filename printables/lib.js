@@ -39,6 +39,10 @@ const CATS = {
   stem:         { dir: 'stem',      page: 'stem.html',              color: '#10b981', emoji: '🔬', es: 'STEM',                en: 'STEM' },
   certificados: { dir: 'certificados', page: 'certificados.html',   color: '#f59e0b', emoji: '🏆', es: 'Certificados',        en: 'Certificates' },
   calendarios:  { dir: 'calendarios',  page: 'calendarios.html',    color: '#8b5cf6', emoji: '📅', es: 'Calendarios',         en: 'Calendars' },
+  // Printable versions of the brain games (printables/gen-mente.js).
+  sudoku:       { dir: 'sudoku',    page: 'sudoku.html',            color: '#7c3aed', emoji: '🧩', es: 'Sudoku',              en: 'Sudoku' },
+  secuencias:   { dir: 'que-sigue', page: 'que-sigue.html',         color: '#db2777', emoji: '🔁', es: '¿Qué sigue?',         en: 'What Comes Next?' },
+  intruso:      { dir: 'intruso',   page: 'encuentra-el-intruso.html', color: '#16a34a', emoji: '🔍', es: 'Encuentra el Intruso', en: 'Odd One Out' },
   // Older collections (own generators, own URLs) shown inside other hubs; hub:false →
   // build-hubs.js does not write a hub page or sitemap section for them.
   trazado:      { dir: 'tracing',    page: 'escritura.html',   color: '#6366f1', emoji: '✏️', es: 'Trazado de palabras', en: 'Word Tracing', hub: false },

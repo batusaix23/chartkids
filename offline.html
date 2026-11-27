@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Sin conexión | ChartKids</title>
+<link rel="icon" href="/favicon.ico">
+<style>
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0f0f1a;color:#f1f5f9;font-family:'Nunito',system-ui,sans-serif;padding:16px;box-sizing:border-box}
+.box{max-width:440px;text-align:center}
+.ic{font-size:3.5rem}
+h1{font-size:1.6rem;margin:8px 0;color:#c4b5fd}
+p{color:#94a3b8;font-weight:700;line-height:1.5}
+.links{display:grid;gap:10px;margin-top:18px}
+a{display:block;padding:13px 16px;border-radius:16px;background:#1a1a2e;border:1px solid #2e2e50;color:#f1f5f9;text-decoration:none;font-weight:800}
+a:hover{border-color:#7c3aed}
+small{display:block;color:#94a3b8;font-weight:700;margin-top:2px}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="ic">📶🐣</div>
+  <h1 data-es="Sin conexión a internet" data-en="No internet connection">Sin conexión a internet</h1>
+  <p data-es="Esta página todavía no está guardada en tu dispositivo, pero esto sí funciona sin internet:" data-en="This page isn't saved on your device yet, but these work offline:">Esta página todavía no está guardada en tu dispositivo, pero esto sí funciona sin internet:</p>
+  <div class="links">
+    <a href="/index.html"><span data-es="📋 Mis charts y Modo Niño" data-en="📋 My charts and Kid Mode">📋 Mis charts y Modo Niño</span><small data-es="Tus estrellas se guardan en este dispositivo" data-en="Your stars are saved on this device">Tus estrellas se guardan en este dispositivo</small></a>
+    <a href="/juegos.html"><span data-es="🧠 Juegos Mentales" data-en="🧠 Brain Games">🧠 Juegos Mentales</span><small data-es="Los 8 juegos funcionan sin internet" data-en="All 8 games work offline">Los 8 juegos funcionan sin internet</small></a>
+    <a href="/historias.html"><span data-es="📖 Mis historias y lector de cuentos" data-en="📖 My stories and story reader">📖 Mis historias y lector de cuentos</span><small data-es="Crear historias nuevas con IA necesita internet" data-en="Making new AI stories needs internet">Crear historias nuevas con IA necesita internet</small></a>
+    <a href="/actividades.html"><span data-es="🎨 Actividades creativas" data-en="🎨 Creative activities">🎨 Actividades creativas</span></a>
+  </div>
+</div>
+<script>
+  try { if ((localStorage.getItem('ck_lang') || 'es') === 'en') { document.documentElement.lang = 'en'; document.querySelectorAll('[data-en]').forEach(el => { el.textContent = el.dataset.en; }); } } catch (e) {}
+</script>
+</body>
+</html>

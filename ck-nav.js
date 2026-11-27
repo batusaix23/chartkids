@@ -43,7 +43,7 @@
 
   // Printable item pages live in folders (/maze/<slug>/ …) and category hubs are
   // flat pages; both belong to the "Imprime y Juega" section.
-  const PRINT_PAGES = /^\/(maze|dots|coloring|numbers|busca|mate|escritura|stem|certificados|calendarios)\/|^\/(laberintos|une-los-puntos|colorear|colorear-numeros|busca-encuentra|matematicas|escritura|stem|certificados|calendarios)\.html$/;
+  const PRINT_PAGES = /^\/(maze|dots|coloring|numbers|busca|mate|escritura|stem|certificados|calendarios|sudoku|que-sigue|intruso)\/|^\/(laberintos|une-los-puntos|colorear|colorear-numeros|busca-encuentra|matematicas|escritura|stem|certificados|calendarios|sudoku|que-sigue|encuentra-el-intruso)\.html$/;
 
   function currentPage() {
     const p = location.pathname;
@@ -125,4 +125,9 @@
   document.readyState === 'loading'
     ? document.addEventListener('DOMContentLoaded', () => { init(); updateYear(); })
     : (init(), updateYear());
+
+  // Offline support on every page, not only the home page (sw.js).
+  if ('serviceWorker' in navigator && location.protocol === 'https:') {
+    addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
+  }
 })();

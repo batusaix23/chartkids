@@ -39,6 +39,15 @@ const TEXT = {
   calendarios:  { h1_es: 'Calendarios Infantiles', h1_en: 'Kids Calendars',
     d_es: 'calendarios y planificadores para organizar rutinas, tareas y actividades de los niños.',
     d_en: 'calendars and planners to organize kids’ routines, chores and activities.' },
+  sudoku:       { h1_es: 'Sudoku para Niños', h1_en: 'Sudoku for Kids',
+    d_es: 'sudokus para imprimir: 4×4 para empezar, 6×6 y 9×9 para expertos. Todos con una sola solución y hoja de respuestas.',
+    d_en: 'printable sudokus: 4×4 to start, 6×6 and 9×9 for experts. All with a single solution and an answer key.' },
+  secuencias:   { h1_es: '¿Qué Sigue? Patrones y Secuencias', h1_en: 'What Comes Next? Patterns & Sequences',
+    d_es: 'fichas de patrones con figuras y números para descubrir qué sigue. Entrenan la lógica y el razonamiento. Con solución.',
+    d_en: 'pattern worksheets with shapes and numbers to find what comes next. Great for logic and reasoning. Answer key included.' },
+  intruso:      { h1_es: 'Encuentra el Intruso', h1_en: 'Odd One Out',
+    d_es: 'fichas para tachar el que no pertenece al grupo: frutas, animales, vehículos y más. La solución explica por qué.',
+    d_en: 'worksheets to cross out the one that doesn’t belong: fruit, animals, vehicles and more. The answer key explains why.' },
 };
 
 function hubPage(cat, m) {

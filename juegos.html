@@ -26,6 +26,8 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:'Nunito',sans-s
 .hero{text-align:center;padding:30px 0 10px}
 .hero h1{font-family:'Fredoka One',cursive;font-size:clamp(1.9rem,5vw,2.7rem);margin:6px 0;background:linear-gradient(135deg,#a78bfa,#f472b6,#fbbf24);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .hero p{color:var(--muted);font-weight:700;margin:0 auto;max-width:560px}
+.jg-print{text-align:center;font-weight:800;font-size:.88rem;margin:-8px 0 18px;color:#64748b}
+.jg-print a{color:#a78bfa;text-decoration:none}
 .jg-stats{text-align:center;font-weight:800;color:#fde68a;margin:12px 0 18px}
 .jg-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
 .jg-card{display:flex;flex-direction:column;align-items:center;gap:4px;padding:20px 12px;border-radius:20px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-family:'Nunito',sans-serif;cursor:pointer;transition:transform .15s,border-color .15s}
@@ -117,6 +119,7 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:'Nunito',sans-s
     <p data-es="Entrena la memoria, la lógica y la atención jugando. Gana estrellas y stickers para tu álbum." data-en="Train memory, logic and focus while playing. Earn stars and stickers for your album.">Entrena la memoria, la lógica y la atención jugando. Gana estrellas y stickers para tu álbum.</p>
   </div>
   <div class="jg-stats" id="jgStats"></div>
+  <p class="jg-print"><a href="/sudoku.html" data-es="🖨️ Sudoku para imprimir" data-en="🖨️ Printable sudoku">🖨️ Sudoku para imprimir</a> · <a href="/que-sigue.html" data-es="¿Qué sigue? para imprimir" data-en="Printable What comes next?">¿Qué sigue? para imprimir</a> · <a href="/encuentra-el-intruso.html" data-es="Encuentra el intruso para imprimir" data-en="Printable Odd one out">Encuentra el intruso para imprimir</a></p>
   <div id="jgArea"></div>
 </div>
 
