@@ -610,7 +610,9 @@ async function verifySubscription(env, id) {
   const cached = env.DATA && await env.DATA.get(key, 'json');
   if (cached) return cached.active;
   const res = await fetch(`${paypalBase(env)}/v1/billing/subscriptions/${id}`, { headers: { Authorization: `Bearer ${await paypalToken(env)}` } });
-  if (res.status === 404) { if (env.DATA) await env.DATA.put(key, '{"active":false}', { expirationTtl: 3600 }); return false; }
+  // An ID that doesn't exist (or is malformed) comes back as 404, 400 or 422 — all mean "not
+  // a subscriber". Only other errors (PayPal down, bad credentials) are "can't verify".
+  if ([400, 404, 422].includes(res.status)) { if (env.DATA) await env.DATA.put(key, '{"active":false}', { expirationTtl: 3600 }); return false; }
   if (!res.ok) throw new Error(`PayPal subscription ${res.status}`);
   const s = await res.json();
   const active = s.status === 'ACTIVE' && s.plan_id === PAYPAL_PLAN_ID;
