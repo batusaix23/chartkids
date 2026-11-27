@@ -81,7 +81,18 @@ ${img ? `<meta property="og:image" content="${img}">
 <meta property="og:image:width" content="1000">
 <meta property="og:image:height" content="525">
 ` : ''}<meta name="twitter:card" content="summary_large_image">
-`; })()}<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+`; })()}<script type="application/ld+json">${JSON.stringify([
+  { '@context': 'https://schema.org', '@type': 'CollectionPage', name: `${x.h1_es} — ChartKids`, description: `${n} ${x.d_es}`,
+    url: `${L.SITE}/${c.page}`, inLanguage: 'es', isAccessibleForFree: true,
+    about: { '@type': 'Thing', name: x.h1_es }, audience: { '@type': 'EducationalAudience', educationalRole: 'student' },
+    mainEntity: { '@type': 'ItemList', numberOfItems: n,
+      itemListElement: m.items.filter(i => !i.href).slice(0, 20).map((i, k) => ({ '@type': 'ListItem', position: k + 1, name: i.title_es, url: `${L.SITE}/${c.dir}/${i.slug}/` })) } },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'ChartKids', item: `${L.SITE}/` },
+    { '@type': 'ListItem', position: 2, name: 'Imprime y Juega', item: `${L.SITE}/imprime-y-juega.html` },
+    { '@type': 'ListItem', position: 3, name: x.h1_es, item: `${L.SITE}/${c.page}` }] },
+]).replace(/</g, '\\u003c')}</script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3864436143903858" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/css/printables-category.css">
 <style>:root{--cat:${c.color}}</style>

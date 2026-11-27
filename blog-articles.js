@@ -1,5 +1,5 @@
 // blog-articles.js — ChartKids blog content
-// 13 articles | Bilingual: content (EN) + content_es (ES)
+// 15 articles | Bilingual: content (EN) + content_es (ES)
 const BLOG_ARTICLES = [
 
   // ── CHARTS & PARENTING ──
@@ -845,6 +845,150 @@ const BLOG_ARTICLES = [
         <li>Play varied music at home: classical, jazz, world music — not just children's music</li>
         <li>Dance together regularly — movement reinforces rhythmic perception</li>
       </ul>
+    `
+  },
+
+  // ── JUEGOS Y CUENTOS ──
+
+  {
+    id: 'juegos-mentales-ninos',
+    category: 'Brain Games', category_es: 'Juegos Mentales',
+    emoji: '🧠',
+    title: '10 Free Brain Games for Kids: Memory, Logic and Focus',
+    title_es: '10 Juegos Mentales Gratis para Niños: Memoria, Lógica y Atención',
+    summary: 'Which skills does each brain game train, how long to play, and how to choose the right level for ages 3 to 12.',
+    summary_es: 'Qué habilidad entrena cada juego mental, cuánto tiempo jugar y cómo elegir el nivel correcto de 3 a 12 años.',
+    date: 'Noviembre 2026',
+    readTime: '6 min',
+    featured: false,
+    content_es: `
+      <p>Los juegos mentales son una forma divertida de entrenar habilidades que los niños usan todos los días en la escuela: recordar instrucciones, encontrar patrones, concentrarse y resolver problemas. Lo mejor: bastan 10 minutos al día.</p>
+
+      <h2>Qué entrena cada juego</h2>
+      <ul>
+        <li><strong>🃏 Memorama:</strong> memoria de trabajo. Recordar dónde estaba cada carta es la misma habilidad que recordar los pasos de una tarea.</li>
+        <li><strong>🔁 ¿Qué sigue?:</strong> razonamiento lógico. Descubrir patrones es la base de las matemáticas.</li>
+        <li><strong>🧩 Sudoku infantil:</strong> pensamiento ordenado y paciencia. Empieza con 4×4 y frutas en lugar de números.</li>
+        <li><strong>🎵 Simón dice:</strong> atención y memoria de secuencias.</li>
+        <li><strong>👀 ¿Qué falta?:</strong> memoria visual y observación.</li>
+        <li><strong>⚡ Cálculo rápido:</strong> agilidad con sumas, restas y tablas.</li>
+        <li><strong>🎈 Palabra escondida:</strong> ortografía y vocabulario, con pista en dibujo.</li>
+        <li><strong>🔍 Encuentra al intruso:</strong> clasificar y explicar por qué algo no pertenece.</li>
+        <li><strong>🎨 Une los colores:</strong> planear antes de actuar: cada línea afecta a las demás.</li>
+        <li><strong>🔷 Arma la figura:</strong> razonamiento espacial: girar piezas en la mente.</li>
+      </ul>
+
+      <h2>¿Qué nivel elegir?</h2>
+      <p>Una buena regla: el nivel correcto es el que tu peque termina con algo de esfuerzo, pero sin frustrarse. Si gana 3 estrellas fácilmente, sube de nivel; si no logra terminar, baja uno. En ChartKids cada juego tiene <strong>Fácil, Medio y Difícil</strong>, y las estrellas ayudan a ver el progreso.</p>
+
+      <h2>Consejos para que funcione</h2>
+      <ul>
+        <li><strong>Poco y seguido:</strong> 10 a 15 minutos al día valen más que una hora el fin de semana.</li>
+        <li><strong>Pregunta "¿cómo lo pensaste?":</strong> explicar su estrategia refuerza lo aprendido.</li>
+        <li><strong>Celebra el esfuerzo,</strong> no solo el resultado.</li>
+        <li><strong>Combina pantalla y papel:</strong> los sudokus, "¿Qué sigue?" y "Encuentra el intruso" también existen como fichas para imprimir.</li>
+      </ul>
+
+      <p>👉 <a href="/juegos.html">Prueba los 10 juegos mentales gratis</a> o <a href="/sudoku.html">imprime sudokus para niños</a>.</p>
+    `,
+    content: `
+      <p>Brain games are a fun way to train skills kids use every day at school: remembering instructions, spotting patterns, focusing and solving problems. Best of all: 10 minutes a day is enough.</p>
+
+      <h2>What each game trains</h2>
+      <ul>
+        <li><strong>🃏 Memory:</strong> working memory, the same skill used to remember the steps of a task.</li>
+        <li><strong>🔁 What comes next?:</strong> logical reasoning. Spotting patterns is the basis of math.</li>
+        <li><strong>🧩 Kids Sudoku:</strong> orderly thinking and patience. Start with 4×4 and fruit instead of numbers.</li>
+        <li><strong>🎵 Simon says:</strong> attention and sequence memory.</li>
+        <li><strong>👀 What's missing?:</strong> visual memory and observation.</li>
+        <li><strong>⚡ Quick math:</strong> speed with addition, subtraction and times tables.</li>
+        <li><strong>🎈 Hidden word:</strong> spelling and vocabulary, with a picture hint.</li>
+        <li><strong>🔍 Odd one out:</strong> classifying and explaining why something doesn't belong.</li>
+        <li><strong>🎨 Link the colors:</strong> planning ahead: every line affects the others.</li>
+        <li><strong>🔷 Build the shape:</strong> spatial reasoning: turning pieces in your head.</li>
+      </ul>
+
+      <h2>Which level?</h2>
+      <p>A good rule: the right level is the one your kid finishes with some effort but without frustration. Three easy stars? Move up. Can't finish? Go down one. Every ChartKids game has <strong>Easy, Medium and Hard</strong>, and the stars show progress.</p>
+
+      <h2>Tips that work</h2>
+      <ul>
+        <li><strong>Little and often:</strong> 10–15 minutes a day beats an hour on the weekend.</li>
+        <li><strong>Ask "how did you figure it out?":</strong> explaining a strategy reinforces it.</li>
+        <li><strong>Praise the effort,</strong> not just the result.</li>
+        <li><strong>Mix screen and paper:</strong> sudokus, "What comes next?" and "Odd one out" also come as printable sheets.</li>
+      </ul>
+
+      <p>👉 <a href="/juegos.html">Try the 10 free brain games</a> or <a href="/sudoku.html">print sudokus for kids</a>.</p>
+    `
+  },
+
+  {
+    id: 'cuentos-para-dormir-ia',
+    category: 'Stories', category_es: 'Cuentos',
+    emoji: '📖',
+    title: 'Personalized Bedtime Stories: Why They Help Kids (and How to Make One)',
+    title_es: 'Cuentos para Dormir Personalizados: Por Qué Ayudan (y Cómo Crear Uno)',
+    summary: 'Stories where your kid is the hero build reading habits, vocabulary and calm bedtimes. How to create one in seconds.',
+    summary_es: 'Los cuentos donde tu peque es el héroe crean hábito de lectura, vocabulario y noches tranquilas. Cómo crear uno en segundos.',
+    date: 'Noviembre 2026',
+    readTime: '5 min',
+    featured: false,
+    content_es: `
+      <p>Leer un cuento antes de dormir es uno de los hábitos más valiosos de la infancia: amplía el vocabulario, mejora la atención y crea un momento de calma y cercanía. Cuando el protagonista es tu propio hijo o hija, el efecto se multiplica.</p>
+
+      <h2>Por qué funcionan los cuentos personalizados</h2>
+      <ul>
+        <li><strong>Más atención:</strong> los niños escuchan con más interés cuando el cuento habla de ellos.</li>
+        <li><strong>Refuerzan hábitos:</strong> si el héroe del cuento se lava los dientes o comparte, tu peque quiere imitarlo.</li>
+        <li><strong>Lecciones sin sermones:</strong> el valor (ser valiente, decir la verdad) se aprende con lo que pasa en la historia.</li>
+        <li><strong>Rutina de sueño:</strong> un cuento corto y tranquilo ayuda a pasar del juego al descanso.</li>
+      </ul>
+
+      <h2>Cómo crear uno en segundos</h2>
+      <ol>
+        <li>Entra a <a href="/historias.html">Crea tu historia</a>.</li>
+        <li>Escribe el nombre y la edad, elige un compañero de aventura (un dragón, un perrito…) y un lugar.</li>
+        <li>Si quieres, elige una lección: compartir, ser valiente, dormir temprano.</li>
+        <li>La IA escribe el cuento y lo <strong>lee en voz alta</strong>, resaltando cada frase para seguir la lectura.</li>
+      </ol>
+
+      <h2>Consejos</h2>
+      <ul>
+        <li>Elige "corto" (1 minuto) para los más pequeños y "mediano" (3 minutos) desde los 6 años.</li>
+        <li>Pausa y pregunta: "¿Qué crees que pasará?". Predecir mejora la comprensión.</li>
+        <li>¿Ya tienes un cuento favorito? Pégalo o sube el PDF en el <strong>lector de cuentos</strong> y escúchalo en voz alta.</li>
+      </ul>
+
+      <p>👉 <a href="/historias.html">Crea un cuento con tu peque como protagonista</a>.</p>
+    `,
+    content: `
+      <p>Reading a story at bedtime is one of the most valuable childhood habits: it grows vocabulary, improves attention and creates a calm, close moment. When the hero is your own child, the effect multiplies.</p>
+
+      <h2>Why personalized stories work</h2>
+      <ul>
+        <li><strong>More attention:</strong> kids listen more closely when the story is about them.</li>
+        <li><strong>They build habits:</strong> if the hero brushes their teeth or shares, your kid wants to copy them.</li>
+        <li><strong>Lessons without lectures:</strong> values like bravery or honesty are learned through what happens.</li>
+        <li><strong>Sleep routine:</strong> a short, calm story helps move from play to rest.</li>
+      </ul>
+
+      <h2>How to make one in seconds</h2>
+      <ol>
+        <li>Go to <a href="/historias.html">Make your story</a>.</li>
+        <li>Write the name and age, pick an adventure buddy (a dragon, a puppy…) and a place.</li>
+        <li>Optionally pick a lesson: sharing, being brave, going to bed early.</li>
+        <li>AI writes the story and <strong>reads it aloud</strong>, highlighting each sentence so kids can follow along.</li>
+      </ol>
+
+      <h2>Tips</h2>
+      <ul>
+        <li>Choose "short" (1 minute) for little ones and "medium" (3 minutes) from age 6.</li>
+        <li>Pause and ask: "What do you think will happen?". Predicting improves comprehension.</li>
+        <li>Have a favorite story already? Paste it or upload the PDF in the <strong>story reader</strong> and listen to it aloud.</li>
+      </ul>
+
+      <p>👉 <a href="/historias.html">Create a story starring your kid</a>.</p>
     `
   }
 
