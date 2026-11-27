@@ -10,5 +10,5 @@ secrets/
 
 # Local build artifacts
 .wrangler/
-node_modules/.mf/
+node_modules/
 printables/cache/

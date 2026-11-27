@@ -74,12 +74,21 @@ const IMAGE_COST = 120;            // neurons charged per FLUX image (estimate, 
 const SITE_BUDGET = 9000;          // AI_DAILY_NEURON_BUDGET in worker.js
 const BATCH_SHARE = 4000;          // at most this much per day for batch jobs; the rest is for the site
 
+// wrangler 4.16x no longer exports bin/wrangler.js to require.resolve(); use the file directly.
+const WRANGLER = path.join(__dirname, '..', 'node_modules', 'wrangler', 'bin', 'wrangler.js');
 function kv(args) {
-  return execFileSync(process.execPath, [require.resolve('wrangler/bin/wrangler.js'), 'kv', 'key', ...args, '--binding', 'DATA', '--remote'],
+  return execFileSync(process.execPath, [WRANGLER, 'kv', 'key', ...args, '--binding', 'DATA', '--remote'],
     { cwd: path.join(__dirname, '..'), encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
 }
+// A missing key (404) means nothing spent yet → 0. Any other failure (network, login,
+// wrangler changes) must stop the run: guessing 0 could spend past the free allocation.
 function kvNumber(key) {
-  try { return Number(kv(['get', key])) || 0; } catch { return 0; }   // missing key → 0
+  try { return Number(kv(['get', key])) || 0; }
+  catch (e) {
+    if (/404: Not Found/.test(String(e.stderr || '') + String(e.stdout || ''))) return 0;
+    const first = String(e.message).split(/\r?\n/)[0];
+    throw new Error(`No se pudo leer el contador de IA (${key}); no se genera nada. ${first}`);
+  }
 }
 
 // KV reads can be stale for up to ~60 s (a just-written key, or a cached "not found"),
@@ -108,10 +117,10 @@ function reserveBudget(wanted) {
   const n = Math.min(fit, wanted);
   console.log(`Presupuesto IA hoy: sitio ${spent}/${SITE_BUDGET}, lotes ${batchSpent}/${BATCH_SHARE} → caben ${fit} imágenes`);
   if (n > 0) {
-    ledger(day, n * IMAGE_COST);
     const ttl = String(2 * 86400);
     kv(['put', siteKey, String(spent + n * IMAGE_COST), '--ttl', ttl]);
     kv(['put', batchKey, String(batchSpent + n * IMAGE_COST), '--ttl', ttl]);
+    ledger(day, n * IMAGE_COST);   // only once the shared counter has the reservation
   }
   return n;
 }
