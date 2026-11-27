@@ -145,6 +145,13 @@ tr:hover { background: var(--surface2); }
   <!-- Subscriptions List -->
   <div class="section">
     <div class="section-header">
+      <h2>Uso del sitio (anónimo)</h2>
+      <select id="usoDays" onchange="loadUso()" style="padding:6px 10px;border-radius:8px"><option value="1">Hoy</option><option value="7" selected>7 días</option><option value="30">30 días</option><option value="90">90 días</option></select>
+    </div>
+    <div class="section-body" id="usoBody"><div class="loading"><div class="spinner"></div></div></div>
+  </div>
+  <div class="section">
+    <div class="section-header">
       <h2>Suscripciones</h2>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         <div class="search-box">
@@ -271,8 +278,30 @@ if (getKey()) {
 // Load Dashboard Data
 async function loadDashboard() {
   loadStats();
+  loadUso();
   loadSubscriptions();
   loadWebhooks();
+}
+
+// Anonymous usage counts (js/uso.js → Worker /uso → Analytics Engine)
+const USO_NAMES = { pagina: '📄 Páginas vistas', juego: '🧠 Juegos jugados', historia: '📖 Historias con IA', cuento: '🌙 Cuento del día', cofre: '🎁 Cofres abiertos', album: '🏷️ Álbum abierto', resumen: '📲 Resumen WhatsApp', premio: '🎨 Dibuja mi premio', imprimir: '🖨️ Impresiones' };
+async function loadUso() {
+  const box = document.getElementById('usoBody');
+  const esc = s => String(s).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+  try {
+    const res = await fetch(`${API_URL}/admin/uso?days=${document.getElementById('usoDays').value}&${keyParam()}`);
+    if (res.status === 401) { logout(); return; }
+    const d = await res.json();
+    if (d.error === 'not_configured') { box.innerHTML = '<p>Falta configurar los secretos <b>CF_ACCOUNT_ID</b> y <b>CF_ANALYTICS_TOKEN</b> en el Worker.</p>'; return; }
+    if (d.error) { box.innerHTML = '<p>No se pudo leer el uso (' + esc(d.error) + ').</p>'; return; }
+    const totals = Object.entries(d.porEvento || {}).sort((a, b) => b[1] - a[1]);
+    if (!totals.length) { box.innerHTML = '<p>Aún no hay datos en este periodo.</p>'; return; }
+    const groups = totals.map(([ev, n]) => {
+      const rows = d.detalle.filter(r => r.evento === ev).slice(0, 15).map(r => `<tr><td>${esc(r.detalle)}</td><td style="text-align:right">${r.veces.toLocaleString()}</td></tr>`).join('');
+      return `<details style="margin:6px 0"><summary style="cursor:pointer;font-weight:700">${esc(USO_NAMES[ev] || ev)}: ${n.toLocaleString()}</summary><table style="width:100%;margin:6px 0 10px"><tbody>${rows}</tbody></table></details>`;
+    }).join('');
+    box.innerHTML = groups;
+  } catch (e) { box.innerHTML = '<p>No se pudo leer el uso.</p>'; }
 }
 
 async function loadStats() {

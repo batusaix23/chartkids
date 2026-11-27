@@ -242,6 +242,7 @@ textarea{min-height:170px;resize:vertical}
       const j = await r.json().catch(() => ({}));
       if (r.ok && j.title && Array.isArray(j.paragraphs)) {
         showMsg('createMsg', '');
+        if (window.ckUso) ckUso('historia', f.length || 'ia');
         openStory(save({ title: j.title, paragraphs: j.paragraphs, lang, source: 'ia' }), true);
       } else if (r.status === 429) {
         showMsg('createMsg', j.error === 'daily_limit' ? t().limit : t().rate);

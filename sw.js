@@ -5,7 +5,7 @@
 //    viejos salen), así las fichas que ya abriste también se ven sin internet.
 //  • Sin internet y sin copia guardada → /offline.html (qué sí funciona sin conexión).
 //  • Las llamadas a la IA (/api/) nunca se guardan.
-const CACHE_NAME = 'chartkids-v67';
+const CACHE_NAME = 'chartkids-v68';
 const RUNTIME = 'chartkids-runtime-v1';
 const RUNTIME_MAX = 150;
 const CORE = [
@@ -15,7 +15,7 @@ const CORE = [
   '/ck-nav.js', '/ck-explore.js',
   '/js/fiesta.js', '/js/mascota.js', '/js/voz.js', '/js/cuento.js', '/js/cofre.js', '/js/album.js',
   '/js/resumen.js', '/js/chat-rapido.js', '/js/equipo.js', '/js/premio-dibujo.js', '/js/juegos.js',
-  '/js/kid-safe.js', '/js/progreso.js', '/js/actividades-respaldo.js',
+  '/js/kid-safe.js', '/js/progreso.js', '/js/uso.js', '/js/actividades-respaldo.js',
   'https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap',
   'https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@600;700;800;900&display=swap',
   'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js',

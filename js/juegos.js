@@ -127,6 +127,7 @@
     const s = get('ck_juegos', { played: 0, stars: 0, sinceSticker: 0, best: {} });
     s.best = s.best || {};
     let sticker = null;
+    if (window.ckUso) ckUso('juego', `${game}-${state.level}`);
     if (stars > 0) {
       s.played = (s.played || 0) + 1; s.stars = (s.stars || 0) + stars; s.sinceSticker = (s.sinceSticker || 0) + 1;
       const k = `${game}-${state.level}`; s.best[k] = Math.max(s.best[k] || 0, stars);

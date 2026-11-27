@@ -42,3 +42,15 @@ namespace_id = "2002"
   [ratelimits.simple]
   limit = 12
   period = 60
+
+[[ratelimits]]
+name = "RL_USO"
+namespace_id = "2003"
+  [ratelimits.simple]
+  limit = 20
+  period = 60
+
+# Anonymous usage counts (js/uso.js → POST /api/uso). Free tier; not KV.
+[[analytics_engine_datasets]]
+binding = "USO"
+dataset = "chartkids_uso"

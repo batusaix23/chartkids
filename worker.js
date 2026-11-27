@@ -140,6 +140,11 @@ export default {
     }
 
     try {
+      // ─── ANONYMOUS USAGE COUNTS (no IDs, no IP stored) ─────
+      if (path === '/uso' && request.method === 'POST') {
+        return await recordUso(request, env);
+      }
+
       // ─── WEBHOOK ENDPOINT ───────────────────────────────────
       if (path === '/webhook' && request.method === 'POST') {
         return await handleWebhook(request, env);
@@ -163,6 +168,11 @@ export default {
         const authKey = url.searchParams.get('key');
         if (!authKey || !timingSafeEqual(authKey, env.ADMIN_KEY)) {
           return jsonResponse({ error: 'Unauthorized' }, 401);
+        }
+
+        // GET /admin/uso?days=7 — which features are used (Analytics Engine)
+        if (path === '/admin/uso') {
+          return await getUso(env, url);
         }
 
         // GET /admin/stats
@@ -877,6 +887,61 @@ async function logWebhookEvent(env, event) {
 }
 
 // ─── ADMIN API HANDLERS ─────────────────────────────────────
+
+// ─── Anonymous usage counts ──────────────────────────────────────────────
+// The site sends a small batch of "feature was used" events (js/uso.js). Each one is
+// a data point in Workers Analytics Engine (free tier, not KV, so it never touches the
+// KV write quota). Nothing identifies a person: no IP, no ID, no cookie, only
+// event + detail + language. Unknown events and odd details are dropped.
+const USO_EVENTS = new Set(['pagina', 'juego', 'historia', 'cuento', 'cofre', 'album', 'chart', 'wizard', 'resumen', 'premio', 'imprimir', 'ficha']);
+const USO_DETAIL = /^[a-z0-9_-]{1,40}$/;
+
+async function recordUso(request, env) {
+  const origin = request.headers.get('Origin') || '';
+  const local = env.DEV_ALLOW_LOCAL === '1' && (!origin || LOCAL_ORIGIN.test(origin));
+  if (!local && !ALLOWED_ORIGINS.includes(origin)) return new Response(null, { status: 403 });
+  if (env.RL_USO) {
+    const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+    const { success } = await env.RL_USO.limit({ key: ip });
+    if (!success) return new Response(null, { status: 429 });
+  }
+  const raw = await request.text();
+  if (raw.length > 4000) return new Response(null, { status: 413 });
+  let body;
+  try { body = JSON.parse(raw); } catch (e) { return new Response(null, { status: 400 }); }
+  const lang = body && body.l === 'en' ? 'en' : 'es';
+  const events = Array.isArray(body && body.e) ? body.e.slice(0, 25) : [];
+  let n = 0;
+  for (const ev of events) {
+    if (!Array.isArray(ev)) continue;
+    const [name, detail = ''] = ev;
+    if (!USO_EVENTS.has(name) || (detail && !USO_DETAIL.test(detail))) continue;
+    if (env.USO) env.USO.writeDataPoint({ indexes: [name], blobs: [name, detail || '-', lang], doubles: [1] });
+    n++;
+  }
+  return new Response(null, { status: 204, headers: { ...corsHeaders(), 'X-Uso-Recorded': String(n) } });
+}
+
+// Reads the counts back with the Analytics Engine SQL API. Needs two Worker secrets:
+// CF_ACCOUNT_ID and CF_ANALYTICS_TOKEN (API token with "Account Analytics: Read").
+async function getUso(env, url) {
+  if (!env.CF_ACCOUNT_ID || !env.CF_ANALYTICS_TOKEN) {
+    return jsonResponse({ error: 'not_configured', need: ['CF_ACCOUNT_ID', 'CF_ANALYTICS_TOKEN'] }, 501);
+  }
+  const days = Math.max(1, Math.min(90, parseInt(url.searchParams.get('days'), 10) || 7));
+  const sql = `SELECT blob1 AS evento, blob2 AS detalle, SUM(_sample_interval) AS veces
+    FROM chartkids_uso WHERE timestamp > NOW() - INTERVAL '${days}' DAY
+    GROUP BY evento, detalle ORDER BY veces DESC LIMIT 300 FORMAT JSON`;
+  const res = await fetch(`https://api.cloudflare.com/client/v4/accounts/${env.CF_ACCOUNT_ID}/analytics_engine/sql`, {
+    method: 'POST', headers: { Authorization: `Bearer ${env.CF_ANALYTICS_TOKEN}` }, body: sql,
+  });
+  if (!res.ok) return jsonResponse({ error: 'query_failed', status: res.status, detail: (await res.text()).slice(0, 300) }, 502);
+  const out = await res.json();
+  const rows = (out.data || []).map(r => ({ evento: r.evento, detalle: r.detalle, veces: Number(r.veces) }));
+  const porEvento = {};
+  for (const r of rows) porEvento[r.evento] = (porEvento[r.evento] || 0) + r.veces;
+  return jsonResponse({ dias: days, porEvento, detalle: rows });
+}
 
 async function getAdminStats(env) {
   if (!env.DATA) {

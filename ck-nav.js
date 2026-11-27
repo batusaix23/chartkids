@@ -126,6 +126,11 @@
     ? document.addEventListener('DOMContentLoaded', () => { init(); updateYear(); })
     : (init(), updateYear());
 
+  // Anonymous usage counts (js/uso.js): which sections and features are used.
+  if (!window.ckUso && !document.querySelector('script[src="/js/uso.js"]')) {
+    const s = document.createElement('script'); s.src = '/js/uso.js'; s.defer = true; document.head.appendChild(s);
+  }
+
   // Offline support on every page, not only the home page (sw.js).
   if ('serviceWorker' in navigator && location.protocol === 'https:') {
     addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
