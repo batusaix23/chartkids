@@ -1299,6 +1299,14 @@ button::-moz-focus-inner { border: 0; }
 .showcase-card.sc-recompensas:hover { border-color: var(--yellow); }
 .showcase-card.sc-premium::before { background: linear-gradient(135deg, rgba(124,58,237,.18), rgba(251,191,36,.12)); }
 .showcase-card.sc-premium:hover { border-color: var(--yellow); }
+.ck-features { margin: 56px 0 8px; }
+.ckf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+.ckf-item { display: flex; gap: 12px; align-items: flex-start; padding: 16px; border-radius: 18px; background: var(--surface); border: 1px solid var(--border); }
+.ckf-ic { font-size: 2rem; line-height: 1; flex-shrink: 0; }
+.ckf-item b { display: block; font-size: 1rem; margin-bottom: 3px; }
+.ckf-item span { display: block; color: var(--muted); font-size: .88rem; line-height: 1.45; }
+.ckf-cta { text-align: center; margin-top: 20px; }
+.ckf-cta .sc-link { border: none; cursor: pointer; font-family: inherit; }
 .sc-icon { font-size: 2.8rem; margin-bottom: 14px; }
 .sc-badge { display: inline-block; padding: 3px 12px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 12px; }
 .sc-badge.free { background: rgba(34,197,94,.15); color: var(--green); }
@@ -2224,7 +2232,7 @@ nav {
     <div class="hero-stats">
       <span class="hero-stat"><span class="hero-stat-num">10k+</span> <span id="heroStat1">familias</span></span>
       <span class="hero-stat-sep">·</span>
-      <span class="hero-stat"><span class="hero-stat-num">22</span> <span id="heroStat2">actividades gratis</span></span>
+      <span class="hero-stat"><span class="hero-stat-num">900+</span> <span id="heroStat2">fichas y juegos gratis</span></span>
       <span class="hero-stat-sep">·</span>
       <span class="hero-stat"><span class="hero-stat-num">⚡</span> <span id="heroStat3">IA en segundos</span></span>
     </div>
@@ -2407,6 +2415,33 @@ nav {
         <a href="recompensas.html" class="sc-link cta-yellow" id="scCta5">Ver progreso →</a>
       </div>
 
+      <div class="showcase-card sc-ia">
+        <div class="sc-icon">📖</div>
+        <span class="sc-badge badge-new ck-i18n" data-es="Nuevo" data-en="New">Nuevo</span>
+        <h3 class="ck-i18n" data-es="Crea tu historia" data-en="Make your story">Crea tu historia</h3>
+        <p class="ck-i18n" data-es="La IA escribe un cuento con tu peque como protagonista y lo lee en voz alta, con voz de niño o niña. También lee tus propios cuentos (texto o PDF) resaltando cada frase." data-en="AI writes a story starring your kid and reads it aloud with a boy or girl voice. It also reads your own stories (text or PDF), highlighting each sentence.">La IA escribe un cuento con tu peque como protagonista y lo lee en voz alta, con voz de niño o niña. También lee tus propios cuentos (texto o PDF) resaltando cada frase.</p>
+        <div class="sc-tags"><span class="sc-tag ck-i18n" data-es="✨ Con IA" data-en="✨ AI">✨ Con IA</span><span class="sc-tag ck-i18n" data-es="🔊 Lectura en voz alta" data-en="🔊 Read aloud">🔊 Lectura en voz alta</span></div>
+        <a class="sc-link cta-primary ck-i18n" href="historias.html" data-es="Crear historia →" data-en="Make a story →">Crear historia →</a>
+      </div>
+
+      <div class="showcase-card sc-semana">
+        <div class="sc-icon">🧠</div>
+        <span class="sc-badge free ck-i18n" data-es="Gratis" data-en="Free">Gratis</span>
+        <h3 class="ck-i18n" data-es="Juegos Mentales" data-en="Brain Games">Juegos Mentales</h3>
+        <p class="ck-i18n" data-es="Memorama, ¿Qué sigue?, sudoku infantil y Simón dice, con 3 niveles. Gana estrellas y stickers para tu álbum mientras entrenas memoria y lógica." data-en="Memory, What comes next?, kids sudoku and Simon says, with 3 levels. Earn stars and stickers for your album while training memory and logic.">Memorama, ¿Qué sigue?, sudoku infantil y Simón dice, con 3 niveles. Gana estrellas y stickers para tu álbum mientras entrenas memoria y lógica.</p>
+        <div class="sc-tags"><span class="sc-tag ck-i18n" data-es="🃏 Memoria" data-en="🃏 Memory">🃏 Memoria</span><span class="sc-tag ck-i18n" data-es="🧩 Lógica" data-en="🧩 Logic">🧩 Lógica</span></div>
+        <a class="sc-link cta-green ck-i18n" href="juegos.html" data-es="Jugar ahora →" data-en="Play now →">Jugar ahora →</a>
+      </div>
+
+      <div class="showcase-card sc-creativas">
+        <div class="sc-icon">🎨</div>
+        <span class="sc-badge badge-new ck-i18n" data-es="Con IA" data-en="AI">Con IA</span>
+        <h3 class="ck-i18n" data-es="Colorear con IA" data-en="AI Coloring">Colorear con IA</h3>
+        <p class="ck-i18n" data-es="Tu peque describe lo que quiere y la IA lo dibuja como página para colorear, segura para niños. Imprímela o coloréala en pantalla." data-en="Your kid describes what they want and AI draws it as a kid-safe coloring page. Print it or color it on screen.">Tu peque describe lo que quiere y la IA lo dibuja como página para colorear, segura para niños. Imprímela o coloréala en pantalla.</p>
+        <div class="sc-tags"><span class="sc-tag ck-i18n" data-es="🖍️ Para colorear" data-en="🖍️ To color">🖍️ Para colorear</span><span class="sc-tag ck-i18n" data-es="🛡️ Seguro para niños" data-en="🛡️ Kid-safe">🛡️ Seguro para niños</span></div>
+        <a class="sc-link cta-pink ck-i18n" href="colorear-ia.html" data-es="Dibujar →" data-en="Draw →">Dibujar →</a>
+      </div>
+
       <div class="showcase-card sc-premium">
         <div class="sc-icon">👑</div>
         <span class="sc-badge badge-premium" id="scBadge6">Premium</span>
@@ -2420,6 +2455,25 @@ nav {
       </div>
 
     </div>
+  </section>
+
+  <!-- Inside every chart: what the main app includes -->
+  <section class="ck-features" id="ckFeatures">
+    <div class="showcase-header">
+      <h2 class="ck-i18n" data-es="✨ Dentro de cada chart" data-en="✨ Inside every chart">✨ Dentro de cada chart</h2>
+      <p class="ck-i18n" data-es="Todo esto viene incluido cuando creas un chart para tu peque" data-en="All of this comes with every chart you create">Todo esto viene incluido cuando creas un chart para tu peque</p>
+    </div>
+    <div class="ckf-grid">
+      <div class="ckf-item"><div class="ckf-ic">🐣</div><div><b class="ck-i18n" data-es="Mascota que crece" data-en="A pet that grows">Mascota que crece</b><span class="ck-i18n" data-es="Nace de un huevo y crece con cada estrella. Habla, salta y extraña a tu peque si no marca tareas." data-en="Hatches from an egg and grows with every star. It talks, jumps and misses your kid if no tasks are marked.">Nace de un huevo y crece con cada estrella. Habla, salta y extraña a tu peque si no marca tareas.</span></div></div>
+      <div class="ckf-item"><div class="ckf-ic">🧒</div><div><b class="ck-i18n" data-es="Modo Niño con sonidos" data-en="Kid Mode with sounds">Modo Niño con sonidos</b><span class="ck-i18n" data-es="Pantalla grande para que tu peque marque sus estrellas, con notas musicales, confeti y «¡Día completado!»." data-en="A big screen where your kid marks their stars, with musical notes, confetti and “Day complete!”.">Pantalla grande para que tu peque marque sus estrellas, con notas musicales, confeti y «¡Día completado!».</span></div></div>
+      <div class="ckf-item"><div class="ckf-ic">🎁</div><div><b class="ck-i18n" data-es="Cofre sorpresa" data-en="Surprise chest">Cofre sorpresa</b><span class="ck-i18n" data-es="Al llegar al 60% de la semana se abre un cofre con un sticker, una ficha, un vale familiar o un certificado." data-en="At 60% of the week a chest opens with a sticker, a sheet, a family coupon or a certificate.">Al llegar al 60% de la semana se abre un cofre con un sticker, una ficha, un vale familiar o un certificado.</span></div></div>
+      <div class="ckf-item"><div class="ckf-ic">🏷️</div><div><b class="ck-i18n" data-es="Álbum de stickers" data-en="Sticker album">Álbum de stickers</b><span class="ck-i18n" data-es="24 stickers para coleccionar (y 12 dorados con Premium). Los que faltan aparecen como sombra misteriosa." data-en="24 stickers to collect (plus 12 golden ones with Premium). Missing ones show as a mystery silhouette.">24 stickers para coleccionar (y 12 dorados con Premium). Los que faltan aparecen como sombra misteriosa.</span></div></div>
+      <div class="ckf-item"><div class="ckf-ic">📖</div><div><b class="ck-i18n" data-es="Cuento del día" data-en="Story of the day">Cuento del día</b><span class="ck-i18n" data-es="La IA convierte las tareas de tu peque en un cuento mágico con su mascota, y lo lee en voz alta." data-en="AI turns your kid’s tasks into a magical story with their pet, and reads it aloud.">La IA convierte las tareas de tu peque en un cuento mágico con su mascota, y lo lee en voz alta.</span></div></div>
+      <div class="ckf-item"><div class="ckf-ic">📲</div><div><b class="ck-i18n" data-es="Resumen para WhatsApp" data-en="WhatsApp summary">Resumen para WhatsApp</b><span class="ck-i18n" data-es="Una imagen de la semana —estrellas, días completos, mascota— para compartir con la familia." data-en="An image of the week — stars, full days, pet — to share with the family.">Una imagen de la semana —estrellas, días completos, mascota— para compartir con la familia.</span></div></div>
+      <div class="ckf-item"><div class="ckf-ic">🤝</div><div><b class="ck-i18n" data-es="Equipo familiar" data-en="Family team">Equipo familiar</b><span class="ck-i18n" data-es="Con varios hijos, las estrellas de todos suman hacia un premio de equipo. Sin competencia." data-en="With several kids, everyone’s stars add up toward a team prize. No competition.">Con varios hijos, las estrellas de todos suman hacia un premio de equipo. Sin competencia.</span></div></div>
+      <div class="ckf-item"><div class="ckf-ic">🖍️</div><div><b class="ck-i18n" data-es="Dibuja mi premio" data-en="Draw my reward">Dibuja mi premio</b><span class="ck-i18n" data-es="La IA dibuja el premio de tu peque como página para colorear y lo pega en su chart. (Premium)" data-en="AI draws your kid’s reward as a coloring page and glues it into their chart. (Premium)">La IA dibuja el premio de tu peque como página para colorear y lo pega en su chart. (Premium)</span></div></div>
+    </div>
+    <div class="ckf-cta"><button class="sc-link cta-primary ck-i18n" type="button" onclick="document.getElementById('chatInput').scrollIntoView({behavior:'smooth'});setTimeout(()=>document.getElementById('chatInput').focus(),300)" data-es="✨ Crear mi chart" data-en="✨ Create my chart">✨ Crear mi chart</button></div>
   </section>
 
   <!-- Benefits Section -->
@@ -2994,6 +3048,8 @@ nav {
           <li><a href="actividades.html" id="footerActCreativas">Actividades Creativas</a></li>
           <li><a href="actividad-semana.html" id="footerActSemana">Actividad de la Semana</a></li>
           <li><a href="actividad-ia.html" id="footerActIA">Actividad con IA</a></li>
+          <li><a class="ck-i18n" href="juegos.html" data-es="🧠 Juegos Mentales" data-en="🧠 Brain Games">🧠 Juegos Mentales</a></li>
+          <li><a class="ck-i18n" href="historias.html" data-es="📖 Crea tu historia" data-en="📖 Make your story">📖 Crea tu historia</a></li>
           <li><a href="imprime-y-juega.html" id="footerDescargables">Descargables Gratis</a></li>
           <li><a href="recompensas.html" id="footerRecompensas">⭐ Mis Recompensas</a></li>
           <li><a href="premium.html" id="footerActPremium">👑 Premium</a></li>
@@ -3255,7 +3311,7 @@ const T = {
     heroTag: '✦ 100% Gratis · Sin registro',
     heroTitle: 'Crea el chart perfecto<br>para tu <span class="highlight">peque</span>',
     heroDesc: 'Cuéntale a nuestra IA sobre tu hijo o hija y ella diseñará un chart personalizado con tareas, metas y premios en segundos.',
-    heroStat1: 'familias', heroStat2: 'actividades gratis', heroStat3: 'IA en segundos',
+    heroStat1: 'familias', heroStat2: 'fichas y juegos gratis', heroStat3: 'IA en segundos',
     heroCta: '✨ Crear mi chart', heroCtaSec: 'Ver actividades →',
     chatPanelTitle: 'Asistente IA',
     chatPanelSub: 'Cuéntame sobre tu hijo/a',
@@ -3407,9 +3463,9 @@ const T = {
     scBadge1: 'Gratis', scTitle1: 'Actividades Creativas', scDesc1: '22 semanas de actividades organizadas por categoría: dibujos, manualidades, experimentos, cocina, juegos y más. Con filtros por edad.', scCta1: 'Ver actividades →',
     scBadge2: 'Semanal', scTitle2: 'Actividad de la Semana', scDesc2: 'Cada semana una actividad especial seleccionada para tu peque. Renovada cada lunes con sorpresas y desafíos nuevos.', scCta2: 'Ver esta semana →',
     scBadge3: 'Nuevo', scTitle3: 'Actividad con IA', scDesc3: 'Describe a tu peque y nuestra IA generará una actividad creativa personalizada en segundos. ¡Única cada vez!', scCta3: 'Generar actividad →',
-    scBadge4: 'Gratis', scTitle4: 'Descargables', scDesc4: 'Páginas para colorear, fichas de actividades y láminas temáticas para imprimir. Nuevos diseños cada semana.', scCta4: 'Ver descargables →',
+    scBadge4: 'Gratis', scTitle4: 'Imprime y Juega', scDesc4: 'Más de 900 fichas gratis para imprimir, con solución: laberintos, une los puntos, busca y encuentra, matemáticas, escritura, STEM, certificados y calendarios.', scCta4: 'Ver fichas →',
     scBadge5: 'XP', scTitle5: 'Mis Recompensas', scDesc5: 'Gana XP completando actividades, desbloquea insignias y sube de nivel. Lleva el progreso de tu peque de forma divertida.', scCta5: 'Ver progreso →',
-    scBadge6: 'Premium', scTitle6: 'ChartKids Premium', scDesc6: 'Desbloquea las semanas 23+, kits PDF, certificados imprimibles e insignias exclusivas por solo $2.99/mes.', scCta6: 'Ver Premium →',
+    scBadge6: 'Premium', scTitle6: 'ChartKids Premium', scDesc6: 'Semanas 23+, kits PDF, certificados, la Colección Dorada de stickers y «Dibuja mi premio» con IA, por solo $2.99/mes.', scCta6: 'Ver Premium →',
     footerCopyright: '© <span class="ck-year">2026</span> ChartKids. Todos los derechos reservados.',
     footerSecure: 'Seguro',
     footerPwa: 'PWA',
@@ -3564,7 +3620,7 @@ const T = {
     heroTag: '✦ 100% Free · No sign-up',
     heroTitle: 'Create the perfect chart<br>for your <span class="highlight">little champion</span>',
     heroDesc: 'Tell our AI about your child and it will design a personalized activity chart with tasks, goals and rewards in seconds.',
-    heroStat1: 'families', heroStat2: 'free activities', heroStat3: 'AI in seconds',
+    heroStat1: 'families', heroStat2: 'free sheets & games', heroStat3: 'AI in seconds',
     heroCta: '✨ Create my chart', heroCtaSec: 'Browse activities →',
     chatPanelTitle: 'AI Assistant',
     chatPanelSub: "Tell me about your child",
@@ -3716,9 +3772,9 @@ const T = {
     scBadge1: 'Free', scTitle1: 'Creative Activities', scDesc1: '22 weeks of activities by category: drawings, crafts, experiments, cooking, games and more. With age filters.', scCta1: 'Browse activities →',
     scBadge2: 'Weekly', scTitle2: 'Activity of the Week', scDesc2: 'A special activity selected each week for your little one. Renewed every Monday with surprises and new challenges.', scCta2: 'See this week →',
     scBadge3: 'New', scTitle3: 'AI Activity', scDesc3: 'Describe your child and our AI will generate a personalized creative activity in seconds. Unique every time!', scCta3: 'Generate activity →',
-    scBadge4: 'Free', scTitle4: 'Downloads', scDesc4: 'Coloring pages, activity sheets and themed printables. New designs every week.', scCta4: 'Browse downloads →',
+    scBadge4: 'Free', scTitle4: 'Print & Play', scDesc4: 'Over 900 free printable sheets with answer keys: mazes, connect the dots, seek and find, math, writing, STEM, certificates and calendars.', scCta4: 'See sheets →',
     scBadge5: 'XP', scTitle5: 'My Rewards', scDesc5: 'Earn XP completing activities, unlock badges and level up. Track your child\'s progress in a fun way.', scCta5: 'View progress →',
-    scBadge6: 'Premium', scTitle6: 'ChartKids Premium', scDesc6: 'Unlock weeks 23+, downloadable PDF kits, printable certificates and exclusive badges for only $2.99/mo.', scCta6: 'View Premium →',
+    scBadge6: 'Premium', scTitle6: 'ChartKids Premium', scDesc6: 'Weeks 23+, PDF kits, certificates, the Golden Sticker Collection and AI “Draw my reward”, for just $2.99/month.', scCta6: 'View Premium →',
     footerCopyright: '© <span class="ck-year">2026</span> ChartKids. All rights reserved.',
     footerSecure: 'Secure',
     footerPwa: 'PWA',
@@ -3899,6 +3955,8 @@ function applyTranslations() {
   document.getElementById('heroDesc').textContent = t('heroDesc');
   document.getElementById('heroStat1').textContent = t('heroStat1');
   document.getElementById('heroStat2').textContent = t('heroStat2');
+  // Newer homepage blocks carry both languages in data-es / data-en.
+  document.querySelectorAll('.ck-i18n').forEach(el => { el.textContent = el.dataset[lang] || el.dataset.es; });
   document.getElementById('heroStat3').textContent = t('heroStat3');
   document.getElementById('heroCta').textContent = t('heroCta');
   document.getElementById('heroCtaSec').textContent = t('heroCtaSec');
