@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Juegos Mentales para Niños: Memorama, Sudoku y más | ChartKids</title>
-<meta name="description" content="8 juegos mentales gratis para niños de 3 a 12 años: memorama, ¿qué sigue?, sudoku infantil, Simón dice, ¿qué falta?, cálculo rápido, palabra escondida y encuentra al intruso. Tres niveles, en español e inglés.">
+<meta name="description" content="10 juegos mentales gratis para niños de 3 a 12 años: memorama, ¿qué sigue?, sudoku, Simón dice, ¿qué falta?, cálculo rápido, palabra escondida, encuentra al intruso, une los colores y arma la figura. Tres niveles, en español e inglés.">
 <link rel="canonical" href="https://www.chartkids.com/juegos.html">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.chartkids.com/juegos.html">
@@ -94,6 +94,19 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:'Nunito',sans-s
 .jg-key.ok{background:rgba(34,197,94,.3);border-color:#22c55e}
 .jg-key.no{background:rgba(239,68,68,.25);border-color:#ef4444}
 .jg-key:disabled{cursor:default;opacity:.75}
+.jg-link{position:relative;display:grid;grid-template-columns:repeat(var(--n),1fr);max-width:min(440px,100%);margin:0 auto;aspect-ratio:1;border:3px solid #4c1d95;border-radius:12px;overflow:hidden;background:#fffaf3;touch-action:none;user-select:none}
+.jg-lc{border:1px solid #e2d9f3;display:flex;align-items:center;justify-content:center;position:relative;z-index:1}
+.jg-dot{width:62%;height:62%;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.25);position:relative;z-index:3}
+.jg-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+.jg-shape{display:grid;grid-template-columns:repeat(var(--n),1fr);gap:3px;max-width:min(400px,100%);margin:0 auto;aspect-ratio:1}
+.jg-sc{border-radius:6px}
+.jg-sc.slot{background:#2e2e50;outline:2px dashed #4c4c80;outline-offset:-2px;cursor:pointer}
+.jg-sc.hov-ok{box-shadow:inset 0 0 0 3px #22c55e}
+.jg-sc.hov-no{box-shadow:inset 0 0 0 3px #ef4444}
+.jg-tray-bar{text-align:center;margin:14px 0 8px}
+.jg-tray{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;min-height:60px}
+.jg-piece{padding:8px;border-radius:14px;border:2px solid #2e2e50;background:#1a1a2e;cursor:pointer}
+.jg-piece.on{border-color:#fbbf24;box-shadow:0 0 12px rgba(251,191,36,.6)}
 .jg-result{margin:20px auto 0;max-width:460px;text-align:center;padding:20px;border-radius:22px;background:linear-gradient(180deg,#fff7e6,#fdf2ff);color:#3b2a5a}
 .jg-result>b{font-family:'Fredoka One',cursive;font-size:1.4rem;color:#6d28d9;display:block}
 .jg-result p{font-weight:700;margin:4px 0 12px}

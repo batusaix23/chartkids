@@ -5,7 +5,7 @@
 //    viejos salen), así las fichas que ya abriste también se ven sin internet.
 //  • Sin internet y sin copia guardada → /offline.html (qué sí funciona sin conexión).
 //  • Las llamadas a la IA (/api/) nunca se guardan.
-const CACHE_NAME = 'chartkids-v65';
+const CACHE_NAME = 'chartkids-v66';
 const RUNTIME = 'chartkids-runtime-v1';
 const RUNTIME_MAX = 150;
 const CORE = [

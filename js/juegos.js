@@ -26,7 +26,12 @@
         sudoku: ['🧩', 'Sudoku infantil', 'Sin repetir en fila, columna ni cuadro'], simon: ['🎵', 'Simón dice', 'Repite la secuencia'],
         falta: ['👀', '¿Qué falta?', 'Memoriza y descubre cuál desapareció'], calculo: ['⚡', 'Cálculo rápido', 'Resuelve todo lo que puedas en 60 segundos'],
         palabra: ['🎈', 'Palabra escondida', 'Adivina la palabra letra por letra'], intruso: ['🔍', 'Encuentra al intruso', '¿Cuál no pertenece al grupo?'],
+        colores: ['🎨', 'Une los colores', 'Une cada par sin cruzar líneas y llena todo'], formas: ['🔷', 'Arma la figura', 'Acomoda las piezas para llenar la figura'],
       },
+      linkHelp: 'Arrastra desde un punto hasta el otro del mismo color. Las líneas no se cruzan y hay que llenar todo el tablero.',
+      fillAll: '¡Casi! Ahora llena las casillas vacías.', linkDone: s => `¡Tablero completo en ${s} segundos!`,
+      shapeHelp: 'Toca una pieza, gírala con ⟳ y toca la figura para colocarla. Toca una pieza puesta para quitarla.',
+      rotate: '⟳ Girar', shapeDone: s => `¡Figura completa en ${s} segundos!`,
       memorize: n => `👀 ¡Memoriza! ${n}…`, whichMissing: '¿Cuál falta?', faltaDone: (c, n) => `Encontraste ${c} de ${n}.`,
       timeLeft: s => `⏱️ ${s} s`, correct: n => `✅ ${n}`, calcDone: n => `Resolviste ${n} operaciones en 60 segundos.`,
       hint: 'Pista', wordN: (i, n) => `Palabra ${i} de ${n}`, wordWas: w => `Era: ${w}`, palabraDone: (c, n) => `Adivinaste ${c} de ${n} palabras.`,
@@ -46,7 +51,12 @@
         sudoku: ['🧩', 'Kids Sudoku', 'No repeats in a row, column or box'], simon: ['🎵', 'Simon says', 'Repeat the sequence'],
         falta: ['👀', "What's missing?", 'Memorize and find what disappeared'], calculo: ['⚡', 'Quick math', 'Solve as many as you can in 60 seconds'],
         palabra: ['🎈', 'Hidden word', 'Guess the word letter by letter'], intruso: ['🔍', 'Odd one out', "Which one doesn't belong?"],
+        colores: ['🎨', 'Link the colors', 'Join each pair without crossing and fill it all'], formas: ['🔷', 'Build the shape', 'Fit the pieces to fill the shape'],
       },
+      linkHelp: 'Drag from a dot to the other dot of the same color. Lines can’t cross and the whole board must be filled.',
+      fillAll: 'Almost! Now fill the empty squares.', linkDone: s => `Board complete in ${s} seconds!`,
+      shapeHelp: 'Tap a piece, turn it with ⟳ and tap the shape to place it. Tap a placed piece to take it back.',
+      rotate: '⟳ Turn', shapeDone: s => `Shape complete in ${s} seconds!`,
       memorize: n => `👀 Memorize! ${n}…`, whichMissing: "Which one is missing?", faltaDone: (c, n) => `You found ${c} of ${n}.`,
       timeLeft: s => `⏱️ ${s} s`, correct: n => `✅ ${n}`, calcDone: n => `You solved ${n} in 60 seconds.`,
       hint: 'Hint', wordN: (i, n) => `Word ${i} of ${n}`, wordWas: w => `It was: ${w}`, palabraDone: (c, n) => `You guessed ${c} of ${n} words.`,
@@ -532,7 +542,163 @@
     round();
   }
 
-  const GAMES = { memo, sigue, sudoku, simon, falta, calculo, palabra, intruso };
+  // Stars by time for the two board puzzles below.
+  const timeStars = (secs, [a, b]) => secs <= a ? 3 : secs <= b ? 2 : 1;
+  const COLORS = ['#ef4444', '#3b82f6', '#22c55e', '#eab308', '#a855f7', '#f97316', '#ec4899', '#06b6d4'];
+
+  // ── 9. Une los colores (a number-link puzzle) ──
+  // A random path that visits every cell once ("backbite" moves on a snake path), cut
+  // into one segment per color: its two ends become the dots, so a full solution exists.
+  function linkPuzzle(n, k) {
+    const nb = i => { const r = Math.floor(i / n), c = i % n, o = []; if (r) o.push(i - n); if (r < n - 1) o.push(i + n); if (c) o.push(i - 1); if (c < n - 1) o.push(i + 1); return o; };
+    for (let tries = 0; tries < 200; tries++) {
+      let p = [];
+      for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) p.push(r * n + (r % 2 ? n - 1 - c : c));
+      for (let s = 0; s < n * n * 40; s++) {
+        if (Math.random() < 0.5) p.reverse();
+        const end = p[p.length - 1], cand = nb(end).filter(x => x !== p[p.length - 2]);
+        const j = p.indexOf(cand[rnd(cand.length)]);
+        p = p.slice(0, j + 1).concat(p.slice(j + 1).reverse());
+      }
+      const sizes = Array(k).fill(3);
+      for (let left = n * n - 3 * k; left > 0; left--) sizes[rnd(k)]++;
+      const segs = []; let at = 0;
+      for (const s of sizes) { segs.push(p.slice(at, at + s)); at += s; }
+      const adj = (a, b) => nb(a).includes(b);
+      if (segs.every(s => !adj(s[0], s[s.length - 1]))) return segs;   // no trivial neighbours
+    }
+    return null;
+  }
+  function colores(level) {
+    const cfg = { facil: { n: 5, k: 4, t: [60, 150] }, medio: { n: 6, k: 5, t: [90, 210] }, dificil: { n: 7, k: 7, t: [150, 300] } }[level];
+    const { n, k } = cfg, segs = linkPuzzle(n, k);
+    const dots = {}; segs.forEach((s, c) => { dots[s[0]] = c; dots[s[s.length - 1]] = c; });
+    const owner = Array(n * n).fill(-1), paths = Array.from({ length: k }, () => []);
+    let active = -1;
+    const t0 = Date.now();
+    $('jgArea').innerHTML = head('colores', t().linkHelp) +
+      `<div class="jg-link" id="jgLink" style="--n:${n}">${Array.from({ length: n * n }, (_, i) => `<div class="jg-lc" data-i="${i}">${dots[i] != null ? `<span class="jg-dot" style="background:${COLORS[dots[i]]}"></span>` : ''}</div>`).join('')}
+      <svg class="jg-lines" viewBox="0 0 ${n} ${n}" preserveAspectRatio="none"></svg></div><div class="jg-ask" id="jgLinkMsg"></div>`;
+    const board = $('jgLink'), cells = [...board.querySelectorAll('.jg-lc')];
+    const done = c => { const p = paths[c]; return p.length > 1 && dots[p[0]] === c && dots[p[p.length - 1]] === c && p[0] !== p[p.length - 1]; };
+    const cut = (c, idx) => { paths[c].slice(idx).forEach(i => { owner[i] = -1; }); paths[c] = paths[c].slice(0, idx); };
+    const draw = () => {
+      cells.forEach((el, i) => { el.style.background = owner[i] >= 0 ? COLORS[owner[i]] + '33' : ''; });
+      board.querySelector('svg').innerHTML = paths.map((p, c) => p.length > 1 ? `<polyline points="${p.map(i => `${i % n + 0.5},${Math.floor(i / n) + 0.5}`).join(' ')}" fill="none" stroke="${COLORS[c]}" stroke-width="0.32" stroke-linecap="round" stroke-linejoin="round"/>` : '').join('');
+    };
+    const cellAt = e => { const el = document.elementFromPoint(e.clientX, e.clientY); const c = el && el.closest && el.closest('.jg-lc'); return c && board.contains(c) ? +c.dataset.i : -1; };
+    const isAdj = (a, b) => Math.abs(a - b) === n || (Math.abs(a - b) === 1 && Math.floor(a / n) === Math.floor(b / n));
+    board.addEventListener('pointerdown', e => {
+      const i = cellAt(e); if (i < 0) return;
+      e.preventDefault();
+      if (dots[i] != null) { const c = dots[i]; cut(c, 0); paths[c] = [i]; owner[i] = c; active = c; }
+      else if (owner[i] >= 0) { const c = owner[i]; cut(c, paths[c].indexOf(i) + 1); active = c; }
+      else return;
+      beep(500, 0.05); draw();
+    });
+    board.addEventListener('pointermove', e => {
+      if (active < 0) return;
+      const i = cellAt(e), p = paths[active], last = p[p.length - 1];
+      if (i < 0 || i === last || !isAdj(i, last)) return;
+      if (p.length > 1 && i === p[p.length - 2]) { owner[last] = dots[last] === active && p.length === 1 ? active : -1; p.pop(); draw(); return; }
+      if (p.includes(i)) { cut(active, p.indexOf(i) + 1); draw(); return; }
+      if (done(active)) return;
+      if (dots[i] != null) {
+        if (dots[i] !== active || i === p[0]) return;
+        p.push(i); owner[i] = active; good(); draw(); active = -1; return;
+      }
+      if (owner[i] >= 0) cut(owner[i], paths[owner[i]].indexOf(i));
+      p.push(i); owner[i] = active; beep(420, 0.03); draw();
+    });
+    const up = () => {
+      if (active < 0 && !paths.some(p => p.length)) return;
+      active = -1;
+      const allLinked = paths.every((_, c) => done(c));
+      if (allLinked && owner.every(o => o >= 0)) finish('colores', timeStars(Math.round((Date.now() - t0) / 1000), cfg.t), t().linkDone(Math.round((Date.now() - t0) / 1000)));
+      else $('jgLinkMsg').textContent = allLinked ? t().fillAll : '';
+    };
+    board.addEventListener('pointerup', up);
+    board.addEventListener('pointerleave', () => { if (active >= 0) up(); });
+    draw();
+  }
+
+  // ── 10. Arma la figura (fit polyomino pieces into an abstract shape) ──
+  // A random blob is cut into connected pieces of 2-5 cells by growing regions from
+  // seeds, so the pieces always fit back together.
+  function shapePuzzle(size, cellsWanted, pieces) {
+    const nb = i => { const r = Math.floor(i / size), c = i % size, o = []; if (r) o.push(i - size); if (r < size - 1) o.push(i + size); if (c) o.push(i - 1); if (c < size - 1) o.push(i + 1); return o; };
+    for (let tries = 0; tries < 400; tries++) {
+      const region = new Set([rnd(size * size)]);
+      while (region.size < cellsWanted) { const from = [...region][rnd(region.size)]; const to = nb(from)[rnd(nb(from).length)]; region.add(to); }
+      const label = new Map(), seeds = shuffle([...region]).slice(0, pieces);
+      seeds.forEach((s, p) => label.set(s, p));
+      let grew = true;
+      while (grew) {
+        grew = false;
+        for (const p of shuffle([...Array(pieces).keys()])) {
+          const mine = [...label].filter(([, q]) => q === p).map(([c]) => c);
+          if (mine.length >= 5) continue;
+          const free = shuffle(mine.flatMap(nb).filter(c => region.has(c) && !label.has(c)));
+          if (free.length) { label.set(free[0], p); grew = true; }
+        }
+      }
+      if (label.size !== region.size) continue;
+      const groups = Array.from({ length: pieces }, (_, p) => [...label].filter(([, q]) => q === p).map(([c]) => [c % size, Math.floor(c / size)]));
+      if (groups.some(g => g.length < 2)) continue;
+      return { region, groups };
+    }
+    return null;
+  }
+  const norm = cells => { const mx = Math.min(...cells.map(c => c[0])), my = Math.min(...cells.map(c => c[1])); return cells.map(([x, y]) => [x - mx, y - my]).sort((a, b) => a[1] - b[1] || a[0] - b[0]); };
+  const rot = cells => norm(cells.map(([x, y]) => [-y, x]));
+  function formas(level) {
+    const cfg = { facil: { size: 5, cells: 12, pieces: 4, t: [60, 150] }, medio: { size: 6, cells: 18, pieces: 5, t: [100, 220] }, dificil: { size: 7, cells: 26, pieces: 7, t: [160, 320] } }[level];
+    const pz = shapePuzzle(cfg.size, cfg.cells, cfg.pieces), S = cfg.size;
+    const pieces = pz.groups.map((g, p) => { let c = norm(g); for (let r = rnd(4); r > 0; r--) c = rot(c); return { id: p, cells: c, at: null }; });
+    const fill = Array(S * S).fill(-1);
+    let sel = null;
+    const t0 = Date.now();
+    $('jgArea').innerHTML = head('formas', t().shapeHelp) +
+      `<div class="jg-shape" id="jgShape" style="--n:${S}">${Array.from({ length: S * S }, (_, i) => `<div class="jg-sc${pz.region.has(i) ? ' slot' : ''}" data-i="${i}"></div>`).join('')}</div>
+       <div class="jg-tray-bar"><button type="button" class="jg-btn jg-sec" id="jgRot">${t().rotate}</button></div><div class="jg-tray" id="jgTray"></div>`;
+    const board = $('jgShape'), cells = [...board.querySelectorAll('.jg-sc')];
+    const target = (pc, i) => pc.cells.map(([x, y]) => { const ax = i % S + x - pc.cells[0][0], ay = Math.floor(i / S) + y - pc.cells[0][1]; return ax < 0 || ay < 0 || ax >= S || ay >= S ? -1 : ay * S + ax; });
+    const fits = (pc, i) => target(pc, i).every(c => c >= 0 && pz.region.has(c) && fill[c] < 0);
+    const mini = pc => { const w = Math.max(...pc.cells.map(c => c[0])) + 1, h = Math.max(...pc.cells.map(c => c[1])) + 1;
+      return `<svg viewBox="0 0 ${w} ${h}" style="width:${w * 26}px;height:${h * 26}px">${pc.cells.map(([x, y]) => `<rect x="${x + 0.05}" y="${y + 0.05}" width="0.9" height="0.9" rx="0.15" fill="${COLORS[pc.id % COLORS.length]}"/>`).join('')}</svg>`; };
+    const draw = (hover = -1) => {
+      const prev = sel != null && hover >= 0 ? target(pieces[sel], hover) : [];
+      const ok = sel != null && hover >= 0 && fits(pieces[sel], hover);
+      cells.forEach((el, i) => {
+        el.style.background = fill[i] >= 0 ? COLORS[fill[i] % COLORS.length] : '';
+        el.classList.toggle('hov-ok', ok && prev.includes(i));
+        el.classList.toggle('hov-no', !ok && prev.includes(i) && pz.region.has(i));
+      });
+      $('jgTray').innerHTML = pieces.filter(p => p.at == null).map(p => `<button type="button" class="jg-piece${sel === p.id ? ' on' : ''}" data-p="${p.id}">${mini(p)}</button>`).join('');
+    };
+    $('jgTray').addEventListener('click', e => { const b = e.target.closest('.jg-piece'); if (!b) return; sel = sel === +b.dataset.p ? null : +b.dataset.p; beep(500, 0.05); draw(); });
+    $('jgRot').addEventListener('click', () => { if (sel == null) return; pieces[sel].cells = rot(pieces[sel].cells); beep(600, 0.05); draw(); });
+    board.addEventListener('pointermove', e => { const c = e.target.closest('.jg-sc'); draw(c ? +c.dataset.i : -1); });
+    board.addEventListener('click', e => {
+      const c = e.target.closest('.jg-sc'); if (!c) return;
+      const i = +c.dataset.i;
+      if (fill[i] >= 0) {                                    // take a placed piece back
+        const p = fill[i]; fill.forEach((v, j) => { if (v === p) fill[j] = -1; }); pieces[p].at = null; sel = p; beep(350, 0.05); draw(i); return;
+      }
+      if (sel == null) return;
+      if (!fits(pieces[sel], i)) { bad(); return; }
+      target(pieces[sel], i).forEach(j => { fill[j] = sel; });
+      pieces[sel].at = i; sel = null; good();
+      draw();
+      if ([...pz.region].every(j => fill[j] >= 0)) {
+        const secs = Math.round((Date.now() - t0) / 1000);
+        finish('formas', timeStars(secs, cfg.t), t().shapeDone(secs));
+      }
+    });
+    draw();
+  }
+
+  const GAMES = { memo, sigue, sudoku, simon, falta, calculo, palabra, intruso, colores, formas };
 
   document.addEventListener('click', e => {
     const c = e.target.closest('[data-game]'); if (c) { start(c.dataset.game); return; }
@@ -551,6 +717,6 @@
   // ck-nav.js calls setLang() when ES/EN is pressed in the shared bar.
   window.setLang = l => { lang = l === 'en' ? 'en' : 'es'; applyLang(); };
 
-  window.ckJuegos = { start, menu, _t: { fullGrid, makeQuestion, SUDOKU, makeSum, GROUPS, WORDS } };
+  window.ckJuegos = { start, menu, _t: { fullGrid, makeQuestion, SUDOKU, makeSum, GROUPS, WORDS, linkPuzzle, shapePuzzle } };
   applyLang();
 })();
