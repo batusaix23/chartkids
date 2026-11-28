@@ -75,13 +75,12 @@
   }
 }
 </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
 <!-- Google AdSense - Reemplaza ca-pub-3864436143903858 con tu ID de AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3864436143903858" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
 <script src="ck-explore.js" defer></script>
-<!-- PayPal SDK -->
-<script src="https://www.paypal.com/sdk/js?client-id=Aa0khjubdaZqeyeVfDubi3n1povc_yU8kS5Ell6VEqMLYToNo45EijWzRsri32iJoVPWDtX4AWqDZYdB&vault=true&intent=subscription&currency=USD" data-sdk-integration-source="button-factory" onerror="console.error('PayPal SDK failed to load')"></script>
 <style>
 :root {
   --bg: #0f0f1a;
@@ -4775,11 +4774,32 @@ function resetChat(isReset = false) {
   addMessage('ai', isReset ? t('resetGreeting') : t('greeting'));
 }
 
+// Heavy third-party scripts load only when needed (faster first load of the page).
+const lazyScripts = {};
+function loadScriptOnce(src) {
+  if (!lazyScripts[src]) {
+    lazyScripts[src] = new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = src; s.async = true;
+      s.onload = resolve;
+      s.onerror = () => { delete lazyScripts[src]; reject(new Error('load failed: ' + src)); };
+      document.head.appendChild(s);
+    });
+  }
+  return lazyScripts[src];
+}
+const HTML2CANVAS_SRC = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+const PAYPAL_SDK_SRC = 'https://www.paypal.com/sdk/js?client-id=Aa0khjubdaZqeyeVfDubi3n1povc_yU8kS5Ell6VEqMLYToNo45EijWzRsri32iJoVPWDtX4AWqDZYdB&vault=true&intent=subscription&currency=USD';
+
 // ─── Save & Share ────────────────────────────────────────
 async function saveChartPNG() {
   const chartEl = document.getElementById('chartInner');
   if (!chartEl || !chartData) return;
 
+  if (typeof html2canvas === 'undefined') {
+    showToast(lang === 'es' ? 'Preparando imagen...' : 'Preparing image...');
+    try { await loadScriptOnce(HTML2CANVAS_SRC); } catch (e) {}
+  }
   if (typeof html2canvas !== 'undefined') {
     try {
       const canvas = await html2canvas(chartEl, {
@@ -5953,10 +5973,11 @@ function initPayPalButton() {
 
   const container = document.getElementById('paypal-button-container');
 
-  // Check if PayPal SDK is loaded
+  // Load the PayPal SDK the first time it is needed, then wait for it
   if (typeof paypal === 'undefined') {
+    if (paypalRetries === 0) loadScriptOnce(PAYPAL_SDK_SRC).catch(() => {});
     paypalRetries++;
-    if (paypalRetries < 5) {
+    if (paypalRetries < 10) {
       // Retry after 1 second
       container.innerHTML = `<p style="color:var(--muted);font-size:0.85rem;text-align:center">${lang === 'es' ? 'Cargando PayPal...' : 'Loading PayPal...'}</p>`;
       setTimeout(initPayPalButton, 1000);
